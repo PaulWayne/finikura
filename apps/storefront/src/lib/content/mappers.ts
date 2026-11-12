@@ -22,11 +22,14 @@ const str = (v: unknown): string => (typeof v === "string" ? v : "");
 const optStr = (v: unknown): string | undefined => (typeof v === "string" && v ? v : undefined);
 const toCategoryHandle = (v: unknown): "filles" | "garcons" => (v === "garcons" ? "garcons" : "filles");
 
-/** Local Strapi uploads come back as /uploads/...; make them absolute. */
+/**
+ * Local Strapi uploads come back as /uploads/...; make them absolute with the public Strapi URL
+ * (STRAPI_PUBLIC_URL), since STRAPI_URL may be an internal address in production.
+ */
 export function mediaUrl(media: StrapiMedia | null | undefined): string {
   if (!media?.url) return "";
   if (/^https?:\/\//.test(media.url)) return media.url;
-  const base = (process.env.STRAPI_URL ?? "").replace(/\/$/, "");
+  const base = (process.env.STRAPI_PUBLIC_URL ?? process.env.STRAPI_URL ?? "").replace(/\/$/, "");
   return `${base}${media.url}`;
 }
 

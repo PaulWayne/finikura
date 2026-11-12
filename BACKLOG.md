@@ -204,6 +204,11 @@ Chaque choix (hébergeur, registraire) demande ton accord, car il implique un co
 - [ ] La revalidation Medusa → front et Strapi → front fonctionne en production, avec le secret partagé.
 - [ ] Le site est en mode live (`COMMERCE_SOURCE=live`, `CONTENT_SOURCE=live`).
 
+**Avancement (branche `fk-09`).**
+- **Préparé :** Redis dans Medusa (vérifié en dev), le `Dockerfile` avec une cible par appli, `infra/dokploy/docker-compose.prod.yml` et son `.env.example`, les scripts `infra/backup/` (sauvegarde et restauration testées), et la doc `docs/deploiement.md`.
+- **Non résolu :** dans l'image de production, Medusa n'arrive pas à se connecter à PostgreSQL pour ses migrations (expiration au bout de 10 s), alors qu'une connexion directe depuis le même conteneur fonctionne. `ssl_mode=disable` ne suffit pas. À diagnostiquer sur le VPS.
+- **Reste à faire :** le domaine, la destination des sauvegardes hors du serveur, et la mise en ligne.
+
 **Taille** L · **Dépend de** — · **Origine** cahier des charges, étapes 3-4 (Redis)
 
 ### FK-10 · Statistiques de visites

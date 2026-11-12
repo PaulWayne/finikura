@@ -1,0 +1,148 @@
+# Fini Kura production stack for Dokploy (Docker Compose service, built from this repo).
+# - No published ports: Traefik (Dokploy) routes by domain over the external "dokploy-network".
+# - Every name is prefixed "finikura-" to avoid clashing with the other sites on the VPS.
+# - Secrets and URLs come from the Dokploy "Environment" tab (see infra/dokploy/.env.example).
+#   DOMAIN=fini-kura.fr  ->  front: DOMAIN, Medusa: api.DOMAIN, Strapi: cms.DOMAIN
+
+name: finikura
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: finikura-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: medusa
+    volumes:
+      - finikura-pgdata:/var/lib/postgresql/data
+      - ../postgres-init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d medusa"]
+      interval: 10s
+      retries: 10
+    networks: [internal]
+
+  redis:
+    image: redis:7-alpine
+    container_name: finikura-redis
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes", "--maxmemory", "128mb", "--maxmemory-policy", "noeviction"]
+    volumes:
+      - finikura-redis:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      retries: 10
+    networks: [internal]
+
+  medusa:
+    build: { context: ../.., target: medusa }
+    container_name: finikura-medusa
+    restart: unless-stopped
+    depends_on:
+      postgres: { condition: service_healthy }
+      redis: { condition: service_healthy }
+    environment:
+      NODE_ENV: production
+      # Internal Docker network: no TLS. Without ssl_mode=disable Medusa forces SSL on any non-localhost host.
+      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/medusa?ssl_mode=disable
+      REDIS_URL: redis://redis:6379
+      STORE_CORS: https://${DOMAIN}
+      ADMIN_CORS: https://api.${DOMAIN}
+      AUTH_CORS: https://api.${DOMAIN},https://${DOMAIN}
+      JWT_SECRET: ${MEDUSA_JWT_SECRET}
+      COOKIE_SECRET: ${MEDUSA_COOKIE_SECRET}
+      AUTH_MFA_ENCRYPTION_KEY: ${MEDUSA_AUTH_MFA_ENCRYPTION_KEY}
+      STOREFRONT_REVALIDATE_URL: http://storefront:3100/api/revalidate
+      REVALIDATE_SECRET: ${REVALIDATE_SECRET}
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=dokploy-network
+      - traefik.http.routers.finikura-medusa.rule=Host(`api.${DOMAIN}`)
+      - traefik.http.routers.finikura-medusa.entrypoints=websecure
+      - traefik.http.routers.finikura-medusa.tls.certresolver=letsencrypt
+      - traefik.http.routers.finikura-medusa-http.rule=Host(`api.${DOMAIN}`)
+      - traefik.http.routers.finikura-medusa-http.entrypoints=web
+      - traefik.http.routers.finikura-medusa-http.middlewares=finikura-https
+      - traefik.http.services.finikura-medusa.loadbalancer.server.port=9000
+    networks: [internal, dokploy-network]
+
+  strapi:
+    build: { context: ../.., target: strapi }
+    container_name: finikura-strapi
+    restart: unless-stopped
+    depends_on:
+      postgres: { condition: service_healthy }
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: 1337
+      PUBLIC_URL: https://cms.${DOMAIN}
+      APP_KEYS: ${STRAPI_APP_KEYS}
+      API_TOKEN_SALT: ${STRAPI_API_TOKEN_SALT}
+      ADMIN_JWT_SECRET: ${STRAPI_ADMIN_JWT_SECRET}
+      TRANSFER_TOKEN_SALT: ${STRAPI_TRANSFER_TOKEN_SALT}
+      JWT_SECRET: ${STRAPI_JWT_SECRET}
+      ENCRYPTION_KEY: ${STRAPI_ENCRYPTION_KEY}
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_NAME: strapi
+      DATABASE_USERNAME: ${POSTGRES_USER}
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
+      STOREFRONT_REVALIDATE_URL: http://storefront:3100/api/revalidate
+      REVALIDATE_SECRET: ${REVALIDATE_SECRET}
+    volumes:
+      - finikura-strapi-uploads:/app/apps/strapi/public/uploads
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=dokploy-network
+      - traefik.http.routers.finikura-strapi.rule=Host(`cms.${DOMAIN}`)
+      - traefik.http.routers.finikura-strapi.entrypoints=websecure
+      - traefik.http.routers.finikura-strapi.tls.certresolver=letsencrypt
+      - traefik.http.routers.finikura-strapi-http.rule=Host(`cms.${DOMAIN}`)
+      - traefik.http.routers.finikura-strapi-http.entrypoints=web
+      - traefik.http.routers.finikura-strapi-http.middlewares=finikura-https
+      - traefik.http.services.finikura-strapi.loadbalancer.server.port=1337
+    networks: [internal, dokploy-network]
+
+  storefront:
+    build: { context: ../.., target: storefront }
+    container_name: finikura-storefront
+    restart: unless-stopped
+    depends_on: [medusa, strapi]
+    environment:
+      COMMERCE_SOURCE: live
+      CONTENT_SOURCE: live
+      MEDUSA_BACKEND_URL: http://medusa:9000
+      MEDUSA_PUBLISHABLE_KEY: ${MEDUSA_PUBLISHABLE_KEY}
+      STRAPI_URL: http://strapi:1337
+      STRAPI_PUBLIC_URL: https://cms.${DOMAIN}
+      STRAPI_TOKEN: ${STRAPI_TOKEN:-}
+      REVALIDATE_SECRET: ${REVALIDATE_SECRET}
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=dokploy-network
+      - traefik.http.routers.finikura-front.rule=Host(`${DOMAIN}`)
+      - traefik.http.routers.finikura-front.entrypoints=websecure
+      - traefik.http.routers.finikura-front.tls.certresolver=letsencrypt
+      - traefik.http.routers.finikura-front-http.rule=Host(`${DOMAIN}`)
+      - traefik.http.routers.finikura-front-http.entrypoints=web
+      - traefik.http.routers.finikura-front-http.middlewares=finikura-https
+      - traefik.http.middlewares.finikura-https.redirectscheme.scheme=https
+      - traefik.http.middlewares.finikura-https.redirectscheme.permanent=true
+      - traefik.http.services.finikura-front.loadbalancer.server.port=3100
+    networks: [internal, dokploy-network]
+
+volumes:
+  finikura-pgdata:
+  finikura-redis:
+  finikura-strapi-uploads:
+
+networks:
+  internal:
+    name: finikura-internal
+  dokploy-network:
+    external: true
