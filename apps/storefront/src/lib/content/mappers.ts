@@ -1,162 +1,173 @@
 import "server-only";
 import {
-  StrapiGlobalSettingsResponse,
-  StrapiHomePageResponse,
+  StrapiCampaign,
+  StrapiGlobalSettings,
+  StrapiHomePage,
+  StrapiMedia,
+  StrapiPage,
   StrapiRawBlock,
-  StrapiSizeGuideItem,
-  StrapiCampaignItem,
-  StrapiEditorialPageItem,
+  StrapiSizeGuide,
 } from "./raw";
 import {
   GlobalSettings,
   HomePageData,
   ContentBlock,
-  HeroBlockData,
-  CategoryCardsBlockData,
-  ProductSectionBlockData,
-  ReassuranceBlockData,
-  AboutExcerptBlockData,
-  RichTextBlockData,
-  ImageTextBlockData,
-  ValuesBlockData,
-  FaqBlockData,
-  CtaBlockData,
+  CategoryCardItem,
   SizeGuide,
   Campaign,
   EditorialPage,
 } from "./types";
 
+const str = (v: unknown): string => (typeof v === "string" ? v : "");
+const optStr = (v: unknown): string | undefined => (typeof v === "string" && v ? v : undefined);
+const toCategoryHandle = (v: unknown): "filles" | "garcons" => (v === "garcons" ? "garcons" : "filles");
+
+/** Local Strapi uploads come back as /uploads/...; make them absolute. */
+export function mediaUrl(media: StrapiMedia | null | undefined): string {
+  if (!media?.url) return "";
+  if (/^https?:\/\//.test(media.url)) return media.url;
+  const base = (process.env.STRAPI_URL ?? "").replace(/\/$/, "");
+  return `${base}${media.url}`;
+}
+
+const imageAlt = (raw: { image?: StrapiMedia | null; image_alt?: unknown }) =>
+  str(raw.image_alt) || raw.image?.alternativeText || "";
+
 export function mapStrapiBlockToDomain(raw: StrapiRawBlock): ContentBlock | null {
+  const id = raw.id ?? raw.__component;
   switch (raw.__component) {
     case "blocks.hero":
       return {
         type: "hero",
-        id: raw.id,
-        eyebrow: (raw.eyebrow as string) || "",
-        title: (raw.title as string) || "",
-        subtitle: (raw.subtitle as string) || "",
-        ctaText: (raw.cta_text as string) || "DÉCOUVRIR",
-        ctaLink: (raw.cta_link as string) || "#",
-        imageUrl: (raw.image_url as string) || "",
-        imageAlt: (raw.image_alt as string) || (raw.title as string) || "",
-      } as HeroBlockData;
+        id,
+        eyebrow: str(raw.eyebrow),
+        title: str(raw.title),
+        subtitle: str(raw.subtitle),
+        ctaText: str(raw.cta_text),
+        ctaLink: str(raw.cta_link),
+        imageUrl: mediaUrl(raw.image),
+        imageAlt: imageAlt(raw),
+      };
 
-    case "blocks.category-cards":
+    case "blocks.category-cards": {
+      const cards = (raw.cards as Array<Record<string, unknown>> | undefined) ?? [];
       return {
         type: "categoryCards",
-        id: raw.id,
-        eyebrow: (raw.eyebrow as string) || "",
-        title: (raw.title as string) || "",
-        subtitle: (raw.subtitle as string) || "",
-        cards: ((raw.cards as Array<Record<string, string>>) || []).map((c) => ({
-          categoryHandle: (c.category_handle === "garcons" ? "garcons" : "filles") as "filles" | "garcons",
-          title: c.title || "",
-          ageRange: c.age_range || "3-14 ANS",
-          tagline: c.tagline,
-          ctaText: c.cta_text || "DÉCOUVRIR",
-          imageUrl: c.image_url || "",
-          imageAlt: c.image_alt || c.title || "",
-        })),
-      } as CategoryCardsBlockData;
+        id,
+        eyebrow: str(raw.eyebrow),
+        title: str(raw.title),
+        subtitle: str(raw.subtitle),
+        cards: cards.map(
+          (c): CategoryCardItem => ({
+            categoryHandle: toCategoryHandle(c.category_handle),
+            title: str(c.title),
+            ageRange: str(c.age_range),
+            tagline: optStr(c.tagline),
+            ctaText: str(c.cta_text),
+            imageUrl: mediaUrl(c.image as StrapiMedia | null),
+            imageAlt: str(c.image_alt) || (c.image as StrapiMedia | null)?.alternativeText || "",
+          })
+        ),
+      };
+    }
 
     case "blocks.product-section":
-      return {
-        type: "productSection",
-        id: raw.id,
-        eyebrow: (raw.eyebrow as string) || "",
-        title: (raw.title as string) || "",
-        collectionHandle: (raw.collection_handle as string) || "nouveautes",
-      } as ProductSectionBlockData;
+      // Rendered only if Medusa knows the collection (checked when rendering).
+      return raw.collection_handle
+        ? {
+            type: "productSection",
+            id,
+            eyebrow: str(raw.eyebrow),
+            title: str(raw.title),
+            collectionHandle: str(raw.collection_handle),
+          }
+        : null;
 
     case "blocks.reassurance":
-      return {
-        type: "reassurance",
-        id: raw.id,
-      } as ReassuranceBlockData;
+      return { type: "reassurance", id };
 
     case "blocks.about-excerpt":
       return {
         type: "aboutExcerpt",
-        id: raw.id,
-        eyebrow: (raw.eyebrow as string) || "",
-        title: (raw.title as string) || "",
-        content: (raw.content as string) || "",
-        ctaText: (raw.cta_text as string) || "NOTRE HISTOIRE",
-        ctaLink: (raw.cta_link as string) || "/notre-histoire",
-        imageUrl: (raw.image_url as string) || "",
-        imageAlt: (raw.image_alt as string) || "",
-      } as AboutExcerptBlockData;
+        id,
+        eyebrow: str(raw.eyebrow),
+        title: str(raw.title),
+        content: str(raw.content),
+        ctaText: str(raw.cta_text),
+        ctaLink: str(raw.cta_link),
+        imageUrl: mediaUrl(raw.image),
+        imageAlt: imageAlt(raw),
+      };
 
     case "blocks.rich-text":
-      return {
-        type: "richText",
-        id: raw.id,
-        title: (raw.title as string) || "",
-        body: (raw.body as string) || "",
-      } as RichTextBlockData;
+      return { type: "richText", id, title: str(raw.title), body: str(raw.body) };
 
     case "blocks.image-text":
       return {
         type: "imageText",
-        id: raw.id,
-        eyebrow: raw.eyebrow as string | undefined,
-        title: (raw.title as string) || "",
-        text: (raw.text as string) || "",
-        imageUrl: (raw.image_url as string) || "",
-        imageAlt: (raw.image_alt as string) || "",
-      } as ImageTextBlockData;
+        id,
+        eyebrow: optStr(raw.eyebrow),
+        title: str(raw.title),
+        text: str(raw.text),
+        imageUrl: mediaUrl(raw.image),
+        imageAlt: imageAlt(raw),
+      };
 
     case "blocks.values":
       return {
         type: "values",
-        id: raw.id,
-        title: (raw.title as string) || "",
-        items: (raw.items as Array<{ title: string; description: string }>) || [],
-      } as ValuesBlockData;
+        id,
+        title: str(raw.title),
+        items: ((raw.items as Array<Record<string, unknown>> | undefined) ?? []).map((i) => ({
+          title: str(i.title),
+          description: str(i.description),
+        })),
+      };
 
     case "blocks.faq":
       return {
         type: "faq",
-        id: raw.id,
-        title: (raw.title as string) || "",
-        items: (raw.items as Array<{ question: string; answer: string }>) || [],
-      } as FaqBlockData;
+        id,
+        title: str(raw.title),
+        items: ((raw.items as Array<Record<string, unknown>> | undefined) ?? []).map((i) => ({
+          question: str(i.question),
+          answer: str(i.answer),
+        })),
+      };
 
     case "blocks.cta":
       return {
         type: "cta",
-        id: raw.id,
-        title: (raw.title as string) || "",
-        subtitle: raw.subtitle as string | undefined,
-        ctaText: (raw.cta_text as string) || "EN SAVOIR PLUS",
-        ctaLink: (raw.cta_link as string) || "#",
-      } as CtaBlockData;
+        id,
+        title: str(raw.title),
+        subtitle: optStr(raw.subtitle),
+        ctaText: str(raw.cta_text),
+        ctaLink: str(raw.cta_link),
+      };
 
     default:
-      // Unknown block types are ignored per rules
+      // Unknown block types are ignored.
       return null;
   }
 }
 
-export function mapStrapiGlobalSettingsToDomain(
-  raw: StrapiGlobalSettingsResponse
-): GlobalSettings {
-  const attrs = raw.data.attributes;
+const mapBlocks = (blocks: StrapiRawBlock[] | null | undefined): ContentBlock[] =>
+  (blocks ?? []).map(mapStrapiBlockToDomain).filter((b): b is ContentBlock => b !== null);
+
+export function mapStrapiGlobalSettingsToDomain(raw: StrapiGlobalSettings | null): GlobalSettings {
+  const number = (raw?.whatsapp_number ?? "").replace(/\D/g, "");
   return {
-    announcementBar: attrs.announcement_bar,
-    whatsappNumber: attrs.whatsapp_number,
-    whatsappUrl: attrs.whatsapp_url,
-    socialLinks: attrs.social_links.map((s) => ({
+    announcementBar: raw?.announcement_bar ?? "",
+    whatsappNumber: number,
+    whatsappUrl: number ? `https://wa.me/${number}` : "",
+    socialLinks: (raw?.social_links ?? []).map((s) => ({
       platform: s.platform,
       url: s.url,
       label: s.label,
     })),
-    footerLinks: attrs.footer_links.map((f) => ({
-      label: f.label,
-      url: f.url,
-    })),
-    reassuranceItems: attrs.reassurance_items.map((r) => ({
-      id: r.id,
+    footerLinks: (raw?.footer_links ?? []).map((f) => ({ label: f.label, url: f.url })),
+    reassuranceItems: (raw?.reassurance_items ?? []).map((r, i) => ({
+      id: String(i),
       title: r.title,
       description: r.description,
       icon: r.icon,
@@ -164,35 +175,22 @@ export function mapStrapiGlobalSettingsToDomain(
   };
 }
 
-export function mapStrapiHomePageToDomain(
-  raw: StrapiHomePageResponse
-): HomePageData {
-  const attrs = raw.data.attributes;
-  const blocks: ContentBlock[] = [];
-
-  for (const rawBlock of attrs.blocks || []) {
-    const mapped = mapStrapiBlockToDomain(rawBlock);
-    if (mapped) {
-      blocks.push(mapped);
-    }
-  }
-
+export function mapStrapiHomePageToDomain(raw: StrapiHomePage | null): HomePageData {
   return {
     seo: {
-      title: attrs.seo?.title || "Fini Kura — Habits pour enfants",
-      description: attrs.seo?.description || "",
+      title: raw?.seo?.title ?? "",
+      description: raw?.seo?.description ?? "",
     },
-    blocks,
+    blocks: mapBlocks(raw?.blocks),
   };
 }
 
-export function mapStrapiSizeGuideToDomain(raw: StrapiSizeGuideItem): SizeGuide {
-  const attrs = raw.attributes;
+export function mapStrapiSizeGuideToDomain(raw: StrapiSizeGuide): SizeGuide {
   return {
-    categoryHandle: (attrs.category_handle === "garcons" ? "garcons" : "filles") as "filles" | "garcons",
-    title: attrs.title,
-    measuringTips: attrs.measuring_tips || [],
-    rows: (attrs.rows || []).map((r) => ({
+    categoryHandle: toCategoryHandle(raw.category_handle),
+    title: raw.title,
+    measuringTips: (raw.measuring_tips ?? []).map((t) => t.text),
+    rows: (raw.rows ?? []).map((r) => ({
       age: r.age,
       heightCm: r.height_cm,
       chestCm: r.chest_cm,
@@ -202,44 +200,29 @@ export function mapStrapiSizeGuideToDomain(raw: StrapiSizeGuideItem): SizeGuide 
   };
 }
 
-export function mapStrapiCampaignToDomain(raw: StrapiCampaignItem): Campaign {
-  const attrs = raw.attributes;
+export function mapStrapiCampaignToDomain(raw: StrapiCampaign): Campaign {
   return {
-    slug: attrs.slug,
-    title: attrs.title,
-    collectionHandle: attrs.collection_handle,
-    startDate: attrs.start_date,
-    endDate: attrs.end_date,
+    slug: raw.slug,
+    title: raw.title,
+    collectionHandle: raw.collection_handle,
+    startDate: raw.start_date,
+    endDate: raw.end_date,
     texts: {
-      headline: attrs.texts?.headline || "",
-      description: attrs.texts?.description || "",
+      headline: raw.headline ?? "",
+      description: raw.description ?? "",
     },
-    visuals: {
-      bannerUrl: attrs.visuals?.banner_url || "",
-    },
+    visuals: { bannerUrl: mediaUrl(raw.banner) },
   };
 }
 
-export function mapStrapiEditorialPageToDomain(
-  raw: StrapiEditorialPageItem
-): EditorialPage {
-  const attrs = raw.attributes;
-  const blocks: ContentBlock[] = [];
-
-  for (const rawBlock of attrs.blocks || []) {
-    const mapped = mapStrapiBlockToDomain(rawBlock);
-    if (mapped) {
-      blocks.push(mapped);
-    }
-  }
-
+export function mapStrapiEditorialPageToDomain(raw: StrapiPage): EditorialPage {
   return {
-    slug: attrs.slug,
-    title: attrs.title,
+    slug: raw.slug,
+    title: raw.title,
     seo: {
-      title: attrs.seo?.title || attrs.title,
-      description: attrs.seo?.description || "",
+      title: raw.seo?.title || raw.title,
+      description: raw.seo?.description ?? "",
     },
-    blocks,
+    blocks: mapBlocks(raw.blocks),
   };
 }

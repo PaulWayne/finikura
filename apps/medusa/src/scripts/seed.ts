@@ -36,7 +36,8 @@ type FixtureVariant = {
   title: string
   sku: string
   inventory_quantity: number
-  prices: { currency_code: string; amount: number }[]
+  // Same shape as the Store API response (see storefront raw.ts).
+  calculated_price: { calculated_amount: number; currency_code: string }
 }
 type FixtureProduct = {
   title: string
@@ -44,7 +45,7 @@ type FixtureProduct = {
   subtitle?: string
   description?: string
   material?: string
-  care_instructions?: string
+  metadata?: { care_instructions?: string }
   thumbnail?: string
   images?: { url: string }[]
   categories?: { handle: string }[]
@@ -271,7 +272,7 @@ export default async function seed({ container }: ExecArgs) {
           tag_ids: tags
             .filter((t) => p.tags?.some((pt) => pt.value === t.value))
             .map((t) => t.id),
-          metadata: p.care_instructions ? { care_instructions: p.care_instructions } : undefined,
+          metadata: p.metadata,
           options: [{ title: AGE_OPTION, values: p.variants.map((v) => v.title) }],
           variants: p.variants.map((v) => ({
             title: v.title,
@@ -279,10 +280,12 @@ export default async function seed({ container }: ExecArgs) {
             manage_inventory: true,
             allow_backorder: false,
             options: { [AGE_OPTION]: v.title },
-            prices: v.prices.map((price) => ({
-              currency_code: price.currency_code,
-              amount: price.amount,
-            })),
+            prices: [
+              {
+                currency_code: v.calculated_price.currency_code,
+                amount: v.calculated_price.calculated_amount,
+              },
+            ],
           })),
         })),
       },

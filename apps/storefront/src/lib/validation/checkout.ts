@@ -13,9 +13,11 @@ export const checkoutSchema = z.object({
   phone: z
     .string()
     .transform((val) => val.replace(/\s+/g, ''))
-    .refine((val) => /^[5-9][0-9]{7}$/.test(val) || /^(\+223|00223)?[5-9][0-9]{7}$/.test(val), {
+    .refine((val) => /^(\+223|00223)?[5-9][0-9]{7}$/.test(val), {
       message: messages.validation.phoneInvalid,
-    }),
+    })
+    // Stored in one format everywhere: +223 followed by 8 digits.
+    .transform((val) => `+223${val.slice(-8)}`),
   neighborhood: z
     .string()
     .min(2, { message: messages.validation.neighborhoodRequired })

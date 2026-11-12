@@ -36,7 +36,7 @@ export default async function HomePage() {
     <div className="space-y-10 md:space-y-16 py-4 md:py-8">
       {homeData.blocks.map((block) => (
         <BlockRenderer
-          key={String(block.id)}
+          key={`${block.type}-${block.id}`}
           block={block}
           collectionProductsMap={collectionProductsMap}
           reassuranceItems={settings.reassuranceItems}

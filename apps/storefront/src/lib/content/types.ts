@@ -7,7 +7,7 @@ export interface ReassuranceItem {
 }
 
 export interface SocialLink {
-  platform: "whatsapp" | "facebook" | "tiktok";
+  platform: "whatsapp" | "facebook" | "tiktok" | "instagram";
   url: string;
   label: string;
 }

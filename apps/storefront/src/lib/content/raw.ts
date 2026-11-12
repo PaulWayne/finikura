@@ -1,116 +1,97 @@
 import "server-only";
 
+// Shapes of the Strapi 5 REST responses (flat documents, no `attributes`),
+// limited to the fields we read. Matches the content types in apps/strapi.
+
+export interface StrapiMedia {
+  url: string; // relative (/uploads/...) for local uploads, absolute for a CDN
+  alternativeText?: string | null;
+}
+
 export interface StrapiReassuranceItem {
-  id: string;
   title: string;
   description: string;
   icon: string;
 }
 
 export interface StrapiSocialLink {
-  platform: "whatsapp" | "facebook" | "tiktok";
+  platform: "whatsapp" | "facebook" | "tiktok" | "instagram";
   url: string;
   label: string;
 }
 
-export interface StrapiFooterLink {
+export interface StrapiLink {
   label: string;
   url: string;
 }
 
-export interface StrapiGlobalSettingsResponse {
-  data: {
-    id: number;
-    attributes: {
-      announcement_bar: string;
-      whatsapp_number: string;
-      whatsapp_url: string;
-      social_links: StrapiSocialLink[];
-      footer_links: StrapiFooterLink[];
-      reassurance_items: StrapiReassuranceItem[];
-    };
-  };
-  meta: Record<string, unknown>;
+export interface StrapiSeo {
+  title?: string | null;
+  description?: string | null;
+}
+
+export interface StrapiGlobalSettings {
+  documentId: string;
+  announcement_bar?: string | null;
+  whatsapp_number?: string | null; // digits only, e.g. 22376000000
+  social_links?: StrapiSocialLink[] | null;
+  footer_links?: StrapiLink[] | null;
+  reassurance_items?: StrapiReassuranceItem[] | null;
 }
 
 export interface StrapiRawBlock {
   __component: string;
-  id: number;
+  id?: number;
+  image?: StrapiMedia | null;
   [key: string]: unknown;
 }
 
-export interface StrapiHomePageResponse {
-  data: {
-    id: number;
-    attributes: {
-      seo: {
-        title: string;
-        description: string;
-      };
-      blocks: StrapiRawBlock[];
-    };
-  };
+export interface StrapiHomePage {
+  documentId: string;
+  seo?: StrapiSeo | null;
+  blocks?: StrapiRawBlock[] | null;
+}
+
+export interface StrapiSizeGuide {
+  documentId: string;
+  category_handle: string;
+  title: string;
+  measuring_tips?: { text: string }[] | null;
+  rows?: {
+    age: string;
+    height_cm: string;
+    chest_cm: string;
+    waist_cm: string;
+    hips_cm: string;
+  }[] | null;
+}
+
+export interface StrapiCampaign {
+  documentId: string;
+  slug: string;
+  title: string;
+  collection_handle: string;
+  start_date: string;
+  end_date: string;
+  headline?: string | null;
+  description?: string | null;
+  banner?: StrapiMedia | null;
+}
+
+export interface StrapiPage {
+  documentId: string;
+  slug: string;
+  title: string;
+  seo?: StrapiSeo | null;
+  blocks?: StrapiRawBlock[] | null;
+}
+
+export interface StrapiSingleResponse<T> {
+  data: T | null;
   meta: Record<string, unknown>;
 }
 
-export interface StrapiSizeGuideItem {
-  id: number;
-  attributes: {
-    category_handle: string;
-    title: string;
-    measuring_tips: string[];
-    rows: {
-      age: string;
-      height_cm: string;
-      chest_cm: string;
-      waist_cm: string;
-      hips_cm: string;
-    }[];
-  };
-}
-
-export interface StrapiSizeGuidesResponse {
-  data: StrapiSizeGuideItem[];
-  meta: Record<string, unknown>;
-}
-
-export interface StrapiCampaignItem {
-  id: number;
-  attributes: {
-    slug: string;
-    title: string;
-    collection_handle: string;
-    start_date: string;
-    end_date: string;
-    texts: {
-      headline: string;
-      description: string;
-    };
-    visuals: {
-      banner_url: string;
-    };
-  };
-}
-
-export interface StrapiCampaignsResponse {
-  data: StrapiCampaignItem[];
-  meta: Record<string, unknown>;
-}
-
-export interface StrapiEditorialPageItem {
-  id: number;
-  attributes: {
-    slug: string;
-    title: string;
-    seo: {
-      title: string;
-      description: string;
-    };
-    blocks: StrapiRawBlock[];
-  };
-}
-
-export interface StrapiEditorialPagesResponse {
-  data: StrapiEditorialPageItem[];
+export interface StrapiListResponse<T> {
+  data: T[];
   meta: Record<string, unknown>;
 }

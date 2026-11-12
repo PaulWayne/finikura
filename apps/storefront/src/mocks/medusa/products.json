@@ -7,7 +7,6 @@
       "subtitle": "Pur lin d’artisanat",
       "description": "Robe confectionnée dans un lin naturel terracotta d'une douceur exceptionnelle. Parements brodés à la main avec délicatesse par nos maîtres artisans à Bamako.",
       "material": "100% Lin pur lavé d'artisanat",
-      "care_instructions": "Lavage délicat à 30°C ou à la main. Séchage à l'ombre. Repassage doux sur l'envers.",
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuDJh73UnFB4eBhcIx_CWz1k4i7DFcwld9egJrXnH9b8jqNS0u5o-KzoEwaVZIXflWIAk5cg41FSnnO6OFqiMXKRqQyTOlb2hKSyKlhIDSBWgEkK5qqKLOo_FIuPbCt7mE0UgyG66Q_hZTq-_Wor1i-NY6bZyQxxZisarmbU-wbOUElAkRSCEsh5SCHJEDrDU17E5JjV7_MwqL7xVmCKtd-Hiv3mYEGdSEJSwW7nwXY",
       "images": [
         {
@@ -46,13 +45,82 @@
         }
       ],
       "variants": [
-        { "id": "var_f01_34", "title": "3-4 ans", "sku": "RTB-34", "inventory_quantity": 4, "prices": [{ "currency_code": "xof", "amount": 12500 }] },
-        { "id": "var_f01_56", "title": "5-6 ans", "sku": "RTB-56", "inventory_quantity": 6, "prices": [{ "currency_code": "xof", "amount": 12500 }] },
-        { "id": "var_f01_78", "title": "7-8 ans", "sku": "RTB-78", "inventory_quantity": 3, "prices": [{ "currency_code": "xof", "amount": 12500 }] },
-        { "id": "var_f01_910", "title": "9-10 ans", "sku": "RTB-910", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 12500 }] },
-        { "id": "var_f01_1112", "title": "11-12 ans", "sku": "RTB-1112", "inventory_quantity": 1, "prices": [{ "currency_code": "xof", "amount": 12500 }] },
-        { "id": "var_f01_1314", "title": "13-14 ans", "sku": "RTB-1314", "inventory_quantity": 0, "prices": [{ "currency_code": "xof", "amount": 12500 }] }
-      ]
+        {
+          "id": "var_f01_34",
+          "title": "3-4 ans",
+          "sku": "RTB-34",
+          "inventory_quantity": 4,
+          "calculated_price": {
+            "calculated_amount": 12500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f01_56",
+          "title": "5-6 ans",
+          "sku": "RTB-56",
+          "inventory_quantity": 6,
+          "calculated_price": {
+            "calculated_amount": 12500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f01_78",
+          "title": "7-8 ans",
+          "sku": "RTB-78",
+          "inventory_quantity": 3,
+          "calculated_price": {
+            "calculated_amount": 12500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f01_910",
+          "title": "9-10 ans",
+          "sku": "RTB-910",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 12500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f01_1112",
+          "title": "11-12 ans",
+          "sku": "RTB-1112",
+          "inventory_quantity": 1,
+          "calculated_price": {
+            "calculated_amount": 12500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f01_1314",
+          "title": "13-14 ans",
+          "sku": "RTB-1314",
+          "inventory_quantity": 0,
+          "calculated_price": {
+            "calculated_amount": 12500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "metadata": {
+        "care_instructions": "Lavage délicat à 30°C ou à la main. Séchage à l'ombre. Repassage doux sur l'envers."
+      }
     },
     {
       "id": "prod_filles_02",
@@ -61,7 +129,6 @@
       "subtitle": "Coupe ample & douce",
       "description": "Une robe ample et vaporeuse en lin fin poudré, pensée pour laisser respirer la peau des jeunes filles pendant les chaudes journées à Bamako.",
       "material": "100% Lin naturel prélavé",
-      "care_instructions": "Lavage à l'eau froide à la main ou cycle laine. Essorage doux.",
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuDdnWIzyePPD5zdQtzJw8HQn2U4rnMqnnOQS8KPv_LJaIurpUSKeFL0vAHAcaqJ_PMmscbGywkg8WHasptjKqIdaBwvXWNYBoztNJrup_FwHv5R9o0Y_Bki_md_QBNyAZqJJg-ex2pxZDwuCE0odyilCcWx0murVTNR2V2V-rzq4E9VwXZKtmKcru2NwKwVe_QapJ4PjQFSmL6bsCgmYmMBE0CFHd7GU2XzSPLuOWc",
       "images": [
         {
@@ -88,13 +155,82 @@
         }
       ],
       "variants": [
-        { "id": "var_f02_34", "title": "3-4 ans", "sku": "RPL-34", "inventory_quantity": 5, "prices": [{ "currency_code": "xof", "amount": 14500 }] },
-        { "id": "var_f02_56", "title": "5-6 ans", "sku": "RPL-56", "inventory_quantity": 3, "prices": [{ "currency_code": "xof", "amount": 14500 }] },
-        { "id": "var_f02_78", "title": "7-8 ans", "sku": "RPL-78", "inventory_quantity": 4, "prices": [{ "currency_code": "xof", "amount": 14500 }] },
-        { "id": "var_f02_910", "title": "9-10 ans", "sku": "RPL-910", "inventory_quantity": 0, "prices": [{ "currency_code": "xof", "amount": 14500 }] },
-        { "id": "var_f02_1112", "title": "11-12 ans", "sku": "RPL-1112", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 14500 }] },
-        { "id": "var_f02_1314", "title": "13-14 ans", "sku": "RPL-1314", "inventory_quantity": 1, "prices": [{ "currency_code": "xof", "amount": 14500 }] }
-      ]
+        {
+          "id": "var_f02_34",
+          "title": "3-4 ans",
+          "sku": "RPL-34",
+          "inventory_quantity": 5,
+          "calculated_price": {
+            "calculated_amount": 14500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f02_56",
+          "title": "5-6 ans",
+          "sku": "RPL-56",
+          "inventory_quantity": 3,
+          "calculated_price": {
+            "calculated_amount": 14500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f02_78",
+          "title": "7-8 ans",
+          "sku": "RPL-78",
+          "inventory_quantity": 4,
+          "calculated_price": {
+            "calculated_amount": 14500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f02_910",
+          "title": "9-10 ans",
+          "sku": "RPL-910",
+          "inventory_quantity": 0,
+          "calculated_price": {
+            "calculated_amount": 14500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f02_1112",
+          "title": "11-12 ans",
+          "sku": "RPL-1112",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 14500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f02_1314",
+          "title": "13-14 ans",
+          "sku": "RPL-1314",
+          "inventory_quantity": 1,
+          "calculated_price": {
+            "calculated_amount": 14500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "metadata": {
+        "care_instructions": "Lavage à l'eau froide à la main ou cycle laine. Essorage doux."
+      }
     },
     {
       "id": "prod_filles_03",
@@ -103,7 +239,6 @@
       "subtitle": "Manches ballon écru",
       "description": "Une silhouette cérémoniale ornée de broderies minutieuses ton sur ton au col et aux manches ballon. Élégance pure pour célébrer les moments précieux.",
       "material": "100% Coton noble peigné",
-      "care_instructions": "Lavage à 30°C. Ne pas utiliser d'agents blanchissants.",
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuBUQsJIPFx1firjjIUDVcwSLAtBdq62I7rcROFVX5ZMxRlPiKZ0RY8oLC-ir7cqgMhsaUa48-X7aFqWr5x0eusytPFlX4WuW5xs-Quh76_ReTzjnM--pPN-In6-7xB6RHtVCOZRo5acBw-QqYG_30xLMjc0swPpxlCt09et2HPlgP7dlISw4NIoD9yEYgftEr8sb5-GX-Lfxivd6i9pvLTri8PYxLIqZBceQjDdUCk",
       "images": [
         {
@@ -125,13 +260,82 @@
         }
       ],
       "variants": [
-        { "id": "var_f03_34", "title": "3-4 ans", "sku": "REB-34", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 15000 }] },
-        { "id": "var_f03_56", "title": "5-6 ans", "sku": "REB-56", "inventory_quantity": 4, "prices": [{ "currency_code": "xof", "amount": 15000 }] },
-        { "id": "var_f03_78", "title": "7-8 ans", "sku": "REB-78", "inventory_quantity": 3, "prices": [{ "currency_code": "xof", "amount": 15000 }] },
-        { "id": "var_f03_910", "title": "9-10 ans", "sku": "REB-910", "inventory_quantity": 3, "prices": [{ "currency_code": "xof", "amount": 15000 }] },
-        { "id": "var_f03_1112", "title": "11-12 ans", "sku": "REB-1112", "inventory_quantity": 0, "prices": [{ "currency_code": "xof", "amount": 15000 }] },
-        { "id": "var_f03_1314", "title": "13-14 ans", "sku": "REB-1314", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 15000 }] }
-      ]
+        {
+          "id": "var_f03_34",
+          "title": "3-4 ans",
+          "sku": "REB-34",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 15000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f03_56",
+          "title": "5-6 ans",
+          "sku": "REB-56",
+          "inventory_quantity": 4,
+          "calculated_price": {
+            "calculated_amount": 15000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f03_78",
+          "title": "7-8 ans",
+          "sku": "REB-78",
+          "inventory_quantity": 3,
+          "calculated_price": {
+            "calculated_amount": 15000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f03_910",
+          "title": "9-10 ans",
+          "sku": "REB-910",
+          "inventory_quantity": 3,
+          "calculated_price": {
+            "calculated_amount": 15000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f03_1112",
+          "title": "11-12 ans",
+          "sku": "REB-1112",
+          "inventory_quantity": 0,
+          "calculated_price": {
+            "calculated_amount": 15000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f03_1314",
+          "title": "13-14 ans",
+          "sku": "REB-1314",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 15000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "metadata": {
+        "care_instructions": "Lavage à 30°C. Ne pas utiliser d'agents blanchissants."
+      }
     },
     {
       "id": "prod_filles_04",
@@ -140,7 +344,6 @@
       "subtitle": "Bi-matière naturelle",
       "description": "Une robe étagée alternant volants en lin sauge et bandes écrues. Confortable et légère, elle accompagne chaque mouvement avec fluidité.",
       "material": "60% Lin, 40% Coton peigné",
-      "care_instructions": "Lavage à 30°C. Sécher sur cintre à l'ombre.",
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuCWwxQd_l874xBf1J2-lI80lVi6hRwNSrVFJ7bxISihM0WcWKqB9jZ-UuM2ocxz9bac3pB9Ke45yC9SvOO8uWMP-gS-Xy8Hq1Dvpu1S-vbpTVpZlShgzM5HDiAG3ji7DlVvUulz5B8VzLgjaH6-Y1PAdobAUKoTN15x4qFDvt6GeRfbq8I8Epm1Xowjjy67xlvfWmmDBA261YXHAImsXk9tBr70sp3yww2ctsUfryg",
       "images": [
         {
@@ -162,13 +365,82 @@
         }
       ],
       "variants": [
-        { "id": "var_f04_34", "title": "3-4 ans", "sku": "RESL-34", "inventory_quantity": 4, "prices": [{ "currency_code": "xof", "amount": 13500 }] },
-        { "id": "var_f04_56", "title": "5-6 ans", "sku": "RESL-56", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 13500 }] },
-        { "id": "var_f04_78", "title": "7-8 ans", "sku": "RESL-78", "inventory_quantity": 5, "prices": [{ "currency_code": "xof", "amount": 13500 }] },
-        { "id": "var_f04_910", "title": "9-10 ans", "sku": "RESL-910", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 13500 }] },
-        { "id": "var_f04_1112", "title": "11-12 ans", "sku": "RESL-1112", "inventory_quantity": 3, "prices": [{ "currency_code": "xof", "amount": 13500 }] },
-        { "id": "var_f04_1314", "title": "13-14 ans", "sku": "RESL-1314", "inventory_quantity": 0, "prices": [{ "currency_code": "xof", "amount": 13500 }] }
-      ]
+        {
+          "id": "var_f04_34",
+          "title": "3-4 ans",
+          "sku": "RESL-34",
+          "inventory_quantity": 4,
+          "calculated_price": {
+            "calculated_amount": 13500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f04_56",
+          "title": "5-6 ans",
+          "sku": "RESL-56",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 13500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f04_78",
+          "title": "7-8 ans",
+          "sku": "RESL-78",
+          "inventory_quantity": 5,
+          "calculated_price": {
+            "calculated_amount": 13500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f04_910",
+          "title": "9-10 ans",
+          "sku": "RESL-910",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 13500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f04_1112",
+          "title": "11-12 ans",
+          "sku": "RESL-1112",
+          "inventory_quantity": 3,
+          "calculated_price": {
+            "calculated_amount": 13500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f04_1314",
+          "title": "13-14 ans",
+          "sku": "RESL-1314",
+          "inventory_quantity": 0,
+          "calculated_price": {
+            "calculated_amount": 13500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "metadata": {
+        "care_instructions": "Lavage à 30°C. Sécher sur cintre à l'ombre."
+      }
     },
     {
       "id": "prod_filles_05",
@@ -177,7 +449,6 @@
       "subtitle": "Coupe princesse et lin texturé",
       "description": "Une création vibrante par sa teinte terre cuite réchauffée au soleil, agrémentée de manches ballon généreuses et d'un boutonnage dos en nacre.",
       "material": "100% Lin noble lavé",
-      "care_instructions": "Lavage à la main ou délicat 30°C. Repassage vapeur.",
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuDJh73UnFB4eBhcIx_CWz1k4i7DFcwld9egJrXnH9b8jqNS0u5o-KzoEwaVZIXflWIAk5cg41FSnnO6OFqiMXKRqQyTOlb2hKSyKlhIDSBWgEkK5qqKLOo_FIuPbCt7mE0UgyG66Q_hZTq-_Wor1i-NY6bZyQxxZisarmbU-wbOUElAkRSCEsh5SCHJEDrDU17E5JjV7_MwqL7xVmCKtd-Hiv3mYEGdSEJSwW7nwXY",
       "images": [
         {
@@ -199,13 +470,82 @@
         }
       ],
       "variants": [
-        { "id": "var_f05_34", "title": "3-4 ans", "sku": "RMBT-34", "inventory_quantity": 3, "prices": [{ "currency_code": "xof", "amount": 13000 }] },
-        { "id": "var_f05_56", "title": "5-6 ans", "sku": "RMBT-56", "inventory_quantity": 4, "prices": [{ "currency_code": "xof", "amount": 13000 }] },
-        { "id": "var_f05_78", "title": "7-8 ans", "sku": "RMBT-78", "inventory_quantity": 0, "prices": [{ "currency_code": "xof", "amount": 13000 }] },
-        { "id": "var_f05_910", "title": "9-10 ans", "sku": "RMBT-910", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 13000 }] },
-        { "id": "var_f05_1112", "title": "11-12 ans", "sku": "RMBT-1112", "inventory_quantity": 1, "prices": [{ "currency_code": "xof", "amount": 13000 }] },
-        { "id": "var_f05_1314", "title": "13-14 ans", "sku": "RMBT-1314", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 13000 }] }
-      ]
+        {
+          "id": "var_f05_34",
+          "title": "3-4 ans",
+          "sku": "RMBT-34",
+          "inventory_quantity": 3,
+          "calculated_price": {
+            "calculated_amount": 13000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f05_56",
+          "title": "5-6 ans",
+          "sku": "RMBT-56",
+          "inventory_quantity": 4,
+          "calculated_price": {
+            "calculated_amount": 13000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f05_78",
+          "title": "7-8 ans",
+          "sku": "RMBT-78",
+          "inventory_quantity": 0,
+          "calculated_price": {
+            "calculated_amount": 13000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f05_910",
+          "title": "9-10 ans",
+          "sku": "RMBT-910",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 13000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f05_1112",
+          "title": "11-12 ans",
+          "sku": "RMBT-1112",
+          "inventory_quantity": 1,
+          "calculated_price": {
+            "calculated_amount": 13000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f05_1314",
+          "title": "13-14 ans",
+          "sku": "RMBT-1314",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 13000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "metadata": {
+        "care_instructions": "Lavage à la main ou délicat 30°C. Repassage vapeur."
+      }
     },
     {
       "id": "prod_filles_06",
@@ -214,7 +554,6 @@
       "subtitle": "Fraîcheur quotidienne",
       "description": "Idéale pour les après-midis ensoleillés, cette robe droite sans manches offre un tomber parfait et une grande liberté de jeu.",
       "material": "100% Coton peigné fin",
-      "care_instructions": "Lavage en machine à 30°C. Séchage sur fil.",
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuDJh73UnFB4eBhcIx_CWz1k4i7DFcwld9egJrXnH9b8jqNS0u5o-KzoEwaVZIXflWIAk5cg41FSnnO6OFqiMXKRqQyTOlb2hKSyKlhIDSBWgEkK5qqKLOo_FIuPbCt7mE0UgyG66Q_hZTq-_Wor1i-NY6bZyQxxZisarmbU-wbOUElAkRSCEsh5SCHJEDrDU17E5JjV7_MwqL7xVmCKtd-Hiv3mYEGdSEJSwW7nwXY",
       "images": [
         {
@@ -236,13 +575,82 @@
         }
       ],
       "variants": [
-        { "id": "var_f06_34", "title": "3-4 ans", "sku": "RSMT-34", "inventory_quantity": 4, "prices": [{ "currency_code": "xof", "amount": 11500 }] },
-        { "id": "var_f06_56", "title": "5-6 ans", "sku": "RSMT-56", "inventory_quantity": 5, "prices": [{ "currency_code": "xof", "amount": 11500 }] },
-        { "id": "var_f06_78", "title": "7-8 ans", "sku": "RSMT-78", "inventory_quantity": 3, "prices": [{ "currency_code": "xof", "amount": 11500 }] },
-        { "id": "var_f06_910", "title": "9-10 ans", "sku": "RSMT-910", "inventory_quantity": 1, "prices": [{ "currency_code": "xof", "amount": 11500 }] },
-        { "id": "var_f06_1112", "title": "11-12 ans", "sku": "RSMT-1112", "inventory_quantity": 0, "prices": [{ "currency_code": "xof", "amount": 11500 }] },
-        { "id": "var_f06_1314", "title": "13-14 ans", "sku": "RSMT-1314", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 11500 }] }
-      ]
+        {
+          "id": "var_f06_34",
+          "title": "3-4 ans",
+          "sku": "RSMT-34",
+          "inventory_quantity": 4,
+          "calculated_price": {
+            "calculated_amount": 11500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f06_56",
+          "title": "5-6 ans",
+          "sku": "RSMT-56",
+          "inventory_quantity": 5,
+          "calculated_price": {
+            "calculated_amount": 11500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f06_78",
+          "title": "7-8 ans",
+          "sku": "RSMT-78",
+          "inventory_quantity": 3,
+          "calculated_price": {
+            "calculated_amount": 11500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f06_910",
+          "title": "9-10 ans",
+          "sku": "RSMT-910",
+          "inventory_quantity": 1,
+          "calculated_price": {
+            "calculated_amount": 11500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f06_1112",
+          "title": "11-12 ans",
+          "sku": "RSMT-1112",
+          "inventory_quantity": 0,
+          "calculated_price": {
+            "calculated_amount": 11500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f06_1314",
+          "title": "13-14 ans",
+          "sku": "RSMT-1314",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 11500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "metadata": {
+        "care_instructions": "Lavage en machine à 30°C. Séchage sur fil."
+      }
     },
     {
       "id": "prod_filles_07",
@@ -251,7 +659,6 @@
       "subtitle": "Plastron d'artisanat",
       "description": "Le plastron traditionnel revisité avec des fils soyeux sur un lin écru de première qualité. Une pièce de cérémonie emblématique de Bamako.",
       "material": "100% Lin pur tissé main",
-      "care_instructions": "Nettoyage délicat. Repassage sur envers.",
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuBUQsJIPFx1firjjIUDVcwSLAtBdq62I7rcROFVX5ZMxRlPiKZ0RY8oLC-ir7cqgMhsaUa48-X7aFqWr5x0eusytPFlX4WuW5xs-Quh76_ReTzjnM--pPN-In6-7xB6RHtVCOZRo5acBw-QqYG_30xLMjc0swPpxlCt09et2HPlgP7dlISw4NIoD9yEYgftEr8sb5-GX-Lfxivd6i9pvLTri8PYxLIqZBceQjDdUCk",
       "images": [
         {
@@ -273,13 +680,82 @@
         }
       ],
       "variants": [
-        { "id": "var_f07_34", "title": "3-4 ans", "sku": "RPBL-34", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 15500 }] },
-        { "id": "var_f07_56", "title": "5-6 ans", "sku": "RPBL-56", "inventory_quantity": 4, "prices": [{ "currency_code": "xof", "amount": 15500 }] },
-        { "id": "var_f07_78", "title": "7-8 ans", "sku": "RPBL-78", "inventory_quantity": 1, "prices": [{ "currency_code": "xof", "amount": 15500 }] },
-        { "id": "var_f07_910", "title": "9-10 ans", "sku": "RPBL-910", "inventory_quantity": 0, "prices": [{ "currency_code": "xof", "amount": 15500 }] },
-        { "id": "var_f07_1112", "title": "11-12 ans", "sku": "RPBL-1112", "inventory_quantity": 3, "prices": [{ "currency_code": "xof", "amount": 15500 }] },
-        { "id": "var_f07_1314", "title": "13-14 ans", "sku": "RPBL-1314", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 15500 }] }
-      ]
+        {
+          "id": "var_f07_34",
+          "title": "3-4 ans",
+          "sku": "RPBL-34",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 15500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f07_56",
+          "title": "5-6 ans",
+          "sku": "RPBL-56",
+          "inventory_quantity": 4,
+          "calculated_price": {
+            "calculated_amount": 15500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f07_78",
+          "title": "7-8 ans",
+          "sku": "RPBL-78",
+          "inventory_quantity": 1,
+          "calculated_price": {
+            "calculated_amount": 15500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f07_910",
+          "title": "9-10 ans",
+          "sku": "RPBL-910",
+          "inventory_quantity": 0,
+          "calculated_price": {
+            "calculated_amount": 15500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f07_1112",
+          "title": "11-12 ans",
+          "sku": "RPBL-1112",
+          "inventory_quantity": 3,
+          "calculated_price": {
+            "calculated_amount": 15500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f07_1314",
+          "title": "13-14 ans",
+          "sku": "RPBL-1314",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 15500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "metadata": {
+        "care_instructions": "Nettoyage délicat. Repassage sur envers."
+      }
     },
     {
       "id": "prod_filles_08",
@@ -288,7 +764,6 @@
       "subtitle": "Contraste subtil & poétique",
       "description": "L'alliance subtile de la terre cuite malienne et d'un rose poudré délicat. Une coupe moderne aux finitions irréprochables.",
       "material": "100% Lin lavé d'exception",
-      "care_instructions": "Lavage délicat 30°C. Sécher à l'air libre.",
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuDdnWIzyePPD5zdQtzJw8HQn2U4rnMqnnOQS8KPv_LJaIurpUSKeFL0vAHAcaqJ_PMmscbGywkg8WHasptjKqIdaBwvXWNYBoztNJrup_FwHv5R9o0Y_Bki_md_QBNyAZqJJg-ex2pxZDwuCE0odyilCcWx0murVTNR2V2V-rzq4E9VwXZKtmKcru2NwKwVe_QapJ4PjQFSmL6bsCgmYmMBE0CFHd7GU2XzSPLuOWc",
       "images": [
         {
@@ -310,13 +785,82 @@
         }
       ],
       "variants": [
-        { "id": "var_f08_34", "title": "3-4 ans", "sku": "RBTR-34", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 16500 }] },
-        { "id": "var_f08_56", "title": "5-6 ans", "sku": "RBTR-56", "inventory_quantity": 3, "prices": [{ "currency_code": "xof", "amount": 16500 }] },
-        { "id": "var_f08_78", "title": "7-8 ans", "sku": "RBTR-78", "inventory_quantity": 0, "prices": [{ "currency_code": "xof", "amount": 16500 }] },
-        { "id": "var_f08_910", "title": "9-10 ans", "sku": "RBTR-910", "inventory_quantity": 1, "prices": [{ "currency_code": "xof", "amount": 16500 }] },
-        { "id": "var_f08_1112", "title": "11-12 ans", "sku": "RBTR-1112", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 16500 }] },
-        { "id": "var_f08_1314", "title": "13-14 ans", "sku": "RBTR-1314", "inventory_quantity": 1, "prices": [{ "currency_code": "xof", "amount": 16500 }] }
-      ]
+        {
+          "id": "var_f08_34",
+          "title": "3-4 ans",
+          "sku": "RBTR-34",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 16500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f08_56",
+          "title": "5-6 ans",
+          "sku": "RBTR-56",
+          "inventory_quantity": 3,
+          "calculated_price": {
+            "calculated_amount": 16500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f08_78",
+          "title": "7-8 ans",
+          "sku": "RBTR-78",
+          "inventory_quantity": 0,
+          "calculated_price": {
+            "calculated_amount": 16500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f08_910",
+          "title": "9-10 ans",
+          "sku": "RBTR-910",
+          "inventory_quantity": 1,
+          "calculated_price": {
+            "calculated_amount": 16500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f08_1112",
+          "title": "11-12 ans",
+          "sku": "RBTR-1112",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 16500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f08_1314",
+          "title": "13-14 ans",
+          "sku": "RBTR-1314",
+          "inventory_quantity": 1,
+          "calculated_price": {
+            "calculated_amount": 16500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "metadata": {
+        "care_instructions": "Lavage délicat 30°C. Sécher à l'air libre."
+      }
     },
     {
       "id": "prod_filles_09",
@@ -325,7 +869,6 @@
       "subtitle": "Brodée au fil doré",
       "description": "Coupe chasuble pratique ornée de fines surpiqûres dorées, idéale à porter seule ou superposée sur un sous-pull léger.",
       "material": "100% Lin pur lavé",
-      "care_instructions": "Lavage à 30°C sur envers.",
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuDJh73UnFB4eBhcIx_CWz1k4i7DFcwld9egJrXnH9b8jqNS0u5o-KzoEwaVZIXflWIAk5cg41FSnnO6OFqiMXKRqQyTOlb2hKSyKlhIDSBWgEkK5qqKLOo_FIuPbCt7mE0UgyG66Q_hZTq-_Wor1i-NY6bZyQxxZisarmbU-wbOUElAkRSCEsh5SCHJEDrDU17E5JjV7_MwqL7xVmCKtd-Hiv3mYEGdSEJSwW7nwXY",
       "images": [
         {
@@ -347,13 +890,82 @@
         }
       ],
       "variants": [
-        { "id": "var_f09_34", "title": "3-4 ans", "sku": "RTT-34", "inventory_quantity": 4, "prices": [{ "currency_code": "xof", "amount": 11000 }] },
-        { "id": "var_f09_56", "title": "5-6 ans", "sku": "RTT-56", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 11000 }] },
-        { "id": "var_f09_78", "title": "7-8 ans", "sku": "RTT-78", "inventory_quantity": 3, "prices": [{ "currency_code": "xof", "amount": 11000 }] },
-        { "id": "var_f09_910", "title": "9-10 ans", "sku": "RTT-910", "inventory_quantity": 0, "prices": [{ "currency_code": "xof", "amount": 11000 }] },
-        { "id": "var_f09_1112", "title": "11-12 ans", "sku": "RTT-1112", "inventory_quantity": 1, "prices": [{ "currency_code": "xof", "amount": 11000 }] },
-        { "id": "var_f09_1314", "title": "13-14 ans", "sku": "RTT-1314", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 11000 }] }
-      ]
+        {
+          "id": "var_f09_34",
+          "title": "3-4 ans",
+          "sku": "RTT-34",
+          "inventory_quantity": 4,
+          "calculated_price": {
+            "calculated_amount": 11000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f09_56",
+          "title": "5-6 ans",
+          "sku": "RTT-56",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 11000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f09_78",
+          "title": "7-8 ans",
+          "sku": "RTT-78",
+          "inventory_quantity": 3,
+          "calculated_price": {
+            "calculated_amount": 11000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f09_910",
+          "title": "9-10 ans",
+          "sku": "RTT-910",
+          "inventory_quantity": 0,
+          "calculated_price": {
+            "calculated_amount": 11000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f09_1112",
+          "title": "11-12 ans",
+          "sku": "RTT-1112",
+          "inventory_quantity": 1,
+          "calculated_price": {
+            "calculated_amount": 11000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f09_1314",
+          "title": "13-14 ans",
+          "sku": "RTT-1314",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 11000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "metadata": {
+        "care_instructions": "Lavage à 30°C sur envers."
+      }
     },
     {
       "id": "prod_filles_10",
@@ -362,7 +974,6 @@
       "subtitle": "Deux pièces coordonnées",
       "description": "Blouse fluide et jupe assortie en lin doux. Une tenue élégante et polyvalente pour les fêtes de famille et les visites du dimanche.",
       "material": "100% Lin naturel",
-      "care_instructions": "Lavage doux à 30°C. Repassage moyen.",
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuDdnWIzyePPD5zdQtzJw8HQn2U4rnMqnnOQS8KPv_LJaIurpUSKeFL0vAHAcaqJ_PMmscbGywkg8WHasptjKqIdaBwvXWNYBoztNJrup_FwHv5R9o0Y_Bki_md_QBNyAZqJJg-ex2pxZDwuCE0odyilCcWx0murVTNR2V2V-rzq4E9VwXZKtmKcru2NwKwVe_QapJ4PjQFSmL6bsCgmYmMBE0CFHd7GU2XzSPLuOWc",
       "images": [
         {
@@ -384,13 +995,82 @@
         }
       ],
       "variants": [
-        { "id": "var_f10_34", "title": "3-4 ans", "sku": "ERL-34", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 16000 }] },
-        { "id": "var_f10_56", "title": "5-6 ans", "sku": "ERL-56", "inventory_quantity": 4, "prices": [{ "currency_code": "xof", "amount": 16000 }] },
-        { "id": "var_f10_78", "title": "7-8 ans", "sku": "ERL-78", "inventory_quantity": 1, "prices": [{ "currency_code": "xof", "amount": 16000 }] },
-        { "id": "var_f10_910", "title": "9-10 ans", "sku": "ERL-910", "inventory_quantity": 0, "prices": [{ "currency_code": "xof", "amount": 16000 }] },
-        { "id": "var_f10_1112", "title": "11-12 ans", "sku": "ERL-1112", "inventory_quantity": 3, "prices": [{ "currency_code": "xof", "amount": 16000 }] },
-        { "id": "var_f10_1314", "title": "13-14 ans", "sku": "ERL-1314", "inventory_quantity": 1, "prices": [{ "currency_code": "xof", "amount": 16000 }] }
-      ]
+        {
+          "id": "var_f10_34",
+          "title": "3-4 ans",
+          "sku": "ERL-34",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 16000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f10_56",
+          "title": "5-6 ans",
+          "sku": "ERL-56",
+          "inventory_quantity": 4,
+          "calculated_price": {
+            "calculated_amount": 16000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f10_78",
+          "title": "7-8 ans",
+          "sku": "ERL-78",
+          "inventory_quantity": 1,
+          "calculated_price": {
+            "calculated_amount": 16000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f10_910",
+          "title": "9-10 ans",
+          "sku": "ERL-910",
+          "inventory_quantity": 0,
+          "calculated_price": {
+            "calculated_amount": 16000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f10_1112",
+          "title": "11-12 ans",
+          "sku": "ERL-1112",
+          "inventory_quantity": 3,
+          "calculated_price": {
+            "calculated_amount": 16000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f10_1314",
+          "title": "13-14 ans",
+          "sku": "ERL-1314",
+          "inventory_quantity": 1,
+          "calculated_price": {
+            "calculated_amount": 16000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "metadata": {
+        "care_instructions": "Lavage doux à 30°C. Repassage moyen."
+      }
     },
     {
       "id": "prod_garcons_01",
@@ -399,7 +1079,6 @@
       "subtitle": "Chemise mandarin & pantalon",
       "description": "Ensemble signature Fini Kura composé d'une chemise col officier en lin sauge et d'un pantalon assorti à taille élastiquée. Confort royal et allure soignée.",
       "material": "100% Lin pur lavé & popeline de coton",
-      "care_instructions": "Lavage à 30°C. Repassage doux sur l'envers.",
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuBeMRPMGycAm0JXxQ1PuwsCgRF0gukcWfV9VuiCmgiP1qok_t44DHNBoIyaJiH1sFrgShcLemYUXwgys2Z5igZl6lMvCV11V4zpdbK3kg_00vhoboI5qIfmxgYSmqMldgk7ysl6bxScgaMFyKrupKkYyFnBaL66-qSXTIdSmt4IyxvIRt0WKvlyth8aoTmHX0uz36QMZYQfs4J22-CVfCaeT0LWECkQUhwAAt2rBIs",
       "images": [
         {
@@ -426,13 +1105,82 @@
         }
       ],
       "variants": [
-        { "id": "var_g01_34", "title": "3-4 ans", "sku": "ESL-34", "inventory_quantity": 4, "prices": [{ "currency_code": "xof", "amount": 14000 }] },
-        { "id": "var_g01_56", "title": "5-6 ans", "sku": "ESL-56", "inventory_quantity": 5, "prices": [{ "currency_code": "xof", "amount": 14000 }] },
-        { "id": "var_g01_78", "title": "7-8 ans", "sku": "ESL-78", "inventory_quantity": 3, "prices": [{ "currency_code": "xof", "amount": 14000 }] },
-        { "id": "var_g01_910", "title": "9-10 ans", "sku": "ESL-910", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 14000 }] },
-        { "id": "var_g01_1112", "title": "11-12 ans", "sku": "ESL-1112", "inventory_quantity": 0, "prices": [{ "currency_code": "xof", "amount": 14000 }] },
-        { "id": "var_g01_1314", "title": "13-14 ans", "sku": "ESL-1314", "inventory_quantity": 1, "prices": [{ "currency_code": "xof", "amount": 14000 }] }
-      ]
+        {
+          "id": "var_g01_34",
+          "title": "3-4 ans",
+          "sku": "ESL-34",
+          "inventory_quantity": 4,
+          "calculated_price": {
+            "calculated_amount": 14000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g01_56",
+          "title": "5-6 ans",
+          "sku": "ESL-56",
+          "inventory_quantity": 5,
+          "calculated_price": {
+            "calculated_amount": 14000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g01_78",
+          "title": "7-8 ans",
+          "sku": "ESL-78",
+          "inventory_quantity": 3,
+          "calculated_price": {
+            "calculated_amount": 14000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g01_910",
+          "title": "9-10 ans",
+          "sku": "ESL-910",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 14000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g01_1112",
+          "title": "11-12 ans",
+          "sku": "ESL-1112",
+          "inventory_quantity": 0,
+          "calculated_price": {
+            "calculated_amount": 14000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g01_1314",
+          "title": "13-14 ans",
+          "sku": "ESL-1314",
+          "inventory_quantity": 1,
+          "calculated_price": {
+            "calculated_amount": 14000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "metadata": {
+        "care_instructions": "Lavage à 30°C. Repassage doux sur l'envers."
+      }
     },
     {
       "id": "prod_garcons_02",
@@ -441,7 +1189,6 @@
       "subtitle": "Pur lin d'artisanat",
       "description": "Col officier raffiné et boutons en buis naturel. Une chemise intemporelle pour les petits garçons élégants de Bamako.",
       "material": "100% Lin pur lavé",
-      "care_instructions": "Lavage à 30°C. Repassage sur lin humide.",
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuAps3y2vE6ZTVxZPacbzqYSs5xonv4Rw-tsV-zQ6FbgXNfXI38WPIFE0eDZVWHcUsMDAMNCscNsKOLI3hJ60ZJ_JXEZgmKnFSFfs961GRt_f18tdMyfqEW7Hlfy7sYS-TZASAbg7izu-8u_oKAuY1vxVgQB_ZOY5-94tUcKmO-UNiJqjPAn_PGQeydX5DcIfkzep9hXjo29LALR7xfpH717r4b3VGtlJh0D9vXntqY",
       "images": [
         {
@@ -468,13 +1215,82 @@
         }
       ],
       "variants": [
-        { "id": "var_g02_34", "title": "3-4 ans", "sku": "CMS-34", "inventory_quantity": 5, "prices": [{ "currency_code": "xof", "amount": 8500 }] },
-        { "id": "var_g02_56", "title": "5-6 ans", "sku": "CMS-56", "inventory_quantity": 4, "prices": [{ "currency_code": "xof", "amount": 8500 }] },
-        { "id": "var_g02_78", "title": "7-8 ans", "sku": "CMS-78", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 8500 }] },
-        { "id": "var_g02_910", "title": "9-10 ans", "sku": "CMS-910", "inventory_quantity": 3, "prices": [{ "currency_code": "xof", "amount": 8500 }] },
-        { "id": "var_g02_1112", "title": "11-12 ans", "sku": "CMS-1112", "inventory_quantity": 0, "prices": [{ "currency_code": "xof", "amount": 8500 }] },
-        { "id": "var_g02_1314", "title": "13-14 ans", "sku": "CMS-1314", "inventory_quantity": 1, "prices": [{ "currency_code": "xof", "amount": 8500 }] }
-      ]
+        {
+          "id": "var_g02_34",
+          "title": "3-4 ans",
+          "sku": "CMS-34",
+          "inventory_quantity": 5,
+          "calculated_price": {
+            "calculated_amount": 8500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g02_56",
+          "title": "5-6 ans",
+          "sku": "CMS-56",
+          "inventory_quantity": 4,
+          "calculated_price": {
+            "calculated_amount": 8500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g02_78",
+          "title": "7-8 ans",
+          "sku": "CMS-78",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 8500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g02_910",
+          "title": "9-10 ans",
+          "sku": "CMS-910",
+          "inventory_quantity": 3,
+          "calculated_price": {
+            "calculated_amount": 8500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g02_1112",
+          "title": "11-12 ans",
+          "sku": "CMS-1112",
+          "inventory_quantity": 0,
+          "calculated_price": {
+            "calculated_amount": 8500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g02_1314",
+          "title": "13-14 ans",
+          "sku": "CMS-1314",
+          "inventory_quantity": 1,
+          "calculated_price": {
+            "calculated_amount": 8500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "metadata": {
+        "care_instructions": "Lavage à 30°C. Repassage sur lin humide."
+      }
     },
     {
       "id": "prod_garcons_03",
@@ -483,7 +1299,6 @@
       "subtitle": "Chemise structurée & pantalon",
       "description": "Une teinte chaude et distinguée pour ce duo chemise droite et pantalon souple. Conçu pour allier prestance et liberté de mouvement.",
       "material": "100% Lin naturel prélavé",
-      "care_instructions": "Lavage délicat à 30°C. Séchage à plat.",
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuBJ4NFDmrn87wMW-9_en0xH0WmWrWMTfZjsOd6EqsoOkOHffSqsAFYl2KiKw4Y0ymFAj86FOIf35E1O1xZ4kcentweAy0kZMtfNC-h1IRv1tVB_HPeP2sYVuPN0-SPB17JbLE9KL3JY1s4WbB0jYzkGDAriv70kGL7L_-1Fldn1Sh6MTx8Ad3gvLMG13pjXmMfT1ArUVWNVcw-luypO1U-xyil0cPLB_CFOgJkUzgo",
       "images": [
         {
@@ -505,13 +1320,82 @@
         }
       ],
       "variants": [
-        { "id": "var_g03_34", "title": "3-4 ans", "sku": "ETL-34", "inventory_quantity": 3, "prices": [{ "currency_code": "xof", "amount": 14500 }] },
-        { "id": "var_g03_56", "title": "5-6 ans", "sku": "ETL-56", "inventory_quantity": 4, "prices": [{ "currency_code": "xof", "amount": 14500 }] },
-        { "id": "var_g03_78", "title": "7-8 ans", "sku": "ETL-78", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 14500 }] },
-        { "id": "var_g03_910", "title": "9-10 ans", "sku": "ETL-910", "inventory_quantity": 0, "prices": [{ "currency_code": "xof", "amount": 14500 }] },
-        { "id": "var_g03_1112", "title": "11-12 ans", "sku": "ETL-1112", "inventory_quantity": 1, "prices": [{ "currency_code": "xof", "amount": 14500 }] },
-        { "id": "var_g03_1314", "title": "13-14 ans", "sku": "ETL-1314", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 14500 }] }
-      ]
+        {
+          "id": "var_g03_34",
+          "title": "3-4 ans",
+          "sku": "ETL-34",
+          "inventory_quantity": 3,
+          "calculated_price": {
+            "calculated_amount": 14500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g03_56",
+          "title": "5-6 ans",
+          "sku": "ETL-56",
+          "inventory_quantity": 4,
+          "calculated_price": {
+            "calculated_amount": 14500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g03_78",
+          "title": "7-8 ans",
+          "sku": "ETL-78",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 14500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g03_910",
+          "title": "9-10 ans",
+          "sku": "ETL-910",
+          "inventory_quantity": 0,
+          "calculated_price": {
+            "calculated_amount": 14500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g03_1112",
+          "title": "11-12 ans",
+          "sku": "ETL-1112",
+          "inventory_quantity": 1,
+          "calculated_price": {
+            "calculated_amount": 14500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g03_1314",
+          "title": "13-14 ans",
+          "sku": "ETL-1314",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 14500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "metadata": {
+        "care_instructions": "Lavage délicat à 30°C. Séchage à plat."
+      }
     },
     {
       "id": "prod_garcons_04",
@@ -520,7 +1404,6 @@
       "subtitle": "Col brodé motifs fins",
       "description": "Col mao brodé ton sur ton avec fentes latérales d'aisance. Une coupe majestueuse pour les baptêmes, mariages et fêtes traditionnelles.",
       "material": "100% Coton noble peigné",
-      "care_instructions": "Lavage à la main ou machine délicat 30°C.",
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuDUNNTfurjvCW2xN3Q2ao93wDN0yuKAp-jMGKXcY5kD0p9aJA6-h_NgjxMKTCafttQ3RYicS1Y6b7kmxth7rry-NUOQ7q3Y4bN1LYTi6aZ9OSkAfqU_GDFnGx0toTCcXhpgIBgyiK1EmfDMhADDJx_l_IUwCvBL28zhK8zEBAbg8-Q4el-4OHpzsNqFuWQS62ggP69KBYK6Z1S6e3ShvaaGtRsBLTHqI0SYXfDiz5U",
       "images": [
         {
@@ -542,13 +1425,82 @@
         }
       ],
       "variants": [
-        { "id": "var_g04_34", "title": "3-4 ans", "sku": "TCE-34", "inventory_quantity": 3, "prices": [{ "currency_code": "xof", "amount": 12500 }] },
-        { "id": "var_g04_56", "title": "5-6 ans", "sku": "TCE-56", "inventory_quantity": 4, "prices": [{ "currency_code": "xof", "amount": 12500 }] },
-        { "id": "var_g04_78", "title": "7-8 ans", "sku": "TCE-78", "inventory_quantity": 0, "prices": [{ "currency_code": "xof", "amount": 12500 }] },
-        { "id": "var_g04_910", "title": "9-10 ans", "sku": "TCE-910", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 12500 }] },
-        { "id": "var_g04_1112", "title": "11-12 ans", "sku": "TCE-1112", "inventory_quantity": 1, "prices": [{ "currency_code": "xof", "amount": 12500 }] },
-        { "id": "var_g04_1314", "title": "13-14 ans", "sku": "TCE-1314", "inventory_quantity": 3, "prices": [{ "currency_code": "xof", "amount": 12500 }] }
-      ]
+        {
+          "id": "var_g04_34",
+          "title": "3-4 ans",
+          "sku": "TCE-34",
+          "inventory_quantity": 3,
+          "calculated_price": {
+            "calculated_amount": 12500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g04_56",
+          "title": "5-6 ans",
+          "sku": "TCE-56",
+          "inventory_quantity": 4,
+          "calculated_price": {
+            "calculated_amount": 12500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g04_78",
+          "title": "7-8 ans",
+          "sku": "TCE-78",
+          "inventory_quantity": 0,
+          "calculated_price": {
+            "calculated_amount": 12500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g04_910",
+          "title": "9-10 ans",
+          "sku": "TCE-910",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 12500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g04_1112",
+          "title": "11-12 ans",
+          "sku": "TCE-1112",
+          "inventory_quantity": 1,
+          "calculated_price": {
+            "calculated_amount": 12500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g04_1314",
+          "title": "13-14 ans",
+          "sku": "TCE-1314",
+          "inventory_quantity": 3,
+          "calculated_price": {
+            "calculated_amount": 12500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "metadata": {
+        "care_instructions": "Lavage à la main ou machine délicat 30°C."
+      }
     },
     {
       "id": "prod_garcons_05",
@@ -557,7 +1509,6 @@
       "subtitle": "Coupe droite bicolore",
       "description": "Bleu doux poudré avec col et empiècements écrus. Des boutons en nacre véritable subliment cette chemise moderne.",
       "material": "100% Lin pur lavé",
-      "care_instructions": "Lavage à 30°C. Repassage doux.",
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuAxGMlIOuBub6ykYBzQ9Kk9P69TvbavOw3UoFGACsx_jzOSXlUTqQ4GiqsmIf88SUXsxtFqZnPWYzTGXqoXbOFbo6AcJZvRmDJUdu9HHTKOQH6_j34bRSP2oLsavsqDuxtjZCNeKoWEIo5dbKdOMrnYOLsRNpNIIDfSfNEFGePpIpfeI7BXoGSTMc2Byt3IFhbha5MGRGg48GcHHOcXfP_p25RQ-Sre-KCgi1owSRU",
       "images": [
         {
@@ -579,13 +1530,82 @@
         }
       ],
       "variants": [
-        { "id": "var_g05_34", "title": "3-4 ans", "sku": "CCL-34", "inventory_quantity": 4, "prices": [{ "currency_code": "xof", "amount": 9500 }] },
-        { "id": "var_g05_56", "title": "5-6 ans", "sku": "CCL-56", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 9500 }] },
-        { "id": "var_g05_78", "title": "7-8 ans", "sku": "CCL-78", "inventory_quantity": 3, "prices": [{ "currency_code": "xof", "amount": 9500 }] },
-        { "id": "var_g05_910", "title": "9-10 ans", "sku": "CCL-910", "inventory_quantity": 0, "prices": [{ "currency_code": "xof", "amount": 9500 }] },
-        { "id": "var_g05_1112", "title": "11-12 ans", "sku": "CCL-1112", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 9500 }] },
-        { "id": "var_g05_1314", "title": "13-14 ans", "sku": "CCL-1314", "inventory_quantity": 1, "prices": [{ "currency_code": "xof", "amount": 9500 }] }
-      ]
+        {
+          "id": "var_g05_34",
+          "title": "3-4 ans",
+          "sku": "CCL-34",
+          "inventory_quantity": 4,
+          "calculated_price": {
+            "calculated_amount": 9500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g05_56",
+          "title": "5-6 ans",
+          "sku": "CCL-56",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 9500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g05_78",
+          "title": "7-8 ans",
+          "sku": "CCL-78",
+          "inventory_quantity": 3,
+          "calculated_price": {
+            "calculated_amount": 9500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g05_910",
+          "title": "9-10 ans",
+          "sku": "CCL-910",
+          "inventory_quantity": 0,
+          "calculated_price": {
+            "calculated_amount": 9500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g05_1112",
+          "title": "11-12 ans",
+          "sku": "CCL-1112",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 9500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g05_1314",
+          "title": "13-14 ans",
+          "sku": "CCL-1314",
+          "inventory_quantity": 1,
+          "calculated_price": {
+            "calculated_amount": 9500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "metadata": {
+        "care_instructions": "Lavage à 30°C. Repassage doux."
+      }
     },
     {
       "id": "prod_garcons_06",
@@ -594,7 +1614,6 @@
       "subtitle": "Chemise col officier & pantalon",
       "description": "Tunique longue et pantalon fuselé coordonnés en lin terracotta intense. Confectionné pour les fêtes et grandes solennités à Bamako.",
       "material": "100% Lin pur lavé d'artisanat",
-      "care_instructions": "Lavage délicat. Séchage à l'ombre.",
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuAzb7ka0mHByzFTMFMKOPDpBQNr-b55ECCK6Tx_3xDxQlWITVtEuvwYpnITeA-hkum11uz3DXeMGN6oFy9TM_GMBSQNVc7pmcmK1lBGHDgJ9KY988QJge4TNnAwWZBYoy7AigD05vvfr1scyKUYw-ILGVkyHRueTaDM_YUa9awFKgp2DGN6GU5xRY1ApxbrdztP91mKgrznTvDyNVGPCJ_c6ggua1aY_yOBelEVqTU",
       "images": [
         {
@@ -616,13 +1635,82 @@
         }
       ],
       "variants": [
-        { "id": "var_g06_34", "title": "3-4 ans", "sku": "ECT-34", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 15000 }] },
-        { "id": "var_g06_56", "title": "5-6 ans", "sku": "ECT-56", "inventory_quantity": 3, "prices": [{ "currency_code": "xof", "amount": 15000 }] },
-        { "id": "var_g06_78", "title": "7-8 ans", "sku": "ECT-78", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 15000 }] },
-        { "id": "var_g06_910", "title": "9-10 ans", "sku": "ECT-910", "inventory_quantity": 1, "prices": [{ "currency_code": "xof", "amount": 15000 }] },
-        { "id": "var_g06_1112", "title": "11-12 ans", "sku": "ECT-1112", "inventory_quantity": 0, "prices": [{ "currency_code": "xof", "amount": 15000 }] },
-        { "id": "var_g06_1314", "title": "13-14 ans", "sku": "ECT-1314", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 15000 }] }
-      ]
+        {
+          "id": "var_g06_34",
+          "title": "3-4 ans",
+          "sku": "ECT-34",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 15000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g06_56",
+          "title": "5-6 ans",
+          "sku": "ECT-56",
+          "inventory_quantity": 3,
+          "calculated_price": {
+            "calculated_amount": 15000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g06_78",
+          "title": "7-8 ans",
+          "sku": "ECT-78",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 15000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g06_910",
+          "title": "9-10 ans",
+          "sku": "ECT-910",
+          "inventory_quantity": 1,
+          "calculated_price": {
+            "calculated_amount": 15000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g06_1112",
+          "title": "11-12 ans",
+          "sku": "ECT-1112",
+          "inventory_quantity": 0,
+          "calculated_price": {
+            "calculated_amount": 15000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g06_1314",
+          "title": "13-14 ans",
+          "sku": "ECT-1314",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 15000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "metadata": {
+        "care_instructions": "Lavage délicat. Séchage à l'ombre."
+      }
     },
     {
       "id": "prod_garcons_07",
@@ -631,7 +1719,6 @@
       "subtitle": "Deux pièces souples, taille élastique",
       "description": "Deux pièces légères en fibres naturelles non teintes associées à une touche sauge. Douceur et respirabilité garanties.",
       "material": "100% Lin brut naturel",
-      "care_instructions": "Lavage à 30°C. Séchage à l'air libre.",
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuBeMRPMGycAm0JXxQ1PuwsCgRF0gukcWfV9VuiCmgiP1qok_t44DHNBoIyaJiH1sFrgShcLemYUXwgys2Z5igZl6lMvCV11V4zpdbK3kg_00vhoboI5qIfmxgYSmqMldgk7ysl6bxScgaMFyKrupKkYyFnBaL66-qSXTIdSmt4IyxvIRt0WKvlyth8aoTmHX0uz36QMZYQfs4J22-CVfCaeT0LWECkQUhwAAt2rBIs",
       "images": [
         {
@@ -653,13 +1740,82 @@
         }
       ],
       "variants": [
-        { "id": "var_g07_34", "title": "3-4 ans", "sku": "ELNS-34", "inventory_quantity": 4, "prices": [{ "currency_code": "xof", "amount": 13500 }] },
-        { "id": "var_g07_56", "title": "5-6 ans", "sku": "ELNS-56", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 13500 }] },
-        { "id": "var_g07_78", "title": "7-8 ans", "sku": "ELNS-78", "inventory_quantity": 0, "prices": [{ "currency_code": "xof", "amount": 13500 }] },
-        { "id": "var_g07_910", "title": "9-10 ans", "sku": "ELNS-910", "inventory_quantity": 3, "prices": [{ "currency_code": "xof", "amount": 13500 }] },
-        { "id": "var_g07_1112", "title": "11-12 ans", "sku": "ELNS-1112", "inventory_quantity": 1, "prices": [{ "currency_code": "xof", "amount": 13500 }] },
-        { "id": "var_g07_1314", "title": "13-14 ans", "sku": "ELNS-1314", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 13500 }] }
-      ]
+        {
+          "id": "var_g07_34",
+          "title": "3-4 ans",
+          "sku": "ELNS-34",
+          "inventory_quantity": 4,
+          "calculated_price": {
+            "calculated_amount": 13500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g07_56",
+          "title": "5-6 ans",
+          "sku": "ELNS-56",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 13500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g07_78",
+          "title": "7-8 ans",
+          "sku": "ELNS-78",
+          "inventory_quantity": 0,
+          "calculated_price": {
+            "calculated_amount": 13500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g07_910",
+          "title": "9-10 ans",
+          "sku": "ELNS-910",
+          "inventory_quantity": 3,
+          "calculated_price": {
+            "calculated_amount": 13500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g07_1112",
+          "title": "11-12 ans",
+          "sku": "ELNS-1112",
+          "inventory_quantity": 1,
+          "calculated_price": {
+            "calculated_amount": 13500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g07_1314",
+          "title": "13-14 ans",
+          "sku": "ELNS-1314",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 13500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "metadata": {
+        "care_instructions": "Lavage à 30°C. Séchage à l'air libre."
+      }
     },
     {
       "id": "prod_garcons_08",
@@ -668,7 +1824,6 @@
       "subtitle": "Détails artisanaux faits main à Bamako",
       "description": "Une tunique aux lignes épurées et broderies artisanales discrètes autour de l'encolure. Élégance sobre et dignité assurée.",
       "material": "100% Lin pur lavé",
-      "care_instructions": "Lavage délicat à 30°C. Repassage doux.",
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuAOKybrOAM_tLS0LKCWBb2xojFoy22z4XGzrYEzRg8HXEt7ACfyvAcJJDWn73hDEoUX66vlZlvjthUoQChbbb4fkMrW0c9zK4q8GxCMtFqn0Gxfg-3Az0qrxRfK_igoiznG5Xm4Zyxin0owaWstEn4Tb1kk6WLwoHTkN5N7rFspRdPc0SVXkBhtV3mRZB0W6Of-bw5zc2gOGkMDFZFY2jhk5R9apNi5L0DrU37Dx_o",
       "images": [
         {
@@ -690,13 +1845,82 @@
         }
       ],
       "variants": [
-        { "id": "var_g08_34", "title": "3-4 ans", "sku": "TLB-34", "inventory_quantity": 3, "prices": [{ "currency_code": "xof", "amount": 11500 }] },
-        { "id": "var_g08_56", "title": "5-6 ans", "sku": "TLB-56", "inventory_quantity": 5, "prices": [{ "currency_code": "xof", "amount": 11500 }] },
-        { "id": "var_g08_78", "title": "7-8 ans", "sku": "TLB-78", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 11500 }] },
-        { "id": "var_g08_910", "title": "9-10 ans", "sku": "TLB-910", "inventory_quantity": 0, "prices": [{ "currency_code": "xof", "amount": 11500 }] },
-        { "id": "var_g08_1112", "title": "11-12 ans", "sku": "TLB-1112", "inventory_quantity": 2, "prices": [{ "currency_code": "xof", "amount": 11500 }] },
-        { "id": "var_g08_1314", "title": "13-14 ans", "sku": "TLB-1314", "inventory_quantity": 1, "prices": [{ "currency_code": "xof", "amount": 11500 }] }
-      ]
+        {
+          "id": "var_g08_34",
+          "title": "3-4 ans",
+          "sku": "TLB-34",
+          "inventory_quantity": 3,
+          "calculated_price": {
+            "calculated_amount": 11500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g08_56",
+          "title": "5-6 ans",
+          "sku": "TLB-56",
+          "inventory_quantity": 5,
+          "calculated_price": {
+            "calculated_amount": 11500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g08_78",
+          "title": "7-8 ans",
+          "sku": "TLB-78",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 11500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g08_910",
+          "title": "9-10 ans",
+          "sku": "TLB-910",
+          "inventory_quantity": 0,
+          "calculated_price": {
+            "calculated_amount": 11500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g08_1112",
+          "title": "11-12 ans",
+          "sku": "TLB-1112",
+          "inventory_quantity": 2,
+          "calculated_price": {
+            "calculated_amount": 11500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_g08_1314",
+          "title": "13-14 ans",
+          "sku": "TLB-1314",
+          "inventory_quantity": 1,
+          "calculated_price": {
+            "calculated_amount": 11500,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "metadata": {
+        "care_instructions": "Lavage délicat à 30°C. Repassage doux."
+      }
     }
   ]
 }

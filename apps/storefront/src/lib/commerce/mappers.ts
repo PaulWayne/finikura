@@ -6,6 +6,7 @@ import {
   MedusaStoreVariant,
   MedusaStoreCart,
   MedusaStoreOrder,
+  MedusaStoreLineItem,
 } from "./raw";
 import {
   Category,
@@ -14,72 +15,76 @@ import {
   ProductVariant,
   Cart,
   Order,
+  CartItem,
   CategoryHandle,
   OccasionTag,
 } from "./types";
 
-export function mapMedusaVariantToDomain(raw: MedusaStoreVariant): ProductVariant {
-  const xofPrice = raw.prices.find((p) => p.currency_code.toLowerCase() === "xof")?.amount ??
-    raw.prices[0]?.amount ?? 0;
+const OCCASION_TAGS: OccasionTag[] = ["tous-les-jours", "fete", "ceremonie"];
 
+const toCategoryHandle = (handle?: string | null): CategoryHandle =>
+  handle === "garcons" ? "garcons" : "filles";
+
+export function mapMedusaVariantToDomain(raw: MedusaStoreVariant): ProductVariant {
+  const price = Math.round(raw.calculated_price?.calculated_amount ?? 0);
+  // Without inventory management Medusa does not limit the quantity.
+  const inventoryQuantity =
+    raw.manage_inventory === false ? Number.MAX_SAFE_INTEGER : Math.max(0, raw.inventory_quantity ?? 0);
   return {
     id: raw.id,
     title: raw.title,
     age: raw.title,
-    price: Math.round(xofPrice),
-    inventoryQuantity: raw.inventory_quantity,
-    inStock: raw.inventory_quantity > 0,
+    price,
+    inventoryQuantity,
+    inStock: inventoryQuantity > 0 || raw.allow_backorder === true,
   };
 }
 
 export function mapMedusaProductToDomain(raw: MedusaStoreProduct): Product {
-  const variants = (raw.variants || []).map(mapMedusaVariantToDomain);
+  const variants = (raw.variants ?? []).map(mapMedusaVariantToDomain);
   const minPrice = variants.length > 0 ? Math.min(...variants.map((v) => v.price)) : 0;
 
-  const rawCatHandle = raw.categories?.[0]?.handle;
-  const categoryHandle: CategoryHandle = rawCatHandle === "garcons" ? "garcons" : "filles";
-
   const occasionTag = raw.tags?.find((t) =>
-    ["tous-les-jours", "fete", "ceremonie"].includes(t.value)
+    OCCASION_TAGS.includes(t.value as OccasionTag)
   )?.value as OccasionTag | undefined;
 
-  const images = (raw.images || []).map((img) => img.url);
+  const images = (raw.images ?? []).map((img) => img.url);
   if (images.length === 0 && raw.thumbnail) {
     images.push(raw.thumbnail);
   }
+  const description = raw.description ?? "";
 
   return {
     id: raw.id,
     handle: raw.handle,
     title: raw.title,
-    subtitle: raw.subtitle,
-    description: raw.description || "",
-    material: raw.material || "100% Lin pur d'artisanat",
-    careInstructions: raw.care_instructions || "Lavage délicat à 30°C. Séchage à l'ombre.",
+    subtitle: raw.subtitle ?? undefined,
+    description,
+    material: raw.material ?? "",
+    careInstructions: raw.metadata?.care_instructions ?? "",
     images,
     thumbnail: raw.thumbnail || images[0] || "",
     price: minPrice,
-    categoryHandle,
+    categoryHandle: toCategoryHandle(raw.categories?.[0]?.handle),
     collections: raw.collection?.handle ? [raw.collection.handle] : [],
     occasionTag,
     variants,
     seo: {
-      title: `${raw.title} — Fini Kura Bamako`,
-      description: raw.description || `Confection d'exception pour enfants à Bamako. ${raw.title}.`,
+      title: raw.title,
+      description,
     },
   };
 }
 
 export function mapMedusaCategoryToDomain(raw: MedusaStoreCategory): Category {
-  const handle: CategoryHandle = raw.handle === "garcons" ? "garcons" : "filles";
   return {
     id: raw.id,
-    handle,
+    handle: toCategoryHandle(raw.handle),
     name: raw.name,
-    description: raw.description || "",
-    ageRange: raw.metadata?.ageRange || "3 à 14 ans",
-    tagline: raw.metadata?.tagline,
-    image: raw.metadata?.image,
+    description: raw.description ?? "",
+    ageRange: raw.metadata?.ageRange ?? "",
+    tagline: raw.metadata?.tagline ?? undefined,
+    image: raw.metadata?.image ?? undefined,
   };
 }
 
@@ -88,25 +93,29 @@ export function mapMedusaCollectionToDomain(raw: MedusaStoreCollection): Collect
     id: raw.id,
     handle: raw.handle,
     title: raw.title,
-    description: raw.description,
+    description: raw.description ?? undefined,
+  };
+}
+
+export function mapMedusaLineItemToDomain(item: MedusaStoreLineItem): CartItem {
+  return {
+    id: item.id,
+    productId: item.product_id ?? "",
+    productHandle: item.product_handle ?? "",
+    productTitle: item.product_title ?? item.title,
+    variantId: item.variant_id ?? "",
+    variantTitle: item.variant_title ?? "",
+    price: Math.round(item.unit_price),
+    quantity: item.quantity,
+    thumbnail: item.thumbnail ?? "",
+    categoryHandle: toCategoryHandle(item.metadata?.category_handle),
   };
 }
 
 export function mapMedusaCartToDomain(raw: MedusaStoreCart): Cart {
   return {
     id: raw.id,
-    items: raw.items.map((item) => ({
-      id: item.id,
-      productId: item.product_id,
-      productHandle: (item.metadata?.product_handle as string) || "",
-      productTitle: item.title,
-      variantId: item.variant_id,
-      variantTitle: (item.metadata?.variant_title as string) || "",
-      price: Math.round(item.unit_price),
-      quantity: item.quantity,
-      thumbnail: item.thumbnail || "",
-      categoryHandle: ((item.metadata?.category_handle as string) || "filles") as CategoryHandle,
-    })),
+    items: (raw.items ?? []).map(mapMedusaLineItemToDomain),
     subtotal: Math.round(raw.subtotal),
     total: Math.round(raw.total),
     currency: "XOF",
@@ -114,34 +123,23 @@ export function mapMedusaCartToDomain(raw: MedusaStoreCart): Cart {
 }
 
 export function mapMedusaOrderToDomain(raw: MedusaStoreOrder): Order {
+  const address = raw.shipping_address ?? {};
   return {
     id: raw.id,
     orderNumber: `FK-${raw.display_id}`,
-    items: raw.items.map((item) => ({
-      id: item.id,
-      productId: item.product_id,
-      productHandle: (item.metadata?.product_handle as string) || "",
-      productTitle: item.title,
-      variantId: item.variant_id,
-      variantTitle: (item.metadata?.variant_title as string) || "",
-      price: Math.round(item.unit_price),
-      quantity: item.quantity,
-      thumbnail: item.thumbnail || "",
-      categoryHandle: ((item.metadata?.category_handle as string) || "filles") as CategoryHandle,
-    })),
+    items: (raw.items ?? []).map(mapMedusaLineItemToDomain),
     total: Math.round(raw.total),
     currency: "XOF",
     customer: {
-      fullName: raw.shipping_address.first_name,
-      phone: raw.shipping_address.phone,
+      fullName: address.first_name ?? "",
+      phone: address.phone ?? "",
     },
     shippingAddress: {
-      neighborhood: raw.shipping_address.address_1,
-      deliveryLandmarks: raw.shipping_address.address_2,
+      neighborhood: address.address_1 ?? "",
+      deliveryLandmarks: address.address_2 ?? "",
     },
     paymentMethod: "paiement_a_la_reception",
     status: "pending",
     createdAt: raw.created_at,
   };
 }
-

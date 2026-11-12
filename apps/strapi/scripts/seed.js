@@ -1,4 +1,4 @@
-// Seeds Strapi from the storefront mock fixtures (apps/storefront/src/mocks/strapi).
+// Seeds Strapi from the storefront mock fixtures (same shape as the REST responses) (apps/storefront/src/mocks/strapi).
 // Usage: pnpm --filter strapi seed (CommonJS: the ESM build of @strapi/core fails on lodash imports)
 // Idempotent: single types are only created when empty, collection entries
 // are skipped when their slug / category handle already exists.
@@ -48,15 +48,15 @@ async function importImage(url, alt) {
   }
 }
 
-// --- Block mapping: fixture (v4-like) -> Strapi 5 component data --------------
+// --- Block mapping: fixture (Strapi 5 response shape) -> component data --------
 async function mapBlock(b) {
-  const { __component, id: _id, image_url, cards, ...rest } = b;
-  const out = { __component, ...rest };
-  if ("image_url" in b) out.image = await importImage(image_url, b.image_alt);
+  const { id: _id, image, cards, ...rest } = b;
+  const out = { ...rest };
+  if ("image" in b) out.image = await importImage(image?.url, image?.alternativeText);
   if (cards) {
     out.cards = [];
-    for (const { image_url: cardImage, ...card } of cards) {
-      out.cards.push({ ...card, image: await importImage(cardImage, card.image_alt) });
+    for (const { image: cardImage, ...card } of cards) {
+      out.cards.push({ ...card, image: await importImage(cardImage?.url, cardImage?.alternativeText) });
     }
   }
   return out;
@@ -77,54 +77,33 @@ async function createIfMissing(uid, filters, data) {
   console.log(`${uid} ${JSON.stringify(filters)} : créé`);
 }
 
+const strip = ({ documentId: _d, id: _i, ...rest }) => rest;
+
 // --- Global settings -----------------------------------------------------------
-const settings = read("global-settings.json").data.attributes;
-await upsertSingle("api::global-setting.global-setting", {
-  announcement_bar: settings.announcement_bar,
-  whatsapp_number: settings.whatsapp_number.replace(/\D/g, ""),
-  social_links: settings.social_links,
-  footer_links: settings.footer_links,
-  reassurance_items: settings.reassurance_items.map(({ id: _id, ...item }) => item),
-});
+await upsertSingle("api::global-setting.global-setting", strip(read("global-settings.json").data));
 
 // --- Home ----------------------------------------------------------------------
-const home = read("home.json").data.attributes;
-await upsertSingle("api::home-page.home-page", {
-  seo: home.seo,
-  blocks: await mapBlocks(home.blocks),
-});
+const home = read("home.json").data;
+await upsertSingle("api::home-page.home-page", { seo: home.seo, blocks: await mapBlocks(home.blocks) });
 
 // --- Pages ---------------------------------------------------------------------
-for (const { attributes: page } of read("editorial-pages.json").data) {
+for (const page of read("editorial-pages.json").data) {
   await createIfMissing("api::page.page", { slug: page.slug }, {
-    title: page.title,
-    slug: page.slug,
-    seo: page.seo,
+    ...strip(page),
     blocks: await mapBlocks(page.blocks),
   });
 }
 
 // --- Size guides ---------------------------------------------------------------
-for (const { attributes: guide } of read("size-guides.json").data) {
-  await createIfMissing("api::size-guide.size-guide", { category_handle: guide.category_handle }, {
-    title: guide.title,
-    category_handle: guide.category_handle,
-    measuring_tips: guide.measuring_tips.map((text) => ({ text })),
-    rows: guide.rows,
-  });
+for (const guide of read("size-guides.json").data) {
+  await createIfMissing("api::size-guide.size-guide", { category_handle: guide.category_handle }, strip(guide));
 }
 
 // --- Campaigns -----------------------------------------------------------------
-for (const { attributes: c } of read("campaigns.json").data) {
+for (const c of read("campaigns.json").data) {
   await createIfMissing("api::campaign.campaign", { slug: c.slug }, {
-    title: c.title,
-    slug: c.slug,
-    collection_handle: c.collection_handle,
-    start_date: c.start_date,
-    end_date: c.end_date,
-    headline: c.texts.headline,
-    description: c.texts.description,
-    banner: await importImage(c.visuals.banner_url, c.title),
+    ...strip(c),
+    banner: await importImage(c.banner?.url, c.banner?.alternativeText),
   });
 }
 

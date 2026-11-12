@@ -321,6 +321,7 @@ export const messages = {
     updateCart: "Impossible de modifier le panier.",
     cartNotFound: "Votre panier a expiré. Ajoutez à nouveau vos articles.",
     emptyCart: "Votre panier est vide.",
+    notEnoughStock: "Il ne reste plus assez de pièces dans cette taille.",
     invalidOrder: "Vérifiez vos coordonnées.",
     placeOrder: "Impossible d'enregistrer la commande. Veuillez réessayer.",
     outOfStock: (title: string) =>

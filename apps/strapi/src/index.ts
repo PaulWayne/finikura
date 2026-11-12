@@ -9,11 +9,36 @@ const PUBLIC_READ: Record<string, Array<'find' | 'findOne'>> = {
   'api::size-guide.size-guide': ['find', 'findOne'],
 };
 
+/** Content changes the storefront must see (all types use draft & publish). */
+const REVALIDATE_EVENTS = new Set(['entry.publish', 'entry.unpublish', 'entry.delete']);
+
+/**
+ * Tells the storefront to revalidate its "content" cache tag.
+ * Fire-and-forget: the event hub awaits subscribers, an admin save must not wait on the site.
+ */
+function notifyStorefront(strapi: Core.Strapi) {
+  const url = process.env.STOREFRONT_REVALIDATE_URL;
+  const secret = process.env.REVALIDATE_SECRET;
+  if (!url || !secret) return;
+  fetch(`${url}?source=strapi`, {
+    method: 'POST',
+    headers: { 'x-revalidate-secret': secret },
+  })
+    .then((res) => {
+      if (!res.ok) strapi.log.warn(`Revalidation du site : HTTP ${res.status}`);
+    })
+    .catch((err: Error) => strapi.log.warn(`Revalidation du site impossible : ${err.message}`));
+}
+
 export default {
   register() {},
 
-  /** Grants the public role read access to displayed content (idempotent). */
+  /** Grants the public role read access to displayed content (idempotent) and wires revalidation. */
   async bootstrap({ strapi }: { strapi: Core.Strapi }) {
+    strapi.eventHub.subscribe(async (event: string) => {
+      if (REVALIDATE_EVENTS.has(event)) notifyStorefront(strapi);
+    });
+
     const publicRole = await strapi.db
       .query('plugin::users-permissions.role')
       .findOne({ where: { type: 'public' } });

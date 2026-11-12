@@ -8,7 +8,8 @@ import {
   MedusaStoreCollection,
   MedusaStoreCart,
   MedusaStoreOrder,
-  MedusaStoreCartItem,
+  MedusaStoreLineItem,
+  MedusaStoreVariant,
 } from "./raw";
 import {
   mapMedusaProductToDomain,
@@ -16,6 +17,7 @@ import {
   mapMedusaCollectionToDomain,
   mapMedusaCartToDomain,
   mapMedusaOrderToDomain,
+  mapMedusaLineItemToDomain,
 } from "./mappers";
 import {
   CommerceService,
@@ -50,8 +52,10 @@ const currentProducts = state.products;
 
 async function simulateDelay(): Promise<void> {}
 
+const stockOf = (v: MedusaStoreVariant) => v.inventory_quantity ?? 0;
+
 function recalculateCartTotals(cart: MedusaStoreCart): void {
-  cart.subtotal = cart.items.reduce(
+  cart.subtotal = (cart.items ?? []).reduce(
     (sum, item) => sum + item.unit_price * item.quantity,
     0
   );
@@ -90,7 +94,7 @@ export const mockCommerceService: CommerceService = {
 
     if (filters?.age && filters.age !== "all") {
       filtered = filtered.filter((p) =>
-        p.variants.some((v) => v.title.toLowerCase().includes(filters.age!.toLowerCase()))
+        (p.variants ?? []).some((v) => v.title.toLowerCase().includes(filters.age!.toLowerCase()))
       );
     }
 
@@ -139,7 +143,7 @@ export const mockCommerceService: CommerceService = {
     let targetVariant = null;
 
     for (const p of currentProducts) {
-      const v = p.variants.find((item) => item.id === variantId);
+      const v = (p.variants ?? []).find((item) => item.id === variantId);
       if (v) {
         targetProduct = p;
         targetVariant = v;
@@ -151,7 +155,7 @@ export const mockCommerceService: CommerceService = {
       throw new Error("Produit ou taille introuvable.");
     }
 
-    if (targetVariant.inventory_quantity < quantity) {
+    if (stockOf(targetVariant) < quantity) {
       throw new Error("Cette taille est actuellement épuisée.");
     }
 
@@ -169,51 +173,40 @@ export const mockCommerceService: CommerceService = {
       inMemoryCarts.set(actualCartId, cart);
     }
 
-    const existingItem = cart.items.find((i) => i.variant_id === variantId);
-    const unitPrice = targetVariant.prices[0]?.amount ?? 0;
+    const items = (cart.items ??= []);
+    const existingItem = items.find((i) => i.variant_id === variantId);
+    const unitPrice = targetVariant.calculated_price?.calculated_amount ?? 0;
 
-    let addedOrUpdatedItem: MedusaStoreCartItem;
+    let addedOrUpdatedItem: MedusaStoreLineItem;
 
     if (existingItem) {
-      if (targetVariant.inventory_quantity < existingItem.quantity + quantity) {
+      if (stockOf(targetVariant) < existingItem.quantity + quantity) {
         throw new Error("Quantité maximale disponible atteinte pour cette taille.");
       }
       existingItem.quantity += quantity;
       addedOrUpdatedItem = existingItem;
     } else {
-      const newItem: MedusaStoreCartItem = {
+      const newItem: MedusaStoreLineItem = {
         id: `item_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
         product_id: targetProduct.id,
         variant_id: targetVariant.id,
         title: targetProduct.title,
+        product_title: targetProduct.title,
+        product_handle: targetProduct.handle,
+        variant_title: targetVariant.title,
         unit_price: unitPrice,
         quantity,
         thumbnail: targetProduct.thumbnail,
-        metadata: {
-          product_handle: targetProduct.handle,
-          variant_title: targetVariant.title,
-          category_handle: targetProduct.categories?.[0]?.handle || "filles",
-        },
+        metadata: { category_handle: targetProduct.categories?.[0]?.handle ?? "filles" },
       };
-      cart.items.push(newItem);
+      items.push(newItem);
       addedOrUpdatedItem = newItem;
     }
 
     recalculateCartTotals(cart);
 
     const domainCart = mapMedusaCartToDomain(cart);
-    const domainItem: CartItem = {
-      id: addedOrUpdatedItem.id,
-      productId: targetProduct.id,
-      productHandle: targetProduct.handle,
-      productTitle: targetProduct.title,
-      variantId: targetVariant.id,
-      variantTitle: targetVariant.title,
-      price: Math.round(unitPrice),
-      quantity: addedOrUpdatedItem.quantity,
-      thumbnail: targetProduct.thumbnail || "",
-      categoryHandle: (targetProduct.categories?.[0]?.handle || "filles") as "filles" | "garcons",
-    };
+    const domainItem = mapMedusaLineItemToDomain(addedOrUpdatedItem);
 
     return { cart: domainCart, addedItem: domainItem };
   },
@@ -229,6 +222,7 @@ export const mockCommerceService: CommerceService = {
       throw new Error("Panier non trouvé.");
     }
 
+    cart.items ??= [];
     const itemIndex = cart.items.findIndex((i) => i.id === itemId);
     if (itemIndex === -1) {
       throw new Error("Article non trouvé dans le panier.");
@@ -251,7 +245,7 @@ export const mockCommerceService: CommerceService = {
       throw new Error("Panier non trouvé.");
     }
 
-    cart.items = cart.items.filter((i) => i.id !== itemId);
+    cart.items = (cart.items ?? []).filter((i) => i.id !== itemId);
     recalculateCartTotals(cart);
     return mapMedusaCartToDomain(cart);
   },
@@ -263,7 +257,7 @@ export const mockCommerceService: CommerceService = {
   ): Promise<Order> {
     await simulateDelay();
     const cart = inMemoryCarts.get(cartId);
-    if (!cart || cart.items.length === 0) {
+    if (!cart || !cart.items?.length) {
       throw new Error("Votre panier est vide.");
     }
 
@@ -271,14 +265,14 @@ export const mockCommerceService: CommerceService = {
     for (const item of cart.items) {
       let foundVariant = null;
       for (const p of currentProducts) {
-        const v = p.variants.find((variant) => variant.id === item.variant_id);
+        const v = (p.variants ?? []).find((variant) => variant.id === item.variant_id);
         if (v) {
           foundVariant = v;
           break;
         }
       }
 
-      if (!foundVariant || foundVariant.inventory_quantity < item.quantity) {
+      if (!foundVariant || stockOf(foundVariant) < item.quantity) {
         throw new Error(`Stock insuffisant pour l'article ${item.title}.`);
       }
     }
@@ -286,9 +280,9 @@ export const mockCommerceService: CommerceService = {
     // Decrement stock in memory so last item can never be sold twice
     for (const item of cart.items) {
       for (const p of currentProducts) {
-        const v = p.variants.find((variant) => variant.id === item.variant_id);
+        const v = (p.variants ?? []).find((variant) => variant.id === item.variant_id);
         if (v) {
-          v.inventory_quantity -= item.quantity;
+          v.inventory_quantity = stockOf(v) - item.quantity;
           break;
         }
       }

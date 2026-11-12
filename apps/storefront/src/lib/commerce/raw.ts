@@ -1,37 +1,42 @@
 import "server-only";
 
-export interface MedusaStoreVariantPrice {
-  id?: string;
-  currency_code: string;
-  amount: number;
+// Shapes of the Medusa v2 Store API responses, limited to the fields we read.
+// Checked against Medusa 2.22.6 responses (see the step 4 notes in BACKLOG.md).
+
+export interface MedusaCalculatedPrice {
+  calculated_amount: number | null;
+  currency_code: string | null;
 }
 
 export interface MedusaStoreVariant {
   id: string;
   title: string;
-  sku: string;
-  inventory_quantity: number;
-  prices: MedusaStoreVariantPrice[];
-  options?: { id?: string; value: string }[];
+  sku?: string | null;
+  // Present when requested with `+variants.inventory_quantity` (and a sales channel key).
+  inventory_quantity?: number | null;
+  manage_inventory?: boolean;
+  allow_backorder?: boolean;
+  // Present when requested with `*variants.calculated_price` and a region_id.
+  calculated_price?: MedusaCalculatedPrice | null;
 }
 
 export interface MedusaStoreCategory {
   id: string;
   name: string;
   handle: string;
-  description?: string;
+  description?: string | null;
   metadata?: {
     ageRange?: string;
     tagline?: string;
     image?: string;
-  };
+  } | null;
 }
 
 export interface MedusaStoreCollection {
   id: string;
   title: string;
   handle: string;
-  description?: string;
+  description?: string | null;
 }
 
 export interface MedusaStoreTag {
@@ -43,54 +48,57 @@ export interface MedusaStoreProduct {
   id: string;
   title: string;
   handle: string;
-  subtitle?: string;
-  description?: string;
-  material?: string;
-  care_instructions?: string;
-  thumbnail?: string;
-  images?: { id: string; url: string }[];
-  categories?: MedusaStoreCategory[];
-  collection?: MedusaStoreCollection;
-  tags?: MedusaStoreTag[];
-  variants: MedusaStoreVariant[];
-  metadata?: Record<string, unknown>;
+  subtitle?: string | null;
+  description?: string | null;
+  material?: string | null;
+  thumbnail?: string | null;
+  images?: { id: string; url: string }[] | null;
+  categories?: MedusaStoreCategory[] | null;
+  collection?: MedusaStoreCollection | null;
+  tags?: MedusaStoreTag[] | null;
+  variants: MedusaStoreVariant[] | null;
+  metadata?: { care_instructions?: string } & Record<string, unknown> | null;
 }
 
-export interface MedusaStoreCartItem {
+export interface MedusaStoreLineItem {
   id: string;
-  product_id: string;
-  variant_id: string;
+  product_id?: string | null;
+  variant_id?: string | null;
   title: string;
-  description?: string;
-  thumbnail?: string;
+  product_title?: string | null;
+  product_handle?: string | null;
+  variant_title?: string | null;
+  thumbnail?: string | null;
   unit_price: number;
   quantity: number;
-  metadata?: Record<string, unknown>;
+  metadata?: { category_handle?: string } & Record<string, unknown> | null;
 }
 
 export interface MedusaStoreCart {
   id: string;
-  items: MedusaStoreCartItem[];
+  items?: MedusaStoreLineItem[] | null;
   subtotal: number;
   total: number;
   currency_code: string;
 }
 
+export interface MedusaStoreAddress {
+  first_name?: string | null;
+  phone?: string | null;
+  address_1?: string | null; // neighbourhood
+  address_2?: string | null; // delivery landmarks
+  city?: string | null; // Bamako
+  country_code?: string | null; // ml
+}
+
 export interface MedusaStoreOrder {
   id: string;
   display_id: number;
-  items: MedusaStoreCartItem[];
+  items?: MedusaStoreLineItem[] | null;
   total: number;
   currency_code: string;
   email: string | null;
-  shipping_address: {
-    first_name: string;
-    phone: string;
-    address_1: string; // neighborhood
-    address_2: string; // delivery landmarks
-    city: string; // Bamako
-    country_code: string; // ml
-  };
+  shipping_address?: MedusaStoreAddress | null;
   status: string;
   created_at: string;
 }

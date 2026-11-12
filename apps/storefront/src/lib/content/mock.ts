@@ -6,12 +6,20 @@ import campaignsFixture from "@/mocks/strapi/campaigns.json";
 import editorialPagesFixture from "@/mocks/strapi/editorial-pages.json";
 
 import {
-  StrapiGlobalSettingsResponse,
-  StrapiHomePageResponse,
-  StrapiSizeGuidesResponse,
-  StrapiCampaignsResponse,
-  StrapiEditorialPagesResponse,
+  StrapiCampaign,
+  StrapiGlobalSettings,
+  StrapiHomePage,
+  StrapiListResponse,
+  StrapiPage,
+  StrapiSingleResponse,
+  StrapiSizeGuide,
 } from "./raw";
+
+const globalSettings = globalSettingsFixture as unknown as StrapiSingleResponse<StrapiGlobalSettings>;
+const home = homeFixture as unknown as StrapiSingleResponse<StrapiHomePage>;
+const sizeGuides = sizeGuidesFixture as unknown as StrapiListResponse<StrapiSizeGuide>;
+const campaigns = campaignsFixture as unknown as StrapiListResponse<StrapiCampaign>;
+const pages = editorialPagesFixture as unknown as StrapiListResponse<StrapiPage>;
 
 import {
   mapStrapiGlobalSettingsToDomain,
@@ -30,49 +38,31 @@ import {
   EditorialPage,
 } from "./types";
 
-async function simulateDelay(): Promise<void> {}
-
 export const mockContentService: ContentService = {
   async getGlobalSettings(): Promise<GlobalSettings> {
-    await simulateDelay();
-    return mapStrapiGlobalSettingsToDomain(
-      globalSettingsFixture as unknown as StrapiGlobalSettingsResponse
-    );
+    return mapStrapiGlobalSettingsToDomain(globalSettings.data);
   },
 
   async getHomePage(): Promise<HomePageData> {
-    await simulateDelay();
-    return mapStrapiHomePageToDomain(
-      homeFixture as unknown as StrapiHomePageResponse
-    );
+    return mapStrapiHomePageToDomain(home.data);
   },
 
   async getSizeGuide(categoryHandle: string): Promise<SizeGuide | null> {
-    await simulateDelay();
-    const raw = sizeGuidesFixture as unknown as StrapiSizeGuidesResponse;
-    const match = raw.data.find(
-      (item) => item.attributes.category_handle === categoryHandle
-    );
+    const match = sizeGuides.data.find((g) => g.category_handle === categoryHandle);
     return match ? mapStrapiSizeGuideToDomain(match) : null;
   },
 
   async getAllSizeGuides(): Promise<SizeGuide[]> {
-    await simulateDelay();
-    const raw = sizeGuidesFixture as unknown as StrapiSizeGuidesResponse;
-    return raw.data.map(mapStrapiSizeGuideToDomain);
+    return sizeGuides.data.map(mapStrapiSizeGuideToDomain);
   },
 
   async getCampaign(slug: string): Promise<Campaign | null> {
-    await simulateDelay();
-    const raw = campaignsFixture as unknown as StrapiCampaignsResponse;
-    const match = raw.data.find((item) => item.attributes.slug === slug);
+    const match = campaigns.data.find((c) => c.slug === slug);
     return match ? mapStrapiCampaignToDomain(match) : null;
   },
 
   async getEditorialPage(slug: string): Promise<EditorialPage | null> {
-    await simulateDelay();
-    const raw = editorialPagesFixture as unknown as StrapiEditorialPagesResponse;
-    const match = raw.data.find((item) => item.attributes.slug === slug);
+    const match = pages.data.find((p) => p.slug === slug);
     return match ? mapStrapiEditorialPageToDomain(match) : null;
   },
 };
