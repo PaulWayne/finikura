@@ -3,3 +3,8 @@ packages:
 allowBuilds:
   sharp: true
   unrs-resolver: true
+  "@swc/core": true
+  esbuild: true
+  msgpackr-extract: true
+  protobufjs: true
+  "@medusajs/telemetry": false
