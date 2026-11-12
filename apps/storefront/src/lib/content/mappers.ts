@@ -160,11 +160,14 @@ export function mapStrapiGlobalSettingsToDomain(raw: StrapiGlobalSettings | null
     announcementBar: raw?.announcement_bar ?? "",
     whatsappNumber: number,
     whatsappUrl: number ? `https://wa.me/${number}` : "",
-    socialLinks: (raw?.social_links ?? []).map((s) => ({
-      platform: s.platform,
-      url: s.url,
-      label: s.label,
-    })),
+    // The WhatsApp link always uses whatsapp_number, never a second copy of it.
+    socialLinks: (raw?.social_links ?? [])
+      .map((s) => ({
+        platform: s.platform,
+        url: s.platform === "whatsapp" ? (number ? `https://wa.me/${number}` : "") : s.url,
+        label: s.label,
+      }))
+      .filter((s) => s.url),
     footerLinks: (raw?.footer_links ?? []).map((f) => ({ label: f.label, url: f.url })),
     reassuranceItems: (raw?.reassurance_items ?? []).map((r, i) => ({
       id: String(i),

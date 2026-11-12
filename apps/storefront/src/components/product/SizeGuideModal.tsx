@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   Ruler,
   X,
@@ -9,6 +9,7 @@ import {
   MessageCircle,
 } from "lucide-react";
 import { SizeGuide } from "@/lib/content/types";
+import { whatsappLink } from "@/lib/whatsapp";
 import { messages } from "@/messages/fr";
 
 interface SizeGuideModalProps {
@@ -16,43 +17,18 @@ interface SizeGuideModalProps {
   onClose: () => void;
   sizeGuide?: SizeGuide | null;
   activeSizeTitle?: string;
-  whatsappUrl?: string;
-  initialGender?: "filles" | "garcons";
+  productTitle?: string;
+  whatsappUrl?: string | null;
 }
-
-interface ModalSizeRow {
-  age: string;
-  stature: string;
-  chest: string;
-  waist: string;
-}
-
-const MODAL_GIRLS: ModalSizeRow[] = [
-  { age: "3-4 ans", stature: "98-104 cm", chest: "54-56 cm", waist: "51-53 cm" },
-  { age: "5-6 ans", stature: "110-116 cm", chest: "58-60 cm", waist: "53-55 cm" },
-  { age: "7-8 ans", stature: "122-128 cm", chest: "62-65 cm", waist: "56-58 cm" },
-  { age: "9-10 ans", stature: "134-140 cm", chest: "67-71 cm", waist: "59-62 cm" },
-  { age: "11-12 ans", stature: "146-152 cm", chest: "73-77 cm", waist: "63-66 cm" },
-  { age: "13-14 ans", stature: "158-164 cm", chest: "79-84 cm", waist: "67-70 cm" },
-];
-
-const MODAL_BOYS: ModalSizeRow[] = [
-  { age: "3-4 ans", stature: "98-104 cm", chest: "55-57 cm", waist: "52-54 cm" },
-  { age: "5-6 ans", stature: "110-116 cm", chest: "59-62 cm", waist: "54-56 cm" },
-  { age: "7-8 ans", stature: "122-128 cm", chest: "63-66 cm", waist: "57-59 cm" },
-  { age: "9-10 ans", stature: "134-140 cm", chest: "68-72 cm", waist: "60-63 cm" },
-  { age: "11-12 ans", stature: "146-152 cm", chest: "74-78 cm", waist: "64-67 cm" },
-  { age: "13-14 ans", stature: "158-164 cm", chest: "80-86 cm", waist: "68-72 cm" },
-];
 
 export function SizeGuideModal({
   isOpen,
   onClose,
+  sizeGuide,
   activeSizeTitle,
-  whatsappUrl = "https://wa.me/22370000000",
-  initialGender = "filles",
+  productTitle,
+  whatsappUrl,
 }: SizeGuideModalProps) {
-  const [currentGender, setCurrentGender] = useState<"filles" | "garcons">(initialGender);
 
   useEffect(() => {
     if (isOpen) {
@@ -68,14 +44,10 @@ export function SizeGuideModal({
   if (!isOpen) return null;
 
   const t = messages.sizeGuidePage;
-  const rows = currentGender === "filles" ? MODAL_GIRLS : MODAL_BOYS;
+  // Measurements come from the Strapi size guide of the product category.
+  const rows = sizeGuide?.rows ?? [];
 
-  const whatsappMessage = encodeURIComponent(
-    "Bonjour Fini Kura, j'ai besoin d'aide pour choisir la bonne taille pour mon enfant."
-  );
-  const targetWhatsappLink = whatsappUrl.includes("?")
-    ? `${whatsappUrl}&text=${whatsappMessage}`
-    : `${whatsappUrl}?text=${whatsappMessage}`;
+  const targetWhatsappLink = whatsappLink(whatsappUrl, messages.whatsapp.sizeQuestion(productTitle ?? ""));
 
   return (
     <div
@@ -126,43 +98,6 @@ export function SizeGuideModal({
             </p>
           </div>
 
-          {/* Gender Segmented Switcher */}
-          <div className="flex justify-start">
-            <div
-              className="inline-flex p-1 bg-[#FDEBDA] rounded-xl gap-1 w-full sm:w-auto"
-              role="tablist"
-            >
-              <button
-                type="button"
-                role="tab"
-                aria-selected={currentGender === "filles"}
-                onClick={() => setCurrentGender("filles")}
-                className={`flex-1 sm:flex-initial px-5 sm:px-6 py-2 rounded-lg text-xs font-medium uppercase tracking-[0.12em] transition-all cursor-pointer ${
-                  currentGender === "filles"
-                    ? "bg-[#8A7058] text-white shadow-xs font-semibold"
-                    : "text-[#5E5245] hover:text-[#231A10]"
-                }`}
-              >
-                <span className="hidden sm:inline">{t.modalTabGirls}</span>
-                <span className="sm:hidden">Filles</span>
-              </button>
-
-              <button
-                type="button"
-                role="tab"
-                aria-selected={currentGender === "garcons"}
-                onClick={() => setCurrentGender("garcons")}
-                className={`flex-1 sm:flex-initial px-5 sm:px-6 py-2 rounded-lg text-xs font-medium uppercase tracking-[0.12em] transition-all cursor-pointer ${
-                  currentGender === "garcons"
-                    ? "bg-[#8A7058] text-white shadow-xs font-semibold"
-                    : "text-[#5E5245] hover:text-[#231A10]"
-                }`}
-              >
-                {t.modalTabBoys}
-              </button>
-            </div>
-          </div>
-
           {/* Table Container */}
           <div className="overflow-hidden rounded-xl bg-white border border-[#EADCCC]/70 shadow-xs">
             <table className="w-full text-left border-collapse text-xs">
@@ -194,23 +129,16 @@ export function SizeGuideModal({
                       } hover:bg-[#F7E5D4]/40`}
                     >
                       <td className="py-2.5 sm:py-3 px-3.5 sm:px-4 font-medium text-[#231A10]">
-                        <div className="flex items-center gap-1.5">
-                          <span
-                            className={`w-1.5 h-1.5 rounded-full ${
-                              currentGender === "filles" ? "bg-[#B15D42]" : "bg-[#5A6151]"
-                            }`}
-                          />
-                          <span>{row.age}</span>
-                        </div>
+                        {row.age}
                       </td>
                       <td className="py-2.5 sm:py-3 px-3 sm:px-4 text-center text-[#5E5245]">
-                        {row.stature}
+                        {row.heightCm}
                       </td>
                       <td className="py-2.5 sm:py-3 px-3 sm:px-4 text-center text-[#5E5245]">
-                        {row.chest}
+                        {row.chestCm}
                       </td>
                       <td className="py-2.5 sm:py-3 px-3.5 sm:px-4 text-right sm:text-center text-[#5E5245]">
-                        {row.waist}
+                        {row.waistCm}
                       </td>
                     </tr>
                   );
@@ -245,6 +173,7 @@ export function SizeGuideModal({
               <ArrowRight className="w-4 h-4" />
             </button>
 
+            {targetWhatsappLink && (
             <a
               href={targetWhatsappLink}
               target="_blank"
@@ -254,10 +183,8 @@ export function SizeGuideModal({
               <MessageCircle className="w-4 h-4 text-[#25D366]" />
               <span>{t.modalWhatsAppBtn}</span>
             </a>
+            )}
 
-            <p className="text-[11px] text-center text-[#80756C] pt-0.5">
-              {t.modalReassuranceExchange}
-            </p>
           </div>
         </div>
 
@@ -277,6 +204,7 @@ export function SizeGuideModal({
             >
               {messages.product.understood}
             </button>
+            {targetWhatsappLink && (
             <a
               href={targetWhatsappLink}
               target="_blank"
@@ -286,6 +214,7 @@ export function SizeGuideModal({
               <span>{t.modalWhatsAppBtn}</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </a>
+            )}
           </div>
         </div>
       </div>

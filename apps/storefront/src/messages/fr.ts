@@ -101,6 +101,11 @@ export const messages = {
     understood: "Compris",
   },
   sizeGuidePage: {
+    metaTitle: "Guide des tailles | FINI KURA",
+    metaDescription: "Mesures de nos vêtements pour filles et garçons de 3 à 14 ans, et conseils pour bien mesurer votre enfant.",
+    colHips: "Tour de hanches",
+    guideFor: (category: string) => (category === "garcons" ? "Garçons" : "Filles"),
+    whatsAppHelp: "Une question sur une taille ? Écrivez-nous sur WhatsApp.",
     breadcrumbHome: "Accueil",
     breadcrumbTitle: "Guide des tailles",
     eyebrow: "VESTIAIRE ARTISANAL • CONFORT D'ENFANCE",
@@ -315,6 +320,17 @@ export const messages = {
     needAdviceText:
       "Échangez directement avec nous sur WhatsApp pour vos commandes à Bamako.",
     whatsAppContactBtn: "Contacter sur WhatsApp",
+  },
+  whatsapp: {
+    orderIntro: (orderNumber: string) => `Bonjour FINI KURA, je confirme ma commande ${orderNumber} :`,
+    orderLine: (title: string, size: string, quantity: number, amount: string) =>
+      `- ${title}, taille ${size}, x${quantity} : ${amount}`,
+    orderTotal: (amount: string) => `Total : ${amount}`,
+    orderName: (name: string) => `Nom : ${name}`,
+    orderPhone: (phone: string) => `Téléphone : ${phone}`,
+    orderNeighborhood: (neighborhood: string) => `Quartier : ${neighborhood}`,
+    orderLandmarks: (landmarks: string) => `Repères : ${landmarks}`,
+    sizeQuestion: (product: string) => `Bonjour FINI KURA, j'ai une question sur les tailles de « ${product} ».`,
   },
   errors: {
     addToCart: "Impossible d'ajouter cet article au panier.",

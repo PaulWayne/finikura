@@ -6,7 +6,7 @@
     "social_links": [
       {
         "platform": "whatsapp",
-        "url": "https://wa.me/22370000000",
+        "url": "https://wa.me",
         "label": "WhatsApp Fini Kura"
       },
       {
@@ -38,7 +38,7 @@
         "url": "/contact"
       },
       {
-        "label": "MENTIONS LÉGALES & CGV",
+        "label": "MENTIONS LÉGALES",
         "url": "/mentions-legales"
       }
     ],

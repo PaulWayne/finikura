@@ -27,13 +27,13 @@ import {
 interface ProductBuySectionProps {
   product: Product;
   sizeGuide?: SizeGuide | null;
-  whatsappUrl?: string;
+  whatsappUrl?: string | null;
 }
 
 export function ProductBuySection({
   product,
   sizeGuide,
-  whatsappUrl = "https://wa.me/22370000000",
+  whatsappUrl,
 }: ProductBuySectionProps) {
   // Find initial in-stock variant
   const initialVariant =
@@ -376,8 +376,8 @@ export function ProductBuySection({
         onClose={() => setIsSizeModalOpen(false)}
         sizeGuide={sizeGuide}
         activeSizeTitle={selectedVariant?.title}
+        productTitle={product.title}
         whatsappUrl={whatsappUrl}
-        initialGender={product.categoryHandle === "garcons" ? "garcons" : "filles"}
       />
 
       {/* Sticky Bottom Bar on Mobile (< 768px) */}

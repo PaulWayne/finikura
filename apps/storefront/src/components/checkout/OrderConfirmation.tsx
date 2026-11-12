@@ -13,24 +13,20 @@ import {
 } from "lucide-react";
 import { Order } from "@/lib/commerce/types";
 import { formatPrice } from "@/lib/format";
+import { whatsappLink, orderConfirmationMessage } from "@/lib/whatsapp";
 import { messages } from "@/messages/fr";
 import { IMAGE_FALLBACKS, handleImgError } from "@/lib/images";
 
 interface OrderConfirmationProps {
   order: Order;
-  whatsappUrl?: string;
+  whatsappUrl?: string | null;
 }
 
 export function OrderConfirmation({ order, whatsappUrl }: OrderConfirmationProps) {
   const firstName = order.customer.fullName.split(" ")[0] || order.customer.fullName;
   const totalCount = order.items.reduce((acc, i) => acc + i.quantity, 0);
 
-  // Build direct WhatsApp confirmation message URL
-  const whatsappTarget = whatsappUrl?.replace(/https?:\/\/wa\.me\/?/, "").replace(/[^0-9]/g, "") || "22370000000";
-  const whatsappMessage = encodeURIComponent(
-    `Bonjour Fini Kura, je souhaite confirmer ma commande ${order.orderNumber}`
-  );
-  const whatsappLink = `https://wa.me/${whatsappTarget}?text=${whatsappMessage}`;
+  const whatsappHref = whatsappLink(whatsappUrl, orderConfirmationMessage(order));
 
   return (
     <div className="w-full max-w-[680px] mx-auto px-4 py-6 sm:py-10">
@@ -137,8 +133,9 @@ export function OrderConfirmation({ order, whatsappUrl }: OrderConfirmationProps
         </div>
 
         {/* WhatsApp CTA Action */}
+        {whatsappHref && (
         <a
-          href={whatsappLink}
+          href={whatsappHref}
           target="_blank"
           rel="noopener noreferrer"
           className="w-full sm:w-auto min-w-[280px] bg-[#25D366] hover:bg-[#20ba59] active:scale-[0.99] text-white font-medium text-xs sm:text-sm tracking-wide py-3.5 px-8 rounded-xl shadow-md transition-all flex items-center justify-center gap-3 group"
@@ -153,6 +150,7 @@ export function OrderConfirmation({ order, whatsappUrl }: OrderConfirmationProps
             {messages.confirmation.whatsAppCta}
           </span>
         </a>
+        )}
 
         <p className="text-[11px] sm:text-xs text-[#5E5245]/80 mt-3 max-w-md leading-relaxed">
           {messages.confirmation.whatsAppNotice}

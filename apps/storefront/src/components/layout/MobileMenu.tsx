@@ -5,11 +5,11 @@ import { CART_EVENTS, triggerCloseMenu } from "@/lib/cart-events";
 import { messages } from "@/messages/fr";
 
 interface MobileMenuProps {
-  whatsappUrl?: string;
+  whatsappUrl?: string | null;
 }
 
 export function MobileMenu({
-  whatsappUrl = "https://wa.me/22370000000",
+  whatsappUrl,
 }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -209,6 +209,7 @@ export function MobileMenu({
               {messages.drawer.needAdviceText}
             </p>
           </div>
+          {whatsappUrl && (
           <a
             href={whatsappUrl}
             target="_blank"
@@ -217,6 +218,7 @@ export function MobileMenu({
           >
             <span>{messages.drawer.whatsAppContactBtn}</span>
           </a>
+          )}
         </div>
       </aside>
     </>

@@ -9,18 +9,8 @@ interface FooterProps {
 }
 
 export function Footer({
-  footerLinks = [
-    { label: "LIVRAISON ET ÉCHANGES", url: "/livraison-et-echanges" },
-    { label: "NOTRE HISTOIRE", url: "/notre-histoire" },
-    { label: "GUIDE DES TAILLES", url: "/guide-des-tailles" },
-    { label: "CONTACT", url: "/contact" },
-    { label: "MENTIONS LÉGALES & CGV", url: "/mentions-legales" },
-  ],
-  socialLinks = [
-    { platform: "whatsapp", url: "https://wa.me/22370000000", label: "WhatsApp" },
-    { platform: "facebook", url: "https://facebook.com", label: "Facebook" },
-    { platform: "tiktok", url: "https://tiktok.com", label: "TikTok" },
-  ],
+  footerLinks = [],
+  socialLinks = [],
 }: FooterProps) {
   return (
     <footer className="bg-[#EADCCC] text-[#5E5245] border-t border-[#ded2c2] mt-16 md:mt-24">

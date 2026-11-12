@@ -57,26 +57,35 @@
       "slug": "livraison-et-echanges",
       "title": "Livraison et échanges",
       "seo": {
-        "title": "Livraison et échanges à Bamako — Fini Kura",
-        "description": "Modalités de livraison en mains propres à Bamako et échanges de tailles sous 48h."
+        "title": "Livraison et échanges | FINI KURA",
+        "description": "Livraison à domicile à Bamako, paiement à la réception, frais de livraison confirmés sur WhatsApp."
       },
       "blocks": [
         {
           "__component": "blocks.rich-text",
-          "title": "LIVRAISON À BAMAKO",
-          "body": "### Livraison directe à votre porte\n\nNos coursiers partenaires assurent la livraison dans tous les quartiers du district de Bamako (ACI 2000, Badalabougou, Hamdallaye, Quartier du Fleuve, Bacodjicoroni, Korofina, etc.).\n\n- **Frais de livraison** : Le tarif dépend de votre quartier exact et vous est confirmé directement par message sur WhatsApp lors de la prise en charge.\n- **Paiement** : Vous réglez directement le coursier en espèces ou par Orange Money au moment de la remise de votre colis.\n- **Échanges faciles** : Si la taille ne convient pas parfaitement lors de l'essayage, contactez-nous sans attendre. Nous organisons l'échange de taille sous 48h selon disponibilités des stocks."
+          "title": "Livraison à Bamako",
+          "body": "Nous livrons votre commande à domicile, dans les quartiers de Bamako.\n\n- **Frais de livraison** : à votre charge. Le montant dépend de votre quartier, nous vous le confirmons sur WhatsApp avant la livraison.\n- **Paiement** : vous payez à la réception de votre commande.\n- **Confirmation** : après votre commande sur le site, confirmez-la sur WhatsApp. Nous convenons ensemble de l'adresse exacte et du moment de la livraison."
+        },
+        {
+          "__component": "blocks.rich-text",
+          "title": "Échanges",
+          "body": "Les conditions d'échange seront bientôt précisées sur cette page. Pour toute question sur une taille, écrivez-nous sur WhatsApp avant de commander."
         },
         {
           "__component": "blocks.faq",
-          "title": "QUESTIONS FRÉQUENTES",
+          "title": "Questions fréquentes",
           "items": [
             {
-              "question": "Puis-je essayer les vêtements avant de régler ?",
-              "answer": "Oui, vous pouvez vérifier la conformité des pièces avec le coursier avant de valider votre règlement."
+              "question": "Comment payer ma commande ?",
+              "answer": "À la réception, au moment où le coursier vous remet votre commande."
             },
             {
-              "question": "Comment se passe la confirmation ?",
-              "answer": "Dès validation de votre commande sur le site, notre atelier vous envoie un récapitulatif par message WhatsApp pour convenir du créneau horaire idéal."
+              "question": "Combien coûte la livraison ?",
+              "answer": "Elle est à votre charge et dépend de votre quartier. Nous vous confirmons le montant sur WhatsApp avant la livraison."
+            },
+            {
+              "question": "Comment confirmer ma commande ?",
+              "answer": "Sur la page de confirmation, touchez « Confirmer sur WhatsApp ». Votre message est déjà rempli avec le détail de votre commande."
             }
           ]
         }
@@ -87,21 +96,57 @@
       "slug": "contact",
       "title": "Contact",
       "seo": {
-        "title": "Contacter l'atelier Fini Kura à Bamako",
-        "description": "Contactez l'équipe de Fini Kura à Bamako pour vos commandes, conseils de tailles ou demandes spécifiques."
+        "title": "Contact | FINI KURA",
+        "description": "Une question sur une commande, une taille ou une livraison à Bamako ? Écrivez-nous sur WhatsApp."
       },
       "blocks": [
         {
           "__component": "blocks.rich-text",
-          "title": "NOUS CONTACTER",
-          "body": "Notre équipe est disponible pour répondre à toutes vos questions, vous guider dans le choix des tailles et assurer le suivi de vos livraisons à Bamako.\n\n- **WhatsApp & Téléphone** : +223 70 00 00 00\n- **Atelier** : Bamako, Mali\n- **Horaires** : Du Lundi au Samedi, de 9h à 19h"
+          "title": "Nous contacter",
+          "body": "Pour une question sur une commande, une taille ou une livraison à Bamako, le plus simple est de nous écrire sur WhatsApp."
         },
         {
           "__component": "blocks.cta",
-          "title": "ÉCHANGEZ AVEC NOTRE ATELIER",
-          "subtitle": "Un conseil personnalisé sur une taille ou une coupe ? Écrivez-nous directement.",
-          "cta_text": "DISCUTER SUR WHATSAPP",
-          "cta_link": "https://wa.me/22370000000"
+          "title": "Écrivez-nous sur WhatsApp",
+          "subtitle": "Un doute sur une taille ? Envoyez-nous l'âge et la taille de votre enfant.",
+          "cta_text": "Écrire sur WhatsApp",
+          "cta_link": "whatsapp"
+        }
+      ]
+    },
+    {
+      "documentId": "page-mentions-legales",
+      "slug": "mentions-legales",
+      "title": "Mentions légales",
+      "seo": {
+        "title": "Mentions légales | FINI KURA",
+        "description": "Éditeur du site, hébergement, données personnelles et cookies."
+      },
+      "blocks": [
+        {
+          "__component": "blocks.rich-text",
+          "title": "Éditeur du site",
+          "body": "FINI KURA\n\nÀ compléter : nom de la responsable, statut, adresse et contact."
+        },
+        {
+          "__component": "blocks.rich-text",
+          "title": "Hébergement",
+          "body": "À compléter lors de la mise en production."
+        },
+        {
+          "__component": "blocks.rich-text",
+          "title": "Prix et paiement",
+          "body": "Les prix sont indiqués en francs CFA (FCFA). Le paiement se fait à la réception de la commande. Les frais de livraison sont à votre charge et vous sont confirmés sur WhatsApp."
+        },
+        {
+          "__component": "blocks.rich-text",
+          "title": "Données personnelles",
+          "body": "Pour traiter votre commande, nous enregistrons votre nom, votre numéro de téléphone, votre quartier et vos repères de livraison. Nous ne demandons pas d'adresse e-mail.\n\nCes informations servent uniquement à préparer et livrer votre commande, et à vous contacter sur WhatsApp à son sujet."
+        },
+        {
+          "__component": "blocks.rich-text",
+          "title": "Cookies",
+          "body": "Le site utilise un seul cookie, nécessaire au fonctionnement de votre panier. Il est supprimé à la fin de votre commande, ou au bout de 30 jours."
         }
       ]
     }

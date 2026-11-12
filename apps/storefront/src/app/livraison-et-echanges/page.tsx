@@ -1,19 +1,11 @@
-import React from "react";
-import { contentService } from "@/lib/content";
-import { ShippingReturnsPageContent } from "@/components/shipping/ShippingReturnsPageContent";
+import { EditorialRoute, editorialMetadata } from "@/lib/editorial-page";
 
-export const metadata = {
-  title: "Livraison et Échanges à Bamako | Fini Kura",
-  description:
-    "Modalités de livraison par coursier dans les 6 communes de Bamako. Paiement à la réception en espèces ou Mobile Money, échanges de tailles sous 48h.",
-};
+const SLUG = "livraison-et-echanges";
 
-export default async function LivraisonEtEchangesPage() {
-  const settings = await contentService.getGlobalSettings();
+export function generateMetadata() {
+  return editorialMetadata(SLUG);
+}
 
-  return (
-    <div className="min-h-screen bg-[#FDF7F2] pt-20 md:pt-28 pb-16">
-      <ShippingReturnsPageContent whatsappUrl={settings?.whatsappUrl} />
-    </div>
-  );
+export default function LivraisonEtEchangesPage() {
+  return <EditorialRoute slug={SLUG} />;
 }

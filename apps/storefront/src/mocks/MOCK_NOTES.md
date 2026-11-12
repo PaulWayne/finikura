@@ -212,7 +212,7 @@ Ce document répertorie pour chaque fixture :
   - Titre : « NOUS CONTACTER & QUESTIONS FRÉQUENTES » (Desktop) / « À VOTRE ÉCOUTE » (Mobile)
   - Descriptif chaleureux sur les coupes, mensurations et coursiers à Bamako.
 - **Canaux directs & Atelier (colonne gauche)** :
-  - Carte WhatsApp prioritaire avec pastille verte « En direct » animée, horaires d'assistance 6j/7 (8h-19h), et lien direct `wa.me/22376458912`.
+  - Carte WhatsApp prioritaire avec pastille verte « En direct » animée, horaires d'assistance 6j/7 (8h-19h), et lien direct le numéro des réglages Strapi.
   - Coordonnées de l'Atelier Bamako : Quartier du Fleuve / ACI 2000 (« En face de la pharmacie du fleuve »), téléphones (+223 76 45 89 12 et +223 20 22 00 00 avec bouton d'appel direct sur mobile), horaires de retrait & essayages (09h00 – 19h00, fermé dimanche), et service coursier dédié dans toutes les communes du District de Bamako.
   - Réassurance de paiement en espèces ou Orange Money à la livraison en main propre.
 - **Formulaire de contact épuré (colonne droite)** :
