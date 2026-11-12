@@ -77,6 +77,7 @@ export interface StrapiCampaign {
   headline?: string | null;
   description?: string | null;
   banner?: StrapiMedia | null;
+  seo?: StrapiSeo | null;
 }
 
 export interface StrapiPage {

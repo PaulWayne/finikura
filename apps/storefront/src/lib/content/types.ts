@@ -157,6 +157,11 @@ export interface Campaign {
   };
   visuals: {
     bannerUrl: string;
+    bannerAlt: string;
+  };
+  seo: {
+    title: string;
+    description: string;
   };
 }
 

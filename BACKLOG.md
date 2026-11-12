@@ -315,9 +315,9 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 **Description.** Créer une page `/campagne/[slug]` qui affiche une campagne Strapi : titre, bannière, textes et dates. Elle montre les produits de la collection Medusa correspondante. La campagne Tabaski 2027 est déjà dans Strapi.
 
 **Critères d'acceptation**
-- [ ] La page affiche les produits de la collection désignée par `collection_handle`.
-- [ ] Une collection absente dans Medusa ne fait pas planter la page : la section produits n'est pas affichée.
-- [ ] En dehors des dates de la campagne, la page renvoie 404 ou n'est pas liée.
+- [x] La page affiche les produits de la collection désignée par `collection_handle`.
+- [x] Une collection absente dans Medusa ne fait pas planter la page : la section produits n'est pas affichée.
+- [x] En dehors des dates de la campagne, la page renvoie 404 ou n'est pas liée.
 
 **Taille** M · **Dépend de** — · **Origine** cahier des charges
 

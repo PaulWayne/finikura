@@ -187,6 +187,9 @@ export const messages = {
     needAdviceText: "Écrivez-nous sur WhatsApp pour toute question sur une taille ou une commande.",
     whatsAppContactBtn: "Contacter sur WhatsApp",
   },
+  campaign: {
+    productsTitle: "La collection",
+  },
   whatsapp: {
     floatingLabel: "Nous écrire sur WhatsApp",
     orderIntro: (orderNumber: string) => `Bonjour FINI KURA, je confirme ma commande ${orderNumber} :`,

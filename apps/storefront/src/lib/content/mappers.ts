@@ -219,7 +219,14 @@ export function mapStrapiCampaignToDomain(raw: StrapiCampaign): Campaign {
       headline: raw.headline ?? "",
       description: raw.description ?? "",
     },
-    visuals: { bannerUrl: mediaUrl(raw.banner) },
+    visuals: {
+      bannerUrl: mediaUrl(raw.banner),
+      bannerAlt: raw.banner?.alternativeText || raw.title,
+    },
+    seo: {
+      title: raw.seo?.title || raw.title,
+      description: raw.seo?.description || raw.description || "",
+    },
   };
 }
 
