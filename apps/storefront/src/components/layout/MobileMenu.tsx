@@ -1,9 +1,9 @@
 "use client";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CART_EVENTS, triggerCloseMenu } from "@/lib/cart-events";
 import { messages } from "@/messages/fr";
 import { Logo } from "@/components/layout/Logo";
+import { MobileMenuLinks } from "./MobileMenuLinks";
 
 interface MobileMenuProps {
   whatsappUrl?: string | null;
@@ -53,7 +53,7 @@ export function MobileMenu({
       {/* Drawer panel */}
       <aside
         id="mobile-drawer"
-        aria-label="Menu mobile"
+        aria-label={messages.header.mobileMenuAria}
         className={`fixed top-0 right-0 bottom-0 w-[310px] max-w-[85vw] bg-brand-bg z-50 shadow-2xl flex flex-col justify-between p-6 transform transition-transform duration-300 ease-in-out border-l border-brand-surface md:hidden ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
@@ -88,113 +88,7 @@ export function MobileMenu({
             </button>
           </div>
 
-          {/* Navigation links */}
-          <nav className="mt-6 flex flex-col space-y-4">
-            <Link
-              href="/categorie/filles"
-              onClick={close}
-              className="font-serif text-lg font-medium text-brand-text hover:underline underline-offset-4 transition min-h-11 flex items-center justify-between"
-            >
-              <span>Filles (3 - 14 ans)</span>
-              <svg
-                className="w-4 h-4 stroke-[1.5]"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </Link>
-
-            <Link
-              href="/categorie/garcons"
-              onClick={close}
-              className="font-serif text-lg font-medium text-brand-text hover:underline underline-offset-4 transition min-h-11 flex items-center justify-between"
-            >
-              <span>Garçons (3 - 14 ans)</span>
-              <svg
-                className="w-4 h-4 stroke-[1.5]"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </Link>
-
-            <Link
-              href="/#nouveautes"
-              onClick={close}
-              className="font-serif text-lg font-medium text-brand-text hover:underline underline-offset-4 transition min-h-11 flex items-center justify-between"
-            >
-              <span>Nouveautés</span>
-              <span className="text-[10px] font-sans px-2.5 py-0.5 rounded-full bg-brand-terracotta/15 text-brand-text font-medium tracking-wider uppercase">
-                Nouveau
-              </span>
-            </Link>
-
-            <div className="w-full h-px bg-brand-surface my-2" />
-
-            <Link
-              href="/guide-des-tailles"
-              onClick={close}
-              className="text-base font-normal text-brand-text hover:underline underline-offset-4 transition min-h-11 flex items-center"
-            >
-              {messages.header.navSizeGuide}
-            </Link>
-
-            <Link
-              href="/notre-histoire"
-              onClick={close}
-              className="min-h-11 min-w-11 inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-[4px] border border-brand-primary text-brand-text font-medium text-xs tracking-[0.15em] uppercase hover:bg-brand-primary hover:text-brand-white transition shadow-xs"
-            >
-              <span>{messages.header.navHistory}</span>
-              <svg
-                className="w-4 h-4 stroke-[2]"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </Link>
-
-            <Link
-              href="/livraison-et-echanges"
-              onClick={close}
-              className="text-base font-normal text-brand-text hover:underline underline-offset-4 transition min-h-11 flex items-center"
-            >
-              Livraison et échanges
-            </Link>
-
-            <Link
-              href="/contact"
-              onClick={close}
-              className="text-base font-normal text-brand-text hover:underline underline-offset-4 transition min-h-11 flex items-center"
-            >
-              {messages.header.navContact}
-            </Link>
-
-            <Link
-              href="/mentions-legales"
-              onClick={close}
-              className="text-sm font-normal text-brand-text hover:underline underline-offset-4 transition min-h-11 flex items-center"
-            >
-              Mentions Légales &amp; CGV
-            </Link>
-          </nav>
+          <MobileMenuLinks onNavigate={close} />
         </div>
 
         {/* Bottom of Drawer: WhatsApp advice */}

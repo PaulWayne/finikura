@@ -22,6 +22,7 @@ export function AboutExcerptBlock({ block }: AboutExcerptBlockProps) {
             src={aboutSrc}
             alt={block.imageAlt}
             fallbackSrc={IMAGE_FALLBACKS.about}
+            sizes="(min-width: 768px) 58vw, 100vw"
             className="w-full h-full object-cover object-center"
           />
         </div>

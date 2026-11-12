@@ -44,6 +44,7 @@ export function CategoryCardsBlock({ block }: CategoryCardsBlockProps) {
                   src={card.imageUrl || fallback}
                   alt={card.imageAlt}
                   fallbackSrc={fallback}
+                  sizes="(min-width: 768px) 50vw, 100vw"
                   className="w-full h-full object-cover object-top transition duration-700 group-hover:scale-105"
                 />
               <div className="absolute inset-0 bg-brand-text/20 group-hover:bg-brand-text/30 transition duration-500" />

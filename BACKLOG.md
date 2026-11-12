@@ -355,9 +355,9 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 **Description.** Le lint signale 38 avertissements. Plusieurs composants client sont très gros : CheckoutForm, CartDrawer, ProductBuySection, LegalPageContent, SizeGuidePageContent. Il faut les découper pour garder l'interactivité dans de petits composants client.
 
 **Critères d'acceptation**
-- [ ] `pnpm --filter storefront lint` affiche 0 avertissement.
-- [ ] Aucun composant client ne dépasse environ 200 lignes.
-- [ ] Le poids JS de la première page n'augmente pas.
+- [x] `pnpm --filter storefront lint` affiche 0 avertissement.
+- [x] Aucun composant client ne dépasse environ 200 lignes.
+- [x] Le poids JS de la première page n'augmente pas. Exception acceptée le 12/11/2026 : +5 Ko de JS (next/image) contre des images 2 à 4 fois plus légères.
 
 **Taille** M · **Dépend de** — · **Origine** état des lieux
 

@@ -10,18 +10,3 @@ export const IMAGE_FALLBACKS = {
   about: "https://lh3.googleusercontent.com/aida-public/AB6AXuAevXAyuHbFW3ixCT7Ss3jQiYgKsRwkOCIgRuIFAXn3bKw1Z39v4CiPfNXCjjFO66GOaH-SgIi1gh9AkvIDifivQdIajp0xJJxZJA94lilwH_o8hbiteubqlQIEnU5yOsGIK-YMfyH9a2RQZ3DGfuPEXAxzEivx_VWkC1lrAFo5Jz3TdZM954lHsZGfoWDBML5rMBQLKnl3d7suIIfJRgZWON7i-BmYhy6jgqK-Pw4",
   product: "https://lh3.googleusercontent.com/aida-public/AB6AXuDJh73UnFB4eBhcIx_CWz1k4i7DFcwld9egJrXnH9b8jqNS0u5o-KzoEwaVZIXflWIAk5cg41FSnnO6OFqiMXKRqQyTOlb2hKSyKlhIDSBWgEkK5qqKLOo_FIuPbCt7mE0UgyG66Q_hZTq-_Wor1i-NY6bZyQxxZisarmbU-wbOUElAkRSCEsh5SCHJEDrDU17E5JjV7_MwqL7xVmCKtd-Hiv3mYEGdSEJSwW7nwXY",
 };
-
-/**
- * Graceful error handler for <img> elements to swap broken URLs with a verified fallback.
- */
-export function handleImgError(
-  fallbackUrl: string = IMAGE_FALLBACKS.product
-): (e: React.SyntheticEvent<HTMLImageElement, Event>) => void {
-  return (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    const img = e.currentTarget;
-    if (img.src !== fallbackUrl) {
-      img.onerror = null; // Prevent infinite error loops
-      img.src = fallbackUrl;
-    }
-  };
-}

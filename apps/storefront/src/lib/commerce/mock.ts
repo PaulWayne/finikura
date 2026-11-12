@@ -1,11 +1,9 @@
 import "server-only";
 import productsFixture from "@/mocks/medusa/products.json";
 import categoriesFixture from "@/mocks/medusa/categories.json";
-import collectionsFixture from "@/mocks/medusa/collections.json";
 import {
   MedusaStoreProduct,
   MedusaStoreCategory,
-  MedusaStoreCollection,
   MedusaStoreCart,
   MedusaStoreOrder,
   MedusaStoreLineItem,
@@ -14,7 +12,6 @@ import {
 import {
   mapMedusaProductToDomain,
   mapMedusaCategoryToDomain,
-  mapMedusaCollectionToDomain,
   mapMedusaCartToDomain,
   mapMedusaOrderToDomain,
   mapMedusaLineItemToDomain,
@@ -23,7 +20,6 @@ import {
   CommerceService,
   Product,
   Category,
-  Collection,
   Cart,
   Order,
   CatalogFilterParams,

@@ -19,6 +19,7 @@ export function HeroBlock({ block }: HeroBlockProps) {
             src={heroSrc}
             alt={block.imageAlt}
             fallbackSrc={IMAGE_FALLBACKS.hero}
+            sizes="(min-width: 1200px) 670px, 58vw"
             className="w-full h-full object-cover object-[center_20%]"
           />
         </div>
@@ -49,6 +50,8 @@ export function HeroBlock({ block }: HeroBlockProps) {
             src={heroSrc}
             alt={block.imageAlt}
             fallbackSrc={IMAGE_FALLBACKS.hero}
+            sizes="(min-width: 768px) 1px, 100vw"
+            preload
             className="w-full h-full object-cover object-top"
           />
         </div>

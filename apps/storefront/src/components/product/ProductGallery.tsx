@@ -1,9 +1,10 @@
 "use client";
 import React, { useState, useRef } from "react";
+import { SafeImage } from "@/components/ui/SafeImage";
 import { messages } from "@/messages/fr";
 import { ZoomIn, Heart } from "lucide-react";
 import { triggerToast } from "@/lib/cart-events";
-import { IMAGE_FALLBACKS, handleImgError } from "@/lib/images";
+import { IMAGE_FALLBACKS } from "@/lib/images";
 
 interface ProductGalleryProps {
   images: string[];
@@ -71,10 +72,11 @@ export function ProductGallery({ images, productTitle }: ProductGalleryProps) {
                   : "outline outline-1 outline-transparent hover:outline-brand-surface"
               }`}
             >
-              <img
+              <SafeImage
                 src={src}
                 alt={`${productTitle} vue miniature ${idx + 1}`}
-                onError={handleImgError(IMAGE_FALLBACKS.product)}
+                fallbackSrc={IMAGE_FALLBACKS.product}
+                sizes="80px"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
             </button>
@@ -86,10 +88,11 @@ export function ProductGallery({ images, productTitle }: ProductGalleryProps) {
       <div className="relative flex-1 w-full bg-brand-surface/30 rounded-xl md:rounded-2xl overflow-hidden group border border-brand-surface">
         {/* Desktop single main display with smooth transition */}
         <div className="hidden md:block aspect-[4/5] w-full overflow-hidden relative bg-brand-surface/30">
-          <img
+          <SafeImage
             src={displayImages[activeIndex] || displayImages[0]}
             alt={`${productTitle} - Vue haute résolution`}
-            onError={handleImgError(IMAGE_FALLBACKS.product)}
+            fallbackSrc={IMAGE_FALLBACKS.product}
+            sizes="(min-width: 1200px) 560px, 50vw"
             className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
           />
 
@@ -133,11 +136,13 @@ export function ProductGallery({ images, productTitle }: ProductGalleryProps) {
                 key={idx}
                 className="w-full h-full flex-shrink-0 snap-center relative aspect-square bg-brand-surface/40"
               >
-                <img
+                <SafeImage
                   src={src}
                   alt={`${productTitle} - Vue ${idx + 1}`}
-                  onError={handleImgError(IMAGE_FALLBACKS.product)}
-                  className="w-full h-full object-cover"
+                  fallbackSrc={IMAGE_FALLBACKS.product}
+                  sizes="(min-width: 768px) 1px, 100vw"
+                  preload={idx === 0}
+                  className="object-cover"
                 />
               </div>
             ))}

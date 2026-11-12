@@ -1,0 +1,89 @@
+import { Trash2 } from "lucide-react";
+import type { CartItem } from "@/lib/commerce/types";
+import { SafeImage } from "@/components/ui/SafeImage";
+import { formatPrice } from "@/lib/format";
+import { IMAGE_FALLBACKS } from "@/lib/images";
+import { messages } from "@/messages/fr";
+
+interface CartItemRowProps {
+  item: CartItem;
+  isLoading: boolean;
+  onQuantityChange: (itemId: string, quantity: number) => void;
+  onRemove: (itemId: string) => void;
+}
+
+/** One line of the cart drawer, with the quantity picker and the remove button. */
+export function CartItemRow({ item, isLoading, onQuantityChange, onRemove }: CartItemRowProps) {
+  return (
+    <div className="bg-brand-surface/30 rounded-2xl p-3.5 sm:p-4 border border-brand-surface flex space-x-3.5 sm:space-x-4 transition hover:bg-brand-surface/40">
+      {/* Photo on plain beige background */}
+      <div className="w-20 sm:w-24 h-24 sm:h-28 bg-brand-surface rounded-xl overflow-hidden shrink-0 relative border border-brand-surface">
+        <SafeImage
+          src={item.thumbnail || IMAGE_FALLBACKS.product}
+          alt={item.productTitle}
+          fallbackSrc={IMAGE_FALLBACKS.product}
+          sizes="96px"
+          className="object-cover"
+        />
+      </div>
+
+      <div className="flex-1 flex flex-col justify-between py-0.5 min-w-0">
+        <div>
+          <div className="flex items-start justify-between gap-1">
+            <div className="min-w-0">
+              <span className="text-[10px] uppercase tracking-wider font-medium block text-brand-text">
+                {messages.cart.categoryLabel(item.categoryHandle === "filles")}
+              </span>
+              <h4 className="font-serif text-sm sm:text-base font-semibold text-brand-text leading-snug mt-0.5 truncate">
+                {item.productTitle}
+              </h4>
+            </div>
+            <button
+              type="button"
+              aria-label={messages.cart.removeAria}
+              title={messages.cart.removeAria}
+              onClick={() => onRemove(item.id)}
+              disabled={isLoading}
+              className="touch-area text-brand-text p-1 transition-colors cursor-pointer shrink-0"
+            >
+              <Trash2 className="w-4 h-4 stroke-[1.5]" />
+            </button>
+          </div>
+
+          <div className="mt-2 flex items-center space-x-2">
+            <span className="text-xs text-brand-text">{messages.cart.sizeSelected}</span>
+            <span className="text-xs font-semibold text-brand-text bg-brand-surface px-2.5 py-0.5 rounded-md">
+              {item.variantTitle}
+            </span>
+          </div>
+        </div>
+
+        {/* Quantity and price */}
+        <div className="flex items-center justify-between mt-3 pt-2.5 border-t border-brand-surface">
+          <div className="flex items-center border border-brand-primary/40 rounded-lg bg-brand-white/70 px-2 py-0.5 sm:py-1 space-x-2.5 sm:space-x-3">
+            <button
+              type="button"
+              disabled={item.quantity <= 1 || isLoading}
+              onClick={() => onQuantityChange(item.id, item.quantity - 1)}
+              className="touch-area text-xs text-brand-text hover:opacity-60 font-medium px-1 cursor-pointer disabled:opacity-50"
+            >
+              -
+            </button>
+            <span className="text-xs font-semibold text-brand-text">{item.quantity}</span>
+            <button
+              type="button"
+              disabled={isLoading}
+              onClick={() => onQuantityChange(item.id, item.quantity + 1)}
+              className="touch-area text-xs text-brand-text hover:opacity-60 font-medium px-1 cursor-pointer"
+            >
+              +
+            </button>
+          </div>
+          <span className="font-serif text-sm sm:text-base font-semibold text-brand-text">
+            {formatPrice(item.price * item.quantity)}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}

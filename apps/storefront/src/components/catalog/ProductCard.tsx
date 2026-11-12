@@ -1,11 +1,12 @@
 "use client";
 import Link from "next/link";
+import { SafeImage } from "@/components/ui/SafeImage";
 import React, { useState } from "react";
 import { Product } from "@/lib/commerce/types";
 import { formatPrice } from "@/lib/format";
 import { addToCartAction } from "@/app/actions/cart";
 import { triggerCartUpdated, triggerOpenCart, triggerToast } from "@/lib/cart-events";
-import { IMAGE_FALLBACKS, handleImgError } from "@/lib/images";
+import { IMAGE_FALLBACKS } from "@/lib/images";
 
 interface ProductCardProps {
   product: Product;
@@ -76,11 +77,11 @@ export function ProductCard({
       {/* Product Image Container */}
       <div className="relative w-full aspect-square rounded-lg md:rounded-xl overflow-hidden bg-brand-bg mb-2.5">
         <Link href={`/produit/${product.handle}`} className="block w-full h-full">
-          <img
+          <SafeImage
             src={product.thumbnail || IMAGE_FALLBACKS.product}
             alt={product.title}
-            onError={handleImgError(IMAGE_FALLBACKS.product)}
-            loading="lazy"
+            fallbackSrc={IMAGE_FALLBACKS.product}
+            sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
             className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
           />
         </Link>

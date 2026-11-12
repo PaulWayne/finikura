@@ -117,6 +117,7 @@ services:
       COMMERCE_SOURCE: live
       CONTENT_SOURCE: live
       MEDUSA_BACKEND_URL: http://medusa:9000
+      MEDUSA_PUBLIC_URL: https://api.${DOMAIN}
       MEDUSA_PUBLISHABLE_KEY: ${MEDUSA_PUBLISHABLE_KEY}
       STRAPI_URL: http://strapi:1337
       STRAPI_PUBLIC_URL: https://cms.${DOMAIN}

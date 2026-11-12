@@ -6,7 +6,6 @@ interface FilterChipsProps {
   categoryHandle: string;
   selectedAge?: string;
   selectedOccasion?: string;
-  onFilterChange?: (age?: string, occasion?: string) => void;
 }
 
 const AGE_OPTIONS = [
@@ -38,10 +37,8 @@ export function FilterChips({
   categoryHandle,
   selectedAge = "",
   selectedOccasion = "",
-  onFilterChange,
 }: FilterChipsProps) {
   const basePath = `/categorie/${categoryHandle}`;
-
 
   return (
     <div className="w-full flex flex-col items-center gap-2.5 my-6">

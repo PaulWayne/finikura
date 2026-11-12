@@ -1,28 +1,19 @@
 "use client";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   CART_EVENTS,
   triggerCloseCart,
   triggerCartUpdated,
 } from "@/lib/cart-events";
-import { formatPrice } from "@/lib/format";
 import { messages } from "@/messages/fr";
 import { Cart } from "@/lib/commerce/types";
 import {
   updateQuantityAction,
   removeItemAction,
 } from "@/app/actions/cart";
-import {
-  X,
-  Trash2,
-  Bike,
-  CreditCard,
-  ArrowRight,
-  Check,
-  ShoppingBag,
-} from "lucide-react";
-import { IMAGE_FALLBACKS, handleImgError } from "@/lib/images";
+import { X, Bike, CreditCard, Check } from "lucide-react";
+import { CartItemRow } from "./CartItemRow";
+import { CartDrawerEmpty, CartDrawerFooter } from "./CartDrawerFooter";
 
 interface CartDrawerProps {
   initialCart: Cart;
@@ -141,7 +132,7 @@ export function CartDrawer({ initialCart }: CartDrawerProps) {
           <button
             type="button"
             onClick={close}
-            aria-label="Fermer le panier"
+            aria-label={messages.cart.closeAria}
             className="p-1.5 sm:p-2 text-brand-text hover:underline underline-offset-4 rounded-lg hover:bg-brand-surface/40 transition min-h-11 min-w-11 flex items-center justify-center cursor-pointer"
           >
             <X className="w-5 h-5 stroke-[1.5]" />
@@ -166,121 +157,17 @@ export function CartDrawer({ initialCart }: CartDrawerProps) {
         {/* Drawer Content / Items list */}
         <div className="flex-1 overflow-y-auto px-5 sm:px-6 py-5 sm:py-6 space-y-4">
           {cart.items.length === 0 ? (
-            <div className="py-14 flex flex-col items-center text-center">
-              <div className="w-16 h-16 rounded-full bg-brand-surface flex items-center justify-center text-brand-text mb-4">
-                <ShoppingBag className="w-8 h-8 stroke-[1.3]" />
-              </div>
-              <h3 className="font-serif text-lg text-brand-text font-semibold tracking-tight mb-1">
-                {messages.cart.emptyTitle}
-              </h3>
-              <p className="text-xs text-brand-text max-w-xs mb-6 font-light">
-                {messages.cart.emptyDescription}
-              </p>
-              <button
-                type="button"
-                onClick={close}
-                className="min-h-11 min-w-11 inline-flex items-center justify-center px-6 py-2.5 rounded-[4px] bg-brand-primary text-brand-white text-xs font-medium uppercase tracking-[0.15em] hover:bg-brand-text transition shadow-xs cursor-pointer"
-              >
-                {messages.cart.startShopping}
-              </button>
-            </div>
+            <CartDrawerEmpty onClose={close} />
           ) : (
-            cart.items.map((item) => {
-              const isGirls = item.categoryHandle === "filles";
-              return (
-                <div
-                  key={item.id}
-                  className="bg-brand-surface/30 rounded-2xl p-3.5 sm:p-4 border border-brand-surface flex space-x-3.5 sm:space-x-4 transition hover:bg-brand-surface/40"
-                >
-                  {/* Photo on plain beige background */}
-                  <div className="w-20 sm:w-24 h-24 sm:h-28 bg-brand-surface rounded-xl overflow-hidden shrink-0 relative border border-brand-surface">
-                    <img
-                      src={item.thumbnail}
-                      alt={item.productTitle}
-                      onError={handleImgError(IMAGE_FALLBACKS.product)}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-
-                  {/* Info & Controls */}
-                  <div className="flex-1 flex flex-col justify-between py-0.5 min-w-0">
-                    <div>
-                      <div className="flex items-start justify-between gap-1">
-                        <div className="min-w-0">
-                          <span
-                            className={`text-[10px] uppercase tracking-wider font-medium block ${
-                              isGirls ? "text-brand-text" : "text-brand-text"
-                            }`}
-                          >
-                            {isGirls ? "FILLES 3-14 ANS" : "GARÇONS 3-14 ANS"}
-                          </span>
-                          <h4 className="font-serif text-sm sm:text-base font-semibold text-brand-text leading-snug mt-0.5 truncate">
-                            {item.productTitle}
-                          </h4>
-                        </div>
-
-                        {/* Delete button */}
-                        <button
-                          type="button"
-                          aria-label={messages.cart.removeAria}
-                          onClick={() => handleRemove(item.id)}
-                          disabled={loadingItemId === item.id}
-                          className="touch-area text-brand-text p-1 transition-colors cursor-pointer shrink-0"
-                          title="Retirer l'article"
-                        >
-                          <Trash2 className="w-4 h-4 stroke-[1.5]" />
-                        </button>
-                      </div>
-
-                      {/* Size indication */}
-                      <div className="mt-2 flex items-center space-x-2">
-                        <span className="text-xs text-brand-text">
-                          {messages.cart.sizeSelected}
-                        </span>
-                        <span className="text-xs font-semibold text-brand-text bg-brand-surface px-2.5 py-0.5 rounded-md">
-                          {item.variantTitle}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Bottom row: Quantity and Price */}
-                    <div className="flex items-center justify-between mt-3 pt-2.5 border-t border-brand-surface">
-                      {/* Quantity picker */}
-                      <div className="flex items-center border border-brand-primary/40 rounded-lg bg-brand-white/70 px-2 py-0.5 sm:py-1 space-x-2.5 sm:space-x-3">
-                        <button
-                          type="button"
-                          disabled={item.quantity <= 1 || loadingItemId === item.id}
-                          onClick={() =>
-                            handleUpdateQty(item.id, item.quantity - 1)
-                          }
-                          className="touch-area text-xs text-brand-text hover:opacity-60 font-medium px-1 cursor-pointer disabled:opacity-50"
-                        >
-                          -
-                        </button>
-                        <span className="text-xs font-semibold text-brand-text">
-                          {item.quantity}
-                        </span>
-                        <button
-                          type="button"
-                          disabled={loadingItemId === item.id}
-                          onClick={() =>
-                            handleUpdateQty(item.id, item.quantity + 1)
-                          }
-                          className="touch-area text-xs text-brand-text hover:opacity-60 font-medium px-1 cursor-pointer"
-                        >
-                          +
-                        </button>
-                      </div>
-
-                      {/* Item Price */}
-                      <span className="font-serif text-sm sm:text-base font-semibold text-brand-text">
-                        {formatPrice(item.price * item.quantity)}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              );
-            })
+            cart.items.map((item) => (
+              <CartItemRow
+                key={item.id}
+                item={item}
+                isLoading={loadingItemId === item.id}
+                onQuantityChange={handleUpdateQty}
+                onRemove={handleRemove}
+              />
+            ))
           )}
 
           {/* Delivery reassuring notes (when cart has items) */}
@@ -305,51 +192,7 @@ export function CartDrawer({ initialCart }: CartDrawerProps) {
           )}
         </div>
 
-        {/* Drawer Footer: Financial breakdown & Actions */}
-        {cart.items.length > 0 && (
-          <div className="p-5 sm:p-6 bg-brand-bg border-t border-brand-surface space-y-4">
-            {/* Subtotal and Total in exact FCFA */}
-            <div className="space-y-2">
-              <div className="flex justify-between items-center text-xs text-brand-text">
-                <span>{messages.cart.subtotal}</span>
-                <span className="font-medium">
-                  {formatPrice(cart.subtotal)}
-                </span>
-              </div>
-
-
-              <div className="flex justify-between items-center pt-2.5 border-t border-brand-surface">
-                <span className="font-serif text-base sm:text-lg font-semibold text-brand-text">
-                  {messages.cart.totalEstimated}
-                </span>
-                <span className="font-serif text-lg sm:text-xl font-bold text-brand-text">
-                  {formatPrice(cart.total)}
-                </span>
-              </div>
-            </div>
-
-            {/* Solid Taupe Button: Commander (height 48px, min 44px) */}
-            <Link
-              href="/commande"
-              onClick={close}
-              className="w-full h-12 bg-brand-primary hover:bg-brand-text active:scale-[0.99] text-brand-white rounded-xl font-medium text-sm transition-all shadow-sm flex items-center justify-center space-x-2 cursor-pointer"
-            >
-              <span>{messages.cart.checkoutButton}</span>
-              <ArrowRight className="w-4 h-4 text-brand-white" />
-            </Link>
-
-            {/* Text Link: Continuer mes achats */}
-            <div className="text-center pt-0.5">
-              <button
-                type="button"
-                onClick={close}
-                className="min-h-11 inline-flex items-center text-xs text-brand-text underline underline-offset-4 tracking-wide font-normal cursor-pointer"
-              >
-                {messages.cart.continueShopping}
-              </button>
-            </div>
-          </div>
-        )}
+        {cart.items.length > 0 && <CartDrawerFooter cart={cart} onClose={close} />}
       </aside>
     </>
   );

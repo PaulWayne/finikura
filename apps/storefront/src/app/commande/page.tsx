@@ -1,7 +1,8 @@
 import React, { Suspense } from "react";
 import { cookies } from "next/headers";
 import { commerceService } from "@/lib/commerce";
-import { CheckoutForm } from "@/components/checkout/CheckoutForm";
+import { CheckoutEmpty } from "@/components/checkout/CheckoutEmpty";
+import { CheckoutView } from "@/components/checkout/CheckoutView";
 import { PageFallback } from "@/components/layout/PageFallback";
 
 export const metadata = {
@@ -12,7 +13,7 @@ export const metadata = {
 async function CheckoutContent() {
   const cartId = (await cookies()).get("fk_cart_id")?.value ?? null;
   const cart = await commerceService.getCart(cartId);
-  return <CheckoutForm cart={cart} />;
+  return cart.items.length === 0 ? <CheckoutEmpty /> : <CheckoutView cart={cart} />;
 }
 
 export default function CommandePage() {

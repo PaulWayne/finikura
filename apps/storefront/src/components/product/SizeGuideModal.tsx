@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import {
   Ruler,
   X,
@@ -11,6 +11,7 @@ import {
 import { SizeGuide } from "@/lib/content/types";
 import { whatsappLink } from "@/lib/whatsapp";
 import { messages } from "@/messages/fr";
+import { SizeTable } from "./SizeTable";
 
 interface SizeGuideModalProps {
   isOpen: boolean;
@@ -79,7 +80,7 @@ export function SizeGuideModal({
           </div>
           <button
             type="button"
-            aria-label="Fermer le guide des tailles"
+            aria-label={messages.sizeGuidePage.closeAria}
             onClick={onClose}
             className="w-11 h-11 rounded-full flex items-center justify-center text-brand-text hover:bg-brand-surface transition-colors cursor-pointer"
           >
@@ -98,54 +99,7 @@ export function SizeGuideModal({
             </p>
           </div>
 
-          {/* Table Container */}
-          <div className="overflow-hidden rounded-xl bg-brand-white border border-brand-surface/70 shadow-xs">
-            <table className="w-full text-left border-collapse text-xs">
-              <thead>
-                <tr className="bg-brand-surface text-brand-text uppercase tracking-wider text-[11px] font-semibold">
-                  <th className="py-2.5 px-3.5 sm:px-4">{t.colAge}</th>
-                  <th className="py-2.5 px-3 sm:px-4 text-center">{t.colStature}</th>
-                  <th className="py-2.5 px-3 sm:px-4 text-center">{t.colChest}</th>
-                  <th className="py-2.5 px-3.5 sm:px-4 text-right sm:text-center">{t.colWaist}</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y-0 text-xs sm:text-sm">
-                {rows.map((row, index) => {
-                  const isHighlighted =
-                    activeSizeTitle &&
-                    (row.age.includes(activeSizeTitle) ||
-                      activeSizeTitle.includes(row.age.replace(" ans", "")));
-                  const isEven = index % 2 === 0;
-
-                  return (
-                    <tr
-                      key={row.age}
-                      className={`transition-colors ${
-                        isHighlighted
-                          ? "bg-brand-surface/50 font-semibold text-brand-text"
-                          : isEven
-                          ? "bg-brand-white"
-                          : "bg-brand-bg/60"
-                      } hover:bg-brand-surface/40`}
-                    >
-                      <td className="py-2.5 sm:py-3 px-3.5 sm:px-4 font-medium text-brand-text">
-                        {row.age}
-                      </td>
-                      <td className="py-2.5 sm:py-3 px-3 sm:px-4 text-center text-brand-text">
-                        {row.heightCm}
-                      </td>
-                      <td className="py-2.5 sm:py-3 px-3 sm:px-4 text-center text-brand-text">
-                        {row.chestCm}
-                      </td>
-                      <td className="py-2.5 sm:py-3 px-3.5 sm:px-4 text-right sm:text-center text-brand-text">
-                        {row.waistCm}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
+          <SizeTable rows={rows} activeSizeTitle={activeSizeTitle} />
 
           {/* Advice / Tip Box with Terracotta accent */}
           <div className="bg-brand-surface rounded-xl p-3.5 sm:p-4 flex items-start gap-3 border border-brand-surface/60">

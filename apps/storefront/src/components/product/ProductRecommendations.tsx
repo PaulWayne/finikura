@@ -64,6 +64,7 @@ export function ProductRecommendations({
                     src={p.thumbnail || IMAGE_FALLBACKS.product}
                     alt={p.title}
                     fallbackSrc={IMAGE_FALLBACKS.product}
+                    sizes="(min-width: 768px) 25vw, 50vw"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </Link>
@@ -77,9 +78,7 @@ export function ProductRecommendations({
               <div className="p-4 flex flex-col flex-1 justify-between">
                 <div>
                   <p className="text-[11px] text-brand-text mb-0.5">
-                    {p.categoryHandle === "filles"
-                      ? "Fille · 3 à 14 ans"
-                      : "Garçon · 3 à 14 ans"}
+                    {messages.catalog.categoryAgeLabel(p.categoryHandle === "filles")}
                   </p>
                   <Link href={`/produit/${p.handle}`} className="block py-[10px] -my-[10px]">
                     <h3 className="font-serif text-base text-brand-text font-normal group-hover:underline underline-offset-4 transition-colors line-clamp-1">

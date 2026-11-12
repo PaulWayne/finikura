@@ -56,6 +56,8 @@ async function CampaignContent({ params }: CampaignPageProps) {
             src={campaign.visuals.bannerUrl || IMAGE_FALLBACKS.hero}
             alt={campaign.visuals.bannerAlt}
             fallbackSrc={IMAGE_FALLBACKS.hero}
+            sizes="(min-width: 1200px) 1150px, 100vw"
+            preload
             className="w-full h-full object-cover object-[center_25%]"
           />
         </div>

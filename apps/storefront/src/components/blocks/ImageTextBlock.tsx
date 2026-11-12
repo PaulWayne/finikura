@@ -9,11 +9,12 @@ export function ImageTextBlock({ block }: { block: ImageTextBlockData }) {
     <section className="max-w-[1100px] mx-auto px-5" data-purpose="image-text-block">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
         {block.imageUrl && (
-          <div className="rounded-md overflow-hidden bg-brand-surface aspect-[4/5] md:aspect-auto md:h-[480px]">
+          <div className="relative rounded-md overflow-hidden bg-brand-surface aspect-[4/5] md:aspect-auto md:h-[480px]">
             <SafeImage
               src={block.imageUrl}
               alt={block.imageAlt}
               fallbackSrc={IMAGE_FALLBACKS.about}
+              sizes="(min-width: 768px) 50vw, 100vw"
               className="w-full h-full object-cover"
             />
           </div>
