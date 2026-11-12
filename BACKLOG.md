@@ -373,8 +373,10 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 **Description.** La route Medusa `GET /store/orders/:id` est publique : toute personne qui a le lien de confirmation voit le nom, le téléphone et le quartier. L'identifiant est long et aléatoire, mais il faudrait limiter l'accès à l'appareil qui a passé la commande.
 
 **Critères d'acceptation**
-- [ ] La page de confirmation complète n'est visible que depuis le navigateur qui a passé la commande, grâce à un cookie httpOnly posé à la commande.
-- [ ] Sur un autre appareil, la page affiche seulement le numéro de commande, sans données personnelles.
+- [x] La page de confirmation complète n'est visible que depuis le navigateur qui a passé la commande, grâce à un cookie httpOnly posé à la commande.
+- [x] Sur un autre appareil, la page affiche seulement le numéro de commande, sans données personnelles.
+
+**Fait (branche `fk-23`).** Le cookie httpOnly `fk_orders` (les 10 dernières commandes, 30 jours) est posé par `placeOrderAction` et lu par `lib/order-access.ts`. Sans ce cookie, la page affiche `OrderConfirmationLimited`, qui ne reçoit que le numéro de commande. Vérifié : dans le navigateur qui a commandé, la page complète s'affiche ; avec `curl` sans cookie, on ne trouve ni nom, ni téléphone, ni quartier, ni repères, ni message WhatsApp. Les textes qui étaient en dur sur la page sont passés dans `fr.ts`.
 
 **Taille** S · **Dépend de** — · **Origine** étapes 3-4
 

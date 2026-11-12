@@ -178,6 +178,9 @@ export const messages = {
     backToStore: "Retourner à la boutique",
     backToHome: "Retourner à la boutique",
     discoverOtherCreations: "Découvrir d'autres créations",
+    limitedNotice: "Le détail de la commande n'est visible que sur le téléphone qui l'a passée.",
+    notFoundTitle: "Commande introuvable",
+    notFoundDesc: "Nous n'avons pas pu trouver de commande correspondant à cette référence.",
   },
   drawer: {
     needAdviceTitle: "Besoin d'un conseil ?",

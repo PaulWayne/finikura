@@ -6,6 +6,7 @@ import { CACHE_TAGS } from "@/lib/cache-tags";
 import type { Cart, CartItem, Order } from "@/lib/commerce/types";
 import { checkoutSchema } from "@/lib/validation/checkout";
 import { messages } from "@/messages/fr";
+import { rememberOrder } from "@/lib/order-access";
 
 const CART_COOKIE = "fk_cart_id";
 
@@ -106,6 +107,7 @@ export async function placeOrderAction(
       { neighborhood, deliveryLandmarks }
     );
     await writeCartId(null);
+    await rememberOrder(order.id);
     updateTag(CACHE_TAGS.catalog); // stock changed
     return { success: true, order };
   } catch (err) {
