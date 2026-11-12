@@ -70,7 +70,7 @@ export function MobileMenu({
             <button
               type="button"
               aria-label={messages.header.closeMenuAria}
-              className="p-2 text-brand-text hover:text-brand-primary rounded-full hover:bg-brand-surface/40 transition min-touch-btn flex items-center justify-center cursor-pointer"
+              className="p-2 text-brand-text hover:underline underline-offset-4 rounded-full hover:bg-brand-surface/40 transition min-h-11 min-w-11 flex items-center justify-center cursor-pointer"
               onClick={close}
             >
               <svg
@@ -93,7 +93,7 @@ export function MobileMenu({
             <Link
               href="/categorie/filles"
               onClick={close}
-              className="font-serif text-lg font-medium text-brand-text hover:text-brand-primary transition py-1 flex items-center justify-between"
+              className="font-serif text-lg font-medium text-brand-text hover:underline underline-offset-4 transition min-h-11 flex items-center justify-between"
             >
               <span>Filles (3 - 14 ans)</span>
               <svg
@@ -113,7 +113,7 @@ export function MobileMenu({
             <Link
               href="/categorie/garcons"
               onClick={close}
-              className="font-serif text-lg font-medium text-brand-text hover:text-brand-primary transition py-1 flex items-center justify-between"
+              className="font-serif text-lg font-medium text-brand-text hover:underline underline-offset-4 transition min-h-11 flex items-center justify-between"
             >
               <span>Garçons (3 - 14 ans)</span>
               <svg
@@ -133,10 +133,10 @@ export function MobileMenu({
             <Link
               href="/#nouveautes"
               onClick={close}
-              className="font-serif text-lg font-medium text-brand-text hover:text-brand-primary transition py-1 flex items-center justify-between"
+              className="font-serif text-lg font-medium text-brand-text hover:underline underline-offset-4 transition min-h-11 flex items-center justify-between"
             >
               <span>Nouveautés</span>
-              <span className="text-[10px] font-sans px-2.5 py-0.5 rounded-full bg-brand-terracotta/15 text-brand-terracotta font-medium tracking-wider uppercase">
+              <span className="text-[10px] font-sans px-2.5 py-0.5 rounded-full bg-brand-terracotta/15 text-brand-text font-medium tracking-wider uppercase">
                 Nouveau
               </span>
             </Link>
@@ -146,7 +146,7 @@ export function MobileMenu({
             <Link
               href="/guide-des-tailles"
               onClick={close}
-              className="text-base font-normal text-brand-text hover:text-brand-primary transition py-1"
+              className="text-base font-normal text-brand-text hover:underline underline-offset-4 transition min-h-11 flex items-center"
             >
               {messages.header.navSizeGuide}
             </Link>
@@ -154,7 +154,7 @@ export function MobileMenu({
             <Link
               href="/notre-histoire"
               onClick={close}
-              className="min-touch-btn inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-[4px] border border-brand-primary text-brand-primary font-medium text-xs tracking-[0.15em] uppercase hover:bg-brand-primary hover:text-brand-white transition shadow-xs"
+              className="min-h-11 min-w-11 inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-[4px] border border-brand-primary text-brand-text font-medium text-xs tracking-[0.15em] uppercase hover:bg-brand-primary hover:text-brand-white transition shadow-xs"
             >
               <span>{messages.header.navHistory}</span>
               <svg
@@ -174,7 +174,7 @@ export function MobileMenu({
             <Link
               href="/livraison-et-echanges"
               onClick={close}
-              className="text-base font-normal text-brand-text hover:text-brand-primary transition py-1"
+              className="text-base font-normal text-brand-text hover:underline underline-offset-4 transition min-h-11 flex items-center"
             >
               Livraison et échanges
             </Link>
@@ -182,7 +182,7 @@ export function MobileMenu({
             <Link
               href="/contact"
               onClick={close}
-              className="text-base font-normal text-brand-text hover:text-brand-primary transition py-1"
+              className="text-base font-normal text-brand-text hover:underline underline-offset-4 transition min-h-11 flex items-center"
             >
               {messages.header.navContact}
             </Link>
@@ -190,7 +190,7 @@ export function MobileMenu({
             <Link
               href="/mentions-legales"
               onClick={close}
-              className="text-sm font-normal text-brand-text/80 hover:text-brand-primary transition py-1"
+              className="text-sm font-normal text-brand-text hover:underline underline-offset-4 transition min-h-11 flex items-center"
             >
               Mentions Légales &amp; CGV
             </Link>
@@ -203,7 +203,7 @@ export function MobileMenu({
             <p className="text-xs font-semibold text-brand-text">
               {messages.drawer.needAdviceTitle}
             </p>
-            <p className="text-[11px] text-brand-text/80 mt-0.5 leading-relaxed">
+            <p className="text-[11px] text-brand-text mt-0.5 leading-relaxed">
               {messages.drawer.needAdviceText}
             </p>
           </div>
@@ -212,7 +212,7 @@ export function MobileMenu({
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="min-touch-btn w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-[4px] bg-brand-primary text-brand-white text-xs font-medium uppercase tracking-[0.15em] hover:bg-brand-text transition shadow-xs"
+            className="min-h-11 min-w-11 w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-[4px] bg-brand-primary text-brand-white text-xs font-medium uppercase tracking-[0.15em] hover:bg-brand-text transition shadow-xs"
           >
             <span>{messages.drawer.whatsAppContactBtn}</span>
           </a>

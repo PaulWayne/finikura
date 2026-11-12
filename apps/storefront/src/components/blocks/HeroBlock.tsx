@@ -23,7 +23,7 @@ export function HeroBlock({ block }: HeroBlockProps) {
           />
         </div>
         <div className="col-span-5 p-10 lg:p-14 z-10 flex flex-col justify-center items-start">
-          <span className="text-xs uppercase tracking-[0.15em] text-brand-terracotta font-medium mb-3 flex items-center gap-2">
+          <span className="text-xs uppercase tracking-[0.15em] text-brand-text font-medium mb-3 flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-brand-terracotta" />
             {block.eyebrow}
           </span>
@@ -35,7 +35,7 @@ export function HeroBlock({ block }: HeroBlockProps) {
           </p>
           <a
             href={block.ctaLink}
-            className="min-touch-btn inline-flex items-center justify-center px-8 py-3.5 rounded-[4px] bg-brand-primary text-brand-white font-medium text-xs tracking-[0.15em] uppercase hover:bg-brand-text transition shadow-xs"
+            className="min-h-11 min-w-11 inline-flex items-center justify-center px-8 py-3.5 rounded-[4px] bg-brand-primary text-brand-white font-medium text-xs tracking-[0.15em] uppercase hover:bg-brand-text transition shadow-xs"
           >
             {block.ctaText}
           </a>
@@ -53,7 +53,7 @@ export function HeroBlock({ block }: HeroBlockProps) {
           />
         </div>
         <div className="p-6 bg-brand-bg flex flex-col items-center text-center">
-          <span className="text-xs uppercase tracking-[0.2em] text-brand-primary font-semibold mb-2 flex items-center gap-1.5 justify-center">
+          <span className="text-xs uppercase tracking-[0.2em] text-brand-text font-semibold mb-2 flex items-center gap-1.5 justify-center">
             <span className="w-1.5 h-1.5 rounded-full bg-brand-terracotta" />
             {block.eyebrow}
           </span>
@@ -65,7 +65,7 @@ export function HeroBlock({ block }: HeroBlockProps) {
           </p>
           <a
             href={block.ctaLink}
-            className="min-touch-btn w-full inline-flex items-center justify-center px-6 py-3 rounded-[4px] bg-brand-primary text-brand-white font-medium text-xs tracking-[0.15em] uppercase hover:bg-brand-text transition shadow-xs"
+            className="min-h-11 min-w-11 w-full inline-flex items-center justify-center px-6 py-3 rounded-[4px] bg-brand-primary text-brand-white font-medium text-xs tracking-[0.15em] uppercase hover:bg-brand-text transition shadow-xs"
           >
             {block.ctaText}
           </a>

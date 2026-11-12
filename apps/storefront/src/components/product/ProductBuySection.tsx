@@ -92,7 +92,7 @@ export function ProductBuySection({
         className="flex flex-col pt-1 w-full"
       >
         {/* Eyebrow & Title */}
-        <span className="text-xs uppercase tracking-[0.2em] text-brand-terracotta font-medium mb-1.5 block">
+        <span className="text-xs uppercase tracking-[0.2em] text-brand-text font-medium mb-1.5 block">
           {product.categoryHandle === "filles"
             ? "Collection Filles · Bamako"
             : "Collection Garçons · Bamako"}
@@ -117,7 +117,7 @@ export function ProductBuySection({
           <div className="flex items-center justify-between mb-3">
             <label className="text-xs text-brand-text font-medium">
               {messages.product.childSize} :{" "}
-              <span className="font-semibold text-brand-primary">
+              <span className="font-semibold text-brand-text">
                 {selectedVariant
                   ? selectedVariant.title
                   : `(${messages.product.chooseSizePrompt})`}
@@ -128,7 +128,7 @@ export function ProductBuySection({
             <button
               type="button"
               onClick={() => setIsSizeModalOpen(true)}
-              className="inline-flex items-center gap-1.5 text-xs text-brand-text/80 hover:text-brand-terracotta transition-colors cursor-pointer group"
+              className="inline-flex min-h-11 items-center gap-1.5 text-xs text-brand-text hover:underline underline-offset-4 transition-colors cursor-pointer group"
             >
               <Ruler className="w-4 h-4 text-brand-primary transition-transform group-hover:rotate-12" />
               <span className="underline underline-offset-4 decoration-brand-surface">
@@ -153,15 +153,16 @@ export function ProductBuySection({
                     key={v.id}
                     type="button"
                     disabled
+                    role="radio"
                     aria-checked="false"
                     title={`Taille ${v.title} actuellement épuisée`}
-                    className="relative h-11 rounded-lg flex flex-col items-center justify-center uppercase text-[11px] font-medium tracking-wider bg-brand-surface/40 text-brand-text/40 cursor-not-allowed border border-brand-surface select-none overflow-hidden"
+                    className="relative h-11 rounded-lg flex flex-col items-center justify-center uppercase text-[11px] font-medium tracking-wider bg-brand-surface/40 text-brand-text cursor-not-allowed border border-brand-surface select-none overflow-hidden"
                   >
                     <span className="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none">
                       <span className="w-[140%] h-[1px] bg-brand-primary/50 rotate-[-30deg]" />
                     </span>
                     <span className="line-through">{v.title}</span>
-                    <span className="text-[9px] uppercase font-semibold tracking-wider text-brand-terracotta leading-none mt-0.5">
+                    <span className="text-[9px] uppercase font-semibold tracking-wider text-brand-text leading-none mt-0.5">
                       {messages.product.soldOut}
                     </span>
                   </button>
@@ -190,7 +191,7 @@ export function ProductBuySection({
           {/* Stock feedback */}
           <div className="mt-2.5">
             {selectedVariant && selectedVariant.inventoryQuantity <= 2 && selectedVariant.inStock ? (
-              <p className="text-xs text-brand-terracotta font-medium flex items-center gap-1.5 animate-pulse">
+              <p className="text-xs text-brand-text font-medium flex items-center gap-1.5 animate-pulse">
                 <Flame className="w-4 h-4 text-brand-terracotta" />
                 <span>
                   {messages.product.lowStockFeedback(
@@ -200,7 +201,7 @@ export function ProductBuySection({
                 </span>
               </p>
             ) : (
-              <p className="text-xs text-brand-text/70 flex items-center gap-1.5 font-light">
+              <p className="text-xs text-brand-text flex items-center gap-1.5 font-light">
                 <CheckCircle2 className="w-3.5 h-3.5 text-brand-announcement" />
                 <span>{messages.product.sizeAdviceNote}</span>
               </p>
@@ -214,9 +215,9 @@ export function ProductBuySection({
             type="button"
             onClick={handleAddToCart}
             disabled={isAdding || isSoldOut}
-            className={`min-touch-btn w-full py-3.5 px-6 rounded-lg uppercase text-xs font-medium tracking-[0.15em] flex items-center justify-center gap-2.5 transition-all duration-200 shadow-sm cursor-pointer disabled:opacity-50 ${
+            className={`min-h-11 min-w-11 w-full py-3.5 px-6 rounded-lg uppercase text-xs font-medium tracking-[0.15em] flex items-center justify-center gap-2.5 transition-all duration-200 shadow-sm cursor-pointer disabled:opacity-50 ${
               isAddedSuccess
-                ? "bg-brand-announcement text-brand-white"
+                ? "bg-brand-text text-brand-white"
                 : "bg-brand-primary hover:bg-brand-text text-brand-white"
             }`}
           >
@@ -252,7 +253,7 @@ export function ProductBuySection({
               <span className="text-xs font-medium text-brand-text">
                 {messages.product.reassurancePayments}
               </span>
-              <span className="text-[11px] text-brand-text/75 font-light">
+              <span className="text-[11px] text-brand-text font-light">
                 {messages.product.reassurancePaymentsDesc}
               </span>
             </div>
@@ -268,7 +269,7 @@ export function ProductBuySection({
               <span className="text-xs font-medium text-brand-text">
                 {messages.product.reassuranceDelivery}
               </span>
-              <span className="text-[11px] text-brand-text/75 font-light">
+              <span className="text-[11px] text-brand-text font-light">
                 {messages.product.reassuranceDeliveryDesc}
               </span>
             </div>
@@ -278,7 +279,7 @@ export function ProductBuySection({
 
         {/* Editorial Narrative */}
         <div className="mb-6">
-          <h2 className="text-xs uppercase tracking-[0.2em] text-brand-text/70 font-semibold mb-2">
+          <h2 className="text-xs uppercase tracking-[0.2em] text-brand-text font-semibold mb-2">
             {messages.product.spiritTitle}
           </h2>
           <p className="text-sm text-brand-text leading-relaxed font-light">
@@ -298,7 +299,7 @@ export function ProductBuySection({
               </span>
               <ChevronDown className="w-4 h-4 text-brand-primary transition-transform duration-300 group-open:rotate-180" />
             </summary>
-            <p className="pt-3 pr-2 text-xs text-brand-text/85 leading-relaxed font-light">
+            <p className="pt-3 pr-2 text-xs text-brand-text leading-relaxed font-light">
               {product.material}
             </p>
           </details>
@@ -313,7 +314,7 @@ export function ProductBuySection({
               </span>
               <ChevronDown className="w-4 h-4 text-brand-primary transition-transform duration-300 group-open:rotate-180" />
             </summary>
-            <p className="pt-3 pr-2 text-xs text-brand-text/85 leading-relaxed font-light">
+            <p className="pt-3 pr-2 text-xs text-brand-text leading-relaxed font-light">
               {product.careInstructions}
             </p>
           </details>
@@ -339,9 +340,9 @@ export function ProductBuySection({
             type="button"
             onClick={handleAddToCart}
             disabled={isAdding || isSoldOut}
-            className={`min-touch-btn w-full py-3 px-6 rounded-lg uppercase text-xs font-medium tracking-[0.15em] flex items-center justify-center gap-2 shadow-xs cursor-pointer ${
+            className={`min-h-11 min-w-11 w-full py-3 px-6 rounded-lg uppercase text-xs font-medium tracking-[0.15em] flex items-center justify-center gap-2 shadow-xs cursor-pointer ${
               isAddedSuccess
-                ? "bg-brand-announcement text-brand-white"
+                ? "bg-brand-text text-brand-white"
                 : "bg-brand-primary text-brand-white hover:bg-brand-text"
             }`}
           >
@@ -354,7 +355,7 @@ export function ProductBuySection({
           </button>
 
           {/* Mini reassuring badges */}
-          <div className="grid grid-cols-2 gap-1 pt-1 pb-1 text-center text-brand-text/80">
+          <div className="grid grid-cols-2 gap-1 pt-1 pb-1 text-center text-brand-text">
             <span className="text-[10px] leading-tight">{messages.product.miniBadgePayment}</span>
             <span className="text-[10px] leading-tight">{messages.product.miniBadgeDelivery}</span>
           </div>

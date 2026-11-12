@@ -20,7 +20,7 @@ export function ProductSectionBlock({
     <section className="py-6 md:py-10" data-purpose="product-section">
       {/* Section Header */}
       <div className="flex flex-col items-center justify-center text-center mb-8">
-        <span className="text-xs uppercase tracking-[0.2em] text-brand-terracotta font-medium block mb-2">
+        <span className="text-xs uppercase tracking-[0.2em] text-brand-text font-medium block mb-2">
           {block.eyebrow}
         </span>
         <h2 className="font-serif text-2xl md:text-3xl uppercase font-normal text-brand-text tracking-[0.1em]">

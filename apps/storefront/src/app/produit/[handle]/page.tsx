@@ -70,15 +70,15 @@ async function ProductContent({ params }: ProductPageProps) {
       {/* Breadcrumbs */}
       <nav
         aria-label="Fil d'Ariane"
-        className="flex items-center space-x-2 text-xs text-brand-text/70 truncate"
+        className="flex items-center space-x-2 text-xs text-brand-text truncate"
       >
-        <Link href="/" className="hover:text-brand-terracotta transition-colors shrink-0">
+        <Link href="/" className="hover:underline underline-offset-4 transition-colors shrink-0">
           {messages.catalog.homeBreadcrumb}
         </Link>
         <span className="shrink-0">/</span>
         <a
           href={categoryPath}
-          className="hover:text-brand-terracotta transition-colors shrink-0"
+          className="hover:underline underline-offset-4 transition-colors shrink-0"
         >
           {categoryName}
         </a>

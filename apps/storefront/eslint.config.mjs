@@ -24,6 +24,22 @@ const eslintConfig = defineConfig([
           selector: "TemplateElement[value.raw=/#[0-9A-Fa-f]{6}\\b/]",
           message: "Couleur en dur interdite : utilisez un token de la charte (bg-brand-*, text-brand-*).",
         },
+        {
+          selector: "Literal[value=/text-brand-text\\/[1-8]0\\b/]",
+          message: "Texte en opacité réduite interdit (contraste AA) : utilisez text-brand-text.",
+        },
+        {
+          selector: "TemplateElement[value.raw=/text-brand-text\\/[1-8]0\\b/]",
+          message: "Texte en opacité réduite interdit (contraste AA) : utilisez text-brand-text.",
+        },
+        {
+          selector: "Literal[value=/^(?!.*focus-visible:).*outline-none/]",
+          message: "outline-none sans style focus-visible: rend le focus clavier invisible.",
+        },
+        {
+          selector: "TemplateElement[value.raw=/^(?!.*focus-visible:).*outline-none/]",
+          message: "outline-none sans style focus-visible: rend le focus clavier invisible.",
+        },
       ],
     },
   },

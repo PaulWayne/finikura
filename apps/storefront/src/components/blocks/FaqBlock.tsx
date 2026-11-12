@@ -12,7 +12,7 @@ export function FaqBlock({ block }: { block: FaqBlockData }) {
           <details key={item.question} className="group py-4">
             <summary className="min-h-11 flex items-center justify-between gap-4 cursor-pointer list-none text-base font-medium text-brand-text focus-visible:outline-2 focus-visible:outline-brand-primary">
               {item.question}
-              <span aria-hidden className="text-brand-primary transition-transform group-open:rotate-45 text-xl leading-none">+</span>
+              <span aria-hidden className="text-brand-text transition-transform group-open:rotate-45 text-xl leading-none">+</span>
             </summary>
             <p className="pt-3 text-base leading-relaxed text-brand-text">{item.answer}</p>
           </details>

@@ -7,7 +7,7 @@ interface AnnouncementBarProps {
 export function AnnouncementBar({ text }: AnnouncementBarProps) {
   return (
     <aside
-      className="w-full bg-brand-announcement text-brand-bg text-xs font-medium tracking-[0.15em] uppercase py-2.5 px-4 text-center select-none"
+      className="w-full bg-brand-announcement/20 border-b border-brand-announcement text-brand-text text-xs font-medium tracking-[0.15em] uppercase py-2.5 px-4 text-center select-none"
       data-purpose="announcement-bar"
     >
       {text}

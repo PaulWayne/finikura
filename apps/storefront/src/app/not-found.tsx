@@ -7,9 +7,9 @@ export default function NotFound() {
   const t = messages.notFound;
   return (
     <section className="py-24 px-4 text-center max-w-xl mx-auto">
-      <p className="text-xs uppercase tracking-[0.2em] text-brand-text/70 mb-3">{t.eyebrow}</p>
+      <p className="text-xs uppercase tracking-[0.2em] text-brand-text mb-3">{t.eyebrow}</p>
       <h1 className="font-serif text-3xl uppercase text-brand-text mb-4">{t.title}</h1>
-      <p className="text-sm text-brand-text/80 mb-8">{t.description}</p>
+      <p className="text-sm text-brand-text mb-8">{t.description}</p>
       <div className="flex flex-col sm:flex-row gap-3 justify-center">
         <Link
           href="/"

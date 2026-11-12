@@ -61,7 +61,7 @@ export function ReassuranceBlock({ block, items }: ReassuranceBlockProps) {
               <h3 className="font-serif text-base text-brand-text font-normal leading-snug">
                 {item.title}
               </h3>
-              <p className="text-xs text-brand-text/80 font-light mt-1 leading-relaxed">
+              <p className="text-xs text-brand-text font-light mt-1 leading-relaxed">
                 {item.description}
               </p>
             </div>

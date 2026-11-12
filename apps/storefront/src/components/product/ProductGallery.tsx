@@ -65,7 +65,7 @@ export function ProductGallery({ images, productTitle }: ProductGalleryProps) {
               type="button"
               aria-label={`Afficher la vue ${idx + 1}`}
               onClick={() => handleThumbnailClick(idx)}
-              className={`thumb-btn relative w-20 h-24 rounded-lg bg-brand-surface/40 overflow-hidden transition-all duration-200 shrink-0 group focus:outline-none cursor-pointer ${
+              className={`thumb-btn relative w-20 h-24 rounded-lg bg-brand-surface/40 overflow-hidden transition-all duration-200 shrink-0 group cursor-pointer ${
                 isActive
                   ? "outline outline-2 outline-brand-primary outline-offset-2"
                   : "outline outline-1 outline-transparent hover:outline-brand-surface"
@@ -97,7 +97,7 @@ export function ProductGallery({ images, productTitle }: ProductGalleryProps) {
           {/* Loupe / Interaction Hint */}
           <div className="absolute bottom-4 right-4 pointer-events-none flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-bg/90 backdrop-blur-xs text-brand-text shadow-xs transition-opacity group-hover:opacity-100">
             <ZoomIn className="w-4 h-4 text-brand-primary" />
-            <span className="text-xs text-brand-text/80 font-normal">
+            <span className="text-xs text-brand-text font-normal">
               {messages.product.mainStudioView}
             </span>
           </div>
@@ -111,12 +111,12 @@ export function ProductGallery({ images, productTitle }: ProductGalleryProps) {
             type="button"
             aria-label="Enregistrer aux favoris"
             onClick={toggleWishlist}
-            className="absolute top-3 right-3 z-20 w-9 h-9 rounded-full bg-brand-bg/90 backdrop-blur-xs flex items-center justify-center text-brand-text hover:text-brand-terracotta shadow-xs transition active:scale-90 cursor-pointer"
+            className="absolute top-3 right-3 z-20 w-11 h-11 rounded-full bg-brand-bg/90 backdrop-blur-xs flex items-center justify-center text-brand-text hover:text-brand-terracotta shadow-xs transition active:scale-90 cursor-pointer"
           >
             <Heart
               className={`w-4 h-4 transition ${
                 isWishlisted
-                  ? "fill-brand-terracotta text-brand-terracotta"
+                  ? "fill-brand-terracotta text-brand-text"
                   : "text-brand-text"
               }`}
             />

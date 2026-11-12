@@ -117,6 +117,23 @@
   letter-spacing: 0.15em;
 }
 
-.min-touch-btn {
-  min-height: 44px;
+
+/* Enlarges the tap area to 44px around a small visual control, without moving it. */
+.touch-area {
+  position: relative;
+}
+.touch-area::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: max(100%, 44px);
+  height: max(100%, 44px);
+  transform: translate(-50%, -50%);
+}
+
+/* Visible keyboard focus everywhere (FK-11): taupe on cream is 4.35:1, above the 3:1 required for non-text. */
+:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
 }

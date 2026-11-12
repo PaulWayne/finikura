@@ -34,7 +34,7 @@ export function CartTrigger({ initialCount = 0 }: CartTriggerProps) {
       type="button"
       aria-label={messages.header.cartAria}
       onClick={triggerOpenCart}
-      className="relative p-2.5 text-brand-text hover:text-brand-terracotta transition focus:outline-none min-touch-btn flex items-center justify-center cursor-pointer"
+      className="relative p-2.5 text-brand-text hover:underline underline-offset-4 transition min-h-11 min-w-11 flex items-center justify-center cursor-pointer"
     >
       <svg
         className="w-6 h-6 stroke-[1.5]"
@@ -49,7 +49,7 @@ export function CartTrigger({ initialCount = 0 }: CartTriggerProps) {
         />
       </svg>
       {itemCount > 0 && (
-        <span className="absolute top-1 right-0.5 w-4 h-4 bg-brand-primary text-brand-bg text-[10px] font-semibold flex items-center justify-center rounded-full leading-none shadow-xs">
+        <span className="absolute top-1 right-0.5 w-4 h-4 bg-brand-primary text-brand-white text-[10px] font-semibold flex items-center justify-center rounded-full leading-none shadow-xs">
           {itemCount}
         </span>
       )}

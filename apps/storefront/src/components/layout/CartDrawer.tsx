@@ -142,7 +142,7 @@ export function CartDrawer({ initialCart }: CartDrawerProps) {
             type="button"
             onClick={close}
             aria-label="Fermer le panier"
-            className="p-1.5 sm:p-2 text-brand-text hover:text-brand-terracotta rounded-lg hover:bg-brand-surface/40 transition min-touch-btn flex items-center justify-center cursor-pointer"
+            className="p-1.5 sm:p-2 text-brand-text hover:underline underline-offset-4 rounded-lg hover:bg-brand-surface/40 transition min-h-11 min-w-11 flex items-center justify-center cursor-pointer"
           >
             <X className="w-5 h-5 stroke-[1.5]" />
           </button>
@@ -150,7 +150,7 @@ export function CartDrawer({ initialCart }: CartDrawerProps) {
 
         {/* Reassurance banner: Added product confirmation */}
         <div className="bg-brand-surface/60 px-5 sm:px-6 py-3 border-b border-brand-surface/70 flex items-center space-x-3">
-          <div className="w-5 h-5 rounded-full bg-brand-announcement text-brand-white flex items-center justify-center shrink-0">
+          <div className="w-5 h-5 rounded-full bg-brand-text text-brand-white flex items-center justify-center shrink-0">
             <Check className="w-3 h-3 stroke-[2.5]" />
           </div>
           <p className="text-xs text-brand-text leading-relaxed">
@@ -173,13 +173,13 @@ export function CartDrawer({ initialCart }: CartDrawerProps) {
               <h3 className="font-serif text-lg text-brand-text font-semibold tracking-tight mb-1">
                 {messages.cart.emptyTitle}
               </h3>
-              <p className="text-xs text-brand-text/70 max-w-xs mb-6 font-light">
+              <p className="text-xs text-brand-text max-w-xs mb-6 font-light">
                 {messages.cart.emptyDescription}
               </p>
               <button
                 type="button"
                 onClick={close}
-                className="min-touch-btn inline-flex items-center justify-center px-6 py-2.5 rounded-[4px] bg-brand-primary text-brand-white text-xs font-medium uppercase tracking-[0.15em] hover:bg-brand-text transition shadow-xs cursor-pointer"
+                className="min-h-11 min-w-11 inline-flex items-center justify-center px-6 py-2.5 rounded-[4px] bg-brand-primary text-brand-white text-xs font-medium uppercase tracking-[0.15em] hover:bg-brand-text transition shadow-xs cursor-pointer"
               >
                 {messages.cart.startShopping}
               </button>
@@ -209,7 +209,7 @@ export function CartDrawer({ initialCart }: CartDrawerProps) {
                         <div className="min-w-0">
                           <span
                             className={`text-[10px] uppercase tracking-wider font-medium block ${
-                              isGirls ? "text-brand-terracotta" : "text-brand-announcement"
+                              isGirls ? "text-brand-text" : "text-brand-text"
                             }`}
                           >
                             {isGirls ? "FILLES 3-14 ANS" : "GARÇONS 3-14 ANS"}
@@ -225,7 +225,7 @@ export function CartDrawer({ initialCart }: CartDrawerProps) {
                           aria-label={messages.cart.removeAria}
                           onClick={() => handleRemove(item.id)}
                           disabled={loadingItemId === item.id}
-                          className="text-brand-text/60 hover:text-brand-terracotta p-1 transition-colors cursor-pointer shrink-0"
+                          className="touch-area text-brand-text p-1 transition-colors cursor-pointer shrink-0"
                           title="Retirer l'article"
                         >
                           <Trash2 className="w-4 h-4 stroke-[1.5]" />
@@ -253,7 +253,7 @@ export function CartDrawer({ initialCart }: CartDrawerProps) {
                           onClick={() =>
                             handleUpdateQty(item.id, item.quantity - 1)
                           }
-                          className="text-xs text-brand-text hover:opacity-60 font-medium px-1 cursor-pointer disabled:opacity-30"
+                          className="touch-area text-xs text-brand-text hover:opacity-60 font-medium px-1 cursor-pointer disabled:opacity-50"
                         >
                           -
                         </button>
@@ -266,7 +266,7 @@ export function CartDrawer({ initialCart }: CartDrawerProps) {
                           onClick={() =>
                             handleUpdateQty(item.id, item.quantity + 1)
                           }
-                          className="text-xs text-brand-text hover:opacity-60 font-medium px-1 cursor-pointer"
+                          className="touch-area text-xs text-brand-text hover:opacity-60 font-medium px-1 cursor-pointer"
                         >
                           +
                         </button>
@@ -343,7 +343,7 @@ export function CartDrawer({ initialCart }: CartDrawerProps) {
               <button
                 type="button"
                 onClick={close}
-                className="text-xs text-brand-text hover:text-brand-terracotta transition-colors underline underline-offset-4 tracking-wide font-normal cursor-pointer"
+                className="min-h-11 inline-flex items-center text-xs text-brand-text underline underline-offset-4 tracking-wide font-normal cursor-pointer"
               >
                 {messages.cart.continueShopping}
               </button>

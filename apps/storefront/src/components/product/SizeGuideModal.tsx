@@ -81,7 +81,7 @@ export function SizeGuideModal({
             type="button"
             aria-label="Fermer le guide des tailles"
             onClick={onClose}
-            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-brand-text hover:bg-brand-surface transition-colors cursor-pointer"
+            className="w-11 h-11 rounded-full flex items-center justify-center text-brand-text hover:bg-brand-surface transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -122,7 +122,7 @@ export function SizeGuideModal({
                       key={row.age}
                       className={`transition-colors ${
                         isHighlighted
-                          ? "bg-brand-surface/50 font-semibold text-brand-primary"
+                          ? "bg-brand-surface/50 font-semibold text-brand-text"
                           : isEven
                           ? "bg-brand-white"
                           : "bg-brand-bg/60"
@@ -153,7 +153,7 @@ export function SizeGuideModal({
               <Lightbulb className="w-4 h-4" />
             </div>
             <div className="flex flex-col min-w-0">
-              <span className="text-xs font-semibold text-brand-terracotta uppercase tracking-wide">
+              <span className="text-xs font-semibold text-brand-text uppercase tracking-wide">
                 {t.modalTipTitle}
               </span>
               <p className="text-xs text-brand-text mt-0.5 leading-relaxed">

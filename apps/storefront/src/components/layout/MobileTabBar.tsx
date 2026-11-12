@@ -34,7 +34,7 @@ export function MobileTabBar({
           className={`flex flex-col items-center justify-center gap-1 min-w-[56px] h-12 transition-colors cursor-pointer ${
             isHome
               ? "text-brand-text font-semibold"
-              : "text-brand-text/70 hover:text-brand-text"
+              : "text-brand-text hover:text-brand-text"
           }`}
         >
           <Home className="w-5 h-5 stroke-[1.8]" />
@@ -48,7 +48,7 @@ export function MobileTabBar({
           className={`flex flex-col items-center justify-center gap-1 min-w-[56px] h-12 transition-colors cursor-pointer ${
             isCollections
               ? "text-brand-text font-semibold"
-              : "text-brand-text/70 hover:text-brand-text"
+              : "text-brand-text hover:text-brand-text"
           }`}
         >
           <Layers className="w-5 h-5 stroke-[1.8]" />
@@ -62,7 +62,7 @@ export function MobileTabBar({
           className={`flex flex-col items-center justify-center gap-1 min-w-[56px] h-12 transition-colors cursor-pointer ${
             isSizeGuide
               ? "text-brand-text font-semibold"
-              : "text-brand-text/70 hover:text-brand-text"
+              : "text-brand-text hover:text-brand-text"
           }`}
           aria-current={isSizeGuide ? "page" : undefined}
         >
@@ -74,12 +74,12 @@ export function MobileTabBar({
         <button
           type="button"
           onClick={() => triggerOpenCart()}
-          className="relative flex flex-col items-center justify-center gap-1 min-w-[56px] h-12 text-brand-text/70 hover:text-brand-text transition-colors cursor-pointer"
+          className="relative flex flex-col items-center justify-center gap-1 min-w-[56px] h-12 text-brand-text hover:text-brand-text transition-colors cursor-pointer"
         >
           <div className="relative">
             <ShoppingBag className="w-5 h-5 stroke-[1.8]" />
             {cartCount > 0 && (
-              <span className="absolute -top-1.5 -right-2 min-w-[16px] h-4 px-1 bg-brand-terracotta text-brand-white text-[10px] font-bold rounded-full flex items-center justify-center leading-none">
+              <span className="absolute -top-1.5 -right-2 min-w-[16px] h-4 px-1 bg-brand-primary text-brand-white text-[10px] font-bold rounded-full flex items-center justify-center leading-none">
                 {cartCount}
               </span>
             )}
@@ -94,7 +94,7 @@ export function MobileTabBar({
           className={`flex flex-col items-center justify-center gap-1 min-w-[56px] h-12 transition-colors cursor-pointer ${
             isContact
               ? "text-brand-text font-semibold"
-              : "text-brand-text/70 hover:text-brand-text"
+              : "text-brand-text hover:text-brand-text"
           }`}
           aria-current={isContact ? "page" : undefined}
         >

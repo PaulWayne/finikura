@@ -102,7 +102,7 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
         <h2 className="font-serif text-2xl md:text-3xl uppercase text-brand-text mb-2 tracking-[0.05em]">
           {messages.checkout.emptyCartTitle}
         </h2>
-        <p className="text-sm text-brand-text/80 mb-6 max-w-md mx-auto">
+        <p className="text-sm text-brand-text mb-6 max-w-md mx-auto">
           {messages.checkout.emptyCartDesc}
         </p>
         <Link
@@ -121,20 +121,20 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 gap-3 border-b border-brand-surface/50 mb-8">
         <nav
           aria-label="Fil d'Ariane Commande"
-          className="flex items-center space-x-2 text-xs text-brand-text/70"
+          className="flex items-center space-x-2 text-xs text-brand-text"
         >
           <Link
             href="/"
-            className="hover:text-brand-terracotta transition-colors"
+            className="hover:underline underline-offset-4 transition-colors"
           >
             {messages.checkout.breadcrumbPanier}
           </Link>
           <span>/</span>
-          <span className="text-brand-primary font-medium">
+          <span className="text-brand-text font-medium">
             {messages.checkout.breadcrumbFinalisation}
           </span>
           <span>/</span>
-          <span className="text-brand-text/60">{messages.checkout.breadcrumbConfirmation}</span>
+          <span className="text-brand-text">{messages.checkout.breadcrumbConfirmation}</span>
         </nav>
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-brand-surface text-brand-text text-xs font-medium">
           <Truck className="w-4 h-4 text-brand-primary" />
@@ -156,7 +156,7 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
               <span className="hidden sm:inline">{messages.checkout.titleDesktop}</span>
               <span className="sm:hidden">{messages.checkout.titleMobile}</span>
             </h1>
-            <p className="text-sm sm:text-base text-brand-text/80 pt-1 leading-relaxed">
+            <p className="text-sm sm:text-base text-brand-text pt-1 leading-relaxed">
               <span className="hidden sm:inline">{messages.checkout.subtitleDesktop}</span>
               <span className="sm:hidden">{messages.checkout.subtitleMobile}</span>
             </p>
@@ -168,7 +168,7 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
               type="button"
               onClick={() => setIsMobileSummaryOpen(!isMobileSummaryOpen)}
               aria-expanded={isMobileSummaryOpen}
-              className="w-full px-4 py-3.5 flex items-center justify-between text-left focus:outline-none bg-brand-surface hover:bg-brand-surface transition-colors"
+              className="w-full px-4 py-3.5 flex items-center justify-between text-left bg-brand-surface hover:bg-brand-surface transition-colors"
             >
               <div className="flex items-center gap-2 min-w-0">
                 <ShoppingBag className="w-5 h-5 text-brand-primary shrink-0" />
@@ -203,10 +203,10 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
                       <p className="text-xs sm:text-sm font-medium text-brand-text truncate">
                         {item.productTitle}
                       </p>
-                      <p className="text-[11px] text-brand-text/70">
+                      <p className="text-[11px] text-brand-text">
                         Taille : {item.variantTitle} · Qté : {item.quantity}
                       </p>
-                      <span className="text-xs font-semibold text-brand-primary mt-0.5">
+                      <span className="text-xs font-semibold text-brand-text mt-0.5">
                         {formatPrice(item.price * item.quantity)}
                       </span>
                     </div>
@@ -250,7 +250,7 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
               >
                 <span>
                   {messages.checkout.nameLabel}{" "}
-                  <span className="text-brand-terracotta">*</span>
+                  <span className="text-brand-text">*</span>
                 </span>
                 <span className="text-brand-text normal-case tracking-normal text-[11px]">
                   {messages.checkout.nameRequiredBadge}
@@ -261,8 +261,11 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
                   id="fullName"
                   type="text"
                   {...register("fullName")}
+                  autoComplete="name"
+                  aria-invalid={errors.fullName ? true : undefined}
+                  aria-describedby={errors.fullName ? "fullName-error" : undefined}
                   placeholder={messages.checkout.namePlaceholder}
-                  className={`w-full h-12 px-4 pr-10 rounded bg-brand-white text-brand-text text-sm shadow-xs border transition-all placeholder:text-brand-text/50 focus:outline-none ${
+                  className={`w-full h-12 px-4 pr-10 rounded bg-brand-white text-brand-text text-sm shadow-xs border transition-all placeholder:text-brand-text/90 ${
                     errors.fullName
                       ? "border-brand-terracotta focus:ring-1 focus:ring-brand-terracotta"
                       : "border-brand-surface focus:border-brand-primary"
@@ -271,8 +274,8 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
                 <User className="w-4 h-4 text-brand-text absolute right-3.5 top-4 pointer-events-none" />
               </div>
               {errors.fullName && (
-                <p className="text-xs text-brand-terracotta font-medium flex items-center gap-1 pt-0.5">
-                  <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                <p id="fullName-error" role="alert" className="text-xs text-brand-text font-medium flex items-center gap-1 pt-0.5">
+                  <AlertCircle aria-hidden="true" className="w-3.5 h-3.5 shrink-0 text-brand-terracotta" />
                   <span>{errors.fullName.message}</span>
                 </p>
               )}
@@ -286,7 +289,7 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
               >
                 <span>
                   {messages.checkout.phoneLabel}{" "}
-                  <span className="text-brand-terracotta">*</span>
+                  <span className="text-brand-text">*</span>
                 </span>
                 <span className="text-brand-text normal-case tracking-normal text-[11px]">
                   {messages.checkout.phoneHelp}
@@ -296,10 +299,13 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
                 <input
                   id="phone"
                   type="tel"
-                  inputMode="numeric"
+                  inputMode="tel"
                   {...register("phone")}
+                  autoComplete="tel"
+                  aria-invalid={errors.phone ? true : undefined}
+                  aria-describedby={errors.phone ? "phone-error" : undefined}
                   placeholder={messages.checkout.phonePlaceholder}
-                  className={`w-full h-12 px-4 pr-10 rounded bg-brand-white text-brand-text text-sm tracking-wide shadow-xs border transition-all placeholder:text-brand-text/50 focus:outline-none ${
+                  className={`w-full h-12 px-4 pr-10 rounded bg-brand-white text-brand-text text-sm tracking-wide shadow-xs border transition-all placeholder:text-brand-text/90 ${
                     errors.phone
                       ? "border-brand-terracotta focus:ring-1 focus:ring-brand-terracotta"
                       : "border-brand-surface focus:border-brand-primary"
@@ -308,8 +314,8 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
                 <Phone className="w-4 h-4 text-brand-text absolute right-3.5 top-4 pointer-events-none" />
               </div>
               {errors.phone && (
-                <p className="text-xs text-brand-terracotta font-medium flex items-center gap-1 pt-0.5">
-                  <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                <p id="phone-error" role="alert" className="text-xs text-brand-text font-medium flex items-center gap-1 pt-0.5">
+                  <AlertCircle aria-hidden="true" className="w-3.5 h-3.5 shrink-0 text-brand-terracotta" />
                   <span>{errors.phone.message}</span>
                 </p>
               )}
@@ -323,7 +329,7 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
               >
                 <span>
                   {messages.checkout.neighborhoodLabel}{" "}
-                  <span className="text-brand-terracotta">*</span>
+                  <span className="text-brand-text">*</span>
                 </span>
                 <span className="text-brand-text normal-case tracking-normal text-[11px]">
                   {messages.checkout.neighborhoodHelp}
@@ -334,8 +340,11 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
                   id="neighborhood"
                   type="text"
                   {...register("neighborhood")}
+                  autoComplete="address-line1"
+                  aria-invalid={errors.neighborhood ? true : undefined}
+                  aria-describedby={errors.neighborhood ? "neighborhood-error" : undefined}
                   placeholder={messages.checkout.neighborhoodPlaceholder}
-                  className={`w-full h-12 px-4 pr-10 rounded bg-brand-white text-brand-text text-sm shadow-xs border transition-all placeholder:text-brand-text/50 focus:outline-none ${
+                  className={`w-full h-12 px-4 pr-10 rounded bg-brand-white text-brand-text text-sm shadow-xs border transition-all placeholder:text-brand-text/90 ${
                     errors.neighborhood
                       ? "border-brand-terracotta focus:ring-1 focus:ring-brand-terracotta"
                       : "border-brand-surface focus:border-brand-primary"
@@ -344,8 +353,8 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
                 <MapPin className="w-4 h-4 text-brand-text absolute right-3.5 top-4 pointer-events-none" />
               </div>
               {errors.neighborhood && (
-                <p className="text-xs text-brand-terracotta font-medium flex items-center gap-1 pt-0.5">
-                  <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                <p id="neighborhood-error" role="alert" className="text-xs text-brand-text font-medium flex items-center gap-1 pt-0.5">
+                  <AlertCircle aria-hidden="true" className="w-3.5 h-3.5 shrink-0 text-brand-terracotta" />
                   <span>{errors.neighborhood.message}</span>
                 </p>
               )}
@@ -359,9 +368,9 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
               >
                 <span>
                   {messages.checkout.landmarksLabel}{" "}
-                  <span className="text-brand-terracotta">*</span>
+                  <span className="text-brand-text">*</span>
                 </span>
-                <span className="text-brand-terracotta font-medium normal-case tracking-normal text-[11px]">
+                <span className="text-brand-text font-medium normal-case tracking-normal text-[11px]">
                   {messages.checkout.landmarksRequiredBadge}
                 </span>
               </label>
@@ -370,8 +379,11 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
                   id="deliveryLandmarks"
                   rows={2}
                   {...register("deliveryLandmarks")}
+                  autoComplete="address-line2"
+                  aria-invalid={errors.deliveryLandmarks ? true : undefined}
+                  aria-describedby={errors.deliveryLandmarks ? "deliveryLandmarks-error" : undefined}
                   placeholder={messages.checkout.landmarksPlaceholder}
-                  className={`w-full p-3.5 pr-10 rounded bg-brand-white text-brand-text text-sm shadow-xs border transition-all placeholder:text-brand-text/50 resize-none focus:outline-none ${
+                  className={`w-full p-3.5 pr-10 rounded bg-brand-white text-brand-text text-sm shadow-xs border transition-all placeholder:text-brand-text/90 resize-none ${
                     errors.deliveryLandmarks
                       ? "border-brand-terracotta bg-brand-terracotta/20 focus:ring-1 focus:ring-brand-terracotta"
                       : "border-brand-surface focus:border-brand-primary"
@@ -379,16 +391,16 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
                 />
                 <AlertCircle
                   className={`w-4 h-4 absolute right-3.5 top-3.5 pointer-events-none ${
-                    errors.deliveryLandmarks ? "text-brand-terracotta" : "text-brand-text/40"
+                    errors.deliveryLandmarks ? "text-brand-terracotta" : "text-brand-text"
                   }`}
                 />
               </div>
 
               {/* Dedicated terracotta warning notice */}
               {errors.deliveryLandmarks ? (
-                <div className="flex items-center gap-1.5 pt-0.5 text-brand-terracotta">
-                  <AlertCircle className="w-4 h-4 shrink-0" />
-                  <p className="text-xs font-medium leading-tight">
+                <div className="flex items-center gap-1.5 pt-0.5 text-brand-text">
+                  <AlertCircle aria-hidden="true" className="w-4 h-4 shrink-0 text-brand-terracotta" />
+                  <p id="deliveryLandmarks-error" role="alert" className="text-xs font-medium leading-tight">
                     {errors.deliveryLandmarks.message}
                   </p>
                 </div>
@@ -405,7 +417,7 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
 
             {/* Server Error feedback if any */}
             {serverError && (
-              <div className="p-3.5 rounded-lg bg-brand-terracotta/15 text-brand-terracotta text-xs flex items-center gap-2">
+              <div className="p-3.5 rounded-lg bg-brand-terracotta/15 text-brand-text text-xs flex items-center gap-2">
                 <AlertCircle className="w-4 h-4 shrink-0" />
                 <span>{serverError}</span>
               </div>
@@ -495,7 +507,7 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
                     <h3 className="text-sm font-medium text-brand-text truncate">
                       {item.productTitle}
                     </h3>
-                    <p className="text-xs text-brand-text/80 mt-0.5">
+                    <p className="text-xs text-brand-text mt-0.5">
                       Taille : <span className="font-medium text-brand-text">{item.variantTitle}</span>
                     </p>
                     <div className="mt-1 flex items-center justify-between">
@@ -522,7 +534,7 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
                   <span className="text-sm font-semibold text-brand-text block">
                     {messages.checkout.totalArticles}
                   </span>
-                  <span className="text-[11px] text-brand-text/70">
+                  <span className="text-[11px] text-brand-text">
                     {messages.checkout.withoutCourierFee}
                   </span>
                 </div>

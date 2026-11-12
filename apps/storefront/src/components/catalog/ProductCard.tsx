@@ -87,10 +87,12 @@ export function ProductCard({
 
         {/* Badge Tag */}
         <span
-          className={`absolute top-2 left-2 md:top-3 md:left-3 px-2 md:px-2.5 py-0.5 md:py-1 text-brand-white text-[9px] md:text-xs font-medium tracking-[0.15em] uppercase rounded-sm shadow-xs select-none ${
-            isTerracotta ? "bg-brand-terracotta" : "bg-brand-blue"
-          }`}
+          className="absolute top-2 left-2 md:top-3 md:left-3 inline-flex items-center gap-1.5 px-2 md:px-2.5 py-0.5 md:py-1 bg-brand-bg text-brand-text text-[10px] md:text-xs font-medium tracking-[0.15em] uppercase rounded-sm shadow-xs select-none"
         >
+          <span
+            aria-hidden="true"
+            className={`w-1.5 h-1.5 rounded-full ${isTerracotta ? "bg-brand-terracotta" : "bg-brand-blue"}`}
+          />
           {badgeLabel}
         </span>
       </div>
@@ -98,13 +100,13 @@ export function ProductCard({
       {/* Product Information */}
       <div className="flex flex-col flex-1 justify-between">
         <div>
-          <Link href={`/produit/${product.handle}`}>
-            <h3 className="font-serif text-sm md:text-base text-brand-text font-normal leading-snug line-clamp-1 group-hover:text-brand-primary transition-colors">
+          <Link href={`/produit/${product.handle}`} className="block py-[13px] -my-[13px]">
+            <h3 className="font-serif text-sm md:text-base text-brand-text font-normal leading-snug line-clamp-1 group-hover:underline underline-offset-4 transition-colors">
               {product.title}
             </h3>
           </Link>
           {product.subtitle && (
-            <p className="text-[11px] md:text-xs text-brand-text/70 font-light mt-0.5 line-clamp-1">
+            <p className="text-[11px] md:text-xs text-brand-text font-light mt-0.5 line-clamp-1">
               {product.subtitle}
             </p>
           )}
@@ -126,8 +128,8 @@ export function ProductCard({
                   selectedVariantId === variant.id
                     ? "bg-brand-primary text-brand-white border-brand-primary"
                     : variant.inStock
-                    ? "border-brand-text/30 text-brand-text bg-brand-bg"
-                    : "border-brand-text/15 text-brand-text/30 line-through cursor-not-allowed bg-transparent"
+                    ? "border-brand-text/30 text-brand-white bg-brand-bg"
+                    : "border-brand-text/15 text-brand-white line-through cursor-not-allowed bg-transparent"
                 }`}
               >
                 {variant.title}
@@ -151,7 +153,7 @@ export function ProductCard({
                   e.preventDefault();
                   setShowSizePicker(true);
                 }}
-                className="h-8 px-2.5 rounded-[4px] border border-brand-primary/50 text-[10px] text-brand-text hover:bg-brand-primary hover:text-brand-white transition uppercase tracking-wider flex items-center justify-center cursor-pointer"
+                className="touch-area h-8 px-2.5 rounded-[4px] border border-brand-primary/50 text-[10px] text-brand-text hover:bg-brand-primary hover:text-brand-white transition uppercase tracking-wider flex items-center justify-center cursor-pointer"
               >
                 <span>{selectedVariant?.title || "Taille"}</span>
               </button>
@@ -162,7 +164,7 @@ export function ProductCard({
               aria-label={`Ajouter ${product.title} au panier`}
               onClick={handleQuickAdd}
               disabled={isAdding || isSelectedSoldOut}
-              className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-brand-primary text-brand-white flex items-center justify-center hover:bg-brand-text transition-colors disabled:opacity-50 min-touch-btn cursor-pointer shadow-xs"
+              className="touch-area w-8 h-8 md:w-9 md:h-9 rounded-full bg-brand-primary text-brand-white flex items-center justify-center hover:bg-brand-text transition-colors disabled:opacity-50 min-h-11 min-w-11 cursor-pointer shadow-xs"
             >
               {isAdding ? (
                 <span className="w-3 h-3 border-2 border-brand-white border-t-transparent rounded-full animate-spin" />

@@ -62,7 +62,7 @@ export function FilterChips({
                 key={opt.label}
                 href={targetUrl}
                 scroll={false}
-                className={`min-touch-btn inline-flex items-center justify-center px-4 py-1.5 rounded-full text-xs font-normal tracking-wide transition border shadow-xs select-none ${
+                className={`min-h-11 min-w-11 inline-flex items-center justify-center px-4 py-1.5 rounded-full text-xs font-normal tracking-wide transition border shadow-xs select-none ${
                   isActive
                     ? "bg-brand-primary text-brand-white border-brand-primary"
                     : "bg-brand-bg text-brand-text border-brand-surface hover:border-brand-primary/50 hover:bg-brand-surface/30"
@@ -94,7 +94,7 @@ export function FilterChips({
                 key={opt.label}
                 href={targetUrl}
                 scroll={false}
-                className={`min-touch-btn inline-flex items-center justify-center px-4 py-1.5 rounded-full text-xs font-normal tracking-wide transition border shadow-xs select-none ${
+                className={`min-h-11 min-w-11 inline-flex items-center justify-center px-4 py-1.5 rounded-full text-xs font-normal tracking-wide transition border shadow-xs select-none ${
                   isActive
                     ? "bg-brand-primary text-brand-white border-brand-primary"
                     : "bg-brand-bg text-brand-text border-brand-surface hover:border-brand-primary/50 hover:bg-brand-surface/30"

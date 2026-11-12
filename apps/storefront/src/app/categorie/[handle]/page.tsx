@@ -67,9 +67,9 @@ async function CategoryContent({
       {/* Breadcrumb */}
       <nav
         aria-label="Fil d'Ariane"
-        className="flex items-center space-x-2 text-xs text-brand-text/70"
+        className="flex items-center space-x-2 text-xs text-brand-text"
       >
-        <Link href="/" className="hover:text-brand-terracotta transition-colors">
+        <Link href="/" className="hover:underline underline-offset-4 transition-colors">
           {messages.catalog.homeBreadcrumb}
         </Link>
         <span>/</span>
@@ -81,7 +81,7 @@ async function CategoryContent({
         <h1 className="font-serif text-3xl md:text-[40px] uppercase font-normal text-brand-text tracking-[0.08em] leading-tight">
           {category.name}
         </h1>
-        <p className="text-sm md:text-base text-brand-text/80 font-light leading-relaxed">
+        <p className="text-sm md:text-base text-brand-text font-light leading-relaxed">
           {category.description}
         </p>
       </div>
@@ -95,7 +95,7 @@ async function CategoryContent({
 
       {/* Product Count Indicator */}
       <div className="text-center pb-2">
-        <span className="text-[11px] md:text-xs font-medium uppercase tracking-[0.2em] text-brand-text/80">
+        <span className="text-[11px] md:text-xs font-medium uppercase tracking-[0.2em] text-brand-text">
           {messages.catalog.creationsCount(products.length)}
         </span>
       </div>
@@ -108,7 +108,7 @@ async function CategoryContent({
           </p>
           <Link
             href={`/categorie/${handle}`}
-            className="min-touch-btn inline-flex items-center justify-center px-5 py-2 rounded-[4px] border border-brand-primary text-brand-primary text-xs font-medium uppercase tracking-[0.15em] hover:bg-brand-primary hover:text-brand-white transition"
+            className="min-h-11 min-w-11 inline-flex items-center justify-center px-5 py-2 rounded-[4px] border border-brand-primary text-brand-text text-xs font-medium uppercase tracking-[0.15em] hover:bg-brand-primary hover:text-brand-white transition"
           >
             Réinitialiser les filtres
           </Link>

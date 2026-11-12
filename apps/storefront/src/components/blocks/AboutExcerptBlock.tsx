@@ -28,7 +28,7 @@ export function AboutExcerptBlock({ block }: AboutExcerptBlockProps) {
 
         {/* Right: Content & CTA (5 cols desktop) */}
         <div className="md:col-span-5 p-6 sm:p-8 md:p-12 flex flex-col justify-center items-start">
-          <span className="text-xs uppercase tracking-[0.2em] text-brand-terracotta font-medium mb-3 block">
+          <span className="text-xs uppercase tracking-[0.2em] text-brand-text font-medium mb-3 block">
             {block.eyebrow}
           </span>
           <h2 className="font-serif text-2xl md:text-3xl uppercase font-normal text-brand-text leading-snug tracking-[0.08em] mb-5">
@@ -39,7 +39,7 @@ export function AboutExcerptBlock({ block }: AboutExcerptBlockProps) {
           </p>
           <a
             href={block.ctaLink}
-            className="min-touch-btn inline-flex items-center justify-center px-6 py-3 rounded-[4px] border border-brand-primary bg-transparent text-brand-text font-medium text-xs tracking-[0.15em] uppercase hover:bg-brand-primary hover:text-brand-white transition shadow-xs"
+            className="min-h-11 min-w-11 inline-flex items-center justify-center px-6 py-3 rounded-[4px] border border-brand-primary bg-transparent text-brand-text font-medium text-xs tracking-[0.15em] uppercase hover:bg-brand-primary hover:text-brand-white transition shadow-xs"
           >
             {block.ctaText}
           </a>

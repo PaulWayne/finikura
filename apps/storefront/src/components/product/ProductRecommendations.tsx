@@ -25,7 +25,7 @@ export function ProductRecommendations({
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-3">
         <div>
-          <span className="text-xs uppercase tracking-[0.2em] text-brand-terracotta font-medium block mb-1">
+          <span className="text-xs uppercase tracking-[0.2em] text-brand-text font-medium block mb-1">
             {messages.product.recommendationsEyebrow}
           </span>
           <h2 className="font-serif text-2xl md:text-3xl text-brand-text uppercase font-normal tracking-[0.08em]">
@@ -34,7 +34,7 @@ export function ProductRecommendations({
         </div>
         <Link
           href={`/categorie/${categoryHandle}`}
-          className="inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-[0.15em] text-brand-primary hover:text-brand-text transition-colors group"
+          className="inline-flex min-h-11 items-center gap-1.5 text-xs font-medium uppercase tracking-[0.15em] text-brand-text hover:underline underline-offset-4 transition-colors group"
         >
           <span>{messages.product.discoverWardrobe}</span>
           <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -48,9 +48,9 @@ export function ProductRecommendations({
             idx === 0 ? "NOUVEAUTÉ" : idx === 1 ? "BEST-SELLER" : "MIXTE";
           const badgeColor =
             idx === 0
-              ? "text-brand-blue"
+              ? "text-brand-text"
               : idx === 1
-              ? "text-brand-terracotta"
+              ? "text-brand-text"
               : "text-brand-text";
 
           return (
@@ -76,13 +76,13 @@ export function ProductRecommendations({
 
               <div className="p-4 flex flex-col flex-1 justify-between">
                 <div>
-                  <p className="text-[11px] text-brand-text/70 mb-0.5">
+                  <p className="text-[11px] text-brand-text mb-0.5">
                     {p.categoryHandle === "filles"
                       ? "Fille · 3 à 14 ans"
                       : "Garçon · 3 à 14 ans"}
                   </p>
-                  <Link href={`/produit/${p.handle}`}>
-                    <h3 className="font-serif text-base text-brand-text font-normal group-hover:text-brand-primary transition-colors line-clamp-1">
+                  <Link href={`/produit/${p.handle}`} className="block py-[10px] -my-[10px]">
+                    <h3 className="font-serif text-base text-brand-text font-normal group-hover:underline underline-offset-4 transition-colors line-clamp-1">
                       {p.title}
                     </h3>
                   </Link>
@@ -95,7 +95,7 @@ export function ProductRecommendations({
                   <Link
                     href={`/produit/${p.handle}`}
                     aria-label={`Voir ${p.title}`}
-                    className="w-8 h-8 rounded-full bg-brand-bg border border-brand-surface flex items-center justify-center text-brand-primary hover:bg-brand-primary hover:text-brand-white transition-colors cursor-pointer shadow-xs"
+                    className="touch-area w-8 h-8 rounded-full bg-brand-bg border border-brand-surface flex items-center justify-center text-brand-primary hover:bg-brand-primary hover:text-brand-white transition-colors cursor-pointer shadow-xs"
                   >
                     <ArrowRight className="w-4 h-4" />
                   </Link>

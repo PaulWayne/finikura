@@ -23,19 +23,19 @@ export function Header({ cartSlot }: HeaderProps) {
         >
           <Link
             href="/categorie/filles"
-            className="text-brand-text hover:text-brand-terracotta transition-colors"
+            className="min-h-11 min-w-11 inline-flex items-center justify-center text-brand-text hover:underline underline-offset-4 transition-colors"
           >
             {messages.header.navGirls}
           </Link>
           <Link
             href="/categorie/garcons"
-            className="text-brand-text hover:text-brand-terracotta transition-colors"
+            className="min-h-11 min-w-11 inline-flex items-center justify-center text-brand-text hover:underline underline-offset-4 transition-colors"
           >
             {messages.header.navBoys}
           </Link>
           <Link
             href="/#nouveautes"
-            className="text-brand-text hover:text-brand-terracotta transition-colors"
+            className="min-h-11 min-w-11 inline-flex items-center justify-center text-brand-text hover:underline underline-offset-4 transition-colors"
           >
             {messages.header.navNew}
           </Link>
@@ -44,7 +44,7 @@ export function Header({ cartSlot }: HeaderProps) {
         {/* Centered Editorial Logo (quarantined dustyRose and navyLogo per brand board) */}
         <Link
           href="/"
-          className="flex flex-col items-center justify-center hover:opacity-95 transition-opacity"
+          className="min-h-11 min-w-11 flex flex-col items-center justify-center hover:opacity-95 transition-opacity"
         >
           <Logo className="text-2xl md:text-3xl tracking-tight leading-none" />
           <span className="text-[8px] md:text-[10px] tracking-[0.28em] text-brand-text uppercase font-medium mt-1">
@@ -60,7 +60,7 @@ export function Header({ cartSlot }: HeaderProps) {
           >
             <Link
               href="/contact"
-              className="text-brand-text hover:text-brand-terracotta transition-colors"
+              className="min-h-11 min-w-11 inline-flex items-center justify-center text-brand-text hover:underline underline-offset-4 transition-colors"
             >
               {messages.header.navContact}
             </Link>

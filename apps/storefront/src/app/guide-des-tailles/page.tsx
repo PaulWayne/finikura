@@ -34,7 +34,7 @@ export default async function GuideDesTaillesPage() {
             href={settings.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="min-h-11 inline-flex items-center justify-center px-6 rounded-sm border-[1.5px] border-brand-primary text-brand-primary text-sm font-medium hover:bg-brand-surface/40 transition"
+            className="min-h-11 inline-flex items-center justify-center px-6 rounded-sm border-[1.5px] border-brand-primary text-brand-text text-sm font-medium hover:bg-brand-surface/40 transition"
           >
             {t.whatsAppHelp}
           </a>

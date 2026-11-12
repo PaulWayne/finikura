@@ -218,10 +218,12 @@ Chaque choix (hébergeur, registraire) demande ton accord, car il implique un co
 Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au formulaire de commande.
 
 **Critères d'acceptation**
-- [ ] Tous les textes atteignent au moins 4,5:1, ou 3:1 pour les grands textes. Le contrôle se fait avec un outil de contraste sur l'accueil, une catégorie, une fiche produit, le panier et la commande.
-- [ ] Chaque élément interactif a un focus visible au clavier.
-- [ ] Les champs en erreur sont annoncés par les lecteurs d'écran.
-- [ ] Les zones tactiles font toujours au moins 44 px.
+- [x] Tous les textes atteignent au moins 4,5:1, ou 3:1 pour les grands textes. Le contrôle se fait avec un outil de contraste sur l'accueil, une catégorie, une fiche produit, le panier et la commande.
+- [x] Chaque élément interactif a un focus visible au clavier.
+- [x] Les champs en erreur sont annoncés par les lecteurs d'écran.
+- [x] Les zones tactiles font toujours au moins 44 px.
+
+**Fait (branche `fk-11`).** Le texte est en brun `brand-text`, ou en blanc sur fond taupe. Les accents (terracotta, sauge, bleu, vert WhatsApp) ne servent plus qu'aux fonds clairs, aux points, aux icônes et aux bordures. Le bandeau passe en sauge clair, les badges ont un point de couleur, et le bouton WhatsApp est taupe avec l'icône dans un rond vert. Le focus est global (`:focus-visible` en taupe). Les petits boutons-icônes ont une zone tactile élargie (`.touch-area`). ESLint interdit désormais `text-brand-text/10` à `/80` et un `outline-none` sans `focus-visible:`. Exceptions WCAG : le logo, les boutons désactivés et les liens du fil d'Ariane, qui sont en ligne.
 
 **Taille** M · **Dépend de** FK-12 · **Origine** état des lieux, CLAUDE.md
 

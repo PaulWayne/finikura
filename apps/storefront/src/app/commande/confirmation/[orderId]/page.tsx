@@ -32,7 +32,7 @@ async function OrderConfirmationContent({
         <h1 className="font-serif text-2xl text-brand-text uppercase mb-3">
           Commande introuvable
         </h1>
-        <p className="text-sm text-brand-text/80 mb-6">
+        <p className="text-sm text-brand-text mb-6">
           Nous n&apos;avons pas pu trouver de commande correspondant à cette référence.
         </p>
         <Link

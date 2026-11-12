@@ -20,7 +20,7 @@ export function ImageTextBlock({ block }: { block: ImageTextBlockData }) {
         )}
         <div className={block.imageUrl ? "" : "md:col-span-2 max-w-[720px] mx-auto"}>
           {block.eyebrow && (
-            <span className="block text-xs uppercase tracking-[0.15em] font-semibold text-brand-primary mb-3">
+            <span className="block text-xs uppercase tracking-[0.15em] font-semibold text-brand-text mb-3">
               {block.eyebrow}
             </span>
           )}
