@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix Fini Kura — Habits pour enfants",
+  "description": "Maison de confection artisanale pour filles et garçons de 3 à 14 ans à Bamako. Paiement à la réception.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,75 @@
+import React from "react";
+import { MobileMenuTrigger } from "./MobileMenuTrigger";
+import { CartTrigger } from "./CartTrigger";
+import { messages } from "@/src/messages/fr";
+
+interface HeaderProps {
+  initialCartCount?: number;
+}
+
+export function Header({ initialCartCount = 2 }: HeaderProps) {
+  return (
+    <header className="w-full bg-[#FDF7F2]/95 backdrop-blur-md sticky top-0 z-40 border-b border-[#EADCCC]">
+      <div className="max-w-[1200px] mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
+        {/* Mobile menu hamburger button */}
+        <MobileMenuTrigger />
+
+        {/* Desktop Left Navigation Links */}
+        <nav
+          aria-label="Navigation principale gauche"
+          className="hidden md:flex items-center space-x-7 text-xs font-medium tracking-[0.15em] uppercase"
+        >
+          <a
+            href="/categorie/filles"
+            className="text-[#5E5245] hover:text-[#CA7154] transition-colors"
+          >
+            {messages.header.navGirls}
+          </a>
+          <a
+            href="/categorie/garcons"
+            className="text-[#5E5245] hover:text-[#CA7154] transition-colors"
+          >
+            {messages.header.navBoys}
+          </a>
+          <a
+            href="/#nouveautes"
+            className="text-[#5E5245] hover:text-[#CA7154] transition-colors"
+          >
+            {messages.header.navNew}
+          </a>
+        </nav>
+
+        {/* Centered Editorial Logo (quarantined dustyRose and navyLogo per brand board) */}
+        <a
+          href="/"
+          className="flex flex-col items-center justify-center hover:opacity-95 transition-opacity"
+        >
+          <span className="font-serif text-2xl md:text-3xl font-bold tracking-tight leading-none italic">
+            <span className="text-[#C8807C]">Fini</span>{" "}
+            <span className="text-[#304054]">Kura</span>
+          </span>
+          <span className="text-[8px] md:text-[10px] tracking-[0.28em] text-[#5E5245] uppercase font-medium mt-1">
+            {messages.header.brandSubtitle}
+          </span>
+        </a>
+
+        {/* Desktop Right Navigation Links & Cart Trigger */}
+        <div className="flex items-center space-x-4 md:space-x-7">
+          <nav
+            aria-label="Navigation secondaire droite"
+            className="hidden md:flex items-center space-x-7 text-xs font-medium tracking-[0.15em] uppercase"
+          >
+            <a
+              href="/contact"
+              className="text-[#5E5245] hover:text-[#CA7154] transition-colors"
+            >
+              {messages.header.navContact}
+            </a>
+          </nav>
+
+          <CartTrigger initialCount={initialCartCount} />
+        </div>
+      </div>
+    </header>
+  );
+}

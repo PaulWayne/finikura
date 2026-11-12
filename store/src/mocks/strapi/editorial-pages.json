@@ -1,0 +1,107 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "attributes": {
+        "slug": "notre-histoire",
+        "title": "Notre Histoire",
+        "seo": {
+          "title": "Notre Histoire — Fini Kura Bamako",
+          "description": "L'histoire de notre maison de confection artisanale pour enfants à Bamako."
+        },
+        "blocks": [
+          {
+            "__component": "blocks.image-text",
+            "id": 101,
+            "eyebrow": "MAISON MALIENNE",
+            "title": "À PROPOS DE FINI KURA",
+            "text": "En bambara, « Fini Kura » signifie habits neufs. Installée au cœur de Bamako, notre maison conçoit des pièces d’exception pour accompagner vos enfants de 3 à 14 ans avec élégance, dignité et fierté au quotidien comme lors des grandes occasions.\n\nChaque vêtement est pensé pour épouser le climat soudano-sahélien : lins légers et respirants, popelines de coton sélectionnées auprès d'artisans locaux, coupes amples garantissant l'aisance de chaque mouvement.",
+            "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuAevXAyuHbFW3ixCT7Ss3jQiYgKsRwkOCIgRuIFAXn3bKw1Z39v4CiPfNXCjjFO66GOaH-SgIi1gh9AkvIDifivQdIajp0xJJxZJA94lilwH_o8hbiteubqlQIEnU5yOsGIK-YMfyH9a2RQZ3DGfuPEXAxzEivx_VWkC1lrAFo5Jz3TdZM954lHsZGfoWDBML5rMBQLKnl3d7suIIfJRgZWON7i-BmYhy6jgqK-Pw4",
+            "image_alt": "Atelier de confection artisanale Fini Kura à Bamako"
+          },
+          {
+            "__component": "blocks.values",
+            "id": 102,
+            "title": "NOS VALEURS FONDATRICES",
+            "items": [
+              {
+                "title": "Noblesse des matières",
+                "description": "Lin pur lavé et cotons nobles qui adoucissent chaque journée."
+              },
+              {
+                "title": "Fierté artisanale",
+                "description": "Transmission d'un savoir-faire de couture précis et respectueux."
+              },
+              {
+                "title": "Proximité & Confiance",
+                "description": "Paiement en mains propres et accompagnement attentionné sur WhatsApp."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "attributes": {
+        "slug": "livraison-et-echanges",
+        "title": "Livraison et échanges",
+        "seo": {
+          "title": "Livraison et échanges à Bamako — Fini Kura",
+          "description": "Modalités de livraison en mains propres à Bamako et échanges de tailles sous 48h."
+        },
+        "blocks": [
+          {
+            "__component": "blocks.rich-text",
+            "id": 201,
+            "title": "LIVRAISON À BAMAKO",
+            "body": "### Livraison directe à votre porte\n\nNos coursiers partenaires assurent la livraison dans tous les quartiers du district de Bamako (ACI 2000, Badalabougou, Hamdallaye, Quartier du Fleuve, Bacodjicoroni, Korofina, etc.).\n\n- **Frais de livraison** : Le tarif dépend de votre quartier exact et vous est confirmé directement par message sur WhatsApp lors de la prise en charge.\n- **Paiement** : Vous réglez directement le coursier en espèces ou par Orange Money au moment de la remise de votre colis.\n- **Échanges faciles** : Si la taille ne convient pas parfaitement lors de l'essayage, contactez-nous sans attendre. Nous organisons l'échange de taille sous 48h selon disponibilités des stocks."
+          },
+          {
+            "__component": "blocks.faq",
+            "id": 202,
+            "title": "QUESTIONS FRÉQUENTES",
+            "items": [
+              {
+                "question": "Puis-je essayer les vêtements avant de régler ?",
+                "answer": "Oui, vous pouvez vérifier la conformité des pièces avec le coursier avant de valider votre règlement."
+              },
+              {
+                "question": "Comment se passe la confirmation ?",
+                "answer": "Dès validation de votre commande sur le site, notre atelier vous envoie un récapitulatif par message WhatsApp pour convenir du créneau horaire idéal."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "attributes": {
+        "slug": "contact",
+        "title": "Contact",
+        "seo": {
+          "title": "Contacter l'atelier Fini Kura à Bamako",
+          "description": "Contactez l'équipe de Fini Kura à Bamako pour vos commandes, conseils de tailles ou demandes spécifiques."
+        },
+        "blocks": [
+          {
+            "__component": "blocks.rich-text",
+            "id": 301,
+            "title": "NOUS CONTACTER",
+            "body": "Notre équipe est disponible pour répondre à toutes vos questions, vous guider dans le choix des tailles et assurer le suivi de vos livraisons à Bamako.\n\n- **WhatsApp & Téléphone** : +223 70 00 00 00\n- **Atelier** : Bamako, Mali\n- **Horaires** : Du Lundi au Samedi, de 9h à 19h"
+          },
+          {
+            "__component": "blocks.cta",
+            "id": 302,
+            "title": "ÉCHANGEZ AVEC NOTRE ATELIER",
+            "subtitle": "Un conseil personnalisé sur une taille ou une coupe ? Écrivez-nous directement.",
+            "cta_text": "DISCUTER SUR WHATSAPP",
+            "cta_link": "https://wa.me/22370000000"
+          }
+        ]
+      }
+    }
+  ],
+  "meta": {}
+}

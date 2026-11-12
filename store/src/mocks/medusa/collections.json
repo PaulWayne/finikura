@@ -1,0 +1,22 @@
+{
+  "collections": [
+    {
+      "id": "col_nouveautes",
+      "title": "Nouveautés",
+      "handle": "nouveautes",
+      "description": "Les dernières créations en lin et coton noble de notre atelier à Bamako."
+    },
+    {
+      "id": "col_tabaski",
+      "title": "Tabaski & Fêtes",
+      "handle": "tabaski-2027",
+      "description": "Des tenues d'exception pour célébrer les grandes cérémonies familiales."
+    },
+    {
+      "id": "col_essentiels",
+      "title": "Les Essentiels",
+      "handle": "les-essentiels",
+      "description": "Coupes respirantes et confortables pour le quotidien sous le soleil de Bamako."
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      (function() {
+        try {
+          var _fetch = window.fetch;
+          Object.defineProperty(window, 'fetch', {
+            configurable: true,
+            enumerable: true,
+            get: function() {
+              return _fetch;
+            },
+            set: function(fn) {
+              _fetch = fn;
+            }
+          });
+        } catch (_) {}
+
+        window.addEventListener('error', function(e) {
+          if (e && e.message && (e.message.indexOf('Cannot set property fetch') !== -1 || (e.message.indexOf('fetch') !== -1 && e.message.indexOf('getter') !== -1))) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            return true;
+          }
+        }, true);
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fini Kura — Habits pour enfants</title>
+    <meta name="description" content="Maison de confection artisanale pour filles et garçons de 3 à 14 ans à Bamako. Paiement à la réception." />
+    <meta property="og:title" content="Fini Kura — Habits pour enfants" />
+    <meta property="og:description" content="Maison de confection artisanale pour filles et garçons de 3 à 14 ans à Bamako. Paiement à la réception." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+  </head>
+  <body class="min-h-full bg-[#FDF7F2] text-[#5E5245] antialiased selection:bg-[#EADCCC] selection:text-[#5E5245]">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

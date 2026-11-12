@@ -1,0 +1,26 @@
+{
+  "product_categories": [
+    {
+      "id": "pcat_filles",
+      "name": "Filles 3-14 ans",
+      "handle": "filles",
+      "description": "Des créations douces et intemporelles, confectionnées dans des lins et cotons nobles pour accompagner leur enfance.",
+      "metadata": {
+        "ageRange": "3 à 14 ans",
+        "tagline": "Élégance & Délicatesse",
+        "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDdnWIzyePPD5zdQtzJw8HQn2U4rnMqnnOQS8KPv_LJaIurpUSKeFL0vAHAcaqJ_PMmscbGywkg8WHasptjKqIdaBwvXWNYBoztNJrup_FwHv5R9o0Y_Bki_md_QBNyAZqJJg-ex2pxZDwuCE0odyilCcWx0murVTNR2V2V-rzq4E9VwXZKtmKcru2NwKwVe_QapJ4PjQFSmL6bsCgmYmMBE0CFHd7GU2XzSPLuOWc"
+      }
+    },
+    {
+      "id": "pcat_garcons",
+      "name": "Garçons 3-14 ans",
+      "handle": "garcons",
+      "description": "Des coupes épurées, des cols officiers et des lins nobles confectionnés à Bamako pour accompagner leur quotidien et les grandes occasions.",
+      "metadata": {
+        "ageRange": "3 à 14 ans",
+        "tagline": "Allure & Confort",
+        "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCDqtZxfEP4n1nQxW5wVjfPVbczIcP6kHRHfLu62TkFenlHNj-y8XVd0bo_ncmfoNXzbG2-yM-y95Z1-kk0iTjwLhrNz3iP7TMIUjReB3Vua6X14u25aL3UgNH-acynuJCu99fk8zbo7nCUv4Ek1YTOzBAsNPfxOZqAGnrEw49enbY1QYjvKlNCx2Q6IRl6Lczm0y73Cl-W-4P6bdGvBUPq8NZgFgVYGw0Tz6swQ7o"
+      }
+    }
+  ]
+}

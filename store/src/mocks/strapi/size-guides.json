@@ -1,0 +1,47 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "attributes": {
+        "category_handle": "filles",
+        "title": "Guide des tailles — Filles (3 à 14 ans)",
+        "measuring_tips": [
+          "Prenez les mesures directement sur le corps de l'enfant sans serrer.",
+          "Stature : mesurer de la tête aux pieds, pieds nus contre un mur.",
+          "Tour de poitrine : mesurer horizontalement à l'endroit le plus fort de la poitrine.",
+          "En cas d'hésitation entre deux tailles, nous recommandons la taille supérieure pour accompagner la croissance."
+        ],
+        "rows": [
+          { "age": "3-4 ans", "height_cm": "98-104 cm", "chest_cm": "54-56 cm", "waist_cm": "51-53 cm", "hips_cm": "56-60 cm" },
+          { "age": "5-6 ans", "height_cm": "110-116 cm", "chest_cm": "57-60 cm", "waist_cm": "54-56 cm", "hips_cm": "61-64 cm" },
+          { "age": "7-8 ans", "height_cm": "122-128 cm", "chest_cm": "61-65 cm", "waist_cm": "57-59 cm", "hips_cm": "65-70 cm" },
+          { "age": "9-10 ans", "height_cm": "134-140 cm", "chest_cm": "66-71 cm", "waist_cm": "60-63 cm", "hips_cm": "71-76 cm" },
+          { "age": "11-12 ans", "height_cm": "146-152 cm", "chest_cm": "72-78 cm", "waist_cm": "64-67 cm", "hips_cm": "77-83 cm" },
+          { "age": "13-14 ans", "height_cm": "158-164 cm", "chest_cm": "79-84 cm", "waist_cm": "68-71 cm", "hips_cm": "84-90 cm" }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "attributes": {
+        "category_handle": "garcons",
+        "title": "Guide des tailles — Garçons (3 à 14 ans)",
+        "measuring_tips": [
+          "Prenez les mesures à l'aide d'un mètre ruban souple sur l'enfant debout.",
+          "Stature : mesurer de la tête aux talons, dos bien droit.",
+          "Tour de taille : mesurer au creux naturel de la taille, au-dessus du nombril.",
+          "Nos coupes garçons sont confortables et prévoient une aisance naturelle pour le jeu."
+        ],
+        "rows": [
+          { "age": "3-4 ans", "height_cm": "98-104 cm", "chest_cm": "54-57 cm", "waist_cm": "52-54 cm", "hips_cm": "56-60 cm" },
+          { "age": "5-6 ans", "height_cm": "110-116 cm", "chest_cm": "58-61 cm", "waist_cm": "55-57 cm", "hips_cm": "61-65 cm" },
+          { "age": "7-8 ans", "height_cm": "122-128 cm", "chest_cm": "62-66 cm", "waist_cm": "58-60 cm", "hips_cm": "66-71 cm" },
+          { "age": "9-10 ans", "height_cm": "134-140 cm", "chest_cm": "67-72 cm", "waist_cm": "61-64 cm", "hips_cm": "72-77 cm" },
+          { "age": "11-12 ans", "height_cm": "146-152 cm", "chest_cm": "73-79 cm", "waist_cm": "65-68 cm", "hips_cm": "78-84 cm" },
+          { "age": "13-14 ans", "height_cm": "158-164 cm", "chest_cm": "80-86 cm", "waist_cm": "69-72 cm", "hips_cm": "85-91 cm" }
+        ]
+      }
+    }
+  ],
+  "meta": {}
+}

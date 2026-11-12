@@ -1,0 +1,370 @@
+<!DOCTYPE html><html class="h-full" lang="fr"><head>
+<meta charset="utf-8">
+<meta content="width=390, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>Fini Kura — Habits pour enfants</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Poppins:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandBg: '#FDF7F2',
+            brandCream: '#EADCCC',
+            brandSage: '#9EA593',
+            brandTaupe: '#5E5245',
+            brandButton: '#8A7058',
+            brandTerracotta: '#CA7154',
+            brandBlue: '#97AFC4',
+            brandNavyLogo: '#304054',
+            brandRoseLogo: '#C8807C',
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Poppins"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      background-color: #FDF7F2;
+      color: #5E5245;
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .font-playfair {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+    .min-touch-btn {
+      min-height: 44px;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-[#FDF7F2] text-[#5E5245] relative overflow-x-hidden w-full max-w-[390px] mx-auto shadow-sm">
+<!-- 1. SLIM SAGE GREEN ANNOUNCEMENT BAR -->
+<aside class="w-full bg-[#9EA593] text-[#FDF7F2] text-xs font-medium tracking-wide py-2.5 px-4 text-center">PAIEMENT À LA RÉCEPTION À BAMAKO</aside>
+<!-- 2. HEADER -->
+<header class="w-full bg-[#FDF7F2]/95 backdrop-blur-md sticky top-0 z-40 border-b border-[#EADCCC] px-4 py-3">
+<div class="flex items-center justify-between">
+<!-- Menu Button on the left -->
+<button aria-label="Ouvrir le menu" class="p-2 -ml-2 text-[#5E5245] hover:text-[#8A7058] transition-colors focus:outline-none" onclick="document.getElementById('mobile-drawer').classList.remove('translate-x-full'); document.getElementById('drawer-overlay').classList.remove('hidden');">
+<svg class="w-6 h-6 stroke-[1.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<!-- Centered Logo (Keeps original identity: Fini dusty rose, Kura navy) -->
+<a class="flex flex-col items-center justify-center" href="#">
+<span class="font-playfair text-2xl font-bold tracking-tight leading-none italic">
+<span class="text-[#C8807C]">Fini</span> <span class="text-[#304054]">Kura</span>
+</span>
+<span class="text-[9px] tracking-[0.25em] text-[#304054] uppercase font-medium mt-1">HABITS POUR ENFANTS</span>
+</a>
+<!-- Cart Icon with badge on the right -->
+<button aria-label="Panier d'achats" class="relative p-2 -mr-2 text-[#5E5245] hover:text-[#8A7058] transition-colors focus:outline-none">
+<svg class="w-6 h-6 stroke-[1.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="absolute top-1 right-1 w-4 h-4 bg-[#CA7154] text-white text-[10px] font-medium flex items-center justify-center rounded-full leading-none">
+          2
+        </span>
+</button>
+</div>
+</header>
+<!-- 3. HERO SECTION (Clear bright studio photography, no dark overlay, text below on clean background) -->
+<section class="relative w-full bg-[#FDF7F2] border-b border-[#EADCCC]">
+<!-- Studio Photo: No dark gradients -->
+<div class="relative w-full aspect-[4/3] bg-[#EADCCC] overflow-hidden">
+<img alt="Enfants Fini Kura" class="w-full h-full object-cover object-top" src="https://lh3.googleusercontent.com/aida/ALJJyrBWqOFLOMI9QnHGawAGQ7mJ0vz_zMWhVjajYkRNrgTSmZPF7mEfxEhhprPTQgRVDTmpIXgshwD77-mkF87zHj7PDDqBex7ZzAgI-m1p_ojF2ybGPR5B8nw04iitDK5KKZIKy_W0NqHN69XI9T1oDkHgyflYOtuh6jY9eIp229na4bsZbZJFvHzDacjbuO_Fgmrx06e6ybsO9mKT2JE4U2yks3T-Pm6z8l1ioHalWf_s">
+</div>
+<!-- Hero Text Container -->
+<div class="p-6 bg-[#FDF7F2] flex flex-col items-center text-center">
+<span class="text-xs uppercase tracking-[0.2em] text-[#8A7058] font-semibold mb-2 flex items-center gap-1.5 justify-center"><span class="w-1.5 h-1.5 rounded-full bg-[#CA7154]"></span> NOUVELLE COLLECTION</span>
+<h1 class="font-playfair text-[26px] uppercase font-normal leading-snug text-[#5E5245] mb-4 tracking-wide" style="letter-spacing: 0.08em;">Grandir avec style, rayonner avec élégance</h1>
+<a class="min-touch-btn w-full inline-flex items-center justify-center px-6 py-3 rounded-[4px] bg-[#8A7058] text-white font-medium text-xs tracking-widest uppercase hover:opacity-95 transition shadow-sm" href="#collection" style="letter-spacing: 0.15em;">DÉCOUVRIR LA COLLECTION</a>
+</div>
+</section>
+<!-- 4. CATEGORIES (Two large rounded cards with studio photography) -->
+<section class="px-4 py-8 bg-[#FDF7F2]">
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-playfair text-xl font-normal text-[#5E5245] uppercase" style="letter-spacing: 0.08em;">NOS UNIVERS</h2>
+<span class="text-xs text-[#5E5245]/80 font-medium tracking-wide uppercase">3 à 14 ans</span>
+</div>
+<div class="space-y-4">
+<!-- Card Filles -->
+<a class="group relative block w-full rounded-2xl overflow-hidden border border-[#EADCCC] bg-[#EADCCC]" href="#filles"><div class="relative w-full aspect-[4/3] overflow-hidden"><img alt="Fille portant une robe Fini Kura" class="w-full h-full object-cover object-top transition duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida/ALJJyrCtPEBsuvw6d9SfZoTwIVJuuIGjy8AF50I79HC9n5fOvETGbkGF8b-5lwMGepjsCogDAxwLets48EGnh_6JW42P7Mr9KcmyDZ7HXw8wgsUn7qcc_4zo9FUyOk8iJtaFUeKeWGpoM1Y_8T0K4ROCilAQNQV4hsgx2Wh65dAPlv79fPds3qjSaH_kyLC_HWM_4sZSetjOxpL4DwMsNIEgsiPTBeTTUS5c-26QJ4xe-21N"><div class="absolute inset-0 bg-[#5E5245]/20 flex flex-col items-center justify-center text-center p-4"><div class="bg-[#FDF7F2]/95 backdrop-blur-sm px-6 py-3 rounded-xl border border-[#EADCCC] shadow-sm"><h3 class="font-playfair text-2xl font-normal text-[#5E5245] uppercase tracking-wide" style="letter-spacing: 0.08em;">FILLES</h3><span class="text-[11px] font-medium text-[#8A7058] tracking-widest uppercase block mt-0.5" style="letter-spacing: 0.15em;">3-14 ANS</span></div></div></div><div class="p-3.5 bg-[#EADCCC] flex items-center justify-between"><span class="text-xs uppercase tracking-widest text-[#5E5245] font-medium" style="letter-spacing: 0.15em;">Élégance &amp; Délicatesse</span><span class="min-touch-btn inline-flex items-center justify-center px-4 py-2 rounded-[4px] border border-[#8A7058] text-[#8A7058] font-medium text-xs uppercase tracking-widest hover:bg-[#8A7058] hover:text-white transition" style="letter-spacing: 0.15em;">DÉCOUVRIR</span></div></a>
+<!-- Card Garçons -->
+<a class="group relative block w-full rounded-2xl overflow-hidden border border-[#EADCCC] bg-[#EADCCC]" href="#garcons"><div class="relative w-full aspect-[4/3] overflow-hidden"><img alt="Garçon portant un ensemble sur mesure Fini Kura" class="w-full h-full object-cover object-top transition duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida/ALJJyrAXeGKYWYpUlx0mQJLEo9-39OKh_ty_s1_7NrcHaeF9lHCC5en926WIXlVjmO5xgdbkPKo7ayKs58gdnwGWBAs950KUclue0sHnA92MyY5FLRCIYM071baCAl1Y3UOOXXbJ-u4YGIG2BD-C0wogXfou9NOxEOECIElQ9OXKdZ8AR_9RFOlBXcZlc5jg9vqW-3U8lF4xGvVLEk8d2DgAHH5b8H72uJy3oeZaw6c9Lyw"><div class="absolute inset-0 bg-[#5E5245]/20 flex flex-col items-center justify-center text-center p-4"><div class="bg-[#FDF7F2]/95 backdrop-blur-sm px-6 py-3 rounded-xl border border-[#EADCCC] shadow-sm"><h3 class="font-playfair text-2xl font-normal text-[#5E5245] uppercase tracking-wide" style="letter-spacing: 0.08em;">GARÇONS</h3><span class="text-[11px] font-medium text-[#8A7058] tracking-widest uppercase block mt-0.5" style="letter-spacing: 0.15em;">3-14 ANS</span></div></div></div><div class="p-3.5 bg-[#EADCCC] flex items-center justify-between"><span class="text-xs uppercase tracking-widest text-[#5E5245] font-medium" style="letter-spacing: 0.15em;">Allure &amp; Confort</span><span class="min-touch-btn inline-flex items-center justify-center px-4 py-2 rounded-[4px] border border-[#8A7058] text-[#8A7058] font-medium text-xs uppercase tracking-widest hover:bg-[#8A7058] hover:text-white transition" style="letter-spacing: 0.15em;">DÉCOUVRIR</span></div></a>
+</div>
+</section>
+<!-- 5. NOUVEAUTÉS (2-column product grid) -->
+<section class="px-4 py-8 bg-[#FDF7F2] border-t border-[#EADCCC]" id="collection">
+<div class="text-center mb-6">
+<span class="text-xs uppercase tracking-[0.2em] text-[#8A7058] font-semibold block mb-1">Créations récentes</span>
+<h2 class="font-playfair text-xl font-normal text-[#5E5245] uppercase" style="letter-spacing: 0.08em;">NOUVEAUTÉS</h2>
+<div class="w-10 h-0.5 bg-[#8A7058] mx-auto mt-2 rounded-full"></div>
+</div>
+<div class="grid grid-cols-2 gap-3.5">
+<!-- Product 1 -->
+<div class="bg-[#EADCCC]/60 rounded-xl p-2.5 border border-[#EADCCC] flex flex-col">
+<div class="relative w-full aspect-square rounded-lg overflow-hidden bg-[#FDF7F2] mb-2.5">
+<img alt="Robe Terracotta Brodée" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAaz5n4GV7MKsnqt7DDCp_Wr8Gnh8z_oA-b9QU_wKKyeS1rTLk2juioBGxU_TrCikfF-_B0wDvZ_kWNPUz5bdPUVCxcmFABN0UnA56GfHgLiH-HSwWyVrCoUleue66tU9uC4PsrTl2jqtuKW4aBFxwOWr9E138rtHEZjAtYSO64AaRic_3ZYwNxp-BIQW7yT8UW0t8LPZGwMMEXTyUyyco6Q899stVWTav6Y88j6E5z">
+<span class="absolute top-2 left-2 px-2.5 py-0.5 bg-[#CA7154] text-white text-[9px] font-medium tracking-widest uppercase rounded-full shadow-sm" style="letter-spacing: 0.15em;">FILLES</span>
+</div>
+<h3 class="font-medium text-xs text-[#5E5245] line-clamp-1 leading-tight mb-1">Robe Terracotta Brodée</h3>
+<p class="font-semibold text-xs text-[#5E5245] mt-auto">12 500 FCFA</p>
+</div>
+<!-- Product 2 -->
+<div class="bg-[#EADCCC]/60 rounded-xl p-2.5 border border-[#EADCCC] flex flex-col">
+<div class="relative w-full aspect-square rounded-lg overflow-hidden bg-[#FDF7F2] mb-2.5">
+<img alt="Ensemble Sauge &amp; Pantalon Lin" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrALriYBf8d02fjCona5aaplz6kwlDLdbmXrKfHO5-v1csWImfQHDwY_kS7s7jS33pCcjbWpvNL3EJFtEzYhcl0LBztKT0rV6HkPdkdUgxKEml0a1665C6b9jQBuWJrUi61uMwSHcJxe-hAhYnOecs_sivXHypridJsa2-am0ZTPFESjo1PkMzHNRW-sSxa608S7PSoJVoPg4zDxazHsX_OnK2YlIZYKp0Ce8xtykjE">
+<span class="absolute top-2 left-2 px-2.5 py-0.5 bg-[#97AFC4] text-white text-[9px] font-medium tracking-widest uppercase rounded-full shadow-sm" style="letter-spacing: 0.15em;">GARÇONS</span>
+</div>
+<h3 class="font-medium text-xs text-[#5E5245] line-clamp-1 leading-tight mb-1">Ensemble Sauge &amp; Lin</h3>
+<p class="font-semibold text-xs text-[#5E5245] mt-auto">14 000 FCFA</p>
+</div>
+<!-- Product 3 -->
+<div class="bg-[#EADCCC]/60 rounded-xl p-2.5 border border-[#EADCCC] flex flex-col">
+<div class="relative w-full aspect-square rounded-lg overflow-hidden bg-[#FDF7F2] mb-2.5">
+<img alt="Robe Cérémonie Poudrée" class="w-full h-full object-cover object-top" src="https://lh3.googleusercontent.com/aida/ALJJyrCtPEBsuvw6d9SfZoTwIVJuuIGjy8AF50I79HC9n5fOvETGbkGF8b-5lwMGepjsCogDAxwLets48EGnh_6JW42P7Mr9KcmyDZ7HXw8wgsUn7qcc_4zo9FUyOk8iJtaFUeKeWGpoM1Y_8T0K4ROCilAQNQV4hsgx2Wh65dAPlv79fPds3qjSaH_kyLC_HWM_4sZSetjOxpL4DwMsNIEgsiPTBeTTUS5c-26QJ4xe-21N">
+<span class="absolute top-2 left-2 px-2.5 py-0.5 bg-[#CA7154] text-white text-[9px] font-medium tracking-widest uppercase rounded-full shadow-sm" style="letter-spacing: 0.15em;">FILLES</span>
+</div>
+<h3 class="font-medium text-xs text-[#5E5245] line-clamp-1 leading-tight mb-1">Robe Cérémonie Poudrée</h3>
+<p class="font-semibold text-xs text-[#5E5245] mt-auto">16 500 FCFA</p>
+</div>
+<!-- Product 4 -->
+<div class="bg-[#EADCCC]/60 rounded-xl p-2.5 border border-[#EADCCC] flex flex-col">
+<div class="relative w-full aspect-square rounded-lg overflow-hidden bg-[#FDF7F2] mb-2.5">
+<img alt="Chemise Mandarin Sauge" class="w-full h-full object-cover object-top" src="https://lh3.googleusercontent.com/aida/ALJJyrAXeGKYWYpUlx0mQJLEo9-39OKh_ty_s1_7NrcHaeF9lHCC5en926WIXlVjmO5xgdbkPKo7ayKs58gdnwGWBAs950KUclue0sHnA92MyY5FLRCIYM071baCAl1Y3UOOXXbJ-u4YGIG2BD-C0wogXfou9NOxEOECIElQ9OXKdZ8AR_9RFOlBXcZlc5jg9vqW-3U8lF4xGvVLEk8d2DgAHH5b8H72uJy3oeZaw6c9Lyw">
+<span class="absolute top-2 left-2 px-2.5 py-0.5 bg-[#97AFC4] text-white text-[9px] font-medium tracking-widest uppercase rounded-full shadow-sm" style="letter-spacing: 0.15em;">GARÇONS</span>
+</div>
+<h3 class="font-medium text-xs text-[#5E5245] line-clamp-1 leading-tight mb-1">Chemise Mandarin Sauge</h3>
+<p class="font-semibold text-xs text-[#5E5245] mt-auto">8 500 FCFA</p>
+</div>
+</div>
+</section>
+<!-- 6. REASSURANCE ROW (Three thin line icons on cream container) -->
+<section class="px-4 py-8 bg-[#FDF7F2]">
+<div class="bg-[#EADCCC] rounded-2xl p-5 border border-[#EADCCC]/80">
+<div class="grid grid-cols-3 gap-2 text-center">
+<!-- Icon 1: Paiement à la réception -->
+<div class="flex flex-col items-center">
+<div class="w-12 h-12 rounded-full bg-[#FDF7F2] flex items-center justify-center text-[#5E5245] border border-[#5E5245]/20 mb-2">
+<svg class="w-5 h-5 stroke-[1.25]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6H2.25m0 0H3m1.5 0h13.5m-15 0c-.828 0-1.5.672-1.5 1.5v9.75c0 .828.672 1.5 1.5 1.5h15c.828 0 1.5-.672 1.5-1.5V7.5c0-.828-.672-1.5-1.5-1.5h-15z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<p class="text-xs font-medium text-[#5E5245] leading-snug">Paiement à la réception</p>
+</div>
+<!-- Icon 2: Confirmation sur WhatsApp -->
+<div class="flex flex-col items-center">
+<div class="w-12 h-12 rounded-full bg-[#FDF7F2] flex items-center justify-center text-[#5E5245] border border-[#5E5245]/20 mb-2">
+<svg class="w-5 h-5 stroke-[1.25]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a.75.75 0 01-.84-.84c.15-.71.328-1.4.526-2.062C3.702 16.592 3 14.394 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<p class="text-xs font-medium text-[#5E5245] leading-snug">Confirmation WhatsApp</p>
+</div>
+<!-- Icon 3: Guide des tailles -->
+<div class="flex flex-col items-center">
+<div class="w-12 h-12 rounded-full bg-[#FDF7F2] flex items-center justify-center text-[#5E5245] border border-[#5E5245]/20 mb-2">
+<svg class="w-5 h-5 stroke-[1.25]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<p class="text-xs font-medium text-[#5E5245] leading-snug">Guide des tailles</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. À PROPOS DE FINI KURA (Cream #EADCCC band) -->
+<!-- 6b. TESTIMONIALS / AVIS CLIENTS -->
+<section class="px-4 py-8 bg-[#FDF7F2] border-t border-[#EADCCC]">
+  <div class="text-center mb-6">
+    <span class="text-[11px] uppercase tracking-[0.2em] text-[#CA7154] font-semibold block mb-1">Témoignages &amp; Confiance</span>
+    <h2 class="font-playfair text-xl font-normal text-[#5E5245] uppercase" style="letter-spacing: 0.08em;">CE QUE DISENT LES FAMILLES</h2>
+    <p class="text-xs text-[#5E5245]/80 mt-1 max-w-[280px] mx-auto leading-relaxed">Retours spontanés de mamans et papas à Bamako après réception.</p>
+    <div class="w-10 h-0.5 bg-[#CA7154] mx-auto mt-2.5 rounded-full"></div>
+  </div>
+
+  <div class="space-y-4">
+    <!-- Card 1 -->
+    <div class="bg-[#EADCCC]/60 rounded-xl p-5 border border-[#EADCCC] shadow-sm">
+      <div class="flex items-center gap-1 text-[#CA7154] mb-2.5">
+        <svg class="w-4 h-4 fill-currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+        <svg class="w-4 h-4 fill-currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+        <svg class="w-4 h-4 fill-currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+        <svg class="w-4 h-4 fill-currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+        <svg class="w-4 h-4 fill-currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+      </div>
+      <p class="font-playfair italic text-sm text-[#5E5245] leading-relaxed mb-3">
+        « La robe en lin terracotta pour ma fille de 5 ans est d'une douceur exceptionnelle. Elle l'a portée pour la fête et ne voulait plus l'enlever. Le coursier a été très courtois. »
+      </p>
+      <div class="flex items-center justify-between pt-2 border-t border-[#ded2c2]">
+        <div class="text-xs text-[#5E5245]">
+          <span class="font-semibold block">Fatoumata D.</span>
+          <span class="text-[11px] text-[#5E5245]/70">Maman de Rokia, 5 ans</span>
+        </div>
+        <span class="px-2.5 py-0.5 rounded-full bg-[#FDF7F2] border border-[#ded2c2] text-[#8A7058] text-[10px] font-medium">
+          ACI 2000
+        </span>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="bg-[#EADCCC]/60 rounded-xl p-5 border border-[#EADCCC] shadow-sm">
+      <div class="flex items-center gap-1 text-[#CA7154] mb-2.5">
+        <svg class="w-4 h-4 fill-currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+        <svg class="w-4 h-4 fill-currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+        <svg class="w-4 h-4 fill-currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+        <svg class="w-4 h-4 fill-currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+        <svg class="w-4 h-4 fill-currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+      </div>
+      <p class="font-playfair italic text-sm text-[#5E5245] leading-relaxed mb-3">
+        « Enfin des vêtements qui respirent sous la chaleur de Bamako ! Les finitions des chemisettes mandarin pour mon fils sont impeccables. »
+      </p>
+      <div class="flex items-center justify-between pt-2 border-t border-[#ded2c2]">
+        <div class="text-xs text-[#5E5245]">
+          <span class="font-semibold block">Bintou S.</span>
+          <span class="text-[11px] text-[#5E5245]/70">Maman de Boubacar, 8 ans</span>
+        </div>
+        <span class="px-2.5 py-0.5 rounded-full bg-[#FDF7F2] border border-[#ded2c2] text-[#8A7058] text-[10px] font-medium">
+          Badalabougou
+        </span>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="bg-[#EADCCC]/60 rounded-xl p-5 border border-[#EADCCC] shadow-sm">
+      <div class="flex items-center gap-1 text-[#CA7154] mb-2.5">
+        <svg class="w-4 h-4 fill-currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+        <svg class="w-4 h-4 fill-currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+        <svg class="w-4 h-4 fill-currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+        <svg class="w-4 h-4 fill-currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+        <svg class="w-4 h-4 fill-currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+      </div>
+      <p class="font-playfair italic text-sm text-[#5E5245] leading-relaxed mb-3">
+        « La confirmation sur WhatsApp et le paiement en espèces au coursier après vérification apportent une vraie sérénité. »
+      </p>
+      <div class="flex items-center justify-between pt-2 border-t border-[#ded2c2]">
+        <div class="text-xs text-[#5E5245]">
+          <span class="font-semibold block">Mariam K.</span>
+          <span class="text-[11px] text-[#5E5245]/70">Maman d'Ibrahim, 8 ans</span>
+        </div>
+        <span class="px-2.5 py-0.5 rounded-full bg-[#FDF7F2] border border-[#ded2c2] text-[#8A7058] text-[10px] font-medium">
+          Quartier du Fleuve
+        </span>
+      </div>
+    </div>
+  </div>
+</section><section class="px-5 py-9 bg-[#EADCCC] border-t border-[#ded2c2]">
+<div class="rounded-2xl overflow-hidden mb-5 border border-[#ded2c2] shadow-sm bg-[#FDF7F2]">
+<img alt="Atelier de confection artisanale à Bamako" class="w-full h-56 object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrCdjQYl2XcHEtLfPYSpfaxtehlmiW4sMHoHwzSWvMNCB3z2AZ-yeQcpPc9mYJliku1rdXGcFpwQIgMgFPLLKeFsoqPxO1sxWdQVYnWyFPnXYQsqLW8_c5HEityuVdTvb_JCvRv6wbm9YppTPgO2CepBpvtcx0qunb-Ckq5HlowtlYJ_6knois6cY6B96KttgIcNQagkHhJNLU12h6wcA8km5yO27d0U_-E1Z5BPgf6C">
+</div>
+<div class="text-left">
+<span class="text-xs uppercase tracking-[0.2em] text-[#8A7058] font-semibold block mb-1">Maison malienne</span>
+<h2 class="font-playfair text-xl font-normal text-[#5E5245] uppercase mb-3" style="letter-spacing: 0.08em;">À PROPOS DE FINI KURA</h2>
+<p class="text-base text-[#5E5245] leading-relaxed mb-4">
+        En bambara, <strong class="text-[#5E5245] font-semibold">« Fini Kura » signifie habits neufs</strong>. Installée au cœur de Bamako, notre maison conçoit des pièces d’exception pour accompagner vos enfants de 3 à 14 ans avec élégance, dignité et fierté au quotidien comme lors des grandes occasions.
+      </p>
+<a class="min-touch-btn inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-[4px] border border-[#8A7058] text-[#8A7058] font-medium text-xs tracking-widest uppercase hover:bg-[#8A7058] hover:text-white transition" href="#histoire" style="letter-spacing: 0.15em;"><span>NOTRE HISTOIRE</span><svg class="w-4 h-4 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+</div>
+</section>
+<!-- 8. FOOTER (Cream background #EADCCC) -->
+<footer class="bg-[#EADCCC] text-[#5E5245] px-5 pt-8 pb-10 border-t border-[#ded2c2]">
+<div class="flex flex-col items-center text-center">
+<!-- Logo Footer -->
+<div class="mb-5">
+<span class="font-playfair text-xl font-bold italic">
+<span class="text-[#C8807C]">Fini</span> <span class="text-[#304054]">Kura</span>
+</span>
+<p class="text-[9px] tracking-[0.25em] text-[#304054] uppercase font-medium mt-0.5">HABITS POUR ENFANTS</p>
+</div>
+<!-- Links -->
+<div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-6 text-sm font-medium text-[#5E5245]">
+<a class="hover:text-[#8A7058] transition" href="#livraison">Livraison et échanges</a>
+<a class="hover:text-[#8A7058] transition" href="#contact">Contact</a>
+</div>
+<!-- Social Media (Taupe circles and icons) -->
+<div class="flex items-center gap-4 mb-6">
+<!-- WhatsApp -->
+<a aria-label="WhatsApp Fini Kura" class="w-10 h-10 rounded-full bg-[#FDF7F2] flex items-center justify-center text-[#5E5245] hover:text-[#8A7058] border border-[#ded2c2] transition" href="https://wa.me/">
+<svg class="w-4 h-4 fill-currentColor" viewBox="0 0 24 24">
+<path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"></path>
+</svg>
+</a>
+<!-- Facebook -->
+<a aria-label="Facebook Fini Kura" class="w-10 h-10 rounded-full bg-[#FDF7F2] flex items-center justify-center text-[#5E5245] hover:text-[#8A7058] border border-[#ded2c2] transition" href="#facebook">
+<svg class="w-4 h-4 fill-currentColor" viewBox="0 0 24 24">
+<path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.667 5H18V0h-3.808C10.595 0 9 1.582 9 4.615V8z"></path>
+</svg>
+</a>
+<!-- TikTok -->
+<a aria-label="TikTok Fini Kura" class="w-10 h-10 rounded-full bg-[#FDF7F2] flex items-center justify-center text-[#5E5245] hover:text-[#8A7058] border border-[#ded2c2] transition" href="#tiktok">
+<svg class="w-4 h-4 fill-currentColor" viewBox="0 0 24 24">
+<path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.97v7.54c-.01 2.22-.84 4.38-2.39 5.92-1.89 1.88-4.59 2.79-7.25 2.4-2.67-.39-5-2.02-6.19-4.42-1.19-2.4-1.04-5.32.39-7.58 1.43-2.26 3.96-3.66 6.64-3.65.34 0 .68.03 1.01.08v4.06c-.34-.1-.7-.16-1.06-.16-1.28-.02-2.52.55-3.32 1.54-.8 1-.99 2.37-.5 3.58.49 1.21 1.63 2.05 2.94 2.18 1.31.13 2.62-.48 3.37-1.57.38-.55.58-1.21.58-1.88V.02z"></path>
+</svg>
+</a>
+</div>
+<p class="text-xs text-[#5E5245]/70">© Fini Kura — Bamako, Mali. Tous droits réservés.</p>
+</div>
+</footer>
+<!-- SIDE PANEL: OPEN MENU DRAWER -->
+<div class="hidden fixed inset-0 bg-[#5E5245]/40 backdrop-blur-sm z-50 transition-opacity" id="drawer-overlay" onclick="document.getElementById('mobile-drawer').classList.add('translate-x-full'); this.classList.add('hidden');"></div>
+<aside class="fixed top-0 right-0 bottom-0 w-[310px] bg-[#FDF7F2] z-50 shadow-2xl flex flex-col justify-between p-6 transform translate-x-full transition-transform duration-300 ease-in-out border-l border-[#EADCCC]" id="mobile-drawer">
+<div>
+<div class="flex items-center justify-between pb-5 border-b border-[#EADCCC]">
+<div>
+<span class="font-playfair text-xl font-bold italic leading-tight block">
+<span class="text-[#C8807C]">Fini</span> <span class="text-[#304054]">Kura</span>
+</span>
+<span class="text-[8px] tracking-[0.2em] text-[#304054] uppercase font-medium">HABITS POUR ENFANTS</span>
+</div>
+<button aria-label="Fermer le menu" class="p-2 text-[#5E5245] hover:text-[#8A7058] rounded-full hover:bg-[#EADCCC]/40 transition" onclick="document.getElementById('mobile-drawer').classList.add('translate-x-full'); document.getElementById('drawer-overlay').classList.add('hidden');">
+<svg class="w-6 h-6 stroke-[1.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+<!-- Navigation links (in warm taupe #5E5245) -->
+<nav class="mt-6 flex flex-col space-y-4">
+<a class="font-playfair text-lg font-medium text-[#5E5245] hover:text-[#8A7058] transition py-1 flex items-center justify-between" href="#filles"><span>Filles (3 - 14 ans)</span><svg class="w-4 h-4 stroke-[1.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8.25 4.5l7.5 7.5-7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+<a class="font-playfair text-lg font-medium text-[#5E5245] hover:text-[#8A7058] transition py-1 flex items-center justify-between" href="#garcons"><span>Garçons (3 - 14 ans)</span><svg class="w-4 h-4 stroke-[1.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8.25 4.5l7.5 7.5-7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+<a class="font-playfair text-lg font-medium text-[#5E5245] hover:text-[#8A7058] transition py-1 flex items-center justify-between" href="#collection">
+<span>Nouveautés</span>
+<span class="text-[11px] font-sans px-2.5 py-0.5 rounded-full bg-[#CA7154]/15 text-[#CA7154] font-medium">Nouveau</span>
+</a>
+<div class="w-full h-px bg-[#EADCCC] my-2"></div>
+<a class="text-base font-normal text-[#5E5245] hover:text-[#8A7058] transition py-1" href="#tailles">
+          Guide des tailles
+        </a>
+<a class="min-touch-btn inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-[4px] border border-[#8A7058] text-[#8A7058] font-medium text-sm hover:bg-[#8A7058] hover:text-white transition" href="#histoire"><span>Notre histoire</span><svg class="w-4 h-4 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+<a class="text-base font-normal text-[#5E5245] hover:text-[#8A7058] transition py-1" href="#contact">
+          Contact
+        </a>
+</nav>
+</div>
+<!-- Bottom of Drawer -->
+<div class="pt-6 border-t border-[#EADCCC]">
+<div class="p-3 bg-[#EADCCC]/60 rounded-xl mb-3">
+<p class="text-xs font-semibold text-[#5E5245]">Besoin d'un conseil ?</p>
+<p class="text-[11px] text-[#5E5245]/80 mt-0.5">Échangez directement avec nous sur WhatsApp pour vos commandes à Bamako.</p>
+</div>
+<a class="min-touch-btn w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-[4px] bg-[#8A7058] text-white text-xs font-medium hover:opacity-95 transition" href="https://wa.me/">
+<span>Contacter sur WhatsApp</span>
+</a>
+</div>
+</aside>
+
+
+
+
+
+
+
+
+</body></html>

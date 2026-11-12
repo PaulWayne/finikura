@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fini Kura — Filles 3-14 ans | Maison de Couture Enfantine Bamako</title>
+<!-- Google Fonts: Playfair Display & Poppins -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Poppins:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with forms & container-queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandBg: '#FDF7F2',
+            brandCream: '#EADCCC',
+            brandSage: '#9EA593',
+            brandTaupe: '#5E5245',
+            brandTaupeBtn: '#8A7058',
+            brandTerracotta: '#CA7154',
+            brandLightBlue: '#97AFC4',
+            brandLogoRose: '#C8807C',
+            brandLogoNavy: '#304054',
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Poppins"', 'sans-serif'],
+          }
+        }
+      }
+    };
+  </script>
+<style data-purpose="custom-typography">
+    body {
+      background-color: #FDF7F2;
+      color: #5E5245;
+      font-family: 'Poppins', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, .font-editorial {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+  </style>
+<style data-purpose="custom-interactions">
+    /* Subtle luxury transitions for e-commerce interaction */
+    .product-card {
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+    }
+    .img-zoom-container img {
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .product-card:hover .img-zoom-container img {
+      transform: scale(1.04);
+    }
+  </style>
+</head>
+<body class="bg-brandBg text-brandTaupe selection:bg-brandCream selection:text-brandTaupe min-h-screen flex flex-col justify-between">
+<!-- BEGIN: AnnouncementBar -->
+<aside class="w-full bg-brandSage text-white py-2 px-4 text-center tracking-[0.22em] text-[11px] sm:text-xs font-medium uppercase select-none" data-purpose="announcement-bar">
+    PAIEMENT À LA RÉCEPTION À BAMAKO
+  </aside>
+<!-- END: AnnouncementBar -->
+<!-- BEGIN: MainHeader -->
+<header class="w-full border-b border-brandTaupe/10 bg-brandBg/95 backdrop-blur-sm sticky top-0 z-40 transition-colors">
+<div class="max-w-[1200px] mx-auto px-6 h-28 flex items-center justify-between">
+<!-- Primary Desktop Navigation Links (Left & Center-Left) -->
+<nav aria-label="Navigation principale" class="hidden md:flex items-center space-x-7 text-[13px] font-medium tracking-wide">
+<a class="text-brandTaupe border-b-2 border-brandTaupe pb-1 font-semibold transition-all" href="#filles">Filles 3-14 ans</a>
+<a class="text-brandTaupe/70 hover:text-brandTaupe transition-colors pb-1" href="#garcons">Garçons 3-14 ans</a>
+<a class="text-brandTaupe/70 hover:text-brandTaupe transition-colors pb-1" href="#nouveautes">Nouveautés</a>
+</nav>
+<!-- Central Editorial Brand Logo -->
+<div class="flex flex-col items-center justify-center text-center select-none py-1">
+<a aria-label="Fini Kura Accueil" class="group block" href="#">
+<div class="text-2xl sm:text-3xl font-serif tracking-tight flex items-baseline justify-center">
+<span class="text-brandLogoRose font-semibold mr-1.5 transition-opacity group-hover:opacity-90">Fini</span>
+<span class="text-brandLogoNavy font-normal transition-opacity group-hover:opacity-90">Kura</span>
+</div>
+<span class="block text-[8px] sm:text-[9px] uppercase tracking-[0.32em] text-brandTaupe/80 font-sans mt-0.5 font-medium">
+            Habits pour Enfants
+          </span>
+</a>
+</div>
+<!-- Right Navigation Links & Cart -->
+<div class="flex items-center space-x-6 sm:space-x-8 text-[13px] font-medium tracking-wide">
+<nav aria-label="Navigation secondaire" class="hidden lg:flex items-center space-x-7">
+<a class="text-brandTaupe/70 hover:text-brandTaupe transition-colors" href="#guide-tailles">Guide des tailles</a>
+<a class="text-brandTaupe/70 hover:text-brandTaupe transition-colors" href="#notre-histoire">Notre histoire</a>
+<a class="text-brandTaupe/70 hover:text-brandTaupe transition-colors" href="#contact">Contact</a>
+</nav>
+<!-- Cart Icon with Quantity Badge -->
+<a aria-label="Panier d'achats, 2 articles" class="relative p-1 text-brandTaupe hover:opacity-80 transition-opacity" href="#panier">
+<!-- Minimalist refined bag icon -->
+<svg class="w-6 h-6 stroke-current" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewbox="0 0 24 24">
+<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+<line x1="3" x2="21" y1="6" y2="6"></line>
+<path d="M16 10a4 4 0 0 1-8 0"></path>
+</svg>
+<span class="absolute -top-1 -right-1.5 bg-brandTaupeBtn text-white text-[10px] font-semibold w-4 h-4 rounded-full flex items-center justify-center shadow-xs">
+            2
+          </span>
+</a>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: MainContent -->
+<main class="w-full flex-grow max-w-[1200px] mx-auto px-6 pt-8 pb-16">
+<!-- Breadcrumb & Editorial Page Header -->
+<section class="text-center max-w-3xl mx-auto mb-10" data-purpose="catalog-header">
+<!-- Breadcrumb -->
+<nav aria-label="Fil d'ariane" class="mb-4">
+<ol class="inline-flex items-center justify-center space-x-2 text-xs text-brandTaupe/60 tracking-wider">
+<li><a class="hover:text-brandTaupe transition-colors" href="#">Accueil</a></li>
+<li class="select-none">/</li>
+<li aria-current="page" class="text-brandTaupe font-medium">Filles 3-14 ans</li>
+</ol>
+</nav>
+<!-- Main Title -->
+<h1 class="text-3xl sm:text-4xl md:text-5xl font-serif text-brandTaupe font-normal mb-4 tracking-normal">
+        Filles 3-14 ans
+      </h1>
+<!-- Editorial Intro -->
+<p class="text-brandTaupe/80 text-sm sm:text-base leading-relaxed font-light max-w-2xl mx-auto">
+        Des créations douces et intemporelles, confectionnées dans des lins et cotons nobles pour accompagner leur enfance.
+      </p>
+</section>
+<!-- Filter Section (Chips Bar, No Sidebar) -->
+<section class="mb-10 pb-6 border-b border-brandTaupe/10 flex flex-col items-center" data-purpose="chips-filter-bar">
+<!-- Row 1: Age Chips -->
+<div aria-label="Filtrer par âge" class="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mb-3.5" role="group">
+<button class="px-4 py-1.5 text-xs rounded-full bg-brandTaupeBtn text-white font-medium shadow-xs transition-all" type="button">
+          Tous les âges
+        </button>
+<button class="px-4 py-1.5 text-xs rounded-full border border-brandTaupe/30 text-brandTaupe hover:border-brandTaupe font-normal bg-transparent transition-colors" type="button">
+          3-4 ans
+        </button>
+<button class="px-4 py-1.5 text-xs rounded-full border border-brandTaupe/30 text-brandTaupe hover:border-brandTaupe font-normal bg-transparent transition-colors" type="button">
+          5-6 ans
+        </button>
+<button class="px-4 py-1.5 text-xs rounded-full border border-brandTaupe/30 text-brandTaupe hover:border-brandTaupe font-normal bg-transparent transition-colors" type="button">
+          7-8 ans
+        </button>
+<button class="px-4 py-1.5 text-xs rounded-full border border-brandTaupe/30 text-brandTaupe hover:border-brandTaupe font-normal bg-transparent transition-colors" type="button">
+          9-10 ans
+        </button>
+<button class="px-4 py-1.5 text-xs rounded-full border border-brandTaupe/30 text-brandTaupe hover:border-brandTaupe font-normal bg-transparent transition-colors" type="button">
+          11-12 ans
+        </button>
+<button class="px-4 py-1.5 text-xs rounded-full border border-brandTaupe/30 text-brandTaupe hover:border-brandTaupe font-normal bg-transparent transition-colors" type="button">
+          13-14 ans
+        </button>
+</div>
+<!-- Row 2: Occasion Chips -->
+<div aria-label="Filtrer par occasion" class="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mb-6" role="group">
+<button class="px-4 py-1.5 text-xs rounded-full bg-brandTaupeBtn text-white font-medium shadow-xs transition-all" type="button">
+          Toutes occasions
+        </button>
+<button class="px-4 py-1.5 text-xs rounded-full border border-brandTaupe/30 text-brandTaupe hover:border-brandTaupe font-normal bg-transparent transition-colors" type="button">
+          Tous les jours
+        </button>
+<button class="px-4 py-1.5 text-xs rounded-full border border-brandTaupe/30 text-brandTaupe hover:border-brandTaupe font-normal bg-transparent transition-colors" type="button">
+          Fête
+        </button>
+<button class="px-4 py-1.5 text-xs rounded-full border border-brandTaupe/30 text-brandTaupe hover:border-brandTaupe font-normal bg-transparent transition-colors" type="button">
+          Cérémonie
+        </button>
+</div>
+<!-- Catalog Count Indicator -->
+<p class="text-xs text-brandTaupe/70 tracking-widest uppercase font-medium">
+        8 créations confectionnées à Bamako
+      </p>
+</section>
+<!-- BEGIN: ProductGrid -->
+<!-- 4-Column Responsive Luxury Product Grid -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10" data-purpose="product-catalog-grid">
+<!-- Card 1 -->
+<article class="product-card group flex flex-col">
+<div class="img-zoom-container relative aspect-square w-full bg-brandCream rounded-xs overflow-hidden mb-3.5">
+<img alt="Robe Terracotta Brodée" class="w-full h-full object-cover object-center" loading="lazy" src="https://lh3.googleusercontent.com/aida/ALJJyrAaz5n4GV7MKsnqt7DDCp_Wr8Gnh8z_oA-b9QU_wKKyeS1rTLk2juioBGxU_TrCikfF-_B0wDvZ_kWNPUz5bdPUVCxcmFABN0UnA56GfHgLiH-HSwWyVrCoUleue66tU9uC4PsrTl2jqtuKW4aBFxwOWr9E138rtHEZjAtYSO64AaRic_3ZYwNxp-BIQW7yT8UW0t8LPZGwMMEXTyUyyco6Q899stVWTav6Y88j6E5z"/>
+<span class="absolute top-3 left-3 bg-brandTerracotta text-white text-[10px] tracking-wider uppercase font-medium px-2.5 py-0.5 rounded-sm">
+            Cérémonie
+          </span>
+</div>
+<div class="flex flex-col text-left">
+<h2 class="font-serif text-[17px] text-brandTaupe font-normal group-hover:text-brandTaupeBtn transition-colors">
+            Robe Terracotta Brodée
+          </h2>
+<p class="text-sm font-medium text-brandTaupe/90 mt-1">
+            12 500 FCFA
+          </p>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="product-card group flex flex-col">
+<div class="img-zoom-container relative aspect-square w-full bg-brandCream rounded-xs overflow-hidden mb-3.5">
+<img alt="Robe Poudrée en Lin" class="w-full h-full object-cover object-center" loading="lazy" src="https://lh3.googleusercontent.com/aida/ALJJyrCtPEBsuvw6d9SfZoTwIVJuuIGjy8AF50I79HC9n5fOvETGbkGF8b-5lwMGepjsCogDAxwLets48EGnh_6JW42P7Mr9KcmyDZ7HXw8wgsUn7qcc_4zo9FUyOk8iJtaFUeKeWGpoM1Y_8T0K4ROCilAQNQV4hsgx2Wh65dAPlv79fPds3qjSaH_kyLC_HWM_4sZSetjOxpL4DwMsNIEgsiPTBeTTUS5c-26QJ4xe-21N"/>
+<span class="absolute top-3 left-3 bg-brandLightBlue text-white text-[10px] tracking-wider uppercase font-medium px-2.5 py-0.5 rounded-sm">
+            Tous les jours
+          </span>
+</div>
+<div class="flex flex-col text-left">
+<h2 class="font-serif text-[17px] text-brandTaupe font-normal group-hover:text-brandTaupeBtn transition-colors">
+            Robe Poudrée en Lin
+          </h2>
+<p class="text-sm font-medium text-brandTaupe/90 mt-1">
+            14 500 FCFA
+          </p>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="product-card group flex flex-col">
+<div class="img-zoom-container relative aspect-square w-full bg-brandCream rounded-xs overflow-hidden mb-3.5">
+<img alt="Robe Écru Broderie Fine" class="w-full h-full object-cover object-center" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUQsJIPFx1firjjIUDVcwSLAtBdq62I7rcROFVX5ZMxRlPiKZ0RY8oLC-ir7cqgMhsaUa48-X7aFqWr5x0eusytPFlX4WuW5xs-Quh76_ReTzjnM--pPN-In6-7xB6RHtVCOZRo5acBw-QqYG_30xLMjc0swPpxlCt09et2HPlgP7dlISw4NIoD9yEYgftEr8sb5-GX-Lfxivd6i9pvLTri8PYxLIqZBceQjDdUCk"/>
+<span class="absolute top-3 left-3 bg-brandTerracotta text-white text-[10px] tracking-wider uppercase font-medium px-2.5 py-0.5 rounded-sm">
+            Cérémonie
+          </span>
+</div>
+<div class="flex flex-col text-left">
+<h2 class="font-serif text-[17px] text-brandTaupe font-normal group-hover:text-brandTaupeBtn transition-colors">
+            Robe Écru Broderie Fine
+          </h2>
+<p class="text-sm font-medium text-brandTaupe/90 mt-1">
+            15 000 FCFA
+          </p>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="product-card group flex flex-col">
+<div class="img-zoom-container relative aspect-square w-full bg-brandCream rounded-xs overflow-hidden mb-3.5">
+<img alt="Robe Étagée Sauge &amp; Lin" class="w-full h-full object-cover object-center" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWwxQd_l874xBf1J2-lI80lVi6hRwNSrVFJ7bxISihM0WcWKqB9jZ-UuM2ocxz9bac3pB9Ke45yC9SvOO8uWMP-gS-Xy8Hq1Dvpu1S-vbpTVpZlShgzM5HDiAG3ji7DlVvUulz5B8VzLgjaH6-Y1PAdobAUKoTN15x4qFDvt6GeRfbq8I8Epm1Xowjjy67xlvfWmmDBA261YXHAImsXk9tBr70sp3yww2ctsUfryg"/>
+<span class="absolute top-3 left-3 bg-brandLightBlue text-white text-[10px] tracking-wider uppercase font-medium px-2.5 py-0.5 rounded-sm">
+            Fête
+          </span>
+</div>
+<div class="flex flex-col text-left">
+<h2 class="font-serif text-[17px] text-brandTaupe font-normal group-hover:text-brandTaupeBtn transition-colors">
+            Robe Étagée Sauge &amp; Lin
+          </h2>
+<p class="text-sm font-medium text-brandTaupe/90 mt-1">
+            13 500 FCFA
+          </p>
+</div>
+</article>
+<!-- Card 5 -->
+<article class="product-card group flex flex-col">
+<div class="img-zoom-container relative aspect-square w-full bg-brandCream rounded-xs overflow-hidden mb-3.5">
+<img alt="Robe Manches Ballon Terracotta" class="w-full h-full object-cover object-center" loading="lazy" src="https://lh3.googleusercontent.com/aida/ALJJyrCILyKHBNE9wVRgbgpu6tPODlbcXOTLDUqFCVn52J3wjRVkqOPX1T1HGSBnpP837lGOQYd2ifN693XNp55IfOb0x04iU8x7hZcWw2Z6EFO6qShgUl6DkjC265MgC28Px0akA0n3unvaROAv4dXQWrZrCUg7dsy6rjPFQ_EQ7LkFx4gE35-yQkLLVbg5LcMdPr8Ec5Bcy92ZIC6exqq79xUJrqgFaweSv4bBMVr_Z03z"/>
+<span class="absolute top-3 left-3 bg-brandTerracotta text-white text-[10px] tracking-wider uppercase font-medium px-2.5 py-0.5 rounded-sm">
+            Nouveauté
+          </span>
+</div>
+<div class="flex flex-col text-left">
+<h2 class="font-serif text-[17px] text-brandTaupe font-normal group-hover:text-brandTaupeBtn transition-colors">
+            Robe Manches Ballon Terracotta
+          </h2>
+<p class="text-sm font-medium text-brandTaupe/90 mt-1">
+            13 000 FCFA
+          </p>
+</div>
+</article>
+<!-- Card 6 -->
+<article class="product-card group flex flex-col">
+<div class="img-zoom-container relative aspect-square w-full bg-brandCream rounded-xs overflow-hidden mb-3.5">
+<img alt="Robe Sans Manches Terracotta" class="w-full h-full object-cover object-center" loading="lazy" src="https://lh3.googleusercontent.com/aida/ALJJyrAaz5n4GV7MKsnqt7DDCp_Wr8Gnh8z_oA-b9QU_wKKyeS1rTLk2juioBGxU_TrCikfF-_B0wDvZ_kWNPUz5bdPUVCxcmFABN0UnA56GfHgLiH-HSwWyVrCoUleue66tU9uC4PsrTl2jqtuKW4aBFxwOWr9E138rtHEZjAtYSO64AaRic_3ZYwNxp-BIQW7yT8UW0t8LPZGwMMEXTyUyyco6Q899stVWTav6Y88j6E5z"/>
+<span class="absolute top-3 left-3 bg-brandLightBlue text-white text-[10px] tracking-wider uppercase font-medium px-2.5 py-0.5 rounded-sm">
+            Tous les jours
+          </span>
+</div>
+<div class="flex flex-col text-left">
+<h2 class="font-serif text-[17px] text-brandTaupe font-normal group-hover:text-brandTaupeBtn transition-colors">
+            Robe Sans Manches Terracotta
+          </h2>
+<p class="text-sm font-medium text-brandTaupe/90 mt-1">
+            11 500 FCFA
+          </p>
+</div>
+</article>
+<!-- Card 7 -->
+<article class="product-card group flex flex-col">
+<div class="img-zoom-container relative aspect-square w-full bg-brandCream rounded-xs overflow-hidden mb-3.5">
+<img alt="Robe Plastron Brodée Lin" class="w-full h-full object-cover object-center" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUQsJIPFx1firjjIUDVcwSLAtBdq62I7rcROFVX5ZMxRlPiKZ0RY8oLC-ir7cqgMhsaUa48-X7aFqWr5x0eusytPFlX4WuW5xs-Quh76_ReTzjnM--pPN-In6-7xB6RHtVCOZRo5acBw-QqYG_30xLMjc0swPpxlCt09et2HPlgP7dlISw4NIoD9yEYgftEr8sb5-GX-Lfxivd6i9pvLTri8PYxLIqZBceQjDdUCk"/>
+<span class="absolute top-3 left-3 bg-brandTerracotta text-white text-[10px] tracking-wider uppercase font-medium px-2.5 py-0.5 rounded-sm">
+            Cérémonie
+          </span>
+</div>
+<div class="flex flex-col text-left">
+<h2 class="font-serif text-[17px] text-brandTaupe font-normal group-hover:text-brandTaupeBtn transition-colors">
+            Robe Plastron Brodée Lin
+          </h2>
+<p class="text-sm font-medium text-brandTaupe/90 mt-1">
+            15 500 FCFA
+          </p>
+</div>
+</article>
+<!-- Card 8 -->
+<article class="product-card group flex flex-col">
+<div class="img-zoom-container relative aspect-square w-full bg-brandCream rounded-xs overflow-hidden mb-3.5">
+<img alt="Robe Bicolore Terracotta &amp; Rose" class="w-full h-full object-cover object-center" loading="lazy" src="https://lh3.googleusercontent.com/aida/ALJJyrCtPEBsuvw6d9SfZoTwIVJuuIGjy8AF50I79HC9n5fOvETGbkGF8b-5lwMGepjsCogDAxwLets48EGnh_6JW42P7Mr9KcmyDZ7HXw8wgsUn7qcc_4zo9FUyOk8iJtaFUeKeWGpoM1Y_8T0K4ROCilAQNQV4hsgx2Wh65dAPlv79fPds3qjSaH_kyLC_HWM_4sZSetjOxpL4DwMsNIEgsiPTBeTTUS5c-26QJ4xe-21N"/>
+<span class="absolute top-3 left-3 bg-brandLightBlue text-white text-[10px] tracking-wider uppercase font-medium px-2.5 py-0.5 rounded-sm">
+            Fête
+          </span>
+</div>
+<div class="flex flex-col text-left">
+<h2 class="font-serif text-[17px] text-brandTaupe font-normal group-hover:text-brandTaupeBtn transition-colors">
+            Robe Bicolore Terracotta &amp; Rose
+          </h2>
+<p class="text-sm font-medium text-brandTaupe/90 mt-1">
+            16 500 FCFA
+          </p>
+</div>
+</article>
+</section>
+<!-- END: ProductGrid -->
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: ReassuranceRow -->
+<section class="w-full bg-brandCream py-10 mt-12 border-t border-brandTaupe/10" data-purpose="reassurance-strip">
+<div class="max-w-[1200px] mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+<!-- Reassurance Item 1 -->
+<div class="flex flex-col items-center justify-center p-2">
+<div class="w-10 h-10 mb-3 flex items-center justify-center text-brandTaupe">
+<svg class="w-7 h-7 stroke-current" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" viewbox="0 0 24 24">
+<rect height="16" rx="2" width="20" x="2" y="4"></rect>
+<line x1="2" x2="22" y1="10" y2="10"></line>
+<path d="M6 15h2"></path>
+<path d="M10 15h4"></path>
+</svg>
+</div>
+<h3 class="font-serif text-lg text-brandTaupe font-medium mb-1">Paiement à la réception</h3>
+<p class="text-xs text-brandTaupe/70 max-w-xs">Réglez directement en espèces ou Orange Money dès livraison à Bamako.</p>
+</div>
+<!-- Reassurance Item 2 -->
+<div class="flex flex-col items-center justify-center p-2">
+<div class="w-10 h-10 mb-3 flex items-center justify-center text-brandTaupe">
+<svg class="w-7 h-7 stroke-current" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" viewbox="0 0 24 24">
+<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+</svg>
+</div>
+<h3 class="font-serif text-lg text-brandTaupe font-medium mb-1">Confirmation sur WhatsApp</h3>
+<p class="text-xs text-brandTaupe/70 max-w-xs">Une prise de commande simple et personnalisée par message direct.</p>
+</div>
+<!-- Reassurance Item 3 -->
+<div class="flex flex-col items-center justify-center p-2">
+<div class="w-10 h-10 mb-3 flex items-center justify-center text-brandTaupe">
+<svg class="w-7 h-7 stroke-current" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" viewbox="0 0 24 24">
+<path d="M21.3 8.7 8.7 21.3c-1 1-2.5 1-3.4 0l-2.6-2.6c-1-1-1-2.5 0-3.4L15.3 2.7c1-1 2.5-1 3.4 0l2.6 2.6c1 1 1 2.5 0 3.4Z"></path>
+<path d="m14.5 5.5 4 4"></path>
+<path d="m7.5 12.5 2 2"></path>
+<path d="m10.5 9.5 2 2"></path>
+</svg>
+</div>
+<h3 class="font-serif text-lg text-brandTaupe font-medium mb-1">Guide des tailles</h3>
+<p class="text-xs text-brandTaupe/70 max-w-xs">Conseils sur-mesure pour trouver la coupe idéale pour votre enfant.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- END: ReassuranceRow -->
+<!-- BEGIN: MainFooter -->
+<footer class="w-full bg-brandBg border-t border-brandTaupe/10 py-12" data-purpose="site-footer">
+<div class="max-w-[1200px] mx-auto px-6 flex flex-col items-center text-center">
+<!-- Footer Logo -->
+<div class="mb-6 select-none">
+<div class="text-2xl font-serif tracking-tight flex items-baseline justify-center">
+<span class="text-brandLogoRose font-semibold mr-1.5">Fini</span>
+<span class="text-brandLogoNavy font-normal">Kura</span>
+</div>
+<span class="block text-[8px] uppercase tracking-[0.3em] text-brandTaupe/70 font-sans mt-0.5">
+          Habits pour Enfants
+        </span>
+</div>
+<!-- Footer Quick Links -->
+<nav aria-label="Liens de pied de page" class="flex items-center space-x-8 mb-6 text-xs tracking-wider uppercase text-brandTaupe/80 font-medium">
+<a class="hover:text-brandTaupe transition-colors" href="#livraison-echanges">Livraison et échanges</a>
+<span class="text-brandTaupe/30">•</span>
+<a class="hover:text-brandTaupe transition-colors" href="#contact">Contact</a>
+</nav>
+<!-- Social Media Icons (WhatsApp, Facebook, TikTok) in Warm Taupe -->
+<div class="flex items-center space-x-5 mb-8 text-brandTaupe">
+<!-- WhatsApp Icon -->
+<a aria-label="Contactez-nous sur WhatsApp" class="p-2 hover:opacity-75 transition-opacity" href="https://wa.me/">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+<path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.53 7.33C9.33 7.33 9 7.4 8.74 7.69C8.47 7.97 7.74 8.66 7.74 10.08C7.74 11.5 8.77 12.87 8.92 13.06C9.06 13.26 10.96 16.18 13.86 17.43C14.55 17.73 15.08 17.91 15.5 18.05C16.2 18.27 16.83 18.24 17.33 18.17C17.89 18.08 19.05 17.47 19.29 16.78C19.53 16.09 19.53 15.5 19.46 15.38C19.39 15.26 19.2 15.19 18.9 15.05C18.61 14.9 17.18 14.2 16.91 14.1C16.65 14.01 16.46 13.96 16.27 14.25C16.07 14.54 15.52 15.19 15.35 15.38C15.18 15.57 15.01 15.6 14.72 15.45C14.43 15.3 13.49 15 12.38 14.01C11.51 13.23 10.93 12.28 10.76 11.99C10.59 11.69 10.74 11.54 10.89 11.39C11.02 11.26 11.18 11.05 11.33 10.88C11.47 10.71 11.52 10.59 11.62 10.39C11.72 10.2 11.67 10.03 11.6 9.88C11.53 9.74 10.95 8.31 10.7 7.73C10.47 7.15 10.23 7.24 10.06 7.23C9.9 7.23 9.71 7.23 9.53 7.33Z"></path>
+</svg>
+</a>
+<!-- Facebook Icon -->
+<a aria-label="Rejoignez-nous sur Facebook" class="p-2 hover:opacity-75 transition-opacity" href="https://facebook.com/">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+<path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95C18.05 21.45 22 17.19 22 12z"></path>
+</svg>
+</a>
+<!-- TikTok Icon -->
+<a aria-label="Suivez-nous sur TikTok" class="p-2 hover:opacity-75 transition-opacity" href="https://tiktok.com/">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+<path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"></path>
+</svg>
+</a>
+</div>
+<!-- Copyright Notice -->
+<p class="text-[11px] text-brandTaupe/50 tracking-wider">
+        © 2025 Fini Kura Bamako. Tous droits réservés.
+      </p>
+</div>
+</footer>
+<!-- END: MainFooter -->
+</body></html>

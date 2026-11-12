@@ -1,0 +1,237 @@
+<!DOCTYPE html><html lang="fr"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fini Kura - Panier Tiroir (Mobile 390px)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&amp;family=Poppins:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #5E5245;
+      color: #5E5245;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+    .font-serif {
+      font-family: 'Playfair Display', serif;
+    }
+    /* Brand custom colors */
+    .bg-canvas { background-color: #FDF7F2; }
+    .bg-cream { background-color: #EADCCC; }
+    .bg-announcement { background-color: #9EA593; }
+    .bg-taupe { background-color: #8A7058; }
+    .text-taupe-brown { color: #5E5245; }
+    .text-taupe-btn { color: #8A7058; }
+    .border-taupe { border-color: #8A7058; }
+    .border-taupe-light { border-color: #EADCCC; }
+    .accent-terracotta { color: #CA7154; }
+  </style>
+</head>
+<body class="w-[390px] min-h-[844px] mx-auto relative overflow-hidden bg-stone-900/40">
+
+  <!-- Background Dimmed Page (Fiche Produit in background) -->
+  <div class="w-full bg-[#FDF7F2] filter brightness-[0.55] select-none pointer-events-none pb-24">
+    <!-- Slim sage announcement bar -->
+    <div class="bg-[#9EA593] text-white text-[10px] tracking-widest text-center py-1.5 uppercase font-medium">
+      Paiement à la réception à Bamako
+    </div>
+
+    <!-- Header -->
+    <div class="flex items-center justify-between px-4 py-3 bg-[#FDF7F2] border-b border-[#EADCCC]">
+      <svg class="w-5 h-5 text-[#5E5245]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+      </svg>
+      <div class="text-center">
+        <span class="font-serif italic text-lg text-[#CA7154]">Fini</span>
+        <span class="font-serif italic text-lg text-[#304054]"> Kura</span>
+        <span class="block text-[8px] uppercase tracking-widest text-[#5E5245]">Habits pour enfants</span>
+      </div>
+      <div class="relative">
+        <svg class="w-5 h-5 text-[#5E5245]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"></path>
+        </svg>
+        <span class="absolute -top-1 -right-2 bg-[#CA7154] text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-medium">2</span>
+      </div>
+    </div>
+
+    <!-- Background product sneak peek -->
+    <div class="p-4">
+      <div class="w-full aspect-[4/5] bg-[#EADCCC] rounded-lg overflow-hidden flex items-center justify-center">
+        <img src="https://lh3.googleusercontent.com/aida/ALJJyrAaz5n4GV7MKsnqt7DDCp_Wr8Gnh8z_oA-b9QU_wKKyeS1rTLk2juioBGxU_TrCikfF-_B0wDvZ_kWNPUz5bdPUVCxcmFABN0UnA56GfHgLiH-HSwWyVrCoUleue66tU9uC4PsrTl2jqtuKW4aBFxwOWr9E138rtHEZjAtYSO64AaRic_3ZYwNxp-BIQW7yT8UW0t8LPZGwMMEXTyUyyco6Q899stVWTav6Y88j6E5z" alt="Robe Terracotta" class="w-full h-full object-cover">
+      </div>
+      <h2 class="font-serif text-2xl mt-4 text-[#5E5245]">Robe Terracotta Brodée</h2>
+      <p class="text-lg font-medium text-[#5E5245] mt-1">12 500 FCFA</p>
+    </div>
+  </div>
+
+  <!-- Bottom Sheet Drawer Sliding Up -->
+  <div class="absolute inset-x-0 bottom-0 z-50 flex flex-col bg-[#FDF7F2] rounded-t-3xl shadow-2xl border-t border-[#EADCCC] max-h-[92vh] transition-transform duration-300">
+    
+    <!-- Drag Handle Indicator -->
+    <div class="flex justify-center pt-3 pb-1">
+      <div class="w-10 h-1 rounded-full bg-[#EADCCC]"></div>
+    </div>
+
+    <!-- Drawer Header -->
+    <div class="flex items-center justify-between px-6 py-3 border-b border-[#EADCCC]">
+      <div class="flex items-center space-x-2">
+        <span class="w-2 h-2 rounded-full bg-[#9EA593]"></span>
+        <h3 class="font-serif text-lg font-semibold text-[#5E5245] tracking-tight">Mon Panier</h3>
+        <span class="text-xs text-[#5E5245] bg-[#EADCCC] px-2 py-0.5 rounded-full font-medium">2 articles</span>
+      </div>
+      <!-- Close icon button -->
+      <button class="p-1.5 text-[#5E5245] hover:opacity-75 transition-opacity" aria-label="Fermer le panier">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Product item container (Scrollable if needed) -->
+    <div class="p-6 overflow-y-auto space-y-4">
+      
+      <!-- Reassurance mini-banner inside drawer -->
+      <div class="bg-[#EADCCC]/60 rounded-xl p-3 flex items-center space-x-2.5">
+        <svg class="w-4 h-4 text-[#5E5245] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6H2.25m0 0H1.5m6.75 0h.75A.75.75 0 009.75 5.25V4.5m0 0H21m-18 0h18M3.75 19.5h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5z"></path>
+        </svg>
+        <p class="text-xs text-[#5E5245] leading-snug">
+          Article ajouté avec succès · <span class="font-medium">Paiement à la livraison à Bamako</span>
+        </p>
+      </div>
+
+      <!-- Item Card -->
+      <div class="flex space-x-4 bg-[#EADCCC]/30 p-3.5 rounded-2xl border border-[#EADCCC]">
+        <!-- Product Photo on plain beige background -->
+        <div class="w-24 h-28 bg-[#EADCCC] rounded-xl overflow-hidden flex-shrink-0 relative">
+          <img src="https://lh3.googleusercontent.com/aida/ALJJyrAaz5n4GV7MKsnqt7DDCp_Wr8Gnh8z_oA-b9QU_wKKyeS1rTLk2juioBGxU_TrCikfF-_B0wDvZ_kWNPUz5bdPUVCxcmFABN0UnA56GfHgLiH-HSwWyVrCoUleue66tU9uC4PsrTl2jqtuKW4aBFxwOWr9E138rtHEZjAtYSO64AaRic_3ZYwNxp-BIQW7yT8UW0t8LPZGwMMEXTyUyyco6Q899stVWTav6Y88j6E5z" alt="Robe Terracotta Brodée" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Details -->
+        <div class="flex-1 flex flex-col justify-between py-0.5">
+          <div>
+            <div class="flex items-start justify-between">
+              <div>
+                <span class="text-[10px] tracking-wider uppercase text-[#CA7154] font-medium">Filles 3-14 ans</span>
+                <h4 class="font-serif text-base font-semibold text-[#5E5245] leading-tight mt-0.5">Robe Terracotta Brodée</h4>
+              </div>
+              <button class="text-[#5E5245]/60 hover:text-[#CA7154] p-1" title="Supprimer">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"></path>
+                </svg>
+              </button>
+            </div>
+
+            <div class="mt-2 flex items-center space-x-2">
+              <span class="text-xs text-[#5E5245]">Taille :</span>
+              <span class="text-xs font-semibold text-[#5E5245] bg-[#EADCCC] px-2 py-0.5 rounded-md">6 ans</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between mt-3 pt-2 border-t border-[#EADCCC]">
+            <!-- Quantity controls (clean line) -->
+            <div class="flex items-center border border-[#8A7058]/40 rounded-lg bg-white/70 px-2 py-0.5 space-x-2.5">
+              <button class="text-xs text-[#5E5245] hover:opacity-60 px-1 font-medium">-</button>
+              <span class="text-xs font-semibold text-[#5E5245]">1</span>
+              <button class="text-xs text-[#5E5245] hover:opacity-60 px-1 font-medium">+</button>
+            </div>
+
+            <!-- Price in exact FCFA -->
+            <span class="font-serif text-sm font-semibold text-[#5E5245]">12 500 FCFA</span>
+          </div>
+        </div>
+      </div><div class="flex space-x-4 bg-[#EADCCC]/30 p-3.5 rounded-2xl border border-[#EADCCC]">
+        <!-- Product Photo on plain beige background -->
+        <div class="w-24 h-28 bg-[#EADCCC] rounded-xl overflow-hidden flex-shrink-0 relative">
+          <img src="https://lh3.googleusercontent.com/aida/ALJJyrBR8eqShdJgwL5bUqAEJSBbezPwwQxtTEnsxu_gFAepILMuAHB_7nHCp-eHN9-BgvHZZ5n4EPZoo--RsBp3lOti8onkAde18jRqqscAjr31UXSBfBC1JHJr-MgsgTY3qtIxxJrZPBXuh57dS_FPgyOqHcfPKS3HxqP-UYIrKDW-WkgX706J-0Tk7vDvlcc4MwM6Cwuph8AbMJV_Sriv11OImIRfM2MWdxWEafOPAOLQ" alt="Chemise Mandarin Sauge" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Details -->
+        <div class="flex-1 flex flex-col justify-between py-0.5">
+          <div>
+            <div class="flex items-start justify-between">
+              <div>
+                <span class="text-[10px] tracking-wider uppercase text-[#9EA593] font-medium">Garçons 3-14 ans</span>
+                <h4 class="font-serif text-base font-semibold text-[#5E5245] leading-tight mt-0.5">Chemise Mandarin Sauge</h4>
+              </div>
+              <button class="text-[#5E5245]/60 hover:text-[#CA7154] p-1" title="Supprimer">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"></path>
+                </svg>
+              </button>
+            </div>
+
+            <div class="mt-2 flex items-center space-x-2">
+              <span class="text-xs text-[#5E5245]">Taille :</span>
+              <span class="text-xs font-semibold text-[#5E5245] bg-[#EADCCC] px-2 py-0.5 rounded-md">8 ans</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between mt-3 pt-2 border-t border-[#EADCCC]">
+            <!-- Quantity controls -->
+            <div class="flex items-center border border-[#8A7058]/40 rounded-lg bg-white/70 px-2 py-0.5 space-x-2.5">
+              <button class="text-xs text-[#5E5245] hover:opacity-60 px-1 font-medium">-</button>
+              <span class="text-xs font-semibold text-[#5E5245]">1</span>
+              <button class="text-xs text-[#5E5245] hover:opacity-60 px-1 font-medium">+</button>
+            </div>
+
+            <!-- Price -->
+            <span class="font-serif text-sm font-semibold text-[#5E5245]">8 500 FCFA</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Free Bamako assurance badge -->
+      <div class="pt-2">
+        <div class="flex items-center space-x-3 text-xs text-[#5E5245] px-1">
+          <svg class="w-4 h-4 text-[#9EA593]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125V15.75m-19.5-1.5V6.75A2.25 2.25 0 014.5 4.5h10.5a2.25 2.25 0 012.25 2.25v7.5m-15 0h15m0 0l2.25 2.25"></path>
+          </svg>
+          <span>Livraison par coursier dédié à Bamako</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Drawer Footer: Total and Actions -->
+    <div class="p-6 bg-[#FDF7F2] border-t border-[#EADCCC] space-y-3.5">
+      <!-- Subtotal and Total -->
+      <div class="space-y-1.5">
+        <div class="flex justify-between items-center text-xs text-[#5E5245]">
+          <span>Sous-total</span>
+          <span>21 000 FCFA</span>
+        </div>
+        <div class="flex justify-between items-center text-xs text-[#5E5245]">
+          <span>Livraison (Bamako)</span>
+          <span class="text-[#CA7154] font-medium">Calculée à l'étape suivante</span>
+        </div>
+        <div class="flex justify-between items-center pt-2 border-t border-[#EADCCC]">
+          <span class="font-serif text-base font-semibold text-[#5E5245]">Total</span>
+          <span class="font-serif text-lg font-bold text-[#5E5245]">21 000 FCFA</span>
+        </div>
+      </div>
+
+      <!-- Solid taupe primary button: Commander (min 44px) -->
+      <button class="w-full h-12 bg-[#8A7058] hover:bg-[#78614b] active:scale-[0.99] text-white rounded-xl font-medium text-sm transition-all shadow-sm flex items-center justify-center space-x-2">
+        <span>Commander</span>
+        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+        </svg>
+      </button>
+
+      <!-- Text link: Continuer mes achats -->
+      <div class="text-center pt-1">
+        <a href="#" class="text-xs text-[#5E5245] hover:text-[#CA7154] transition-colors underline underline-offset-4 tracking-wide font-normal">
+          Continuer mes achats
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+</body></html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&amp;family=Work+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "on-primary-container": "#fffcff",
+          "tertiary-fixed": "#ffdbd0",
+          "surface-container": "#fdebda",
+          "background": "#fff8f4",
+          "on-primary-fixed": "#291806",
+          "error-container": "#ffdad6",
+          "inverse-on-surface": "#ffeede",
+          "on-background": "#231a10",
+          "surface-variant": "#f1e0ce",
+          "primary-container": "#8a7058",
+          "on-surface-variant": "#4e453d",
+          "on-tertiary-fixed": "#390b00",
+          "surface-container-low": "#fff1e5",
+          "tertiary-container": "#b15d42",
+          "surface": "#fff8f4",
+          "on-surface": "#231a10",
+          "on-secondary-fixed": "#171d11",
+          "on-tertiary-fixed-variant": "#773119",
+          "primary-fixed-dim": "#e0c1a5",
+          "surface-container-high": "#f7e5d4",
+          "secondary": "#5a6151",
+          "on-primary": "#ffffff",
+          "on-error": "#ffffff",
+          "secondary-fixed-dim": "#c2c9b6",
+          "primary-fixed": "#feddc0",
+          "surface-dim": "#e9d7c6",
+          "tertiary": "#92452c",
+          "on-primary-fixed-variant": "#58422d",
+          "secondary-fixed": "#dee5d1",
+          "surface-container-highest": "#f1e0ce",
+          "inverse-surface": "#392f23",
+          "on-tertiary": "#ffffff",
+          "surface-container-lowest": "#ffffff",
+          "tertiary-fixed-dim": "#ffb59e",
+          "primary": "#705841",
+          "on-secondary-fixed-variant": "#42493a",
+          "outline": "#80756c",
+          "on-error-container": "#93000a",
+          "on-tertiary-container": "#fffbff",
+          "surface-bright": "#fff8f4",
+          "on-secondary": "#ffffff",
+          "on-secondary-container": "#606757",
+          "inverse-primary": "#e0c1a5",
+          "outline-variant": "d2c4ba",
+          "secondary-container": "#dee5d1",
+          "surface-tint": "#725a43",
+          "error": "#ba1a1a"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        "spacing": {
+          "margin": "3rem",
+          "space-xl": "2.5rem",
+          "space-lg": "1.5rem",
+          "gutter": "1.5rem",
+          "margin-mobile": "1.25rem",
+          "space-sm": "0.5rem",
+          "space-md": "1rem",
+          "gutter-mobile": "1rem",
+          "space-xs": "0.25rem"
+        },
+        "fontFamily": {
+          "headline-md": [
+            "Playfair Display"
+          ],
+          "headline-lg-mobile": [
+            "Playfair Display"
+          ],
+          "caption": [
+            "Work Sans"
+          ],
+          "headline-sm": [
+            "Playfair Display"
+          ],
+          "section-eyebrow": [
+            "Work Sans"
+          ],
+          "headline-lg": [
+            "Playfair Display"
+          ],
+          "body-sm": [
+            "Work Sans"
+          ],
+          "headline-xl-mobile": [
+            "Playfair Display"
+          ],
+          "body-lg": [
+            "Work Sans"
+          ],
+          "button-label": [
+            "Work Sans"
+          ],
+          "body-md": [
+            "Work Sans"
+          ],
+          "headline-xl": [
+            "Playfair Display"
+          ]
+        },
+        "fontSize": {
+          "headline-md": [
+            "24px",
+            {
+              "lineHeight": "32px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-lg-mobile": [
+            "26px",
+            {
+              "lineHeight": "34px",
+              "letterSpacing": "0em",
+              "fontWeight": "400"
+            }
+          ],
+          "caption": [
+            "13px",
+            {
+              "lineHeight": "18px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-sm": [
+            "20px",
+            {
+              "lineHeight": "28px",
+              "fontWeight": "500"
+            }
+          ],
+          "section-eyebrow": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "letterSpacing": "0.15em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-lg": [
+            "36px",
+            {
+              "lineHeight": "44px",
+              "letterSpacing": "0em",
+              "fontWeight": "400"
+            }
+          ],
+          "body-sm": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-xl-mobile": [
+            "32px",
+            {
+              "lineHeight": "40px",
+              "letterSpacing": "0em",
+              "fontWeight": "500"
+            }
+          ],
+          "body-lg": [
+            "18px",
+            {
+              "lineHeight": "28px",
+              "fontWeight": "400"
+            }
+          ],
+          "button-label": [
+            "15px",
+            {
+              "lineHeight": "20px",
+              "letterSpacing": "0.04em",
+              "fontWeight": "500"
+            }
+          ],
+          "body-md": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-xl": [
+            "48px",
+            {
+              "lineHeight": "56px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "500"
+            }
+          ]
+        }
+      },
+    },
+  }</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 shadow-[0_1px_8px_rgba(94,82,69,0.05)]"><div class="w-full bg-[#9EA593] h-9 flex items-center justify-center px-4"><p class="text-surface font-caption text-caption tracking-wider text-center">Mindfully Handcrafted in Mali • Free Archival Gift Boxing on All Orders</p></div><div class="h-20 bg-surface/90 backdrop-blur-xl"><div class="max-w-7xl mx-auto px-margin flex items-center justify-between h-full"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-secondary text-[20px]">lock</span><span class="font-section-eyebrow text-section-eyebrow uppercase text-on-surface-variant tracking-widest hidden sm:inline-block">Encrypted Heirloom Checkout</span></div><div class="flex flex-col items-center justify-center"><a class="font-headline-md text-headline-md tracking-tight text-on-surface hover:text-primary transition-colors" data-path="cart" href="#">Fini Kura</a><span class="font-section-eyebrow text-[10px] tracking-[0.25em] uppercase text-outline mt-0.5">Artisanal Atelier</span></div><div class="flex items-center gap-space-md"><div class="hidden md:flex items-center gap-space-xs text-on-surface-variant font-caption text-caption"><span class="material-symbols-outlined text-primary text-[18px]">verified</span><span>Authentic Mali Craft</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-sm"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div><div class="bg-surface-container-low/80 backdrop-blur-md"><div class="max-w-7xl mx-auto px-margin py-space-sm flex items-center justify-center"><nav class="flex items-center gap-space-md" data-active-classes="bg-primary-container text-on-primary-container font-medium rounded"><a class="font-button-label text-caption text-on-surface-variant hover:text-on-surface px-space-sm py-1 transition-colors" data-path="bag-summary" href="#">1. Bag</a><span class="text-outline-variant font-caption text-caption">•</span><a class="font-button-label text-caption text-on-surface-variant hover:text-on-surface px-space-sm py-1 transition-colors" data-path="shipping-atelier" href="#">2. Shipping &amp; Atelier</a><span class="text-outline-variant font-caption text-caption">•</span><a class="font-button-label text-caption text-on-surface-variant hover:text-on-surface px-space-sm py-1 transition-colors" data-path="payment-archive" href="#">3. Payment</a><span class="text-outline-variant font-caption text-caption">•</span><a aria-current="page" class="px-space-sm py-1 transition-colors bg-primary-container text-on-primary-container font-medium rounded" data-path="order-confirmation" href="#">4. Confirmation</a></nav></div></div></header><main class="w-full pt-36 bg-surface"><div class="max-w-7xl mx-auto px-margin py-space-xl min-h-[calc(100vh-280px)]"><div class="flex flex-col w-full items-center justify-center py-4">
+<div class="w-full max-w-[680px] bg-surface-container-lowest rounded-xl shadow-[0_8px_30px_rgba(94,82,69,0.06)] p-8 sm:p-12 relative overflow-hidden flex flex-col items-center text-center">
+<div class="w-14 h-14 rounded-full bg-secondary-container/60 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-secondary text-2xl" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<p class="font-section-eyebrow text-section-eyebrow uppercase tracking-[0.2em] text-secondary mb-2">Confirmation d'Atelier</p>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-3">Commande n° FK-2025-0842</h1>
+<div class="w-12 h-0.5 bg-surface-variant rounded-full mb-6"></div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-8 max-w-lg">
+      Merci Aminata ! Votre commande a bien été enregistrée par notre atelier de Bamako. Nos artisans préparent vos créations avec le plus grand soin et la patience des gestes ancestraux.
+    </p>
+<!-- Résumé succinct -->
+<div class="w-full bg-surface-container-low rounded-lg p-5 mb-8 text-left">
+<div class="flex items-center justify-between pb-3 mb-3 bg-surface-container-highest/30 rounded px-3 py-2">
+<span class="font-caption text-caption text-on-surface-variant uppercase tracking-wider">Récapitulatif</span>
+<span class="font-button-label text-body-sm text-primary font-medium">2 pièces artisanales</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-body-sm font-body-sm text-on-surface-variant px-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-lg">check_circle</span>
+<span>Total : <strong class="text-on-surface font-medium">21 000 FCFA</strong></span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-lg">location_on</span>
+<span>Lieu : <strong class="text-on-surface font-medium">Badalabougou</strong></span>
+</div>
+<div class="flex items-center gap-2 sm:col-span-2">
+<span class="material-symbols-outlined text-secondary text-lg">payments</span>
+<span>Règlement : <strong class="text-on-surface font-medium">Paiement à la réception</strong></span>
+</div>
+</div>
+</div>
+<!-- Bouton WhatsApp -->
+<a class="w-full sm:w-auto min-w-[280px] bg-[#25D366] hover:bg-[#20ba59] text-white font-button-label text-button-label font-bold py-3.5 px-8 rounded-lg shadow-sm transition-all duration-200 flex items-center justify-center gap-3 group" href="https://wa.me/22300000000?text=Bonjour%20Fini%20Kura%2C%20je%20souhaite%20confirmer%20ma%20commande%20FK-2025-0842" rel="noopener noreferrer" target="_blank">
+<svg class="w-5 h-5 fill-current transition-transform duration-200 group-hover:scale-110" viewbox="0 0 24 24">
+<path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.073-2.127-.521-1.615-.67-2.66-2.306-2.74-2.414-.08-.109-.649-.864-.649-1.648 0-.785.41-1.172.556-1.332.146-.16.32-.2.427-.2.106 0 .213.002.307.007.1.005.234-.038.366.28.138.334.472 1.152.513 1.236.041.085.068.184.013.295-.056.11-.083.18-.166.277-.082.098-.173.218-.248.293-.082.083-.169.172-.072.338.097.165.432.712.927 1.152.636.566 1.172.742 1.337.824.165.083.263.072.36-.041.098-.113.418-.487.53-.654.112-.167.225-.138.378-.083.153.055.97.458 1.137.541.167.083.278.125.32.194.041.069.041.402-.103.807zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.66 1.434 5.174L2 22l4.966-1.394A9.957 9.957 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"></path>
+</svg>
+<span>Confirmer sur WhatsApp</span>
+</a>
+<p class="font-caption text-caption text-on-surface-variant/80 mt-4 max-w-md leading-normal">
+      Un échange direct sur WhatsApp nous permet de vous confirmer le montant de la course et l'horaire précis de votre livraison.
+    </p>
+<!-- Séparateur doux -->
+<div class="w-full h-px bg-surface-variant/60 my-8"></div>
+<!-- Liens de retour -->
+<div class="flex flex-wrap items-center justify-center gap-6 text-on-surface-variant">
+<a class="font-button-label text-caption hover:text-on-surface transition-colors flex items-center gap-1.5 underline decoration-surface-variant underline-offset-4" data-path="boutique" href="#">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+<span>Retourner à la boutique</span>
+</a>
+<span class="text-surface-variant text-caption">•</span>
+<a class="font-button-label text-caption hover:text-on-surface transition-colors flex items-center gap-1.5 underline decoration-surface-variant underline-offset-4" data-path="suivi-commande" href="#">
+<span class="material-symbols-outlined text-[16px]">local_shipping</span>
+<span>Suivre ma commande</span>
+</a>
+</div>
+</div>
+</div></div></main><footer class="w-full bg-surface-container-low mt-space-xl"><div class="max-w-7xl mx-auto px-margin py-space-xl"><div class="flex flex-col items-center text-center space-y-space-md"><span class="font-headline-sm text-headline-sm text-on-surface tracking-wide">Fini Kura</span><p class="font-body-sm text-body-sm text-on-surface-variant max-w-xl mx-auto leading-relaxed">Every piece is consciously spun, plant-dyed, and handwoven by master textile artisans in Ségou and Bamako, Mali. Preserving West African heritage through quiet, enduring design for cherished childhood memories.</p><div class="flex flex-wrap items-center justify-center gap-space-lg pt-space-xs"><div class="flex items-center gap-space-xs text-secondary"><span class="material-symbols-outlined text-[18px]">spa</span><span class="font-caption text-caption">Organic Indigenous Cotton</span></div><div class="flex items-center gap-space-xs text-secondary"><span class="material-symbols-outlined text-[18px]">handshake</span><span class="font-caption text-caption">Direct Weaver Cooperatives</span></div><div class="flex items-center gap-space-xs text-secondary"><span class="material-symbols-outlined text-[18px]">shield</span><span class="font-caption text-caption">Heritage Guarantee</span></div></div><div class="pt-space-md flex flex-col md:flex-row items-center justify-between w-full max-w-4xl text-outline font-caption text-caption"><p>© 2024 Fini Kura Atelier. All rights reserved.</p><div class="flex items-center gap-space-md mt-space-xs md:mt-0"><a class="hover:text-on-surface transition-colors" data-path="artisanal-provenance" href="#">Artisanal Provenance</a><a class="hover:text-on-surface transition-colors" data-path="privacy-terms" href="#">Mindful Care &amp; Terms</a><a class="hover:text-on-surface transition-colors" data-path="concierge" href="#">Atelier Concierge</a></div></div></div></div></footer></body></html>

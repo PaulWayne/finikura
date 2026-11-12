@@ -1,0 +1,70 @@
+{
+  "data": {
+    "id": 1,
+    "attributes": {
+      "announcement_bar": "PAIEMENT À LA RÉCEPTION À BAMAKO",
+      "whatsapp_number": "+22370000000",
+      "whatsapp_url": "https://wa.me/22370000000",
+      "social_links": [
+        {
+          "platform": "whatsapp",
+          "url": "https://wa.me/22370000000",
+          "label": "WhatsApp Fini Kura"
+        },
+        {
+          "platform": "facebook",
+          "url": "https://facebook.com/finikurabamako",
+          "label": "Facebook Fini Kura"
+        },
+        {
+          "platform": "tiktok",
+          "url": "https://tiktok.com/@finikura",
+          "label": "TikTok Fini Kura"
+        }
+      ],
+      "footer_links": [
+        {
+          "label": "LIVRAISON ET ÉCHANGES",
+          "url": "/livraison-et-echanges"
+        },
+        {
+          "label": "NOTRE HISTOIRE",
+          "url": "/notre-histoire"
+        },
+        {
+          "label": "GUIDE DES TAILLES",
+          "url": "/guide-des-tailles"
+        },
+        {
+          "label": "CONTACT",
+          "url": "/contact"
+        },
+        {
+          "label": "MENTIONS LÉGALES & CGV",
+          "url": "/mentions-legales"
+        }
+      ],
+      "reassurance_items": [
+        {
+          "id": "reass_1",
+          "title": "Paiement à la réception",
+          "description": "Réglez directement en mains propres à Bamako.",
+          "icon": "payments"
+        },
+        {
+          "id": "reass_2",
+          "title": "Confirmation sur WhatsApp",
+          "description": "Assistance personnalisée et validation rapide.",
+          "icon": "chat"
+        },
+        {
+          "id": "reass_3",
+          "title": "Guide des tailles",
+          "description": "Mensurations fidèles adaptées de 3 à 14 ans.",
+          "icon": "straighten"
+        }
+      ]
+    }
+  },
+  "meta": {}
+}
