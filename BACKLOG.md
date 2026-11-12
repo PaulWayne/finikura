@@ -325,8 +325,10 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 **Description.** Medusa crée d'office un « Default Sales Channel » et une « Default Publishable API Key ». Le site utilise son propre canal et sa propre clé, « Site Fini Kura ». Il faut désactiver ou supprimer les éléments par défaut pour éviter les confusions dans l'admin.
 
 **Critères d'acceptation**
-- [ ] L'admin ne montre plus que le canal et la clé du site.
-- [ ] Le seed reste idempotent et le site fonctionne toujours.
+- [x] L'admin ne montre plus que le canal et la clé du site.
+- [x] Le seed reste idempotent et le site fonctionne toujours.
+
+**Fait (branche `fk-18`).** Le seed révoque puis supprime la « Default Publishable API Key », et supprime le « Default Sales Channel » s'il n'est pas le canal par défaut de la boutique. Aucun produit ni aucune commande n'y était rattaché. Vérifié : le seed lancé deux fois réussit, l'admin ne liste plus que « Site Fini Kura », et le parcours de commande (`fk-status-checks.mjs`) passe.
 
 **Taille** S · **Dépend de** — · **Origine** étapes 3-4
 

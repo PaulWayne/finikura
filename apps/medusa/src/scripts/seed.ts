@@ -18,8 +18,11 @@ import {
   createShippingOptionsWorkflow,
   createShippingProfilesWorkflow,
   createStockLocationsWorkflow,
+  deleteApiKeysWorkflow,
+  deleteSalesChannelsWorkflow,
   linkSalesChannelsToApiKeyWorkflow,
   linkSalesChannelsToStockLocationWorkflow,
+  revokeApiKeysWorkflow,
   updateStoresWorkflow,
 } from "@medusajs/medusa/core-flows"
 
@@ -185,6 +188,24 @@ export default async function seed({ container }: ExecArgs) {
     await linkSalesChannelsToApiKeyWorkflow(container).run({
       input: { id: apiKey.id, add: [salesChannel.id] },
     })
+  }
+
+  // --- Remove Medusa's default channel and key (FK-18): the site only uses "Site Fini Kura" ---
+  const [defaultKey] = await apiKeyModule.listApiKeys({ title: "Default Publishable API Key", type: "publishable" })
+  if (defaultKey) {
+    if (!defaultKey.revoked_at) {
+      await revokeApiKeysWorkflow(container).run({
+        input: { selector: { id: defaultKey.id }, revoke: { revoked_by: "seed" } },
+      })
+    }
+    await deleteApiKeysWorkflow(container).run({ input: { ids: [defaultKey.id] } })
+    logger.info("Removed the Default Publishable API Key")
+  }
+  const [defaultChannel] = await salesChannelModule.listSalesChannels({ name: "Default Sales Channel" })
+  const [currentStore] = await storeModule.listStores()
+  if (defaultChannel && defaultChannel.id !== currentStore?.default_sales_channel_id) {
+    await deleteSalesChannelsWorkflow(container).run({ input: { ids: [defaultChannel.id] } })
+    logger.info("Removed the Default Sales Channel")
   }
 
   // --- Categories, collections, occasion tags ------------------------------
