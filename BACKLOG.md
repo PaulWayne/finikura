@@ -159,7 +159,7 @@ Dans Medusa 2.22.6, un échange se gère depuis la fiche commande (retour de l'a
 - un refus après le départ remet la pièce en stock ;
 - une action interdite renvoie 400.
 
-L'affichage du widget dans l'admin reste à vérifier à l'œil.
+L'affichage du widget dans l'admin a été vérifié.
 
 **Taille** L · **Dépend de** — · **Origine** cahier des charges
 
