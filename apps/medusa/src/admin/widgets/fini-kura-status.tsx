@@ -2,20 +2,16 @@ import { defineWidgetConfig } from "@medusajs/admin-sdk"
 import type { AdminOrder, DetailWidgetProps } from "@medusajs/framework/types"
 import { Button, Container, Heading, StatusBadge, Text, toast, usePrompt } from "@medusajs/ui"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { FK_ACTIONS, FK_ACTION_LABELS, type FkAction, type FkStatus } from "../../lib/fk-status"
+import { useTranslation } from "react-i18next"
+import { Link } from "react-router-dom"
+import { FK_ACTIONS, type FkAction, type FkStatus } from "../../lib/fk-status"
+import { FK_BADGE } from "../lib/fk-badge"
 import { sdk } from "../lib/sdk"
 
 type FkStatusResponse = { status: FkStatus; label: string; actions: FkAction[] }
 
-const BADGE: Record<FkStatus, "grey" | "blue" | "orange" | "green" | "red"> = {
-  new: "grey",
-  confirmed: "blue",
-  shipping: "orange",
-  delivered: "green",
-  refused: "red",
-}
-
 const FiniKuraStatusWidget = ({ data: order }: DetailWidgetProps<AdminOrder>) => {
+  const { t } = useTranslation()
   const queryClient = useQueryClient()
   const prompt = usePrompt()
   const path = `/admin/orders/${order.id}/fini-kura-status`
@@ -29,7 +25,7 @@ const FiniKuraStatusWidget = ({ data: order }: DetailWidgetProps<AdminOrder>) =>
     mutationFn: (action: FkAction) =>
       sdk.client.fetch<FkStatusResponse>(path, { method: "POST", body: { action } }),
     onSuccess: (res) => {
-      toast.success(`Statut : ${res.label}`)
+      toast.success(t("fk.status.updated", { label: t(`fk.status.${res.status}`) }))
       // Refresh the native order page (fulfillments, payment, status).
       queryClient.invalidateQueries()
     },
@@ -39,10 +35,10 @@ const FiniKuraStatusWidget = ({ data: order }: DetailWidgetProps<AdminOrder>) =>
   const run = async (action: FkAction) => {
     if (action === "refuse") {
       const ok = await prompt({
-        title: "Refuser la commande ?",
-        description: "La commande est annulée et les articles reviennent en stock. Ce n'est pas réversible.",
-        confirmText: "Refuser",
-        cancelText: "Retour",
+        title: t("fk.refusePrompt.title"),
+        description: t("fk.refusePrompt.description"),
+        confirmText: t("fk.refusePrompt.confirm"),
+        cancelText: t("fk.refusePrompt.cancel"),
       })
       if (!ok) return
     }
@@ -52,8 +48,8 @@ const FiniKuraStatusWidget = ({ data: order }: DetailWidgetProps<AdminOrder>) =>
   return (
     <Container className="divide-y p-0">
       <div className="flex items-center justify-between px-6 py-4">
-        <Heading level="h2">Statut Fini Kura</Heading>
-        {data && <StatusBadge color={BADGE[data.status]}>{data.label}</StatusBadge>}
+        <Heading level="h2">{t("fk.status.title")}</Heading>
+        {data && <StatusBadge color={FK_BADGE[data.status]}>{t(`fk.status.${data.status}`)}</StatusBadge>}
       </div>
       <div className="flex flex-wrap gap-2 px-6 py-4">
         {FK_ACTIONS.map((action) => (
@@ -65,14 +61,23 @@ const FiniKuraStatusWidget = ({ data: order }: DetailWidgetProps<AdminOrder>) =>
             isLoading={mutation.isPending && mutation.variables === action}
             onClick={() => run(action)}
           >
-            {FK_ACTION_LABELS[action]}
+            {t(`fk.actions.${action}`)}
           </Button>
         ))}
       </div>
+      {order.shipping_address?.phone && (
+        <div className="px-6 py-3">
+          <Link
+            to={`/commandes-telephone?phone=${encodeURIComponent(order.shipping_address.phone)}`}
+            className="text-ui-fg-interactive txt-compact-small hover:underline"
+          >
+            {t("fk.phoneOrders.otherOrders")}
+          </Link>
+        </div>
+      )}
       <div className="px-6 py-3">
         <Text size="xsmall" className="text-ui-fg-subtle">
-          Statut Medusa : commande {order.status}, préparation {order.fulfillment_status}, paiement{" "}
-          {order.payment_status}
+          {t("fk.status.medusa", { order: order.status, fulfillment: order.fulfillment_status, payment: order.payment_status })}
         </Text>
       </div>
     </Container>

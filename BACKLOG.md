@@ -305,9 +305,9 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 **Description.** Sans e-mail, Medusa ne crée pas de fiche client. Il faut une extension de l'admin, sous forme de page ou de widget, qui retrouve toutes les commandes d'un numéro à partir du téléphone de l'adresse de livraison. Ce téléphone est enregistré au format `+223XXXXXXXX` depuis l'étape 4.
 
 **Critères d'acceptation**
-- [ ] Une saisie de « 76 12 34 56 », « +22376123456 » ou « 0022376123456 » trouve les mêmes commandes.
-- [ ] La liste affiche la date, le numéro, le total, le statut Fini Kura et un lien vers la commande.
-- [ ] Sur la fiche d'une commande, un lien « Autres commandes de ce numéro » est présent.
+- [x] Une saisie de « 76 12 34 56 », « +22376123456 » ou « 0022376123456 » trouve les mêmes commandes.
+- [x] La liste affiche la date, le numéro, le total, le statut Fini Kura et un lien vers la commande.
+- [x] Sur la fiche d'une commande, un lien « Autres commandes de ce numéro » est présent.
 
 **Taille** M · **Dépend de** FK-06 (pour le statut) · **Origine** cahier des charges
 

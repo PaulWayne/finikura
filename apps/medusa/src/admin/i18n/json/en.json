@@ -1,0 +1,42 @@
+{
+  "fk": {
+    "status": {
+      "title": "Fini Kura status",
+      "new": "New",
+      "confirmed": "Confirmed on WhatsApp",
+      "shipping": "Out for delivery",
+      "delivered": "Delivered and paid",
+      "refused": "Refused or canceled",
+      "updated": "Status: {{label}}",
+      "medusa": "Medusa status: order {{order}}, fulfillment {{fulfillment}}, payment {{payment}}"
+    },
+    "actions": {
+      "confirm": "Confirmed on WhatsApp",
+      "ship": "Out for delivery",
+      "deliver": "Delivered and paid",
+      "refuse": "Refused"
+    },
+    "refusePrompt": {
+      "title": "Refuse the order?",
+      "description": "The order is canceled and the items go back to stock. This cannot be undone.",
+      "confirm": "Refuse",
+      "cancel": "Back"
+    },
+    "phoneOrders": {
+      "menu": "By phone",
+      "title": "Orders by phone",
+      "intro": "Every order delivered to a number, for example \"76 12 34 56\" or \"+223 76 12 34 56\".",
+      "phone": "Phone",
+      "search": "Search",
+      "invalid": "Invalid number: enter 8 digits, with or without +223.",
+      "empty": "No order for {{phone}}.",
+      "count_one": "{{count}} order for {{phone}}",
+      "count_other": "{{count}} orders for {{phone}}",
+      "date": "Date",
+      "order": "Order",
+      "name": "Name",
+      "total": "Total",
+      "otherOrders": "Other orders from this number"
+    }
+  }
+}
