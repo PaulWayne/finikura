@@ -99,12 +99,17 @@ Les éléments ne sont pas encore des issues GitHub. On les crée seulement apr�
 **Description.** Il reste 31 occurrences de promesses que la cliente n'a pas validées : « TVA incluse », « Orange Money » ou « Moov Money », « 24 à 48 h », « sous 24 h », « 7 jours », « 14 jours », « 48 h », « 100 % lin », « Validés avec l'adresse ». S'y ajoutent les mentions inventées de l'étape 1 (atelier certifié, teintures végétales, adresse et e-mail fictifs), et tout ce qui contredit le questionnaire de la cliente. Celle-ci vit en Europe et n'a parlé ni d'atelier à Bamako, ni de lin, ni d'artisans : « créées à Bamako », « maîtres artisans », « maison installée au cœur de Bamako » doivent disparaître. Les seules mentions décidées sont « Paiement à la réception » et « Livraison à votre charge, montant confirmé sur WhatsApp ».
 
 **Critères d'acceptation**
-- [ ] Une recherche de ces expressions dans `apps/storefront/src` et dans le contenu Strapi ne trouve plus rien.
-- [ ] Le panier et la commande affichent exactement « Livraison à votre charge, montant confirmé sur WhatsApp ». Aucun montant de livraison n'apparaît nulle part.
-- [ ] Le bandeau « Article ajouté avec succès » du panier ne contient plus de promesse.
-- [ ] Les textes de repli des mappers sont vides, et jamais inventés.
+- [x] Une recherche de ces expressions dans `apps/storefront/src` et dans le contenu Strapi ne trouve plus rien.
+- [x] Le panier et la commande affichent exactement « Livraison à votre charge, montant confirmé sur WhatsApp ». Aucun montant de livraison n'apparaît nulle part.
+- [x] Le bandeau « Article ajouté avec succès » du panier ne contient plus de promesse.
+- [x] Les textes de repli des mappers sont vides, et jamais inventés.
 
 **Taille** M · **Dépend de** — · **Origine** état des lieux, cahier des charges
+
+**Fait (branche `fk-04-fk-05`).** Les matières et les conseils d'entretien des produits sont vidés : ils viendront des données de production. Les accordéons correspondants ne s'affichent que si Medusa les renseigne. Restent à voir avec la cliente :
+- les handles contiennent encore « lin » (par exemple `robe-poudree-en-lin`). Ils servent de clé commune avec Strapi et seront remplacés avec les vrais produits ;
+- les étiquettes « BEST-SELLER » et « NOUVEAUTÉ » des fixtures ne reposent sur aucune donnée de vente ;
+- un prix de fixture (16 500 FCFA) dépasse la fourchette du questionnaire (15 000 FCFA au plus).
 
 ### FK-05 · Règle d'échange unique ou retirée
 **Description.** Le site annonce tantôt 7 jours, tantôt 48 h, tantôt 14 jours. Tant que la cliente n'a pas fixé la règle, la mention « Échange possible » est retirée. Ensuite, la règle est écrite une seule fois, dans Strapi.
@@ -121,8 +126,10 @@ Les éléments ne sont pas encore des issues GitHub. On les crée seulement apr�
 Dans Medusa 2.22.6, un échange se gère depuis la fiche commande (retour de l'article, nouvel article, différence de prix). Je vérifierai la procédure dans l'admin installée avant de la documenter pour la cliente.
 
 **Critères d'acceptation**
-- [ ] Une seule règle d'échange existe, saisie dans Strapi, ou aucune mention d'échange n'est affichée.
-- [ ] Les fiches produit, le panier, la page Livraison et échanges et la confirmation sont cohérents.
+- [x] Une seule règle d'échange existe, saisie dans Strapi, ou aucune mention d'échange n'est affichée.
+- [x] Les fiches produit, le panier, la page Livraison et échanges et la confirmation sont cohérents.
+
+**État.** Mention retirée partout, en attente de la règle. Quand la cliente la donne, elle s'écrit dans le bloc « Échanges » de la page Strapi `livraison-et-echanges`, et nulle part ailleurs.
 
 **Taille** S · **Dépend de** Cliente : règle d'échange, FK-04 · **Origine** état des lieux (bloquant), cliente
 

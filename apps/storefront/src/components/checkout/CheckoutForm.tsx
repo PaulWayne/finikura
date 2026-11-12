@@ -16,8 +16,6 @@ import {
   ShieldCheck,
   MessageCircle,
   Banknote,
-  Palette,
-  Award,
   Truck,
   CheckCircle2,
 } from "lucide-react";
@@ -395,13 +393,6 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
               )}
             </div>
 
-            {/* Atelier WhatsApp Coordination Notice */}
-            <div className="p-3.5 sm:p-4 rounded-lg bg-[#FFF1E5] flex items-start gap-3 mt-4 border border-[#EADCCC]/60">
-              <MessageCircle className="w-5 h-5 text-[#8A7058] shrink-0 mt-0.5" />
-              <p className="text-xs text-[#5E5245] leading-relaxed">
-                {messages.checkout.atelierCoordinationNote}
-              </p>
-            </div>
 
             {/* Server Error feedback if any */}
             {serverError && (
@@ -553,9 +544,6 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
                   {messages.checkout.paymentOnDeliveryTitle}
                 </span>
               </div>
-              <span className="text-[11px] font-medium text-[#5A6151]">
-                {messages.checkout.paymentMethodsShort}
-              </span>
             </div>
 
             {/* Primary Action Button */}
@@ -580,21 +568,6 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
               </p>
             </div>
 
-            {/* Trust Badges */}
-            <div className="grid grid-cols-2 gap-2 pt-1">
-              <div className="bg-[#FFF1E5] p-2.5 rounded flex items-center gap-2 border border-[#EADCCC]/40">
-                <Palette className="w-4 h-4 text-[#8A7058] shrink-0" />
-                <span className="text-[11px] text-[#4E453D]">
-                  {messages.checkout.trustVegetalDyes}
-                </span>
-              </div>
-              <div className="bg-[#FFF1E5] p-2.5 rounded flex items-center gap-2 border border-[#EADCCC]/40">
-                <Award className="w-4 h-4 text-[#8A7058] shrink-0" />
-                <span className="text-[11px] text-[#4E453D]">
-                  {messages.checkout.trustHandFinishing}
-                </span>
-              </div>
-            </div>
           </div>
         </aside>
       </div>

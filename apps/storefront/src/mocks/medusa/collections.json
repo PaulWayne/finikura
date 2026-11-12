@@ -4,7 +4,7 @@
       "id": "col_nouveautes",
       "title": "Nouveautés",
       "handle": "nouveautes",
-      "description": "Les dernières créations en lin et coton noble de notre atelier à Bamako."
+      "description": "Les dernières pièces arrivées."
     },
     {
       "id": "col_tabaski",
@@ -16,7 +16,7 @@
       "id": "col_essentiels",
       "title": "Les Essentiels",
       "handle": "les-essentiels",
-      "description": "Coupes respirantes et confortables pour le quotidien sous le soleil de Bamako."
+      "description": "Des tenues confortables pour l'école et tous les jours."
     }
   ]
 }

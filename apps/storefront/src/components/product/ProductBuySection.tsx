@@ -18,7 +18,6 @@ import {
   Flame,
   CreditCard,
   Bike,
-  RefreshCw,
   ChevronDown,
   Sparkles,
   ShieldCheck,
@@ -108,9 +107,6 @@ export function ProductBuySection({
           <p className="text-2xl font-semibold text-[#5E5245] tracking-tight">
             {formatPrice(product.price)}
           </p>
-          <span className="text-xs text-[#5E5245]/70 font-light">
-            {messages.product.taxIncluded}
-          </span>
         </div>
 
         {/* Thin cream separator */}
@@ -278,21 +274,6 @@ export function ProductBuySection({
             </div>
           </div>
 
-          <div className="w-full h-px bg-[#EADCCC]/80" />
-
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-[#FDF7F2] border border-[#EADCCC] flex items-center justify-center text-[#8A7058] shrink-0">
-              <RefreshCw className="w-4 h-4" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xs font-medium text-[#5E5245]">
-                {messages.product.reassuranceExchange}
-              </span>
-              <span className="text-[11px] text-[#5E5245]/75 font-light">
-                {messages.product.reassuranceExchangeDesc}
-              </span>
-            </div>
-          </div>
         </div>
 
         {/* Editorial Narrative */}
@@ -305,9 +286,10 @@ export function ProductBuySection({
           </p>
         </div>
 
-        {/* Accordions */}
+        {/* Accordions: only the fields filled in Medusa */}
+        {(product.material || product.careInstructions) && (
         <div className="flex flex-col rounded-xl overflow-hidden bg-[#EADCCC]/30 border border-[#EADCCC] divide-y divide-[#EADCCC]">
-          {/* Accordion 1: Matière & Confection */}
+          {product.material && (
           <details className="group p-4 open:bg-[#EADCCC]/50 transition-colors" open>
             <summary className="flex items-center justify-between cursor-pointer list-none select-none text-xs font-medium text-[#5E5245]">
               <span className="flex items-center gap-2">
@@ -316,18 +298,13 @@ export function ProductBuySection({
               </span>
               <ChevronDown className="w-4 h-4 text-[#8A7058] transition-transform duration-300 group-open:rotate-180" />
             </summary>
-            <div className="pt-3 pr-2 text-xs text-[#5E5245]/85 leading-relaxed space-y-1.5 font-light">
-              <p>
-                • <strong>{product.material}</strong>, respirant, hypoallergénique
-                et naturellement frais sous la chaleur de Bamako.
-              </p>
-              <p>• Plastron brodé au fil de coton teinté artisanalement.</p>
-              <p>• Finitions soignées au dos pour un enfilage tout en douceur.</p>
-              <p>• Coupe ample permettant une totale liberté de mouvement.</p>
-            </div>
+            <p className="pt-3 pr-2 text-xs text-[#5E5245]/85 leading-relaxed font-light">
+              {product.material}
+            </p>
           </details>
+          )}
 
-          {/* Accordion 2: Conseils d'entretien */}
+          {product.careInstructions && (
           <details className="group p-4 open:bg-[#EADCCC]/50 transition-colors">
             <summary className="flex items-center justify-between cursor-pointer list-none select-none text-xs font-medium text-[#5E5245]">
               <span className="flex items-center gap-2">
@@ -336,38 +313,13 @@ export function ProductBuySection({
               </span>
               <ChevronDown className="w-4 h-4 text-[#8A7058] transition-transform duration-300 group-open:rotate-180" />
             </summary>
-            <div className="pt-3 pr-2 text-xs text-[#5E5245]/85 leading-relaxed space-y-1.5 font-light">
-              <p>• {product.careInstructions}</p>
-              <p>
-                • Lessive douce sans agents blanchissants pour préserver
-                l&apos;éclat des teintes naturelles.
-              </p>
-              <p>• Séchage naturel à l&apos;air libre et à l&apos;ombre.</p>
-              <p>
-                • Repassage sur l&apos;envers encore légèrement humide, ou laisser
-                froisser naturellement pour un chic décontracté.
-              </p>
-            </div>
+            <p className="pt-3 pr-2 text-xs text-[#5E5245]/85 leading-relaxed font-light">
+              {product.careInstructions}
+            </p>
           </details>
-
-          {/* Accordion 3: Atelier Fini Kura */}
-          <details className="group p-4 open:bg-[#EADCCC]/50 transition-colors">
-            <summary className="flex items-center justify-between cursor-pointer list-none select-none text-xs font-medium text-[#5E5245]">
-              <span className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-[#8A7058]" />
-                {messages.product.atelierAccordion}
-              </span>
-              <ChevronDown className="w-4 h-4 text-[#8A7058] transition-transform duration-300 group-open:rotate-180" />
-            </summary>
-            <div className="pt-3 pr-2 text-xs text-[#5E5245]/85 leading-relaxed space-y-1 font-light">
-              <p>
-                Chaque pièce Fini Kura est taillée et assemblée en série très
-                limitée dans notre atelier partenaire de Badalabougou, Bamako,
-                par des maîtres artisans passionnés.
-              </p>
-            </div>
-          </details>
+          )}
         </div>
+        )}
       </section>
 
       {/* Size Guide Modal */}
@@ -401,11 +353,10 @@ export function ProductBuySection({
             </span>
           </button>
 
-          {/* 3 mini reassuring badges */}
-          <div className="grid grid-cols-3 gap-1 pt-1 pb-1 text-center text-[#5E5245]/80">
-            <span className="text-[10px] leading-tight">Paiement réception</span>
-            <span className="text-[10px] leading-tight">Livraison Bamako</span>
-            <span className="text-[10px] leading-tight">Échange possible</span>
+          {/* Mini reassuring badges */}
+          <div className="grid grid-cols-2 gap-1 pt-1 pb-1 text-center text-[#5E5245]/80">
+            <span className="text-[10px] leading-tight">{messages.product.miniBadgePayment}</span>
+            <span className="text-[10px] leading-tight">{messages.product.miniBadgeDelivery}</span>
           </div>
         </div>
       </div>

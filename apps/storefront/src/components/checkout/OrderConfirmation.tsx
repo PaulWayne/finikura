@@ -9,13 +9,11 @@ import {
   Banknote,
   ArrowRight,
   ArrowLeft,
-  Sparkles,
 } from "lucide-react";
 import { Order } from "@/lib/commerce/types";
 import { formatPrice } from "@/lib/format";
 import { whatsappLink, orderConfirmationMessage } from "@/lib/whatsapp";
 import { messages } from "@/messages/fr";
-import { IMAGE_FALLBACKS, handleImgError } from "@/lib/images";
 
 interface OrderConfirmationProps {
   order: Order;
@@ -89,7 +87,7 @@ export function OrderConfirmation({ order, whatsappUrl }: OrderConfirmationProps
                 {messages.confirmation.destinationLabel} {order.shippingAddress.neighborhood}
               </span>
               <span className="text-[11px] text-[#5E5245]/80 mt-0.5">
-                {messages.confirmation.deliveryTiming}
+                {messages.checkout.courierNoticeDelivery}
               </span>
               {order.shippingAddress.deliveryLandmarks && (
                 <span className="text-[11px] text-[#80756C] italic mt-0.5">
@@ -105,32 +103,10 @@ export function OrderConfirmation({ order, whatsappUrl }: OrderConfirmationProps
               <span className="font-medium text-[#231A10]">
                 {messages.confirmation.paymentMethodText}
               </span>
-              <span className="text-[11px] text-[#5E5245]/80 mt-0.5">
-                {messages.confirmation.paymentMethodSubtext}
-              </span>
             </div>
           </div>
         </div>
 
-        {/* Artisan Highlight Banner */}
-        <div className="w-full flex items-center gap-3.5 bg-[#F1E0CE]/70 rounded-xl p-3 sm:p-3.5 mb-6 text-left border border-[#EADCCC]/60">
-          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-lg overflow-hidden shrink-0 bg-[#EADCCC]">
-            <img
-              src="https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?auto=format&fit=crop&w=400&q=80"
-              alt="Atelier Fini Kura Bamako"
-              onError={handleImgError(IMAGE_FALLBACKS.about)}
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="flex flex-col pr-2">
-            <span className="text-[11px] uppercase tracking-wider text-[#92452C] font-semibold">
-              {messages.confirmation.atelierHighlightTitle}
-            </span>
-            <p className="text-xs text-[#231A10] leading-snug mt-0.5">
-              {messages.confirmation.atelierHighlightDesc}
-            </p>
-          </div>
-        </div>
 
         {/* WhatsApp CTA Action */}
         {whatsappHref && (
@@ -178,9 +154,6 @@ export function OrderConfirmation({ order, whatsappUrl }: OrderConfirmationProps
           </Link>
         </div>
 
-        <p className="text-[11px] text-[#80756C] mt-6 tracking-wide">
-          {messages.confirmation.ethicalTag}
-        </p>
       </div>
     </div>
   );

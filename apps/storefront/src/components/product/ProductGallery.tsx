@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useRef } from "react";
 import { messages } from "@/messages/fr";
-import { Sparkles, ZoomIn, Heart } from "lucide-react";
+import { ZoomIn, Heart } from "lucide-react";
 import { triggerToast } from "@/lib/cart-events";
 import { IMAGE_FALLBACKS, handleImgError } from "@/lib/images";
 
@@ -9,13 +9,6 @@ interface ProductGalleryProps {
   images: string[];
   productTitle: string;
 }
-
-const DEFAULT_CAPTIONS = [
-  "Vue cintre studio - Broderies fines",
-  "Portée - Tombé souple et délicat",
-  "Détail du plastron brodé et finitions",
-  "Harmonie de teintes de la collection lin",
-];
 
 export function ProductGallery({ images, productTitle }: ProductGalleryProps) {
   const displayImages =
@@ -100,35 +93,18 @@ export function ProductGallery({ images, productTitle }: ProductGalleryProps) {
             className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
           />
 
-          {/* Editorial Badges on Desktop Image */}
-          <div className="absolute top-4 left-4 flex flex-col gap-2 pointer-events-none">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FDF7F2]/95 backdrop-blur-xs uppercase shadow-xs text-[11px] tracking-[0.15em] font-medium text-[#CA7154]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#CA7154]" />
-              {messages.product.confectionBamako}
-            </span>
-            <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#FDF7F2]/95 backdrop-blur-xs text-[#5E5245] uppercase shadow-xs text-[11px] tracking-[0.15em] font-medium">
-              {messages.product.pureLinen}
-            </span>
-          </div>
 
           {/* Loupe / Interaction Hint */}
           <div className="absolute bottom-4 right-4 pointer-events-none flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#FDF7F2]/90 backdrop-blur-xs text-[#5E5245] shadow-xs transition-opacity group-hover:opacity-100">
             <ZoomIn className="w-4 h-4 text-[#8A7058]" />
             <span className="text-xs text-[#5E5245]/80 font-normal">
-              {DEFAULT_CAPTIONS[activeIndex] || messages.product.mainStudioView}
+              {messages.product.mainStudioView}
             </span>
           </div>
         </div>
 
         {/* Mobile Horizontal Swipeable Carousel (390px) */}
         <div className="block md:hidden relative w-full aspect-square overflow-hidden select-none">
-          {/* Badge Brodée Main */}
-          <div className="absolute top-3 left-3 z-20 pointer-events-none">
-            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-[4px] bg-[#CA7154] text-white text-[10px] tracking-[0.15em] uppercase font-medium shadow-xs">
-              <Sparkles className="w-3 h-3" />
-              {messages.product.handEmbroidered}
-            </span>
-          </div>
 
           {/* Favorite subtle button */}
           <button

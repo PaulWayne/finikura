@@ -18,8 +18,8 @@ export async function generateMetadata({ params }: ProductPageProps) {
 
   if (!product) {
     return {
-      title: "Produit non trouvé | Fini Kura",
-      description: "Habits pour enfants confectionnés à Bamako.",
+      title: messages.meta.productNotFoundTitle,
+      description: messages.meta.defaultDescription,
     };
   }
 

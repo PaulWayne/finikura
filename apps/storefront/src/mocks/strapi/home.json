@@ -3,14 +3,14 @@
     "documentId": "home",
     "seo": {
       "title": "Fini Kura — Habits pour enfants à Bamako",
-      "description": "Grandir avec style, rayonner avec élégance. Maison de confection enfantine à Bamako pour filles et garçons de 3 à 14 ans."
+      "description": "Grandir avec style, rayonner avec élégance. Vêtements pour filles et garçons de 3 à 14 ans, à Bamako. Paiement à la réception."
     },
     "blocks": [
       {
         "__component": "blocks.hero",
         "eyebrow": "NOUVELLE COLLECTION",
         "title": "GRANDIR AVEC STYLE, RAYONNER AVEC ÉLÉGANCE",
-        "subtitle": "Des confections d'exception en lin et coton noble créées à Bamako pour accompagner l'enfance avec douceur.",
+        "subtitle": "Des vêtements de qualité pour les enfants de 3 à 14 ans, pour l'école, les fêtes et les cérémonies, à des prix raisonnables.",
         "cta_text": "DÉCOUVRIR LA COLLECTION",
         "cta_link": "#nouveautes",
         "image_alt": "Deux enfants souriants habillés avec élégance à Bamako",
@@ -62,15 +62,15 @@
       },
       {
         "__component": "blocks.about-excerpt",
-        "eyebrow": "MAISON MALIENNE",
+        "eyebrow": "HABITS NEUFS",
         "title": "À PROPOS DE FINI KURA",
-        "content": "En bambara, « Fini Kura » signifie habits neufs. Installée au cœur de Bamako, notre maison conçoit des pièces d’exception pour accompagner vos enfants de 3 à 14 ans avec élégance, dignité et fierté au quotidien comme lors des grandes occasions.",
+        "content": "En bambara, « Fini Kura » veut dire habits neufs. Fini Kura habille les filles et les garçons de 3 à 14 ans, pour l'école, les fêtes et les cérémonies, avec des vêtements de qualité, élégants et à des prix raisonnables.",
         "cta_text": "NOTRE HISTOIRE",
         "cta_link": "/notre-histoire",
-        "image_alt": "Atelier de confection artisanale à Bamako",
+        "image_alt": "Vêtements Fini Kura",
         "image": {
           "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuAevXAyuHbFW3ixCT7Ss3jQiYgKsRwkOCIgRuIFAXn3bKw1Z39v4CiPfNXCjjFO66GOaH-SgIi1gh9AkvIDifivQdIajp0xJJxZJA94lilwH_o8hbiteubqlQIEnU5yOsGIK-YMfyH9a2RQZ3DGfuPEXAxzEivx_VWkC1lrAFo5Jz3TdZM954lHsZGfoWDBML5rMBQLKnl3d7suIIfJRgZWON7i-BmYhy6jgqK-Pw4",
-          "alternativeText": "Atelier de confection artisanale à Bamako"
+          "alternativeText": "Vêtements Fini Kura"
         }
       }
     ]

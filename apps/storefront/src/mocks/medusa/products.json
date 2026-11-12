@@ -4,9 +4,9 @@
       "id": "prod_filles_01",
       "title": "Robe Terracotta Brodée",
       "handle": "robe-terracotta-brodee",
-      "subtitle": "Pur lin d’artisanat",
-      "description": "Robe confectionnée dans un lin naturel terracotta d'une douceur exceptionnelle. Parements brodés à la main avec délicatesse par nos maîtres artisans à Bamako.",
-      "material": "100% Lin pur lavé d'artisanat",
+      "subtitle": "Parements brodés",
+      "description": "Robe terracotta aux parements brodés, pour les fêtes comme pour les beaux jours.",
+      "material": null,
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuDJh73UnFB4eBhcIx_CWz1k4i7DFcwld9egJrXnH9b8jqNS0u5o-KzoEwaVZIXflWIAk5cg41FSnnO6OFqiMXKRqQyTOlb2hKSyKlhIDSBWgEkK5qqKLOo_FIuPbCt7mE0UgyG66Q_hZTq-_Wor1i-NY6bZyQxxZisarmbU-wbOUElAkRSCEsh5SCHJEDrDU17E5JjV7_MwqL7xVmCKtd-Hiv3mYEGdSEJSwW7nwXY",
       "images": [
         {
@@ -118,17 +118,15 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {
-        "care_instructions": "Lavage délicat à 30°C ou à la main. Séchage à l'ombre. Repassage doux sur l'envers."
-      }
+      "metadata": {}
     },
     {
       "id": "prod_filles_02",
-      "title": "Robe Poudrée en Lin",
+      "title": "Robe Poudrée",
       "handle": "robe-poudree-en-lin",
-      "subtitle": "Coupe ample & douce",
-      "description": "Une robe ample et vaporeuse en lin fin poudré, pensée pour laisser respirer la peau des jeunes filles pendant les chaudes journées à Bamako.",
-      "material": "100% Lin naturel prélavé",
+      "subtitle": "Coupe ample",
+      "description": "Robe ample couleur poudre, légère à porter au quotidien.",
+      "material": null,
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuDdnWIzyePPD5zdQtzJw8HQn2U4rnMqnnOQS8KPv_LJaIurpUSKeFL0vAHAcaqJ_PMmscbGywkg8WHasptjKqIdaBwvXWNYBoztNJrup_FwHv5R9o0Y_Bki_md_QBNyAZqJJg-ex2pxZDwuCE0odyilCcWx0murVTNR2V2V-rzq4E9VwXZKtmKcru2NwKwVe_QapJ4PjQFSmL6bsCgmYmMBE0CFHd7GU2XzSPLuOWc",
       "images": [
         {
@@ -228,17 +226,15 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {
-        "care_instructions": "Lavage à l'eau froide à la main ou cycle laine. Essorage doux."
-      }
+      "metadata": {}
     },
     {
       "id": "prod_filles_03",
       "title": "Robe Écru Broderie Fine",
       "handle": "robe-ecru-broderie-fine",
-      "subtitle": "Manches ballon écru",
-      "description": "Une silhouette cérémoniale ornée de broderies minutieuses ton sur ton au col et aux manches ballon. Élégance pure pour célébrer les moments précieux.",
-      "material": "100% Coton noble peigné",
+      "subtitle": "Manches ballon",
+      "description": "Robe écru brodée ton sur ton au col et aux manches ballon, pour les baptêmes et les cérémonies.",
+      "material": null,
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuBUQsJIPFx1firjjIUDVcwSLAtBdq62I7rcROFVX5ZMxRlPiKZ0RY8oLC-ir7cqgMhsaUa48-X7aFqWr5x0eusytPFlX4WuW5xs-Quh76_ReTzjnM--pPN-In6-7xB6RHtVCOZRo5acBw-QqYG_30xLMjc0swPpxlCt09et2HPlgP7dlISw4NIoD9yEYgftEr8sb5-GX-Lfxivd6i9pvLTri8PYxLIqZBceQjDdUCk",
       "images": [
         {
@@ -333,17 +329,15 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {
-        "care_instructions": "Lavage à 30°C. Ne pas utiliser d'agents blanchissants."
-      }
+      "metadata": {}
     },
     {
       "id": "prod_filles_04",
-      "title": "Robe Étagée Sauge & Lin",
+      "title": "Robe Étagée Sauge",
       "handle": "robe-etagee-sauge-et-lin",
-      "subtitle": "Bi-matière naturelle",
-      "description": "Une robe étagée alternant volants en lin sauge et bandes écrues. Confortable et légère, elle accompagne chaque mouvement avec fluidité.",
-      "material": "60% Lin, 40% Coton peigné",
+      "subtitle": "Volants étagés",
+      "description": "Robe à volants étagés, sauge et écru. Une robe qui suit chaque mouvement.",
+      "material": null,
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuCWwxQd_l874xBf1J2-lI80lVi6hRwNSrVFJ7bxISihM0WcWKqB9jZ-UuM2ocxz9bac3pB9Ke45yC9SvOO8uWMP-gS-Xy8Hq1Dvpu1S-vbpTVpZlShgzM5HDiAG3ji7DlVvUulz5B8VzLgjaH6-Y1PAdobAUKoTN15x4qFDvt6GeRfbq8I8Epm1Xowjjy67xlvfWmmDBA261YXHAImsXk9tBr70sp3yww2ctsUfryg",
       "images": [
         {
@@ -438,17 +432,15 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {
-        "care_instructions": "Lavage à 30°C. Sécher sur cintre à l'ombre."
-      }
+      "metadata": {}
     },
     {
       "id": "prod_filles_05",
       "title": "Robe Manches Ballon Terracotta",
       "handle": "robe-manches-ballon-terracotta",
-      "subtitle": "Coupe princesse et lin texturé",
-      "description": "Une création vibrante par sa teinte terre cuite réchauffée au soleil, agrémentée de manches ballon généreuses et d'un boutonnage dos en nacre.",
-      "material": "100% Lin noble lavé",
+      "subtitle": "Coupe princesse",
+      "description": "Robe terracotta à coupe princesse, manches ballon et boutonnage dans le dos.",
+      "material": null,
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuDJh73UnFB4eBhcIx_CWz1k4i7DFcwld9egJrXnH9b8jqNS0u5o-KzoEwaVZIXflWIAk5cg41FSnnO6OFqiMXKRqQyTOlb2hKSyKlhIDSBWgEkK5qqKLOo_FIuPbCt7mE0UgyG66Q_hZTq-_Wor1i-NY6bZyQxxZisarmbU-wbOUElAkRSCEsh5SCHJEDrDU17E5JjV7_MwqL7xVmCKtd-Hiv3mYEGdSEJSwW7nwXY",
       "images": [
         {
@@ -543,17 +535,15 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {
-        "care_instructions": "Lavage à la main ou délicat 30°C. Repassage vapeur."
-      }
+      "metadata": {}
     },
     {
       "id": "prod_filles_06",
       "title": "Robe Sans Manches Terracotta",
       "handle": "robe-sans-manches-terracotta",
-      "subtitle": "Fraîcheur quotidienne",
-      "description": "Idéale pour les après-midis ensoleillés, cette robe droite sans manches offre un tomber parfait et une grande liberté de jeu.",
-      "material": "100% Coton peigné fin",
+      "subtitle": "Pour tous les jours",
+      "description": "Robe droite sans manches, simple à enfiler pour l'école et les jeux.",
+      "material": null,
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuDJh73UnFB4eBhcIx_CWz1k4i7DFcwld9egJrXnH9b8jqNS0u5o-KzoEwaVZIXflWIAk5cg41FSnnO6OFqiMXKRqQyTOlb2hKSyKlhIDSBWgEkK5qqKLOo_FIuPbCt7mE0UgyG66Q_hZTq-_Wor1i-NY6bZyQxxZisarmbU-wbOUElAkRSCEsh5SCHJEDrDU17E5JjV7_MwqL7xVmCKtd-Hiv3mYEGdSEJSwW7nwXY",
       "images": [
         {
@@ -648,17 +638,15 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {
-        "care_instructions": "Lavage en machine à 30°C. Séchage sur fil."
-      }
+      "metadata": {}
     },
     {
       "id": "prod_filles_07",
-      "title": "Robe Plastron Brodée Lin",
+      "title": "Robe Plastron Brodée",
       "handle": "robe-plastron-brodee-lin",
-      "subtitle": "Plastron d'artisanat",
-      "description": "Le plastron traditionnel revisité avec des fils soyeux sur un lin écru de première qualité. Une pièce de cérémonie emblématique de Bamako.",
-      "material": "100% Lin pur tissé main",
+      "subtitle": "Plastron brodé",
+      "description": "Robe écru au plastron brodé, une pièce pour les grandes occasions.",
+      "material": null,
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuBUQsJIPFx1firjjIUDVcwSLAtBdq62I7rcROFVX5ZMxRlPiKZ0RY8oLC-ir7cqgMhsaUa48-X7aFqWr5x0eusytPFlX4WuW5xs-Quh76_ReTzjnM--pPN-In6-7xB6RHtVCOZRo5acBw-QqYG_30xLMjc0swPpxlCt09et2HPlgP7dlISw4NIoD9yEYgftEr8sb5-GX-Lfxivd6i9pvLTri8PYxLIqZBceQjDdUCk",
       "images": [
         {
@@ -753,17 +741,15 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {
-        "care_instructions": "Nettoyage délicat. Repassage sur envers."
-      }
+      "metadata": {}
     },
     {
       "id": "prod_filles_08",
       "title": "Robe Bicolore Terracotta & Rose",
       "handle": "robe-bicolore-terracotta-et-rose",
-      "subtitle": "Contraste subtil & poétique",
-      "description": "L'alliance subtile de la terre cuite malienne et d'un rose poudré délicat. Une coupe moderne aux finitions irréprochables.",
-      "material": "100% Lin lavé d'exception",
+      "subtitle": "Deux tons",
+      "description": "Robe bicolore terracotta et rose poudré, à coupe moderne.",
+      "material": null,
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuDdnWIzyePPD5zdQtzJw8HQn2U4rnMqnnOQS8KPv_LJaIurpUSKeFL0vAHAcaqJ_PMmscbGywkg8WHasptjKqIdaBwvXWNYBoztNJrup_FwHv5R9o0Y_Bki_md_QBNyAZqJJg-ex2pxZDwuCE0odyilCcWx0murVTNR2V2V-rzq4E9VwXZKtmKcru2NwKwVe_QapJ4PjQFSmL6bsCgmYmMBE0CFHd7GU2XzSPLuOWc",
       "images": [
         {
@@ -858,17 +844,15 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {
-        "care_instructions": "Lavage délicat 30°C. Sécher à l'air libre."
-      }
+      "metadata": {}
     },
     {
       "id": "prod_filles_09",
       "title": "Robe Tablier Terracotta",
       "handle": "robe-tablier-terracotta",
-      "subtitle": "Brodée au fil doré",
-      "description": "Coupe chasuble pratique ornée de fines surpiqûres dorées, idéale à porter seule ou superposée sur un sous-pull léger.",
-      "material": "100% Lin pur lavé",
+      "subtitle": "Surpiqûres dorées",
+      "description": "Robe chasuble terracotta à surpiqûres dorées, à porter seule ou sur un haut léger.",
+      "material": null,
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuDJh73UnFB4eBhcIx_CWz1k4i7DFcwld9egJrXnH9b8jqNS0u5o-KzoEwaVZIXflWIAk5cg41FSnnO6OFqiMXKRqQyTOlb2hKSyKlhIDSBWgEkK5qqKLOo_FIuPbCt7mE0UgyG66Q_hZTq-_Wor1i-NY6bZyQxxZisarmbU-wbOUElAkRSCEsh5SCHJEDrDU17E5JjV7_MwqL7xVmCKtd-Hiv3mYEGdSEJSwW7nwXY",
       "images": [
         {
@@ -963,17 +947,15 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {
-        "care_instructions": "Lavage à 30°C sur envers."
-      }
+      "metadata": {}
     },
     {
       "id": "prod_filles_10",
-      "title": "Ensemble Rose & Lin",
+      "title": "Ensemble Rose",
       "handle": "ensemble-rose-et-lin",
       "subtitle": "Deux pièces coordonnées",
-      "description": "Blouse fluide et jupe assortie en lin doux. Une tenue élégante et polyvalente pour les fêtes de famille et les visites du dimanche.",
-      "material": "100% Lin naturel",
+      "description": "Blouse et jupe assorties, pour les fêtes de famille et les sorties du dimanche.",
+      "material": null,
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuDdnWIzyePPD5zdQtzJw8HQn2U4rnMqnnOQS8KPv_LJaIurpUSKeFL0vAHAcaqJ_PMmscbGywkg8WHasptjKqIdaBwvXWNYBoztNJrup_FwHv5R9o0Y_Bki_md_QBNyAZqJJg-ex2pxZDwuCE0odyilCcWx0murVTNR2V2V-rzq4E9VwXZKtmKcru2NwKwVe_QapJ4PjQFSmL6bsCgmYmMBE0CFHd7GU2XzSPLuOWc",
       "images": [
         {
@@ -1068,17 +1050,15 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {
-        "care_instructions": "Lavage doux à 30°C. Repassage moyen."
-      }
+      "metadata": {}
     },
     {
       "id": "prod_garcons_01",
-      "title": "Ensemble Sauge & Lin",
+      "title": "Ensemble Sauge",
       "handle": "ensemble-sauge-et-lin",
       "subtitle": "Chemise mandarin & pantalon",
-      "description": "Ensemble signature Fini Kura composé d'une chemise col officier en lin sauge et d'un pantalon assorti à taille élastiquée. Confort royal et allure soignée.",
-      "material": "100% Lin pur lavé & popeline de coton",
+      "description": "Chemise à col officier et pantalon assorti à taille élastique, couleur sauge.",
+      "material": null,
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuBeMRPMGycAm0JXxQ1PuwsCgRF0gukcWfV9VuiCmgiP1qok_t44DHNBoIyaJiH1sFrgShcLemYUXwgys2Z5igZl6lMvCV11V4zpdbK3kg_00vhoboI5qIfmxgYSmqMldgk7ysl6bxScgaMFyKrupKkYyFnBaL66-qSXTIdSmt4IyxvIRt0WKvlyth8aoTmHX0uz36QMZYQfs4J22-CVfCaeT0LWECkQUhwAAt2rBIs",
       "images": [
         {
@@ -1178,17 +1158,15 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {
-        "care_instructions": "Lavage à 30°C. Repassage doux sur l'envers."
-      }
+      "metadata": {}
     },
     {
       "id": "prod_garcons_02",
       "title": "Chemise Mandarin Sauge",
       "handle": "chemise-mandarin-sauge",
-      "subtitle": "Pur lin d'artisanat",
-      "description": "Col officier raffiné et boutons en buis naturel. Une chemise intemporelle pour les petits garçons élégants de Bamako.",
-      "material": "100% Lin pur lavé",
+      "subtitle": "Col officier",
+      "description": "Chemise sauge à col officier, pour l'école comme pour les fêtes.",
+      "material": null,
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuAps3y2vE6ZTVxZPacbzqYSs5xonv4Rw-tsV-zQ6FbgXNfXI38WPIFE0eDZVWHcUsMDAMNCscNsKOLI3hJ60ZJ_JXEZgmKnFSFfs961GRt_f18tdMyfqEW7Hlfy7sYS-TZASAbg7izu-8u_oKAuY1vxVgQB_ZOY5-94tUcKmO-UNiJqjPAn_PGQeydX5DcIfkzep9hXjo29LALR7xfpH717r4b3VGtlJh0D9vXntqY",
       "images": [
         {
@@ -1288,17 +1266,15 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {
-        "care_instructions": "Lavage à 30°C. Repassage sur lin humide."
-      }
+      "metadata": {}
     },
     {
       "id": "prod_garcons_03",
-      "title": "Ensemble Terracotta & Lin",
+      "title": "Ensemble Terracotta",
       "handle": "ensemble-terracotta-et-lin",
-      "subtitle": "Chemise structurée & pantalon",
-      "description": "Une teinte chaude et distinguée pour ce duo chemise droite et pantalon souple. Conçu pour allier prestance et liberté de mouvement.",
-      "material": "100% Lin naturel prélavé",
+      "subtitle": "Chemise & pantalon",
+      "description": "Chemise droite et pantalon souple terracotta, pour les beaux jours et les occasions.",
+      "material": null,
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuBJ4NFDmrn87wMW-9_en0xH0WmWrWMTfZjsOd6EqsoOkOHffSqsAFYl2KiKw4Y0ymFAj86FOIf35E1O1xZ4kcentweAy0kZMtfNC-h1IRv1tVB_HPeP2sYVuPN0-SPB17JbLE9KL3JY1s4WbB0jYzkGDAriv70kGL7L_-1Fldn1Sh6MTx8Ad3gvLMG13pjXmMfT1ArUVWNVcw-luypO1U-xyil0cPLB_CFOgJkUzgo",
       "images": [
         {
@@ -1393,17 +1369,15 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {
-        "care_instructions": "Lavage délicat à 30°C. Séchage à plat."
-      }
+      "metadata": {}
     },
     {
       "id": "prod_garcons_04",
       "title": "Tunique Cérémonie Écru",
       "handle": "tunique-ceremonie-ecru",
-      "subtitle": "Col brodé motifs fins",
-      "description": "Col mao brodé ton sur ton avec fentes latérales d'aisance. Une coupe majestueuse pour les baptêmes, mariages et fêtes traditionnelles.",
-      "material": "100% Coton noble peigné",
+      "subtitle": "Col brodé",
+      "description": "Tunique écru à col mao brodé et fentes sur les côtés, pour les baptêmes, mariages et fêtes religieuses.",
+      "material": null,
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuDUNNTfurjvCW2xN3Q2ao93wDN0yuKAp-jMGKXcY5kD0p9aJA6-h_NgjxMKTCafttQ3RYicS1Y6b7kmxth7rry-NUOQ7q3Y4bN1LYTi6aZ9OSkAfqU_GDFnGx0toTCcXhpgIBgyiK1EmfDMhADDJx_l_IUwCvBL28zhK8zEBAbg8-Q4el-4OHpzsNqFuWQS62ggP69KBYK6Z1S6e3ShvaaGtRsBLTHqI0SYXfDiz5U",
       "images": [
         {
@@ -1498,17 +1472,15 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {
-        "care_instructions": "Lavage à la main ou machine délicat 30°C."
-      }
+      "metadata": {}
     },
     {
       "id": "prod_garcons_05",
-      "title": "Chemise Ciel & Lin",
+      "title": "Chemise Ciel",
       "handle": "chemise-ciel-et-lin",
       "subtitle": "Coupe droite bicolore",
-      "description": "Bleu doux poudré avec col et empiècements écrus. Des boutons en nacre véritable subliment cette chemise moderne.",
-      "material": "100% Lin pur lavé",
+      "description": "Chemise bleu ciel à col et empiècements écrus.",
+      "material": null,
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuAxGMlIOuBub6ykYBzQ9Kk9P69TvbavOw3UoFGACsx_jzOSXlUTqQ4GiqsmIf88SUXsxtFqZnPWYzTGXqoXbOFbo6AcJZvRmDJUdu9HHTKOQH6_j34bRSP2oLsavsqDuxtjZCNeKoWEIo5dbKdOMrnYOLsRNpNIIDfSfNEFGePpIpfeI7BXoGSTMc2Byt3IFhbha5MGRGg48GcHHOcXfP_p25RQ-Sre-KCgi1owSRU",
       "images": [
         {
@@ -1603,17 +1575,15 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {
-        "care_instructions": "Lavage à 30°C. Repassage doux."
-      }
+      "metadata": {}
     },
     {
       "id": "prod_garcons_06",
       "title": "Ensemble Cérémonie Terracotta",
       "handle": "ensemble-ceremonie-terracotta",
-      "subtitle": "Chemise col officier & pantalon",
-      "description": "Tunique longue et pantalon fuselé coordonnés en lin terracotta intense. Confectionné pour les fêtes et grandes solennités à Bamako.",
-      "material": "100% Lin pur lavé d'artisanat",
+      "subtitle": "Tunique & pantalon",
+      "description": "Tunique longue et pantalon fuselé terracotta, pour les fêtes et les cérémonies.",
+      "material": null,
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuAzb7ka0mHByzFTMFMKOPDpBQNr-b55ECCK6Tx_3xDxQlWITVtEuvwYpnITeA-hkum11uz3DXeMGN6oFy9TM_GMBSQNVc7pmcmK1lBGHDgJ9KY988QJge4TNnAwWZBYoy7AigD05vvfr1scyKUYw-ILGVkyHRueTaDM_YUa9awFKgp2DGN6GU5xRY1ApxbrdztP91mKgrznTvDyNVGPCJ_c6ggua1aY_yOBelEVqTU",
       "images": [
         {
@@ -1708,17 +1678,15 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {
-        "care_instructions": "Lavage délicat. Séchage à l'ombre."
-      }
+      "metadata": {}
     },
     {
       "id": "prod_garcons_07",
-      "title": "Ensemble Lin Naturel & Sauge",
+      "title": "Ensemble Naturel & Sauge",
       "handle": "ensemble-lin-naturel-et-sauge",
-      "subtitle": "Deux pièces souples, taille élastique",
-      "description": "Deux pièces légères en fibres naturelles non teintes associées à une touche sauge. Douceur et respirabilité garanties.",
-      "material": "100% Lin brut naturel",
+      "subtitle": "Taille élastique",
+      "description": "Deux pièces couleur naturelle avec une touche de sauge, à taille élastique.",
+      "material": null,
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuBeMRPMGycAm0JXxQ1PuwsCgRF0gukcWfV9VuiCmgiP1qok_t44DHNBoIyaJiH1sFrgShcLemYUXwgys2Z5igZl6lMvCV11V4zpdbK3kg_00vhoboI5qIfmxgYSmqMldgk7ysl6bxScgaMFyKrupKkYyFnBaL66-qSXTIdSmt4IyxvIRt0WKvlyth8aoTmHX0uz36QMZYQfs4J22-CVfCaeT0LWECkQUhwAAt2rBIs",
       "images": [
         {
@@ -1813,17 +1781,15 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {
-        "care_instructions": "Lavage à 30°C. Séchage à l'air libre."
-      }
+      "metadata": {}
     },
     {
       "id": "prod_garcons_08",
-      "title": "Tunique Lin Beige Brodé",
+      "title": "Tunique Beige Brodée",
       "handle": "tunique-lin-beige-brode",
-      "subtitle": "Détails artisanaux faits main à Bamako",
-      "description": "Une tunique aux lignes épurées et broderies artisanales discrètes autour de l'encolure. Élégance sobre et dignité assurée.",
-      "material": "100% Lin pur lavé",
+      "subtitle": "Encolure brodée",
+      "description": "Tunique beige aux lignes simples, brodée autour de l'encolure.",
+      "material": null,
       "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuAOKybrOAM_tLS0LKCWBb2xojFoy22z4XGzrYEzRg8HXEt7ACfyvAcJJDWn73hDEoUX66vlZlvjthUoQChbbb4fkMrW0c9zK4q8GxCMtFqn0Gxfg-3Az0qrxRfK_igoiznG5Xm4Zyxin0owaWstEn4Tb1kk6WLwoHTkN5N7rFspRdPc0SVXkBhtV3mRZB0W6Of-bw5zc2gOGkMDFZFY2jhk5R9apNi5L0DrU37Dx_o",
       "images": [
         {
@@ -1918,9 +1884,7 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {
-        "care_instructions": "Lavage délicat à 30°C. Repassage doux."
-      }
+      "metadata": {}
     }
   ]
 }

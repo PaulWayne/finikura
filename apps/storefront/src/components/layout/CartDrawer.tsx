@@ -283,7 +283,7 @@ export function CartDrawer({ initialCart }: CartDrawerProps) {
             })
           )}
 
-          {/* Atelier & Delivery reassuring notes (when cart has items) */}
+          {/* Delivery reassuring notes (when cart has items) */}
           {cart.items.length > 0 && (
             <div className="space-y-3 pt-2">
               <div className="flex items-start space-x-3 text-xs text-[#5E5245] bg-[#EADCCC]/40 p-3 rounded-xl border border-[#EADCCC]">
@@ -292,9 +292,6 @@ export function CartDrawer({ initialCart }: CartDrawerProps) {
                   <span className="font-medium">
                     {messages.cart.deliveryAssurance}
                   </span>
-                  <p className="text-[11px] text-[#5E5245]/80 mt-0.5 font-light">
-                    {messages.cart.deliveryAssuranceSub}
-                  </p>
                 </div>
               </div>
 
@@ -320,12 +317,6 @@ export function CartDrawer({ initialCart }: CartDrawerProps) {
                 </span>
               </div>
 
-              <div className="flex justify-between items-center text-xs text-[#5E5245]">
-                <span>{messages.cart.deliveryLabel}</span>
-                <span className="text-[#CA7154] font-medium">
-                  {messages.cart.deliveryStatus}
-                </span>
-              </div>
 
               <div className="flex justify-between items-center pt-2.5 border-t border-[#EADCCC]">
                 <span className="font-serif text-base sm:text-lg font-semibold text-[#5E5245]">

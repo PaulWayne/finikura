@@ -3,12 +3,12 @@ import Link from "next/link";
 import { PageFallback } from "@/components/layout/PageFallback";
 import { commerceService } from "@/lib/commerce";
 import { contentService } from "@/lib/content";
+import { messages } from "@/messages/fr";
 import { OrderConfirmation } from "@/components/checkout/OrderConfirmation";
 
 export const metadata = {
-  title: "Confirmation de commande | Fini Kura Bamako",
-  description:
-    "Votre commande a été enregistrée avec succès auprès de notre atelier Fini Kura à Bamako.",
+  title: messages.meta.confirmationTitle,
+  description: messages.meta.confirmationDescription,
 };
 
 interface OrderConfirmationPageProps {
