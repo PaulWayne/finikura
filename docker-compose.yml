@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: finikura-postgres
+    environment:
+      POSTGRES_USER: finikura
+      POSTGRES_PASSWORD: finikura
+      POSTGRES_DB: medusa
+    ports:
+      - "5434:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./infra/postgres-init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+  redis:
+    image: redis:7-alpine
+    container_name: finikura-redis
+    ports:
+      - "6380:6379"
+volumes:
+  pgdata:

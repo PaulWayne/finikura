@@ -1,0 +1,114 @@
+"use server";
+import { cookies } from "next/headers";
+import { updateTag } from "next/cache";
+import { commerceService } from "@/lib/commerce";
+import { CACHE_TAGS } from "@/lib/cache-tags";
+import type { Cart, CartItem, Order } from "@/lib/commerce/types";
+import { checkoutSchema } from "@/lib/validation/checkout";
+import { messages } from "@/messages/fr";
+
+const CART_COOKIE = "fk_cart_id";
+
+async function readCartId(): Promise<string | null> {
+  return (await cookies()).get(CART_COOKIE)?.value ?? null;
+}
+
+async function writeCartId(cartId: string | null): Promise<void> {
+  const store = await cookies();
+  if (!cartId) {
+    store.delete(CART_COOKIE);
+    return;
+  }
+  store.set(CART_COOKIE, cartId, {
+    httpOnly: true,
+    sameSite: "lax",
+    secure: process.env.NODE_ENV === "production",
+    path: "/",
+    maxAge: 60 * 60 * 24 * 30,
+  });
+}
+
+function errorMessage(err: unknown, fallback: string): string {
+  return err instanceof Error ? err.message : fallback;
+}
+
+export async function getCartAction(): Promise<Cart> {
+  return commerceService.getCart(await readCartId());
+}
+
+export async function addToCartAction(
+  variantId: string,
+  quantity = 1
+): Promise<{ success: boolean; cart: Cart; addedItem?: CartItem; error?: string }> {
+  const cartId = await readCartId();
+  try {
+    const result = await commerceService.addItemToCart(cartId, variantId, quantity);
+    if (result.cart.id !== cartId) await writeCartId(result.cart.id);
+    return { success: true, cart: result.cart, addedItem: result.addedItem };
+  } catch (err) {
+    return {
+      success: false,
+      cart: await commerceService.getCart(cartId),
+      error: errorMessage(err, messages.errors.addToCart),
+    };
+  }
+}
+
+export async function updateQuantityAction(
+  itemId: string,
+  quantity: number
+): Promise<{ success: boolean; cart: Cart; error?: string }> {
+  const cartId = await readCartId();
+  try {
+    if (!cartId) throw new Error(messages.errors.cartNotFound);
+    return { success: true, cart: await commerceService.updateCartItemQuantity(cartId, itemId, quantity) };
+  } catch (err) {
+    return {
+      success: false,
+      cart: await commerceService.getCart(cartId),
+      error: errorMessage(err, messages.errors.updateCart),
+    };
+  }
+}
+
+export async function removeItemAction(
+  itemId: string
+): Promise<{ success: boolean; cart: Cart; error?: string }> {
+  const cartId = await readCartId();
+  try {
+    if (!cartId) throw new Error(messages.errors.cartNotFound);
+    return { success: true, cart: await commerceService.removeItemFromCart(cartId, itemId) };
+  } catch (err) {
+    return {
+      success: false,
+      cart: await commerceService.getCart(cartId),
+      error: errorMessage(err, messages.errors.updateCart),
+    };
+  }
+}
+
+export async function placeOrderAction(
+  input: unknown
+): Promise<{ success: boolean; order?: Order; error?: string }> {
+  const validation = checkoutSchema.safeParse(input);
+  if (!validation.success) {
+    return { success: false, error: validation.error.issues[0]?.message ?? messages.errors.invalidOrder };
+  }
+
+  const cartId = await readCartId();
+  if (!cartId) return { success: false, error: messages.errors.emptyCart };
+
+  const { fullName, phone, neighborhood, deliveryLandmarks } = validation.data;
+  try {
+    const order = await commerceService.placeOrder(
+      cartId,
+      { fullName, phone },
+      { neighborhood, deliveryLandmarks }
+    );
+    await writeCartId(null);
+    updateTag(CACHE_TAGS.catalog); // stock changed
+    return { success: true, order };
+  } catch (err) {
+    return { success: false, error: errorMessage(err, messages.errors.placeOrder) };
+  }
+}

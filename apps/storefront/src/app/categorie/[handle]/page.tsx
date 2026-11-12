@@ -1,0 +1,155 @@
+import React, { Suspense } from "react";
+import Link from "next/link";
+import { PageFallback } from "@/components/layout/PageFallback";
+import { commerceService } from "@/lib/commerce";
+import { contentService } from "@/lib/content";
+import { messages } from "@/messages/fr";
+import { FilterChips } from "@/components/catalog/FilterChips";
+import { ProductCard } from "@/components/catalog/ProductCard";
+import { ReassuranceBlock } from "@/components/blocks/ReassuranceBlock";
+import { CategoryHandle } from "@/lib/commerce/types";
+
+interface CategoryPageProps {
+  params: Promise<{ handle: string }> | { handle: string };
+  searchParams?: Promise<{ age?: string; occasion?: string }> | { age?: string; occasion?: string };
+}
+
+export async function generateMetadata({ params }: CategoryPageProps) {
+  const resolvedParams = await Promise.resolve(params);
+  const category = await commerceService.getCategoryByHandle(resolvedParams.handle);
+
+  if (!category) {
+    return {
+      title: "Catégorie non trouvée | Fini Kura",
+      description: "Collection de vêtements pour enfants à Bamako.",
+    };
+  }
+
+  return {
+    title: `${category.name} | Fini Kura`,
+    description: category.description,
+    openGraph: {
+      title: `${category.name} — Fini Kura Bamako`,
+      description: category.description,
+    },
+  };
+}
+
+async function CategoryContent({
+  params,
+  searchParams,
+}: CategoryPageProps) {
+  const resolvedParams = await Promise.resolve(params);
+  const resolvedSearchParams = (await Promise.resolve(searchParams)) || {};
+
+  const handle = resolvedParams.handle as CategoryHandle;
+  const age = resolvedSearchParams.age;
+  const occasion = resolvedSearchParams.occasion;
+
+  const [category, products, settings] = await Promise.all([
+    commerceService.getCategoryByHandle(handle),
+    commerceService.getProducts({
+      categoryHandle: handle,
+      age: age || undefined,
+      occasion: occasion || undefined,
+    }),
+    contentService.getGlobalSettings(),
+  ]);
+
+  if (!category) {
+    return (
+      <div className="py-20 text-center">
+        <h1 className="font-serif text-2xl text-[#5E5245] uppercase mb-4">
+          Catégorie introuvable
+        </h1>
+        <p className="text-sm text-[#5E5245]/70 mb-6">
+          La collection demandée n&apos;existe pas ou a été déplacée.
+        </p>
+        <Link
+          href="/"
+          className="min-touch-btn inline-flex items-center justify-center px-6 py-2.5 rounded-[4px] bg-[#8A7058] text-white text-xs font-medium uppercase tracking-[0.15em]"
+        >
+          {messages.confirmation.backToHome}
+        </Link>
+      </div>
+    );
+  }
+
+  return (
+    <div className="py-4 md:py-8 space-y-6 md:space-y-8" data-purpose="catalog-page">
+      {/* Breadcrumb */}
+      <nav
+        aria-label="Fil d'Ariane"
+        className="flex items-center space-x-2 text-xs text-[#5E5245]/70"
+      >
+        <Link href="/" className="hover:text-[#CA7154] transition-colors">
+          {messages.catalog.homeBreadcrumb}
+        </Link>
+        <span>/</span>
+        <span className="text-[#5E5245] font-medium">{category.name}</span>
+      </nav>
+
+      {/* Category Header */}
+      <div className="text-center max-w-2xl mx-auto space-y-3">
+        <h1 className="font-serif text-3xl md:text-[40px] uppercase font-normal text-[#5E5245] tracking-[0.08em] leading-tight">
+          {category.name}
+        </h1>
+        <p className="text-sm md:text-base text-[#5E5245]/80 font-light leading-relaxed">
+          {category.description}
+        </p>
+      </div>
+
+      {/* Filter Chips (Ages & Occasions) */}
+      <FilterChips
+        categoryHandle={handle}
+        selectedAge={age}
+        selectedOccasion={occasion}
+      />
+
+      {/* Product Count Indicator */}
+      <div className="text-center pb-2">
+        <span className="text-[11px] md:text-xs font-medium uppercase tracking-[0.2em] text-[#5E5245]/80">
+          {messages.catalog.creationsCount(products.length)}
+        </span>
+      </div>
+
+      {/* Product Grid */}
+      {products.length === 0 ? (
+        <div className="py-16 text-center rounded-2xl bg-[#EADCCC]/30 border border-[#EADCCC] p-8">
+          <p className="text-base text-[#5E5245] font-serif mb-3">
+            {messages.catalog.noProductsFound}
+          </p>
+          <Link
+            href={`/categorie/${handle}`}
+            className="min-touch-btn inline-flex items-center justify-center px-5 py-2 rounded-[4px] border border-[#8A7058] text-[#8A7058] text-xs font-medium uppercase tracking-[0.15em] hover:bg-[#8A7058] hover:text-white transition"
+          >
+            Réinitialiser les filtres
+          </Link>
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 md:gap-6">
+          {products.map((product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              showCategoryBadge={false}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Reassurance Strip */}
+      <div className="pt-8 md:pt-14">
+        <ReassuranceBlock items={settings.reassuranceItems} />
+      </div>
+    </div>
+  );
+}
+
+export default function CategoryPage(props: CategoryPageProps) {
+  return (
+    <Suspense fallback={<PageFallback />}>
+      <CategoryContent {...props} />
+    </Suspense>
+  );
+}
