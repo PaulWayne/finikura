@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_shared_seo",
+  "info": {
+    "displayName": "Référencement",
+    "icon": "search"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "maxLength": 70
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

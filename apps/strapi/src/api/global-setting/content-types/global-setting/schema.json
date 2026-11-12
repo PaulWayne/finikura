@@ -1,0 +1,39 @@
+{
+  "kind": "singleType",
+  "collectionName": "global_settings",
+  "info": {
+    "singularName": "global-setting",
+    "pluralName": "global-settings",
+    "displayName": "Réglages globaux"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "announcement_bar": {
+      "type": "string",
+      "required": true
+    },
+    "whatsapp_number": {
+      "type": "string",
+      "required": true,
+      "regex": "^[0-9]{11}$"
+    },
+    "social_links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.social-link"
+    },
+    "footer_links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.link"
+    },
+    "reassurance_items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.reassurance-item"
+    }
+  }
+}

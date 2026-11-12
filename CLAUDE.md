@@ -4,14 +4,15 @@ Site e-commerce de vêtements pour enfants de 3 à 14 ans, vendus à Bamako (6 5
 Commande sans compte ni e-mail, confirmation par lien WhatsApp, paiement à la réception.
 Lancement : 1er décembre 2026. Cahier des charges : https://claude.ai/artifact/Hb1QZvdjcUdgLohxFiJTE7
 
-## Commandes (à confirmer à l'étape 3)
-- `docker compose up -d` : PostgreSQL + Redis en local
-- `pnpm dev` : front, Medusa et Strapi
-- `pnpm --filter storefront dev | build | lint | typecheck | test`
-- `pnpm --filter medusa seed`, `pnpm --filter strapi seed`
-- Node ≥ 22.12
+## Commandes
+- Node 22.23.4 (`.nvmrc`), pnpm 12
+- `docker compose up -d` : PostgreSQL 16 (port 5434, bases `medusa` et `strapi`) + Redis 7 (port 6380)
+- `pnpm dev` : front (3100), Medusa (9000, admin `/app`) et Strapi (1337, admin `/admin`)
+- `pnpm --filter storefront dev | build | lint | typecheck`
+- `pnpm --filter medusa seed`, `pnpm --filter strapi seed` (idempotents, lisent les fixtures du front)
+- Tests manuels Medusa : `apps/medusa/integration-tests/manual/*.mjs`
 
-## Dépôt (à confirmer)
+## Dépôt
 - `apps/storefront` : Next.js (App Router), TypeScript strict, Tailwind, shadcn/ui
 - `apps/medusa` : Medusa v2 (vente)
 - `apps/strapi` : Strapi v5 (contenu)

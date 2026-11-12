@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_blocks_cta",
+  "info": {
+    "displayName": "Appel à l'action",
+    "icon": "cursor"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string",
+      "required": false
+    },
+    "cta_text": {
+      "type": "string",
+      "required": true
+    },
+    "cta_link": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

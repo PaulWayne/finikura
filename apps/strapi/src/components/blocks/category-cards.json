@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_blocks_category_cards",
+  "info": {
+    "displayName": "Cartes univers",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "eyebrow": {
+      "type": "string",
+      "required": false
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string",
+      "required": false
+    },
+    "cards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.category-card"
+    }
+  }
+}

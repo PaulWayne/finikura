@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_blocks_hero",
+  "info": {
+    "displayName": "Grande image",
+    "icon": "picture"
+  },
+  "options": {},
+  "attributes": {
+    "eyebrow": {
+      "type": "string",
+      "required": false
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "text",
+      "required": false
+    },
+    "cta_text": {
+      "type": "string",
+      "required": false
+    },
+    "cta_link": {
+      "type": "string",
+      "required": false
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "image_alt": {
+      "type": "string",
+      "required": false
+    }
+  }
+}

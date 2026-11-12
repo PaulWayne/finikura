@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_blocks_product_section",
+  "info": {
+    "displayName": "Section produits",
+    "icon": "shopping-cart"
+  },
+  "options": {},
+  "attributes": {
+    "eyebrow": {
+      "type": "string",
+      "required": false
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "collection_handle": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

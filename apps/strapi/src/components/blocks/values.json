@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_blocks_values",
+  "info": {
+    "displayName": "Valeurs",
+    "icon": "star"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.value-item"
+    }
+  }
+}

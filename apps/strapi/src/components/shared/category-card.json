@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_shared_category_card",
+  "info": {
+    "displayName": "Carte univers",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "category_handle": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "age_range": {
+      "type": "string",
+      "required": false
+    },
+    "tagline": {
+      "type": "string",
+      "required": false
+    },
+    "cta_text": {
+      "type": "string",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "image_alt": {
+      "type": "string",
+      "required": false
+    }
+  }
+}

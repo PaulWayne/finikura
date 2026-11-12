@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_shared_tip",
+  "info": {
+    "displayName": "Conseil",
+    "icon": "lightbulb"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_blocks_about_excerpt",
+  "info": {
+    "displayName": "Extrait À propos",
+    "icon": "feather"
+  },
+  "options": {},
+  "attributes": {
+    "eyebrow": {
+      "type": "string",
+      "required": false
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "content": {
+      "type": "text",
+      "required": true
+    },
+    "cta_text": {
+      "type": "string",
+      "required": false
+    },
+    "cta_link": {
+      "type": "string",
+      "required": false
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "image_alt": {
+      "type": "string",
+      "required": false
+    }
+  }
+}

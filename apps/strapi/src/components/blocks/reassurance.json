@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_blocks_reassurance",
+  "info": {
+    "displayName": "Engagements",
+    "icon": "check"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": false
+    }
+  }
+}

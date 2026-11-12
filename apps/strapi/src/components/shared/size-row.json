@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_shared_size_row",
+  "info": {
+    "displayName": "Ligne de mesures",
+    "icon": "layout"
+  },
+  "options": {},
+  "attributes": {
+    "age": {
+      "type": "string",
+      "required": true
+    },
+    "height_cm": {
+      "type": "string",
+      "required": false
+    },
+    "chest_cm": {
+      "type": "string",
+      "required": false
+    },
+    "waist_cm": {
+      "type": "string",
+      "required": false
+    },
+    "hips_cm": {
+      "type": "string",
+      "required": false
+    }
+  }
+}

@@ -8,3 +8,4 @@ allowBuilds:
   msgpackr-extract: true
   protobufjs: true
   "@medusajs/telemetry": false
+  core-js-pure: false
