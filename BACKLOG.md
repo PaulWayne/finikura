@@ -22,7 +22,7 @@ Les éléments ne sont pas encore des issues GitHub. On les crée seulement apr�
 
 | ID | Titre | Prio | Taille | Dépend de |
 |---|---|---|---|---|
-| FK-01 | Message WhatsApp complet et numéro depuis Strapi | P0 | M | Cliente : numéro WhatsApp |
+| FK-01 | Message WhatsApp complet et numéro depuis Strapi | P0 | M | — |
 | FK-02 | Coordonnées mémorisées en localStorage | P0 | S | — |
 | FK-03 | Pages éditoriales depuis Strapi | P0 | L | FK-15 pour le contenu final |
 | FK-04 | Retrait des promesses non validées | P0 | M | — |
@@ -33,15 +33,15 @@ Les éléments ne sont pas encore des issues GitHub. On les crée seulement apr�
 | FK-09 | Hébergement, domaine, HTTPS, sauvegardes, Redis | P0 | L | — |
 | FK-10 | Statistiques de visites | P0 | S | FK-09 |
 | FK-11 | Contraste AA et focus visibles | P0 | M | FK-12 |
-| FK-12 | Couleurs uniquement par les tokens de la charte | P0 | L | Cliente : codes couleur |
+| FK-12 | Couleurs uniquement par les tokens de la charte | P0 | L | — |
 | FK-13 | Pages introuvables : vrai statut 404 | P0 | S | — |
 | FK-14 | Vérifications restantes dans l'admin et WhatsApp | P0 | S | FK-01 |
-| FK-15 | Contenu réel (photos, textes, guide des tailles) | P0 | M | Cliente : photos, textes, mesures |
+| FK-15 | Contenu réel (photos, guide des tailles) | P0 | M | Données de production |
 | FK-16 | Historique des commandes par téléphone dans l'admin | P1 | M | FK-06 |
 | FK-17 | Page campagne | P1 | M | — |
 | FK-18 | Ménage Medusa : canal et clé par défaut | P1 | S | — |
 | FK-19 | Tranches d'âge des variantes | P1 | S | Cliente : tranches d'âge |
-| FK-20 | Bouton WhatsApp flottant | P1 | S | Cliente : bouton flottant |
+| FK-20 | Bouton WhatsApp flottant | P1 | S | FK-01 |
 | FK-21 | Qualité du code front (lint, gros composants) | P1 | M | — |
 | FK-22 | Tests automatisés | P1 | M | — |
 | FK-23 | Accès à la page de confirmation | P1 | S | — |
@@ -71,7 +71,7 @@ Les éléments ne sont pas encore des issues GitHub. On les crée seulement apr�
 - [ ] Si le numéro est vide dans Strapi, le bouton ne s'affiche pas et la page ne plante pas.
 - [ ] Le lien s'ouvre sur un téléphone Android et un iPhone avec le message complet. Les accents et les sauts de ligne sont bien encodés.
 
-**Taille** M · **Dépend de** Cliente : numéro WhatsApp · **Origine** état des lieux (bloquant), cahier des charges
+**Taille** M · **Dépend de** — (numéro de test en place) · **Origine** état des lieux (bloquant), cahier des charges
 
 ### FK-02 · Coordonnées mémorisées en localStorage
 **Description.** Le nom, le téléphone, le quartier et les repères doivent être pré-remplis à la commande suivante, sur le même téléphone. Rien n'est mémorisé aujourd'hui.
@@ -96,7 +96,7 @@ Les éléments ne sont pas encore des issues GitHub. On les crée seulement apr�
 **Taille** L · **Dépend de** FK-15 pour le contenu final · **Origine** état des lieux (bloquant)
 
 ### FK-04 · Retrait des promesses non validées
-**Description.** Il reste 31 occurrences de promesses que la cliente n'a pas validées : « TVA incluse », « Orange Money » ou « Moov Money », « 24 à 48 h », « sous 24 h », « 7 jours », « 14 jours », « 48 h », « 100 % lin », « Validés avec l'adresse ». S'y ajoutent les mentions inventées de l'étape 1 (atelier certifié, teintures végétales, adresse et e-mail fictifs). Les seules mentions décidées sont « Paiement à la réception » et « Livraison à votre charge, montant confirmé sur WhatsApp ».
+**Description.** Il reste 31 occurrences de promesses que la cliente n'a pas validées : « TVA incluse », « Orange Money » ou « Moov Money », « 24 à 48 h », « sous 24 h », « 7 jours », « 14 jours », « 48 h », « 100 % lin », « Validés avec l'adresse ». S'y ajoutent les mentions inventées de l'étape 1 (atelier certifié, teintures végétales, adresse et e-mail fictifs), et tout ce qui contredit le questionnaire de la cliente. Celle-ci vit en Europe et n'a parlé ni d'atelier à Bamako, ni de lin, ni d'artisans : « créées à Bamako », « maîtres artisans », « maison installée au cœur de Bamako » doivent disparaître. Les seules mentions décidées sont « Paiement à la réception » et « Livraison à votre charge, montant confirmé sur WhatsApp ».
 
 **Critères d'acceptation**
 - [ ] Une recherche de ces expressions dans `apps/storefront/src` et dans le contenu Strapi ne trouve plus rien.
@@ -108,6 +108,17 @@ Les éléments ne sont pas encore des issues GitHub. On les crée seulement apr�
 
 ### FK-05 · Règle d'échange unique ou retirée
 **Description.** Le site annonce tantôt 7 jours, tantôt 48 h, tantôt 14 jours. Tant que la cliente n'a pas fixé la règle, la mention « Échange possible » est retirée. Ensuite, la règle est écrite une seule fois, dans Strapi.
+
+**Questions à poser à la cliente :**
+1. Échange seulement (autre taille ou autre article), ou aussi remboursement ?
+2. Délai, à compter de la livraison ?
+3. Conditions : non porté, non lavé, étiquettes attachées ?
+4. Exclusions : articles en promotion, tenues de cérémonie ?
+5. Qui paie le second trajet du coursier : la cliente, la boutique, ou la boutique seulement en cas d'erreur ?
+6. Procédure : demande sur WhatsApp avec le numéro de commande, puis passage du coursier ?
+7. Si la taille voulue est épuisée : avoir, autre article, ou remboursement ?
+
+Dans Medusa 2.22.6, un échange se gère depuis la fiche commande (retour de l'article, nouvel article, différence de prix). Je vérifierai la procédure dans l'admin installée avant de la documenter pour la cliente.
 
 **Critères d'acceptation**
 - [ ] Une seule règle d'échange existe, saisie dans Strapi, ou aucune mention d'échange n'est affichée.
@@ -209,7 +220,7 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 - [ ] Aucun noir ni bleu marine n'est affiché, et le rose n'apparaît que dans le logo.
 - [ ] Les tokens correspondent aux codes couleur validés par la cliente.
 
-**Taille** L · **Dépend de** Cliente : codes couleur · **Origine** état des lieux, CLAUDE.md
+**Taille** L · **Dépend de** — (palette confirmée par `DESIGN.md`) · **Origine** état des lieux, CLAUDE.md
 
 ### FK-13 · Pages introuvables : vrai statut 404
 **Description.** Les étapes 3 et 4 renvoient désormais 404 pour les URL inconnues. Il faut vérifier et garantir le même comportement pour un produit, une catégorie ou une page Strapi inexistants (`notFound()`), avec un titre de page propre.
@@ -231,14 +242,14 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 **Taille** S · **Dépend de** FK-01 · **Origine** cahier des charges, étapes 3-4
 
 ### FK-15 · Contenu réel
-**Description.** Les images de la maquette (`lh3.googleusercontent.com`) sont temporaires, et les textes viennent de la maquette. Il faut saisir dans Strapi et Medusa les vraies photos, les textes de Notre histoire et les mesures réelles du guide des tailles.
+**Description.** Les images de la maquette (`lh3.googleusercontent.com`) sont temporaires, et les textes viennent de la maquette. Il faut saisir dans Strapi et Medusa les vraies photos et les mesures réelles du guide des tailles. Ces données de production arriveront plus tard et ne bloquent pas le développement. Les textes de Notre histoire sont déjà rédigés.
 
 **Critères d'acceptation**
 - [ ] Plus aucune image n'est servie depuis `googleusercontent.com`. Les photos produit sont dans Medusa, les visuels éditoriaux dans la médiathèque Strapi.
 - [ ] Les images sont optimisées : l'accueil mobile pèse moins de 1 Mo au premier chargement.
 - [ ] Le guide des tailles affiche les mesures fournies par la cliente.
 
-**Taille** M · **Dépend de** Cliente : photos, textes, mesures · **Origine** état des lieux, cliente
+**Taille** M · **Dépend de** données de production (photos, mesures) · **Origine** état des lieux, cliente
 
 ---
 
@@ -274,7 +285,7 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 **Taille** S · **Dépend de** — · **Origine** étapes 3-4
 
 ### FK-19 · Tranches d'âge des variantes
-**Description.** Les fixtures utilisent « 3-4 ans », « 5-6 ans »… alors que le brief parlait de « 4 ans », « 6 ans ». La décision revient à la cliente. Il faudra ensuite aligner les variantes Medusa, les filtres et le guide des tailles.
+**Description.** Les fixtures utilisent « 3-4 ans », « 5-6 ans »… alors que le brief parlait de « 4 ans », « 6 ans ». Le questionnaire donne trois groupes d'âge : 3-5, 6-9 et 10-14 ans. Ces groupes peuvent servir de filtres, mais ils ne disent pas quelles tailles sont cousues dans les vêtements en stock. De plus, les tailles actuelles « 5-6 » et « 9-10 » chevauchent deux groupes. Il faut demander à la cliente les tailles exactes de son stock, puis aligner les variantes Medusa, les filtres et le guide des tailles.
 
 **Critères d'acceptation**
 - [ ] Les variantes, les filtres de catégorie et le guide des tailles utilisent les mêmes libellés.
@@ -283,13 +294,14 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 **Taille** S · **Dépend de** Cliente : tranches d'âge · **Origine** état des lieux, cliente
 
 ### FK-20 · Bouton WhatsApp flottant
-**Description.** Un bouton flottant ouvre WhatsApp depuis n'importe quelle page, seulement si la cliente le souhaite.
+**Description.** Un bouton flottant ouvre WhatsApp. Décision : oui. La cliente veut avant tout rassurer les parents et un service sérieux, et WhatsApp est le canal habituel au Mali. Règles : visible sur l'accueil, le catalogue, les fiches produit et les pages éditoriales ; masqué sur la commande et la confirmation, qui ont déjà leur propre bouton WhatsApp ; jamais par-dessus le bouton « Ajouter au panier ».
 
 **Critères d'acceptation**
-- [ ] Le bouton n'est affiché que s'il est activé dans les réglages Strapi.
+- [ ] Le bouton n'est affiché que s'il est activé dans les réglages Strapi et qu'un numéro est saisi.
+- [ ] Il est masqué sur `/commande` et sur la page de confirmation.
 - [ ] Il ne masque ni le bouton « Ajouter au panier » ni le bouton de commande sur mobile.
 
-**Taille** S · **Dépend de** Cliente : bouton flottant, FK-01 · **Origine** cliente
+**Taille** S · **Dépend de** FK-01 · **Origine** cliente (décidé)
 
 ### FK-21 · Qualité du code front
 **Description.** Le lint signale 38 avertissements. Plusieurs composants client sont très gros : CheckoutForm, CartDrawer, ProductBuySection, LegalPageContent, SizeGuidePageContent. Il faut les découper pour garder l'interactivité dans de petits composants client.
@@ -364,19 +376,27 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 
 ## En attente de la cliente
 
-| Décision | Débloque |
-|---|---|
-| Codes couleur exacts de la charte | FK-12, FK-11 |
-| Règle d'échange (la mention « Échange possible » en dépend) | FK-05, FK-04 |
-| Mesures réelles du guide des tailles | FK-15, FK-03 |
-| Vraies photos des articles et des visuels | FK-15 |
-| Textes de Notre histoire | FK-15, FK-03 |
-| Numéro WhatsApp de la boutique | FK-01, FK-14, FK-20 |
-| Coût et marge par article | FK-27 |
-| Bouton WhatsApp flottant ou non | FK-20 |
-| Tranches d'âge des variantes (« 3-4 ans » ou « 4 ans ») | FK-19 |
+Mis à jour le 12 novembre 2026, avec les réponses reçues.
 
----
+| Décision | Statut | Débloque |
+|---|---|---|
+| Règle d'échange (la mention « Échange possible » en dépend) | **En attente.** Les questions à poser sont dans FK-05 | FK-05, FK-04 |
+| Coût et marge par article | **En attente**, facultatif. Ne sert qu'à FK-27 | FK-27 |
+| Tranches d'âge des variantes | **À préciser.** Le questionnaire donne des groupes d'âge (3-5, 6-9, 10-14 ans), pas les tailles cousues dans les vêtements. Voir FK-19 | FK-19 |
+| Codes couleur exacts | **Réglé** : `DESIGN.md` (Warm Heirloom Editorial) confirme la palette de CLAUDE.md | FK-12, FK-11 |
+| Numéro WhatsApp | **Réglé pour le développement** : numéro de test dans Strapi et dans la fixture mock. Il sera remplacé par celui de la cliente dans l'admin Strapi avant la production | FK-01, FK-14, FK-20 |
+| Textes de Notre histoire | **Réglé** : rédigés à partir du questionnaire, saisis dans Strapi et la fixture. Il reste à confirmer que « fini kura » veut bien dire « habits neufs » (la cliente a écrit « je crois ») | FK-03 |
+| Mesures du guide des tailles | **Gardées telles quelles** pour le développement. Les vraies mesures arriveront avec les données de production | FK-15 |
+| Vraies photos | **Données de production**, pas de blocage pour le développement | FK-15 |
+| Bouton WhatsApp flottant | **Décidé : oui**, avec des règles d'affichage (voir FK-20) | FK-20 |
+
+## Questions de design (à trancher avec toi)
+
+| Question | Constat | Proposition |
+|---|---|---|
+| Police du texte courant | `DESIGN.md` prévoit Work Sans, le code charge Poppins | Passer à Work Sans dans FK-12 |
+| Couleur des erreurs | `#BA1A1A` (rouge) est utilisé, mais n'est pas dans la palette en 7 couleurs | Terracotta `#CA7154` pour les erreurs, avec une icône et un texte, en vérifiant le contraste (FK-11) |
+| Positionnement | La cliente veut une image « très prestigieuse » et cite Du pareil au même pour ses couleurs vives, alors que la charte est en tons doux | Garder la charte. Les couleurs vives viendront des photos des vêtements |
 
 ## Déjà réglé (étapes 2 à 4)
 

@@ -3,40 +3,52 @@
     {
       "documentId": "page-notre-histoire",
       "slug": "notre-histoire",
-      "title": "Notre Histoire",
+      "title": "Notre histoire",
       "seo": {
-        "title": "Notre Histoire — Fini Kura Bamako",
-        "description": "L'histoire de notre maison de confection artisanale pour enfants à Bamako."
+        "title": "Notre histoire | FINI KURA",
+        "description": "FINI KURA est née des demandes de parents maliens qui cherchaient de beaux vêtements de qualité pour leurs enfants. Prêt-à-porter pour filles et garçons de 3 à 14 ans."
       },
       "blocks": [
         {
           "__component": "blocks.image-text",
-          "eyebrow": "MAISON MALIENNE",
-          "title": "À PROPOS DE FINI KURA",
-          "text": "En bambara, « Fini Kura » signifie habits neufs. Installée au cœur de Bamako, notre maison conçoit des pièces d’exception pour accompagner vos enfants de 3 à 14 ans avec élégance, dignité et fierté au quotidien comme lors des grandes occasions.\n\nChaque vêtement est pensé pour épouser le climat soudano-sahélien : lins légers et respirants, popelines de coton sélectionnées auprès d'artisans locaux, coupes amples garantissant l'aisance de chaque mouvement.",
-          "image_alt": "Atelier de confection artisanale Fini Kura à Bamako",
+          "eyebrow": "NOTRE HISTOIRE",
+          "title": "Tout a commencé par des demandes de proches",
+          "text": "Je vis en Europe. Pendant des années, des parents et des proches restés au Mali m'ont demandé la même chose : acheter des vêtements pour leurs enfants et les leur envoyer.\n\nCes demandes sont devenues de plus en plus fréquentes, et elles disaient toutes la même chose. Au Mali, les vêtements d'enfants de grande qualité existent, mais ils coûtent souvent trop cher pour la plupart des familles.\n\nPlutôt que de répondre à chaque demande une par une, j'ai créé une marque pour toutes ces familles : FINI KURA.",
+          "image_alt": "Vêtements d'enfants FINI KURA",
           "image": {
             "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuAevXAyuHbFW3ixCT7Ss3jQiYgKsRwkOCIgRuIFAXn3bKw1Z39v4CiPfNXCjjFO66GOaH-SgIi1gh9AkvIDifivQdIajp0xJJxZJA94lilwH_o8hbiteubqlQIEnU5yOsGIK-YMfyH9a2RQZ3DGfuPEXAxzEivx_VWkC1lrAFo5Jz3TdZM954lHsZGfoWDBML5rMBQLKnl3d7suIIfJRgZWON7i-BmYhy6jgqK-Pw4",
-            "alternativeText": "Atelier de confection artisanale Fini Kura à Bamako"
+            "alternativeText": "Vêtements d'enfants FINI KURA"
           }
         },
         {
+          "__component": "blocks.rich-text",
+          "title": "Habits neufs",
+          "body": "En bambara, « fini kura » veut dire « habits neufs ». C'est ce que nous voulons offrir à chaque enfant : la joie de porter un vêtement neuf, beau et bien fait, à l'école comme aux fêtes religieuses, aux baptêmes et aux anniversaires.\n\nNotre première collection habille les filles et les garçons de 3 à 14 ans, avec des robes, des ensembles, des pantalons et des chemises. Nous commençons à Bamako. Nous voulons ensuite faire connaître FINI KURA dans tout le Mali, puis en Afrique, et un jour au-delà."
+        },
+        {
           "__component": "blocks.values",
-          "title": "NOS VALEURS FONDATRICES",
+          "title": "Ce que nous promettons aux parents",
           "items": [
             {
-              "title": "Noblesse des matières",
-              "description": "Lin pur lavé et cotons nobles qui adoucissent chaque journée."
+              "title": "La qualité",
+              "description": "Des vêtements choisis avec soin, pour que vous habilliez vos enfants en toute confiance."
             },
             {
-              "title": "Fierté artisanale",
-              "description": "Transmission d'un savoir-faire de couture précis et respectueux."
+              "title": "L'élégance",
+              "description": "Des tenues modernes pour le quotidien et pour les grands jours."
             },
             {
-              "title": "Proximité & Confiance",
-              "description": "Paiement en mains propres et accompagnement attentionné sur WhatsApp."
+              "title": "L'accessibilité",
+              "description": "Des prix raisonnables, pensés pour les familles maliennes."
             }
           ]
+        },
+        {
+          "__component": "blocks.cta",
+          "title": "Grandir avec style, rayonner avec élégance",
+          "subtitle": "Découvrez notre collection pour filles et garçons de 3 à 14 ans.",
+          "cta_text": "Voir la collection",
+          "cta_link": "/categorie/filles"
         }
       ]
     },
