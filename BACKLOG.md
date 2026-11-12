@@ -50,9 +50,9 @@ Les éléments ne sont pas encore des issues GitHub. On les crée seulement apr�
 | FK-26 | Comptes clients | P2 | L | — |
 | FK-27 | Coût et marge par article | P2 | M | Cliente : coût et marge |
 
-**Charge P0 :** 4 L, 5 M et 6 S. Cela fait environ 20 à 25 jours de travail pour une personne seule. Or il reste 19 jours calendaires, et une partie dépend des réponses de la cliente. Sans renfort, il faudra trancher :
-- **FK-12 (couleurs) :** peut se limiter aux couleurs hors charte (quasi-noir, bleu marine) avant le lancement ; le reste passe en P1.
-- **FK-03 (pages éditoriales) :** peut se limiter aux pages qui portent des promesses (Livraison et échanges, Contact).
+**Charge P0 :** 4 L, 5 M et 6 S. Cela fait environ 20 à 25 jours de travail pour une personne seule. Or il reste 19 jours calendaires, et une partie dépend des réponses de la cliente.
+
+**Décision du 12 novembre 2026 :** tout le périmètre P0 est maintenu pour le 1er décembre, sans réduction. Le planning n'a donc pas de marge, et les réponses de la cliente (section « En attente de la cliente ») sont sur le chemin critique. Il faut les obtenir au plus tôt.
 
 ---
 
