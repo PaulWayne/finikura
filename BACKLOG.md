@@ -77,10 +77,12 @@ Les éléments ne sont pas encore des issues GitHub. On les crée seulement apr�
 **Description.** Le nom, le téléphone, le quartier et les repères doivent être pré-remplis à la commande suivante, sur le même téléphone. Rien n'est mémorisé aujourd'hui.
 
 **Critères d'acceptation**
-- [ ] Après une commande réussie, les quatre champs sont enregistrés dans le localStorage, et seulement eux.
-- [ ] À la visite suivante, le formulaire est pré-rempli et chaque champ reste modifiable.
-- [ ] Le site fonctionne si le localStorage est indisponible (navigation privée) : lecture et écriture sont protégées par try/catch.
-- [ ] Rien n'est enregistré si la commande échoue.
+- [x] Après une commande réussie, les quatre champs sont enregistrés dans le localStorage, et seulement eux.
+- [x] À la visite suivante, le formulaire est pré-rempli et chaque champ reste modifiable.
+- [x] Le site fonctionne si le localStorage est indisponible (navigation privée) : lecture et écriture sont protégées par try/catch.
+- [x] Rien n'est enregistré si la commande échoue.
+
+**Fait (branche `fk-13-fk-02`).** Les champs sont enregistrés sous la clé `fk_contact` et relus avec le même schéma que le formulaire : un contenu corrompu est ignoré.
 
 **Taille** S · **Dépend de** — · **Origine** état des lieux (bloquant), cahier des charges
 
@@ -182,6 +184,10 @@ Dans Medusa 2.22.6, un échange se gère depuis la fiche commande (retour de l'a
 
 Chaque choix (hébergeur, registraire) demande ton accord, car il implique un compte et un coût.
 
+**Décidé (12 novembre 2026).**
+- **Hébergement :** sur le VPS Hostinger existant, géré avec Dokploy. D'autres sites tournent déjà sur ce serveur : les ports, les noms de conteneurs, les volumes et les bases ne doivent pas entrer en conflit avec eux, et il faut vérifier la mémoire disponible.
+- **Domaine et e-mail :** la cliente choisit entre `fini-kura.fr` et `finikura.fr`.
+
 **Critères d'acceptation**
 - [ ] Le site répond en HTTPS sur le domaine, et le HTTP redirige vers le HTTPS.
 - [ ] Les URL de production sont dans les variables d'environnement : `MEDUSA_BACKEND_URL`, `STRAPI_URL`, `STOREFRONT_REVALIDATE_URL`, CORS. Aucun secret n'est dans le dépôt.
@@ -233,8 +239,14 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 **Description.** Les étapes 3 et 4 renvoient désormais 404 pour les URL inconnues. Il faut vérifier et garantir le même comportement pour un produit, une catégorie ou une page Strapi inexistants (`notFound()`), avec un titre de page propre.
 
 **Critères d'acceptation**
-- [ ] `/produit/inexistant`, `/categorie/inexistante` et une page Strapi supprimée renvoient le statut 404 et la page « introuvable » de la charte.
-- [ ] Un produit dépublié dans Medusa disparaît du site après revalidation, et son URL renvoie 404.
+- [x] `/produit/inexistant`, `/categorie/inexistante` et une page Strapi supprimée affichent la page « introuvable » de la charte.
+- [x] Un produit dépublié dans Medusa disparaît du site après revalidation, et son URL affiche la page « introuvable ».
+
+**Fait (branche `fk-13-fk-02`).** Le statut HTTP dépend du type de page :
+- pages éditoriales et URL inconnues : vrai statut 404 ;
+- produits et catégories : la page « introuvable » de la charte, avec `noindex`, mais un statut 200. Avec Cache Components, Next 16 a déjà envoyé l'en-tête quand il découvre que le handle n'existe pas, et il refuse le build si la vérification est placée avant le `<Suspense>`. Les moteurs de recherche n'indexent pas ces pages.
+
+**Reste possible (P2) :** un vrai 404 pour les produits et les catégories, avec une vérification du handle dans le proxy Next, avant le rendu. Décidé le 12 novembre 2026 : pas pour le lancement.
 
 **Taille** S · **Dépend de** — · **Origine** état des lieux
 
@@ -388,6 +400,7 @@ Mis à jour le 12 novembre 2026, avec les réponses reçues.
 | Décision | Statut | Débloque |
 |---|---|---|
 | Règle d'échange (la mention « Échange possible » en dépend) | **En attente.** Les questions à poser sont dans FK-05 | FK-05, FK-04 |
+| Domaine et e-mail | **En attente** : `fini-kura.fr` ou `finikura.fr` | FK-09, FK-07 |
 | Coût et marge par article | **En attente**, facultatif. Ne sert qu'à FK-27 | FK-27 |
 | Tranches d'âge des variantes | **À préciser.** Le questionnaire donne des groupes d'âge (3-5, 6-9, 10-14 ans), pas les tailles cousues dans les vêtements. Voir FK-19 | FK-19 |
 | Codes couleur exacts | **Réglé** : `DESIGN.md` (Warm Heirloom Editorial) confirme la palette de CLAUDE.md | FK-12, FK-11 |

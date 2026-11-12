@@ -12,7 +12,9 @@ export const messages = {
       "Vêtements pour filles et garçons de 3 à 14 ans à Bamako. Commande en ligne, paiement à la réception.",
     confirmationTitle: "Confirmation de commande | Fini Kura",
     confirmationDescription: "Votre commande Fini Kura est enregistrée.",
-    productNotFoundTitle: "Produit non trouvé | Fini Kura",
+    productNotFoundTitle: "Produit introuvable | Fini Kura",
+    categoryNotFoundTitle: "Catégorie introuvable | Fini Kura",
+    notFoundTitle: "Page introuvable | Fini Kura",
   },
   header: {
     brandSubtitle: "HABITS POUR ENFANTS",
@@ -152,6 +154,7 @@ export const messages = {
     courierNoticeMobileDesc: "Nous convenons avec vous de la livraison sur WhatsApp.",
     paymentOnDeliveryTitle: "Paiement à la réception",
     paymentOnDeliveryDesc: "Vous payez quand vous recevez votre commande.",
+    orderPlacedToast: (orderNumber: string) => `Commande ${orderNumber} enregistrée`,
     submitCta: "VALIDER MA COMMANDE",
     submittingCta: "VALIDATION EN COURS...",
     submitFootnoteDesktop: "Aucun paiement en ligne : vous payez à la réception.",
@@ -191,6 +194,14 @@ export const messages = {
     orderNeighborhood: (neighborhood: string) => `Quartier : ${neighborhood}`,
     orderLandmarks: (landmarks: string) => `Repères : ${landmarks}`,
     sizeQuestion: (product: string) => `Bonjour FINI KURA, j'ai une question sur les tailles de « ${product} ».`,
+  },
+  notFound: {
+    eyebrow: "ERREUR 404",
+    title: "Page introuvable",
+    description: "Cette page n'existe pas ou n'est plus disponible.",
+    backHome: "Retour à l'accueil",
+    seeGirls: "Voir les filles",
+    seeBoys: "Voir les garçons",
   },
   errors: {
     addToCart: "Impossible d'ajouter cet article au panier.",

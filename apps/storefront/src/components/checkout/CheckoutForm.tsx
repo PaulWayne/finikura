@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -26,6 +26,7 @@ import { formatPrice } from "@/lib/format";
 import { IMAGE_FALLBACKS, handleImgError } from "@/lib/images";
 import { messages } from "@/messages/fr";
 import { triggerCartUpdated, triggerCartToast } from "@/lib/cart-events";
+import { loadContact, saveContact } from "@/lib/saved-contact";
 
 interface CheckoutFormProps {
   cart: Cart;
@@ -40,6 +41,7 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<CheckoutFormData>({
     resolver: zodResolver(checkoutSchema),
@@ -51,6 +53,12 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
     },
     mode: "onTouched",
   });
+
+  // Pre-fill with the details saved on this phone after a previous order.
+  useEffect(() => {
+    const saved = loadContact();
+    if (saved) reset(saved);
+  }, [reset]);
 
   const submittingRef = useRef(false);
 
@@ -64,15 +72,16 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
       const res = await placeOrderAction(data);
 
       if (res.success && res.order) {
+        saveContact(data);
         triggerCartUpdated({ ...cart, items: [], subtotal: 0, total: 0 });
-        triggerCartToast(`Commande ${res.order.orderNumber} enregistrée avec succès`);
+        triggerCartToast(messages.checkout.orderPlacedToast(res.order.orderNumber));
 
         router.push(`/commande/confirmation/${res.order.id}`);
       } else {
-        setServerError(res.error || "Impossible d'enregistrer la commande. Veuillez vérifier vos coordonnées.");
+        setServerError(res.error || messages.errors.placeOrder);
       }
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : "Une erreur est survenue lors de la commande";
+      const msg = err instanceof Error ? err.message : messages.errors.placeOrder;
       setServerError(msg);
     } finally {
       submittingRef.current = false;

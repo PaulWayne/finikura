@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { PageFallback } from "@/components/layout/PageFallback";
 import { commerceService } from "@/lib/commerce";
 import { contentService } from "@/lib/content";
@@ -40,24 +41,10 @@ async function ProductContent({ params }: ProductPageProps) {
 
   const product = await commerceService.getProductByHandle(handle);
 
-  if (!product) {
-    return (
-      <div className="py-24 text-center">
-        <h1 className="font-serif text-2xl text-[#5E5245] uppercase mb-4">
-          Modèle introuvable
-        </h1>
-        <p className="text-sm text-[#5E5245]/70 mb-6">
-          Cette création n&apos;est plus disponible ou a changé d&apos;adresse.
-        </p>
-        <Link
-          href="/"
-          className="min-touch-btn inline-flex items-center justify-center px-6 py-2.5 rounded-[4px] bg-[#8A7058] text-white text-xs font-medium uppercase tracking-[0.15em]"
-        >
-          {messages.confirmation.backToHome}
-        </Link>
-      </div>
-    );
-  }
+  // Unknown handle: the not-found page of the charter, with noindex.
+  // Streaming has started, so the status stays 200 (Next 16 Cache Components);
+  // a real 404 would need a proxy check, see FK-13 in BACKLOG.md.
+  if (!product) notFound();
 
   // Fetch size guide and sibling products for recommendations
   const [sizeGuide, allCategoryProducts, settings] = await Promise.all([
