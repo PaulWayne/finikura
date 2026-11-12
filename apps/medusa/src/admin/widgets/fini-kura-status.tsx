@@ -80,7 +80,7 @@ const FiniKuraStatusWidget = ({ data: order }: DetailWidgetProps<AdminOrder>) =>
 }
 
 export const config = defineWidgetConfig({
-  zone: "order.details.before",
+  zone: "order.details.side.before",
 })
 
 export default FiniKuraStatusWidget
