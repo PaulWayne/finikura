@@ -401,7 +401,7 @@ Mis à jour le 12 novembre 2026, avec les réponses reçues.
 
 | Question | Constat | Proposition |
 |---|---|---|
-| Police du texte courant | `DESIGN.md` prévoit Work Sans, le code charge Poppins | Passer à Work Sans dans FK-12 |
+| Police du texte courant | `DESIGN.md` prévoit Work Sans, le code charge Poppins | **Tranché : Poppins**. On garde le code tel quel ; `DESIGN.md` ne fait pas foi sur ce point |
 | Couleur des erreurs | `#BA1A1A` (rouge) est utilisé, mais n'est pas dans la palette en 7 couleurs | Terracotta `#CA7154` pour les erreurs, avec une icône et un texte, en vérifiant le contraste (FK-11) |
 | Positionnement | La cliente veut une image « très prestigieuse » et cite Du pareil au même pour ses couleurs vives, alors que la charte est en tons doux | Garder la charte. Les couleurs vives viendront des photos des vêtements |
 

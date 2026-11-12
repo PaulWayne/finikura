@@ -29,6 +29,7 @@ Lancement : 1er décembre 2026. Cahier des charges : https://claude.ai/artifact/
 - Les fixtures ont exactement la forme des réponses réelles (Medusa Store API, Strapi 5 REST) : mock et live passent par les mêmes mappers.
 - Cache : `"use cache"` + tags `commerce:catalog` et `content`. Medusa (subscriber) et Strapi (eventHub) appellent `POST /api/revalidate?source=medusa|strapi` avec l'en-tête `x-revalidate-secret`.
 - Les mutations passent par des Server Actions. L'identifiant du panier est stocké dans un cookie httpOnly.
+- Polices : Playfair Display pour les titres, Poppins pour le texte (pas Work Sans, malgré `DESIGN.md`).
 - Les couleurs passent uniquement par les tokens Tailwind de la charte. Pas de bleu marine ni de noir, et le rose est réservé au logo.
 - Mobile d'abord, moins de 1 Mo au premier chargement, zones tactiles d'au moins 44 px, contraste AA.
 
