@@ -13,16 +13,16 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         className={cn(
-          "inline-flex items-center justify-center whitespace-nowrap rounded-[4px] text-xs font-medium uppercase transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8A7058] disabled:pointer-events-none disabled:opacity-50 min-touch-btn tracking-[0.15em]",
+          "inline-flex items-center justify-center whitespace-nowrap rounded-[4px] text-xs font-medium uppercase transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-primary disabled:pointer-events-none disabled:opacity-50 min-touch-btn tracking-[0.15em]",
           {
-            "bg-[#8A7058] text-white hover:bg-[#725a43] shadow-sm":
+            "bg-brand-primary text-brand-white hover:bg-brand-text shadow-sm":
               variant === "default",
-            "border border-[#8A7058] bg-transparent text-[#5E5245] hover:bg-[#EADCCC]/40 hover:text-[#5E5245]":
+            "border border-brand-primary bg-transparent text-brand-text hover:bg-brand-surface/40 hover:text-brand-text":
               variant === "outline",
-            "bg-[#EADCCC] text-[#5E5245] hover:bg-[#ded2c2]":
+            "bg-brand-surface text-brand-text hover:bg-brand-surface":
               variant === "secondary",
-            "hover:bg-[#EADCCC]/30 text-[#5E5245]": variant === "ghost",
-            "text-[#5E5245] underline-offset-4 hover:underline":
+            "hover:bg-brand-surface/30 text-brand-text": variant === "ghost",
+            "text-brand-text underline-offset-4 hover:underline":
               variant === "link",
             "h-11 px-6 py-2.5": size === "default",
             "h-9 rounded-[3px] px-3 text-[11px]": size === "sm",

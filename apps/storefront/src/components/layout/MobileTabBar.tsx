@@ -24,7 +24,7 @@ export function MobileTabBar({
   return (
     <nav
       aria-label="Navigation mobile principale"
-      className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#FFF8F4]/95 backdrop-blur-md border-t border-[#EADCCC] shadow-[0_-2px_12px_rgba(94,82,69,0.06)] pb-safe"
+      className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-brand-bg/95 backdrop-blur-md border-t border-brand-surface shadow-[0_-2px_12px_rgba(94,82,69,0.06)] pb-safe"
     >
       <div className="flex justify-around items-center h-16 px-2">
         {/* Accueil */}
@@ -33,8 +33,8 @@ export function MobileTabBar({
           onClick={() => onNavigate("/")}
           className={`flex flex-col items-center justify-center gap-1 min-w-[56px] h-12 transition-colors cursor-pointer ${
             isHome
-              ? "text-[#705841] font-semibold"
-              : "text-[#5E5245]/70 hover:text-[#5E5245]"
+              ? "text-brand-text font-semibold"
+              : "text-brand-text/70 hover:text-brand-text"
           }`}
         >
           <Home className="w-5 h-5 stroke-[1.8]" />
@@ -47,8 +47,8 @@ export function MobileTabBar({
           onClick={() => onNavigate("/categorie/filles")}
           className={`flex flex-col items-center justify-center gap-1 min-w-[56px] h-12 transition-colors cursor-pointer ${
             isCollections
-              ? "text-[#705841] font-semibold"
-              : "text-[#5E5245]/70 hover:text-[#5E5245]"
+              ? "text-brand-text font-semibold"
+              : "text-brand-text/70 hover:text-brand-text"
           }`}
         >
           <Layers className="w-5 h-5 stroke-[1.8]" />
@@ -61,8 +61,8 @@ export function MobileTabBar({
           onClick={() => onNavigate("/guide-des-tailles")}
           className={`flex flex-col items-center justify-center gap-1 min-w-[56px] h-12 transition-colors cursor-pointer ${
             isSizeGuide
-              ? "text-[#705841] font-semibold"
-              : "text-[#5E5245]/70 hover:text-[#5E5245]"
+              ? "text-brand-text font-semibold"
+              : "text-brand-text/70 hover:text-brand-text"
           }`}
           aria-current={isSizeGuide ? "page" : undefined}
         >
@@ -74,12 +74,12 @@ export function MobileTabBar({
         <button
           type="button"
           onClick={() => triggerOpenCart()}
-          className="relative flex flex-col items-center justify-center gap-1 min-w-[56px] h-12 text-[#5E5245]/70 hover:text-[#5E5245] transition-colors cursor-pointer"
+          className="relative flex flex-col items-center justify-center gap-1 min-w-[56px] h-12 text-brand-text/70 hover:text-brand-text transition-colors cursor-pointer"
         >
           <div className="relative">
             <ShoppingBag className="w-5 h-5 stroke-[1.8]" />
             {cartCount > 0 && (
-              <span className="absolute -top-1.5 -right-2 min-w-[16px] h-4 px-1 bg-[#CA7154] text-white text-[10px] font-bold rounded-full flex items-center justify-center leading-none">
+              <span className="absolute -top-1.5 -right-2 min-w-[16px] h-4 px-1 bg-brand-terracotta text-brand-white text-[10px] font-bold rounded-full flex items-center justify-center leading-none">
                 {cartCount}
               </span>
             )}
@@ -93,8 +93,8 @@ export function MobileTabBar({
           onClick={() => onNavigate("/contact")}
           className={`flex flex-col items-center justify-center gap-1 min-w-[56px] h-12 transition-colors cursor-pointer ${
             isContact
-              ? "text-[#705841] font-semibold"
-              : "text-[#5E5245]/70 hover:text-[#5E5245]"
+              ? "text-brand-text font-semibold"
+              : "text-brand-text/70 hover:text-brand-text"
           }`}
           aria-current={isContact ? "page" : undefined}
         >

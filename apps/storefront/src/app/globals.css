@@ -43,6 +43,7 @@
     --brand-whatsapp: #25D366;
     --brand-rose: #C8807C;
     --brand-navy: #304054;
+    --brand-white: #FFFFFF;
   }
 
   body {
@@ -93,6 +94,7 @@
   --color-brand-whatsapp: var(--brand-whatsapp);
   --color-brand-rose: var(--brand-rose);
   --color-brand-navy: var(--brand-navy);
+  --color-brand-white: var(--brand-white);
 
   --font-serif: var(--font-playfair), Georgia, serif;
   --font-sans: var(--font-poppins), sans-serif;

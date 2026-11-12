@@ -29,68 +29,68 @@ export function OrderConfirmation({ order, whatsappUrl }: OrderConfirmationProps
   return (
     <div className="w-full max-w-[680px] mx-auto px-4 py-6 sm:py-10">
       {/* Centered Main Card */}
-      <div className="w-full bg-white rounded-2xl shadow-[0_8px_30px_rgba(94,82,69,0.06)] border border-[#EADCCC]/60 p-6 sm:p-10 relative overflow-hidden flex flex-col items-center text-center">
+      <div className="w-full bg-brand-white rounded-2xl shadow-[0_8px_30px_rgba(94,82,69,0.06)] border border-brand-surface/60 p-6 sm:p-10 relative overflow-hidden flex flex-col items-center text-center">
         {/* Status Badge with Gentle Pulse */}
-        <div className="inline-flex items-center gap-2 bg-[#DEE5D1] text-[#171D11] px-4 py-1.5 rounded-full mb-6">
-          <span className="w-2 h-2 rounded-full bg-[#5A6151] animate-pulse"></span>
-          <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#42493A]">
+        <div className="inline-flex items-center gap-2 bg-brand-announcement/20 text-brand-text px-4 py-1.5 rounded-full mb-6">
+          <span className="w-2 h-2 rounded-full bg-brand-text animate-pulse"></span>
+          <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-text">
             {messages.confirmation.badgeStatus}
           </span>
         </div>
 
         {/* Delicate Artisan Icon */}
         <div className="relative w-16 h-16 sm:w-20 sm:h-20 mb-5 flex items-center justify-center">
-          <div className="absolute inset-0 bg-[#DEE5D1]/60 rounded-full"></div>
-          <div className="relative flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white shadow-xs">
-            <CheckCircle2 className="w-7 h-7 sm:w-9 sm:h-9 text-[#5A6151]" strokeWidth={1.75} />
+          <div className="absolute inset-0 bg-brand-announcement/60 rounded-full"></div>
+          <div className="relative flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-brand-white shadow-xs">
+            <CheckCircle2 className="w-7 h-7 sm:w-9 sm:h-9 text-brand-text" strokeWidth={1.75} />
           </div>
         </div>
 
         {/* Order Reference */}
-        <p className="text-xs uppercase tracking-[0.2em] text-[#5E5245]/70 mb-1 font-medium">
+        <p className="text-xs uppercase tracking-[0.2em] text-brand-text/70 mb-1 font-medium">
           {messages.confirmation.orderRefLabel}
         </p>
-        <h1 className="font-serif text-2xl sm:text-3xl text-[#231A10] font-normal tracking-[0.03em] mb-3">
+        <h1 className="font-serif text-2xl sm:text-3xl text-brand-text font-normal tracking-[0.03em] mb-3">
           {messages.confirmation.orderNumberPrefix} {order.orderNumber}
         </h1>
 
-        <div className="w-12 h-0.5 bg-[#F1E0CE] rounded-full mb-6"></div>
+        <div className="w-12 h-0.5 bg-brand-surface rounded-full mb-6"></div>
 
         {/* Warm Note Card */}
-        <div className="w-full bg-[#FDEBDA] rounded-xl p-4 sm:p-6 mb-6 text-center border border-[#EADCCC]/40">
-          <h2 className="font-serif text-xl sm:text-2xl text-[#231A10] mb-2 font-normal">
+        <div className="w-full bg-brand-surface rounded-xl p-4 sm:p-6 mb-6 text-center border border-brand-surface/40">
+          <h2 className="font-serif text-xl sm:text-2xl text-brand-text mb-2 font-normal">
             {messages.confirmation.thankYouName(firstName)}
           </h2>
-          <p className="text-xs sm:text-sm text-[#4E453D] leading-relaxed max-w-lg mx-auto">
+          <p className="text-xs sm:text-sm text-brand-text leading-relaxed max-w-lg mx-auto">
             {messages.confirmation.messageDesktop}
           </p>
         </div>
 
         {/* Order Summary Box */}
-        <div className="w-full bg-[#FFF1E5] rounded-xl p-4 sm:p-5 mb-6 text-left border border-[#EADCCC]/60 space-y-3.5">
-          <div className="flex items-center justify-between pb-3 border-b border-[#EADCCC]/60">
+        <div className="w-full bg-brand-bg rounded-xl p-4 sm:p-5 mb-6 text-left border border-brand-surface/60 space-y-3.5">
+          <div className="flex items-center justify-between pb-3 border-b border-brand-surface/60">
             <div className="flex items-center gap-2.5">
-              <ShoppingBag className="w-4 h-4 text-[#8A7058]" />
-              <span className="text-xs sm:text-sm font-medium text-[#231A10]">
+              <ShoppingBag className="w-4 h-4 text-brand-primary" />
+              <span className="text-xs sm:text-sm font-medium text-brand-text">
                 {messages.confirmation.piecesCount(totalCount)}
               </span>
             </div>
-            <span className="text-sm sm:text-base font-semibold text-[#705841]">
+            <span className="text-sm sm:text-base font-semibold text-brand-text">
               {formatPrice(order.total)}
             </span>
           </div>
 
           <div className="flex items-start gap-2.5 text-xs sm:text-sm">
-            <MapPin className="w-4 h-4 text-[#CA7154] shrink-0 mt-0.5" />
+            <MapPin className="w-4 h-4 text-brand-terracotta shrink-0 mt-0.5" />
             <div className="flex flex-col">
-              <span className="font-medium text-[#231A10]">
+              <span className="font-medium text-brand-text">
                 {messages.confirmation.destinationLabel} {order.shippingAddress.neighborhood}
               </span>
-              <span className="text-[11px] text-[#5E5245]/80 mt-0.5">
+              <span className="text-[11px] text-brand-text/80 mt-0.5">
                 {messages.checkout.courierNoticeDelivery}
               </span>
               {order.shippingAddress.deliveryLandmarks && (
-                <span className="text-[11px] text-[#80756C] italic mt-0.5">
+                <span className="text-[11px] text-brand-text italic mt-0.5">
                   « {order.shippingAddress.deliveryLandmarks} »
                 </span>
               )}
@@ -98,9 +98,9 @@ export function OrderConfirmation({ order, whatsappUrl }: OrderConfirmationProps
           </div>
 
           <div className="flex items-start gap-2.5 text-xs sm:text-sm pt-1">
-            <Banknote className="w-4 h-4 text-[#5A6151] shrink-0 mt-0.5" />
+            <Banknote className="w-4 h-4 text-brand-text shrink-0 mt-0.5" />
             <div className="flex flex-col">
-              <span className="font-medium text-[#231A10]">
+              <span className="font-medium text-brand-text">
                 {messages.confirmation.paymentMethodText}
               </span>
             </div>
@@ -114,7 +114,7 @@ export function OrderConfirmation({ order, whatsappUrl }: OrderConfirmationProps
           href={whatsappHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full sm:w-auto min-w-[280px] bg-[#25D366] hover:bg-[#20ba59] active:scale-[0.99] text-white font-medium text-xs sm:text-sm tracking-wide py-3.5 px-8 rounded-xl shadow-md transition-all flex items-center justify-center gap-3 group"
+          className="w-full sm:w-auto min-w-[280px] bg-brand-whatsapp hover:bg-brand-whatsapp/90 active:scale-[0.99] text-brand-white font-medium text-xs sm:text-sm tracking-wide py-3.5 px-8 rounded-xl shadow-md transition-all flex items-center justify-center gap-3 group"
         >
           <svg
             className="w-5 h-5 fill-current shrink-0 transition-transform duration-200 group-hover:scale-110"
@@ -128,26 +128,26 @@ export function OrderConfirmation({ order, whatsappUrl }: OrderConfirmationProps
         </a>
         )}
 
-        <p className="text-[11px] sm:text-xs text-[#5E5245]/80 mt-3 max-w-md leading-relaxed">
+        <p className="text-[11px] sm:text-xs text-brand-text/80 mt-3 max-w-md leading-relaxed">
           {messages.confirmation.whatsAppNotice}
         </p>
 
         {/* Separator */}
-        <div className="w-full h-px bg-[#EADCCC]/60 my-6"></div>
+        <div className="w-full h-px bg-brand-surface/60 my-6"></div>
 
         {/* Navigation Return Links */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-xs text-[#5E5245]">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-xs text-brand-text">
           <Link
             href="/"
-            className="hover:text-[#8A7058] transition-colors flex items-center gap-1.5 underline decoration-[#EADCCC] underline-offset-4 font-medium"
+            className="hover:text-brand-primary transition-colors flex items-center gap-1.5 underline decoration-brand-surface underline-offset-4 font-medium"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>{messages.confirmation.backToStore}</span>
           </Link>
-          <span className="hidden sm:inline text-[#EADCCC]">•</span>
+          <span className="hidden sm:inline text-brand-surface">•</span>
           <Link
             href="/categorie/filles"
-            className="hover:text-[#8A7058] transition-colors flex items-center gap-1.5 underline decoration-[#EADCCC] underline-offset-4 font-medium"
+            className="hover:text-brand-primary transition-colors flex items-center gap-1.5 underline decoration-brand-surface underline-offset-4 font-medium"
           >
             <span>{messages.confirmation.discoverOtherCreations}</span>
             <ArrowRight className="w-3.5 h-3.5" />

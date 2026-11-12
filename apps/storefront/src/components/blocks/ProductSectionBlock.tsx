@@ -20,13 +20,13 @@ export function ProductSectionBlock({
     <section className="py-6 md:py-10" data-purpose="product-section">
       {/* Section Header */}
       <div className="flex flex-col items-center justify-center text-center mb-8">
-        <span className="text-xs uppercase tracking-[0.2em] text-[#CA7154] font-medium block mb-2">
+        <span className="text-xs uppercase tracking-[0.2em] text-brand-terracotta font-medium block mb-2">
           {block.eyebrow}
         </span>
-        <h2 className="font-serif text-2xl md:text-3xl uppercase font-normal text-[#5E5245] tracking-[0.1em]">
+        <h2 className="font-serif text-2xl md:text-3xl uppercase font-normal text-brand-text tracking-[0.1em]">
           {block.title}
         </h2>
-        <div className="w-12 h-0.5 bg-[#CA7154] mt-3" />
+        <div className="w-12 h-0.5 bg-brand-terracotta mt-3" />
       </div>
 
       {/* Grid: 2 columns on mobile (390px), 4 columns on desktop (1440px) */}

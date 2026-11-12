@@ -92,32 +92,32 @@ export function ProductBuySection({
         className="flex flex-col pt-1 w-full"
       >
         {/* Eyebrow & Title */}
-        <span className="text-xs uppercase tracking-[0.2em] text-[#CA7154] font-medium mb-1.5 block">
+        <span className="text-xs uppercase tracking-[0.2em] text-brand-terracotta font-medium mb-1.5 block">
           {product.categoryHandle === "filles"
             ? "Collection Filles · Bamako"
             : "Collection Garçons · Bamako"}
         </span>
 
-        <h1 className="font-serif text-2xl sm:text-3xl lg:text-[34px] font-normal leading-tight uppercase tracking-[0.08em] text-[#5E5245] mb-2">
+        <h1 className="font-serif text-2xl sm:text-3xl lg:text-[34px] font-normal leading-tight uppercase tracking-[0.08em] text-brand-text mb-2">
           {product.title}
         </h1>
 
         {/* Price exact in FCFA */}
         <div className="flex items-baseline gap-3 mb-4">
-          <p className="text-2xl font-semibold text-[#5E5245] tracking-tight">
+          <p className="text-2xl font-semibold text-brand-text tracking-tight">
             {formatPrice(product.price)}
           </p>
         </div>
 
         {/* Thin cream separator */}
-        <div className="w-full h-px bg-[#EADCCC] mb-5" />
+        <div className="w-full h-px bg-brand-surface mb-5" />
 
         {/* Size Selection Block */}
         <div className="flex flex-col mb-6">
           <div className="flex items-center justify-between mb-3">
-            <label className="text-xs text-[#5E5245] font-medium">
+            <label className="text-xs text-brand-text font-medium">
               {messages.product.childSize} :{" "}
-              <span className="font-semibold text-[#8A7058]">
+              <span className="font-semibold text-brand-primary">
                 {selectedVariant
                   ? selectedVariant.title
                   : `(${messages.product.chooseSizePrompt})`}
@@ -128,10 +128,10 @@ export function ProductBuySection({
             <button
               type="button"
               onClick={() => setIsSizeModalOpen(true)}
-              className="inline-flex items-center gap-1.5 text-xs text-[#5E5245]/80 hover:text-[#CA7154] transition-colors cursor-pointer group"
+              className="inline-flex items-center gap-1.5 text-xs text-brand-text/80 hover:text-brand-terracotta transition-colors cursor-pointer group"
             >
-              <Ruler className="w-4 h-4 text-[#8A7058] transition-transform group-hover:rotate-12" />
-              <span className="underline underline-offset-4 decoration-[#EADCCC]">
+              <Ruler className="w-4 h-4 text-brand-primary transition-transform group-hover:rotate-12" />
+              <span className="underline underline-offset-4 decoration-brand-surface">
                 {messages.product.sizeGuideBtn}
               </span>
             </button>
@@ -155,13 +155,13 @@ export function ProductBuySection({
                     disabled
                     aria-checked="false"
                     title={`Taille ${v.title} actuellement épuisée`}
-                    className="relative h-11 rounded-lg flex flex-col items-center justify-center uppercase text-[11px] font-medium tracking-wider bg-[#EADCCC]/40 text-[#5E5245]/40 cursor-not-allowed border border-[#EADCCC] select-none overflow-hidden"
+                    className="relative h-11 rounded-lg flex flex-col items-center justify-center uppercase text-[11px] font-medium tracking-wider bg-brand-surface/40 text-brand-text/40 cursor-not-allowed border border-brand-surface select-none overflow-hidden"
                   >
                     <span className="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none">
-                      <span className="w-[140%] h-[1px] bg-[#8A7058]/50 rotate-[-30deg]" />
+                      <span className="w-[140%] h-[1px] bg-brand-primary/50 rotate-[-30deg]" />
                     </span>
                     <span className="line-through">{v.title}</span>
-                    <span className="text-[9px] uppercase font-semibold tracking-wider text-[#CA7154] leading-none mt-0.5">
+                    <span className="text-[9px] uppercase font-semibold tracking-wider text-brand-terracotta leading-none mt-0.5">
                       {messages.product.soldOut}
                     </span>
                   </button>
@@ -177,8 +177,8 @@ export function ProductBuySection({
                   onClick={() => setSelectedVariantId(v.id)}
                   className={`relative h-11 rounded-lg flex items-center justify-center uppercase text-xs font-medium tracking-wider transition-all border cursor-pointer active:scale-95 ${
                     isSelected
-                      ? "bg-[#8A7058] text-white border-[#8A7058] shadow-sm"
-                      : "bg-[#FDF7F2] text-[#5E5245] border-[#EADCCC] hover:bg-[#EADCCC]/40"
+                      ? "bg-brand-primary text-brand-white border-brand-primary shadow-sm"
+                      : "bg-brand-bg text-brand-text border-brand-surface hover:bg-brand-surface/40"
                   }`}
                 >
                   {v.title}
@@ -190,8 +190,8 @@ export function ProductBuySection({
           {/* Stock feedback */}
           <div className="mt-2.5">
             {selectedVariant && selectedVariant.inventoryQuantity <= 2 && selectedVariant.inStock ? (
-              <p className="text-xs text-[#CA7154] font-medium flex items-center gap-1.5 animate-pulse">
-                <Flame className="w-4 h-4 text-[#CA7154]" />
+              <p className="text-xs text-brand-terracotta font-medium flex items-center gap-1.5 animate-pulse">
+                <Flame className="w-4 h-4 text-brand-terracotta" />
                 <span>
                   {messages.product.lowStockFeedback(
                     selectedVariant.inventoryQuantity,
@@ -200,8 +200,8 @@ export function ProductBuySection({
                 </span>
               </p>
             ) : (
-              <p className="text-xs text-[#5E5245]/70 flex items-center gap-1.5 font-light">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#9EA593]" />
+              <p className="text-xs text-brand-text/70 flex items-center gap-1.5 font-light">
+                <CheckCircle2 className="w-3.5 h-3.5 text-brand-announcement" />
                 <span>{messages.product.sizeAdviceNote}</span>
               </p>
             )}
@@ -216,12 +216,12 @@ export function ProductBuySection({
             disabled={isAdding || isSoldOut}
             className={`min-touch-btn w-full py-3.5 px-6 rounded-lg uppercase text-xs font-medium tracking-[0.15em] flex items-center justify-center gap-2.5 transition-all duration-200 shadow-sm cursor-pointer disabled:opacity-50 ${
               isAddedSuccess
-                ? "bg-[#9EA593] text-white"
-                : "bg-[#8A7058] hover:bg-[#725a43] text-white"
+                ? "bg-brand-announcement text-brand-white"
+                : "bg-brand-primary hover:bg-brand-text text-brand-white"
             }`}
           >
             {isAdding ? (
-              <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+              <span className="w-4 h-4 border-2 border-brand-white border-t-transparent rounded-full animate-spin" />
             ) : isAddedSuccess ? (
               <>
                 <CheckCircle2 className="w-4 h-4" />
@@ -243,32 +243,32 @@ export function ProductBuySection({
         </div>
 
         {/* Reassurance 3-Point Card */}
-        <div className="bg-[#EADCCC]/40 border border-[#EADCCC] rounded-xl p-4 flex flex-col gap-3 mb-6">
+        <div className="bg-brand-surface/40 border border-brand-surface rounded-xl p-4 flex flex-col gap-3 mb-6">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-[#FDF7F2] border border-[#EADCCC] flex items-center justify-center text-[#8A7058] shrink-0">
+            <div className="w-8 h-8 rounded-full bg-brand-bg border border-brand-surface flex items-center justify-center text-brand-primary shrink-0">
               <CreditCard className="w-4 h-4" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xs font-medium text-[#5E5245]">
+              <span className="text-xs font-medium text-brand-text">
                 {messages.product.reassurancePayments}
               </span>
-              <span className="text-[11px] text-[#5E5245]/75 font-light">
+              <span className="text-[11px] text-brand-text/75 font-light">
                 {messages.product.reassurancePaymentsDesc}
               </span>
             </div>
           </div>
 
-          <div className="w-full h-px bg-[#EADCCC]/80" />
+          <div className="w-full h-px bg-brand-surface/80" />
 
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-[#FDF7F2] border border-[#EADCCC] flex items-center justify-center text-[#8A7058] shrink-0">
+            <div className="w-8 h-8 rounded-full bg-brand-bg border border-brand-surface flex items-center justify-center text-brand-primary shrink-0">
               <Bike className="w-4 h-4" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xs font-medium text-[#5E5245]">
+              <span className="text-xs font-medium text-brand-text">
                 {messages.product.reassuranceDelivery}
               </span>
-              <span className="text-[11px] text-[#5E5245]/75 font-light">
+              <span className="text-[11px] text-brand-text/75 font-light">
                 {messages.product.reassuranceDeliveryDesc}
               </span>
             </div>
@@ -278,42 +278,42 @@ export function ProductBuySection({
 
         {/* Editorial Narrative */}
         <div className="mb-6">
-          <h2 className="text-xs uppercase tracking-[0.2em] text-[#5E5245]/70 font-semibold mb-2">
+          <h2 className="text-xs uppercase tracking-[0.2em] text-brand-text/70 font-semibold mb-2">
             {messages.product.spiritTitle}
           </h2>
-          <p className="text-sm text-[#5E5245] leading-relaxed font-light">
+          <p className="text-sm text-brand-text leading-relaxed font-light">
             {product.description}
           </p>
         </div>
 
         {/* Accordions: only the fields filled in Medusa */}
         {(product.material || product.careInstructions) && (
-        <div className="flex flex-col rounded-xl overflow-hidden bg-[#EADCCC]/30 border border-[#EADCCC] divide-y divide-[#EADCCC]">
+        <div className="flex flex-col rounded-xl overflow-hidden bg-brand-surface/30 border border-brand-surface divide-y divide-brand-surface">
           {product.material && (
-          <details className="group p-4 open:bg-[#EADCCC]/50 transition-colors" open>
-            <summary className="flex items-center justify-between cursor-pointer list-none select-none text-xs font-medium text-[#5E5245]">
+          <details className="group p-4 open:bg-brand-surface/50 transition-colors" open>
+            <summary className="flex items-center justify-between cursor-pointer list-none select-none text-xs font-medium text-brand-text">
               <span className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-[#8A7058]" />
+                <Sparkles className="w-4 h-4 text-brand-primary" />
                 {messages.product.materialAccordion}
               </span>
-              <ChevronDown className="w-4 h-4 text-[#8A7058] transition-transform duration-300 group-open:rotate-180" />
+              <ChevronDown className="w-4 h-4 text-brand-primary transition-transform duration-300 group-open:rotate-180" />
             </summary>
-            <p className="pt-3 pr-2 text-xs text-[#5E5245]/85 leading-relaxed font-light">
+            <p className="pt-3 pr-2 text-xs text-brand-text/85 leading-relaxed font-light">
               {product.material}
             </p>
           </details>
           )}
 
           {product.careInstructions && (
-          <details className="group p-4 open:bg-[#EADCCC]/50 transition-colors">
-            <summary className="flex items-center justify-between cursor-pointer list-none select-none text-xs font-medium text-[#5E5245]">
+          <details className="group p-4 open:bg-brand-surface/50 transition-colors">
+            <summary className="flex items-center justify-between cursor-pointer list-none select-none text-xs font-medium text-brand-text">
               <span className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-[#8A7058]" />
+                <ShieldCheck className="w-4 h-4 text-brand-primary" />
                 {messages.product.careAccordion}
               </span>
-              <ChevronDown className="w-4 h-4 text-[#8A7058] transition-transform duration-300 group-open:rotate-180" />
+              <ChevronDown className="w-4 h-4 text-brand-primary transition-transform duration-300 group-open:rotate-180" />
             </summary>
-            <p className="pt-3 pr-2 text-xs text-[#5E5245]/85 leading-relaxed font-light">
+            <p className="pt-3 pr-2 text-xs text-brand-text/85 leading-relaxed font-light">
               {product.careInstructions}
             </p>
           </details>
@@ -333,7 +333,7 @@ export function ProductBuySection({
       />
 
       {/* Sticky Bottom Bar on Mobile (< 768px) */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#FDF7F2]/95 backdrop-blur-md px-4 pt-3 pb-safe border-t border-[#EADCCC] shadow-[0_-4px_20px_rgba(94,82,69,0.08)]">
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-brand-bg/95 backdrop-blur-md px-4 pt-3 pb-safe border-t border-brand-surface shadow-[0_-4px_20px_rgba(94,82,69,0.08)]">
         <div className="max-w-[420px] mx-auto flex flex-col gap-2">
           <button
             type="button"
@@ -341,8 +341,8 @@ export function ProductBuySection({
             disabled={isAdding || isSoldOut}
             className={`min-touch-btn w-full py-3 px-6 rounded-lg uppercase text-xs font-medium tracking-[0.15em] flex items-center justify-center gap-2 shadow-xs cursor-pointer ${
               isAddedSuccess
-                ? "bg-[#9EA593] text-white"
-                : "bg-[#8A7058] text-white hover:bg-[#725a43]"
+                ? "bg-brand-announcement text-brand-white"
+                : "bg-brand-primary text-brand-white hover:bg-brand-text"
             }`}
           >
             <ShoppingBag className="w-4 h-4" />
@@ -354,7 +354,7 @@ export function ProductBuySection({
           </button>
 
           {/* Mini reassuring badges */}
-          <div className="grid grid-cols-2 gap-1 pt-1 pb-1 text-center text-[#5E5245]/80">
+          <div className="grid grid-cols-2 gap-1 pt-1 pb-1 text-center text-brand-text/80">
             <span className="text-[10px] leading-tight">{messages.product.miniBadgePayment}</span>
             <span className="text-[10px] leading-tight">{messages.product.miniBadgeDelivery}</span>
           </div>

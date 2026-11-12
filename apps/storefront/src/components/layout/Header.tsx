@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { MobileMenuTrigger } from "./MobileMenuTrigger";
 import { messages } from "@/messages/fr";
+import { Logo } from "@/components/layout/Logo";
 
 interface HeaderProps {
   /** Cart button, rendered by the layout inside a Suspense boundary. */
@@ -10,7 +11,7 @@ interface HeaderProps {
 
 export function Header({ cartSlot }: HeaderProps) {
   return (
-    <header className="w-full bg-[#FDF7F2]/95 backdrop-blur-md sticky top-0 z-40 border-b border-[#EADCCC]">
+    <header className="w-full bg-brand-bg/95 backdrop-blur-md sticky top-0 z-40 border-b border-brand-surface">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
         {/* Mobile menu hamburger button */}
         <MobileMenuTrigger />
@@ -22,19 +23,19 @@ export function Header({ cartSlot }: HeaderProps) {
         >
           <Link
             href="/categorie/filles"
-            className="text-[#5E5245] hover:text-[#CA7154] transition-colors"
+            className="text-brand-text hover:text-brand-terracotta transition-colors"
           >
             {messages.header.navGirls}
           </Link>
           <Link
             href="/categorie/garcons"
-            className="text-[#5E5245] hover:text-[#CA7154] transition-colors"
+            className="text-brand-text hover:text-brand-terracotta transition-colors"
           >
             {messages.header.navBoys}
           </Link>
           <Link
             href="/#nouveautes"
-            className="text-[#5E5245] hover:text-[#CA7154] transition-colors"
+            className="text-brand-text hover:text-brand-terracotta transition-colors"
           >
             {messages.header.navNew}
           </Link>
@@ -45,11 +46,8 @@ export function Header({ cartSlot }: HeaderProps) {
           href="/"
           className="flex flex-col items-center justify-center hover:opacity-95 transition-opacity"
         >
-          <span className="font-serif text-2xl md:text-3xl font-bold tracking-tight leading-none italic">
-            <span className="text-[#C8807C]">Fini</span>{" "}
-            <span className="text-[#304054]">Kura</span>
-          </span>
-          <span className="text-[8px] md:text-[10px] tracking-[0.28em] text-[#5E5245] uppercase font-medium mt-1">
+          <Logo className="text-2xl md:text-3xl tracking-tight leading-none" />
+          <span className="text-[8px] md:text-[10px] tracking-[0.28em] text-brand-text uppercase font-medium mt-1">
             {messages.header.brandSubtitle}
           </span>
         </Link>
@@ -62,7 +60,7 @@ export function Header({ cartSlot }: HeaderProps) {
           >
             <Link
               href="/contact"
-              className="text-[#5E5245] hover:text-[#CA7154] transition-colors"
+              className="text-brand-text hover:text-brand-terracotta transition-colors"
             >
               {messages.header.navContact}
             </Link>

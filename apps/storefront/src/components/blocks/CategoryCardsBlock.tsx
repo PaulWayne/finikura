@@ -14,14 +14,14 @@ export function CategoryCardsBlock({ block }: CategoryCardsBlockProps) {
       {/* Section Header */}
       <div className="flex items-end justify-between mb-6">
         <div>
-          <span className="text-xs uppercase tracking-[0.15em] text-[#CA7154] font-medium block mb-1">
+          <span className="text-xs uppercase tracking-[0.15em] text-brand-terracotta font-medium block mb-1">
             {block.eyebrow}
           </span>
-          <h2 className="font-serif text-[24px] md:text-[26px] uppercase font-normal text-[#5E5245] tracking-[0.08em]">
+          <h2 className="font-serif text-[24px] md:text-[26px] uppercase font-normal text-brand-text tracking-[0.08em]">
             {block.title}
           </h2>
         </div>
-        <span className="text-xs uppercase tracking-[0.15em] text-[#5E5245]/70 font-medium hidden sm:inline-block">
+        <span className="text-xs uppercase tracking-[0.15em] text-brand-text/70 font-medium hidden sm:inline-block">
           {block.subtitle}
         </span>
       </div>
@@ -36,7 +36,7 @@ export function CategoryCardsBlock({ block }: CategoryCardsBlockProps) {
           return (
             <div
               key={card.categoryHandle}
-              className="group relative block rounded-2xl overflow-hidden shadow-xs bg-[#EADCCC] border border-[#EADCCC]"
+              className="group relative block rounded-2xl overflow-hidden shadow-xs bg-brand-surface border border-brand-surface"
             >
               {/* Card image container */}
               <div className="relative w-full aspect-[4/3] md:h-[380px] overflow-hidden">
@@ -46,19 +46,19 @@ export function CategoryCardsBlock({ block }: CategoryCardsBlockProps) {
                   fallbackSrc={fallback}
                   className="w-full h-full object-cover object-top transition duration-700 group-hover:scale-105"
                 />
-              <div className="absolute inset-0 bg-[#5E5245]/20 group-hover:bg-[#5E5245]/30 transition duration-500" />
+              <div className="absolute inset-0 bg-brand-text/20 group-hover:bg-brand-text/30 transition duration-500" />
               <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
-                <div className="bg-[#FDF7F2]/95 backdrop-blur-xs px-6 py-3.5 rounded-xl border border-[#EADCCC] shadow-xs">
-                  <h3 className="font-serif text-3xl md:text-4xl uppercase font-normal text-[#5E5245] tracking-[0.08em]">
+                <div className="bg-brand-bg/95 backdrop-blur-xs px-6 py-3.5 rounded-xl border border-brand-surface shadow-xs">
+                  <h3 className="font-serif text-3xl md:text-4xl uppercase font-normal text-brand-text tracking-[0.08em]">
                     {card.title}
                   </h3>
-                  <span className="text-xs uppercase tracking-[0.15em] font-medium text-[#8A7058] mt-1 block">
+                  <span className="text-xs uppercase tracking-[0.15em] font-medium text-brand-primary mt-1 block">
                     {card.ageRange}
                   </span>
                 </div>
                 <Link
                   href={`/categorie/${card.categoryHandle}`}
-                  className="min-touch-btn inline-flex items-center justify-center px-6 py-2.5 mt-4 rounded-[4px] border border-[#8A7058] bg-[#FDF7F2] text-[#5E5245] hover:bg-[#8A7058] hover:text-white font-medium text-xs tracking-[0.15em] uppercase transition shadow-xs"
+                  className="min-touch-btn inline-flex items-center justify-center px-6 py-2.5 mt-4 rounded-[4px] border border-brand-primary bg-brand-bg text-brand-text hover:bg-brand-primary hover:text-brand-white font-medium text-xs tracking-[0.15em] uppercase transition shadow-xs"
                 >
                   {card.ctaText}
                 </Link>
@@ -66,13 +66,13 @@ export function CategoryCardsBlock({ block }: CategoryCardsBlockProps) {
             </div>
 
             {/* Mobile bottom caption strip matching mockup */}
-            <div className="md:hidden p-3.5 bg-[#EADCCC] flex items-center justify-between">
-              <span className="text-xs uppercase tracking-[0.15em] text-[#5E5245] font-medium">
+            <div className="md:hidden p-3.5 bg-brand-surface flex items-center justify-between">
+              <span className="text-xs uppercase tracking-[0.15em] text-brand-text font-medium">
                 {card.tagline || card.title}
               </span>
               <Link
                 href={`/categorie/${card.categoryHandle}`}
-                className="min-touch-btn inline-flex items-center justify-center px-4 py-2 rounded-[4px] border border-[#8A7058] text-[#8A7058] font-medium text-xs uppercase tracking-[0.15em] hover:bg-[#8A7058] hover:text-white transition"
+                className="min-touch-btn inline-flex items-center justify-center px-4 py-2 rounded-[4px] border border-brand-primary text-brand-primary font-medium text-xs uppercase tracking-[0.15em] hover:bg-brand-primary hover:text-brand-white transition"
               >
                 {card.ctaText}
               </Link>

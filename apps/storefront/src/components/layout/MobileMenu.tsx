@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { CART_EVENTS, triggerCloseMenu } from "@/lib/cart-events";
 import { messages } from "@/messages/fr";
+import { Logo } from "@/components/layout/Logo";
 
 interface MobileMenuProps {
   whatsappUrl?: string | null;
@@ -42,7 +43,7 @@ export function MobileMenu({
     <>
       {/* Backdrop overlay */}
       <div
-        className={`fixed inset-0 bg-[#5E5245]/40 backdrop-blur-xs z-50 transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 bg-brand-text/40 backdrop-blur-xs z-50 transition-opacity duration-300 md:hidden ${
           isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         onClick={close}
@@ -53,26 +54,23 @@ export function MobileMenu({
       <aside
         id="mobile-drawer"
         aria-label="Menu mobile"
-        className={`fixed top-0 right-0 bottom-0 w-[310px] max-w-[85vw] bg-[#FDF7F2] z-50 shadow-2xl flex flex-col justify-between p-6 transform transition-transform duration-300 ease-in-out border-l border-[#EADCCC] md:hidden ${
+        className={`fixed top-0 right-0 bottom-0 w-[310px] max-w-[85vw] bg-brand-bg z-50 shadow-2xl flex flex-col justify-between p-6 transform transition-transform duration-300 ease-in-out border-l border-brand-surface md:hidden ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div>
           {/* Header of Drawer */}
-          <div className="flex items-center justify-between pb-5 border-b border-[#EADCCC]">
+          <div className="flex items-center justify-between pb-5 border-b border-brand-surface">
             <div>
-              <span className="font-serif text-xl font-bold italic leading-tight block">
-                <span className="text-[#C8807C]">Fini</span>{" "}
-                <span className="text-[#304054]">Kura</span>
-              </span>
-              <span className="text-[8px] tracking-[0.2em] text-[#5E5245] uppercase font-medium">
+              <Logo className="text-xl leading-tight block" />
+              <span className="text-[8px] tracking-[0.2em] text-brand-text uppercase font-medium">
                 {messages.header.brandSubtitle}
               </span>
             </div>
             <button
               type="button"
               aria-label={messages.header.closeMenuAria}
-              className="p-2 text-[#5E5245] hover:text-[#8A7058] rounded-full hover:bg-[#EADCCC]/40 transition min-touch-btn flex items-center justify-center cursor-pointer"
+              className="p-2 text-brand-text hover:text-brand-primary rounded-full hover:bg-brand-surface/40 transition min-touch-btn flex items-center justify-center cursor-pointer"
               onClick={close}
             >
               <svg
@@ -95,7 +93,7 @@ export function MobileMenu({
             <Link
               href="/categorie/filles"
               onClick={close}
-              className="font-serif text-lg font-medium text-[#5E5245] hover:text-[#8A7058] transition py-1 flex items-center justify-between"
+              className="font-serif text-lg font-medium text-brand-text hover:text-brand-primary transition py-1 flex items-center justify-between"
             >
               <span>Filles (3 - 14 ans)</span>
               <svg
@@ -115,7 +113,7 @@ export function MobileMenu({
             <Link
               href="/categorie/garcons"
               onClick={close}
-              className="font-serif text-lg font-medium text-[#5E5245] hover:text-[#8A7058] transition py-1 flex items-center justify-between"
+              className="font-serif text-lg font-medium text-brand-text hover:text-brand-primary transition py-1 flex items-center justify-between"
             >
               <span>Garçons (3 - 14 ans)</span>
               <svg
@@ -135,20 +133,20 @@ export function MobileMenu({
             <Link
               href="/#nouveautes"
               onClick={close}
-              className="font-serif text-lg font-medium text-[#5E5245] hover:text-[#8A7058] transition py-1 flex items-center justify-between"
+              className="font-serif text-lg font-medium text-brand-text hover:text-brand-primary transition py-1 flex items-center justify-between"
             >
               <span>Nouveautés</span>
-              <span className="text-[10px] font-sans px-2.5 py-0.5 rounded-full bg-[#CA7154]/15 text-[#CA7154] font-medium tracking-wider uppercase">
+              <span className="text-[10px] font-sans px-2.5 py-0.5 rounded-full bg-brand-terracotta/15 text-brand-terracotta font-medium tracking-wider uppercase">
                 Nouveau
               </span>
             </Link>
 
-            <div className="w-full h-px bg-[#EADCCC] my-2" />
+            <div className="w-full h-px bg-brand-surface my-2" />
 
             <Link
               href="/guide-des-tailles"
               onClick={close}
-              className="text-base font-normal text-[#5E5245] hover:text-[#8A7058] transition py-1"
+              className="text-base font-normal text-brand-text hover:text-brand-primary transition py-1"
             >
               {messages.header.navSizeGuide}
             </Link>
@@ -156,7 +154,7 @@ export function MobileMenu({
             <Link
               href="/notre-histoire"
               onClick={close}
-              className="min-touch-btn inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-[4px] border border-[#8A7058] text-[#8A7058] font-medium text-xs tracking-[0.15em] uppercase hover:bg-[#8A7058] hover:text-white transition shadow-xs"
+              className="min-touch-btn inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-[4px] border border-brand-primary text-brand-primary font-medium text-xs tracking-[0.15em] uppercase hover:bg-brand-primary hover:text-brand-white transition shadow-xs"
             >
               <span>{messages.header.navHistory}</span>
               <svg
@@ -176,7 +174,7 @@ export function MobileMenu({
             <Link
               href="/livraison-et-echanges"
               onClick={close}
-              className="text-base font-normal text-[#5E5245] hover:text-[#8A7058] transition py-1"
+              className="text-base font-normal text-brand-text hover:text-brand-primary transition py-1"
             >
               Livraison et échanges
             </Link>
@@ -184,7 +182,7 @@ export function MobileMenu({
             <Link
               href="/contact"
               onClick={close}
-              className="text-base font-normal text-[#5E5245] hover:text-[#8A7058] transition py-1"
+              className="text-base font-normal text-brand-text hover:text-brand-primary transition py-1"
             >
               {messages.header.navContact}
             </Link>
@@ -192,7 +190,7 @@ export function MobileMenu({
             <Link
               href="/mentions-legales"
               onClick={close}
-              className="text-sm font-normal text-[#5E5245]/80 hover:text-[#8A7058] transition py-1"
+              className="text-sm font-normal text-brand-text/80 hover:text-brand-primary transition py-1"
             >
               Mentions Légales &amp; CGV
             </Link>
@@ -200,12 +198,12 @@ export function MobileMenu({
         </div>
 
         {/* Bottom of Drawer: WhatsApp advice */}
-        <div className="pt-6 border-t border-[#EADCCC]">
-          <div className="p-3 bg-[#EADCCC]/60 rounded-xl mb-3">
-            <p className="text-xs font-semibold text-[#5E5245]">
+        <div className="pt-6 border-t border-brand-surface">
+          <div className="p-3 bg-brand-surface/60 rounded-xl mb-3">
+            <p className="text-xs font-semibold text-brand-text">
               {messages.drawer.needAdviceTitle}
             </p>
-            <p className="text-[11px] text-[#5E5245]/80 mt-0.5 leading-relaxed">
+            <p className="text-[11px] text-brand-text/80 mt-0.5 leading-relaxed">
               {messages.drawer.needAdviceText}
             </p>
           </div>
@@ -214,7 +212,7 @@ export function MobileMenu({
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="min-touch-btn w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-[4px] bg-[#8A7058] text-white text-xs font-medium uppercase tracking-[0.15em] hover:bg-[#725a43] transition shadow-xs"
+            className="min-touch-btn w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-[4px] bg-brand-primary text-brand-white text-xs font-medium uppercase tracking-[0.15em] hover:bg-brand-text transition shadow-xs"
           >
             <span>{messages.drawer.whatsAppContactBtn}</span>
           </a>

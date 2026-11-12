@@ -64,8 +64,8 @@ export function FilterChips({
                 scroll={false}
                 className={`min-touch-btn inline-flex items-center justify-center px-4 py-1.5 rounded-full text-xs font-normal tracking-wide transition border shadow-xs select-none ${
                   isActive
-                    ? "bg-[#8A7058] text-white border-[#8A7058]"
-                    : "bg-[#FDF7F2] text-[#5E5245] border-[#EADCCC] hover:border-[#8A7058]/50 hover:bg-[#EADCCC]/30"
+                    ? "bg-brand-primary text-brand-white border-brand-primary"
+                    : "bg-brand-bg text-brand-text border-brand-surface hover:border-brand-primary/50 hover:bg-brand-surface/30"
                 }`}
               >
                 {opt.label}
@@ -96,8 +96,8 @@ export function FilterChips({
                 scroll={false}
                 className={`min-touch-btn inline-flex items-center justify-center px-4 py-1.5 rounded-full text-xs font-normal tracking-wide transition border shadow-xs select-none ${
                   isActive
-                    ? "bg-[#8A7058] text-white border-[#8A7058]"
-                    : "bg-[#FDF7F2] text-[#5E5245] border-[#EADCCC] hover:border-[#8A7058]/50 hover:bg-[#EADCCC]/30"
+                    ? "bg-brand-primary text-brand-white border-brand-primary"
+                    : "bg-brand-bg text-brand-text border-brand-surface hover:border-brand-primary/50 hover:bg-brand-surface/30"
                 }`}
               >
                 {opt.label}

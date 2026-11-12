@@ -96,18 +96,18 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
   if (cart.items.length === 0) {
     return (
       <div className="max-w-2xl mx-auto py-16 px-4 text-center">
-        <div className="w-16 h-16 rounded-full bg-[#EADCCC]/40 flex items-center justify-center mx-auto mb-4 text-[#8A7058]">
+        <div className="w-16 h-16 rounded-full bg-brand-surface/40 flex items-center justify-center mx-auto mb-4 text-brand-primary">
           <ShoppingBag className="w-8 h-8" />
         </div>
-        <h2 className="font-serif text-2xl md:text-3xl uppercase text-[#5E5245] mb-2 tracking-[0.05em]">
+        <h2 className="font-serif text-2xl md:text-3xl uppercase text-brand-text mb-2 tracking-[0.05em]">
           {messages.checkout.emptyCartTitle}
         </h2>
-        <p className="text-sm text-[#5E5245]/80 mb-6 max-w-md mx-auto">
+        <p className="text-sm text-brand-text/80 mb-6 max-w-md mx-auto">
           {messages.checkout.emptyCartDesc}
         </p>
         <Link
           href="/categorie/filles"
-          className="inline-flex items-center justify-center px-8 py-3.5 bg-[#8A7058] hover:bg-[#78614b] text-white text-xs font-medium tracking-[0.15em] uppercase rounded shadow-sm transition"
+          className="inline-flex items-center justify-center px-8 py-3.5 bg-brand-primary hover:bg-brand-text text-brand-white text-xs font-medium tracking-[0.15em] uppercase rounded shadow-sm transition"
         >
           {messages.checkout.emptyCartCta}
         </Link>
@@ -118,26 +118,26 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
   return (
     <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 md:px-8 py-6 md:py-10">
       {/* Breadcrumb & Top Indicator (Desktop & Tablet) */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 gap-3 border-b border-[#EADCCC]/50 mb-8">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 gap-3 border-b border-brand-surface/50 mb-8">
         <nav
           aria-label="Fil d'Ariane Commande"
-          className="flex items-center space-x-2 text-xs text-[#5E5245]/70"
+          className="flex items-center space-x-2 text-xs text-brand-text/70"
         >
           <Link
             href="/"
-            className="hover:text-[#CA7154] transition-colors"
+            className="hover:text-brand-terracotta transition-colors"
           >
             {messages.checkout.breadcrumbPanier}
           </Link>
           <span>/</span>
-          <span className="text-[#8A7058] font-medium">
+          <span className="text-brand-primary font-medium">
             {messages.checkout.breadcrumbFinalisation}
           </span>
           <span>/</span>
-          <span className="text-[#80756C]/60">{messages.checkout.breadcrumbConfirmation}</span>
+          <span className="text-brand-text/60">{messages.checkout.breadcrumbConfirmation}</span>
         </nav>
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#FDEBDA] text-[#705841] text-xs font-medium">
-          <Truck className="w-4 h-4 text-[#8A7058]" />
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-brand-surface text-brand-text text-xs font-medium">
+          <Truck className="w-4 h-4 text-brand-primary" />
           <span>{messages.checkout.topDeliveryBadge}</span>
         </div>
       </div>
@@ -148,31 +148,31 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
         <section className="lg:col-span-7 flex flex-col space-y-6">
           {/* Header Section */}
           <div className="space-y-1.5 text-left">
-            <span className="text-xs uppercase tracking-[0.2em] text-[#5A6151] font-semibold block">
+            <span className="text-xs uppercase tracking-[0.2em] text-brand-text font-semibold block">
               <span className="hidden sm:inline">{messages.checkout.stepEyebrowDesktop}</span>
               <span className="sm:hidden">{messages.checkout.stepEyebrowMobile}</span>
             </span>
-            <h1 className="font-serif text-2xl sm:text-3xl lg:text-[34px] uppercase text-[#5E5245] tracking-[0.06em] leading-tight">
+            <h1 className="font-serif text-2xl sm:text-3xl lg:text-[34px] uppercase text-brand-text tracking-[0.06em] leading-tight">
               <span className="hidden sm:inline">{messages.checkout.titleDesktop}</span>
               <span className="sm:hidden">{messages.checkout.titleMobile}</span>
             </h1>
-            <p className="text-sm sm:text-base text-[#5E5245]/80 pt-1 leading-relaxed">
+            <p className="text-sm sm:text-base text-brand-text/80 pt-1 leading-relaxed">
               <span className="hidden sm:inline">{messages.checkout.subtitleDesktop}</span>
               <span className="sm:hidden">{messages.checkout.subtitleMobile}</span>
             </p>
           </div>
 
           {/* Mobile Collapsible Order Summary Accordion (Mockup mobile 390px) */}
-          <div className="lg:hidden w-full bg-[#FDEBDA] rounded-xl overflow-hidden shadow-sm transition-all duration-300">
+          <div className="lg:hidden w-full bg-brand-surface rounded-xl overflow-hidden shadow-sm transition-all duration-300">
             <button
               type="button"
               onClick={() => setIsMobileSummaryOpen(!isMobileSummaryOpen)}
               aria-expanded={isMobileSummaryOpen}
-              className="w-full px-4 py-3.5 flex items-center justify-between text-left focus:outline-none bg-[#FDEBDA] hover:bg-[#F7E5D4] transition-colors"
+              className="w-full px-4 py-3.5 flex items-center justify-between text-left focus:outline-none bg-brand-surface hover:bg-brand-surface transition-colors"
             >
               <div className="flex items-center gap-2 min-w-0">
-                <ShoppingBag className="w-5 h-5 text-[#8A7058] shrink-0" />
-                <span className="text-xs sm:text-sm font-medium text-[#705841] truncate">
+                <ShoppingBag className="w-5 h-5 text-brand-primary shrink-0" />
+                <span className="text-xs sm:text-sm font-medium text-brand-text truncate">
                   {messages.checkout.seeItemsAccordion(
                     totalItemsCount,
                     formatPrice(cart.total)
@@ -180,41 +180,41 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
                 </span>
               </div>
               <ChevronDown
-                className={`w-5 h-5 text-[#8A7058] transition-transform duration-300 ${
+                className={`w-5 h-5 text-brand-primary transition-transform duration-300 ${
                   isMobileSummaryOpen ? "rotate-180" : ""
                 }`}
               />
             </button>
 
             {isMobileSummaryOpen && (
-              <div className="px-4 pb-4 pt-2 flex flex-col gap-2.5 bg-[#FDEBDA]/70 border-t border-[#EADCCC]/40">
+              <div className="px-4 pb-4 pt-2 flex flex-col gap-2.5 bg-brand-surface/70 border-t border-brand-surface/40">
                 {cart.items.map((item) => (
                   <div
                     key={item.id}
-                    className="flex items-center gap-3 p-2.5 rounded-lg bg-white shadow-xs"
+                    className="flex items-center gap-3 p-2.5 rounded-lg bg-brand-white shadow-xs"
                   >
                     <img
                       src={item.thumbnail || IMAGE_FALLBACKS.product}
                       alt={item.productTitle}
                       onError={handleImgError(IMAGE_FALLBACKS.product)}
-                      className="w-14 h-14 rounded-md object-cover shrink-0 bg-[#F7E5D4]"
+                      className="w-14 h-14 rounded-md object-cover shrink-0 bg-brand-surface"
                     />
                     <div className="flex flex-col min-w-0 flex-1">
-                      <p className="text-xs sm:text-sm font-medium text-[#5E5245] truncate">
+                      <p className="text-xs sm:text-sm font-medium text-brand-text truncate">
                         {item.productTitle}
                       </p>
-                      <p className="text-[11px] text-[#5E5245]/70">
+                      <p className="text-[11px] text-brand-text/70">
                         Taille : {item.variantTitle} · Qté : {item.quantity}
                       </p>
-                      <span className="text-xs font-semibold text-[#8A7058] mt-0.5">
+                      <span className="text-xs font-semibold text-brand-primary mt-0.5">
                         {formatPrice(item.price * item.quantity)}
                       </span>
                     </div>
                   </div>
                 ))}
-                <div className="flex items-baseline justify-between pt-2 px-1 text-xs text-[#5E5245]">
+                <div className="flex items-baseline justify-between pt-2 px-1 text-xs text-brand-text">
                   <span>{messages.checkout.subtotalArticlesMobile}</span>
-                  <span className="font-semibold text-sm text-[#705841]">
+                  <span className="font-semibold text-sm text-brand-text">
                     {formatPrice(cart.total)}
                   </span>
                 </div>
@@ -223,13 +223,13 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
           </div>
 
           {/* Reassurance Banner */}
-          <div className="bg-[#F7E5D4] p-4 rounded-xl flex items-start gap-3 shadow-xs">
-            <ShieldCheck className="w-5 h-5 text-[#5A6151] mt-0.5 shrink-0" />
+          <div className="bg-brand-surface p-4 rounded-xl flex items-start gap-3 shadow-xs">
+            <ShieldCheck className="w-5 h-5 text-brand-text mt-0.5 shrink-0" />
             <div className="space-y-0.5">
-              <h2 className="text-xs sm:text-sm font-medium text-[#231A10]">
+              <h2 className="text-xs sm:text-sm font-medium text-brand-text">
                 {messages.checkout.reassuranceTitle}
               </h2>
-              <p className="text-xs text-[#4E453D] leading-relaxed">
+              <p className="text-xs text-brand-text leading-relaxed">
                 {messages.checkout.reassuranceDesc}
               </p>
             </div>
@@ -246,13 +246,13 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
             <div className="flex flex-col space-y-1.5">
               <label
                 htmlFor="fullName"
-                className="text-xs uppercase tracking-wider text-[#231A10] font-medium flex items-center justify-between"
+                className="text-xs uppercase tracking-wider text-brand-text font-medium flex items-center justify-between"
               >
                 <span>
                   {messages.checkout.nameLabel}{" "}
-                  <span className="text-[#CA7154]">*</span>
+                  <span className="text-brand-terracotta">*</span>
                 </span>
-                <span className="text-[#80756C] normal-case tracking-normal text-[11px]">
+                <span className="text-brand-text normal-case tracking-normal text-[11px]">
                   {messages.checkout.nameRequiredBadge}
                 </span>
               </label>
@@ -262,16 +262,16 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
                   type="text"
                   {...register("fullName")}
                   placeholder={messages.checkout.namePlaceholder}
-                  className={`w-full h-12 px-4 pr-10 rounded bg-white text-[#231A10] text-sm shadow-xs border transition-all placeholder:text-[#80756C]/50 focus:outline-none ${
+                  className={`w-full h-12 px-4 pr-10 rounded bg-brand-white text-brand-text text-sm shadow-xs border transition-all placeholder:text-brand-text/50 focus:outline-none ${
                     errors.fullName
-                      ? "border-[#CA7154] focus:ring-1 focus:ring-[#CA7154]"
-                      : "border-[#EADCCC] focus:border-[#8A7058]"
+                      ? "border-brand-terracotta focus:ring-1 focus:ring-brand-terracotta"
+                      : "border-brand-surface focus:border-brand-primary"
                   }`}
                 />
-                <User className="w-4 h-4 text-[#5A6151] absolute right-3.5 top-4 pointer-events-none" />
+                <User className="w-4 h-4 text-brand-text absolute right-3.5 top-4 pointer-events-none" />
               </div>
               {errors.fullName && (
-                <p className="text-xs text-[#CA7154] font-medium flex items-center gap-1 pt-0.5">
+                <p className="text-xs text-brand-terracotta font-medium flex items-center gap-1 pt-0.5">
                   <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                   <span>{errors.fullName.message}</span>
                 </p>
@@ -282,13 +282,13 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
             <div className="flex flex-col space-y-1.5">
               <label
                 htmlFor="phone"
-                className="text-xs uppercase tracking-wider text-[#231A10] font-medium flex items-center justify-between"
+                className="text-xs uppercase tracking-wider text-brand-text font-medium flex items-center justify-between"
               >
                 <span>
                   {messages.checkout.phoneLabel}{" "}
-                  <span className="text-[#CA7154]">*</span>
+                  <span className="text-brand-terracotta">*</span>
                 </span>
-                <span className="text-[#5A6151] normal-case tracking-normal text-[11px]">
+                <span className="text-brand-text normal-case tracking-normal text-[11px]">
                   {messages.checkout.phoneHelp}
                 </span>
               </label>
@@ -299,16 +299,16 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
                   inputMode="numeric"
                   {...register("phone")}
                   placeholder={messages.checkout.phonePlaceholder}
-                  className={`w-full h-12 px-4 pr-10 rounded bg-white text-[#231A10] text-sm tracking-wide shadow-xs border transition-all placeholder:text-[#80756C]/50 focus:outline-none ${
+                  className={`w-full h-12 px-4 pr-10 rounded bg-brand-white text-brand-text text-sm tracking-wide shadow-xs border transition-all placeholder:text-brand-text/50 focus:outline-none ${
                     errors.phone
-                      ? "border-[#CA7154] focus:ring-1 focus:ring-[#CA7154]"
-                      : "border-[#EADCCC] focus:border-[#8A7058]"
+                      ? "border-brand-terracotta focus:ring-1 focus:ring-brand-terracotta"
+                      : "border-brand-surface focus:border-brand-primary"
                   }`}
                 />
-                <Phone className="w-4 h-4 text-[#5A6151] absolute right-3.5 top-4 pointer-events-none" />
+                <Phone className="w-4 h-4 text-brand-text absolute right-3.5 top-4 pointer-events-none" />
               </div>
               {errors.phone && (
-                <p className="text-xs text-[#CA7154] font-medium flex items-center gap-1 pt-0.5">
+                <p className="text-xs text-brand-terracotta font-medium flex items-center gap-1 pt-0.5">
                   <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                   <span>{errors.phone.message}</span>
                 </p>
@@ -319,13 +319,13 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
             <div className="flex flex-col space-y-1.5">
               <label
                 htmlFor="neighborhood"
-                className="text-xs uppercase tracking-wider text-[#231A10] font-medium flex items-center justify-between"
+                className="text-xs uppercase tracking-wider text-brand-text font-medium flex items-center justify-between"
               >
                 <span>
                   {messages.checkout.neighborhoodLabel}{" "}
-                  <span className="text-[#CA7154]">*</span>
+                  <span className="text-brand-terracotta">*</span>
                 </span>
-                <span className="text-[#80756C] normal-case tracking-normal text-[11px]">
+                <span className="text-brand-text normal-case tracking-normal text-[11px]">
                   {messages.checkout.neighborhoodHelp}
                 </span>
               </label>
@@ -335,16 +335,16 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
                   type="text"
                   {...register("neighborhood")}
                   placeholder={messages.checkout.neighborhoodPlaceholder}
-                  className={`w-full h-12 px-4 pr-10 rounded bg-white text-[#231A10] text-sm shadow-xs border transition-all placeholder:text-[#80756C]/50 focus:outline-none ${
+                  className={`w-full h-12 px-4 pr-10 rounded bg-brand-white text-brand-text text-sm shadow-xs border transition-all placeholder:text-brand-text/50 focus:outline-none ${
                     errors.neighborhood
-                      ? "border-[#CA7154] focus:ring-1 focus:ring-[#CA7154]"
-                      : "border-[#EADCCC] focus:border-[#8A7058]"
+                      ? "border-brand-terracotta focus:ring-1 focus:ring-brand-terracotta"
+                      : "border-brand-surface focus:border-brand-primary"
                   }`}
                 />
-                <MapPin className="w-4 h-4 text-[#5A6151] absolute right-3.5 top-4 pointer-events-none" />
+                <MapPin className="w-4 h-4 text-brand-text absolute right-3.5 top-4 pointer-events-none" />
               </div>
               {errors.neighborhood && (
-                <p className="text-xs text-[#CA7154] font-medium flex items-center gap-1 pt-0.5">
+                <p className="text-xs text-brand-terracotta font-medium flex items-center gap-1 pt-0.5">
                   <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                   <span>{errors.neighborhood.message}</span>
                 </p>
@@ -355,13 +355,13 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
             <div className="flex flex-col space-y-1.5">
               <label
                 htmlFor="deliveryLandmarks"
-                className="text-xs uppercase tracking-wider text-[#231A10] font-medium flex items-center justify-between"
+                className="text-xs uppercase tracking-wider text-brand-text font-medium flex items-center justify-between"
               >
                 <span>
                   {messages.checkout.landmarksLabel}{" "}
-                  <span className="text-[#CA7154]">*</span>
+                  <span className="text-brand-terracotta">*</span>
                 </span>
-                <span className="text-[#CA7154] font-medium normal-case tracking-normal text-[11px]">
+                <span className="text-brand-terracotta font-medium normal-case tracking-normal text-[11px]">
                   {messages.checkout.landmarksRequiredBadge}
                 </span>
               </label>
@@ -371,29 +371,29 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
                   rows={2}
                   {...register("deliveryLandmarks")}
                   placeholder={messages.checkout.landmarksPlaceholder}
-                  className={`w-full p-3.5 pr-10 rounded bg-white text-[#231A10] text-sm shadow-xs border transition-all placeholder:text-[#80756C]/50 resize-none focus:outline-none ${
+                  className={`w-full p-3.5 pr-10 rounded bg-brand-white text-brand-text text-sm shadow-xs border transition-all placeholder:text-brand-text/50 resize-none focus:outline-none ${
                     errors.deliveryLandmarks
-                      ? "border-[#CA7154] bg-[#FFDAD6]/20 focus:ring-1 focus:ring-[#CA7154]"
-                      : "border-[#EADCCC] focus:border-[#8A7058]"
+                      ? "border-brand-terracotta bg-brand-terracotta/20 focus:ring-1 focus:ring-brand-terracotta"
+                      : "border-brand-surface focus:border-brand-primary"
                   }`}
                 />
                 <AlertCircle
                   className={`w-4 h-4 absolute right-3.5 top-3.5 pointer-events-none ${
-                    errors.deliveryLandmarks ? "text-[#CA7154]" : "text-[#80756C]/40"
+                    errors.deliveryLandmarks ? "text-brand-terracotta" : "text-brand-text/40"
                   }`}
                 />
               </div>
 
               {/* Dedicated terracotta warning notice */}
               {errors.deliveryLandmarks ? (
-                <div className="flex items-center gap-1.5 pt-0.5 text-[#CA7154]">
+                <div className="flex items-center gap-1.5 pt-0.5 text-brand-terracotta">
                   <AlertCircle className="w-4 h-4 shrink-0" />
                   <p className="text-xs font-medium leading-tight">
                     {errors.deliveryLandmarks.message}
                   </p>
                 </div>
               ) : (
-                <div className="flex items-center gap-1.5 pt-0.5 text-[#80756C]">
+                <div className="flex items-center gap-1.5 pt-0.5 text-brand-text">
                   <MapPin className="w-3.5 h-3.5 shrink-0" />
                   <p className="text-[11px] leading-tight">
                     Important pour guider le coursier sans appel inutile à Bamako.
@@ -405,7 +405,7 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
 
             {/* Server Error feedback if any */}
             {serverError && (
-              <div className="p-3.5 rounded-lg bg-[#FFDAD6] text-[#93000A] text-xs flex items-center gap-2">
+              <div className="p-3.5 rounded-lg bg-brand-terracotta/15 text-brand-terracotta text-xs flex items-center gap-2">
                 <AlertCircle className="w-4 h-4 shrink-0" />
                 <span>{serverError}</span>
               </div>
@@ -413,29 +413,29 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
 
             {/* Mobile Financial Summary & Submit Button (visible on mobile only inside the form flow) */}
             <div className="lg:hidden pt-4 space-y-4">
-              <div className="bg-[#FDEBDA] p-4 rounded-xl flex items-start gap-3 shadow-xs">
-                <div className="w-8 h-8 rounded-full bg-[#F7E5D4] flex items-center justify-center shrink-0 text-[#8A7058]">
+              <div className="bg-brand-surface p-4 rounded-xl flex items-start gap-3 shadow-xs">
+                <div className="w-8 h-8 rounded-full bg-brand-surface flex items-center justify-center shrink-0 text-brand-primary">
                   <MessageCircle className="w-4 h-4" />
                 </div>
                 <div className="flex flex-col">
-                  <p className="text-xs font-medium text-[#231A10]">
+                  <p className="text-xs font-medium text-brand-text">
                     {messages.checkout.courierNoticeMobile}
                   </p>
-                  <p className="text-[11px] text-[#4E453D] mt-0.5">
+                  <p className="text-[11px] text-brand-text mt-0.5">
                     {messages.checkout.courierNoticeMobileDesc}
                   </p>
                 </div>
               </div>
 
-              <div className="bg-[#DEE5D1]/50 p-4 rounded-xl flex items-start gap-3">
-                <div className="w-8 h-8 rounded-full bg-[#DEE5D1] flex items-center justify-center shrink-0 text-[#5A6151]">
+              <div className="bg-brand-announcement/50 p-4 rounded-xl flex items-start gap-3">
+                <div className="w-8 h-8 rounded-full bg-brand-announcement/20 flex items-center justify-center shrink-0 text-brand-text">
                   <Banknote className="w-4 h-4" />
                 </div>
                 <div className="flex flex-col">
-                  <p className="text-xs font-medium text-[#5A6151]">
+                  <p className="text-xs font-medium text-brand-text">
                     {messages.checkout.paymentOnDeliveryTitle}
                   </p>
-                  <p className="text-[11px] text-[#4E453D] mt-0.5">
+                  <p className="text-[11px] text-brand-text mt-0.5">
                     {messages.checkout.paymentOnDeliveryDesc}
                   </p>
                 </div>
@@ -444,7 +444,7 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full min-h-[46px] rounded-lg bg-[#8A7058] hover:bg-[#78614b] active:scale-[0.99] text-white font-medium text-xs uppercase tracking-[0.15em] flex items-center justify-center gap-2 shadow-md transition disabled:opacity-50 cursor-pointer"
+                className="w-full min-h-[46px] rounded-lg bg-brand-primary hover:bg-brand-text active:scale-[0.99] text-brand-white font-medium text-xs uppercase tracking-[0.15em] flex items-center justify-center gap-2 shadow-md transition disabled:opacity-50 cursor-pointer"
               >
                 {isSubmitting ? (
                   <span>{messages.checkout.submittingCta}</span>
@@ -456,7 +456,7 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
                 )}
               </button>
 
-              <p className="text-center text-[11px] text-[#5E5245]">
+              <p className="text-center text-[11px] text-brand-text">
                 {messages.checkout.submitFootnoteMobile}
               </p>
             </div>
@@ -465,13 +465,13 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
 
         {/* RIGHT COLUMN: Sticky Order Summary Card (5 cols on Desktop) */}
         <aside className="hidden lg:block lg:col-span-5 sticky top-28">
-          <div className="bg-[#F1E0CE] rounded-xl p-6 shadow-sm space-y-5 border border-[#EADCCC]">
+          <div className="bg-brand-surface rounded-xl p-6 shadow-sm space-y-5 border border-brand-surface">
             {/* Card Header */}
-            <div className="flex items-baseline justify-between border-b border-[#EADCCC] pb-3">
-              <h2 className="font-serif text-lg uppercase text-[#5E5245] tracking-[0.08em] font-normal">
+            <div className="flex items-baseline justify-between border-b border-brand-surface pb-3">
+              <h2 className="font-serif text-lg uppercase text-brand-text tracking-[0.08em] font-normal">
                 {messages.checkout.summaryTitle}
               </h2>
-              <span className="text-[11px] uppercase tracking-wider bg-white/80 px-2.5 py-0.5 rounded text-[#705841] font-semibold">
+              <span className="text-[11px] uppercase tracking-wider bg-brand-white/80 px-2.5 py-0.5 rounded text-brand-text font-semibold">
                 {messages.checkout.itemsBadge(totalItemsCount)}
               </span>
             </div>
@@ -481,9 +481,9 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
               {cart.items.map((item) => (
                 <div
                   key={item.id}
-                  className="flex items-center gap-3.5 bg-white p-3 rounded-lg shadow-xs"
+                  className="flex items-center gap-3.5 bg-brand-white p-3 rounded-lg shadow-xs"
                 >
-                  <div className="w-16 h-16 rounded bg-[#F7E5D4] overflow-hidden shrink-0">
+                  <div className="w-16 h-16 rounded bg-brand-surface overflow-hidden shrink-0">
                     <img
                       src={item.thumbnail || IMAGE_FALLBACKS.product}
                       alt={item.productTitle}
@@ -492,15 +492,15 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
                     />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-sm font-medium text-[#231A10] truncate">
+                    <h3 className="text-sm font-medium text-brand-text truncate">
                       {item.productTitle}
                     </h3>
-                    <p className="text-xs text-[#5E5245]/80 mt-0.5">
-                      Taille : <span className="font-medium text-[#231A10]">{item.variantTitle}</span>
+                    <p className="text-xs text-brand-text/80 mt-0.5">
+                      Taille : <span className="font-medium text-brand-text">{item.variantTitle}</span>
                     </p>
                     <div className="mt-1 flex items-center justify-between">
-                      <span className="text-xs text-[#80756C]">Qté : {item.quantity}</span>
-                      <span className="text-xs font-semibold text-[#705841]">
+                      <span className="text-xs text-brand-text">Qté : {item.quantity}</span>
+                      <span className="text-xs font-semibold text-brand-text">
                         {formatPrice(item.price * item.quantity)}
                       </span>
                     </div>
@@ -510,46 +510,46 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
             </div>
 
             {/* Total Calculation Section */}
-            <div className="space-y-2 pt-2 border-t border-[#EADCCC]">
-              <div className="flex items-baseline justify-between text-xs text-[#4E453D]">
+            <div className="space-y-2 pt-2 border-t border-brand-surface">
+              <div className="flex items-baseline justify-between text-xs text-brand-text">
                 <span>{messages.checkout.subtotalArticles}</span>
-                <span className="font-medium text-[#231A10]">
+                <span className="font-medium text-brand-text">
                   {formatPrice(cart.subtotal)}
                 </span>
               </div>
               <div className="flex items-baseline justify-between pt-1">
                 <div>
-                  <span className="text-sm font-semibold text-[#231A10] block">
+                  <span className="text-sm font-semibold text-brand-text block">
                     {messages.checkout.totalArticles}
                   </span>
-                  <span className="text-[11px] text-[#5E5245]/70">
+                  <span className="text-[11px] text-brand-text/70">
                     {messages.checkout.withoutCourierFee}
                   </span>
                 </div>
-                <span className="text-xl font-semibold text-[#705841]">
+                <span className="text-xl font-semibold text-brand-text">
                   {formatPrice(cart.total)}
                 </span>
               </div>
             </div>
 
             {/* Delivery WhatsApp coordination notice */}
-            <div className="bg-[#F7E5D4] p-3.5 rounded-lg flex items-start gap-2.5 shadow-xs">
-              <MessageCircle className="w-4 h-4 text-[#5A6151] shrink-0 mt-0.5" />
+            <div className="bg-brand-surface p-3.5 rounded-lg flex items-start gap-2.5 shadow-xs">
+              <MessageCircle className="w-4 h-4 text-brand-text shrink-0 mt-0.5" />
               <div className="space-y-0.5">
-                <p className="text-xs font-medium text-[#231A10]">
+                <p className="text-xs font-medium text-brand-text">
                   {messages.checkout.courierNoticeDelivery}
                 </p>
-                <p className="text-[11px] text-[#4E453D] leading-snug">
+                <p className="text-[11px] text-brand-text leading-snug">
                   {messages.checkout.courierNoticeDeliveryDesc}
                 </p>
               </div>
             </div>
 
             {/* Cash / Orange Money on delivery reminder */}
-            <div className="bg-[#FFF1E5] p-3 rounded-lg flex items-center justify-between px-3.5 border border-[#EADCCC]/60">
+            <div className="bg-brand-bg p-3 rounded-lg flex items-center justify-between px-3.5 border border-brand-surface/60">
               <div className="flex items-center gap-2">
-                <Banknote className="w-4 h-4 text-[#705841]" />
-                <span className="text-xs font-medium text-[#231A10]">
+                <Banknote className="w-4 h-4 text-brand-text" />
+                <span className="text-xs font-medium text-brand-text">
                   {messages.checkout.paymentOnDeliveryTitle}
                 </span>
               </div>
@@ -561,7 +561,7 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
                 type="button"
                 onClick={() => handleSubmit(onSubmit)()}
                 disabled={isSubmitting}
-                className="w-full rounded min-h-[46px] bg-[#8A7058] hover:bg-[#78614b] text-white text-xs font-medium uppercase tracking-[0.15em] flex items-center justify-center gap-2 shadow-md transition disabled:opacity-50 cursor-pointer group"
+                className="w-full rounded min-h-[46px] bg-brand-primary hover:bg-brand-text text-brand-white text-xs font-medium uppercase tracking-[0.15em] flex items-center justify-center gap-2 shadow-md transition disabled:opacity-50 cursor-pointer group"
               >
                 {isSubmitting ? (
                   <span>{messages.checkout.submittingCta}</span>
@@ -572,7 +572,7 @@ export function CheckoutForm({ cart }: CheckoutFormProps) {
                   </>
                 )}
               </button>
-              <p className="text-center text-[11px] text-[#80756C] mt-2 tracking-wide">
+              <p className="text-center text-[11px] text-brand-text mt-2 tracking-wide">
                 {messages.checkout.submitFootnoteDesktop}
               </p>
             </div>

@@ -229,9 +229,15 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 **Description.** Le code contient environ 1 900 couleurs écrites en dur, dont des teintes hors charte : `#231A10`, quasi noir, et `#304054`, bleu marine hors du logo. Toutes doivent passer par les tokens Tailwind de la charte. Le rose reste réservé au logo.
 
 **Critères d'acceptation**
-- [ ] Une recherche des codes `#xxxxxx` dans `apps/storefront/src/components` et `src/app` ne trouve plus rien en dehors du logo.
-- [ ] Aucun noir ni bleu marine n'est affiché, et le rose n'apparaît que dans le logo.
-- [ ] Les tokens correspondent aux codes couleur validés par la cliente.
+- [x] Une recherche des codes `#xxxxxx` dans `apps/storefront/src/components` et `src/app` ne trouve plus rien en dehors du logo.
+- [x] Aucun noir ni bleu marine n'est affiché, et le rose n'apparaît que dans le logo.
+- [x] Les tokens correspondent aux codes couleur validés par la cliente.
+
+**Fait (branche `fk-12`).**
+- 595 couleurs en dur et 54 couleurs Tailwind par défaut (`white`, `stone`) sont remplacées par les tokens `brand-*`. Les 35 teintes utilisées sont ramenées aux 7 de la charte, plus `brand-white` pour le texte sur les boutons.
+- Le quasi-noir `#231A10` et les gris deviennent `brand-text`. Les erreurs passent en terracotta (fond `brand-terracotta/15`).
+- Le logo est isolé dans `components/layout/Logo.tsx`, seul fichier autorisé à utiliser le rose et le bleu marine.
+- Une règle ESLint (`no-restricted-syntax`) interdit désormais les `#xxxxxx` et les couleurs Tailwind par défaut dans `src/`.
 
 **Taille** L · **Dépend de** — (palette confirmée par `DESIGN.md`) · **Origine** état des lieux, CLAUDE.md
 

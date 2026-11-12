@@ -25,16 +25,16 @@ export function ProductRecommendations({
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-3">
         <div>
-          <span className="text-xs uppercase tracking-[0.2em] text-[#CA7154] font-medium block mb-1">
+          <span className="text-xs uppercase tracking-[0.2em] text-brand-terracotta font-medium block mb-1">
             {messages.product.recommendationsEyebrow}
           </span>
-          <h2 className="font-serif text-2xl md:text-3xl text-[#5E5245] uppercase font-normal tracking-[0.08em]">
+          <h2 className="font-serif text-2xl md:text-3xl text-brand-text uppercase font-normal tracking-[0.08em]">
             {messages.product.recommendationsTitle}
           </h2>
         </div>
         <Link
           href={`/categorie/${categoryHandle}`}
-          className="inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-[0.15em] text-[#8A7058] hover:text-[#5E5245] transition-colors group"
+          className="inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-[0.15em] text-brand-primary hover:text-brand-text transition-colors group"
         >
           <span>{messages.product.discoverWardrobe}</span>
           <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -48,17 +48,17 @@ export function ProductRecommendations({
             idx === 0 ? "NOUVEAUTÉ" : idx === 1 ? "BEST-SELLER" : "MIXTE";
           const badgeColor =
             idx === 0
-              ? "text-[#97AFC4]"
+              ? "text-brand-blue"
               : idx === 1
-              ? "text-[#CA7154]"
-              : "text-[#5E5245]";
+              ? "text-brand-terracotta"
+              : "text-brand-text";
 
           return (
             <article
               key={p.id}
-              className="flex flex-col bg-[#EADCCC]/40 border border-[#EADCCC] rounded-xl overflow-hidden group transition-all duration-300 hover:shadow-md hover:-translate-y-0.5"
+              className="flex flex-col bg-brand-surface/40 border border-brand-surface rounded-xl overflow-hidden group transition-all duration-300 hover:shadow-md hover:-translate-y-0.5"
             >
-              <div className="relative aspect-square w-full bg-[#EADCCC] overflow-hidden">
+              <div className="relative aspect-square w-full bg-brand-surface overflow-hidden">
                 <Link href={`/produit/${p.handle}`} className="block w-full h-full">
                   <SafeImage
                     src={p.thumbnail || IMAGE_FALLBACKS.product}
@@ -68,7 +68,7 @@ export function ProductRecommendations({
                   />
                 </Link>
                 <span
-                  className={`absolute top-3 left-3 px-2.5 py-1 rounded bg-[#FDF7F2]/90 font-medium text-[10px] tracking-[0.15em] uppercase backdrop-blur-xs ${badgeColor}`}
+                  className={`absolute top-3 left-3 px-2.5 py-1 rounded bg-brand-bg/90 font-medium text-[10px] tracking-[0.15em] uppercase backdrop-blur-xs ${badgeColor}`}
                 >
                   {badgeText}
                 </span>
@@ -76,26 +76,26 @@ export function ProductRecommendations({
 
               <div className="p-4 flex flex-col flex-1 justify-between">
                 <div>
-                  <p className="text-[11px] text-[#5E5245]/70 mb-0.5">
+                  <p className="text-[11px] text-brand-text/70 mb-0.5">
                     {p.categoryHandle === "filles"
                       ? "Fille · 3 à 14 ans"
                       : "Garçon · 3 à 14 ans"}
                   </p>
                   <Link href={`/produit/${p.handle}`}>
-                    <h3 className="font-serif text-base text-[#5E5245] font-normal group-hover:text-[#8A7058] transition-colors line-clamp-1">
+                    <h3 className="font-serif text-base text-brand-text font-normal group-hover:text-brand-primary transition-colors line-clamp-1">
                       {p.title}
                     </h3>
                   </Link>
                 </div>
 
-                <div className="flex items-center justify-between mt-3 pt-2 border-t border-[#EADCCC]/60">
-                  <span className="text-xs md:text-sm font-semibold text-[#5E5245]">
+                <div className="flex items-center justify-between mt-3 pt-2 border-t border-brand-surface/60">
+                  <span className="text-xs md:text-sm font-semibold text-brand-text">
                     {formatPrice(p.price)}
                   </span>
                   <Link
                     href={`/produit/${p.handle}`}
                     aria-label={`Voir ${p.title}`}
-                    className="w-8 h-8 rounded-full bg-[#FDF7F2] border border-[#EADCCC] flex items-center justify-center text-[#8A7058] hover:bg-[#8A7058] hover:text-white transition-colors cursor-pointer shadow-xs"
+                    className="w-8 h-8 rounded-full bg-brand-bg border border-brand-surface flex items-center justify-center text-brand-primary hover:bg-brand-primary hover:text-brand-white transition-colors cursor-pointer shadow-xs"
                   >
                     <ArrowRight className="w-4 h-4" />
                   </Link>

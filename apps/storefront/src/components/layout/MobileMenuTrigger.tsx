@@ -9,7 +9,7 @@ export function MobileMenuTrigger() {
       type="button"
       aria-label={messages.header.openMenuAria}
       onClick={triggerOpenMenu}
-      className="p-2 -ml-2 text-[#5E5245] hover:text-[#8A7058] transition-colors focus:outline-none md:hidden min-touch-btn flex items-center justify-center"
+      className="p-2 -ml-2 text-brand-text hover:text-brand-primary transition-colors focus:outline-none md:hidden min-touch-btn flex items-center justify-center"
     >
       <svg
         className="w-6 h-6 stroke-[1.5]"

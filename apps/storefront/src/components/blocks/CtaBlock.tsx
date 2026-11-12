@@ -9,7 +9,7 @@ export function CtaBlock({ block, whatsappUrl }: { block: CtaBlockData; whatsapp
   const isWhatsapp = block.ctaLink === WHATSAPP_LINK_TOKEN;
   const href = isWhatsapp ? whatsappUrl : block.ctaLink;
   const buttonClass =
-    "min-h-11 inline-flex items-center justify-center px-8 rounded-sm bg-brand-primary text-white text-sm font-medium uppercase tracking-[0.04em] hover:opacity-90 transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary";
+    "min-h-11 inline-flex items-center justify-center px-8 rounded-sm bg-brand-primary text-brand-white text-sm font-medium uppercase tracking-[0.04em] hover:opacity-90 transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary";
 
   return (
     <section className="max-w-[720px] mx-auto px-5 text-center" data-purpose="cta-block">

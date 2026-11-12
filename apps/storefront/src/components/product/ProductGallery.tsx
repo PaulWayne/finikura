@@ -65,10 +65,10 @@ export function ProductGallery({ images, productTitle }: ProductGalleryProps) {
               type="button"
               aria-label={`Afficher la vue ${idx + 1}`}
               onClick={() => handleThumbnailClick(idx)}
-              className={`thumb-btn relative w-20 h-24 rounded-lg bg-[#EADCCC]/40 overflow-hidden transition-all duration-200 shrink-0 group focus:outline-none cursor-pointer ${
+              className={`thumb-btn relative w-20 h-24 rounded-lg bg-brand-surface/40 overflow-hidden transition-all duration-200 shrink-0 group focus:outline-none cursor-pointer ${
                 isActive
-                  ? "outline outline-2 outline-[#8A7058] outline-offset-2"
-                  : "outline outline-1 outline-transparent hover:outline-[#ded2c2]"
+                  ? "outline outline-2 outline-brand-primary outline-offset-2"
+                  : "outline outline-1 outline-transparent hover:outline-brand-surface"
               }`}
             >
               <img
@@ -83,9 +83,9 @@ export function ProductGallery({ images, productTitle }: ProductGalleryProps) {
       </div>
 
       {/* Main image container */}
-      <div className="relative flex-1 w-full bg-[#EADCCC]/30 rounded-xl md:rounded-2xl overflow-hidden group border border-[#EADCCC]">
+      <div className="relative flex-1 w-full bg-brand-surface/30 rounded-xl md:rounded-2xl overflow-hidden group border border-brand-surface">
         {/* Desktop single main display with smooth transition */}
-        <div className="hidden md:block aspect-[4/5] w-full overflow-hidden relative bg-[#EADCCC]/30">
+        <div className="hidden md:block aspect-[4/5] w-full overflow-hidden relative bg-brand-surface/30">
           <img
             src={displayImages[activeIndex] || displayImages[0]}
             alt={`${productTitle} - Vue haute résolution`}
@@ -95,9 +95,9 @@ export function ProductGallery({ images, productTitle }: ProductGalleryProps) {
 
 
           {/* Loupe / Interaction Hint */}
-          <div className="absolute bottom-4 right-4 pointer-events-none flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#FDF7F2]/90 backdrop-blur-xs text-[#5E5245] shadow-xs transition-opacity group-hover:opacity-100">
-            <ZoomIn className="w-4 h-4 text-[#8A7058]" />
-            <span className="text-xs text-[#5E5245]/80 font-normal">
+          <div className="absolute bottom-4 right-4 pointer-events-none flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-bg/90 backdrop-blur-xs text-brand-text shadow-xs transition-opacity group-hover:opacity-100">
+            <ZoomIn className="w-4 h-4 text-brand-primary" />
+            <span className="text-xs text-brand-text/80 font-normal">
               {messages.product.mainStudioView}
             </span>
           </div>
@@ -111,13 +111,13 @@ export function ProductGallery({ images, productTitle }: ProductGalleryProps) {
             type="button"
             aria-label="Enregistrer aux favoris"
             onClick={toggleWishlist}
-            className="absolute top-3 right-3 z-20 w-9 h-9 rounded-full bg-[#FDF7F2]/90 backdrop-blur-xs flex items-center justify-center text-[#5E5245] hover:text-[#CA7154] shadow-xs transition active:scale-90 cursor-pointer"
+            className="absolute top-3 right-3 z-20 w-9 h-9 rounded-full bg-brand-bg/90 backdrop-blur-xs flex items-center justify-center text-brand-text hover:text-brand-terracotta shadow-xs transition active:scale-90 cursor-pointer"
           >
             <Heart
               className={`w-4 h-4 transition ${
                 isWishlisted
-                  ? "fill-[#CA7154] text-[#CA7154]"
-                  : "text-[#5E5245]"
+                  ? "fill-brand-terracotta text-brand-terracotta"
+                  : "text-brand-text"
               }`}
             />
           </button>
@@ -131,7 +131,7 @@ export function ProductGallery({ images, productTitle }: ProductGalleryProps) {
             {displayImages.map((src, idx) => (
               <div
                 key={idx}
-                className="w-full h-full flex-shrink-0 snap-center relative aspect-square bg-[#EADCCC]/40"
+                className="w-full h-full flex-shrink-0 snap-center relative aspect-square bg-brand-surface/40"
               >
                 <img
                   src={src}
@@ -150,8 +150,8 @@ export function ProductGallery({ images, productTitle }: ProductGalleryProps) {
                 key={idx}
                 className={`transition-all duration-300 rounded-full ${
                   activeIndex === idx
-                    ? "w-3 h-1.5 bg-[#8A7058]"
-                    : "w-1.5 h-1.5 bg-[#5E5245]/30"
+                    ? "w-3 h-1.5 bg-brand-primary"
+                    : "w-1.5 h-1.5 bg-brand-text/30"
                 }`}
               />
             ))}

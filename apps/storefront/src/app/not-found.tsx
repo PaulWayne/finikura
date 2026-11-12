@@ -13,7 +13,7 @@ export default function NotFound() {
       <div className="flex flex-col sm:flex-row gap-3 justify-center">
         <Link
           href="/"
-          className="min-h-11 inline-flex items-center justify-center px-6 rounded bg-brand-primary text-white text-xs font-medium uppercase tracking-[0.15em]"
+          className="min-h-11 inline-flex items-center justify-center px-6 rounded bg-brand-primary text-brand-white text-xs font-medium uppercase tracking-[0.15em]"
         >
           {t.backHome}
         </Link>

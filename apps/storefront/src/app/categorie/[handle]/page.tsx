@@ -67,21 +67,21 @@ async function CategoryContent({
       {/* Breadcrumb */}
       <nav
         aria-label="Fil d'Ariane"
-        className="flex items-center space-x-2 text-xs text-[#5E5245]/70"
+        className="flex items-center space-x-2 text-xs text-brand-text/70"
       >
-        <Link href="/" className="hover:text-[#CA7154] transition-colors">
+        <Link href="/" className="hover:text-brand-terracotta transition-colors">
           {messages.catalog.homeBreadcrumb}
         </Link>
         <span>/</span>
-        <span className="text-[#5E5245] font-medium">{category.name}</span>
+        <span className="text-brand-text font-medium">{category.name}</span>
       </nav>
 
       {/* Category Header */}
       <div className="text-center max-w-2xl mx-auto space-y-3">
-        <h1 className="font-serif text-3xl md:text-[40px] uppercase font-normal text-[#5E5245] tracking-[0.08em] leading-tight">
+        <h1 className="font-serif text-3xl md:text-[40px] uppercase font-normal text-brand-text tracking-[0.08em] leading-tight">
           {category.name}
         </h1>
-        <p className="text-sm md:text-base text-[#5E5245]/80 font-light leading-relaxed">
+        <p className="text-sm md:text-base text-brand-text/80 font-light leading-relaxed">
           {category.description}
         </p>
       </div>
@@ -95,20 +95,20 @@ async function CategoryContent({
 
       {/* Product Count Indicator */}
       <div className="text-center pb-2">
-        <span className="text-[11px] md:text-xs font-medium uppercase tracking-[0.2em] text-[#5E5245]/80">
+        <span className="text-[11px] md:text-xs font-medium uppercase tracking-[0.2em] text-brand-text/80">
           {messages.catalog.creationsCount(products.length)}
         </span>
       </div>
 
       {/* Product Grid */}
       {products.length === 0 ? (
-        <div className="py-16 text-center rounded-2xl bg-[#EADCCC]/30 border border-[#EADCCC] p-8">
-          <p className="text-base text-[#5E5245] font-serif mb-3">
+        <div className="py-16 text-center rounded-2xl bg-brand-surface/30 border border-brand-surface p-8">
+          <p className="text-base text-brand-text font-serif mb-3">
             {messages.catalog.noProductsFound}
           </p>
           <Link
             href={`/categorie/${handle}`}
-            className="min-touch-btn inline-flex items-center justify-center px-5 py-2 rounded-[4px] border border-[#8A7058] text-[#8A7058] text-xs font-medium uppercase tracking-[0.15em] hover:bg-[#8A7058] hover:text-white transition"
+            className="min-touch-btn inline-flex items-center justify-center px-5 py-2 rounded-[4px] border border-brand-primary text-brand-primary text-xs font-medium uppercase tracking-[0.15em] hover:bg-brand-primary hover:text-brand-white transition"
           >
             Réinitialiser les filtres
           </Link>

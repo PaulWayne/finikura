@@ -15,11 +15,11 @@ function Badge({
       className={cn(
         "inline-flex items-center rounded-sm px-2.5 py-0.5 text-[10px] font-medium tracking-[0.15em] uppercase shadow-xs select-none transition-colors",
         {
-          "bg-[#CA7154] text-white": variant === "terracotta",
-          "bg-[#97AFC4] text-white": variant === "blue",
-          "bg-[#8A7058] text-white": variant === "taupe",
-          "bg-[#EADCCC] text-[#5E5245]": variant === "cream",
-          "border border-[#5E5245]/30 text-[#5E5245] bg-transparent":
+          "bg-brand-terracotta text-brand-white": variant === "terracotta",
+          "bg-brand-blue text-brand-white": variant === "blue",
+          "bg-brand-primary text-brand-white": variant === "taupe",
+          "bg-brand-surface text-brand-text": variant === "cream",
+          "border border-brand-text/30 text-brand-text bg-transparent":
             variant === "outline",
         },
         className
