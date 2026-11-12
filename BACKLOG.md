@@ -146,12 +146,20 @@ Dans Medusa 2.22.6, un échange se gère depuis la fiche commande (retour de l'a
 | Refusée | annulation du fulfillment s'il existe, puis de la commande | remis en stock |
 
 **Critères d'acceptation**
-- [ ] Le widget affiche « Nouvelle », « Confirmée sur WhatsApp », « En livraison », « Livrée et payée » ou « Refusée ou annulée », calculé à partir de l'état Medusa.
-- [ ] Seuls les boutons possibles sont actifs. Par exemple, « Livrée et payée » n'est actif qu'en livraison, et « Refusée » ne l'est plus une fois la commande livrée.
-- [ ] Chaque bouton passe par un workflow, avec retour arrière en cas d'erreur, et non par des appels directs aux modules.
-- [ ] Un refus à la porte, après « Partie en livraison », remet la pièce en stock. C'est vérifié par un test.
-- [ ] Le fulfillment n'est jamais marqué expédié avant « Livrée et payée ».
-- [ ] Les libellés sont en français. Le statut natif de Medusa reste visible.
+- [x] Le widget affiche « Nouvelle », « Confirmée sur WhatsApp », « En livraison », « Livrée et payée » ou « Refusée ou annulée », calculé à partir de l'état Medusa.
+- [x] Seuls les boutons possibles sont actifs. Par exemple, « Livrée et payée » n'est actif qu'en livraison, et « Refusée » ne l'est plus une fois la commande livrée.
+- [x] Chaque bouton passe par un workflow, avec retour arrière en cas d'erreur, et non par des appels directs aux modules.
+- [x] Un refus à la porte, après « Partie en livraison », remet la pièce en stock. C'est vérifié par un test.
+- [x] Le fulfillment n'est jamais marqué expédié avant « Livrée et payée ».
+- [x] Les libellés sont en français. Le statut natif de Medusa reste visible.
+
+**Fait (branche `fk-06`).** Le calcul du statut est dans `apps/medusa/src/lib/fk-status.ts`. Les quatre workflows sont dans `src/workflows/fk-status/` : ils composent les workflows natifs avec `runAsStep`, et revérifient que l'action est permise. La route est `GET|POST /admin/orders/:id/fini-kura-status`, et le widget est placé dans la zone `order.details.before`. Le test `integration-tests/manual/fk-status-checks.mjs` donne ces résultats :
+- au départ en livraison, le stock baisse de 1 et rien n'est expédié ;
+- « Livrée et payée » donne completed, delivered et captured ;
+- un refus après le départ remet la pièce en stock ;
+- une action interdite renvoie 400.
+
+L'affichage du widget dans l'admin reste à vérifier à l'œil.
 
 **Taille** L · **Dépend de** — · **Origine** cahier des charges
 
