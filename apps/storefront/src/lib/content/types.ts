@@ -21,6 +21,8 @@ export interface GlobalSettings {
   announcementBar: string;
   whatsappNumber: string;
   whatsappUrl: string;
+  /** Floating WhatsApp button: enabled in Strapi and a number is set. */
+  showWhatsAppButton: boolean;
   socialLinks: SocialLink[];
   footerLinks: FooterLink[];
   reassuranceItems: ReassuranceItem[];

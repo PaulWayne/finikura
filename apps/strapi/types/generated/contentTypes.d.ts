@@ -510,6 +510,8 @@ export interface ApiGlobalSettingGlobalSetting extends Struct.SingleTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    whatsapp_floating_button: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<true>;
     whatsapp_number: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }

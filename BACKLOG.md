@@ -345,9 +345,9 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 **Description.** Un bouton flottant ouvre WhatsApp. Décision : oui. La cliente veut avant tout rassurer les parents et un service sérieux, et WhatsApp est le canal habituel au Mali. Règles : visible sur l'accueil, le catalogue, les fiches produit et les pages éditoriales ; masqué sur la commande et la confirmation, qui ont déjà leur propre bouton WhatsApp ; jamais par-dessus le bouton « Ajouter au panier ».
 
 **Critères d'acceptation**
-- [ ] Le bouton n'est affiché que s'il est activé dans les réglages Strapi et qu'un numéro est saisi.
-- [ ] Il est masqué sur `/commande` et sur la page de confirmation.
-- [ ] Il ne masque ni le bouton « Ajouter au panier » ni le bouton de commande sur mobile.
+- [x] Le bouton n'est affiché que s'il est activé dans les réglages Strapi et qu'un numéro est saisi.
+- [x] Il est masqué sur `/commande` et sur la page de confirmation.
+- [x] Il ne masque ni le bouton « Ajouter au panier » ni le bouton de commande sur mobile.
 
 **Taille** S · **Dépend de** FK-01 · **Origine** cliente (décidé)
 

@@ -20,6 +20,10 @@
       "required": true,
       "regex": "^[0-9]{11}$"
     },
+    "whatsapp_floating_button": {
+      "type": "boolean",
+      "default": true
+    },
     "social_links": {
       "type": "component",
       "repeatable": true,

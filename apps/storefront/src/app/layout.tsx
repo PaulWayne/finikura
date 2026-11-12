@@ -6,6 +6,7 @@ import { contentService } from "@/lib/content";
 import { commerceService } from "@/lib/commerce";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Header } from "@/components/layout/Header";
+import { WhatsAppFloatingButton } from "@/components/layout/WhatsAppFloatingButton";
 import { MobileMenu } from "@/components/layout/MobileMenu";
 import { CartDrawer } from "@/components/layout/CartDrawer";
 import { CartTrigger } from "@/components/layout/CartTrigger";
@@ -64,6 +65,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <main className="flex-1 w-full max-w-[1200px] mx-auto px-4 md:px-6">{children}</main>
         <Footer footerLinks={settings.footerLinks} socialLinks={settings.socialLinks} />
         <MobileMenu whatsappUrl={settings.whatsappUrl} />
+        {settings.showWhatsAppButton && (
+          // usePathname() must stream in under Suspense with Cache Components.
+          <Suspense fallback={null}>
+            <WhatsAppFloatingButton href={settings.whatsappUrl} />
+          </Suspense>
+        )}
         <Suspense fallback={null}>
           <CartPanel />
         </Suspense>

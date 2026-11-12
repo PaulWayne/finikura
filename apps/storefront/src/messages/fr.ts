@@ -188,6 +188,7 @@ export const messages = {
     whatsAppContactBtn: "Contacter sur WhatsApp",
   },
   whatsapp: {
+    floatingLabel: "Nous écrire sur WhatsApp",
     orderIntro: (orderNumber: string) => `Bonjour FINI KURA, je confirme ma commande ${orderNumber} :`,
     orderLine: (title: string, size: string, quantity: number, amount: string) =>
       `- ${title}, taille ${size}, x${quantity} : ${amount}`,

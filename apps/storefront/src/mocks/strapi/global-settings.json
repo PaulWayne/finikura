@@ -3,6 +3,7 @@
     "documentId": "global",
     "announcement_bar": "PAIEMENT À LA RÉCEPTION À BAMAKO",
     "whatsapp_number": "33618315352",
+    "whatsapp_floating_button": true,
     "social_links": [
       {
         "platform": "whatsapp",

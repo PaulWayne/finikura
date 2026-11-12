@@ -163,6 +163,8 @@ export function mapStrapiGlobalSettingsToDomain(raw: StrapiGlobalSettings | null
     announcementBar: raw?.announcement_bar ?? "",
     whatsappNumber: number,
     whatsappUrl: number ? `https://wa.me/${number}` : "",
+    // Enabled unless explicitly unticked in Strapi (null on entries created before the field).
+    showWhatsAppButton: raw?.whatsapp_floating_button !== false && !!number,
     // The WhatsApp link always uses whatsapp_number, never a second copy of it.
     socialLinks: (raw?.social_links ?? [])
       .map((s) => ({
