@@ -32,12 +32,17 @@ Comptez environ 2 Go : Medusa 500 à 700 Mo, Strapi 400 à 600 Mo, Next 300 à 5
 5. **Données de départ** (une seule fois), dans le terminal du conteneur, depuis Dokploy :
    - Medusa : `cd /app/apps/medusa && pnpm seed`. Le seed affiche la clé publique du canal « Site Fini Kura » : copiez-la dans `MEDUSA_PUBLISHABLE_KEY`, puis redéployez.
    - Strapi : `cd /app/apps/strapi && pnpm seed`.
-   - Comptes de l'admin Medusa (FK-08) : `cd /app/apps/medusa/.medusa/server && ../../node_modules/.bin/medusa user -e <email> -p <mot de passe>`.
+   - Comptes de l'admin (FK-08). Personne ne choisit le mot de passe à la place de la gérante ou de sa sœur :
+     1. Medusa, premier accès : `cd /app/apps/medusa/.medusa/server && ../../node_modules/.bin/medusa user -e <email de la gérante> --invite`. La commande affiche un jeton : envoyez-lui le lien `https://api.DOMAIN/app/invite?token=<jeton>`, valable 24 heures. Elle y choisit son mot de passe.
+     2. Medusa, sa sœur : la gérante l'invite depuis **Paramètres › Utilisateurs › Inviter**. L'e-mail d'invitation part par la boîte Hostinger.
+     3. Strapi : ouvrez `https://cms.DOMAIN/admin` et créez le compte Super Admin technique, qui est le vôtre. Puis, dans **Paramètres › Utilisateurs › Inviter un utilisateur**, créez les deux comptes avec le rôle **Editor**. Strapi affiche un lien d'inscription à copier : transmettez-le à chacune, par exemple par WhatsApp.
+     4. Vérifiez qu'aucun compte `@finikura.test` n'existe, ni dans Medusa ni dans Strapi. Tous les comptes Medusa reçoivent les alertes de commande.
 6. **Vérifications** :
    - `https://DOMAIN` s'affiche, et `http://DOMAIN` redirige vers le HTTPS ;
    - les journaux de Medusa affichent « Connection to Redis … established », et jamais « fake redis » ni « in-memory » ;
    - une modification publiée dans Strapi apparaît sur le site (revalidation) ;
-   - une commande test passe, avec le bouton WhatsApp.
+   - une commande test passe, avec le bouton WhatsApp, et chaque compte de l'admin Medusa reçoit l'e-mail de commande ;
+   - « Mot de passe oublié » envoie bien un e-mail, dans l'admin Medusa et dans l'admin Strapi.
 
 ## Revalidation du cache
 Medusa (via un subscriber) et Strapi (via l'eventHub) appellent `http://storefront:3100/api/revalidate` par le réseau interne, avec `REVALIDATE_SECRET`. Ce secret doit être le même pour les trois services, ce que garantit la variable unique dans Dokploy.

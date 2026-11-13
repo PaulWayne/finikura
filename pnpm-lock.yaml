@@ -356,6 +356,9 @@ importers:
       '@strapi/plugin-users-permissions':
         specifier: 5.61.1
         version: 5.61.1(9e9b486e6d79775adac58b85b63b5b1c)
+      '@strapi/provider-email-nodemailer':
+        specifier: 5.61.1
+        version: 5.61.1
       '@strapi/strapi':
         specifier: 5.61.1
         version: 5.61.1(@babel/runtime@8.1.0)(@codemirror/autocomplete@6.20.4)(@codemirror/language@6.13.1)(@codemirror/lint@6.9.7)(@codemirror/search@6.7.2)(@codemirror/theme-one-dark@6.1.3)(@emotion/is-prop-valid@1.4.0)(@swc/core@1.16.22(@swc/helpers@0.5.23))(@swc/helpers@0.5.23)(@types/hoist-non-react-statics@3.3.7(@types/react@18.3.31))(@types/node@22.20.5)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(clean-css@5.3.3)(codemirror@6.0.2)(debug@4.3.4(supports-color@7.2.0))(esbuild@0.28.2)(html-minifier-terser@6.1.0)(jiti@2.7.0)(koa@2.16.4(supports-color@7.2.0))(lightningcss@1.32.0)(pg@8.20.0)(postcss@8.5.23)(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.30.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(redux@4.2.1)(sharp@0.35.5(@types/node@22.20.5))(styled-components@6.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(supports-color@7.2.0)(terser@5.51.2)(ts-toolbelt@9.6.0)(type-fest@4.41.0)(uglify-js@3.19.3)(yaml@2.9.1)
@@ -5528,6 +5531,10 @@ packages:
       react-dom: ^18.0.0
       react-router-dom: ^6.30.3
       styled-components: ^6.0.0
+
+  '@strapi/provider-email-nodemailer@5.61.1':
+    resolution: {integrity: sha512-92Hrn8LVYz94o3NKLRGAI/tFxVC4YM+t/S/nGrmFo4e+6HMo1UNkmpOL1lMBE8afJZks99IHZeQ0FWAL8ni3/A==}
+    engines: {node: '>=22.0.0 <=26.x.x', npm: '>=6.0.0'}
 
   '@strapi/provider-email-sendmail@5.61.1':
     resolution: {integrity: sha512-ndpvDIbhhNsJsgwnhh0qeuWIvkzrz8TX8ZGgfC5fSvonRQej3gLp1unbMHz7kVyrYxuO3ta3W2qM9fxItRcwmQ==}
@@ -18950,6 +18957,10 @@ snapshots:
       - supports-color
       - ts-toolbelt
       - typescript
+
+  '@strapi/provider-email-nodemailer@5.61.1':
+    dependencies:
+      nodemailer: 10.0.9
 
   '@strapi/provider-email-sendmail@5.61.1':
     dependencies:

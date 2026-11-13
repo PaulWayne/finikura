@@ -14,6 +14,7 @@ export type FiniKuraEnv = {
   store: { headers: Record<string, string> }
   admin: { headers: Record<string, string> }
   regionId: string
+  adminEmail: string
 }
 
 const PHONE = "+22376123456"
@@ -43,7 +44,7 @@ export async function setupFiniKura(container: MedusaContainer, api: Api): Promi
   const admin = { headers: { authorization: `Bearer ${login.data.token}` } }
 
   const { data: regions } = await query.graph({ entity: "region", fields: ["id"], filters: { name: "Mali" } })
-  return { store, admin, regionId: regions[0].id }
+  return { store, admin, regionId: regions[0].id, adminEmail: email }
 }
 
 /** Variant of a seeded product, with its sellable quantity. */

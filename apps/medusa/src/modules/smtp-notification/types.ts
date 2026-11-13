@@ -17,3 +17,14 @@ export type OrderAlertData = {
 }
 
 export const ORDER_PLACED_TEMPLATE = "order-placed"
+
+export type UserInviteData = { email: string; inviteUrl: string }
+export type PasswordResetData = { email: string; resetUrl: string }
+
+export const USER_INVITE_TEMPLATE = "user-invite"
+export const PASSWORD_RESET_TEMPLATE = "password-reset"
+
+/** Base URL of the Medusa admin (e.g. https://api.example.com/app), without trailing slash. */
+export function adminBaseUrl(): string {
+  return (process.env.MEDUSA_ADMIN_URL || "http://localhost:9000/app").replace(/\/$/, "")
+}

@@ -1,31 +1,7 @@
-import {
-  Body,
-  Button,
-  Column,
-  Container,
-  Head,
-  Heading,
-  Hr,
-  Html,
-  Link,
-  Preview,
-  Row,
-  Section,
-  Text,
-} from "@react-email/components"
+import { Button, Column, Heading, Link, Row, Section, Text } from "@react-email/components"
 import { formatXof } from "../../../lib/format"
 import type { OrderAlertData } from "../types"
-
-// Brand palette (copied from the storefront tokens). No navy or black; pink is reserved for the logo.
-const C = {
-  bg: "#FDF7F2",
-  surface: "#EADCCC",
-  text: "#5E5245",
-  primary: "#8A7058",
-  white: "#FFFFFF",
-}
-const SERIF = "'Playfair Display', Georgia, 'Times New Roman', serif"
-const SANS = "Poppins, Arial, Helvetica, sans-serif"
+import { buttonStyle, C, EmailLayout, SERIF } from "./theme"
 
 const dateFormat = new Intl.DateTimeFormat("fr-FR", {
   dateStyle: "full",
@@ -43,14 +19,7 @@ const value = { margin: "2px 0 12px", fontSize: "15px", color: C.text, lineHeigh
 export function OrderPlacedEmail(data: OrderAlertData) {
   const { customer } = data
   return (
-    <Html lang="fr">
-      <Head />
-      <Preview>{orderPlacedSubject(data)}</Preview>
-      <Body style={{ margin: 0, padding: "24px 12px", backgroundColor: C.bg, fontFamily: SANS, color: C.text }}>
-        <Container style={{ maxWidth: "560px", margin: "0 auto", backgroundColor: C.white, borderRadius: "12px", padding: "28px 24px" }}>
-          <Text style={{ margin: 0, fontFamily: SERIF, fontSize: "22px", fontWeight: 600, color: C.text }}>Fini Kura</Text>
-          <Hr style={{ borderColor: C.surface, margin: "16px 0 20px" }} />
-
+    <EmailLayout preview={orderPlacedSubject(data)}>
           <Heading as="h1" style={{ margin: 0, fontFamily: SERIF, fontSize: "24px", fontWeight: 600, color: C.text }}>
             {`Nouvelle commande #${data.displayId}`}
           </Heading>
@@ -101,17 +70,12 @@ export function OrderPlacedEmail(data: OrderAlertData) {
 
           {data.adminUrl && (
             <Section style={{ textAlign: "center", marginTop: "20px" }}>
-              <Button
-                href={data.adminUrl}
-                style={{ backgroundColor: C.primary, color: C.white, borderRadius: "8px", padding: "14px 24px", fontSize: "14px", fontWeight: 600, textDecoration: "none" }}
-              >
+              <Button href={data.adminUrl} style={buttonStyle}>
                 Voir la commande dans l'admin
               </Button>
             </Section>
           )}
-        </Container>
-      </Body>
-    </Html>
+    </EmailLayout>
   )
 }
 

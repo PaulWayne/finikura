@@ -185,7 +185,9 @@ L'affichage du widget dans l'admin a été vérifié.
 **Critères d'acceptation**
 - [ ] Les deux personnes se connectent à l'admin Medusa et à l'admin Strapi, en français, avec leur propre mot de passe.
 - [ ] Aucun compte de développement ni mot de passe partagé en production.
-- [ ] Une courte fiche explique comment réinitialiser un mot de passe.
+- [x] Une courte fiche explique comment réinitialiser un mot de passe (`docs/fiche-mot-de-passe.md`).
+
+**Fait** : e-mails d'invitation et de nouveau mot de passe de l'admin Medusa (templates `user-invite` et `password-reset`, subscribers), « Mot de passe oublié » de Strapi par la même boîte SMTP, marche à suivre sans mot de passe imposé dans `docs/deploiement.md`. **Reste au déploiement** : créer les comptes et cocher les deux premiers critères.
 
 **Taille** S · **Dépend de** FK-09 · **Origine** cahier des charges
 
