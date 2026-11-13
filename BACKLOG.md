@@ -49,13 +49,14 @@ Les éléments ne sont pas encore des issues GitHub. On les crée seulement apr�
 | FK-25 | Paiement en ligne | P2 | L | — |
 | FK-26 | Comptes clients | P2 | L | — |
 | FK-27 | Coût et marge par article | P2 | M | Cliente : coût et marge |
-| FK-28 | CI sur Forgejo | P2 | M | FK-22, FK-29 |
+| FK-28 | CI sur Forgejo | P2 | M | FK-22, FK-29, FK-35 |
 | FK-29 | PostgreSQL en conteneur pour les tests Medusa | P2 | S | FK-22 |
 | FK-30 | Statistiques : ajouts au panier, commandes, clics WhatsApp | P2 | S | FK-10 |
 | FK-31 | Bouton « Demander à un proche » (partage WhatsApp du produit) | P1 | S | — |
 | FK-32 | Bouton « Une question sur la taille ? » (WhatsApp prérempli) | P1 | S | FK-01 |
 | FK-33 | Photos portées avec l'âge et la taille de l'enfant | P1 | S | FK-15, cliente : photos |
 | FK-34 | Avis et photos des clientes | P2 | M | Cliente : accord des clientes |
+| FK-35 | Parcours e2e en mode live (front + Medusa + Strapi, seeds) | P2 | M | FK-29 |
 
 **Charge P0 :** 4 L, 5 M et 6 S. Cela fait environ 20 à 25 jours de travail pour une personne seule. Or il reste 19 jours calendaires, et une partie dépend des réponses de la cliente.
 
@@ -487,11 +488,11 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 **Taille** M · **Dépend de** FK-22, FK-29 · **Origine** toi (13/11/2026)
 
 ### FK-29 · PostgreSQL en conteneur pour les tests Medusa
-**Description.** En CI, les tests Medusa ont besoin d'un PostgreSQL. Il faut en démarrer un en conteneur pour le temps des tests (service du job, ou Testcontainers), au lieu de celui de `docker compose`.
+**Description.** En CI, les tests Medusa ont besoin d'un PostgreSQL. Il faut en démarrer un en conteneur pour le temps des tests (service du job, ou Testcontainers), au lieu de celui de `docker compose`. Fait : `pnpm --filter medusa test:integration:ci` (`apps/medusa/scripts/test-integration.sh`), 13 tests en 65 s en local ; le premier critère se valide avec la CI (FK-28).
 
 **Critères d'acceptation**
 - [ ] Les tests Medusa passent en CI sans PostgreSQL installé à l'avance.
-- [ ] Le conteneur est supprimé à la fin du job.
+- [x] Le conteneur est supprimé à la fin du job.
 
 **Taille** S · **Dépend de** FK-22 · **Origine** toi (13/11/2026)
 
@@ -522,6 +523,20 @@ Décidé le 13/11/2026, après analyse : on ne le fait pas. Les raisons :
 - c'est lourd pour les forfaits mobiles.
 
 FK-31 à FK-33 traitent le même frein. À reconsidérer seulement si un faux bouton, mesuré avec FK-30, montre une forte demande.
+
+### FK-35 · Parcours e2e en mode live (front + Medusa + Strapi, seeds)
+**Description.** Le e2e actuel tourne en mode mock. Ce ticket ajoute une commande, `pnpm test:e2e:live`, qui démarre une base jetable, lance Medusa et Strapi avec leurs seeds, construit le front en mode live et rejoue les parcours Playwright. Il vérifie ensuite dans Medusa la commande créée : nom, téléphone, quartier, prix XOF et stock. Pour rester rapide :
+- Medusa et Strapi tournent sans build de leur admin ;
+- la base seedée est mise en cache (dump SQL), et refaite seulement si les migrations ou les fixtures changent ;
+- Medusa, Strapi et le build du front démarrent en parallèle.
+En CI (FK-28), le cache pnpm et `.next/cache` s'ajoutent. Ce test tourne avant une fusion dans `main` ou chaque nuit, le e2e mock restant à chaque push. Origine : toi (13/11/2026).
+
+**Critères d'acceptation**
+- [ ] Une seule commande lance tout et nettoie tout à la fin (conteneurs et volumes), sans toucher aux données de dev.
+- [ ] Le parcours commande passe en mode live, et la commande est vérifiée dans Medusa.
+- [ ] Le temps total est mesuré et noté ; objectif 2 à 3 minutes en local, base en cache.
+
+**Taille** M · **Dépend de** FK-29 · **Origine** toi (13/11/2026)
 
 ## En attente de la cliente
 
