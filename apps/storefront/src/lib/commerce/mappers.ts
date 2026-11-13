@@ -53,6 +53,12 @@ export function mapMedusaProductToDomain(raw: MedusaStoreProduct): Product {
     images.push(raw.thumbnail);
   }
   const description = raw.description ?? "";
+  // Product metadata « photo_portee_<n> » (n = position in the gallery, from 1):
+  // Medusa 2.22 cannot edit image metadata from the admin, product metadata it can.
+  const wornCaptions = images.map((_, i) => {
+    const value = raw.metadata?.[`photo_portee_${i + 1}`];
+    return typeof value === "string" && value.trim() ? value.trim() : null;
+  });
 
   return {
     id: raw.id,
@@ -63,6 +69,7 @@ export function mapMedusaProductToDomain(raw: MedusaStoreProduct): Product {
     material: raw.material ?? "",
     careInstructions: raw.metadata?.care_instructions ?? "",
     images,
+    wornCaptions,
     thumbnail: raw.thumbnail || images[0] || "",
     price: minPrice,
     categoryHandle: toCategoryHandle(raw.categories?.[0]?.handle),

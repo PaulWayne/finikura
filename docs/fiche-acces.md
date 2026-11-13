@@ -36,6 +36,17 @@ Les statistiques ne contiennent ni nom ni numéro de téléphone : elles compten
 
 Si vous oubliez ce mot de passe, il n'y a pas de lien « Mot de passe oublié » : demandez à la personne qui s'occupe du site de le réinitialiser.
 
+## Ajouter une légende sous une photo portée
+Sous une photo où un enfant porte le vêtement, vous pouvez écrire par exemple « Aïcha, 7 ans, porte le 7-8 ans ».
+1. Dans l'admin Medusa, ouvrez le produit.
+2. Dans le bloc **Métadonnées**, cliquez sur **Modifier**.
+3. Ajoutez une ligne :
+   - clé : `photo_portee_` suivi du numéro de la photo dans la galerie, par exemple `photo_portee_2` pour la deuxième photo ;
+   - valeur : la légende.
+4. Enregistrez. Pour retirer la légende, supprimez la ligne.
+
+Indiquez seulement le prénom et l'âge, jamais le nom de famille. Gardez l'accord écrit des parents pour chaque photo d'enfant.
+
 ## Donner un accès à une nouvelle personne
 
 **Boutique** : **Paramètres › Utilisateurs › Inviter**, puis entrez son adresse e-mail. Elle reçoit un e-mail, valable 24 heures, pour choisir son mot de passe. Attention : chaque personne qui a accès à la boutique reçoit aussi l'e-mail de chaque nouvelle commande.

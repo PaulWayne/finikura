@@ -428,11 +428,11 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 **Taille** S · **Dépend de** FK-01 · **Origine** analyse conversion (13/11/2026)
 
 ### FK-33 · Photos portées avec l'âge et la taille de l'enfant
-**Description.** Répondre à « est-ce que ça va lui aller ? » par de vraies photos portées, avec une mention du type « Aïcha, 7 ans, porte le 7-8 ans ». Les photos sont dans Medusa (galerie du produit). La mention est un champ de Medusa (métadonnée de l'image ou du produit), à vérifier dans la doc de la version installée.
+**Description.** Répondre à « est-ce que ça va lui aller ? » par de vraies photos portées, avec une mention du type « Aïcha, 7 ans, porte le 7-8 ans ». Les photos sont dans Medusa (galerie du produit). La mention est un champ de Medusa (métadonnée de l'image ou du produit), à vérifier dans la doc de la version installée. Medusa 2.22 ne permet pas de modifier les métadonnées d'une image depuis l'admin : la mention est donc une métadonnée du produit, `photo_portee_<n>` (voir `docs/fiche-acces.md`).
 
 **Critères d'acceptation**
-- [ ] Une fiche peut afficher, sous une photo, l'âge de l'enfant et la taille portée.
-- [ ] Sans mention, la fiche s'affiche comme aujourd'hui.
+- [x] Une fiche peut afficher, sous une photo, l'âge de l'enfant et la taille portée.
+- [x] Sans mention, la fiche s'affiche comme aujourd'hui.
 - [ ] Les photos d'enfants sont publiées avec l'accord écrit des parents (à la charge de la cliente) et sans nom de famille.
 
 **Taille** S · **Dépend de** FK-15, photos de la cliente · **Origine** analyse conversion (13/11/2026)

@@ -19,6 +19,8 @@ export interface Product {
   material: string;
   careInstructions: string;
   images: string[];
+  /** Per image, same order: « Aïcha, 7 ans, porte le 7-8 ans » or null (FK-33). */
+  wornCaptions: (string | null)[];
   thumbnail: string;
   price: number; // Integer XOF
   categoryHandle: CategoryHandle;

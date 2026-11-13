@@ -104,6 +104,7 @@ async function ProductContent({ params }: ProductPageProps) {
           <ProductGallery
             images={product.images}
             productTitle={product.title}
+            wornCaptions={product.wornCaptions}
           />
         </div>
 

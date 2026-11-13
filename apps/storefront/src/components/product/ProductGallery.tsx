@@ -9,9 +9,10 @@ import { IMAGE_FALLBACKS } from "@/lib/images";
 interface ProductGalleryProps {
   images: string[];
   productTitle: string;
+  wornCaptions?: (string | null)[];
 }
 
-export function ProductGallery({ images, productTitle }: ProductGalleryProps) {
+export function ProductGallery({ images, productTitle, wornCaptions = [] }: ProductGalleryProps) {
   const displayImages =
     images && images.length > 0
       ? images
@@ -19,6 +20,7 @@ export function ProductGallery({ images, productTitle }: ProductGalleryProps) {
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const activeCaption = wornCaptions[activeIndex] ?? null;
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const handleThumbnailClick = (idx: number) => {
@@ -162,6 +164,11 @@ export function ProductGallery({ images, productTitle }: ProductGalleryProps) {
             ))}
           </div>
         </div>
+        {activeCaption && (
+          <p className="px-3 py-2 text-xs text-brand-text bg-brand-bg border-t border-brand-surface">
+            {activeCaption}
+          </p>
+        )}
       </div>
     </section>
   );
