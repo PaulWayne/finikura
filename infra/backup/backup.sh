@@ -1,5 +1,5 @@
 #!/bin/sh
-# Nightly backup of Fini Kura: PostgreSQL databases "medusa" and "strapi" + Strapi media.
+# Nightly backup of Fini Kura: PostgreSQL databases "medusa", "strapi" and "umami" + Strapi media.
 # Run on the VPS (cron or Dokploy schedule), e.g. every night at 3:00:
 #   0 3 * * * /opt/finikura/infra/backup/backup.sh >> /var/log/finikura-backup.log 2>&1
 #
@@ -21,7 +21,7 @@ STAMP=$(date +%Y-%m-%d_%H%M)
 DEST="$BACKUP_DIR/$STAMP"
 
 mkdir -p "$DEST"
-for db in medusa strapi; do
+for db in medusa strapi umami; do
   docker exec "$PG_CONTAINER" pg_dump -U "$PG_USER" -d "$db" --format=custom --no-owner > "$DEST/$db.dump"
   echo "$(date '+%F %T') dump $db: $(du -h "$DEST/$db.dump" | cut -f1)"
 done

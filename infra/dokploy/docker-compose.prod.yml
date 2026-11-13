@@ -2,7 +2,7 @@
 # - No published ports: Traefik (Dokploy) routes by domain over the external "dokploy-network".
 # - Every name is prefixed "finikura-" to avoid clashing with the other sites on the VPS.
 # - Secrets and URLs come from the Dokploy "Environment" tab (see infra/dokploy/.env.example).
-#   DOMAIN=fini-kura.fr  ->  front: DOMAIN, Medusa: api.DOMAIN, Strapi: cms.DOMAIN
+#   DOMAIN=fini-kura.fr  ->  front: DOMAIN, Medusa: api.DOMAIN, Strapi: cms.DOMAIN, Umami: stats.DOMAIN
 
 name: finikura
 
@@ -134,6 +134,9 @@ services:
       STRAPI_PUBLIC_URL: https://cms.${DOMAIN}
       STRAPI_TOKEN: ${STRAPI_TOKEN:-}
       REVALIDATE_SECRET: ${REVALIDATE_SECRET}
+      # Visit statistics (FK-10): no script while UMAMI_WEBSITE_ID is empty.
+      UMAMI_SCRIPT_URL: https://stats.${DOMAIN}/script.js
+      UMAMI_WEBSITE_ID: ${UMAMI_WEBSITE_ID:-}
     labels:
       - traefik.enable=true
       - traefik.docker.network=dokploy-network
@@ -146,6 +149,34 @@ services:
       - traefik.http.middlewares.finikura-https.redirectscheme.scheme=https
       - traefik.http.middlewares.finikura-https.redirectscheme.permanent=true
       - traefik.http.services.finikura-front.loadbalancer.server.port=3100
+    networks: [internal, dokploy-network]
+
+  # Visit statistics (FK-10): cookieless, its own "umami" database in the shared PostgreSQL.
+  umami:
+    image: ghcr.io/umami-software/umami:3.4.1
+    container_name: finikura-umami
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/umami
+      APP_SECRET: ${UMAMI_APP_SECRET}
+      DISABLE_TELEMETRY: 1
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:3000/api/heartbeat || exit 1"]
+      interval: 30s
+      retries: 5
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=dokploy-network
+      - traefik.http.routers.finikura-umami.rule=Host(`stats.${DOMAIN}`)
+      - traefik.http.routers.finikura-umami.entrypoints=websecure
+      - traefik.http.routers.finikura-umami.tls.certresolver=letsencrypt
+      - traefik.http.routers.finikura-umami-http.rule=Host(`stats.${DOMAIN}`)
+      - traefik.http.routers.finikura-umami-http.entrypoints=web
+      - traefik.http.routers.finikura-umami-http.middlewares=finikura-https
+      - traefik.http.services.finikura-umami.loadbalancer.server.port=3000
     networks: [internal, dokploy-network]
 
 volumes:

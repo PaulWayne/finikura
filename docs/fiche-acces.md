@@ -1,11 +1,12 @@
 # Vos accès à l'administration Fini Kura
 
-Vous avez deux espaces, chacun avec votre adresse e-mail et votre propre mot de passe.
+Vous avez trois espaces, chacun avec votre adresse e-mail et votre propre mot de passe.
 
 | Espace | Adresse | Pour quoi faire |
 |---|---|---|
 | **Boutique** | `https://api.<domaine>/app` | Commandes, produits, tailles, stock |
 | **Contenu** | `https://cms.<domaine>/admin` | Page d'accueil, pages, campagnes, guides des tailles |
+| **Statistiques** | `https://stats.<domaine>` | Nombre de visites, pages et produits les plus vus, d'où viennent les visiteuses |
 
 Ne donnez jamais votre mot de passe, même à une personne de l'équipe : chacune a le sien.
 
@@ -23,6 +24,17 @@ Ne donnez jamais votre mot de passe, même à une personne de l'équipe : chacun
 3. Ouvrez l'e-mail reçu, puis suivez le lien pour choisir un nouveau mot de passe.
 
 Si aucun e-mail n'arrive après quelques minutes, prévenez la personne qui s'occupe du site.
+
+## Lire les statistiques
+
+- **Visiteurs** : le nombre de personnes différentes sur la période choisie, en haut à droite (aujourd'hui, 7 jours, 30 jours…).
+- **Pages** : les pages les plus vues. Une adresse en `/produits/…` est une fiche produit.
+- **Sources** : d'où arrivent les visiteuses (WhatsApp, Facebook, Instagram, Google…). « Direct » veut dire un lien tapé ou partagé sans source connue.
+- **Pays** et **Appareils** : par exemple Mali ou France, téléphone ou ordinateur.
+
+Les statistiques ne contiennent ni nom ni numéro de téléphone : elles comptent les visites, sans savoir qui les fait.
+
+Si vous oubliez ce mot de passe, il n'y a pas de lien « Mot de passe oublié » : demandez à la personne qui s'occupe du site de le réinitialiser.
 
 ## Donner un accès à une nouvelle personne
 

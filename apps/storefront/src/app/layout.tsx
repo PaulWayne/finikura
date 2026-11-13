@@ -11,6 +11,7 @@ import { MobileMenu } from "@/components/layout/MobileMenu";
 import { CartDrawer } from "@/components/layout/CartDrawer";
 import { CartTrigger } from "@/components/layout/CartTrigger";
 import { Footer } from "@/components/layout/Footer";
+import { Analytics } from "@/components/layout/Analytics";
 import { messages } from "@/messages/fr";
 import "./globals.css";
 
@@ -73,6 +74,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         )}
         <Suspense fallback={null}>
           <CartPanel />
+        </Suspense>
+        <Suspense fallback={null}>
+          <Analytics />
         </Suspense>
       </body>
     </html>

@@ -51,6 +51,7 @@ Les éléments ne sont pas encore des issues GitHub. On les crée seulement apr�
 | FK-27 | Coût et marge par article | P2 | M | Cliente : coût et marge |
 | FK-28 | CI sur Forgejo | P2 | M | FK-22, FK-29 |
 | FK-29 | PostgreSQL en conteneur pour les tests Medusa | P2 | S | FK-22 |
+| FK-30 | Statistiques : ajouts au panier, commandes, clics WhatsApp | P2 | S | FK-10 |
 
 **Charge P0 :** 4 L, 5 M et 6 S. Cela fait environ 20 à 25 jours de travail pour une personne seule. Or il reste 19 jours calendaires, et une partie dépend des réponses de la cliente.
 
@@ -185,7 +186,7 @@ L'affichage du widget dans l'admin a été vérifié.
 **Critères d'acceptation**
 - [ ] Les deux personnes se connectent à l'admin Medusa et à l'admin Strapi, en français, avec leur propre mot de passe.
 - [ ] Aucun compte de développement ni mot de passe partagé en production.
-- [x] Une courte fiche explique comment réinitialiser un mot de passe (`docs/fiche-mot-de-passe.md`).
+- [x] Une courte fiche explique comment réinitialiser un mot de passe (`docs/fiche-acces.md`).
 
 **Fait** : e-mails d'invitation et de nouveau mot de passe de l'admin Medusa (templates `user-invite` et `password-reset`, subscribers), « Mot de passe oublié » de Strapi par la même boîte SMTP, marche à suivre sans mot de passe imposé dans `docs/deploiement.md`. **Reste au déploiement** : créer les comptes et cocher les deux premiers critères.
 
@@ -223,8 +224,10 @@ Chaque choix (hébergeur, registraire) demande ton accord, car il implique un co
 
 **Critères d'acceptation**
 - [ ] Les visites et les pages vues remontent dans un tableau de bord accessible à la cliente.
-- [ ] Le script pèse moins de 5 Ko et ne bloque pas l'affichage.
-- [ ] Aucune donnée personnelle (téléphone, nom) n'est envoyée à l'outil.
+- [x] Le script pèse moins de 5 Ko et ne bloque pas l'affichage.
+- [x] Aucune donnée personnelle (téléphone, nom) n'est envoyée à l'outil.
+
+**Fait** : Umami 3.4.1 auto-hébergé (`stats.DOMAIN`, base `umami`, sauvegardée chaque nuit), composant `Analytics` chargé après l'affichage et seulement si `UMAMI_SCRIPT_URL` et `UMAMI_WEBSITE_ID` sont définis. Vérifié en local le 13/11/2026 avec un Umami jetable : script de 4,7 Ko (2,3 Ko compressé), aucun cookie, seuls les chemins des pages et les `utm_*` sont stockés, aucune trace du nom, du téléphone ni du quartier après une commande test. **Reste au déploiement** : créer le site et le compte de la gérante dans Umami, puis cocher le premier critère. Les événements (panier, commande, WhatsApp) sont dans FK-30.
 
 **Taille** S · **Dépend de** FK-09 · **Origine** cahier des charges
 
@@ -450,6 +453,16 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 - [ ] Le conteneur est supprimé à la fin du job.
 
 **Taille** S · **Dépend de** FK-22 · **Origine** toi (13/11/2026)
+
+### FK-30 · Statistiques : ajouts au panier, commandes, clics WhatsApp
+**Description.** FK-10 ne compte que les pages vues. Envoyer aussi à Umami trois événements, sans donnée personnelle : ajout au panier (avec le handle du produit), commande passée (sans montant ni coordonnées) et clic sur WhatsApp. La gérante verrait alors combien de visites aboutissent à une commande. Absent du cahier des charges.
+
+**Critères d'acceptation**
+- [ ] Les trois événements apparaissent dans Umami, et l'entonnoir visite → panier → commande se lit dans son tableau de bord.
+- [ ] Aucun nom, téléphone, quartier ni montant n'est envoyé.
+- [ ] Sans Umami configuré (mock, dev, e2e), rien ne part et rien ne casse.
+
+**Taille** S · **Dépend de** FK-10 · **Origine** proposition (13/11/2026)
 
 ## En attente de la cliente
 
