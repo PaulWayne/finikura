@@ -1,16 +1,27 @@
 import { CheckCircle2, Flame, Ruler } from "lucide-react";
 import type { ProductVariant } from "@/lib/commerce/types";
 import { messages } from "@/messages/fr";
+import { whatsappLink } from "@/lib/whatsapp";
+import { WhatsAppIcon } from "@/components/ui/whatsapp-icon";
 
 interface SizeSelectorProps {
   variants: ProductVariant[];
   selectedVariant?: ProductVariant;
   onSelect: (variantId: string) => void;
   onOpenSizeGuide: () => void;
+  whatsappUrl?: string | null;
+  productTitle: string;
+  productUrl: string;
 }
 
 /** Age/size buttons, the size guide link and the stock hint. */
-export function SizeSelector({ variants, selectedVariant, onSelect, onOpenSizeGuide }: SizeSelectorProps) {
+export function SizeSelector({ variants, selectedVariant, onSelect, onOpenSizeGuide, whatsappUrl, productTitle, productUrl }: SizeSelectorProps) {
+  // Shown only when a shop number is set in Strapi (FK-32).
+  const questionLink = whatsappLink(
+    whatsappUrl,
+    messages.whatsapp.sizeQuestion(productTitle, selectedVariant?.title ?? null, productUrl)
+  );
+
   return (
     <div className="flex flex-col mb-6">
       <div className="flex items-center justify-between mb-3">
@@ -82,6 +93,18 @@ export function SizeSelector({ variants, selectedVariant, onSelect, onOpenSizeGu
           </p>
         )}
       </div>
+
+      {questionLink && (
+        <a
+          href={questionLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex min-h-11 items-center gap-1.5 self-start text-xs text-brand-text underline underline-offset-4 decoration-brand-surface hover:decoration-brand-text transition-colors"
+        >
+          <WhatsAppIcon className="w-4 h-4 text-brand-primary" />
+          <span>{messages.product.sizeQuestionCta}</span>
+        </a>
+      )}
     </div>
   );
 }

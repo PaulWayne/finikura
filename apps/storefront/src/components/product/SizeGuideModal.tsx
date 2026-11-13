@@ -20,6 +20,7 @@ interface SizeGuideModalProps {
   activeSizeTitle?: string;
   productTitle?: string;
   whatsappUrl?: string | null;
+  productUrl?: string;
 }
 
 export function SizeGuideModal({
@@ -29,6 +30,7 @@ export function SizeGuideModal({
   activeSizeTitle,
   productTitle,
   whatsappUrl,
+  productUrl,
 }: SizeGuideModalProps) {
 
   useEffect(() => {
@@ -48,7 +50,7 @@ export function SizeGuideModal({
   // Measurements come from the Strapi size guide of the product category.
   const rows = sizeGuide?.rows ?? [];
 
-  const targetWhatsappLink = whatsappLink(whatsappUrl, messages.whatsapp.sizeQuestion(productTitle ?? ""));
+  const targetWhatsappLink = whatsappLink(whatsappUrl, messages.whatsapp.sizeQuestion(productTitle ?? "", activeSizeTitle, productUrl));
 
   return (
     <div

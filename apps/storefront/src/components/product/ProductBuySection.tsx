@@ -16,10 +16,11 @@ interface ProductBuySectionProps {
   product: Product;
   sizeGuide?: SizeGuide | null;
   whatsappUrl?: string | null;
+  productUrl: string;
 }
 
 /** Interactive part of the product column: size choice, add to cart, size guide and mobile bar. */
-export function ProductBuySection({ product, sizeGuide, whatsappUrl }: ProductBuySectionProps) {
+export function ProductBuySection({ product, sizeGuide, whatsappUrl, productUrl }: ProductBuySectionProps) {
   const initialVariant = product.variants.find((v) => v.inStock) || product.variants[0];
   const [selectedVariantId, setSelectedVariantId] = useState<string | null>(initialVariant?.id ?? null);
   const [isAdding, setIsAdding] = useState(false);
@@ -58,6 +59,9 @@ export function ProductBuySection({ product, sizeGuide, whatsappUrl }: ProductBu
         selectedVariant={selectedVariant}
         onSelect={setSelectedVariantId}
         onOpenSizeGuide={() => setIsSizeModalOpen(true)}
+        whatsappUrl={whatsappUrl}
+        productTitle={product.title}
+        productUrl={productUrl}
       />
 
       <div className="mb-6 flex flex-col gap-2">
@@ -92,6 +96,7 @@ export function ProductBuySection({ product, sizeGuide, whatsappUrl }: ProductBu
         activeSizeTitle={selectedVariant?.title}
         productTitle={product.title}
         whatsappUrl={whatsappUrl}
+        productUrl={productUrl}
       />
 
       <StickyAddToCartBar

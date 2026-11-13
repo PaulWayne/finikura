@@ -78,6 +78,7 @@ export const messages = {
     mainStudioView: "Vue studio principale",
     understood: "Compris",
     askRelativeCta: "Demander à un proche",
+    sizeQuestionCta: "Une question sur la taille ?",
   },
   sizeGuidePage: {
     closeAria: "Fermer le guide des tailles",
@@ -224,7 +225,13 @@ export const messages = {
     orderLandmarks: (landmarks: string) => `Repères : ${landmarks}`,
     shareProduct: (title: string, price: string, url: string) =>
       `Que penses-tu de cette tenue de Fini Kura ?\n${title} : ${price}\n${url}`,
-    sizeQuestion: (product: string) => `Bonjour FINI KURA, j'ai une question sur les tailles de « ${product} ».`,
+    sizeQuestion: (product: string, size?: string | null, url?: string) =>
+      [
+        `Bonjour FINI KURA, j'ai une question sur la taille de « ${product} ».`,
+        `Taille envisagée : ${size ?? "pas encore choisie"}`,
+        "Âge de mon enfant : ",
+        url,
+      ].filter((line) => line !== undefined).join("\n"),
   },
   notFound: {
     eyebrow: "ERREUR 404",

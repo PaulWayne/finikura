@@ -66,6 +66,7 @@ async function ProductContent({ params }: ProductPageProps) {
       ? messages.header.navGirls
       : messages.header.navBoys;
 
+  const productUrl = absoluteUrl(`/produit/${product.handle}`);
   const categoryPath = `/categorie/${product.categoryHandle}`;
 
   // Filter recommendations (sibling products)
@@ -119,9 +120,9 @@ async function ProductContent({ params }: ProductPageProps) {
               <p className="text-2xl font-semibold text-brand-text tracking-tight">{formatPrice(product.price)}</p>
             </div>
             <div className="w-full h-px bg-brand-surface mb-5" />
-            <ProductBuySection product={product} sizeGuide={sizeGuide} whatsappUrl={settings.whatsappUrl} />
+            <ProductBuySection product={product} sizeGuide={sizeGuide} whatsappUrl={settings.whatsappUrl} productUrl={productUrl} />
             <ShareWithRelativeButton
-              text={messages.whatsapp.shareProduct(product.title, formatPrice(product.price), absoluteUrl(`/produit/${product.handle}`))}
+              text={messages.whatsapp.shareProduct(product.title, formatPrice(product.price), productUrl)}
             />
             <ProductDetails product={product} />
           </section>

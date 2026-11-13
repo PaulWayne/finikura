@@ -421,9 +421,9 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 **Description.** Le doute sur la taille est le premier frein. À côté du choix de la taille, un lien ouvre WhatsApp vers le numéro de la boutique (réglage Strapi `whatsappUrl`), avec un message prérempli : produit, taille envisagée et une question sur l'âge de l'enfant. La gérante répond comme en boutique. C'est un vrai contact, puisque c'est la cliente qui écrit en premier, et aucun message commercial n'est envoyé sans son accord.
 
 **Critères d'acceptation**
-- [ ] Le message contient le produit, la taille sélectionnée (ou « pas encore choisie ») et le lien de la fiche. Les textes viennent de `fr.ts`.
-- [ ] Le numéro vient de Strapi. Si `whatsappUrl` est vide, le lien ne s'affiche pas.
-- [ ] Le guide des tailles (FK-15) reste accessible au même endroit.
+- [x] Le message contient le produit, la taille sélectionnée (ou « pas encore choisie ») et le lien de la fiche. Les textes viennent de `fr.ts`.
+- [x] Le numéro vient de Strapi. Si `whatsappUrl` est vide, le lien ne s'affiche pas.
+- [x] Le guide des tailles (FK-15) reste accessible au même endroit.
 
 **Taille** S · **Dépend de** FK-01 · **Origine** analyse conversion (13/11/2026)
 
