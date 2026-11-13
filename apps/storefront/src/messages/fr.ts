@@ -77,6 +77,7 @@ export const messages = {
     discoverWardrobe: "DÉCOUVRIR TOUT LE VESTIAIRE",
     mainStudioView: "Vue studio principale",
     understood: "Compris",
+    askRelativeCta: "Demander à un proche",
   },
   sizeGuidePage: {
     closeAria: "Fermer le guide des tailles",
@@ -221,6 +222,8 @@ export const messages = {
     orderPhone: (phone: string) => `Téléphone : ${phone}`,
     orderNeighborhood: (neighborhood: string) => `Quartier : ${neighborhood}`,
     orderLandmarks: (landmarks: string) => `Repères : ${landmarks}`,
+    shareProduct: (title: string, price: string, url: string) =>
+      `Que penses-tu de cette tenue de Fini Kura ?\n${title} : ${price}\n${url}`,
     sizeQuestion: (product: string) => `Bonjour FINI KURA, j'ai une question sur les tailles de « ${product} ».`,
   },
   notFound: {

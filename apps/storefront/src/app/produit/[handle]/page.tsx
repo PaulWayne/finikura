@@ -9,6 +9,8 @@ import { formatPrice } from "@/lib/format";
 import { ProductGallery } from "@/components/product/ProductGallery";
 import { ProductBuySection } from "@/components/product/ProductBuySection";
 import { ProductDetails } from "@/components/product/ProductDetails";
+import { ShareWithRelativeButton } from "@/components/product/ShareWithRelativeButton";
+import { absoluteUrl } from "@/lib/site";
 import { ProductRecommendations } from "@/components/product/ProductRecommendations";
 
 interface ProductPageProps {
@@ -31,7 +33,11 @@ export async function generateMetadata({ params }: ProductPageProps) {
     description: product.description,
     openGraph: {
       title: `${product.title} — Fini Kura`,
-      description: product.description,
+      description: `${formatPrice(product.price)} · ${product.description}`,
+      url: `/produit/${product.handle}`,
+      type: "website",
+      siteName: "Fini Kura",
+      locale: "fr_ML",
       images: product.thumbnail ? [product.thumbnail] : [],
     },
   };
@@ -114,6 +120,9 @@ async function ProductContent({ params }: ProductPageProps) {
             </div>
             <div className="w-full h-px bg-brand-surface mb-5" />
             <ProductBuySection product={product} sizeGuide={sizeGuide} whatsappUrl={settings.whatsappUrl} />
+            <ShareWithRelativeButton
+              text={messages.whatsapp.shareProduct(product.title, formatPrice(product.price), absoluteUrl(`/produit/${product.handle}`))}
+            />
             <ProductDetails product={product} />
           </section>
         </div>

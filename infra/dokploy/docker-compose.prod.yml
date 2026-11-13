@@ -151,6 +151,7 @@ services:
       # Visit statistics (FK-10): no script while UMAMI_WEBSITE_ID is empty.
       UMAMI_SCRIPT_URL: https://stats.${DOMAIN}/script.js
       UMAMI_WEBSITE_ID: ${UMAMI_WEBSITE_ID:-}
+      SITE_URL: https://${DOMAIN}
       MEDIA_PUBLIC_URL: https://media.${DOMAIN}
     labels:
       - traefik.enable=true

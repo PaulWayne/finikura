@@ -410,10 +410,10 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 **Description.** À Bamako, l'achat d'un vêtement d'enfant se décide souvent à plusieurs (maman, mari, sœur). Sur la fiche produit, un bouton ouvre WhatsApp avec un message prérempli : nom du produit, prix (`formatPrice`) et lien vers la fiche. La cliente choisit à qui l'envoyer. Chaque partage fait aussi connaître la boutique. Origine : analyse conversion du 13/11/2026.
 
 **Critères d'acceptation**
-- [ ] Le bouton ouvre WhatsApp (lien `wa.me/?text=`, sans numéro), avec le produit, le prix et le lien de la fiche. Le texte vient de `fr.ts`.
-- [ ] Le lien partagé affiche un aperçu propre dans WhatsApp (titre, image, prix) grâce aux métadonnées Open Graph de la fiche.
-- [ ] Zone tactile d'au moins 44 px, sans gêner le bouton « Ajouter au panier ».
-- [ ] Aucune promesse non validée (délai, échange) dans le message.
+- [x] Le bouton ouvre WhatsApp (lien `wa.me/?text=`, sans numéro), avec le produit, le prix et le lien de la fiche. Le texte vient de `fr.ts`.
+- [ ] Le lien partagé affiche un aperçu propre dans WhatsApp (titre, image, prix) grâce aux métadonnées Open Graph de la fiche. Balises en place ; à vérifier dans WhatsApp une fois le site en ligne.
+- [x] Zone tactile d'au moins 44 px, sans gêner le bouton « Ajouter au panier ».
+- [x] Aucune promesse non validée (délai, échange) dans le message.
 
 **Taille** S · **Dépend de** — · **Origine** analyse conversion (13/11/2026)
 

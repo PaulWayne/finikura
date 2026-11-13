@@ -13,6 +13,7 @@ import { CartTrigger } from "@/components/layout/CartTrigger";
 import { Footer } from "@/components/layout/Footer";
 import { Analytics } from "@/components/layout/Analytics";
 import { messages } from "@/messages/fr";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -30,6 +31,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: messages.meta.defaultTitle,
   description: messages.meta.defaultDescription,
 };
