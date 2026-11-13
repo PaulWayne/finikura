@@ -3,7 +3,7 @@
 # P0 = à refaire avant chaque mise en production (smoke test). Les refs renvoient au BACKLOG
 # (FK-…) et aux règles du cahier des charges (CDC-…).
 # Données : celles des seeds (pnpm --filter medusa seed, pnpm --filter strapi seed).
-# Repartir d'un stock propre : relancer les seeds ne remet pas le stock, voir le scénario « stock-remise ».
+# Repartir d'un stock propre avant chaque campagne : pnpm --filter medusa stock:reset (boutique lancée).
 
 project: Fini Kura, boutique et admin
 devices:
@@ -432,8 +432,8 @@ scenarios:
     feature: Fin de campagne
     priority: P2
     devices: [ordinateur]
-    context: Les commandes de test réservent du stock. À faire en fin de campagne.
+    context: Les commandes de test réservent du stock. À faire en fin de campagne, boutique lancée.
     steps:
-      - id: refuser-tests
-        action: Dans l'admin, passez chaque commande de test restante en « Refusée ».
-        expected: Le stock revient aux valeurs du départ.
+      - id: remise
+        action: Lancez « pnpm --filter medusa stock:reset » dans le terminal.
+        expected: Le terminal indique les commandes annulées et les niveaux de stock remis. Sur le site, seules les tailles épuisées du seed le restent (par exemple 13-14 ans pour la Robe Terracotta Brodée).

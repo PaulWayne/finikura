@@ -22,6 +22,7 @@
     "test:integration:modules": "TEST_TYPE=integration:modules NODE_OPTIONS=--experimental-vm-modules jest --silent=false --runInBand --forceExit",
     "test:unit": "TEST_TYPE=unit NODE_OPTIONS=--experimental-vm-modules jest --silent --runInBand --forceExit",
     "seed": "medusa exec ./src/scripts/seed.ts",
+    "stock:reset": "medusa exec ./src/scripts/reset-stock.ts",
     "typecheck": "tsc --noEmit",
     "email:dev": "email dev --dir src/modules/smtp-notification/emails --port 3030"
   },

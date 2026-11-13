@@ -1,0 +1,24 @@
+{
+  "id": "2026-11-13-22-51-03-campagne-1",
+  "name": "Campagne 1",
+  "createdAt": "2026-11-13T22:51:03.843Z",
+  "context": {
+    "device": "iphone",
+    "mode": "live local (Medusa et Strapi)",
+    "tester": "Paul",
+    "scope": "all",
+    "branch": "recette-1",
+    "commit": "278cfa0",
+    "dirty": false
+  },
+  "results": {
+    "decouverte-catalogue/accueil": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-13T22:53:16.858Z"
+    }
+  }
+}

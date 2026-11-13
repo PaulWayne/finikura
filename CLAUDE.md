@@ -10,6 +10,7 @@ Lancement : 1er décembre 2026. Cahier des charges : https://claude.ai/artifact/
 - `pnpm dev` : front (3100), Medusa (9000, admin `/app`) et Strapi (1337, admin `/admin`)
 - `pnpm --filter storefront dev | build | lint | typecheck`
 - `pnpm --filter medusa seed`, `pnpm --filter strapi seed` (idempotents, lisent les fixtures du front)
+- `pnpm --filter medusa stock:reset` : dev seulement, annule les commandes en attente et remet le stock aux valeurs du seed (avant une campagne de recette)
 - `pnpm --filter medusa test:unit` : rendu des e-mails ; `pnpm --filter medusa email:dev` : aperçu des templates (port 3030)
 - `pnpm --filter medusa test:integration:http` : tests Medusa sur une base jetable (copier `apps/medusa/.env.test.example` en `.env.test`, Node 22)
 - `pnpm --filter medusa test:integration:ci` : les mêmes tests sur un PostgreSQL jetable en conteneur, sans `docker compose` ni `.env.test` (Docker seul, environ 1 min)
