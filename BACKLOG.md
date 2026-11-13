@@ -52,6 +52,10 @@ Les éléments ne sont pas encore des issues GitHub. On les crée seulement apr�
 | FK-28 | CI sur Forgejo | P2 | M | FK-22, FK-29 |
 | FK-29 | PostgreSQL en conteneur pour les tests Medusa | P2 | S | FK-22 |
 | FK-30 | Statistiques : ajouts au panier, commandes, clics WhatsApp | P2 | S | FK-10 |
+| FK-31 | Bouton « Demander à un proche » (partage WhatsApp du produit) | P1 | S | — |
+| FK-32 | Bouton « Une question sur la taille ? » (WhatsApp prérempli) | P1 | S | FK-01 |
+| FK-33 | Photos portées avec l'âge et la taille de l'enfant | P1 | S | FK-15, cliente : photos |
+| FK-34 | Avis et photos des clientes | P2 | M | Cliente : accord des clientes |
 
 **Charge P0 :** 4 L, 5 M et 6 S. Cela fait environ 20 à 25 jours de travail pour une personne seule. Or il reste 19 jours calendaires, et une partie dépend des réponses de la cliente.
 
@@ -402,6 +406,37 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 
 ---
 
+### FK-31 · Bouton « Demander à un proche »
+**Description.** À Bamako, l'achat d'un vêtement d'enfant se décide souvent à plusieurs (maman, mari, sœur). Sur la fiche produit, un bouton ouvre WhatsApp avec un message prérempli : nom du produit, prix (`formatPrice`) et lien vers la fiche. La cliente choisit à qui l'envoyer. Chaque partage fait aussi connaître la boutique. Origine : analyse conversion du 13/11/2026.
+
+**Critères d'acceptation**
+- [ ] Le bouton ouvre WhatsApp (lien `wa.me/?text=`, sans numéro), avec le produit, le prix et le lien de la fiche. Le texte vient de `fr.ts`.
+- [ ] Le lien partagé affiche un aperçu propre dans WhatsApp (titre, image, prix) grâce aux métadonnées Open Graph de la fiche.
+- [ ] Zone tactile d'au moins 44 px, sans gêner le bouton « Ajouter au panier ».
+- [ ] Aucune promesse non validée (délai, échange) dans le message.
+
+**Taille** S · **Dépend de** — · **Origine** analyse conversion (13/11/2026)
+
+### FK-32 · Bouton « Une question sur la taille ? »
+**Description.** Le doute sur la taille est le premier frein. À côté du choix de la taille, un lien ouvre WhatsApp vers le numéro de la boutique (réglage Strapi `whatsappUrl`), avec un message prérempli : produit, taille envisagée et une question sur l'âge de l'enfant. La gérante répond comme en boutique. C'est un vrai contact, puisque c'est la cliente qui écrit en premier, et aucun message commercial n'est envoyé sans son accord.
+
+**Critères d'acceptation**
+- [ ] Le message contient le produit, la taille sélectionnée (ou « pas encore choisie ») et le lien de la fiche. Les textes viennent de `fr.ts`.
+- [ ] Le numéro vient de Strapi. Si `whatsappUrl` est vide, le lien ne s'affiche pas.
+- [ ] Le guide des tailles (FK-15) reste accessible au même endroit.
+
+**Taille** S · **Dépend de** FK-01 · **Origine** analyse conversion (13/11/2026)
+
+### FK-33 · Photos portées avec l'âge et la taille de l'enfant
+**Description.** Répondre à « est-ce que ça va lui aller ? » par de vraies photos portées, avec une mention du type « Aïcha, 7 ans, porte le 7-8 ans ». Les photos sont dans Medusa (galerie du produit). La mention est un champ de Medusa (métadonnée de l'image ou du produit), à vérifier dans la doc de la version installée.
+
+**Critères d'acceptation**
+- [ ] Une fiche peut afficher, sous une photo, l'âge de l'enfant et la taille portée.
+- [ ] Sans mention, la fiche s'affiche comme aujourd'hui.
+- [ ] Les photos d'enfants sont publiées avec l'accord écrit des parents (à la charge de la cliente) et sans nom de famille.
+
+**Taille** S · **Dépend de** FK-15, photos de la cliente · **Origine** analyse conversion (13/11/2026)
+
 ## P2 : plus tard
 
 ### FK-24 · Diaspora : région Europe en euros, Wero
@@ -469,6 +504,24 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 - [ ] Sans Umami configuré (mock, dev, e2e), rien ne part et rien ne casse.
 
 **Taille** S · **Dépend de** FK-10 · **Origine** proposition (13/11/2026)
+
+### FK-34 · Avis et photos des clientes
+**Description.** Afficher des avis et, avec leur accord, des photos envoyées par les clientes (par WhatsApp à la gérante). Il faut d'abord des commandes livrées. La gérante choisit les avis à publier : ce contenu raconte la marque, il irait donc dans Strapi, en citant le handle du produit.
+
+**Critères d'acceptation**
+- [ ] Un avis n'est publié qu'avec l'accord de la cliente, et sans son nom de famille ni son téléphone.
+- [ ] Un avis lié à un produit absent de Medusa ne s'affiche pas, sans faire planter la page.
+
+**Taille** M · **Dépend de** commandes livrées, accord des clientes · **Origine** analyse conversion (13/11/2026)
+
+### Écarté : essayage virtuel d'un vêtement sur la photo de l'enfant
+Décidé le 13/11/2026, après analyse : on ne le fait pas. Les raisons :
+- il faudrait des photos de mineurs (consentement, stockage, envoi par WhatsApp) ;
+- le coût par essai est élevé face à un panier de 6 500 à 15 000 FCFA ;
+- les rendus sont peu fiables pour des enfants, et un rendu trop flatteur provoquerait des refus à la livraison ;
+- c'est lourd pour les forfaits mobiles.
+
+FK-31 à FK-33 traitent le même frein. À reconsidérer seulement si un faux bouton, mesuré avec FK-30, montre une forte demande.
 
 ## En attente de la cliente
 
