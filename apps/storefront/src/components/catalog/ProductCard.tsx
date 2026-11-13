@@ -78,7 +78,7 @@ export function ProductCard({
     >
       {/* Product Image Container */}
       <div className="relative w-full aspect-square rounded-lg md:rounded-xl overflow-hidden bg-brand-bg mb-2.5">
-        <Link href={`/produit/${product.handle}`} className="block w-full h-full">
+        <Link href={`/produit/${product.handle}`} className="relative block w-full h-full">
           <SafeImage
             src={product.thumbnail || IMAGE_FALLBACKS.product}
             alt={product.title}

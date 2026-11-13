@@ -59,7 +59,7 @@ export function ProductRecommendations({
               className="flex flex-col bg-brand-surface/40 border border-brand-surface rounded-xl overflow-hidden group transition-all duration-300 hover:shadow-md hover:-translate-y-0.5"
             >
               <div className="relative aspect-square w-full bg-brand-surface overflow-hidden">
-                <Link href={`/produit/${p.handle}`} className="block w-full h-full">
+                <Link href={`/produit/${p.handle}`} className="relative block w-full h-full">
                   <SafeImage
                     src={p.thumbnail || IMAGE_FALLBACKS.product}
                     alt={p.title}
