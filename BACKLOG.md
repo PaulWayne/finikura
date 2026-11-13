@@ -209,6 +209,8 @@ Chaque choix (hébergeur, registraire) demande ton accord, car il implique un co
 - **Hébergement :** sur le VPS Hostinger existant, géré avec Dokploy. D'autres sites tournent déjà sur ce serveur : les ports, les noms de conteneurs, les volumes et les bases ne doivent pas entrer en conflit avec eux, et il faut vérifier la mémoire disponible.
 - **Domaine et e-mail :** la cliente choisit entre `fini-kura.fr` et `finikura.fr`.
 
+**Décision (13/11/2026).** VPS Hostinger KVM 2 (2 vCPU, 8 Go, 100 Go NVMe), partagé avec Forgejo et le runner de CI (voir FK-28).
+
 **Critères d'acceptation**
 - [ ] Le site répond en HTTPS sur le domaine, et le HTTP redirige vers le HTTPS.
 - [ ] Les URL de production sont dans les variables d'environnement : `MEDUSA_BACKEND_URL`, `STRAPI_URL`, `STOREFRONT_REVALIDATE_URL`, CORS. Aucun secret n'est dans le dépôt.
@@ -480,6 +482,12 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 
 ### FK-28 · CI sur Forgejo
 **Description.** Héberger le dépôt sur une instance Forgejo, pour garder la main sur le code, et lancer les tests à chaque push avec Forgejo Actions : lint, typecheck, tests Medusa et parcours e2e.
+
+**Décision (13/11/2026).** Un seul VPS Hostinger KVM 2 (2 vCPU, 8 Go, 100 Go NVMe) porte la production, Forgejo et le runner. Pour que les tests ne ralentissent pas le site :
+- le runner exécute un seul job à la fois ;
+- son conteneur est limité à 1 CPU et 3 Go de RAM ;
+- l'e2e live (FK-35) tourne la nuit ou avant une fusion dans `main`, jamais à chaque push.
+Le runner a accès à Docker, puisque les tests démarrent des conteneurs. On surveille la charge les premières semaines ; si besoin, le runner passe sur une autre machine sans rien changer au reste.
 
 **Critères d'acceptation**
 - [ ] Un push lance le lint, le typecheck et les deux suites de tests.
