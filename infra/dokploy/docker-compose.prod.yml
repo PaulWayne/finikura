@@ -57,6 +57,12 @@ services:
       AUTH_MFA_ENCRYPTION_KEY: ${MEDUSA_AUTH_MFA_ENCRYPTION_KEY}
       STOREFRONT_REVALIDATE_URL: http://storefront:3100/api/revalidate
       REVALIDATE_SECRET: ${REVALIDATE_SECRET}
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PASS: ${SMTP_PASS}
+      SMTP_FROM: ${SMTP_FROM}
+      MEDUSA_ADMIN_URL: https://api.${DOMAIN}/app
     labels:
       - traefik.enable=true
       - traefik.docker.network=dokploy-network

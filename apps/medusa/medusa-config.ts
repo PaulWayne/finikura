@@ -45,6 +45,34 @@ const redisModules = REDIS_URL
     ]
   : []
 
+// New-order e-mails: SMTP (Hostinger) when SMTP_HOST is set, otherwise the local provider,
+// which only prints e-mails in the console (dev and tests never send real mail).
+const notificationModule = {
+  resolve: '@medusajs/medusa/notification',
+  options: {
+    providers: [
+      process.env.SMTP_HOST
+        ? {
+            resolve: './src/modules/smtp-notification',
+            id: 'smtp',
+            options: {
+              channels: ['email'],
+              host: process.env.SMTP_HOST,
+              port: Number(process.env.SMTP_PORT || 465),
+              user: process.env.SMTP_USER,
+              pass: process.env.SMTP_PASS,
+              from: process.env.SMTP_FROM,
+            },
+          }
+        : {
+            resolve: '@medusajs/medusa/notification-local',
+            id: 'local',
+            options: { channels: ['email'] },
+          },
+    ],
+  },
+}
+
 module.exports = defineConfig({
   projectConfig: {
     databaseUrl: process.env.DATABASE_URL,
@@ -57,5 +85,5 @@ module.exports = defineConfig({
       cookieSecret: process.env.COOKIE_SECRET,
     }
   },
-  modules: redisModules,
+  modules: [...redisModules, notificationModule],
 })

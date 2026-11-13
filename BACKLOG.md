@@ -169,10 +169,13 @@ L'affichage du widget dans l'admin a été vérifié.
 **Description.** Un subscriber `order.placed` envoie un e-mail à la cliente, c'est-à-dire la gérante. Il contient le numéro, les articles, les tailles, le total, le nom, le téléphone et le quartier, avec un lien vers la commande dans l'admin. Il faut choisir un fournisseur d'e-mail (module Notification de Medusa) et lui créer un compte, ce qui demande ton accord. Les acheteuses ne reçoivent pas d'e-mail, puisqu'on ne leur en demande pas.
 
 **Critères d'acceptation**
-- [ ] Une commande passée sur le site envoie un e-mail à l'adresse configurée en variable d'environnement, en moins d'une minute.
-- [ ] L'e-mail est en français, les montants sont en FCFA sans décimales.
-- [ ] Un échec d'envoi n'empêche pas la commande et apparaît dans les journaux.
-- [ ] La clé du fournisseur n'est que dans les variables d'environnement, et le nom de la variable figure dans `.env.example`.
+- [x] Une commande passée sur le site envoie un e-mail à chaque utilisateur de l'admin (provider SMTP Hostinger, template react-email).
+- [ ] Reçu en moins d'une minute : à vérifier au déploiement (FK-09), avec la boîte Hostinger.
+- [x] L'e-mail est en français, les montants sont en FCFA sans décimales.
+- [x] Un échec d'envoi n'empêche pas la commande et apparaît dans les journaux.
+- [x] La clé du fournisseur n'est que dans les variables d'environnement, et le nom de la variable figure dans `.env.example`.
+
+**Fait** : `src/modules/smtp-notification` (provider SMTP, template `order-placed.tsx`, aperçu `pnpm --filter medusa email:dev`), workflow `send-order-alert`, subscriber `order-placed-alert`. Sans `SMTP_HOST`, l'e-mail s'affiche dans la console (provider local). Plus tard, si la gérante le demande : objet et introduction modifiables depuis Strapi.
 
 **Taille** M · **Dépend de** FK-09 · **Origine** cahier des charges
 

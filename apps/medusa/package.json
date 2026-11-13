@@ -21,7 +21,8 @@
     "test:integration:modules": "TEST_TYPE=integration:modules NODE_OPTIONS=--experimental-vm-modules jest --silent=false --runInBand --forceExit",
     "test:unit": "TEST_TYPE=unit NODE_OPTIONS=--experimental-vm-modules jest --silent --runInBand --forceExit",
     "seed": "medusa exec ./src/scripts/seed.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "email:dev": "email dev --dir src/modules/smtp-notification/emails --port 3030"
   },
   "dependencies": {
     "@medusajs/admin-sdk": "2.22.6",
@@ -34,7 +35,10 @@
     "@medusajs/js-sdk": "2.22.6",
     "@medusajs/medusa": "2.22.6",
     "@medusajs/ui": "4.2.9",
+    "@react-email/components": "1.0.12",
+    "@react-email/render": "2.3.1",
     "@tanstack/react-query": "5.64.2",
+    "nodemailer": "10.0.9",
     "react-i18next": "13.5.0",
     "react-router-dom": "7.18.2",
     "zod": "4.2.0"
@@ -46,6 +50,7 @@
     "@swc/jest": "^0.2.36",
     "@types/jest": "^29.5.13",
     "@types/node": "^20.12.11",
+    "@types/nodemailer": "8.0.2",
     "@types/react": "^18.3.2",
     "@types/react-dom": "^18.2.25",
     "eslint": "9.39.5",
@@ -54,6 +59,7 @@
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-email": "6.11.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.2",
     "vite": "^7.3.7",
