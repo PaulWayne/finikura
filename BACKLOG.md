@@ -532,9 +532,9 @@ FK-31 à FK-33 traitent le même frein. À reconsidérer seulement si un faux bo
 En CI (FK-28), le cache pnpm et `.next/cache` s'ajoutent. Ce test tourne avant une fusion dans `main` ou chaque nuit, le e2e mock restant à chaque push. Origine : toi (13/11/2026).
 
 **Critères d'acceptation**
-- [ ] Une seule commande lance tout et nettoie tout à la fin (conteneurs et volumes), sans toucher aux données de dev.
-- [ ] Le parcours commande passe en mode live, et la commande est vérifiée dans Medusa.
-- [ ] Le temps total est mesuré et noté ; objectif 2 à 3 minutes en local, base en cache.
+- [x] Une seule commande lance tout et nettoie tout à la fin (conteneurs et volumes), sans toucher aux données de dev.
+- [x] Le parcours commande passe en mode live, et la commande est vérifiée dans Medusa.
+- [x] Le temps total est mesuré et noté ; objectif 2 à 3 minutes en local, base en cache. Mesuré le 13/11/2026 en local : 36 s avec la base en cache, 48 s sans (le cache `.next/cache` du front aide ; en CI à froid, prévoir plus).
 
 **Taille** M · **Dépend de** FK-29 · **Origine** toi (13/11/2026)
 

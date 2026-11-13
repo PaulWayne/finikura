@@ -99,9 +99,27 @@ const fileModules = process.env.S3_ENDPOINT
         },
       },
     ]
-  : []
+  : process.env.MEDUSA_UPLOAD_DIR
+    ? [
+        // Live e2e (FK-35): local files in a temporary folder, never in the dev static/ folder.
+        {
+          resolve: '@medusajs/medusa/file',
+          options: {
+            providers: [
+              {
+                resolve: '@medusajs/medusa/file-local',
+                id: 'local',
+                options: { upload_dir: process.env.MEDUSA_UPLOAD_DIR },
+              },
+            ],
+          },
+        },
+      ]
+    : []
 
 module.exports = defineConfig({
+  // The live e2e (FK-35) runs without the admin build, to start faster.
+  admin: { disable: process.env.MEDUSA_ADMIN_DISABLED === 'true' },
   projectConfig: {
     databaseUrl: process.env.DATABASE_URL,
     redisUrl: REDIS_URL,

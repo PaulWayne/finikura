@@ -9,6 +9,7 @@
     "dev:medusa": "pnpm --filter medusa dev",
     "dev:strapi": "pnpm --filter strapi develop",
     "build": "pnpm -r build",
+    "test:e2e:live": "node scripts/e2e-live.mjs",
     "lint": "pnpm -r lint",
     "typecheck": "pnpm -r typecheck"
   }

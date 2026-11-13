@@ -14,6 +14,7 @@ Lancement : 1er décembre 2026. Cahier des charges : https://claude.ai/artifact/
 - `pnpm --filter medusa test:integration:http` : tests Medusa sur une base jetable (copier `apps/medusa/.env.test.example` en `.env.test`, Node 22)
 - `pnpm --filter medusa test:integration:ci` : les mêmes tests sur un PostgreSQL jetable en conteneur, sans `docker compose` ni `.env.test` (Docker seul, environ 1 min)
 - `pnpm --filter storefront test:e2e` : parcours e2e en mode mock (Playwright, navigateur installé dans un dossier temporaire puis supprimé)
+- `pnpm test:e2e:live` : parcours e2e en mode live, front + Medusa + Strapi sur un PostgreSQL jetable avec les seeds, commande vérifiée dans Medusa (Docker seul ; environ 35 s avec la base en cache dans `node_modules/.cache/fk-e2e-live`, 50 s sans)
 
 ## Dépôt
 - `apps/storefront` : Next.js (App Router), TypeScript strict, Tailwind, shadcn/ui

@@ -6,6 +6,8 @@ const PORT = 3300;
 
 export default defineConfig({
   testDir: "./e2e",
+  // Live journeys need the backend: pnpm test:e2e:live (FK-35).
+  testIgnore: ["live/**"],
   fullyParallel: false,
   workers: 1,
   retries: 0,
