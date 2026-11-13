@@ -49,6 +49,8 @@ Les éléments ne sont pas encore des issues GitHub. On les crée seulement apr�
 | FK-25 | Paiement en ligne | P2 | L | — |
 | FK-26 | Comptes clients | P2 | L | — |
 | FK-27 | Coût et marge par article | P2 | M | Cliente : coût et marge |
+| FK-28 | CI sur Forgejo | P2 | M | FK-22, FK-29 |
+| FK-29 | PostgreSQL en conteneur pour les tests Medusa | P2 | S | FK-22 |
 
 **Charge P0 :** 4 L, 5 M et 6 S. Cela fait environ 20 à 25 jours de travail pour une personne seule. Or il reste 19 jours calendaires, et une partie dépend des réponses de la cliente.
 
@@ -136,7 +138,7 @@ Dans Medusa 2.22.6, un échange se gère depuis la fiche commande (retour de l'a
 **Taille** S · **Dépend de** Cliente : règle d'échange, FK-04 · **Origine** état des lieux (bloquant), cliente
 
 ### FK-06 · Encart « Statut Fini Kura » dans l'admin Medusa
-**Description.** Un widget sur la fiche commande de l'admin affiche le statut Fini Kura en français, avec un bouton par étape. Chaque bouton appelle une route admin qui exécute un workflow enchaînant les actions du tableau des statuts du cahier des charges. Les étapes 3 et 4 ont vérifié par un test réel l'ordre des actions sur le stock (`integration-tests/manual/cancel-checks.mjs`).
+**Description.** Un widget sur la fiche commande de l'admin affiche le statut Fini Kura en français, avec un bouton par étape. Chaque bouton appelle une route admin qui exécute un workflow enchaînant les actions du tableau des statuts du cahier des charges. Les étapes 3 et 4 ont vérifié par un test réel l'ordre des actions sur le stock (script manuel, remplacé par `integration-tests/http/fk-status.spec.ts` dans FK-22).
 
 | Bouton | Actions Medusa | Stock |
 |---|---|---|
@@ -153,7 +155,7 @@ Dans Medusa 2.22.6, un échange se gère depuis la fiche commande (retour de l'a
 - [x] Le fulfillment n'est jamais marqué expédié avant « Livrée et payée ».
 - [x] Les libellés sont en français. Le statut natif de Medusa reste visible.
 
-**Fait (branche `fk-06`).** Le calcul du statut est dans `apps/medusa/src/lib/fk-status.ts`. Les quatre workflows sont dans `src/workflows/fk-status/` : ils composent les workflows natifs avec `runAsStep`, et revérifient que l'action est permise. La route est `GET|POST /admin/orders/:id/fini-kura-status`, et le widget est placé dans la zone `order.details.before`. Le test `integration-tests/manual/fk-status-checks.mjs` donne ces résultats :
+**Fait (branche `fk-06`).** Le calcul du statut est dans `apps/medusa/src/lib/fk-status.ts`. Les quatre workflows sont dans `src/workflows/fk-status/` : ils composent les workflows natifs avec `runAsStep`, et revérifient que l'action est permise. La route est `GET|POST /admin/orders/:id/fini-kura-status`, et le widget est placé dans la zone `order.details.before`. Le test manuel de l'époque (remplacé par `integration-tests/http/fk-status.spec.ts` dans FK-22) donnait ces résultats :
 - au départ en livraison, le stock baisse de 1 et rien n'est expédié ;
 - « Livrée et payée » donne completed, delivered et captured ;
 - un refus après le départ remet la pièce en stock ;
@@ -281,7 +283,7 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 
 **Avancement (branche `fk-14`).**
 - **Montants :** l'admin affiche « 14 500 F CFA », sans décimales (vérifié à l'écran sur la commande n° 13).
-- **Adresse :** le formulaire « Edit shipping address » n'exige que le quartier (`address_1`) et le pays. Le code postal et le nom de famille sont optionnels dans son schéma, même si le libellé « Last Name » n'affiche pas « (Optional) ». Le script `integration-tests/manual/address-checks.mjs` confirme par l'API que la modification passe sans code postal, et que le téléphone, la ville et le pays sont conservés.
+- **Adresse :** le formulaire « Edit shipping address » n'exige que le quartier (`address_1`) et le pays. Le code postal et le nom de famille sont optionnels dans son schéma, même si le libellé « Last Name » n'affiche pas « (Optional) ». Le test `integration-tests/http/checkout.spec.ts` (FK-22) confirme par l'API que la modification passe sans code postal, et que le téléphone, la ville et le pays sont conservés.
 - **WhatsApp :** le message de la commande n° 13 est complet et conforme à Medusa (articles, tailles, total, nom, téléphone, quartier, repères), avec des accents correctement encodés. Il a été ouvert depuis le Mac. **Reste à faire :** l'ouvrir depuis un vrai téléphone (http://IP-du-Mac:3100, avec `DEV_LAN_HOST` dans `.env.local`).
 - **En passant :** l'encart « Statut Fini Kura » (FK-06) est déplacé en haut de la colonne de droite (`order.details.side.before`).
 
@@ -365,9 +367,11 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 **Description.** Il faut transformer les scripts manuels `apps/medusa/integration-tests/manual` en tests Medusa, et ajouter un parcours e2e du front en mode mock (panier, commande, confirmation).
 
 **Critères d'acceptation**
-- [ ] Deux finalisations simultanées sur la dernière pièce : une seule réussit. Ce test est automatisé.
-- [ ] Le refus à la porte remet la pièce en stock. Ce test est automatisé.
-- [ ] Le parcours e2e en mock passe en moins de 2 minutes, avec une commande documentée dans `CLAUDE.md`.
+- [x] Deux finalisations simultanées sur la dernière pièce : une seule réussit. Ce test est automatisé.
+- [x] Le refus à la porte remet la pièce en stock. Ce test est automatisé.
+- [x] Le parcours e2e en mock passe en moins de 2 minutes, avec une commande documentée dans `CLAUDE.md`.
+
+**Fait (branche `fk-22`).** Tests Medusa dans `apps/medusa/integration-tests/http` (8 tests, environ 50 s, base temporaire supprimée à la fin). Parcours e2e Playwright dans `apps/storefront/e2e`, environ 25 s build compris quand le cache de Next est chaud.
 
 **Taille** M · **Dépend de** FK-06 · **Origine** étapes 3-4
 
@@ -423,6 +427,24 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 **Taille** M · **Dépend de** Cliente : coût et marge · **Origine** cliente
 
 ---
+
+### FK-28 · CI sur Forgejo
+**Description.** Héberger le dépôt sur une instance Forgejo, pour garder la main sur le code, et lancer les tests à chaque push avec Forgejo Actions : lint, typecheck, tests Medusa et parcours e2e.
+
+**Critères d'acceptation**
+- [ ] Un push lance le lint, le typecheck et les deux suites de tests.
+- [ ] Un échec bloque la fusion dans `main`.
+
+**Taille** M · **Dépend de** FK-22, FK-29 · **Origine** toi (13/11/2026)
+
+### FK-29 · PostgreSQL en conteneur pour les tests Medusa
+**Description.** En CI, les tests Medusa ont besoin d'un PostgreSQL. Il faut en démarrer un en conteneur pour le temps des tests (service du job, ou Testcontainers), au lieu de celui de `docker compose`.
+
+**Critères d'acceptation**
+- [ ] Les tests Medusa passent en CI sans PostgreSQL installé à l'avance.
+- [ ] Le conteneur est supprimé à la fin du job.
+
+**Taille** S · **Dépend de** FK-22 · **Origine** toi (13/11/2026)
 
 ## En attente de la cliente
 
