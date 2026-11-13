@@ -16,5 +16,19 @@ services:
     container_name: finikura-redis
     ports:
       - "6380:6379"
+  # Media storage (S3-compatible). Initialise once with: sh infra/garage/init.sh
+  garage:
+    image: dxflrs/garage:v2.5.0
+    container_name: finikura-garage
+    environment:
+      GARAGE_RPC_SECRET: ${GARAGE_RPC_SECRET:-0000000000000000000000000000000000000000000000000000000000000000}
+      GARAGE_ADMIN_TOKEN: ${GARAGE_ADMIN_TOKEN:-dev-only}
+    ports:
+      - "3900:3900"
+      - "3902:3902"
+    volumes:
+      - ./infra/garage/garage.toml:/etc/garage.toml:ro
+      - garage-data:/var/lib/garage
 volumes:
   pgdata:
+  garage-data:

@@ -305,4 +305,4 @@ Conformément à la règle stricte n° 3 :
 
 ## 5. Avertissement sur les URLs d'images
 
-Les URLs d'images (`lh3.googleusercontent.com/...`) issues des maquettes fournies sont temporaires et peuvent expirer. Elles doivent être remplacées par les photos définitives hébergées sur le CDN ou le stockage média de production (S3/Cloud Storage) lors de la mise en service du backend Strapi / Medusa.
+Les images des fixtures sont dans `public/mock-media/` (copies des images de la maquette, rapatriées par `scripts/fetch-mock-media.mjs`). En mode live, les seeds les envoient dans le stockage d'objets (Garage) : les URL deviennent `MEDIA_PUBLIC_URL/...`. Elles seront remplacées par les vraies photos de la cliente (FK-15).

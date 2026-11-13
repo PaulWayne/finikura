@@ -2,7 +2,8 @@
 // Usage: pnpm --filter strapi seed (CommonJS: the ESM build of @strapi/core fails on lodash imports)
 // Idempotent: single types are only created when empty, collection entries
 // are skipped when their slug / category handle already exists.
-// Images referenced by URL in the fixtures are imported into the media library.
+// Images referenced in the fixtures (/mock-media/… files, or URLs) are imported into the media library,
+// which stores them in Garage when S3_ENDPOINT is set.
 
 const fs = require("node:fs");
 const os = require("node:os");
@@ -12,6 +13,7 @@ const { compileStrapi, createStrapi } = require("@strapi/strapi");
 async function main() {
 
 const FIXTURES = path.resolve(process.cwd(), "../storefront/src/mocks/strapi");
+const MOCK_PUBLIC = path.resolve(process.cwd(), "../storefront/public");
 const read = (file) => JSON.parse(fs.readFileSync(path.join(FIXTURES, file), "utf-8"));
 
 const app = await createStrapi(await compileStrapi()).load();
@@ -24,12 +26,20 @@ async function importImage(url, alt) {
   if (!url) return null;
   if (mediaCache.has(url)) return mediaCache.get(url);
   try {
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const buffer = Buffer.from(await res.arrayBuffer());
-    const mimetype = res.headers.get("content-type")?.split(";")[0] ?? "image/jpeg";
-    const ext = mimetype.split("/")[1] ?? "jpg";
-    const name = `seed-${mediaCache.size + 1}.${ext}`;
+    let buffer, mimetype, name;
+    if (url.startsWith("/mock-media/")) {
+      // Mock images are versioned in the storefront (public/mock-media), read from disk.
+      buffer = fs.readFileSync(path.join(MOCK_PUBLIC, url));
+      const ext = path.extname(url).slice(1) || "jpg";
+      mimetype = ext === "png" ? "image/png" : ext === "webp" ? "image/webp" : "image/jpeg";
+      name = path.basename(url);
+    } else {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      buffer = Buffer.from(await res.arrayBuffer());
+      mimetype = res.headers.get("content-type")?.split(";")[0] ?? "image/jpeg";
+      name = `seed-${mediaCache.size + 1}.${mimetype.split("/")[1] ?? "jpg"}`;
+    }
     const filepath = path.join(os.tmpdir(), name);
     fs.writeFileSync(filepath, buffer);
     const [file] = await strapi

@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
-// Hosts allowed for next/image: the public Medusa and Strapi URLs, plus the
-// host of the placeholder photos used by the fixtures and the seeds.
+// Hosts allowed for next/image: the media storage (Garage, MEDIA_PUBLIC_URL) and the public
+// Medusa and Strapi URLs (media stored before the move to object storage). Mock images are local (/mock-media).
 function imageHost(url: string | undefined): URL[] {
   if (!url) return [];
   try {
@@ -11,9 +11,9 @@ function imageHost(url: string | undefined): URL[] {
   }
 }
 const imagePatterns = [
+  ...imageHost(process.env.MEDIA_PUBLIC_URL),
   ...imageHost(process.env.MEDUSA_PUBLIC_URL || process.env.MEDUSA_BACKEND_URL),
   ...imageHost(process.env.STRAPI_PUBLIC_URL || process.env.STRAPI_URL),
-  new URL("https://lh3.googleusercontent.com/**"),
 ];
 
 const nextConfig: NextConfig = {

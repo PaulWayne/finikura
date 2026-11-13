@@ -2,7 +2,7 @@
 # - No published ports: Traefik (Dokploy) routes by domain over the external "dokploy-network".
 # - Every name is prefixed "finikura-" to avoid clashing with the other sites on the VPS.
 # - Secrets and URLs come from the Dokploy "Environment" tab (see infra/dokploy/.env.example).
-#   DOMAIN=fini-kura.fr  ->  front: DOMAIN, Medusa: api.DOMAIN, Strapi: cms.DOMAIN, Umami: stats.DOMAIN
+#   DOMAIN=fini-kura.fr  ->  front: DOMAIN, Medusa: api.DOMAIN, Strapi: cms.DOMAIN, Umami: stats.DOMAIN, media: media.DOMAIN
 
 name: finikura
 
@@ -63,6 +63,13 @@ services:
       SMTP_PASS: ${SMTP_PASS}
       SMTP_FROM: ${SMTP_FROM}
       MEDUSA_ADMIN_URL: https://api.${DOMAIN}/app
+      # Media storage (Garage): uploads over the internal S3 API, public reads from media.DOMAIN.
+      S3_ENDPOINT: http://garage:3900
+      S3_REGION: garage
+      S3_BUCKET: media
+      S3_ACCESS_KEY_ID: ${S3_ACCESS_KEY_ID}
+      S3_SECRET_ACCESS_KEY: ${S3_SECRET_ACCESS_KEY}
+      MEDIA_PUBLIC_URL: https://media.${DOMAIN}
     labels:
       - traefik.enable=true
       - traefik.docker.network=dokploy-network
@@ -105,6 +112,13 @@ services:
       SMTP_USER: ${SMTP_USER}
       SMTP_PASS: ${SMTP_PASS}
       SMTP_FROM: ${SMTP_FROM}
+      # Media storage (Garage): uploads over the internal S3 API, public reads from media.DOMAIN.
+      S3_ENDPOINT: http://garage:3900
+      S3_REGION: garage
+      S3_BUCKET: media
+      S3_ACCESS_KEY_ID: ${S3_ACCESS_KEY_ID}
+      S3_SECRET_ACCESS_KEY: ${S3_SECRET_ACCESS_KEY}
+      MEDIA_PUBLIC_URL: https://media.${DOMAIN}
     volumes:
       - finikura-strapi-uploads:/app/apps/strapi/public/uploads
     labels:
@@ -137,6 +151,7 @@ services:
       # Visit statistics (FK-10): no script while UMAMI_WEBSITE_ID is empty.
       UMAMI_SCRIPT_URL: https://stats.${DOMAIN}/script.js
       UMAMI_WEBSITE_ID: ${UMAMI_WEBSITE_ID:-}
+      MEDIA_PUBLIC_URL: https://media.${DOMAIN}
     labels:
       - traefik.enable=true
       - traefik.docker.network=dokploy-network
@@ -149,6 +164,30 @@ services:
       - traefik.http.middlewares.finikura-https.redirectscheme.scheme=https
       - traefik.http.middlewares.finikura-https.redirectscheme.permanent=true
       - traefik.http.services.finikura-front.loadbalancer.server.port=3100
+    networks: [internal, dokploy-network]
+
+  # Media storage (FK-15): S3-compatible, one node. Only the public website endpoint (port 3902) is
+  # routed, as media.DOMAIN; the S3 API stays on the internal network. Setup: infra/garage/init.sh
+  garage:
+    image: dxflrs/garage:v2.5.0
+    container_name: finikura-garage
+    restart: unless-stopped
+    environment:
+      GARAGE_RPC_SECRET: ${GARAGE_RPC_SECRET}
+      GARAGE_ADMIN_TOKEN: ${GARAGE_ADMIN_TOKEN}
+    volumes:
+      - ../garage/garage.toml:/etc/garage.toml:ro
+      - finikura-garage:/var/lib/garage
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=dokploy-network
+      - traefik.http.routers.finikura-media.rule=Host(`media.${DOMAIN}`)
+      - traefik.http.routers.finikura-media.entrypoints=websecure
+      - traefik.http.routers.finikura-media.tls.certresolver=letsencrypt
+      - traefik.http.routers.finikura-media-http.rule=Host(`media.${DOMAIN}`)
+      - traefik.http.routers.finikura-media-http.entrypoints=web
+      - traefik.http.routers.finikura-media-http.middlewares=finikura-https
+      - traefik.http.services.finikura-media.loadbalancer.server.port=3902
     networks: [internal, dokploy-network]
 
   # Visit statistics (FK-10): cookieless, its own "umami" database in the shared PostgreSQL.
@@ -183,6 +222,7 @@ volumes:
   finikura-pgdata:
   finikura-redis:
   finikura-strapi-uploads:
+  finikura-garage:
 
 networks:
   internal:

@@ -73,6 +73,34 @@ const notificationModule = {
   },
 }
 
+// Product photos: S3-compatible object storage (Garage) when S3_ENDPOINT is set, served publicly
+// from MEDIA_PUBLIC_URL. Without it Medusa keeps its local file provider (integration tests).
+const fileModules = process.env.S3_ENDPOINT
+  ? [
+      {
+        resolve: '@medusajs/medusa/file',
+        options: {
+          providers: [
+            {
+              resolve: '@medusajs/medusa/file-s3',
+              id: 's3',
+              options: {
+                file_url: process.env.MEDIA_PUBLIC_URL,
+                endpoint: process.env.S3_ENDPOINT,
+                region: process.env.S3_REGION || 'garage',
+                bucket: process.env.S3_BUCKET || 'media',
+                access_key_id: process.env.S3_ACCESS_KEY_ID,
+                secret_access_key: process.env.S3_SECRET_ACCESS_KEY,
+                prefix: 'medusa/',
+                additional_client_config: { forcePathStyle: true },
+              },
+            },
+          ],
+        },
+      },
+    ]
+  : []
+
 module.exports = defineConfig({
   projectConfig: {
     databaseUrl: process.env.DATABASE_URL,
@@ -85,5 +113,5 @@ module.exports = defineConfig({
       cookieSecret: process.env.COOKIE_SECRET,
     }
   },
-  modules: [...redisModules, notificationModule],
+  modules: [...redisModules, notificationModule, ...fileModules],
 })

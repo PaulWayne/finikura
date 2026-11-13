@@ -6,7 +6,7 @@ Lancement : 1er décembre 2026. Cahier des charges : https://claude.ai/artifact/
 
 ## Commandes
 - Node 22.23.4 (`.nvmrc`), pnpm 12
-- `docker compose up -d` : PostgreSQL 16 (port 5434, bases `medusa` et `strapi`) + Redis 7 (port 6380)
+- `docker compose up -d` : PostgreSQL 16 (port 5434, bases `medusa` et `strapi`) + Redis 7 (port 6380) + Garage, le stockage des médias (S3 sur 3900, lecture publique sur http://localhost:3902). Première fois : `sh infra/garage/init.sh`, puis la clé affichée dans `S3_*` des `.env` de Medusa et Strapi
 - `pnpm dev` : front (3100), Medusa (9000, admin `/app`) et Strapi (1337, admin `/admin`)
 - `pnpm --filter storefront dev | build | lint | typecheck`
 - `pnpm --filter medusa seed`, `pnpm --filter strapi seed` (idempotents, lisent les fixtures du front)

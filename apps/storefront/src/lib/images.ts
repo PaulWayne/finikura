@@ -4,9 +4,9 @@
  */
 
 export const IMAGE_FALLBACKS = {
-  hero: "https://lh3.googleusercontent.com/aida-public/AB6AXuDUNNTfurjvCW2xN3Q2ao93wDN0yuKAp-jMGKXcY5kD0p9aJA6-h_NgjxMKTCafttQ3RYicS1Y6b7kmxth7rry-NUOQ7q3Y4bN1LYTi6aZ9OSkAfqU_GDFnGx0toTCcXhpgIBgyiK1EmfDMhADDJx_l_IUwCvBL28zhK8zEBAbg8-Q4el-4OHpzsNqFuWQS62ggP69KBYK6Z1S6e3ShvaaGtRsBLTHqI0SYXfDiz5U",
-  filles: "https://lh3.googleusercontent.com/aida-public/AB6AXuDdnWIzyePPD5zdQtzJw8HQn2U4rnMqnnOQS8KPv_LJaIurpUSKeFL0vAHAcaqJ_PMmscbGywkg8WHasptjKqIdaBwvXWNYBoztNJrup_FwHv5R9o0Y_Bki_md_QBNyAZqJJg-ex2pxZDwuCE0odyilCcWx0murVTNR2V2V-rzq4E9VwXZKtmKcru2NwKwVe_QapJ4PjQFSmL6bsCgmYmMBE0CFHd7GU2XzSPLuOWc",
-  garcons: "https://lh3.googleusercontent.com/aida-public/AB6AXuCDqtZxfEP4n1nQxW5wVjfPVbczIcP6kHRHfLu62TkFenlHNj-y8XVd0bo_ncmfoNXzbG2-yM-y95Z1-kk0iTjwLhrNz3iP7TMIUjReB3Vua6X14u25aL3UgNH-acynuJCu99fk8zbo7nCUv4Ek1YTOzBAsNPfxOZqAGnrEw49enbY1QYjvKlNCx2Q6IRl6Lczm0y73Cl-W-4P6bdGvBUPq8NZgFgVYGw0Tz6swQ7o",
-  about: "https://lh3.googleusercontent.com/aida-public/AB6AXuAevXAyuHbFW3ixCT7Ss3jQiYgKsRwkOCIgRuIFAXn3bKw1Z39v4CiPfNXCjjFO66GOaH-SgIi1gh9AkvIDifivQdIajp0xJJxZJA94lilwH_o8hbiteubqlQIEnU5yOsGIK-YMfyH9a2RQZ3DGfuPEXAxzEivx_VWkC1lrAFo5Jz3TdZM954lHsZGfoWDBML5rMBQLKnl3d7suIIfJRgZWON7i-BmYhy6jgqK-Pw4",
-  product: "https://lh3.googleusercontent.com/aida-public/AB6AXuDJh73UnFB4eBhcIx_CWz1k4i7DFcwld9egJrXnH9b8jqNS0u5o-KzoEwaVZIXflWIAk5cg41FSnnO6OFqiMXKRqQyTOlb2hKSyKlhIDSBWgEkK5qqKLOo_FIuPbCt7mE0UgyG66Q_hZTq-_Wor1i-NY6bZyQxxZisarmbU-wbOUElAkRSCEsh5SCHJEDrDU17E5JjV7_MwqL7xVmCKtd-Hiv3mYEGdSEJSwW7nwXY",
+  hero: "/mock-media/tunique-ceremonie-ecru.jpg",
+  filles: "/mock-media/robe-terracotta-brodee-2.jpg",
+  garcons: "/mock-media/garcons.jpg",
+  about: "/mock-media/tout-a-commence-par-des-demandes-de-proches.jpg",
+  product: "/mock-media/robe-terracotta-brodee.jpg",
 };

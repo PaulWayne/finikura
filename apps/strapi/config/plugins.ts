@@ -46,6 +46,33 @@ const emailPlugin = (env: Core.Config.Shared.ConfigParams["env"]): Core.Config.P
       }
     : {};
 
+// Media library: S3-compatible object storage (Garage) when S3_ENDPOINT is set, served publicly
+// from MEDIA_PUBLIC_URL. Without it, files stay in public/uploads (local provider).
+const mediaStorage = (env: Core.Config.Shared.ConfigParams['env']) =>
+  env('S3_ENDPOINT')
+    ? {
+        provider: 'aws-s3',
+        providerOptions: {
+          baseUrl: env('MEDIA_PUBLIC_URL'),
+          rootPath: 'strapi',
+          s3Options: {
+            credentials: {
+              accessKeyId: env('S3_ACCESS_KEY_ID'),
+              secretAccessKey: env('S3_SECRET_ACCESS_KEY'),
+            },
+            region: env('S3_REGION', 'garage'),
+            endpoint: env('S3_ENDPOINT'),
+            forcePathStyle: true,
+            params: {
+              // Garage has no ACLs: public read goes through its website endpoint.
+              ACL: undefined,
+              Bucket: env('S3_BUCKET', 'media'),
+            },
+          },
+        },
+      }
+    : {};
+
 const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Plugin => ({
   ...emailPlugin(env),
   'users-permissions': {
@@ -62,6 +89,7 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Plugin =>
         allowedTypes: allowedMediaTypes,
         deniedTypes,
       },
+      ...mediaStorage(env),
     },
   },
 });

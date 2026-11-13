@@ -23,7 +23,10 @@ import {
   linkSalesChannelsToApiKeyWorkflow,
   linkSalesChannelsToStockLocationWorkflow,
   revokeApiKeysWorkflow,
+  updateProductCategoriesWorkflow,
+  updateProductsWorkflow,
   updateStoresWorkflow,
+  uploadFilesWorkflow,
 } from "@medusajs/medusa/core-flows"
 
 /**
@@ -58,6 +61,11 @@ type FixtureProduct = {
 }
 
 const FIXTURES = path.resolve(process.cwd(), "../storefront/src/mocks/medusa")
+// Mock images referenced by the fixtures as /mock-media/… (copies of the mock-up photos).
+const MOCK_PUBLIC = path.resolve(process.cwd(), "../storefront/public")
+
+/** Placeholder images that the seed moves to the file storage: mock files, or the old mock-up host. */
+const isPlaceholder = (url?: string | null) => !!url && (url.startsWith("/mock-media/") || url.includes("googleusercontent.com"))
 const readFixture = <T>(file: string): T =>
   JSON.parse(fs.readFileSync(path.join(FIXTURES, file), "utf-8")) as T
 
@@ -65,6 +73,35 @@ const OCCASION_TAGS = ["tous-les-jours", "fete", "ceremonie"]
 const AGE_OPTION = "Âge"
 
 export default async function seed({ container }: ExecArgs) {
+  // Uploads a /mock-media/… fixture image to the File module (Garage in dev and production) once,
+  // and returns its public URL. Other URLs (real photos already in storage) are kept as they are.
+  const uploaded = new Map<string, string>()
+  const toStorage = async (url?: string | null): Promise<string | undefined> => {
+    if (!url) return undefined
+    if (!url.startsWith("/mock-media/")) return url
+    const cached = uploaded.get(url)
+    if (cached) return cached
+    const file = path.join(MOCK_PUBLIC, url)
+    const { result } = await uploadFilesWorkflow(container).run({
+      input: {
+        files: [
+          {
+            filename: path.basename(file),
+            mimeType: file.endsWith(".png") ? "image/png" : file.endsWith(".webp") ? "image/webp" : "image/jpeg",
+            content: fs.readFileSync(file).toString("base64"),
+            access: "public",
+          },
+        ],
+      },
+    })
+    uploaded.set(url, result[0].url)
+    return result[0].url
+  }
+  const categoryMetadata = async (metadata?: Record<string, unknown>) =>
+    metadata && typeof metadata.image === "string"
+      ? { ...metadata, image: await toStorage(metadata.image) }
+      : metadata
+
   const logger = container.resolve(ContainerRegistrationKeys.LOGGER)
   const query = container.resolve(ContainerRegistrationKeys.QUERY)
   const link = container.resolve(ContainerRegistrationKeys.LINK)
@@ -221,13 +258,13 @@ export default async function seed({ container }: ExecArgs) {
   if (missingCategories.length) {
     await createProductCategoriesWorkflow(container).run({
       input: {
-        product_categories: missingCategories.map((c) => ({
+        product_categories: await Promise.all(missingCategories.map(async (c) => ({
           name: c.name,
           handle: c.handle,
           description: c.description,
-          metadata: c.metadata,
+          metadata: await categoryMetadata(c.metadata),
           is_active: true,
-        })),
+        }))),
       },
     })
   }
@@ -275,14 +312,14 @@ export default async function seed({ container }: ExecArgs) {
   if (toCreate.length) {
     await createProductsWorkflow(container).run({
       input: {
-        products: toCreate.map((p) => ({
+        products: await Promise.all(toCreate.map(async (p) => ({
           title: p.title,
           handle: p.handle,
           subtitle: p.subtitle,
           description: p.description,
           material: p.material,
-          thumbnail: p.thumbnail,
-          images: (p.images ?? []).map((img) => ({ url: img.url })),
+          thumbnail: await toStorage(p.thumbnail),
+          images: await Promise.all((p.images ?? []).map(async (img) => ({ url: (await toStorage(img.url))! }))),
           status: ProductStatus.PUBLISHED,
           shipping_profile_id: shippingProfile.id,
           sales_channels: [{ id: salesChannel.id }],
@@ -308,7 +345,7 @@ export default async function seed({ container }: ExecArgs) {
               },
             ],
           })),
-        })),
+        }))),
       },
     })
 
@@ -333,6 +370,43 @@ export default async function seed({ container }: ExecArgs) {
     })
   }
 
+  // Existing products and categories still showing placeholder images (mock files or the old
+  // mock-up host): move them to the file storage. Real photos added in the admin are never touched.
+  const fixtureByHandle = new Map(fixtureProducts.map((p) => [p.handle, p]))
+  const placed = await productModule.listProducts(
+    { handle: fixtureProducts.map((p) => p.handle) },
+    { select: ["id", "handle", "thumbnail"], relations: ["images"] }
+  )
+  let moved = 0
+  for (const product of placed) {
+    const fixture = fixtureByHandle.get(product.handle)
+    const urls = [product.thumbnail, ...(product.images ?? []).map((i) => i.url)]
+    if (!fixture || !urls.some(isPlaceholder) || !urls.every((u) => !u || isPlaceholder(u))) continue
+    await updateProductsWorkflow(container).run({
+      input: {
+        selector: { id: product.id },
+        update: {
+          thumbnail: await toStorage(fixture.thumbnail),
+          images: await Promise.all((fixture.images ?? []).map(async (img) => ({ url: (await toStorage(img.url))! }))),
+        },
+      },
+    })
+    moved++
+  }
+  const placedCategories = await productModule.listProductCategories(
+    { handle: fixtureCategories.map((c) => c.handle) },
+    { select: ["id", "handle", "metadata"] }
+  )
+  for (const category of placedCategories) {
+    const fixture = fixtureCategories.find((c) => c.handle === category.handle)
+    if (!fixture || !isPlaceholder(category.metadata?.image as string | undefined)) continue
+    await updateProductCategoriesWorkflow(container).run({
+      input: { selector: { id: category.id }, update: { metadata: await categoryMetadata(fixture.metadata) } },
+    })
+    moved++
+  }
+
   logger.info(`Produits créés : ${toCreate.length} (déjà présents : ${existingProducts.length})`)
+  if (moved) logger.info(`Images déplacées vers le stockage : ${moved} produits ou catégories`)
   logger.info(`Clé publiable du site : ${apiKey.token}`)
 }

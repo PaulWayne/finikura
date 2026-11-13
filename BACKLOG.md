@@ -301,9 +301,15 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 **Description.** Les images de la maquette (`lh3.googleusercontent.com`) sont temporaires, et les textes viennent de la maquette. Il faut saisir dans Strapi et Medusa les vraies photos et les mesures réelles du guide des tailles. Ces données de production arriveront plus tard et ne bloquent pas le développement. Les textes de Notre histoire sont déjà rédigés.
 
 **Critères d'acceptation**
-- [ ] Plus aucune image n'est servie depuis `googleusercontent.com`. Les photos produit sont dans Medusa, les visuels éditoriaux dans la médiathèque Strapi.
+- [x] Plus aucune image n'est servie depuis `googleusercontent.com`. Les photos produit sont dans Medusa, les visuels éditoriaux dans la médiathèque Strapi.
 - [ ] Les images sont optimisées : l'accueil mobile pèse moins de 1 Mo au premier chargement.
 - [ ] Le guide des tailles affiche les mesures fournies par la cliente.
+
+**Avancement (branche `fk-15-stockage`).** Les médias sont dans un stockage d'objets S3 : Garage, qui remplace MinIO, dont l'édition communautaire n'est plus maintenue. Il tourne dans `docker compose` en local, et dans le compose de production derrière `media.DOMAIN`. Les fichiers sont sauvegardés chaque nuit.
+- Medusa (`@medusajs/file-s3`) et Strapi (`@strapi/provider-upload-aws-s3`) y écrivent.
+- Les 14 images de la maquette sont rapatriées dans `apps/storefront/public/mock-media/`. Les fixtures et le mode mock les utilisent, et les seeds les envoient dans Garage.
+- En local, les 21 images Medusa et les 8 médias Strapi sont déplacés : relancer le seed pour Medusa, `pnpm --filter strapi media:migrate` pour Strapi.
+- **Reste à faire** : les vraies photos et les mesures de la cliente, puis la vérification du poids de l'accueil en production.
 
 **Taille** M · **Dépend de** données de production (photos, mesures) · **Origine** état des lieux, cliente
 
