@@ -44,6 +44,7 @@ Comptez environ 2 Go : Medusa 500 à 700 Mo, Strapi 400 à 600 Mo, Next 300 à 5
      1. Ouvrez `https://stats.DOMAIN` et connectez-vous avec le compte par défaut d'Umami (`admin` / `umami`). **Changez ce mot de passe tout de suite** : tant qu'il ne l'est pas, n'importe qui peut entrer.
      2. **Settings › Websites › Add website** : nom « Fini Kura », domaine `DOMAIN`. Copiez son identifiant (Website ID) dans `UMAMI_WEBSITE_ID`, puis redéployez le front.
      3. **Settings › Users** : créez le compte de la gérante avec le rôle **View only**. Dans son profil, elle choisit la langue Français.
+     4. Entonnoir (FK-30) : dans le site « Fini Kura », ouvrez **Funnels** et créez « Visite → panier → commande », avec trois étapes : une page `/` (ou un visiteur), l'événement `ajout-panier`, puis l'événement `commande`. Les clics WhatsApp se lisent dans **Events**, sous `clic-whatsapp` : la propriété `type` vaut `contact` ou `partage`, et `page` indique le type de page (`produit`, `commande`…).
 6. **Vérifications** :
    - `https://DOMAIN` s'affiche, et `http://DOMAIN` redirige vers le HTTPS ;
    - les journaux de Medusa affichent « Connection to Redis … established », et jamais « fake redis » ni « in-memory » ;

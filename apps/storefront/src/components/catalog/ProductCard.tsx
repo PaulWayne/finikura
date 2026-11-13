@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { Product } from "@/lib/commerce/types";
 import { formatPrice } from "@/lib/format";
 import { addToCartAction } from "@/app/actions/cart";
+import { ANALYTICS_EVENTS, trackEvent } from "@/lib/analytics";
 import { triggerCartUpdated, triggerOpenCart, triggerToast } from "@/lib/cart-events";
 import { IMAGE_FALLBACKS } from "@/lib/images";
 
@@ -45,6 +46,7 @@ export function ProductCard({
     setIsAdding(false);
 
     if (res.success && res.cart) {
+      trackEvent(ANALYTICS_EVENTS.addToCart, { produit: product.handle });
       triggerCartUpdated(res.cart);
       triggerToast(`${product.title} ajouté au panier`);
       triggerOpenCart();

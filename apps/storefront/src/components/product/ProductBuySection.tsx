@@ -7,6 +7,7 @@ import type { SizeGuide } from "@/lib/content/types";
 import { formatPrice } from "@/lib/format";
 import { messages } from "@/messages/fr";
 import { addToCartAction } from "@/app/actions/cart";
+import { ANALYTICS_EVENTS, trackEvent } from "@/lib/analytics";
 import { triggerCartUpdated, triggerOpenCart, triggerToast } from "@/lib/cart-events";
 import { SizeGuideModal } from "./SizeGuideModal";
 import { SizeSelector } from "./SizeSelector";
@@ -42,6 +43,7 @@ export function ProductBuySection({ product, sizeGuide, whatsappUrl, productUrl 
     setIsAdding(false);
 
     if (res.success && res.cart) {
+      trackEvent(ANALYTICS_EVENTS.addToCart, { produit: product.handle });
       triggerCartUpdated(res.cart);
       setIsAddedSuccess(true);
       triggerToast(messages.product.addedFeedback(product.title, selectedVariant?.title || ""));

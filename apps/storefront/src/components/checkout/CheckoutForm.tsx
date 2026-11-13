@@ -1,5 +1,6 @@
 "use client";
 
+import { ANALYTICS_EVENTS, trackEvent } from "@/lib/analytics";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
@@ -55,6 +56,7 @@ export function CheckoutForm({ cart, children }: CheckoutFormProps) {
     try {
       const res = await placeOrderAction(data);
       if (res.success && res.order) {
+        trackEvent(ANALYTICS_EVENTS.orderPlaced);
         saveContact(data);
         triggerCartUpdated({ ...cart, items: [], subtotal: 0, total: 0 });
         triggerCartToast(messages.checkout.orderPlacedToast(res.order.orderNumber));

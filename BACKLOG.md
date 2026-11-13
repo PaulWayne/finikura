@@ -499,9 +499,9 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 **Description.** FK-10 ne compte que les pages vues. Envoyer aussi à Umami trois événements, sans donnée personnelle : ajout au panier (avec le handle du produit), commande passée (sans montant ni coordonnées) et clic sur WhatsApp. La gérante verrait alors combien de visites aboutissent à une commande. Absent du cahier des charges.
 
 **Critères d'acceptation**
-- [ ] Les trois événements apparaissent dans Umami, et l'entonnoir visite → panier → commande se lit dans son tableau de bord.
-- [ ] Aucun nom, téléphone, quartier ni montant n'est envoyé.
-- [ ] Sans Umami configuré (mock, dev, e2e), rien ne part et rien ne casse.
+- [ ] Les trois événements apparaissent dans Umami, et l'entonnoir visite → panier → commande se lit dans son tableau de bord. Événements envoyés et vérifiés en local ; l'entonnoir se crée dans Umami au déploiement (voir `docs/deploiement.md`).
+- [x] Aucun nom, téléphone, quartier ni montant n'est envoyé.
+- [x] Sans Umami configuré (mock, dev, e2e), rien ne part et rien ne casse.
 
 **Taille** S · **Dépend de** FK-10 · **Origine** proposition (13/11/2026)
 

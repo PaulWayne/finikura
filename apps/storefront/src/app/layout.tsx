@@ -12,6 +12,7 @@ import { CartDrawer } from "@/components/layout/CartDrawer";
 import { CartTrigger } from "@/components/layout/CartTrigger";
 import { Footer } from "@/components/layout/Footer";
 import { Analytics } from "@/components/layout/Analytics";
+import { WhatsAppClickTracker } from "@/components/layout/WhatsAppClickTracker";
 import { messages } from "@/messages/fr";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
@@ -80,6 +81,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <Suspense fallback={null}>
           <Analytics />
         </Suspense>
+        <WhatsAppClickTracker />
       </body>
     </html>
   );
