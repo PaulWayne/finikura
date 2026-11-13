@@ -1,0 +1,439 @@
+# Plan de recette de Fini Kura, à dérouler avec e2e-board (../e2e-board) :
+#   cd ../e2e-board && npm run dev -- ../finikura
+# P0 = à refaire avant chaque mise en production (smoke test). Les refs renvoient au BACKLOG
+# (FK-…) et aux règles du cahier des charges (CDC-…).
+# Données : celles des seeds (pnpm --filter medusa seed, pnpm --filter strapi seed).
+# Repartir d'un stock propre : relancer les seeds ne remet pas le stock, voir le scénario « stock-remise ».
+
+project: Fini Kura, boutique et admin
+devices:
+  - id: android
+    label: Android (Chrome)
+  - id: iphone
+    label: iPhone (Safari)
+  - id: ordinateur
+    label: Ordinateur (admin et vérifications)
+modes:
+  - live local (Medusa et Strapi)
+  - mock (sans backend)
+
+scenarios:
+  # ---------------------------------------------------------------- Achat sur mobile
+  - id: decouverte-catalogue
+    title: Une maman trouve une tenue pour sa fille
+    feature: Achat sur mobile
+    priority: P0
+    refs: [CDC-catalogue, FK-11]
+    devices: [android, iphone]
+    context: Premier contact. Elle arrive sur l'accueil et doit trouver une tenue à son âge sans aide.
+    prerequisites:
+      - Ouvrir le site par le lien ngrok, sur le téléphone, en navigation privée
+    steps:
+      - id: accueil
+        action: Ouvrez l'accueil et faites défiler jusqu'en bas.
+        expected: Les images s'affichent, le texte est lisible sans zoomer, rien ne déborde sur le côté.
+      - id: menu-filles
+        action: Ouvrez le menu et choisissez « Filles ».
+        expected: La catégorie Filles s'affiche avec ses créations et leur prix en FCFA (par exemple « 12 500 FCFA »).
+      - id: filtre-age
+        action: Filtrez sur un âge, puis sur une occasion, puis revenez à « Tous les âges ».
+        expected: La liste se met à jour à chaque filtre, le nombre de créations change, et le retour affiche tout.
+      - id: fiche
+        action: Ouvrez « Robe Terracotta Brodée ».
+        expected: La galerie se fait glisser au doigt, le prix et les tailles sont visibles sans chercher.
+
+  - id: choix-taille
+    title: Elle choisit la bonne taille
+    feature: Achat sur mobile
+    priority: P0
+    refs: [FK-19, FK-32]
+    devices: [android, iphone]
+    context: Le doute sur la taille est le premier frein. Une taille épuisée ne doit jamais pouvoir être commandée.
+    prerequisites:
+      - Être sur la fiche « Robe Terracotta Brodée »
+    steps:
+      - id: taille-epuisee
+        action: Touchez la taille « 13-14 ans ».
+        expected: Elle est barrée, marquée « ÉPUISÉ », et ne se sélectionne pas.
+      - id: stock-faible
+        action: Choisissez « 11-12 ans ».
+        expected: La mention « Plus que 1 en 11-12 ans » apparaît.
+      - id: guide
+        action: Ouvrez « Guide des tailles », puis fermez-le.
+        expected: Le tableau des mesures s'ouvre en bas de l'écran, la taille choisie est mise en évidence, la fermeture ramène à la fiche.
+      - id: question-taille
+        action: Touchez « Une question sur la taille ? ».
+        expected: WhatsApp s'ouvre vers le numéro de la boutique, avec le produit, la taille choisie et le lien de la fiche. Les accents sont corrects.
+
+  - id: panier
+    title: Elle remplit et ajuste son panier
+    feature: Achat sur mobile
+    priority: P0
+    refs: [CDC-panier]
+    devices: [android, iphone]
+    context: Le panier doit rester juste quand elle change d'avis.
+    steps:
+      - id: ajout
+        action: Ajoutez la robe en « 5-6 ans » avec la barre du bas.
+        expected: Le panier s'ouvre avec l'article, sa taille et son prix. Le compteur passe à 1.
+      - id: deuxieme
+        action: Ajoutez un autre produit depuis une carte de la catégorie Garçons.
+        expected: Le compteur passe à 2 et le total additionne les deux prix.
+      - id: quantite
+        action: Passez la première ligne à 2, puis supprimez la seconde.
+        expected: Le total est recalculé à chaque fois, sans rechargement.
+      - id: rechargement
+        action: Fermez l'onglet, rouvrez le site.
+        expected: Le panier est toujours là, avec les mêmes articles.
+      - id: limite-stock
+        action: Passez une ligne à une quantité supérieure au stock (par exemple 3 sur une taille qui en a 2).
+        expected: Un message clair refuse la quantité, le panier n'est pas faux.
+
+  - id: commande
+    title: Elle passe commande sans compte ni e-mail
+    feature: Achat sur mobile
+    priority: P0
+    refs: [CDC-commande, FK-02, FK-23]
+    devices: [android, iphone]
+    context: Le cœur de la boutique. Nom, téléphone, quartier et repères, rien d'autre.
+    prerequisites:
+      - Avoir au moins un article dans le panier
+    steps:
+      - id: erreurs
+        action: Touchez « Commander », puis validez le formulaire vide.
+        expected: Quatre messages d'erreur, en français, sous chaque champ.
+      - id: telephone-invalide
+        action: Saisissez « 76 12 34 » comme téléphone, puis « 76 12 34 567 ».
+        expected: Les deux sont refusés avec « Le numéro doit comporter exactement 8 chiffres maliens ».
+      - id: clavier
+        action: Touchez le champ téléphone.
+        expected: Le clavier numérique s'ouvre. Aucun champ e-mail n'existe sur la page.
+      - id: valider
+        action: Remplissez avec des données de test (nom, 76 12 34 56, Badalabougou, « près de la pharmacie ») et validez.
+        expected: La page de confirmation affiche « Commande n° FK-… », les articles et le total.
+      - id: memorise
+        action: Ajoutez un article et revenez au formulaire.
+        expected: Nom, téléphone, quartier et repères sont déjà remplis.
+      - id: confirmation-autre-appareil
+        action: Copiez le lien de la confirmation et ouvrez-le sur un autre appareil.
+        expected: Le détail de la commande n'y est pas affiché (seulement sur le téléphone qui l'a passée).
+
+  - id: whatsapp-confirmation
+    title: Elle confirme sa commande sur WhatsApp
+    feature: Achat sur mobile
+    priority: P0
+    refs: [FK-01, FK-14]
+    devices: [android, iphone]
+    context: La commande n'est confirmée qu'une fois le message WhatsApp envoyé. Il doit être complet du premier coup.
+    prerequisites:
+      - WhatsApp installé sur le téléphone
+      - Être sur une page de confirmation de commande
+    steps:
+      - id: ouvrir
+        action: Touchez « Confirmer sur WhatsApp ».
+        expected: WhatsApp s'ouvre sur la conversation de la boutique, message pré-rempli, sans passer par une page d'erreur.
+      - id: contenu
+        action: Lisez le message sans l'envoyer.
+        expected: Numéro FK-…, chaque article avec taille et quantité, total en FCFA, nom, téléphone, quartier et repères.
+      - id: encodage
+        action: Vérifiez les accents, les « ° » et les sauts de ligne.
+        expected: Aucun caractère cassé (pas de « %20 », pas de « Ã© »), une information par ligne.
+
+  # ----------------------------------------------------------------- Partage
+  - id: partage-proche
+    title: Elle demande l'avis d'un proche
+    feature: Partage et contact
+    priority: P1
+    refs: [FK-31]
+    devices: [android, iphone]
+    context: L'achat se décide souvent à plusieurs. Le lien partagé doit donner envie.
+    steps:
+      - id: bouton
+        action: Sur une fiche produit, touchez « Demander à un proche ».
+        expected: WhatsApp s'ouvre sur le choix du contact, avec le nom du produit, son prix et le lien.
+      - id: lien
+        action: Envoyez le message à vous-même, puis ouvrez le lien reçu.
+        expected: Le lien ouvre la bonne fiche produit.
+
+  - id: bouton-flottant
+    title: Elle écrit à la boutique depuis n'importe quelle page
+    feature: Partage et contact
+    priority: P1
+    refs: [FK-20]
+    devices: [android, iphone]
+    context: Le bouton WhatsApp flottant doit aider sans gêner l'achat.
+    steps:
+      - id: present
+        action: Parcourez l'accueil, une catégorie, une fiche et le panier.
+        expected: Le bouton est présent et ne cache ni « Ajouter au panier » ni « Commander ».
+      - id: ouvre
+        action: Touchez-le.
+        expected: WhatsApp s'ouvre vers le numéro de la boutique.
+
+  # ----------------------------------------------------------------- Stock et prix
+  - id: stock-admin-site
+    title: Une taille épuisée dans l'admin disparaît du site
+    feature: Stock et prix
+    priority: P0
+    refs: [CDC-stock]
+    devices: [ordinateur]
+    context: La gérante ne doit jamais vendre une pièce qu'elle n'a plus.
+    prerequisites:
+      - Être connecté à l'admin Medusa (http://localhost:9000/app)
+    steps:
+      - id: mettre-zero
+        action: Dans l'admin, passez le stock d'une taille de « Robe Poudrée » à 0.
+        expected: La valeur est enregistrée.
+      - id: verifier-site
+        action: Ouvrez la fiche « Robe Poudrée » sur le site (rechargez la page).
+        expected: La taille est « ÉPUISÉ » et ne s'ajoute pas au panier.
+      - id: remettre
+        action: Remettez le stock à sa valeur d'origine.
+        expected: La taille redevient disponible sur le site.
+
+  - id: derniere-piece
+    title: Deux clientes veulent la dernière pièce
+    feature: Stock et prix
+    priority: P0
+    refs: [CDC-stock]
+    devices: [android, iphone]
+    context: Une seule pièce, deux paniers. Une seule commande doit passer.
+    prerequisites:
+      - Deux appareils (ou un téléphone et une fenêtre privée)
+      - Une taille avec un stock de 1 (par exemple « Robe Terracotta Brodée » en 11-12 ans)
+    steps:
+      - id: deux-paniers
+        action: Mettez cette taille dans le panier sur les deux appareils.
+        expected: Les deux ajouts réussissent.
+      - id: premiere
+        action: Passez la commande sur le premier appareil.
+        expected: La commande passe.
+      - id: seconde
+        action: Essayez de passer la commande sur le second.
+        expected: Un message clair dit que la taille n'est plus disponible. Aucune seconde commande n'est créée.
+
+  - id: prix-affichage
+    title: Les prix sont justes et bien écrits
+    feature: Stock et prix
+    priority: P0
+    refs: [CDC-prix]
+    devices: [ordinateur]
+    context: Prix entiers en FCFA, avec une espace entre les milliers, partout pareil.
+    steps:
+      - id: comparer
+        action: Comparez le prix d'un produit dans l'admin Medusa et sur la fiche, le panier, la confirmation et le message WhatsApp.
+        expected: Le même montant partout, écrit « 12 500 FCFA ».
+      - id: modifier
+        action: Changez un prix dans l'admin, puis rechargez la fiche.
+        expected: Le nouveau prix s'affiche sur le site. Remettez l'ancien.
+
+  # ----------------------------------------------------------------- Gérante
+  - id: alerte-commande
+    title: La gérante est prévenue d'une nouvelle commande
+    feature: Gérante (admin Medusa)
+    priority: P0
+    refs: [FK-07]
+    devices: [ordinateur]
+    context: En local, l'e-mail n'est pas envoyé mais affiché dans les journaux de Medusa.
+    steps:
+      - id: email
+        action: Passez une commande, puis regardez le terminal de « pnpm dev ».
+        expected: Un e-mail « nouvelle commande » apparaît pour chaque compte admin, avec le numéro, les articles et le total.
+      - id: liste
+        action: Ouvrez « Commandes » dans l'admin.
+        expected: La commande est en tête de liste, avec le nom et le téléphone de la cliente, sans e-mail.
+
+  - id: statut-livraison
+    title: La gérante suit la commande jusqu'au paiement
+    feature: Gérante (admin Medusa)
+    priority: P0
+    refs: [FK-06]
+    devices: [ordinateur]
+    context: L'encart « Statut Fini Kura » remplace les statuts anglais de Medusa.
+    prerequisites:
+      - Une commande « Nouvelle »
+    steps:
+      - id: nouvelle
+        action: Ouvrez la commande.
+        expected: L'encart affiche « Nouvelle ». Seuls « Confirmée sur WhatsApp » et « Refusée » sont actifs.
+      - id: confirmer
+        action: Cliquez sur « Confirmée sur WhatsApp ».
+        expected: Le statut change, « Partie en livraison » devient actif.
+      - id: livraison
+        action: Cliquez sur « Partie en livraison », puis regardez le stock du produit.
+        expected: Le statut est « En livraison », le stock a baissé de 1.
+      - id: livree
+        action: Cliquez sur « Livrée et payée ».
+        expected: Le statut est « Livrée et payée », plus aucun bouton n'est actif.
+
+  - id: refus-porte
+    title: La cliente refuse la commande à la porte
+    feature: Gérante (admin Medusa)
+    priority: P0
+    refs: [FK-06]
+    devices: [ordinateur]
+    context: Un refus après le départ en livraison doit remettre la pièce en stock.
+    prerequisites:
+      - Une commande passée « En livraison », stock noté avant le test
+    steps:
+      - id: refuser
+        action: Cliquez sur « Refusée », lisez l'avertissement, confirmez.
+        expected: Le statut est « Refusée ou annulée ».
+      - id: stock
+        action: Regardez le stock de la taille commandée.
+        expected: Il est revenu à sa valeur d'avant la commande.
+
+  - id: historique-telephone
+    title: La gérante retrouve une cliente par son téléphone
+    feature: Gérante (admin Medusa)
+    priority: P1
+    refs: [FK-16]
+    devices: [ordinateur]
+    context: Sans compte client, le téléphone est le seul lien entre les commandes.
+    prerequisites:
+      - Au moins deux commandes avec le même téléphone
+    steps:
+      - id: historique
+        action: Ouvrez une de ces commandes.
+        expected: L'historique liste les autres commandes de ce téléphone.
+
+  - id: legende-photo
+    title: La gérante légende une photo portée
+    feature: Gérante (admin Medusa)
+    priority: P2
+    refs: [FK-33]
+    devices: [ordinateur]
+    context: Suivre la marche à suivre de docs/fiche-acces.md.
+    steps:
+      - id: ajouter
+        action: Ajoutez la métadonnée « photo_portee_1 » = « Aïcha, 7 ans, porte le 7-8 ans » à un produit.
+        expected: Enregistré sans erreur.
+      - id: site
+        action: Ouvrez la fiche sur le site, première photo.
+        expected: La légende s'affiche sous la photo, et disparaît sur les autres photos. Retirez-la ensuite.
+
+  # ----------------------------------------------------------------- Contenu
+  - id: contenu-strapi
+    title: Une modification dans Strapi apparaît sur le site
+    feature: Contenu (Strapi)
+    priority: P1
+    refs: [FK-03, CDC-contenu]
+    devices: [ordinateur]
+    context: Le contenu vient de Strapi, sans redéploiement.
+    prerequisites:
+      - Être connecté à l'admin Strapi (http://localhost:1337/admin)
+    steps:
+      - id: accueil
+        action: Modifiez un titre de l'accueil et publiez.
+        expected: Après rechargement, le nouveau titre est sur le site. Remettez l'ancien.
+      - id: page
+        action: Modifiez une phrase de « Livraison et échanges » et publiez.
+        expected: La page du site affiche la modification.
+      - id: whatsapp-vide
+        action: Videz le numéro WhatsApp des réglages globaux et publiez.
+        expected: Les boutons WhatsApp disparaissent, aucune page ne plante. Remettez le numéro.
+
+  - id: pages-introuvables
+    title: Une adresse fausse mène à une page claire
+    feature: Contenu (Strapi)
+    priority: P1
+    refs: [FK-13]
+    devices: [android, iphone]
+    context: Un lien cassé ne doit pas afficher une erreur technique.
+    steps:
+      - id: produit-inconnu
+        action: Ouvrez /produit/nexiste-pas.
+        expected: La page « Page introuvable » de la charte, avec des liens vers l'accueil et les catégories.
+      - id: campagne-inconnue
+        action: Ouvrez /campagne/nexiste-pas.
+        expected: La même page introuvable.
+
+  - id: pages-editoriales
+    title: Les pages d'information sont complètes
+    feature: Contenu (Strapi)
+    priority: P1
+    refs: [FK-03, FK-04]
+    devices: [android, iphone]
+    context: Aucune promesse non validée par la cliente.
+    steps:
+      - id: parcourir
+        action: Ouvrez Notre histoire, Livraison et échanges, Contact, Guide des tailles et Mentions légales depuis le pied de page.
+        expected: Chaque page s'ouvre et se lit bien sur mobile.
+      - id: promesses
+        action: Cherchez un délai de livraison, un tarif de livraison, une règle d'échange ou un moyen de paiement autre que « à la réception ».
+        expected: Rien de tout cela n'est affiché.
+
+  # ----------------------------------------------------------------- Garde-fous
+  - id: garde-fous
+    title: Le site respecte les règles du cahier des charges
+    feature: Garde-fous
+    priority: P0
+    refs: [CDC-livraison, CDC-email, CDC-couleurs]
+    context: Ce que la boutique ne doit jamais faire.
+    steps:
+      - id: livraison
+        action: Sur tout le parcours d'achat, cherchez un montant de livraison.
+        expected: Aucun. Seulement « montant confirmé sur WhatsApp ».
+      - id: email
+        action: Cherchez un champ ou une demande d'e-mail sur le site.
+        expected: Aucun.
+      - id: couleurs
+        action: Regardez les couleurs de chaque page.
+        expected: Ni bleu marine ni noir. Le rose n'apparaît que dans le logo.
+
+  # ----------------------------------------------------------------- Qualité
+  - id: accessibilite
+    title: Le site s'utilise au clavier et se lit bien
+    feature: Qualité
+    priority: P1
+    refs: [FK-11]
+    devices: [ordinateur]
+    context: Contraste AA, focus visible, zones tactiles de 44 px.
+    steps:
+      - id: clavier
+        action: Parcourez accueil, fiche et formulaire avec la touche Tab uniquement, et passez une commande.
+        expected: Le focus est toujours visible et l'ordre est logique. La commande passe sans souris.
+      - id: zoom
+        action: Zoomez le navigateur à 200 %.
+        expected: Rien ne se chevauche, rien n'est coupé.
+
+  - id: performance
+    title: Le site reste rapide sur un réseau lent
+    feature: Qualité
+    priority: P1
+    refs: [CDC-performance]
+    devices: [ordinateur]
+    context: "Objectif : moins de 1 Mo au premier chargement, réseau de Bamako."
+    prerequisites:
+      - Chrome, outils de développement ouverts, onglet Réseau, « Désactiver le cache »
+    steps:
+      - id: poids
+        action: En vue mobile, chargez l'accueil et lisez le total transféré.
+        expected: Moins de 1 Mo.
+      - id: reseau-lent
+        action: Passez en « 3G lente » et chargez une fiche produit.
+        expected: Le texte et le prix s'affichent vite, les images arrivent ensuite sans décaler la page.
+
+  - id: statistiques
+    title: Les statistiques ne collectent rien de personnel
+    feature: Qualité
+    priority: P2
+    refs: [FK-10, FK-30]
+    devices: [ordinateur]
+    context: En local, Umami n'est pas configuré. On vérifie qu'aucun script ni cookie n'est ajouté.
+    steps:
+      - id: cookies
+        action: Après un parcours complet, ouvrez Application › Cookies.
+        expected: Seul le cookie du panier existe (httpOnly). Aucun cookie de statistiques.
+
+  # ----------------------------------------------------------------- Remise à zéro
+  - id: stock-remise
+    title: Remettre les données de test en état
+    feature: Fin de campagne
+    priority: P2
+    devices: [ordinateur]
+    context: Les commandes de test réservent du stock. À faire en fin de campagne.
+    steps:
+      - id: refuser-tests
+        action: Dans l'admin, passez chaque commande de test restante en « Refusée ».
+        expected: Le stock revient aux valeurs du départ.
