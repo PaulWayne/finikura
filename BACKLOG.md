@@ -572,6 +572,18 @@ En CI (FK-28), le cache pnpm et `.next/cache` s'ajoutent. Ce test tourne avant u
 
 **Taille** S · **Dépend de** — · **Origine** recette 2 (14/11/2026), demandé par Paul
 
+### FK-38 · Essayage de l'enfant témoin : face, dos, profil et courte vidéo
+**Description.** Montrer comment la tenue tombe, sous plusieurs angles, sur l'enfant témoin de FK-33. D'abord 3 ou 4 photos portées (face, dos, profil, un détail) dans la galerie existante, avec l'enfant témoin dans la légende. Ensuite, une courte vidéo de 5 à 8 secondes (l'enfant tourne sur lui-même ou marche), comme élément de la galerie, chargée seulement au toucher. Un vrai 360° a été écarté pour l'instant : 24 à 36 photos par tenue, difficile avec un enfant, trop lourd pour le budget de 1 Mo. Il pourra être testé plus tard sur une ou deux tenues phares, en mesurant l'effet dans Umami.
+
+**Critères d'acceptation**
+- [ ] Les photos face, dos et profil s'ajoutent dans l'admin Medusa, sans code, et la légende de l'enfant témoin s'affiche sous chacune.
+- [ ] La galerie accepte une vidéo (MP4, environ 500 Ko au plus) : une affiche (image) est chargée d'abord, la vidéo seulement au toucher, sans son, avec lecture en boucle.
+- [ ] Le premier chargement de la fiche reste sous 1 Mo sur mobile.
+- [ ] Umami compte les lectures de la vidéo, sans identifiant de la cliente.
+- [ ] Les photos et vidéos d'enfants sont publiées avec l'accord écrit des parents, et sans nom de famille.
+
+**Taille** M · **Dépend de** FK-33, FK-15, photos et vidéos de la cliente · **Origine** recette 2 (14/11/2026)
+
 ## En attente de la cliente
 
 Mis à jour le 12 novembre 2026, avec les réponses reçues.
