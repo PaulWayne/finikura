@@ -37,6 +37,12 @@
       "name": "Nom",
       "total": "Total",
       "otherOrders": "Autres commandes de ce numéro"
+    },
+    "recentOrders": {
+      "title": "Dernières commandes",
+      "intro": "Les 10 dernières commandes avec le nom et le téléphone de la cliente. Touchez un numéro pour voir toutes ses commandes.",
+      "empty": "Aucune commande pour le moment.",
+      "district": "Quartier"
     }
   }
 }

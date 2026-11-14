@@ -37,6 +37,12 @@
       "name": "Name",
       "total": "Total",
       "otherOrders": "Other orders from this number"
+    },
+    "recentOrders": {
+      "title": "Latest orders",
+      "intro": "The 10 latest orders with the customer's name and phone. Click a number to see all their orders.",
+      "empty": "No orders yet.",
+      "district": "District"
     }
   }
 }

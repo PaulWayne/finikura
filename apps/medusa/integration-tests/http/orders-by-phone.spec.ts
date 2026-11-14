@@ -34,6 +34,15 @@ medusaIntegrationTestRunner({
       expect(results[0].data.orders[0]).toMatchObject({ name: "Awa", status: "new", currency_code: "xof" })
     })
 
+    it("lists the latest orders with name and phone, newest first", async () => {
+      const res = await api.get("/admin/fini-kura/recent-orders", env.admin)
+      expect(res.status).toBe(200)
+      const [latest, previous] = res.data.orders
+      expect(latest).toMatchObject({ name: "Autre", status: "new" })
+      expect(latest.phone).toContain("79998877")
+      expect(new Date(latest.created_at) >= new Date(previous.created_at)).toBe(true)
+    })
+
     it("rejects an invalid number with a 400", async () => {
       expect((await byPhone("12 34")).status).toBe(400)
     })
