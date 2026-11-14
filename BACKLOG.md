@@ -625,6 +625,34 @@ Options écartées (14/11/2026) : modifier les collections de Medusa (cœur du p
 
 **Taille** M (environ une journée) · **Dépend de** besoin de la cliente · **Origine** discussion campagnes (14/11/2026)
 
+### FK-42 · Historique du stock dans l'admin, lisible par la gérante
+**Description.** Medusa montre le stock actuel de chaque taille, mais aucun historique : on ne sait pas pourquoi une robe est passée de 5 à 3. Un encart « Historique du stock » sur la fiche de l'article (Inventaire) liste chaque changement, du plus récent au plus ancien, en phrases simples. Il sert surtout à comprendre un écart après un comptage ou une erreur de saisie.
+
+Exemple de ce que voit la gérante, pour « Robe Terracotta Brodée · 7-8 ans » :
+
+| Date | Ce qui s'est passé | Stock |
+|---|---|---|
+| 14 nov., 18 h 20 | Commande n° 38 partie en livraison | 4 → 3 |
+| 14 nov., 10 h 05 | Correction manuelle par Awa | 5 → 4 |
+| 12 nov., 16 h 40 | Commande n° 31 refusée à la porte : pièce remise en stock | 4 → 5 |
+
+Chaque ligne dit la cause en mots de tous les jours (« partie en livraison », « refusée », « correction manuelle »), jamais les termes techniques de Medusa (fulfillment, reservation, inventory level).
+
+**Critères d'acceptation**
+- [ ] Chaque changement de stock d'une taille ajoute une ligne : date et heure, taille, ancien et nouveau stock, cause.
+- [ ] Causes reconnues : commande partie en livraison, commande refusée ou annulée (remise en stock), correction manuelle (avec le nom du compte admin), remise à zéro de test (`stock:reset`, en dev seulement).
+- [ ] Un changement de cause inconnue s'affiche quand même, sous « Autre changement ».
+- [ ] L'encart est sur la fiche de l'article dans Inventaire, en français, les 20 derniers changements, avec « Voir plus ».
+- [ ] Une ligne avec une commande renvoie vers cette commande.
+- [ ] Les réservations (commande passée mais pas encore partie) ne créent pas de ligne : elles ne changent pas le stock, elles l'immobilisent. L'encart rappelle en une phrase combien de pièces sont réservées.
+- [ ] L'historique ne s'efface pas quand on modifie le produit, et ne ralentit pas la commande (enregistré après coup).
+- [ ] Test d'intégration : une livraison puis un refus donnent deux lignes justes.
+- [ ] Le guide de la gérante (`docs/fiche-acces.md`) explique comment le lire.
+
+**Technique.** Un abonné aux événements `inventory-level.updated` de Medusa enregistre la ligne dans un petit module « historique du stock » ; la cause se déduit du workflow Fini Kura qui a déclenché le changement, sinon « correction manuelle ».
+
+**Taille** S à M (environ une demi-journée) · **Dépend de** accord de la cliente · **Origine** campagne de recette admin (14/11/2026)
+
 ## En attente de la cliente
 
 Mis à jour le 12 novembre 2026, avec les réponses reçues.
