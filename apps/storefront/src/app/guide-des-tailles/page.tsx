@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { contentService } from "@/lib/content";
 import { messages } from "@/messages/fr";
-import { SizeGuideTable } from "@/components/size-guide/SizeGuideTable";
+import { SizeGuideWithAdvisor } from "@/components/size-guide/SizeGuideWithAdvisor";
 
 const t = messages.sizeGuidePage;
 
@@ -25,7 +25,7 @@ export default async function GuideDesTaillesPage() {
       </header>
 
       {guides.map((guide) => (
-        <SizeGuideTable key={guide.categoryHandle} guide={guide} />
+        <SizeGuideWithAdvisor key={guide.categoryHandle} guide={guide} whatsappUrl={settings.whatsappUrl} />
       ))}
 
       {settings.whatsappUrl && (

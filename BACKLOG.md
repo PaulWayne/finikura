@@ -555,7 +555,8 @@ En CI (FK-28), le cache pnpm et `.next/cache` s'ajoutent. Ce test tourne avant u
 - [x] Un champ « Mon enfant mesure … cm » (clavier numérique, 44 px) met en évidence la ligne correspondante et affiche la taille conseillée.
 - [x] Une stature hors du tableau donne un message clair et le lien « Une question sur la taille ? » (FK-32).
 - [x] La taille conseillée peut être choisie d'un geste sur la fiche.
-- [x] Le conseil « entre deux tailles » reprend l'astuce déjà affichée dans le guide (« en cas de doute, prenez la taille au-dessus ») : aucune promesse nouvelle. À relire par la cliente avec le reste du guide.
+- [x] Le conseil « entre deux tailles » (la taille au-dessus) est validé par la cliente (14/11/2026).
+- [x] Le calculateur est aussi sur la page « Guide des tailles », pour chaque guide (filles, garçons).
 - [x] Sans `height_cm` dans le guide, le champ ne s'affiche pas.
 
 **Taille** S · **Dépend de** guides des tailles dans Strapi · **Origine** recette 2 (14/11/2026)

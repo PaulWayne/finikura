@@ -5,12 +5,23 @@ import { messages } from "@/messages/fr";
 const t = messages.sizeGuidePage;
 
 /** One Strapi size guide (girls or boys): measurements table and measuring tips. */
-export function SizeGuideTable({ guide }: { guide: SizeGuide }) {
+export function SizeGuideTable({
+  guide,
+  suggestedAge,
+  advisor,
+}: {
+  guide: SizeGuide;
+  /** Row suggested from the child's height (FK-36). */
+  suggestedAge?: string | null;
+  /** « Mon enfant mesure … cm », shown between the title and the table. */
+  advisor?: React.ReactNode;
+}) {
   return (
     <section id={guide.categoryHandle} aria-labelledby={`guide-${guide.categoryHandle}`}>
       <h2 id={`guide-${guide.categoryHandle}`} className="font-serif text-2xl text-brand-text mb-4">
         {guide.title || t.guideFor(guide.categoryHandle)}
       </h2>
+      {advisor && <div className="mb-4">{advisor}</div>}
       <div className="overflow-x-auto rounded-md border border-brand-text/15">
         <table className="w-full min-w-[520px] text-left text-sm text-brand-text">
           <thead className="bg-brand-surface">
@@ -24,7 +35,11 @@ export function SizeGuideTable({ guide }: { guide: SizeGuide }) {
           </thead>
           <tbody className="divide-y divide-brand-text/10 bg-brand-bg">
             {guide.rows.map((row) => (
-              <tr key={row.age}>
+              <tr
+                key={row.age}
+                aria-current={row.age === suggestedAge ? "true" : undefined}
+                className={row.age === suggestedAge ? "bg-brand-surface font-semibold outline outline-2 -outline-offset-2 outline-brand-primary" : undefined}
+              >
                 <th scope="row" className="py-3 px-4 font-medium">{row.age}</th>
                 <td className="py-3 px-4">{row.heightCm}</td>
                 <td className="py-3 px-4">{row.chestCm}</td>
