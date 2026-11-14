@@ -31,7 +31,7 @@ async function OrderConfirmationContent({
 
   if (!order) {
     return (
-      <div className="min-h-screen bg-brand-bg pt-24 md:pt-32 pb-16 flex flex-col items-center justify-center p-6 text-center">
+      <div className="bg-brand-bg pt-8 md:pt-24 pb-16 flex flex-col items-center px-2 text-center">
         <h1 className="font-serif text-2xl text-brand-text uppercase mb-3">
           {messages.confirmation.notFoundTitle}
         </h1>
@@ -52,7 +52,7 @@ async function OrderConfirmationContent({
   const isOwnOrder = ownOrderIds.includes(order.id);
 
   return (
-    <div className="min-h-screen bg-brand-bg pt-24 md:pt-32 pb-16 flex items-center justify-center">
+    <div className="bg-brand-bg pt-2 md:pt-16 pb-16 flex justify-center">
       {isOwnOrder ? (
         <OrderConfirmation order={order} whatsappUrl={settings?.whatsappUrl} />
       ) : (

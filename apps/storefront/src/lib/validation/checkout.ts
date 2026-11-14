@@ -13,9 +13,10 @@ export const checkoutSchema = z.object({
   phone: z
     .string()
     .transform((val) => val.replace(/[\s.-]+/g, ''))
-    .refine((val) => /^(\+223|00223)?[5-9][0-9]{7}$/.test(val), {
-      message: messages.validation.phoneInvalid,
-    })
+    .transform((val) => val.replace(/^(\+223|00223)/, ''))
+    .refine((val) => /^[0-9]{8}$/.test(val), { message: messages.validation.phoneInvalid })
+    // Malian numbers start with 2 (landline) or 5 to 9 (mobile).
+    .refine((val) => /^[25-9]/.test(val), { message: messages.validation.phoneNotMalian })
     // Stored in one format everywhere: +223 followed by 8 digits.
     .transform((val) => `+223${val.slice(-8)}`),
   neighborhood: z

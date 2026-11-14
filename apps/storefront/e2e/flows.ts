@@ -26,7 +26,7 @@ export async function orderFromProductPage(page: Page, handle: string, title: st
 
   // Empty form: the four errors show up.
   await expect(page).toHaveURL(/\/commande$/);
-  const submit = page.locator('button[form="checkout-form"]').first();
+  const submit = page.locator('button[form="checkout-form"]:visible').first();
   await submit.click();
   await expect(page.locator("#checkout-form").getByRole("alert")).toHaveCount(4);
 

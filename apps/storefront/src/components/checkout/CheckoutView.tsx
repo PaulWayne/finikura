@@ -4,7 +4,7 @@ import type { Cart } from "@/lib/commerce/types";
 import { formatPrice } from "@/lib/format";
 import { messages } from "@/messages/fr";
 import { CheckoutForm } from "./CheckoutForm";
-import { CheckoutProvider, CheckoutSubmitButton } from "./CheckoutState";
+import { CheckoutProvider, CheckoutSubmitButton, MobileCheckoutBar } from "./CheckoutState";
 import { MobileSummaryAccordion } from "./MobileSummaryAccordion";
 import { OrderSummaryItem } from "./OrderSummaryItem";
 
@@ -14,7 +14,7 @@ export function CheckoutView({ cart }: { cart: Cart }) {
 
   return (
     <CheckoutProvider>
-      <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 md:px-8 pt-3 pb-6 md:py-10">
+      <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 md:px-8 pt-3 pb-36 lg:py-10">
         {/* Breadcrumb & top indicator */}
         <div className="hidden sm:flex flex-row items-center justify-between pb-6 gap-3 border-b border-brand-surface/50 mb-8">
           <nav aria-label="Fil d'Ariane Commande" className="flex items-center space-x-2 text-xs text-brand-text">
@@ -89,7 +89,6 @@ export function CheckoutView({ cart }: { cart: Cart }) {
                   title={messages.checkout.paymentOnDeliveryTitle}
                   text={messages.checkout.paymentOnDeliveryDesc}
                 />
-                <CheckoutSubmitButton variant="mobile" />
                 <p className="text-center text-[11px] text-brand-text">{messages.checkout.submitFootnoteMobile}</p>
               </div>
             </CheckoutForm>
@@ -152,6 +151,7 @@ export function CheckoutView({ cart }: { cart: Cart }) {
           </aside>
         </div>
       </div>
+      <MobileCheckoutBar totalLabel={formatPrice(cart.total)} />
     </CheckoutProvider>
   );
 }

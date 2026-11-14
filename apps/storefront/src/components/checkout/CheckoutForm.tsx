@@ -1,7 +1,7 @@
 "use client";
 
 import { ANALYTICS_EVENTS, trackEvent } from "@/lib/analytics";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ChangeEvent, type ReactNode } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,6 +9,7 @@ import { AlertCircle, MapPin, Phone, User } from "lucide-react";
 import type { Cart } from "@/lib/commerce/types";
 import { checkoutSchema, CheckoutFormData } from "@/lib/validation/checkout";
 import { placeOrderAction } from "@/app/actions/cart";
+import { formatPhoneInput } from "@/lib/phone";
 import { messages } from "@/messages/fr";
 import { triggerCartUpdated, triggerCartToast } from "@/lib/cart-events";
 import { loadContact, saveContact } from "@/lib/saved-contact";
@@ -49,7 +50,7 @@ export function CheckoutForm({ cart, children }: CheckoutFormProps) {
   useEffect(() => {
     const saved = loadContact();
     // The +223 prefix is shown outside the field: only the 8 digits go in.
-    if (saved) reset({ ...saved, phone: saved.phone.slice(-8).replace(/(\d{2})(?=\d)/g, "$1 ") });
+    if (saved) reset({ ...saved, phone: formatPhoneInput(saved.phone.slice(-8)) });
   }, [reset]);
 
   const submittingRef = useRef(false);
@@ -96,10 +97,13 @@ export function CheckoutForm({ cart, children }: CheckoutFormProps) {
           ref={serverErrorRef}
           role="alert"
           tabIndex={-1}
-          className="scroll-mt-24 p-3.5 rounded-lg border border-brand-error bg-brand-white text-brand-error text-sm font-medium flex items-start gap-2 outline-none focus-visible:ring-2 focus-visible:ring-brand-error"
+          className="scroll-mt-24 p-4 rounded-xl bg-brand-error text-brand-white flex items-start gap-3 shadow-md outline-none focus-visible:ring-4 focus-visible:ring-brand-error/40"
         >
-          <AlertCircle aria-hidden="true" className="w-4 h-4 shrink-0 mt-0.5" />
-          <span>{serverError}</span>
+          <AlertCircle aria-hidden="true" className="w-6 h-6 shrink-0" />
+          <div className="space-y-1">
+            <p className="text-base font-semibold">{messages.checkout.orderRefusedTitle}</p>
+            <p className="text-sm">{serverError}</p>
+          </div>
         </div>
       )}
       <CheckoutField
@@ -119,7 +123,11 @@ export function CheckoutForm({ cart, children }: CheckoutFormProps) {
         hint={messages.checkout.phoneHelp}
         placeholder={messages.checkout.phonePlaceholder}
         icon={<Phone className={ICON} />}
-        registration={register("phone")}
+        registration={register("phone", {
+          onChange: (e: ChangeEvent<HTMLInputElement>) => {
+            e.target.value = formatPhoneInput(e.target.value);
+          },
+        })}
         error={errors.phone?.message}
         autoComplete="tel-national"
         prefix="+223"

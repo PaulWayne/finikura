@@ -248,12 +248,12 @@ export const liveCommerceService: CommerceService = {
     } catch (err) {
       if (isStockError(err)) {
         const title = current.items?.[0]?.product_title ?? current.items?.[0]?.title ?? "";
-        throw new Error(current.items.length === 1 ? messages.errors.outOfStock(title) : messages.errors.notEnoughStock);
+        throw new Error(current.items.length === 1 ? messages.errors.outOfStock(title) : messages.errors.orderNotEnoughStock);
       }
       throw err;
     }
     if (result.type !== "order") {
-      throw new Error(/stock|inventory/i.test(result.error?.message ?? "") ? messages.errors.notEnoughStock : messages.errors.placeOrder);
+      throw new Error(/stock|inventory/i.test(result.error?.message ?? "") ? messages.errors.orderNotEnoughStock : messages.errors.placeOrder);
     }
     const order = await liveCommerceService.getOrderById(result.order.id);
     if (!order) throw new Error(messages.errors.placeOrder);

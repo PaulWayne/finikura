@@ -148,6 +148,7 @@ export const messages = {
     stepEyebrowMobile: "Étape finale",
     titleDesktop: "FINALISER VOTRE COMMANDE",
     titleMobile: "FINALISER MA COMMANDE",
+    orderRefusedTitle: "Commande non envoyée",
     subtitleDesktop: "Aucun compte requis. Vous payez à la réception de votre commande.",
     subtitleMobile: "Simple, rapide et sans création de compte requise.",
     reassuranceTitle: "Commande simple, sans compte",
@@ -251,6 +252,7 @@ export const messages = {
     cartNotFound: "Votre panier a expiré. Ajoutez à nouveau vos articles.",
     emptyCart: "Votre panier est vide.",
     notEnoughStock: "Il ne reste plus assez de pièces dans cette taille.",
+    orderNotEnoughStock: "Une pièce de votre panier vient d'être vendue dans cette taille. Ouvrez le panier pour modifier la quantité ou choisir une autre taille.",
     invalidOrder: "Vérifiez vos coordonnées.",
     placeOrder: "Impossible d'enregistrer la commande. Veuillez réessayer.",
     outOfStock: (title: string) =>
@@ -259,6 +261,7 @@ export const messages = {
   validation: {
     nameRequired: "Veuillez indiquer votre nom",
     phoneInvalid: "Saisissez les 8 chiffres de votre numéro, par exemple 76 12 34 56",
+    phoneNotMalian: "Ce numéro ne ressemble pas à un numéro malien : vérifiez le premier chiffre",
     neighborhoodRequired: "Veuillez indiquer votre quartier à Bamako",
     landmarksRequired: "Veuillez préciser un repère (ex: près de la pharmacie, rue 14, porte 12)",
   },

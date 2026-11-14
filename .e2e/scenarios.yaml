@@ -103,8 +103,8 @@ scenarios:
         action: Touchez « Commander », puis validez le formulaire vide.
         expected: Quatre messages d'erreur, en français, sous chaque champ.
       - id: telephone-invalide
-        action: Saisissez « 76 12 34 » comme téléphone, puis « 76 12 34 567 ».
-        expected: Les deux sont refusés avec « Saisissez les 8 chiffres de votre numéro, par exemple 76 12 34 56 ».
+        action: Saisissez « 76 12 34 », puis tapez « 76 12 34 567 », puis collez « +223 76 12 34 56 », puis « 12 34 56 78 ».
+        expected: "Le premier est refusé (« Saisissez les 8 chiffres… »). Le champ n'accepte que 8 chiffres, groupés par deux : le 9e chiffre est ignoré, le +223 collé est retiré. « 12 34 56 78 » est refusé avec « Ce numéro ne ressemble pas à un numéro malien… »."
       - id: clavier
         action: Touchez le champ téléphone.
         expected: Le clavier numérique s'ouvre. Aucun champ e-mail n'existe sur la page.

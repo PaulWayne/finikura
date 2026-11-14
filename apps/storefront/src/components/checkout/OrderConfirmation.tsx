@@ -67,6 +67,31 @@ export function OrderConfirmation({ order, whatsappUrl }: OrderConfirmationProps
         </div>
 
         {/* Order Summary Box */}
+        {/* WhatsApp CTA: the last step of the order, placed before the details so it is seen first */}
+        {whatsappHref && (
+        <a
+          href={whatsappHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full sm:w-auto min-w-[280px] min-h-14 bg-brand-text hover:bg-brand-primary active:scale-[0.99] text-brand-white font-medium text-sm tracking-wide py-4 px-8 rounded-xl shadow-lg ring-4 ring-brand-whatsapp/30 transition-all flex items-center justify-center gap-3 group"
+        >
+          <svg
+            aria-hidden="true"
+            className="w-7 h-7 p-1 rounded-full bg-brand-whatsapp fill-brand-white shrink-0 transition-transform duration-200 group-hover:scale-110"
+            viewBox="0 0 24 24"
+          >
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.073-2.127-.521-1.615-.67-2.66-2.306-2.74-2.414-.08-.109-.649-.864-.649-1.648 0-.785.41-1.172.556-1.332.146-.16.32-.2.427-.2.106 0 .213.002.307.007.1.005.234-.038.366.28.138.334.472 1.152.513 1.236.041.085.068.184.013.295-.056.11-.083.18-.166.277-.082.098-.173.218-.248.293-.082.083-.169.172-.072.338.097.165.432.712.927 1.152.636.566 1.172.742 1.337.824.165.083.263.072.36-.041.098-.113.418-.487.53-.654.112-.167.225-.138.378-.083.153.055.97.458 1.137.541.167.083.278.125.32.194.041.069.041.402-.103.807zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.66 1.434 5.174L2 22l4.966-1.394A9.957 9.957 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" />
+          </svg>
+          <span className="font-semibold uppercase tracking-wider text-sm">
+            {messages.confirmation.whatsAppCta}
+          </span>
+        </a>
+        )}
+
+        <p className="text-xs text-brand-text mt-3 mb-5 max-w-md leading-relaxed">
+          {messages.confirmation.whatsAppNotice}
+        </p>
+
         <div className="w-full bg-brand-bg rounded-xl p-4 sm:p-5 mb-4 sm:mb-6 text-left border border-brand-surface/60 space-y-3.5">
           <div className="flex items-center justify-between pb-3 border-b border-brand-surface/60">
             <div className="flex items-center gap-2.5">
@@ -107,31 +132,6 @@ export function OrderConfirmation({ order, whatsappUrl }: OrderConfirmationProps
           </div>
         </div>
 
-
-        {/* WhatsApp CTA Action */}
-        {whatsappHref && (
-        <a
-          href={whatsappHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-full sm:w-auto min-w-[280px] bg-brand-primary hover:bg-brand-text active:scale-[0.99] text-brand-white font-medium text-xs sm:text-sm tracking-wide py-3.5 px-8 rounded-xl shadow-md transition-all flex items-center justify-center gap-3 group"
-        >
-          <svg
-            aria-hidden="true"
-            className="w-7 h-7 p-1 rounded-full bg-brand-whatsapp fill-brand-white shrink-0 transition-transform duration-200 group-hover:scale-110"
-            viewBox="0 0 24 24"
-          >
-            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.073-2.127-.521-1.615-.67-2.66-2.306-2.74-2.414-.08-.109-.649-.864-.649-1.648 0-.785.41-1.172.556-1.332.146-.16.32-.2.427-.2.106 0 .213.002.307.007.1.005.234-.038.366.28.138.334.472 1.152.513 1.236.041.085.068.184.013.295-.056.11-.083.18-.166.277-.082.098-.173.218-.248.293-.082.083-.169.172-.072.338.097.165.432.712.927 1.152.636.566 1.172.742 1.337.824.165.083.263.072.36-.041.098-.113.418-.487.53-.654.112-.167.225-.138.378-.083.153.055.97.458 1.137.541.167.083.278.125.32.194.041.069.041.402-.103.807zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.66 1.434 5.174L2 22l4.966-1.394A9.957 9.957 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" />
-          </svg>
-          <span className="font-semibold uppercase tracking-wider text-xs sm:text-sm">
-            {messages.confirmation.whatsAppCta}
-          </span>
-        </a>
-        )}
-
-        <p className="text-[11px] sm:text-xs text-brand-text mt-3 max-w-md leading-relaxed">
-          {messages.confirmation.whatsAppNotice}
-        </p>
 
         {/* Separator */}
         <div className="w-full h-px bg-brand-surface/60 my-6"></div>
