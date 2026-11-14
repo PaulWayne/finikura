@@ -56,7 +56,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const settings = await contentService.getGlobalSettings();
 
   return (
-    <html lang="fr" className={`${playfair.variable} ${poppins.variable}`}>
+    <html lang="fr" className={`${playfair.variable} ${poppins.variable}`} suppressHydrationWarning>
       <body className="min-h-screen bg-brand-bg text-brand-text font-sans antialiased flex flex-col">
         <AnnouncementBar text={settings.announcementBar} />
         <Header
