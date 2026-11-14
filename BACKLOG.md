@@ -77,7 +77,7 @@ Les éléments ne sont pas encore des issues GitHub. On les crée seulement apr�
   - le nom, le quartier et les repères.
 - [x] Le numéro de destination est celui saisi dans Strapi. Une recherche de `wa.me/` et de `223` dans `apps/storefront/src`, hors `mocks`, ne trouve plus aucun numéro en dur.
 - [x] Si le numéro est vide dans Strapi, le bouton ne s'affiche pas et la page ne plante pas.
-- [ ] Le lien s'ouvre sur un téléphone Android et un iPhone avec le message complet. Les accents et les sauts de ligne sont bien encodés. iPhone validé (recettes 1 et 2, 14/11/2026) ; Android reste à faire.
+- [x] Le lien s'ouvre sur un téléphone Android et un iPhone avec le message complet. Les accents et les sauts de ligne sont bien encodés. iPhone validé (recettes 1 et 2, 14/11/2026), Android validé le 14/11/2026.
 
 **Taille** M · **Dépend de** — (numéro de test en place) · **Origine** état des lieux (bloquant), cahier des charges
 
