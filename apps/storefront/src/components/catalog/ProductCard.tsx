@@ -12,14 +12,20 @@ import { IMAGE_FALLBACKS } from "@/lib/images";
 interface ProductCardProps {
   product: Product;
   showCategoryBadge?: boolean;
+  /** Age chosen in the catalogue filter ("9-10"): that size is selected first when in stock. */
+  preferredAge?: string;
 }
 
 export function ProductCard({
   product,
   showCategoryBadge = false,
+  preferredAge,
 }: ProductCardProps) {
   const [selectedVariantId, setSelectedVariantId] = useState<string>(
-    product.variants.find((v) => v.inStock)?.id || product.variants[0]?.id || ""
+    (preferredAge && product.variants.find((v) => v.inStock && v.title.includes(preferredAge))?.id) ||
+      product.variants.find((v) => v.inStock)?.id ||
+      product.variants[0]?.id ||
+      ""
   );
   const [isAdding, setIsAdding] = useState(false);
   const [showSizePicker, setShowSizePicker] = useState(false);

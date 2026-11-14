@@ -61,7 +61,7 @@ export function SizeGuideModal({
     >
       {/* Modal Container: Bottom Sheet on Mobile, Centered Modal on Desktop */}
       <div
-        className="w-full sm:max-w-[640px] bg-brand-bg rounded-t-[1.75rem] sm:rounded-2xl shadow-2xl flex flex-col max-h-[88vh] sm:max-h-[85vh] overflow-hidden border border-brand-surface/80 transition-all duration-300"
+        className="w-full sm:max-w-[640px] bg-brand-bg rounded-t-[1.75rem] sm:rounded-2xl shadow-2xl flex flex-col max-h-[75dvh] sm:max-h-[85dvh] overflow-hidden border border-brand-surface/80 transition-all duration-300"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Mobile Drag Handle */}
