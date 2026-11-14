@@ -82,6 +82,8 @@ export interface StrapiCampaign {
   collection_handle: string;
   start_date: string;
   end_date: string;
+  feature_on_home?: boolean | null;
+  hero_cta_text?: string | null;
   headline?: string | null;
   description?: string | null;
   banner?: StrapiMedia | null;

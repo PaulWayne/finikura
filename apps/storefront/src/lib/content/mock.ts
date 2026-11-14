@@ -70,6 +70,10 @@ export const mockContentService: ContentService = {
     return match ? mapStrapiCampaignToDomain(match) : null;
   },
 
+  async getFeaturedCampaigns(): Promise<Campaign[]> {
+    return campaigns.data.filter((c) => c.feature_on_home === true).map(mapStrapiCampaignToDomain);
+  },
+
   async getEditorialPage(slug: string): Promise<EditorialPage | null> {
     const match = pages.data.find((p) => p.slug === slug);
     return match ? mapStrapiEditorialPageToDomain(match) : null;

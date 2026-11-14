@@ -31,11 +31,8 @@ export interface GlobalSettings {
 export interface HeroBlockData {
   type: "hero";
   id: string | number;
-  /** Name given by the shop (FK-39), sent to Umami with the button clicks. */
+  /** Sent to Umami with the button clicks (FK-39): the campaign title, or the hero title. */
   name: string;
-  /** Display window (FK-39), ISO dates; null means no limit. */
-  startsAt: string | null;
-  endsAt: string | null;
   eyebrow: string;
   title: string;
   subtitle: string;
@@ -156,6 +153,9 @@ export interface Campaign {
   collectionHandle: string;
   startDate: string;
   endDate: string;
+  /** FK-39: during its dates, the campaign replaces the default hero of the home page. */
+  featureOnHome: boolean;
+  heroCtaText: string;
   texts: {
     headline: string;
     description: string;
@@ -209,5 +209,7 @@ export interface ContentService {
   getCategoryBanner(categoryHandle: string): Promise<CategoryBanner | null>;
   getAllSizeGuides(): Promise<SizeGuide[]>;
   getCampaign(slug: string): Promise<Campaign | null>;
+  /** Campaigns marked « mettre en avant sur l'accueil », whatever their dates. */
+  getFeaturedCampaigns(): Promise<Campaign[]>;
   getEditorialPage(slug: string): Promise<EditorialPage | null>;
 }

@@ -461,7 +461,13 @@ export interface ApiCampaignCampaign extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
     end_date: Schema.Attribute.Date & Schema.Attribute.Required;
+    feature_on_home: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
     headline: Schema.Attribute.String & Schema.Attribute.Required;
+    hero_cta_text: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 40;
+      }>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

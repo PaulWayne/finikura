@@ -588,15 +588,15 @@ En CI (FK-28), le cache pnpm et `.next/cache` s'ajoutent. Ce test tourne avant u
 
 **Taille** M · **Dépend de** FK-33, FK-15, photos et vidéos de la cliente · **Origine** recette 2 (14/11/2026), vidéos courtes fusionnées après l'analyse CRO du 14/11/2026
 
-### FK-39 · Accueil : heros programmés par temps fort
-**Description.** Préparer plusieurs heros dans Strapi (rentrée, Tabaski, fêtes de fin d'année…), chacun avec une date de début et de fin ; l'accueil affiche celui du moment. Un seul hero à la fois : pas de carrousel, qui dilue le message, alourdit la page et dont les diapositives suivantes sont peu vues (analyse CRO du 14/11/2026).
+### FK-39 · Accueil : un temps fort = une campagne mise en avant
+**Description.** Pendant ses dates, une campagne Strapi cochée « mettre en avant sur l'accueil » remplace la grande image de l'accueil : sa bannière, son accroche et un bouton vers sa page. Le reste du temps, l'accueil garde sa seule « Grande image ». D'abord fait avec plusieurs blocs « Grande image » datés, puis remplacé (14/11/2026) : plusieurs blocs identiques dans l'accueil risquaient de tromper la gérante. Un seul hero à la fois, jamais de carrousel (analyse CRO du 14/11/2026).
 
 **Critères d'acceptation**
-- [x] La gérante crée plusieurs heros dans Strapi, avec image, titre, bouton et dates de début et de fin.
-- [x] L'accueil affiche le hero en cours ; sans hero en cours, le hero par défaut.
-- [x] Le changement de hero se fait sans redéploiement (revalidation du cache `content` et prise en compte des dates).
-- [x] Un hero dont le bouton mène à une campagne absente ne s'affiche pas, sans faire planter la page : le hero par défaut prend sa place. (Les liens vers une collection ne sont pas vérifiés : l'accueil n'en a pas.)
-- [x] Umami compte les clics sur le bouton du hero, avec le nom du hero, pour comparer « campagne » et « catalogue ».
+- [x] La campagne a « mettre en avant sur l'accueil » et un texte de bouton facultatif ; ses dates de début et de fin servent aussi au hero.
+- [x] L'accueil affiche la campagne mise en avant en cours ; sinon la grande image habituelle.
+- [x] Le changement se fait sans redéploiement : cache d'une heure, et le hero ne montre qu'une campagne encore ouverte dans l'heure (jamais de lien vers une page fermée à minuit).
+- [x] Une campagne dont la collection Medusa n'a aucun produit n'est pas mise en avant, sans faire planter la page.
+- [x] Umami compte les clics sur le bouton du hero (`clic-hero`), avec le titre de la campagne ou de la grande image.
 
 **Taille** S · **Dépend de** — · **Origine** analyse CRO (14/11/2026)
 

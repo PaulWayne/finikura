@@ -119,6 +119,14 @@ export const liveContentService: ContentService = {
     return data[0] ? mapStrapiCampaignToDomain(data[0]) : null;
   },
 
+  async getFeaturedCampaigns(): Promise<Campaign[]> {
+    const { data } = await strapi<StrapiListResponse<StrapiCampaign>>("campaigns", [
+      "filters[feature_on_home][$eq]=true",
+      "populate=*",
+    ]);
+    return data.map(mapStrapiCampaignToDomain);
+  },
+
   async getEditorialPage(slug: string): Promise<EditorialPage | null> {
     const { data } = await strapi<StrapiListResponse<StrapiPage>>("pages", [eq("slug", slug), ...PAGE_POPULATE]);
     return data[0] ? mapStrapiEditorialPageToDomain(data[0]) : null;

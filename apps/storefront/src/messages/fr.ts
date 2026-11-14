@@ -3,6 +3,9 @@
  * All button labels, form labels, error messages, and empty states live here.
  */
 export const messages = {
+  home: {
+    campaignHeroCta: "Découvrir la collection",
+  },
   common: {
     loading: "Chargement…",
   },

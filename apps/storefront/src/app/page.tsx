@@ -3,6 +3,7 @@ import { contentService } from "@/lib/content";
 import { commerceService } from "@/lib/commerce";
 import { BlockRenderer } from "@/components/blocks/BlockRenderer";
 import { Product } from "@/lib/commerce/types";
+import { getHomeBlocks } from "@/lib/home-blocks";
 
 export async function generateMetadata() {
   const homeData = await contentService.getHomePage();
@@ -13,13 +14,10 @@ export async function generateMetadata() {
 }
 
 export default async function HomePage() {
-  const [homeData, settings] = await Promise.all([
-    contentService.getHomePage(),
-    contentService.getGlobalSettings(),
-  ]);
+  const [blocks, settings] = await Promise.all([getHomeBlocks(), contentService.getGlobalSettings()]);
 
   // Find all collection handles referenced in productSection blocks
-  const collectionHandles = homeData.blocks
+  const collectionHandles = blocks
     .filter((b) => b.type === "productSection")
     .map((b) => (b as { collectionHandle: string }).collectionHandle);
 
@@ -34,7 +32,7 @@ export default async function HomePage() {
 
   return (
     <div className="space-y-10 md:space-y-16 pt-2 pb-4 md:py-8">
-      {homeData.blocks.map((block) => (
+      {blocks.map((block) => (
         <BlockRenderer
           key={`${block.type}-${block.id}`}
           block={block}

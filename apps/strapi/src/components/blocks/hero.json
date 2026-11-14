@@ -6,10 +6,6 @@
   },
   "options": {},
   "attributes": {
-    "name": {
-      "type": "string",
-      "required": false
-    },
     "eyebrow": {
       "type": "string",
       "required": false
@@ -39,14 +35,6 @@
     },
     "image_alt": {
       "type": "string",
-      "required": false
-    },
-    "starts_at": {
-      "type": "datetime",
-      "required": false
-    },
-    "ends_at": {
-      "type": "datetime",
       "required": false
     }
   }

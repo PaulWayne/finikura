@@ -47,16 +47,20 @@ Sous une photo où un enfant porte le vêtement, vous pouvez écrire par exemple
 
 Indiquez seulement le prénom et l'âge, jamais le nom de famille. Gardez l'accord écrit des parents pour chaque photo d'enfant.
 
-## Préparer un hero pour un temps fort (rentrée, Tabaski, fêtes)
+## Mettre un temps fort en avant sur l'accueil (rentrée, Tabaski, fêtes)
 
-Dans Strapi, ouvrez **Accueil**. Vous pouvez y ajouter plusieurs blocs **Grande image** : un seul s'affiche à la fois.
+Un temps fort, c'est une **campagne**. Dans Strapi, ouvrez **Campagnes** et créez-la (ou ouvrez-la) :
 
-1. Ajoutez un bloc **Grande image**, donnez-lui un **nom** (par exemple « Tabaski 2027 »), une image, un titre et un bouton.
-2. Remplissez **starts_at** (début) et **ends_at** (fin). Le site affiche ce hero pendant cette période, au plus tard une heure après la date de début.
-3. Gardez toujours un bloc **sans dates** : c'est le hero par défaut, affiché quand aucun temps fort n'est en cours.
+1. Remplissez le titre, l'accroche (headline), la description, la bannière et la collection Medusa, comme pour toute campagne.
+2. Choisissez **start_date** (début) et **end_date** (fin).
+3. Cochez **feature_on_home** (« mettre en avant sur l'accueil »). Si vous le souhaitez, écrivez le texte du bouton dans **hero_cta_text** ; sinon le bouton dit « Découvrir la collection ».
 4. Publiez.
 
-Si le bouton d'un hero mène à une campagne dépubliée, ce hero ne s'affiche pas et le hero par défaut prend sa place. Dans Umami, les clics se lisent sous l'événement `clic-hero`, avec le nom du hero.
+Pendant ses dates, la grande image de l'accueil devient celle de la campagne, et son bouton mène à la page de la campagne. Elle apparaît dans l'heure qui suit minuit le premier jour, et disparaît à 23 h (heure de Bamako) le dernier jour, juste avant la fermeture de la page. Le reste de l'année, l'accueil affiche sa **Grande image** habituelle : il n'y en a qu'une, dans **Accueil**.
+
+Une campagne dont la collection n'a aucun produit en vente n'est pas mise en avant. Si deux campagnes mises en avant se chevauchent, c'est celle qui a commencé le plus récemment qui s'affiche. La liste des **Campagnes** sert de calendrier : début, fin, mise en avant.
+
+Dans Umami, les clics sur le bouton se lisent sous l'événement `clic-hero`, avec le titre de la campagne (ou de la grande image).
 
 ## Changer le bandeau des pages Filles et Garçons
 

@@ -4,7 +4,6 @@ import { CACHE_TAGS } from "@/lib/cache-tags";
 import type { ContentService } from "./types";
 import { mockContentService } from "./mock";
 import { liveContentService } from "./live";
-import { pickHero } from "./hero-schedule";
 
 const source: ContentService =
   process.env.CONTENT_SOURCE === "live" ? liveContentService : mockContentService;
@@ -17,21 +16,15 @@ async function getGlobalSettings() {
 }
 async function getHomePage() {
   "use cache";
-  // Hourly: a scheduled hero (FK-39) shows up within the hour of its start date, without a deploy.
   cacheLife("hours");
   cacheTag(CACHE_TAGS.content);
-  const home = await source.getHomePage();
-  // A hero whose button leads to a campaign that no longer exists is skipped.
-  const campaignSlugs = home.blocks.flatMap((b) =>
-    b.type === "hero" && b.ctaLink.startsWith("/campagne/") ? [b.ctaLink.slice("/campagne/".length).split(/[?#]/)[0]] : [],
-  );
-  const existing = new Set(
-    (await Promise.all(campaignSlugs.map(async (slug) => ((await source.getCampaign(slug)) ? slug : null)))).filter(Boolean),
-  );
-  const blocks = pickHero(home.blocks, Date.now(), (hero) =>
-    hero.ctaLink.startsWith("/campagne/") ? existing.has(hero.ctaLink.slice("/campagne/".length).split(/[?#]/)[0]) : true,
-  );
-  return { ...home, blocks };
+  return source.getHomePage();
+}
+async function getFeaturedCampaigns() {
+  "use cache";
+  cacheLife("hours");
+  cacheTag(CACHE_TAGS.content);
+  return source.getFeaturedCampaigns();
 }
 async function getCategoryBanner(categoryHandle: string) {
   "use cache";
@@ -69,6 +62,7 @@ export const contentService: ContentService = {
   getHomePage,
   getSizeGuide,
   getCategoryBanner,
+  getFeaturedCampaigns,
   getAllSizeGuides,
   getCampaign,
   getEditorialPage,

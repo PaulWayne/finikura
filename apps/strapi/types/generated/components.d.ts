@@ -66,12 +66,9 @@ export interface BlocksHero extends Struct.ComponentSchema {
   attributes: {
     cta_link: Schema.Attribute.String;
     cta_text: Schema.Attribute.String;
-    ends_at: Schema.Attribute.DateTime;
     eyebrow: Schema.Attribute.String;
     image: Schema.Attribute.Media<'images'>;
     image_alt: Schema.Attribute.String;
-    name: Schema.Attribute.String;
-    starts_at: Schema.Attribute.DateTime;
     subtitle: Schema.Attribute.Text;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };

@@ -32,6 +32,11 @@
       "type": "date",
       "required": true
     },
+    "feature_on_home": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    },
     "headline": {
       "type": "string",
       "required": true
@@ -46,6 +51,11 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "hero_cta_text": {
+      "type": "string",
+      "required": false,
+      "maxLength": 40
     },
     "seo": {
       "type": "component",

@@ -45,9 +45,7 @@ export function mapStrapiBlockToDomain(raw: StrapiRawBlock): ContentBlock | null
       return {
         type: "hero",
         id,
-        name: str(raw.name),
-        startsAt: str(raw.starts_at) || null,
-        endsAt: str(raw.ends_at) || null,
+        name: str(raw.title),
         eyebrow: str(raw.eyebrow),
         title: str(raw.title),
         subtitle: str(raw.subtitle),
@@ -229,6 +227,8 @@ export function mapStrapiCampaignToDomain(raw: StrapiCampaign): Campaign {
     collectionHandle: raw.collection_handle,
     startDate: raw.start_date,
     endDate: raw.end_date,
+    featureOnHome: raw.feature_on_home === true,
+    heroCtaText: raw.hero_cta_text ?? "",
     texts: {
       headline: raw.headline ?? "",
       description: raw.description ?? "",
