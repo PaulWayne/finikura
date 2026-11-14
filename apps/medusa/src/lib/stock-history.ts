@@ -15,6 +15,13 @@ export const CAUSE_TTL_MS = 10 * 60 * 1000
  * (new-order e-mail), seen in the integration tests. It only writes to our own tables.
  */
 export async function recordStockChange(container: MedusaContainer, inventoryLevelId: string): Promise<string | null> {
+  // One change emits two events (see the subscriber): their two runs would read the same
+  // stock seen and cause at once. The lock makes them run one after the other.
+  const locking = container.resolve(Modules.LOCKING)
+  return locking.execute(`fk-stock-history:${inventoryLevelId}`, () => record(container, inventoryLevelId))
+}
+
+async function record(container: MedusaContainer, inventoryLevelId: string): Promise<string | null> {
   const inventory = container.resolve(Modules.INVENTORY)
   const history = container.resolve<StockHistoryModuleService>(STOCK_HISTORY_MODULE)
 
@@ -32,12 +39,10 @@ export async function recordStockChange(container: MedusaContainer, inventoryLev
   if (expired.length) await history.deleteStockCauses(expired.map((c) => c.id))
 
   // Without a cause or a stock seen before, there is nothing to compare: the stock is
-  // only noted. Same stock as before: a reservation, no line.
+  // only noted. Same stock as before: a reservation, no line. Its event can arrive late,
+  // after a delivery noted its cause: the cause is kept for the change still to come.
   const previous = fresh ? fresh.previous_quantity : seen ? Number(seen.quantity) : null
-  if (previous === null || previous === current) {
-    if (fresh) await history.deleteStockCauses([fresh.id])
-    return null
-  }
+  if (previous === null || previous === current) return null
 
   const line = await history.createStockChanges({
     ...where,

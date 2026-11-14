@@ -1,4 +1,4 @@
-import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
+import { medusaIntegrationTestRunner, TestEventUtils } from "@medusajs/test-utils"
 import { Modules } from "@medusajs/framework/utils"
 import type { MedusaContainer } from "@medusajs/framework/types"
 import orderPlacedAlert from "../../src/subscribers/order-placed-alert"
@@ -31,7 +31,10 @@ medusaIntegrationTestRunner({
       const container = getContainer()
       const variant = await getVariant(api, env, "robe-terracotta-brodee", "7-8 ans")
       await setStock(container, variant.id, 3)
+      // Wait for the order.placed subscribers themselves, not for a fixed delay.
+      const sent = TestEventUtils.waitSubscribersExecution("order.placed", container.resolve(Modules.EVENT_BUS))
       const order = await placeOrder(api, env, variant.id, "Awa Traoré", "+22370112233")
+      await sent
 
       const notifications = await waitForNotifications(container, order.id, 2)
       const users = await container.resolve(Modules.USER).listUsers()

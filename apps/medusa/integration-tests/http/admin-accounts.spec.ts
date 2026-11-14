@@ -1,4 +1,4 @@
-import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
+import { medusaIntegrationTestRunner, TestEventUtils } from "@medusajs/test-utils"
 import { Modules } from "@medusajs/framework/utils"
 import type { MedusaContainer } from "@medusajs/framework/types"
 import { FiniKuraEnv, setupFiniKura } from "../helpers/fini-kura"
@@ -16,6 +16,13 @@ async function waitFor(container: MedusaContainer, filters: Record<string, unkno
   return notification.listNotifications(filters)
 }
 
+/**
+ * Starts waiting for the subscribers of an event before the request that emits it, so the
+ * test never polls against a slow event bus (the cause of the old flaky failures).
+ */
+const subscribersDone = (container: MedusaContainer, eventName: string) =>
+  TestEventUtils.waitSubscribersExecution(eventName, container.resolve(Modules.EVENT_BUS))
+
 medusaIntegrationTestRunner({
   testSuite: ({ api, getContainer }) => {
     let env: FiniKuraEnv
@@ -25,8 +32,10 @@ medusaIntegrationTestRunner({
     })
 
     it("e-mails the invite link to the invited address", async () => {
+      const sent = subscribersDone(getContainer(), "invite.created")
       const res = await api.post("/admin/invites", { email: "soeur@test.local" }, env.admin)
       const invite = res.data.invite
+      await sent
 
       const [n] = await waitFor(getContainer(), { template: "user-invite", to: "soeur@test.local" })
       expect(n).toBeDefined()
@@ -37,7 +46,9 @@ medusaIntegrationTestRunner({
     })
 
     it("e-mails a reset link to an admin who forgot the password", async () => {
+      const sent = subscribersDone(getContainer(), "auth.password_reset")
       await api.post("/auth/user/emailpass/reset-password", { identifier: env.adminEmail })
+      await sent
 
       const [n] = await waitFor(getContainer(), { template: "password-reset", to: env.adminEmail })
       expect(n).toBeDefined()

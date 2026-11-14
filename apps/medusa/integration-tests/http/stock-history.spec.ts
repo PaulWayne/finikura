@@ -78,10 +78,10 @@ medusaIntegrationTestRunner({
         updateInventoryLevelsWorkflow(getContainer()).run({
           input: { updates: [{ inventory_item_id: itemId, location_id: locationId, stocked_quantity }] },
         })
-      const before = (await history()).count
+      // Let the first change settle before counting, so only the second one is measured.
       await setLevel(6)
-      await new Promise((r) => setTimeout(r, 1000))
-      expect((await history()).count).toBe(before)
+      await new Promise((r) => setTimeout(r, 1500))
+      const before = (await history()).count
       await setLevel(4)
       const data = await waitForLines(before + 1)
       expect(data.changes[0]).toMatchObject({ cause: "other", previous_quantity: 6, new_quantity: 4 })

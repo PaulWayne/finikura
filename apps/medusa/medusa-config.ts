@@ -2,7 +2,10 @@ import { loadEnv, defineConfig } from '@medusajs/framework/utils'
 
 loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 
-const REDIS_URL = process.env.REDIS_URL
+// Tests never use Redis, even when .env sets it: loadEnv also reads .env and
+// dotenv-expand overwrites process.env, and the running dev server's worker
+// would consume the tests' events on the shared Redis.
+const REDIS_URL = process.env.NODE_ENV === 'test' ? undefined : process.env.REDIS_URL
 
 // Redis infrastructure modules (events, locking, workflows, cache), loaded only when REDIS_URL is set.
 // Without it Medusa falls back to in-memory modules, which is fine locally but not in production.
