@@ -34,13 +34,19 @@ scenarios:
         expected: Les images s'affichent, le texte est lisible sans zoomer, rien ne déborde sur le côté.
       - id: menu-filles
         action: Ouvrez le menu et choisissez « Filles ».
-        expected: La catégorie Filles s'affiche avec ses créations et leur prix en FCFA (par exemple « 12 500 FCFA »).
+        expected: La catégorie Filles s'affiche avec un bandeau compact (photo et phrase), puis les filtres et la première rangée de créations sans faire défiler, avec leur prix en FCFA (par exemple « 12 500 FCFA »).
       - id: filtre-age
         action: Filtrez sur un âge, puis sur une occasion, puis revenez à « Tous les âges ».
         expected: La liste se met à jour à chaque filtre, le nombre de créations change, et le retour affiche tout.
+      - id: filtre-carte
+        action: Filtrez sur « 9-10 ans » et regardez les cartes, puis touchez le « + » d'une carte.
+        expected: Chaque carte affiche la taille 9-10 ans présélectionnée (texte lisible), et le « + » ajoute bien cette taille au panier.
       - id: fiche
         action: Ouvrez « Robe Terracotta Brodée ».
-        expected: La galerie se fait glisser au doigt, le prix et les tailles sont visibles sans chercher.
+        expected: La galerie se fait glisser au doigt (compteur « 1 / 4 »), le prix et les tailles sont visibles sans chercher.
+      - id: coup-de-coeur
+        action: Touchez le cœur sur la photo, rechargez la page, puis touchez le cœur en haut de l'écran.
+        expected: Le cœur reste rempli après le rechargement, le compteur du haut affiche 1, et « Mes coups de cœur » montre la robe avec son prix ; « Retirer » la fait disparaître.
 
   - id: choix-taille
     title: Elle choisit la bonne taille
@@ -60,7 +66,10 @@ scenarios:
         expected: La mention « Plus que 1 en 11-12 ans » apparaît.
       - id: guide
         action: Ouvrez « Guide des tailles », puis fermez-le.
-        expected: Le tableau des mesures s'ouvre en bas de l'écran, la taille choisie est mise en évidence, la fermeture ramène à la fiche.
+        expected: Le tableau des mesures s'ouvre en bas de l'écran sans couvrir toute la page, la taille choisie est mise en évidence, la fermeture ramène à la fiche.
+      - id: calculateur
+        action: Dans le guide, tapez « 119 » dans « Mon enfant mesure », puis touchez « Choisir le 7-8 ans ». Recommencez avec « 90 ».
+        expected: "« Entre deux tailles : nous conseillons la taille au-dessus, 7-8 ans », la ligne 7-8 ans est encadrée ; le bouton ferme le guide et sélectionne 7-8 ans sur la fiche. Avec 90 : « plus petit que notre première taille » et le lien « Une question sur la taille ? »."
       - id: question-taille
         action: Touchez « Une question sur la taille ? ».
         expected: WhatsApp s'ouvre vers le numéro de la boutique, avec le produit, la taille choisie et le lien de la fiche. Les accents sont corrects.
@@ -74,8 +83,8 @@ scenarios:
     context: Le panier doit rester juste quand elle change d'avis.
     steps:
       - id: ajout
-        action: Ajoutez la robe en « 5-6 ans » avec la barre du bas.
-        expected: Le panier s'ouvre avec l'article, sa taille et son prix. Le compteur passe à 1.
+        action: Faites défiler la fiche jusqu'à ce que la barre du bas apparaisse, puis ajoutez la robe en « 5-6 ans » avec cette barre.
+        expected: La barre n'apparaît qu'une fois le bouton principal sorti de l'écran (jamais deux boutons visibles). Le panier s'ouvre avec l'article, sa taille et son prix, son titre visible. Le compteur passe à 1.
       - id: deuxieme
         action: Ajoutez un autre produit depuis une carte de la catégorie Garçons.
         expected: Le compteur passe à 2 et le total additionne les deux prix.
@@ -107,7 +116,10 @@ scenarios:
         expected: "Le premier est refusé (« Saisissez les 8 chiffres… »). Le champ n'accepte que 8 chiffres, groupés par deux : le 9e chiffre est ignoré, le +223 collé est retiré. « 12 34 56 78 » est refusé avec « Ce numéro ne ressemble pas à un numéro malien… »."
       - id: clavier
         action: Touchez le champ téléphone.
-        expected: Le clavier numérique s'ouvre. Aucun champ e-mail n'existe sur la page.
+        expected: Le clavier numérique s'ouvre, la page ne zoome pas. Aucun champ e-mail n'existe sur la page.
+      - id: barre-fixe
+        action: Faites défiler le formulaire, touchez le champ « Repères », puis fermez le clavier.
+        expected: La barre « Valider ma commande » avec le total reste en bas de l'écran ; elle se cache pendant que le clavier est ouvert (elle ne masque jamais le champ en cours) et revient quand il se ferme.
       - id: valider
         action: Remplissez avec des données de test (nom, 76 12 34 56, Badalabougou, « près de la pharmacie ») et validez.
         expected: La page de confirmation affiche « Commande n° FK-… », les articles et le total.
