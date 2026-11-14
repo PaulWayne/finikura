@@ -641,19 +641,21 @@ Exemple de ce que voit la gérante, pour « Robe Terracotta Brodée · 7-8 ans �
 Chaque ligne dit la cause en mots de tous les jours (« partie en livraison », « refusée », « correction manuelle »), jamais les termes techniques de Medusa (fulfillment, reservation, inventory level).
 
 **Critères d'acceptation**
-- [ ] Chaque changement de stock d'une taille ajoute une ligne : date et heure, taille, ancien et nouveau stock, cause.
-- [ ] Causes reconnues : commande partie en livraison, commande refusée ou annulée (remise en stock), correction manuelle (avec le nom du compte admin), remise à zéro de test (`stock:reset`, en dev seulement).
-- [ ] Un changement de cause inconnue s'affiche quand même, sous « Autre changement ».
-- [ ] L'encart est sur la fiche de l'article dans Inventaire, en français, les 20 derniers changements, avec « Voir plus ».
-- [ ] Une ligne avec une commande renvoie vers cette commande.
-- [ ] Les réservations (commande passée mais pas encore partie) ne créent pas de ligne : elles ne changent pas le stock, elles l'immobilisent. L'encart rappelle en une phrase combien de pièces sont réservées.
-- [ ] L'historique ne s'efface pas quand on modifie le produit, et ne ralentit pas la commande (enregistré après coup).
-- [ ] Test d'intégration : une livraison puis un refus donnent deux lignes justes.
-- [ ] Le guide de la gérante (`docs/fiche-acces.md`) explique comment le lire.
+- [x] Chaque changement de stock d'une taille ajoute une ligne : date et heure, taille, ancien et nouveau stock, cause.
+- [x] Causes reconnues : commande partie en livraison, commande refusée ou annulée (remise en stock), correction manuelle (avec le nom du compte admin), remise à zéro de test (`stock:reset`, en dev seulement).
+- [x] Un changement de cause inconnue s'affiche quand même, sous « Autre changement ».
+- [x] L'encart est sur la fiche de l'article dans Inventaire, en français, les 20 derniers changements, avec « Voir plus ».
+- [x] Une ligne avec une commande renvoie vers cette commande.
+- [x] Les réservations (commande passée mais pas encore partie) ne créent pas de ligne : elles ne changent pas le stock, elles l'immobilisent. L'encart rappelle en une phrase combien de pièces sont réservées.
+- [x] L'historique ne s'efface pas quand on modifie le produit, et ne ralentit pas la commande (enregistré après coup).
+- [x] Test d'intégration : une livraison puis un refus donnent deux lignes justes.
+- [x] Le guide de la gérante (`docs/fiche-acces.md`) explique comment le lire.
 
 **Technique.** Un abonné aux événements `inventory-level.updated` de Medusa enregistre la ligne dans un petit module « historique du stock » ; la cause se déduit du workflow Fini Kura qui a déclenché le changement, sinon « correction manuelle ».
 
-**Taille** S à M (environ une demi-journée) · **Dépend de** accord de la cliente · **Origine** campagne de recette admin (14/11/2026)
+**Fait (14/11/2026).** Module `stockHistory` (tables `fk_stock_change`, `fk_stock_cause`, `fk_stock_seen`). Juste avant une action qui change le stock, la cause est notée avec le stock du moment : « Partie en livraison » et « Refusée » (étape dans les workflows Fini Kura), correction dans Inventaire (middleware sur les routes de l'admin, avec le nom du compte), `stock:reset`. L'abonné aux changements de stock écrit ensuite la ligne avec cette cause, ou « Autre changement ». Le dernier stock vu de chaque taille évite une ligne pour une simple réservation. Si l'historique échoue, l'action continue. Le test d'intégration `stock-history.spec.ts` couvre la livraison, le refus, la réservation, la correction manuelle et un changement sans cause. La remise à zéro (`stock:reset`) n'a pas de test automatique. **Au déploiement, et sur la base de dev :** `medusa db:migrate` crée les trois tables.
+
+**Taille** S à M (environ une demi-journée) · **Dépend de** — · **Origine** campagne de recette admin (14/11/2026)
 
 ### FK-43 · Pages Filles et Garçons : chargement progressif des produits
 **Description.** Aujourd'hui, une page catégorie charge tous ses produits d'un coup (jusqu'à 100, `lib/commerce/live.ts`). Avec une vingtaine de pièces, c'est léger. Quand le catalogue grandira, la page dépassera le budget de 1 Mo sur forfait mobile. Proposition : afficher d'abord 12 produits, puis charger les 12 suivants quand la cliente approche du bas de la page. Absent du cahier des charges, proposé le 14/11/2026.

@@ -43,6 +43,23 @@
       "intro": "The 10 latest orders with the customer's name and phone. Click a number to see all their orders.",
       "empty": "No orders yet.",
       "district": "District"
+    },
+    "stockHistory": {
+      "title": "Stock history",
+      "intro": "Every stock change of this size, latest first.",
+      "date": "Date",
+      "what": "What happened",
+      "stock": "Stock",
+      "shipped": "Order #{{order}} out for delivery",
+      "returned": "Order #{{order}} refused or cancelled: piece back in stock",
+      "manual": "Manual correction",
+      "manualBy": "Manual correction by {{name}}",
+      "reset": "Test reset",
+      "other": "Other change",
+      "empty": "No stock change recorded yet.",
+      "more": "Show more",
+      "reserved_one": "{{count}} piece is reserved by an order not shipped yet: it still counts in the stock.",
+      "reserved_other": "{{count}} pieces are reserved by orders not shipped yet: they still count in the stock."
     }
   }
 }

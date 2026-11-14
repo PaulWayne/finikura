@@ -2,6 +2,7 @@ import { createWorkflow, transform, WorkflowResponse } from "@medusajs/framework
 import { createOrderFulfillmentWorkflow } from "@medusajs/medusa/core-flows"
 import { loadFkOrder } from "./load-order"
 import { validateFkActionStep } from "./steps"
+import { noteStockCausesStep } from "../stock-history/note-stock-causes"
 import type { FkWorkflowInput } from "./confirm-order"
 
 /** « Partie en livraison » : creates the fulfillment (stock leaves the shelf), NOT marked as shipped. */
@@ -15,6 +16,9 @@ export const fkShipOrderWorkflow = createWorkflow(
       created_by: input.user_id,
       items: (order.items ?? []).filter((i) => !!i).map((i) => ({ id: i!.id, quantity: Number(i!.quantity) })),
     }))
+    // FK-42: the stock history says « Commande n° … partie en livraison ».
+    const cause = transform({ input }, ({ input }) => ({ cause: "shipped" as const, order_id: input.order_id, actor_id: input.user_id }))
+    noteStockCausesStep(cause)
     createOrderFulfillmentWorkflow.runAsStep({ input: fulfillment })
     return new WorkflowResponse({ order_id: input.order_id })
   }

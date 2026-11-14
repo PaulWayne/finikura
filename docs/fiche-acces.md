@@ -47,6 +47,21 @@ Sous une photo où un enfant porte le vêtement, vous pouvez écrire par exemple
 
 Indiquez seulement le prénom et l'âge, jamais le nom de famille. Gardez l'accord écrit des parents pour chaque photo d'enfant.
 
+## Comprendre un changement de stock
+
+Dans l'admin Medusa, ouvrez **Inventaire**, puis la taille qui vous intrigue (par exemple « Robe Terracotta Brodée · 7-8 ans »). L'encart **Historique du stock** liste chaque changement, du plus récent au plus ancien :
+
+| Ce qui s'est passé | Pourquoi |
+|---|---|
+| Commande n° … partie en livraison | Vous avez cliqué « Partie en livraison » : la pièce a quitté l'étagère. |
+| Commande n° … refusée ou annulée : pièce remise en stock | Vous avez cliqué « Refusée » sur une commande partie en livraison : la pièce est revenue sur l'étagère. |
+| Correction manuelle par … | Quelqu'un a changé le stock à la main dans Inventaire (après un comptage, par exemple). |
+| Autre changement | Un changement dont la cause n'est pas connue. Si cela revient souvent, signalez-le. |
+
+La colonne **Stock** montre le stock avant et après, par exemple « 5 → 4 ». Touchez une ligne de commande pour ouvrir la commande. Les 20 derniers changements s'affichent ; **Voir plus** montre les précédents.
+
+Une commande passée mais pas encore partie ne crée pas de ligne : la pièce est seulement **réservée**, elle reste sur l'étagère. L'encart rappelle combien de pièces sont réservées.
+
 ## Mettre un temps fort en avant sur l'accueil (rentrée, Tabaski, fêtes)
 
 Un temps fort, c'est une **campagne**. Dans Strapi, ouvrez **Campagnes** et créez-la (ou ouvrez-la) :

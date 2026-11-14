@@ -131,5 +131,6 @@ module.exports = defineConfig({
       cookieSecret: process.env.COOKIE_SECRET,
     }
   },
-  modules: [...redisModules, notificationModule, ...fileModules],
+  // FK-42: stock history of each size, readable by the manager.
+  modules: [...redisModules, notificationModule, ...fileModules, { resolve: './src/modules/stock-history' }],
 })

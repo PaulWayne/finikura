@@ -10,6 +10,7 @@ import path from "node:path"
 import { ExecArgs } from "@medusajs/framework/types"
 import { ContainerRegistrationKeys, MedusaError, Modules } from "@medusajs/framework/utils"
 import { cancelOrderWorkflow, deleteReservationsWorkflow, updateInventoryLevelsWorkflow } from "@medusajs/medusa/core-flows"
+import { noteStockCausesWorkflow } from "../workflows/stock-history/note-stock-causes"
 
 type FixtureProduct = { handle: string; variants: { sku: string; inventory_quantity: number }[] }
 
@@ -57,7 +58,13 @@ export default async function resetStock({ container }: ExecArgs) {
       stocked_quantity: quantityBySku.get(item.sku as string) ?? 0,
     }))
   )
-  if (updates.length) await updateInventoryLevelsWorkflow(container).run({ input: { updates } })
+  if (updates.length) {
+    // FK-42: the stock history says « remise à zéro de test ».
+    await noteStockCausesWorkflow(container).run({
+      input: { cause: "reset", inventory_item_ids: [...new Set(updates.map((u) => u.inventory_item_id))] },
+    })
+    await updateInventoryLevelsWorkflow(container).run({ input: { updates } })
+  }
 
   // 4. Storefront catalogue cache (same call as the revalidate-storefront subscriber).
   const url = process.env.STOREFRONT_REVALIDATE_URL

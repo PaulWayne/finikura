@@ -3,6 +3,7 @@ import { cancelOrderFulfillmentWorkflow, cancelOrderWorkflow } from "@medusajs/m
 import { activeFulfillment } from "../../lib/fk-status"
 import { loadFkOrder } from "./load-order"
 import { validateFkActionStep } from "./steps"
+import { noteStockCausesStep } from "../stock-history/note-stock-causes"
 import type { FkWorkflowInput } from "./confirm-order"
 
 /** « Refusée » : cancels the fulfillment if any (stock back), then the order (reservation released). */
@@ -21,6 +22,9 @@ export const fkRefuseOrderWorkflow = createWorkflow(
       cancelOrder: { order_id: order.id, canceled_by: input.user_id },
     }))
     when({ data }, ({ data }) => !!data.fulfillment_id).then(() => {
+      // FK-42: the stock history says « Commande n° … refusée : pièce remise en stock ».
+      const cause = transform({ input }, ({ input }) => ({ cause: "returned" as const, order_id: input.order_id, actor_id: input.user_id }))
+      noteStockCausesStep(cause)
       cancelOrderFulfillmentWorkflow.runAsStep({ input: data.cancelFulfillment })
     })
     cancelOrderWorkflow.runAsStep({ input: data.cancelOrder })

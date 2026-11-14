@@ -43,6 +43,23 @@
       "intro": "Les 10 dernières commandes avec le nom et le téléphone de la cliente. Touchez un numéro pour voir toutes ses commandes.",
       "empty": "Aucune commande pour le moment.",
       "district": "Quartier"
+    },
+    "stockHistory": {
+      "title": "Historique du stock",
+      "intro": "Chaque changement du stock de cette taille, du plus récent au plus ancien.",
+      "date": "Date",
+      "what": "Ce qui s'est passé",
+      "stock": "Stock",
+      "shipped": "Commande n° {{order}} partie en livraison",
+      "returned": "Commande n° {{order}} refusée ou annulée : pièce remise en stock",
+      "manual": "Correction manuelle",
+      "manualBy": "Correction manuelle par {{name}}",
+      "reset": "Remise à zéro de test",
+      "other": "Autre changement",
+      "empty": "Aucun changement de stock enregistré pour le moment.",
+      "more": "Voir plus",
+      "reserved_one": "{{count}} pièce est réservée par une commande pas encore partie : elle compte encore dans le stock.",
+      "reserved_other": "{{count}} pièces sont réservées par des commandes pas encore parties : elles comptent encore dans le stock."
     }
   }
 }
