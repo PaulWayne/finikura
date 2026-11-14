@@ -1,5 +1,18 @@
 import type { Product } from "@/lib/commerce/types";
 
+/**
+ * FK-43: products shown first on a category page, then added by this many. The e2e tests
+ * lower it (CATALOG_PAGE_SIZE) because the demo categories hold fewer than 12 products.
+ */
+export const CATALOG_PAGE_SIZE = Number(process.env.CATALOG_PAGE_SIZE) || 12;
+
+/** How many products the page renders, from its « voir » parameter (kept on return from a product). */
+export function shownCount(voir: string | undefined, total: number): number {
+  const asked = Number.parseInt(voir ?? "", 10);
+  const wanted = Number.isFinite(asked) && asked > CATALOG_PAGE_SIZE ? asked : CATALOG_PAGE_SIZE;
+  return Math.min(total, Math.ceil(wanted / CATALOG_PAGE_SIZE) * CATALOG_PAGE_SIZE);
+}
+
 const firstNumber = (label: string): number => {
   const match = label.match(/\d+/);
   return match ? Number(match[0]) : Number.POSITIVE_INFINITY;

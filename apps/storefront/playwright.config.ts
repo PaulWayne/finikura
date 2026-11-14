@@ -25,7 +25,7 @@ export default defineConfig({
     // Mock mode: no Medusa or Strapi needed. Port 3300 leaves the dev server (3100) alone.
     command: `pnpm exec next build && pnpm exec next start -p ${PORT}`,
     url: `http://localhost:${PORT}`,
-    env: { COMMERCE_SOURCE: "mock", CONTENT_SOURCE: "mock" },
+    env: { COMMERCE_SOURCE: "mock", CONTENT_SOURCE: "mock", CATALOG_PAGE_SIZE: "4" },
     reuseExistingServer: false,
     timeout: 180_000,
   },

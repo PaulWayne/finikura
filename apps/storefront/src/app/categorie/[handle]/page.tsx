@@ -6,16 +6,16 @@ import { commerceService } from "@/lib/commerce";
 import { contentService } from "@/lib/content";
 import { messages } from "@/messages/fr";
 import { FilterChips } from "@/components/catalog/FilterChips";
-import { ProductCard } from "@/components/catalog/ProductCard";
 import { ReassuranceBlock } from "@/components/blocks/ReassuranceBlock";
 import { CategoryHandle } from "@/lib/commerce/types";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { IMAGE_FALLBACKS } from "@/lib/images";
-import { ageOptions } from "@/lib/catalog-filters";
+import { ageOptions, CATALOG_PAGE_SIZE, shownCount } from "@/lib/catalog-filters";
+import { ProductGrid } from "@/components/catalog/ProductGrid";
 
 interface CategoryPageProps {
   params: Promise<{ handle: string }> | { handle: string };
-  searchParams?: Promise<{ age?: string; occasion?: string }> | { age?: string; occasion?: string };
+  searchParams?: Promise<{ age?: string; occasion?: string; voir?: string }> | { age?: string; occasion?: string; voir?: string };
 }
 
 export async function generateMetadata({ params }: CategoryPageProps) {
@@ -49,6 +49,7 @@ async function CategoryContent({
   const handle = resolvedParams.handle as CategoryHandle;
   const age = resolvedSearchParams.age;
   const occasion = resolvedSearchParams.occasion;
+  const voir = resolvedSearchParams.voir;
 
   const [category, allProducts, products, settings, banner] = await Promise.all([
     commerceService.getCategoryByHandle(handle),
@@ -67,6 +68,13 @@ async function CategoryContent({
   // Streaming has started, so the status stays 200 (Next 16 Cache Components);
   // a real 404 would need a proxy check, see FK-13 in BACKLOG.md.
   if (!category) notFound();
+
+  // FK-43: the first products only; the grid loads the next ones while scrolling.
+  const shown = shownCount(voir, products.length);
+  const moreParams = new URLSearchParams();
+  if (age) moreParams.set("age", age);
+  if (occasion) moreParams.set("occasion", occasion);
+  moreParams.set("voir", String(shown + CATALOG_PAGE_SIZE));
 
   return (
     <div className="pt-3 pb-4 md:py-8 space-y-4 md:space-y-8" data-purpose="catalog-page">
@@ -140,20 +148,19 @@ async function CategoryContent({
             href={`/categorie/${handle}`}
             className="min-h-11 min-w-11 inline-flex items-center justify-center px-5 py-2 rounded-[4px] border border-brand-primary text-brand-text text-xs font-medium uppercase tracking-[0.15em] hover:bg-brand-primary hover:text-brand-white transition"
           >
-            Réinitialiser les filtres
+            {messages.catalog.resetFilters}
           </Link>
         </div>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 md:gap-6">
-          {products.map((product) => (
-            <ProductCard
-              key={`${product.id}-${age ?? ""}`}
-              product={product}
-              showCategoryBadge={false}
-              preferredAge={age}
-            />
-          ))}
-        </div>
+        <ProductGrid
+          key={`${age ?? ""}-${occasion ?? ""}`}
+          categoryHandle={handle}
+          age={age}
+          occasion={occasion}
+          initialProducts={products.slice(0, shown)}
+          total={products.length}
+          moreHref={`/categorie/${handle}?${moreParams.toString()}`}
+        />
       )}
 
       {/* Reassurance Strip */}

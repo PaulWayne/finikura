@@ -46,6 +46,11 @@ export const messages = {
     occasions: { everyday: "Tous les jours", party: "Fête", ceremony: "Cérémonie" },
     creationsCount: (count: number) => `${count} ${count > 1 ? "CRÉATIONS" : "CRÉATION"}`,
     noProductsFound: "Aucune création trouvée pour ces critères.",
+    resetFilters: "Réinitialiser les filtres",
+    loadMore: "Voir plus de vêtements",
+    loadingMore: "Chargement…",
+    loadedMore: (count: number) => `${count} ${count > 1 ? "vêtements ajoutés" : "vêtement ajouté"}`,
+    loadMoreError: "Les vêtements suivants n'ont pas pu être chargés. Réessayez.",
   },
   product: {
     collectionEyebrow: (isGirls: boolean) => (isGirls ? "Collection Filles · Bamako" : "Collection Garçons · Bamako"),

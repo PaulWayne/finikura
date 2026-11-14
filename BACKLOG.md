@@ -666,11 +666,13 @@ Chaque ligne dit la cause en mots de tous les jours (« partie en livraison », 
 - Changer un filtre repart des 12 premiers produits.
 
 **Critères d'acceptation**
-- [ ] Le premier chargement d'une catégorie de 60 produits reste sous 1 Mo sur mobile.
-- [ ] Les produits suivants arrivent sans saut de page ni doublon, et le compteur de produits reste juste.
-- [ ] Le bouton de secours fonctionne au clavier, avec une zone tactile de 44 px, et le nombre de produits ajoutés est annoncé aux lecteurs d'écran.
-- [ ] Le retour depuis une fiche produit ramène la cliente au même endroit de la liste.
-- [ ] Le mode mock et le e2e fonctionnent.
+- [x] Le premier chargement d'une catégorie de 60 produits reste sous 1 Mo sur mobile.
+- [x] Les produits suivants arrivent sans saut de page ni doublon, et le compteur de produits reste juste.
+- [x] Le bouton de secours fonctionne au clavier, avec une zone tactile de 44 px, et le nombre de produits ajoutés est annoncé aux lecteurs d'écran.
+- [x] Le retour depuis une fiche produit ramène la cliente au même endroit de la liste.
+- [x] Le mode mock et le e2e fonctionnent.
+
+**Fait (14/11/2026).** `ProductGrid` (client) affiche les produits rendus par le serveur et charge la suite par `loadMoreProductsAction`, qui découpe la liste mise en cache de la page : même ordre, aucun doublon, mêmes filtres. Le paramètre `voir` garde le nombre de produits affichés : le bouton de secours est un vrai lien, et le retour depuis une fiche réaffiche la même liste au même endroit. Le premier chargement ne contient jamais plus de 12 cartes, quel que soit le nombre de produits. Tests : `e2e/catalogue.spec.ts`, avec `CATALOG_PAGE_SIZE=4` puisque les catégories de démonstration ont 10 produits.
 
 **Taille** M · **Dépend de** — · **Utile à partir d'**environ 40 produits par catégorie · **Origine** proposition (14/11/2026)
 
