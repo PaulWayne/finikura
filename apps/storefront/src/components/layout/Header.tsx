@@ -13,7 +13,9 @@ interface HeaderProps {
 export function Header({ cartSlot }: HeaderProps) {
   return (
     <header className="w-full bg-brand-bg/95 backdrop-blur-md sticky top-0 z-40 border-b border-brand-surface">
-      <div className="max-w-[1200px] mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
+      <div className="max-w-[1200px] mx-auto px-4 md:px-6 h-16 md:h-20 grid grid-cols-[1fr_auto_1fr] items-center">
+        {/* Equal side columns keep the logo exactly centred */}
+        <div className="flex items-center justify-self-start">
         {/* Mobile menu hamburger button */}
         <MobileMenuTrigger />
 
@@ -42,19 +44,21 @@ export function Header({ cartSlot }: HeaderProps) {
           </Link>
         </nav>
 
+        </div>
+
         {/* Centered Editorial Logo (quarantined dustyRose and navyLogo per brand board) */}
         <Link
           href="/"
           className="min-h-11 min-w-11 flex flex-col items-center justify-center hover:opacity-95 transition-opacity"
         >
           <Logo className="text-2xl md:text-3xl tracking-tight leading-none" />
-          <span className="text-[8px] md:text-[10px] tracking-[0.28em] text-brand-text uppercase font-medium mt-1">
+          <span className="text-[8px] md:text-[10px] tracking-[0.28em] -mr-[0.28em] text-brand-text uppercase font-medium mt-1">
             {messages.header.brandSubtitle}
           </span>
         </Link>
 
         {/* Desktop Right Navigation Links & Cart Trigger */}
-        <div className="flex items-center space-x-4 md:space-x-7">
+        <div className="flex items-center justify-self-end space-x-4 md:space-x-7">
           <nav
             aria-label="Navigation secondaire droite"
             className="hidden md:flex items-center space-x-7 text-xs font-medium tracking-[0.15em] uppercase"
