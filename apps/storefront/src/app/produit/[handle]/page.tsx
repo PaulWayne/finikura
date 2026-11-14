@@ -75,7 +75,7 @@ async function ProductContent({ params }: ProductPageProps) {
     .slice(0, 3);
 
   return (
-    <div className="pt-2 pb-4 md:py-8 space-y-6 md:space-y-8" data-purpose="product-page">
+    <div className="pt-2 pb-4 md:py-8 space-y-3 md:space-y-8" data-purpose="product-page">
       {/* Breadcrumbs */}
       <nav
         aria-label="Fil d'Ariane"
@@ -98,7 +98,7 @@ async function ProductContent({ params }: ProductPageProps) {
       </nav>
 
       {/* Two-Column Product Layout: 7 cols Gallery, 5 cols Buy Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-8 lg:gap-12 items-start">
         {/* Left Column: Gallery */}
         <div className="lg:col-span-7">
           <ProductGallery
@@ -112,16 +112,16 @@ async function ProductContent({ params }: ProductPageProps) {
         {/* Right Column: Buy Section */}
         <div className="lg:col-span-5">
           <section aria-label={messages.product.buySectionAria(product.title)} className="flex flex-col pt-1 w-full">
-            <span className="text-xs uppercase tracking-[0.2em] text-brand-text font-medium mb-1.5 block">
+            <span className="text-xs uppercase tracking-[0.2em] text-brand-text font-medium mb-1.5 hidden md:block">
               {messages.product.collectionEyebrow(product.categoryHandle === "filles")}
             </span>
             <h1 className="font-serif text-2xl sm:text-3xl lg:text-[34px] font-normal leading-tight uppercase tracking-[0.08em] text-brand-text mb-2">
               {product.title}
             </h1>
-            <div className="flex items-baseline gap-3 mb-4">
+            <div className="flex items-baseline gap-3 mb-3 md:mb-4">
               <p className="text-2xl font-semibold text-brand-text tracking-tight">{formatPrice(product.price)}</p>
             </div>
-            <div className="w-full h-px bg-brand-surface mb-5" />
+            <div className="w-full h-px bg-brand-surface mb-3 md:mb-5" />
             <ProductBuySection product={product} sizeGuide={sizeGuide} whatsappUrl={settings.whatsappUrl} productUrl={productUrl} />
             <ShareWithRelativeButton
               text={messages.whatsapp.shareProduct(product.title, formatPrice(product.price), productUrl)}

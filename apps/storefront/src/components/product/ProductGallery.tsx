@@ -123,7 +123,7 @@ export function ProductGallery({ images, productTitle, productHandle, wornCaptio
         </div>
 
         {/* Mobile Horizontal Swipeable Carousel (390px) */}
-        <div className="block md:hidden relative w-full aspect-square overflow-hidden select-none">
+        <div className="block md:hidden relative w-full aspect-[5/4] overflow-hidden select-none">
 
           {/* Favorite subtle button */}
           <button
@@ -151,7 +151,7 @@ export function ProductGallery({ images, productTitle, productHandle, wornCaptio
             {displayImages.map((src, idx) => (
               <div
                 key={idx}
-                className="w-full h-full flex-shrink-0 snap-center relative aspect-square bg-brand-surface/40"
+                className="w-full h-full flex-shrink-0 snap-center relative aspect-[5/4] bg-brand-surface/40"
               >
                 <SafeImage
                   src={src}
@@ -159,7 +159,7 @@ export function ProductGallery({ images, productTitle, productHandle, wornCaptio
                   fallbackSrc={IMAGE_FALLBACKS.product}
                   sizes="(min-width: 768px) 1px, 100vw"
                   preload={idx === 0}
-                  className="object-cover"
+                  className="object-cover object-[center_20%]"
                 />
               </div>
             ))}
