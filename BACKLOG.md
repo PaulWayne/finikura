@@ -653,6 +653,25 @@ Chaque ligne dit la cause en mots de tous les jours (« partie en livraison », 
 
 **Taille** S à M (environ une demi-journée) · **Dépend de** accord de la cliente · **Origine** campagne de recette admin (14/11/2026)
 
+### FK-43 · Pages Filles et Garçons : chargement progressif des produits
+**Description.** Aujourd'hui, une page catégorie charge tous ses produits d'un coup (jusqu'à 100, `lib/commerce/live.ts`). Avec une vingtaine de pièces, c'est léger. Quand le catalogue grandira, la page dépassera le budget de 1 Mo sur forfait mobile. Proposition : afficher d'abord 12 produits, puis charger les 12 suivants quand la cliente approche du bas de la page. Absent du cahier des charges, proposé le 14/11/2026.
+
+**Comment**
+- Les 12 premiers produits sont rendus par le serveur, comme aujourd'hui : la page reste lisible sans JavaScript et par les moteurs de recherche.
+- La suite vient d'une Server Action paginée (`limit` et `offset` de la Store API Medusa), avec les mêmes filtres âge et occasion.
+- Un petit composant client observe le bas de la liste (`IntersectionObserver`) et charge la page suivante un peu avant qu'elle soit atteinte.
+- Un bouton « Voir plus de vêtements » reste visible en secours : sans JavaScript, ou si le réseau échoue.
+- Changer un filtre repart des 12 premiers produits.
+
+**Critères d'acceptation**
+- [ ] Le premier chargement d'une catégorie de 60 produits reste sous 1 Mo sur mobile.
+- [ ] Les produits suivants arrivent sans saut de page ni doublon, et le compteur de produits reste juste.
+- [ ] Le bouton de secours fonctionne au clavier, avec une zone tactile de 44 px, et le nombre de produits ajoutés est annoncé aux lecteurs d'écran.
+- [ ] Le retour depuis une fiche produit ramène la cliente au même endroit de la liste.
+- [ ] Le mode mock et le e2e fonctionnent.
+
+**Taille** M · **Dépend de** — · **Utile à partir d'**environ 40 produits par catégorie · **Origine** proposition (14/11/2026)
+
 ## En attente de la cliente
 
 Mis à jour le 12 novembre 2026, avec les réponses reçues.
