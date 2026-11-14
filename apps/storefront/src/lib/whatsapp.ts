@@ -23,10 +23,7 @@ export function orderConfirmationMessage(order: Order): string {
     t.orderIntro(order.orderNumber),
     ...lines,
     t.orderTotal(formatPrice(order.total)),
-    "",
-    t.orderName(order.customer.fullName),
-    t.orderPhone(order.customer.phone),
-    t.orderNeighborhood(order.shippingAddress.neighborhood),
-    t.orderLandmarks(order.shippingAddress.deliveryLandmarks),
+    t.orderContact(order.customer.fullName, order.customer.phone),
+    t.orderAddress(order.shippingAddress.neighborhood, order.shippingAddress.deliveryLandmarks),
   ].join("\n");
 }

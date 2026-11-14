@@ -137,7 +137,7 @@ scenarios:
         expected: Numéro FK-…, chaque article avec taille et quantité, total en FCFA, nom, téléphone, quartier et repères.
       - id: encodage
         action: Vérifiez les accents, les « ° » et les sauts de ligne.
-        expected: Aucun caractère cassé (pas de « %20 », pas de « Ã© »), une information par ligne.
+        expected: Aucun caractère cassé (pas de « %20 », pas de « Ã© »), sans ligne vide, le message tient en 6 lignes pour un article.
 
   # ----------------------------------------------------------------- Partage
   - id: partage-proche

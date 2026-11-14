@@ -221,12 +221,11 @@ export const messages = {
     floatingLabel: "Nous écrire sur WhatsApp",
     orderIntro: (orderNumber: string) => `Bonjour FINI KURA,\nje confirme ma commande ${orderNumber} :`,
     orderLine: (title: string, size: string, quantity: number, amount: string) =>
-      `- ${title}, taille ${size}, x${quantity} : ${amount}`,
+      `- ${title}, ${size}, x${quantity} : ${amount}`,
     orderTotal: (amount: string) => `Total : ${amount}`,
-    orderName: (name: string) => `Nom : ${name}`,
-    orderPhone: (phone: string) => `Téléphone : ${phone}`,
-    orderNeighborhood: (neighborhood: string) => `Quartier : ${neighborhood}`,
-    orderLandmarks: (landmarks: string) => `Repères : ${landmarks}`,
+    // Short on purpose: WhatsApp shows the end of a pre-filled message first.
+    orderContact: (name: string, phone: string) => `${name} · ${phone}`,
+    orderAddress: (neighborhood: string, landmarks: string) => `${neighborhood}, ${landmarks}`,
     shareProduct: (title: string, price: string, url: string) =>
       `Que penses-tu de cette tenue de Fini Kura ?\n${title} : ${price}\n${url}`,
     sizeQuestion: (product: string, size?: string | null, url?: string) =>
