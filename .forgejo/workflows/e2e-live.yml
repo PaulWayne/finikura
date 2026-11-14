@@ -1,0 +1,24 @@
+# FK-28 / FK-35: the live e2e (storefront + Medusa + Strapi on a throwaway PostgreSQL).
+# Heavier: every night and on demand (before a merge into main), never on each push.
+name: E2E live
+
+on:
+  schedule:
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+
+jobs:
+  e2e-live:
+    name: Parcours e2e (mode live)
+    runs-on: docker
+    container:
+      image: node:22-bookworm
+    steps:
+      - uses: actions/checkout@v4
+      - name: Client Docker et dépendances
+        run: |
+          apt-get update -qq && apt-get install -y -qq docker.io >/dev/null
+          corepack enable
+          pnpm install --frozen-lockfile
+          pnpm --filter storefront exec playwright install-deps chromium
+      - run: pnpm test:e2e:live
