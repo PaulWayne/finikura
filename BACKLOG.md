@@ -522,8 +522,11 @@ Le runner a accès à Docker, puisque les tests démarrent des conteneurs. On su
 **Critères d'acceptation**
 - [ ] Un avis n'est publié qu'avec l'accord de la cliente, et sans son nom de famille ni son téléphone.
 - [ ] Un avis lié à un produit absent de Medusa ne s'affiche pas, sans faire planter la page.
+- [ ] Les avis s'affichent près des boutons d'achat (fiche produit, accueil), pas sur une page à part.
+- [ ] Étape 2, dès qu'il existe 3 ou 4 vraies vidéos : le même composant accepte des témoignages vidéo verticaux façon Reels (affiche d'abord, vidéo au toucher, sans lecture automatique, sous 1 Mo au premier chargement). Accord écrit de la cliente, et des parents si un enfant apparaît.
+- [ ] Aucun témoignage inventé ou joué : uniquement de vraies clientes.
 
-**Taille** M · **Dépend de** commandes livrées, accord des clientes · **Origine** analyse conversion (13/11/2026)
+**Taille** M · **Dépend de** commandes livrées, accord des clientes · **Origine** analyse conversion (13/11/2026), témoignages vidéo ajoutés après l'analyse CRO du 14/11/2026
 
 ### Écarté : essayage virtuel d'un vêtement sur la photo de l'enfant
 Décidé le 13/11/2026, après analyse : on ne le fait pas. Les raisons :
@@ -577,12 +580,35 @@ En CI (FK-28), le cache pnpm et `.next/cache` s'ajoutent. Ce test tourne avant u
 
 **Critères d'acceptation**
 - [ ] Les photos face, dos et profil s'ajoutent dans l'admin Medusa, sans code, et la légende de l'enfant témoin s'affiche sous chacune.
-- [ ] La galerie accepte une vidéo (MP4, environ 500 Ko au plus) : une affiche (image) est chargée d'abord, la vidéo seulement au toucher, sans son, avec lecture en boucle.
+- [ ] La galerie accepte une vidéo courte et verticale de 5 à 10 s, façon short (MP4, environ 500 Ko au plus), comptée comme une vue de plus (« 1 / 5 ») : une affiche (image) est chargée d'abord, la vidéo seulement au toucher, sans son, avec lecture en boucle, jamais en lecture automatique.
+- [ ] La vidéo peut montrer la tenue sans l'enfant témoin (sur cintre, en mouvement), pour les produits sans photos d'enfant.
 - [ ] Le premier chargement de la fiche reste sous 1 Mo sur mobile.
 - [ ] Umami compte les lectures de la vidéo, sans identifiant de la cliente.
 - [ ] Les photos et vidéos d'enfants sont publiées avec l'accord écrit des parents, et sans nom de famille.
 
-**Taille** M · **Dépend de** FK-33, FK-15, photos et vidéos de la cliente · **Origine** recette 2 (14/11/2026)
+**Taille** M · **Dépend de** FK-33, FK-15, photos et vidéos de la cliente · **Origine** recette 2 (14/11/2026), vidéos courtes fusionnées après l'analyse CRO du 14/11/2026
+
+### FK-39 · Accueil : heros programmés par temps fort
+**Description.** Préparer plusieurs heros dans Strapi (rentrée, Tabaski, fêtes de fin d'année…), chacun avec une date de début et de fin ; l'accueil affiche celui du moment. Un seul hero à la fois : pas de carrousel, qui dilue le message, alourdit la page et dont les diapositives suivantes sont peu vues (analyse CRO du 14/11/2026).
+
+**Critères d'acceptation**
+- [ ] La gérante crée plusieurs heros dans Strapi, avec image, titre, bouton et dates de début et de fin.
+- [ ] L'accueil affiche le hero en cours ; sans hero en cours, le hero par défaut.
+- [ ] Le changement de hero se fait sans redéploiement (revalidation du cache `content` et prise en compte des dates).
+- [ ] Un hero qui pointe vers une collection ou une campagne absente ne s'affiche pas, sans faire planter la page.
+- [ ] Umami compte les clics sur le bouton du hero, avec le nom du hero, pour comparer « campagne » et « catalogue ».
+
+**Taille** S · **Dépend de** — · **Origine** analyse CRO (14/11/2026)
+
+### FK-40 · Pages Filles et Garçons : bandeau compact
+**Description.** Donner une ambiance aux pages catégorie sans repousser les produits : une phrase et une petite photo, 100 à 120 px de haut au plus sur mobile, gérées dans Strapi. Un grand hero est écarté : la maman qui arrive sur « Filles » veut voir des robes, et la recette a déjà relevé trop d'espace avant le contenu. Les vraies landing pages, pour les publicités, restent les pages campagne (`/campagne/...`), dont le message reprend celui de l'annonce.
+
+**Critères d'acceptation**
+- [ ] Sur mobile, les filtres et la première rangée de cartes produit restent visibles sans faire défiler.
+- [ ] Le bandeau (texte, image) vient de Strapi, par handle de catégorie ; sans bandeau, la page s'affiche comme aujourd'hui.
+- [ ] L'image du bandeau pèse moins de 40 Ko et ne fait pas dépasser 1 Mo au premier chargement.
+
+**Taille** S · **Dépend de** — · **Origine** analyse CRO (14/11/2026)
 
 ## En attente de la cliente
 
