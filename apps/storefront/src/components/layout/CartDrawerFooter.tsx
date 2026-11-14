@@ -56,13 +56,13 @@ export function CartDrawerEmpty({ onClose }: { onClose: () => void }) {
       <p className="text-xs text-brand-text max-w-xs mb-6 font-light">
         {messages.cart.emptyDescription}
       </p>
-      <button
-        type="button"
+      <Link
+        href="/"
         onClick={onClose}
         className="min-h-11 min-w-11 inline-flex items-center justify-center px-6 py-2.5 rounded-[4px] bg-brand-primary text-brand-white text-xs font-medium uppercase tracking-[0.15em] hover:bg-brand-text transition shadow-xs cursor-pointer"
       >
         {messages.cart.startShopping}
-      </button>
+      </Link>
     </div>
   );
 }

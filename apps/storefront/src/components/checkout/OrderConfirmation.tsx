@@ -21,6 +21,10 @@ interface OrderConfirmationProps {
 }
 
 export function OrderConfirmation({ order, whatsappUrl }: OrderConfirmationProps) {
+  // Android Chrome sometimes keeps the checkout's scroll position: start at the top.
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const firstName = order.customer.fullName.split(" ")[0] || order.customer.fullName;
   const totalCount = order.items.reduce((acc, i) => acc + i.quantity, 0);
 
