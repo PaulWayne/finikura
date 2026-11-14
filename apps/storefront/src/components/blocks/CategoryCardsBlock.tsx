@@ -34,9 +34,11 @@ export function CategoryCardsBlock({ block }: CategoryCardsBlockProps) {
               ? IMAGE_FALLBACKS.garcons
               : IMAGE_FALLBACKS.filles;
           return (
-            <div
+            // The whole card is one link: the photo, the title and the button all open the category.
+            <Link
               key={card.categoryHandle}
-              className="group relative block rounded-2xl overflow-hidden shadow-xs bg-brand-surface border border-brand-surface"
+              href={`/categorie/${card.categoryHandle}`}
+              className="group relative block focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary rounded-2xl overflow-hidden shadow-xs bg-brand-surface border border-brand-surface"
             >
               {/* Card image container */}
               <div className="relative w-full aspect-[4/3] md:h-[380px] overflow-hidden">
@@ -57,12 +59,11 @@ export function CategoryCardsBlock({ block }: CategoryCardsBlockProps) {
                     {card.ageRange}
                   </span>
                 </div>
-                <Link
-                  href={`/categorie/${card.categoryHandle}`}
-                  className="min-h-11 min-w-11 inline-flex items-center justify-center px-6 py-2.5 mt-4 rounded-[4px] border border-brand-primary bg-brand-bg text-brand-text hover:bg-brand-primary hover:text-brand-white font-medium text-xs tracking-[0.15em] uppercase transition shadow-xs"
+                <span
+                  className="min-h-11 min-w-11 inline-flex items-center justify-center px-6 py-2.5 mt-4 rounded-[4px] border border-brand-primary bg-brand-bg text-brand-text group-hover:bg-brand-primary group-hover:text-brand-white font-medium text-xs tracking-[0.15em] uppercase transition shadow-xs"
                 >
                   {card.ctaText}
-                </Link>
+                </span>
               </div>
             </div>
 
@@ -71,14 +72,13 @@ export function CategoryCardsBlock({ block }: CategoryCardsBlockProps) {
               <span className="text-xs uppercase tracking-[0.15em] text-brand-text font-medium">
                 {card.tagline || card.title}
               </span>
-              <Link
-                href={`/categorie/${card.categoryHandle}`}
-                className="min-h-11 min-w-11 inline-flex items-center justify-center px-4 py-2 rounded-[4px] border border-brand-primary text-brand-text font-medium text-xs uppercase tracking-[0.15em] hover:bg-brand-primary hover:text-brand-white transition"
+              <span
+                  className="min-h-11 min-w-11 inline-flex items-center justify-center px-4 py-2 rounded-[4px] border border-brand-primary text-brand-text font-medium text-xs uppercase tracking-[0.15em] group-hover:bg-brand-primary group-hover:text-brand-white transition"
               >
                 {card.ctaText}
-              </Link>
+              </span>
             </div>
-          </div>
+          </Link>
         );
       })}
       </div>
