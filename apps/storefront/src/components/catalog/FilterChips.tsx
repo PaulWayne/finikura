@@ -4,25 +4,17 @@ import { messages } from "@/messages/fr";
 
 interface FilterChipsProps {
   categoryHandle: string;
+  /** Sizes of the category, from the Medusa variants (FK-19). */
+  ages: string[];
   selectedAge?: string;
   selectedOccasion?: string;
 }
 
-const AGE_OPTIONS = [
-  { label: messages.catalog.filterAllAges, value: "" },
-  { label: "3-4 ans", value: "3-4" },
-  { label: "5-6 ans", value: "5-6" },
-  { label: "7-8 ans", value: "7-8" },
-  { label: "9-10 ans", value: "9-10" },
-  { label: "11-12 ans", value: "11-12" },
-  { label: "13-14 ans", value: "13-14" },
-];
-
 const OCCASION_OPTIONS = [
   { label: messages.catalog.filterAllOccasions, value: "" },
-  { label: "Tous les jours", value: "tous-les-jours" },
-  { label: "Fête", value: "fete" },
-  { label: "Cérémonie", value: "ceremonie" },
+  { label: messages.catalog.occasions.everyday, value: "tous-les-jours" },
+  { label: messages.catalog.occasions.party, value: "fete" },
+  { label: messages.catalog.occasions.ceremony, value: "ceremonie" },
 ];
 
 function buildQuery(basePath: string, age?: string, occasion?: string): string {
@@ -35,17 +27,22 @@ function buildQuery(basePath: string, age?: string, occasion?: string): string {
 
 export function FilterChips({
   categoryHandle,
+  ages,
   selectedAge = "",
   selectedOccasion = "",
 }: FilterChipsProps) {
   const basePath = `/categorie/${categoryHandle}`;
+  const ageOptions = [
+    { label: messages.catalog.filterAllAges, value: "" },
+    ...ages.map((age) => ({ label: age, value: age })),
+  ];
 
   return (
     <div className="w-full flex flex-col items-center gap-2 my-2 md:my-6">
       {/* Age Filters Row */}
       <div className="w-full overflow-x-auto no-scrollbar py-1">
         <div className="flex items-center justify-start md:justify-center gap-2 min-w-max px-2 md:px-0">
-          {AGE_OPTIONS.map((opt) => {
+          {ageOptions.map((opt) => {
             const isActive =
               opt.value === "" ? !selectedAge : selectedAge === opt.value;
             const targetUrl = buildQuery(

@@ -43,6 +43,7 @@ export const messages = {
     homeBreadcrumb: "Accueil",
     filterAllAges: "Tous les âges",
     filterAllOccasions: "Toutes occasions",
+    occasions: { everyday: "Tous les jours", party: "Fête", ceremony: "Cérémonie" },
     creationsCount: (count: number) => `${count} ${count > 1 ? "CRÉATIONS" : "CRÉATION"}`,
     noProductsFound: "Aucune création trouvée pour ces critères.",
   },

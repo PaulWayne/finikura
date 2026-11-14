@@ -11,6 +11,7 @@ import { ReassuranceBlock } from "@/components/blocks/ReassuranceBlock";
 import { CategoryHandle } from "@/lib/commerce/types";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { IMAGE_FALLBACKS } from "@/lib/images";
+import { ageOptions } from "@/lib/catalog-filters";
 
 interface CategoryPageProps {
   params: Promise<{ handle: string }> | { handle: string };
@@ -49,8 +50,10 @@ async function CategoryContent({
   const age = resolvedSearchParams.age;
   const occasion = resolvedSearchParams.occasion;
 
-  const [category, products, settings, banner] = await Promise.all([
+  const [category, allProducts, products, settings, banner] = await Promise.all([
     commerceService.getCategoryByHandle(handle),
+    // Unfiltered list (cached): the age filters stay the same whatever is selected.
+    commerceService.getProducts({ categoryHandle: handle }),
     commerceService.getProducts({
       categoryHandle: handle,
       age: age || undefined,
@@ -115,6 +118,7 @@ async function CategoryContent({
       {/* Filter Chips (Ages & Occasions) */}
       <FilterChips
         categoryHandle={handle}
+        ages={ageOptions(allProducts)}
         selectedAge={age}
         selectedOccasion={occasion}
       />

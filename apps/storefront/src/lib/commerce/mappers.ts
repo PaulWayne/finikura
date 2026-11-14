@@ -40,11 +40,14 @@ export function mapMedusaVariantToDomain(raw: MedusaStoreVariant): ProductVarian
   };
 }
 
-/** Age filter: the size for this age exists and can still be ordered. */
+/**
+ * Age filter: the size for this age exists and can still be ordered. The filter value is the
+ * variant title itself (FK-19), compared exactly: « 3-4 ans » must not match « 13-14 ans ».
+ */
 export function hasAgeInStock(raw: MedusaStoreProduct, age: string): boolean {
-  const wanted = age.toLowerCase();
+  const wanted = age.trim().toLowerCase();
   return (raw.variants ?? []).some(
-    (v) => v.title.toLowerCase().includes(wanted) && mapMedusaVariantToDomain(v).inStock,
+    (v) => v.title.trim().toLowerCase() === wanted && mapMedusaVariantToDomain(v).inStock,
   );
 }
 

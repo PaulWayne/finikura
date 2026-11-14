@@ -360,7 +360,9 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 
 **Critères d'acceptation**
 - [ ] Les variantes, les filtres de catégorie et le guide des tailles utilisent les mêmes libellés.
-- [ ] Les filtres viennent des données et non d'une liste en dur (`FilterChips`).
+- [x] Les filtres viennent des données et non d'une liste en dur (`FilterChips`).
+
+**Avancement (14/11/2026).** Les filtres d'âge sont tirés des variantes Medusa de la catégorie, du plus jeune au plus âgé (`lib/catalog-filters.ts`). Le libellé du filtre est le titre de la variante, comparé exactement : une taille ajoutée dans l'admin devient un filtre, et « 3-4 ans » ne trouve plus « 13-14 ans ». Les libellés des occasions sont passés dans `fr.ts`. Reste le premier critère : aligner les variantes et le guide des tailles sur les tailles de la cliente.
 
 **Taille** S · **Dépend de** Cliente : tranches d'âge · **Origine** état des lieux, cliente
 
