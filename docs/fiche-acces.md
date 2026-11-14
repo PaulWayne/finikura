@@ -47,6 +47,21 @@ Sous une photo où un enfant porte le vêtement, vous pouvez écrire par exemple
 
 Indiquez seulement le prénom et l'âge, jamais le nom de famille. Gardez l'accord écrit des parents pour chaque photo d'enfant.
 
+## Préparer un hero pour un temps fort (rentrée, Tabaski, fêtes)
+
+Dans Strapi, ouvrez **Accueil**. Vous pouvez y ajouter plusieurs blocs **Grande image** : un seul s'affiche à la fois.
+
+1. Ajoutez un bloc **Grande image**, donnez-lui un **nom** (par exemple « Tabaski 2027 »), une image, un titre et un bouton.
+2. Remplissez **starts_at** (début) et **ends_at** (fin). Le site affiche ce hero pendant cette période, au plus tard une heure après la date de début.
+3. Gardez toujours un bloc **sans dates** : c'est le hero par défaut, affiché quand aucun temps fort n'est en cours.
+4. Publiez.
+
+Si le bouton d'un hero mène à une campagne dépubliée, ce hero ne s'affiche pas et le hero par défaut prend sa place. Dans Umami, les clics se lisent sous l'événement `clic-hero`, avec le nom du hero.
+
+## Changer le bandeau des pages Filles et Garçons
+
+Dans Strapi, ouvrez **Bandeaux des catégories**, puis le bandeau `filles` ou `garcons`. Une phrase courte (120 caractères au plus) et une petite photo carrée, légère (moins de 40 Ko). Publiez. Sans bandeau publié, la page affiche le titre et la description de la catégorie, comme avant.
+
 ## Donner un accès à une nouvelle personne
 
 **Boutique** : **Paramètres › Utilisateurs › Inviter**, puis entrez son adresse e-mail. Elle reçoit un e-mail, valable 24 heures, pour choisir son mot de passe. Attention : chaque personne qui a accès à la boutique reçoit aussi l'e-mail de chaque nouvelle commande.

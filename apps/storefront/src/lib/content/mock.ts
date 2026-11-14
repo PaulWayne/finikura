@@ -2,6 +2,7 @@ import "server-only";
 import globalSettingsFixture from "@/mocks/strapi/global-settings.json";
 import homeFixture from "@/mocks/strapi/home.json";
 import sizeGuidesFixture from "@/mocks/strapi/size-guides.json";
+import categoryBannersFixture from "@/mocks/strapi/category-banners.json";
 import campaignsFixture from "@/mocks/strapi/campaigns.json";
 import editorialPagesFixture from "@/mocks/strapi/editorial-pages.json";
 
@@ -13,11 +14,13 @@ import {
   StrapiPage,
   StrapiSingleResponse,
   StrapiSizeGuide,
+  StrapiCategoryBanner,
 } from "./raw";
 
 const globalSettings = globalSettingsFixture as unknown as StrapiSingleResponse<StrapiGlobalSettings>;
 const home = homeFixture as unknown as StrapiSingleResponse<StrapiHomePage>;
 const sizeGuides = sizeGuidesFixture as unknown as StrapiListResponse<StrapiSizeGuide>;
+const categoryBanners = categoryBannersFixture as unknown as StrapiListResponse<StrapiCategoryBanner>;
 const campaigns = campaignsFixture as unknown as StrapiListResponse<StrapiCampaign>;
 const pages = editorialPagesFixture as unknown as StrapiListResponse<StrapiPage>;
 
@@ -25,6 +28,7 @@ import {
   mapStrapiGlobalSettingsToDomain,
   mapStrapiHomePageToDomain,
   mapStrapiSizeGuideToDomain,
+  mapStrapiCategoryBannerToDomain,
   mapStrapiCampaignToDomain,
   mapStrapiEditorialPageToDomain,
 } from "./mappers";
@@ -45,6 +49,11 @@ export const mockContentService: ContentService = {
 
   async getHomePage(): Promise<HomePageData> {
     return mapStrapiHomePageToDomain(home.data);
+  },
+
+  async getCategoryBanner(categoryHandle: string) {
+    const match = categoryBanners.data.find((b) => b.category_handle === categoryHandle);
+    return match ? mapStrapiCategoryBannerToDomain(match) : null;
   },
 
   async getSizeGuide(categoryHandle: string): Promise<SizeGuide | null> {

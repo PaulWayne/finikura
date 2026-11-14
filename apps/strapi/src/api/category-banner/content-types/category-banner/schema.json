@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "category_banners",
+  "info": {
+    "singularName": "category-banner",
+    "pluralName": "category-banners",
+    "displayName": "Bandeaux des catégories",
+    "description": "Une phrase et une petite photo en haut des pages Filles et Garçons (FK-40)."
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "category_handle": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "text": {
+      "type": "string",
+      "required": true,
+      "maxLength": 120
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "image_alt": {
+      "type": "string",
+      "required": false
+    }
+  }
+}

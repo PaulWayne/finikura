@@ -9,6 +9,8 @@ import { FilterChips } from "@/components/catalog/FilterChips";
 import { ProductCard } from "@/components/catalog/ProductCard";
 import { ReassuranceBlock } from "@/components/blocks/ReassuranceBlock";
 import { CategoryHandle } from "@/lib/commerce/types";
+import { SafeImage } from "@/components/ui/SafeImage";
+import { IMAGE_FALLBACKS } from "@/lib/images";
 
 interface CategoryPageProps {
   params: Promise<{ handle: string }> | { handle: string };
@@ -47,7 +49,7 @@ async function CategoryContent({
   const age = resolvedSearchParams.age;
   const occasion = resolvedSearchParams.occasion;
 
-  const [category, products, settings] = await Promise.all([
+  const [category, products, settings, banner] = await Promise.all([
     commerceService.getCategoryByHandle(handle),
     commerceService.getProducts({
       categoryHandle: handle,
@@ -55,6 +57,7 @@ async function CategoryContent({
       occasion: occasion || undefined,
     }),
     contentService.getGlobalSettings(),
+    contentService.getCategoryBanner(handle),
   ]);
 
   // Unknown handle: the not-found page of the charter, with noindex.
@@ -76,7 +79,29 @@ async function CategoryContent({
         <span className="text-brand-text font-medium">{category.name}</span>
       </nav>
 
-      {/* Category Header */}
+      {/* Category header: compact Strapi banner (FK-40), products stay above the fold on mobile */}
+      {banner ? (
+        <div className="flex items-center gap-3.5 md:gap-6 rounded-2xl bg-brand-surface/40 border border-brand-surface p-2.5 md:p-4 max-h-[120px] md:max-h-none overflow-hidden">
+          {banner.imageUrl && (
+            <div className="relative w-20 h-20 md:w-28 md:h-28 shrink-0 rounded-xl overflow-hidden bg-brand-surface">
+              <SafeImage
+                src={banner.imageUrl}
+                alt={banner.imageAlt}
+                fallbackSrc={IMAGE_FALLBACKS.product}
+                sizes="(min-width: 768px) 112px, 80px"
+                preload
+                className="object-cover"
+              />
+            </div>
+          )}
+          <div className="min-w-0 space-y-1">
+            <h1 className="font-serif text-2xl md:text-[40px] uppercase font-normal text-brand-text tracking-[0.06em] leading-tight">
+              {category.name}
+            </h1>
+            <p className="text-sm md:text-base text-brand-text leading-snug">{banner.text}</p>
+          </div>
+        </div>
+      ) : (
       <div className="text-center max-w-2xl mx-auto space-y-3">
         <h1 className="font-serif text-3xl md:text-[40px] uppercase font-normal text-brand-text tracking-[0.08em] leading-tight">
           {category.name}
@@ -85,6 +110,7 @@ async function CategoryContent({
           {category.description}
         </p>
       </div>
+      )}
 
       {/* Filter Chips (Ages & Occasions) */}
       <FilterChips

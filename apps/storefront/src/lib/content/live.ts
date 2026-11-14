@@ -7,6 +7,7 @@ import {
   StrapiPage,
   StrapiSingleResponse,
   StrapiSizeGuide,
+  StrapiCategoryBanner,
 } from "./raw";
 import {
   mapStrapiCampaignToDomain,
@@ -14,6 +15,7 @@ import {
   mapStrapiGlobalSettingsToDomain,
   mapStrapiHomePageToDomain,
   mapStrapiSizeGuideToDomain,
+  mapStrapiCategoryBannerToDomain,
 } from "./mappers";
 import {
   Campaign,
@@ -22,6 +24,7 @@ import {
   GlobalSettings,
   HomePageData,
   SizeGuide,
+  CategoryBanner,
 } from "./types";
 
 // Strapi 5 REST API (published documents only, which is the REST default).
@@ -85,6 +88,14 @@ export const liveContentService: ContentService = {
 
   async getHomePage(): Promise<HomePageData> {
     return mapStrapiHomePageToDomain(await single<StrapiHomePage>("home-page", HOME_POPULATE));
+  },
+
+  async getCategoryBanner(categoryHandle: string): Promise<CategoryBanner | null> {
+    const { data } = await strapi<StrapiListResponse<StrapiCategoryBanner>>("category-banners", [
+      eq("category_handle", categoryHandle),
+      "populate=image",
+    ]);
+    return data[0] ? mapStrapiCategoryBannerToDomain(data[0]) : null;
   },
 
   async getSizeGuide(categoryHandle: string): Promise<SizeGuide | null> {

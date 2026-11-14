@@ -592,11 +592,11 @@ En CI (FK-28), le cache pnpm et `.next/cache` s'ajoutent. Ce test tourne avant u
 **Description.** Préparer plusieurs heros dans Strapi (rentrée, Tabaski, fêtes de fin d'année…), chacun avec une date de début et de fin ; l'accueil affiche celui du moment. Un seul hero à la fois : pas de carrousel, qui dilue le message, alourdit la page et dont les diapositives suivantes sont peu vues (analyse CRO du 14/11/2026).
 
 **Critères d'acceptation**
-- [ ] La gérante crée plusieurs heros dans Strapi, avec image, titre, bouton et dates de début et de fin.
-- [ ] L'accueil affiche le hero en cours ; sans hero en cours, le hero par défaut.
-- [ ] Le changement de hero se fait sans redéploiement (revalidation du cache `content` et prise en compte des dates).
-- [ ] Un hero qui pointe vers une collection ou une campagne absente ne s'affiche pas, sans faire planter la page.
-- [ ] Umami compte les clics sur le bouton du hero, avec le nom du hero, pour comparer « campagne » et « catalogue ».
+- [x] La gérante crée plusieurs heros dans Strapi, avec image, titre, bouton et dates de début et de fin.
+- [x] L'accueil affiche le hero en cours ; sans hero en cours, le hero par défaut.
+- [x] Le changement de hero se fait sans redéploiement (revalidation du cache `content` et prise en compte des dates).
+- [x] Un hero dont le bouton mène à une campagne absente ne s'affiche pas, sans faire planter la page : le hero par défaut prend sa place. (Les liens vers une collection ne sont pas vérifiés : l'accueil n'en a pas.)
+- [x] Umami compte les clics sur le bouton du hero, avec le nom du hero, pour comparer « campagne » et « catalogue ».
 
 **Taille** S · **Dépend de** — · **Origine** analyse CRO (14/11/2026)
 
@@ -604,9 +604,9 @@ En CI (FK-28), le cache pnpm et `.next/cache` s'ajoutent. Ce test tourne avant u
 **Description.** Donner une ambiance aux pages catégorie sans repousser les produits : une phrase et une petite photo, 100 à 120 px de haut au plus sur mobile, gérées dans Strapi. Un grand hero est écarté : la maman qui arrive sur « Filles » veut voir des robes, et la recette a déjà relevé trop d'espace avant le contenu. Les vraies landing pages, pour les publicités, restent les pages campagne (`/campagne/...`), dont le message reprend celui de l'annonce.
 
 **Critères d'acceptation**
-- [ ] Sur mobile, les filtres et la première rangée de cartes produit restent visibles sans faire défiler.
-- [ ] Le bandeau (texte, image) vient de Strapi, par handle de catégorie ; sans bandeau, la page s'affiche comme aujourd'hui.
-- [ ] L'image du bandeau pèse moins de 40 Ko et ne fait pas dépasser 1 Mo au premier chargement.
+- [x] Sur mobile, les filtres et la première rangée de cartes produit restent visibles sans faire défiler.
+- [x] Le bandeau (texte, image) vient de Strapi, par handle de catégorie ; sans bandeau, la page s'affiche comme aujourd'hui.
+- [x] L'image du bandeau pèse moins de 40 Ko et ne fait pas dépasser 1 Mo au premier chargement.
 
 **Taille** S · **Dépend de** — · **Origine** analyse CRO (14/11/2026)
 

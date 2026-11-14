@@ -7,6 +7,7 @@ import {
   StrapiPage,
   StrapiRawBlock,
   StrapiSizeGuide,
+  StrapiCategoryBanner,
 } from "./raw";
 import {
   GlobalSettings,
@@ -14,6 +15,7 @@ import {
   ContentBlock,
   CategoryCardItem,
   SizeGuide,
+  CategoryBanner,
   Campaign,
   EditorialPage,
 } from "./types";
@@ -43,6 +45,9 @@ export function mapStrapiBlockToDomain(raw: StrapiRawBlock): ContentBlock | null
       return {
         type: "hero",
         id,
+        name: str(raw.name),
+        startsAt: str(raw.starts_at) || null,
+        endsAt: str(raw.ends_at) || null,
         eyebrow: str(raw.eyebrow),
         title: str(raw.title),
         subtitle: str(raw.subtitle),
@@ -190,6 +195,15 @@ export function mapStrapiHomePageToDomain(raw: StrapiHomePage | null): HomePageD
       description: raw?.seo?.description ?? "",
     },
     blocks: mapBlocks(raw?.blocks),
+  };
+}
+
+export function mapStrapiCategoryBannerToDomain(raw: StrapiCategoryBanner): CategoryBanner {
+  return {
+    categoryHandle: raw.category_handle,
+    text: raw.text,
+    imageUrl: mediaUrl(raw.image),
+    imageAlt: imageAlt(raw),
   };
 }
 

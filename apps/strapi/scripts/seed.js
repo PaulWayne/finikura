@@ -109,6 +109,14 @@ for (const guide of read("size-guides.json").data) {
   await createIfMissing("api::size-guide.size-guide", { category_handle: guide.category_handle }, strip(guide));
 }
 
+// --- Category banners (FK-40) ---------------------------------------------------
+for (const b of read("category-banners.json").data) {
+  await createIfMissing("api::category-banner.category-banner", { category_handle: b.category_handle }, {
+    ...strip(b),
+    image: await importImage(b.image?.url, b.image?.alternativeText),
+  });
+}
+
 // --- Campaigns -----------------------------------------------------------------
 for (const c of read("campaigns.json").data) {
   await createIfMissing("api::campaign.campaign", { slug: c.slug }, {

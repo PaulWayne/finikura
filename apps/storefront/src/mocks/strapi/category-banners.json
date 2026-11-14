@@ -1,0 +1,27 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "documentId": "banner-filles",
+      "category_handle": "filles",
+      "text": "Des robes et des ensembles pour l'école, les fêtes et les cérémonies.",
+      "image_alt": "Robe terracotta brodée portée par une petite fille",
+      "image": {
+        "url": "/mock-media/robe-terracotta-brodee-2.jpg",
+        "alternativeText": "Robe terracotta brodée portée par une petite fille"
+      }
+    },
+    {
+      "id": 2,
+      "documentId": "banner-garcons",
+      "category_handle": "garcons",
+      "text": "Des chemises et des ensembles pour l'école, les fêtes et les cérémonies.",
+      "image_alt": "Garçon en chemise et pantalon de lin",
+      "image": {
+        "url": "/mock-media/garcons.jpg",
+        "alternativeText": "Garçon en chemise et pantalon de lin"
+      }
+    }
+  ],
+  "meta": { "pagination": { "page": 1, "pageSize": 25, "pageCount": 1, "total": 2 } }
+}

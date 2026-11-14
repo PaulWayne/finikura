@@ -7,6 +7,7 @@ const PUBLIC_READ: Record<string, Array<'find' | 'findOne'>> = {
   'api::page.page': ['find', 'findOne'],
   'api::campaign.campaign': ['find', 'findOne'],
   'api::size-guide.size-guide': ['find', 'findOne'],
+  'api::category-banner.category-banner': ['find', 'findOne'],
 };
 
 /** Content changes the storefront must see (all types use draft & publish). */

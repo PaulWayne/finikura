@@ -8,6 +8,9 @@
     "blocks": [
       {
         "__component": "blocks.hero",
+        "name": "Collection permanente",
+        "starts_at": null,
+        "ends_at": null,
         "eyebrow": "NOUVELLE COLLECTION",
         "title": "GRANDIR AVEC STYLE, RAYONNER AVEC ÉLÉGANCE",
         "subtitle": "Des vêtements de qualité pour les enfants de 3 à 14 ans, pour l'école, les fêtes et les cérémonies, à des prix raisonnables.",

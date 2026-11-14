@@ -10,6 +10,8 @@ export const ANALYTICS_EVENTS = {
   whatsappClick: "clic-whatsapp",
   // FK-37: data { action: "ajout" | "retrait" }, never the customer.
   favorite: "coup-de-coeur",
+  // FK-39: sent by Umami from data-umami-event attributes, data { hero: name }.
+  heroClick: "clic-hero",
 } as const;
 
 export function trackEvent(event: string, data?: Record<string, string>): void {

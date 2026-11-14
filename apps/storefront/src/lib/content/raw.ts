@@ -53,6 +53,14 @@ export interface StrapiHomePage {
   blocks?: StrapiRawBlock[] | null;
 }
 
+export interface StrapiCategoryBanner {
+  documentId: string;
+  category_handle: string;
+  text: string;
+  image?: StrapiMedia | null;
+  image_alt?: string | null;
+}
+
 export interface StrapiSizeGuide {
   documentId: string;
   category_handle: string;

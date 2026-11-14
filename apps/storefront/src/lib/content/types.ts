@@ -31,6 +31,11 @@ export interface GlobalSettings {
 export interface HeroBlockData {
   type: "hero";
   id: string | number;
+  /** Name given by the shop (FK-39), sent to Umami with the button clicks. */
+  name: string;
+  /** Display window (FK-39), ISO dates; null means no limit. */
+  startsAt: string | null;
+  endsAt: string | null;
   eyebrow: string;
   title: string;
   subtitle: string;
@@ -173,6 +178,13 @@ export interface SizeGuideRow {
   hipsCm: string;
 }
 
+export interface CategoryBanner {
+  categoryHandle: string;
+  text: string;
+  imageUrl: string;
+  imageAlt: string;
+}
+
 export interface SizeGuide {
   categoryHandle: "filles" | "garcons";
   title: string;
@@ -194,6 +206,7 @@ export interface ContentService {
   getGlobalSettings(): Promise<GlobalSettings>;
   getHomePage(): Promise<HomePageData>;
   getSizeGuide(categoryHandle: string): Promise<SizeGuide | null>;
+  getCategoryBanner(categoryHandle: string): Promise<CategoryBanner | null>;
   getAllSizeGuides(): Promise<SizeGuide[]>;
   getCampaign(slug: string): Promise<Campaign | null>;
   getEditorialPage(slug: string): Promise<EditorialPage | null>;

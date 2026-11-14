@@ -1,4 +1,5 @@
 import React from "react";
+import { ANALYTICS_EVENTS } from "@/lib/analytics";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { HeroBlockData } from "@/lib/content/types";
 import { IMAGE_FALLBACKS } from "@/lib/images";
@@ -36,6 +37,9 @@ export function HeroBlock({ block }: HeroBlockProps) {
           </p>
           <a
             href={block.ctaLink}
+            // Umami reads these attributes itself (FK-39): which hero was clicked.
+            data-umami-event={ANALYTICS_EVENTS.heroClick}
+            data-umami-event-hero={block.name || block.title}
             className="min-h-11 min-w-11 inline-flex items-center justify-center px-8 py-3.5 rounded-[4px] bg-brand-primary text-brand-white font-medium text-xs tracking-[0.15em] uppercase hover:bg-brand-text transition shadow-xs"
           >
             {block.ctaText}
@@ -68,6 +72,9 @@ export function HeroBlock({ block }: HeroBlockProps) {
           </p>
           <a
             href={block.ctaLink}
+            // Umami reads these attributes itself (FK-39): which hero was clicked.
+            data-umami-event={ANALYTICS_EVENTS.heroClick}
+            data-umami-event-hero={block.name || block.title}
             className="min-h-11 min-w-11 w-full inline-flex items-center justify-center px-6 py-3 rounded-[4px] bg-brand-primary text-brand-white font-medium text-xs tracking-[0.15em] uppercase hover:bg-brand-text transition shadow-xs"
           >
             {block.ctaText}
