@@ -51,7 +51,7 @@ export function Header({ cartSlot }: HeaderProps) {
           href="/"
           className="min-h-11 min-w-11 flex flex-col items-center justify-center hover:opacity-95 transition-opacity"
         >
-          <Logo className="text-2xl md:text-3xl tracking-tight leading-none" />
+          <Logo className="h-8 md:h-10" priority />
           <span className="text-[8px] md:text-[10px] tracking-[0.28em] -mr-[0.28em] text-brand-text uppercase font-medium mt-1">
             {messages.header.brandSubtitle}
           </span>

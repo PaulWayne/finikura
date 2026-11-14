@@ -62,7 +62,7 @@ export function MobileMenu({
           {/* Header of Drawer */}
           <div className="flex items-center justify-between pb-5 border-b border-brand-surface">
             <div>
-              <Logo className="text-xl leading-tight block" />
+              <Logo className="h-7 mb-1" />
               <span className="text-[8px] tracking-[0.2em] text-brand-text uppercase font-medium">
                 {messages.header.brandSubtitle}
               </span>

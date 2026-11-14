@@ -19,10 +19,7 @@ export function Footer({
         {/* Logo Footer */}
         <div className="text-center mb-6">
           <Link href="/" className="inline-block hover:opacity-95 transition-opacity">
-            <Logo className="text-2xl md:text-3xl" />
-            <p className="text-[10px] tracking-[0.28em] text-brand-text uppercase font-medium mt-1">
-              {messages.header.brandSubtitle}
-            </p>
+            <Logo variant="full" className="h-28 md:h-32" />
           </Link>
         </div>
 
