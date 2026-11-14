@@ -294,12 +294,12 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 **Critères d'acceptation**
 - [x] Dans l'admin Medusa, les prix et totaux d'une commande s'affichent en FCFA sans décimales (12 500).
 - [x] La modification de l'adresse d'une commande dans l'admin fonctionne sans code postal. Si elle en exige un, la solution de contournement est documentée et validée.
-- [ ] Le parcours complet a été fait sur un vrai téléphone : commande, puis lien WhatsApp, puis message reçu avec les bonnes informations (après FK-01).
+- [x] Le parcours complet a été fait sur un vrai téléphone : commande, puis lien WhatsApp, puis message reçu avec les bonnes informations (après FK-01). Validé sur iPhone (recettes 1 et 2) et sur Android, le 14/11/2026.
 
 **Avancement (branche `fk-14`).**
 - **Montants :** l'admin affiche « 14 500 F CFA », sans décimales (vérifié à l'écran sur la commande n° 13).
 - **Adresse :** le formulaire « Edit shipping address » n'exige que le quartier (`address_1`) et le pays. Le code postal et le nom de famille sont optionnels dans son schéma, même si le libellé « Last Name » n'affiche pas « (Optional) ». Le test `integration-tests/http/checkout.spec.ts` (FK-22) confirme par l'API que la modification passe sans code postal, et que le téléphone, la ville et le pays sont conservés.
-- **WhatsApp :** le message de la commande n° 13 est complet et conforme à Medusa (articles, tailles, total, nom, téléphone, quartier, repères), avec des accents correctement encodés. Il a été ouvert depuis le Mac. **Reste à faire :** l'ouvrir depuis un vrai téléphone (http://IP-du-Mac:3100, avec `DEV_LAN_HOST` dans `.env.local`).
+- **WhatsApp :** le message de la commande n° 13 est complet et conforme à Medusa (articles, tailles, total, nom, téléphone, quartier, repères), avec des accents correctement encodés. Il a d'abord été ouvert depuis le Mac, puis depuis un iPhone et un Android (14/11/2026).
 - **En passant :** l'encart « Statut Fini Kura » (FK-06) est déplacé en haut de la colonne de droite (`order.details.side.before`).
 
 **Taille** S · **Dépend de** FK-01 · **Origine** cahier des charges, étapes 3-4
