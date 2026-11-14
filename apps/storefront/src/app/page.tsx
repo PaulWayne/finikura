@@ -33,7 +33,7 @@ export default async function HomePage() {
   );
 
   return (
-    <div className="space-y-10 md:space-y-16 py-4 md:py-8">
+    <div className="space-y-10 md:space-y-16 pt-2 pb-4 md:py-8">
       {homeData.blocks.map((block) => (
         <BlockRenderer
           key={`${block.type}-${block.id}`}

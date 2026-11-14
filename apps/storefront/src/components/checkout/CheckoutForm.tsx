@@ -27,6 +27,12 @@ export function CheckoutForm({ cart, children }: CheckoutFormProps) {
   const router = useRouter();
   const { setIsSubmitting } = useCheckoutState();
   const [serverError, setServerError] = useState<string | null>(null);
+  const serverErrorRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!serverError) return;
+    serverErrorRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    serverErrorRef.current?.focus({ preventScroll: true });
+  }, [serverError]);
 
   const {
     register,
@@ -42,7 +48,8 @@ export function CheckoutForm({ cart, children }: CheckoutFormProps) {
   // Pre-fill with the details saved on this phone after a previous order.
   useEffect(() => {
     const saved = loadContact();
-    if (saved) reset(saved);
+    // The +223 prefix is shown outside the field: only the 8 digits go in.
+    if (saved) reset({ ...saved, phone: saved.phone.slice(-8).replace(/(\d{2})(?=\d)/g, "$1 ") });
   }, [reset]);
 
   const submittingRef = useRef(false);
@@ -82,6 +89,19 @@ export function CheckoutForm({ cart, children }: CheckoutFormProps) {
       className="space-y-4 pt-1"
       noValidate
     >
+      {/* Refusal from the shop (for example the last piece just sold): shown at the top
+          of the form and brought into view, so it cannot be missed below the button. */}
+      {serverError && (
+        <div
+          ref={serverErrorRef}
+          role="alert"
+          tabIndex={-1}
+          className="scroll-mt-24 p-3.5 rounded-lg border border-brand-error bg-brand-white text-brand-error text-sm font-medium flex items-start gap-2 outline-none focus-visible:ring-2 focus-visible:ring-brand-error"
+        >
+          <AlertCircle aria-hidden="true" className="w-4 h-4 shrink-0 mt-0.5" />
+          <span>{serverError}</span>
+        </div>
+      )}
       <CheckoutField
         id="fullName"
         label={messages.checkout.nameLabel}
@@ -101,7 +121,8 @@ export function CheckoutForm({ cart, children }: CheckoutFormProps) {
         icon={<Phone className={ICON} />}
         registration={register("phone")}
         error={errors.phone?.message}
-        autoComplete="tel"
+        autoComplete="tel-national"
+        prefix="+223"
         className="tracking-wide"
       />
       <CheckoutField
@@ -131,22 +152,22 @@ export function CheckoutForm({ cart, children }: CheckoutFormProps) {
             aria-invalid={landmarksError ? true : undefined}
             aria-describedby={landmarksError ? "deliveryLandmarks-error" : undefined}
             placeholder={messages.checkout.landmarksPlaceholder}
-            className={`w-full p-3.5 pr-10 rounded bg-brand-white text-brand-text text-sm shadow-xs border transition-all placeholder:text-brand-text/90 resize-none ${
+            className={`w-full p-3.5 pr-10 rounded bg-brand-white text-brand-text text-base shadow-xs border transition-all placeholder:text-brand-text/90 resize-none ${
               landmarksError
-                ? "border-brand-terracotta bg-brand-terracotta/20 focus:ring-1 focus:ring-brand-terracotta"
+                ? "border-brand-error focus:ring-1 focus:ring-brand-error"
                 : "border-brand-surface focus:border-brand-primary"
             }`}
           />
           <AlertCircle
             className={`w-4 h-4 absolute right-3.5 top-3.5 pointer-events-none ${
-              landmarksError ? "text-brand-terracotta" : "text-brand-text"
+              landmarksError ? "text-brand-error" : "text-brand-text"
             }`}
           />
         </div>
         {landmarksError ? (
           <div className="flex items-center gap-1.5 pt-0.5 text-brand-text">
-            <AlertCircle aria-hidden="true" className="w-4 h-4 shrink-0 text-brand-terracotta" />
-            <p id="deliveryLandmarks-error" role="alert" className="text-xs font-medium leading-tight">
+            <AlertCircle aria-hidden="true" className="w-4 h-4 shrink-0 text-brand-error" />
+            <p id="deliveryLandmarks-error" role="alert" className="text-xs text-brand-error font-medium leading-tight">
               {landmarksError}
             </p>
           </div>
@@ -157,13 +178,6 @@ export function CheckoutForm({ cart, children }: CheckoutFormProps) {
           </div>
         )}
       </div>
-
-      {serverError && (
-        <div className="p-3.5 rounded-lg bg-brand-terracotta/15 text-brand-text text-xs flex items-center gap-2">
-          <AlertCircle className="w-4 h-4 shrink-0" />
-          <span>{serverError}</span>
-        </div>
-      )}
 
       {children}
     </form>

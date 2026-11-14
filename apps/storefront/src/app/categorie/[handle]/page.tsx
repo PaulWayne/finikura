@@ -63,7 +63,7 @@ async function CategoryContent({
   if (!category) notFound();
 
   return (
-    <div className="py-4 md:py-8 space-y-6 md:space-y-8" data-purpose="catalog-page">
+    <div className="pt-3 pb-4 md:py-8 space-y-4 md:space-y-8" data-purpose="catalog-page">
       {/* Breadcrumb */}
       <nav
         aria-label="Fil d'Ariane"

@@ -15,6 +15,7 @@ import {
   mapMedusaCartToDomain,
   mapMedusaOrderToDomain,
   mapMedusaLineItemToDomain,
+  hasAgeInStock,
 } from "./mappers";
 import {
   CommerceService,
@@ -89,9 +90,8 @@ export const mockCommerceService: CommerceService = {
     }
 
     if (filters?.age && filters.age !== "all") {
-      filtered = filtered.filter((p) =>
-        (p.variants ?? []).some((v) => v.title.toLowerCase().includes(filters.age!.toLowerCase()))
-      );
+      const age = filters.age;
+      filtered = filtered.filter((p) => hasAgeInStock(p, age));
     }
 
     return filtered.map(mapMedusaProductToDomain);

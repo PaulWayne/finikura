@@ -18,7 +18,7 @@ async function CheckoutContent() {
 
 export default function CommandePage() {
   return (
-    <div className="pt-6 md:pt-10 pb-16">
+    <div className="pt-0 md:pt-10 pb-16">
       <Suspense fallback={<PageFallback />}>
         <CheckoutContent />
       </Suspense>

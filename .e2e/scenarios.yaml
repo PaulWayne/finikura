@@ -104,7 +104,7 @@ scenarios:
         expected: Quatre messages d'erreur, en français, sous chaque champ.
       - id: telephone-invalide
         action: Saisissez « 76 12 34 » comme téléphone, puis « 76 12 34 567 ».
-        expected: Les deux sont refusés avec « Le numéro doit comporter exactement 8 chiffres maliens ».
+        expected: Les deux sont refusés avec « Saisissez les 8 chiffres de votre numéro, par exemple 76 12 34 56 ».
       - id: clavier
         action: Touchez le champ téléphone.
         expected: Le clavier numérique s'ouvre. Aucun champ e-mail n'existe sur la page.

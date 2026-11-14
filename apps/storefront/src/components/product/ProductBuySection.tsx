@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CheckCircle2, ShoppingBag } from "lucide-react";
 import type { Product } from "@/lib/commerce/types";
 import type { SizeGuide } from "@/lib/content/types";
@@ -27,6 +27,16 @@ export function ProductBuySection({ product, sizeGuide, whatsappUrl, productUrl 
   const [isAdding, setIsAdding] = useState(false);
   const [isAddedSuccess, setIsAddedSuccess] = useState(false);
   const [isSizeModalOpen, setIsSizeModalOpen] = useState(false);
+  // The fixed bar only shows once the main button is off screen: never two buttons at once.
+  const mainButtonRef = useRef<HTMLButtonElement>(null);
+  const [isMainButtonVisible, setIsMainButtonVisible] = useState(true);
+  useEffect(() => {
+    const button = mainButtonRef.current;
+    if (!button || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(([entry]) => setIsMainButtonVisible(entry.isIntersecting));
+    observer.observe(button);
+    return () => observer.disconnect();
+  }, []);
 
   const selectedVariant = product.variants.find((v) => v.id === selectedVariantId);
   const isSoldOut = selectedVariant ? !selectedVariant.inStock : false;
@@ -68,6 +78,7 @@ export function ProductBuySection({ product, sizeGuide, whatsappUrl, productUrl 
 
       <div className="mb-6 flex flex-col gap-2">
         <button
+          ref={mainButtonRef}
           type="button"
           onClick={handleAddToCart}
           disabled={isAdding || isSoldOut}
@@ -102,6 +113,7 @@ export function ProductBuySection({ product, sizeGuide, whatsappUrl, productUrl 
       />
 
       <StickyAddToCartBar
+        visible={!isMainButtonVisible}
         label={ctaLabel}
         isAddedSuccess={isAddedSuccess}
         disabled={isAdding || isSoldOut}

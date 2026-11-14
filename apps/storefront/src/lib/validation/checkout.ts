@@ -12,7 +12,7 @@ export const checkoutSchema = z.object({
     .max(100),
   phone: z
     .string()
-    .transform((val) => val.replace(/\s+/g, ''))
+    .transform((val) => val.replace(/[\s.-]+/g, ''))
     .refine((val) => /^(\+223|00223)?[5-9][0-9]{7}$/.test(val), {
       message: messages.validation.phoneInvalid,
     })

@@ -117,7 +117,7 @@ export function ProductCard({
 
         {/* Size selector toggle / buttons */}
         {showSizePicker && (
-          <div className="mt-2 pt-2 border-t border-brand-surface flex flex-wrap gap-1">
+          <div className="mt-2 pt-2 border-t border-brand-surface grid grid-cols-3 gap-1">
             {product.variants.map((variant) => (
               <button
                 key={variant.id}
@@ -127,12 +127,12 @@ export function ProductCard({
                   e.stopPropagation();
                   setSelectedVariantId(variant.id);
                 }}
-                className={`text-[10px] px-2 py-0.5 rounded-[3px] border transition ${
+                className={`min-h-11 text-[11px] px-1 rounded-[3px] border transition ${
                   selectedVariantId === variant.id
                     ? "bg-brand-primary text-brand-white border-brand-primary"
                     : variant.inStock
-                    ? "border-brand-text/30 text-brand-white bg-brand-bg"
-                    : "border-brand-text/15 text-brand-white line-through cursor-not-allowed bg-transparent"
+                    ? "border-brand-text/50 text-brand-text bg-brand-white"
+                    : "border-dashed border-brand-text/40 text-brand-text line-through cursor-not-allowed bg-transparent"
                 }`}
               >
                 {variant.title}

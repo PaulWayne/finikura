@@ -41,7 +41,7 @@ async function CampaignContent({ params }: CampaignPageProps) {
   const products = await commerceService.getCollectionProducts(campaign.collectionHandle, 48);
 
   return (
-    <div className="py-4 md:py-8 space-y-8 md:space-y-12" data-purpose="campaign-page">
+    <div className="pt-2 pb-4 md:py-8 space-y-8 md:space-y-12" data-purpose="campaign-page">
       <nav aria-label="Fil d'Ariane" className="flex items-center space-x-2 text-xs text-brand-text">
         <Link href="/" className="hover:underline underline-offset-4 transition-colors">
           {messages.catalog.homeBreadcrumb}

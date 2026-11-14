@@ -27,11 +27,11 @@ export function OrderConfirmation({ order, whatsappUrl }: OrderConfirmationProps
   const whatsappHref = whatsappLink(whatsappUrl, orderConfirmationMessage(order));
 
   return (
-    <div className="w-full max-w-[680px] mx-auto px-4 py-6 sm:py-10">
+    <div className="w-full max-w-[680px] mx-auto px-0 sm:px-4 pt-2 pb-6 sm:py-10">
       {/* Centered Main Card */}
-      <div className="w-full bg-brand-white rounded-2xl shadow-[0_8px_30px_rgba(94,82,69,0.06)] border border-brand-surface/60 p-6 sm:p-10 relative overflow-hidden flex flex-col items-center text-center">
+      <div className="w-full bg-brand-white rounded-2xl shadow-[0_8px_30px_rgba(94,82,69,0.06)] border border-brand-surface/60 px-4 py-5 sm:p-10 relative overflow-hidden flex flex-col items-center text-center">
         {/* Status Badge with Gentle Pulse */}
-        <div className="inline-flex items-center gap-2 bg-brand-announcement/20 text-brand-text px-4 py-1.5 rounded-full mb-6">
+        <div className="inline-flex items-center gap-2 bg-brand-announcement/20 text-brand-text px-4 py-1.5 rounded-full mb-4 sm:mb-6">
           <span className="w-2 h-2 rounded-full bg-brand-text animate-pulse"></span>
           <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-text">
             {messages.confirmation.badgeStatus}
@@ -39,7 +39,7 @@ export function OrderConfirmation({ order, whatsappUrl }: OrderConfirmationProps
         </div>
 
         {/* Delicate Artisan Icon */}
-        <div className="relative w-16 h-16 sm:w-20 sm:h-20 mb-5 flex items-center justify-center">
+        <div className="relative w-14 h-14 sm:w-20 sm:h-20 mb-3 sm:mb-5 flex items-center justify-center">
           <div className="absolute inset-0 bg-brand-announcement/60 rounded-full"></div>
           <div className="relative flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-brand-white shadow-xs">
             <CheckCircle2 className="w-7 h-7 sm:w-9 sm:h-9 text-brand-text" strokeWidth={1.75} />
@@ -54,10 +54,10 @@ export function OrderConfirmation({ order, whatsappUrl }: OrderConfirmationProps
           {messages.confirmation.orderNumberPrefix} {order.orderNumber}
         </h1>
 
-        <div className="w-12 h-0.5 bg-brand-surface rounded-full mb-6"></div>
+        <div className="w-12 h-0.5 bg-brand-surface rounded-full mb-4 sm:mb-6"></div>
 
         {/* Warm Note Card */}
-        <div className="w-full bg-brand-surface rounded-xl p-4 sm:p-6 mb-6 text-center border border-brand-surface/40">
+        <div className="w-full bg-brand-surface rounded-xl p-4 sm:p-6 mb-4 sm:mb-6 text-center border border-brand-surface/40">
           <h2 className="font-serif text-xl sm:text-2xl text-brand-text mb-2 font-normal">
             {messages.confirmation.thankYouName(firstName)}
           </h2>
@@ -67,7 +67,7 @@ export function OrderConfirmation({ order, whatsappUrl }: OrderConfirmationProps
         </div>
 
         {/* Order Summary Box */}
-        <div className="w-full bg-brand-bg rounded-xl p-4 sm:p-5 mb-6 text-left border border-brand-surface/60 space-y-3.5">
+        <div className="w-full bg-brand-bg rounded-xl p-4 sm:p-5 mb-4 sm:mb-6 text-left border border-brand-surface/60 space-y-3.5">
           <div className="flex items-center justify-between pb-3 border-b border-brand-surface/60">
             <div className="flex items-center gap-2.5">
               <ShoppingBag className="w-4 h-4 text-brand-primary" />

@@ -40,6 +40,14 @@ export function mapMedusaVariantToDomain(raw: MedusaStoreVariant): ProductVarian
   };
 }
 
+/** Age filter: the size for this age exists and can still be ordered. */
+export function hasAgeInStock(raw: MedusaStoreProduct, age: string): boolean {
+  const wanted = age.toLowerCase();
+  return (raw.variants ?? []).some(
+    (v) => v.title.toLowerCase().includes(wanted) && mapMedusaVariantToDomain(v).inStock,
+  );
+}
+
 export function mapMedusaProductToDomain(raw: MedusaStoreProduct): Product {
   const variants = (raw.variants ?? []).map(mapMedusaVariantToDomain);
   const minPrice = variants.length > 0 ? Math.min(...variants.map((v) => v.price)) : 0;

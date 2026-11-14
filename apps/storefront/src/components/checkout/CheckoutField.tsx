@@ -18,8 +18,8 @@ export function FieldLabel({ htmlFor, label, hint }: { htmlFor: string; label: s
 
 export function FieldError({ id, message }: { id: string; message: string }) {
   return (
-    <p id={id} role="alert" className="text-xs text-brand-text font-medium flex items-center gap-1 pt-0.5">
-      <AlertCircle aria-hidden="true" className="w-3.5 h-3.5 shrink-0 text-brand-terracotta" />
+    <p id={id} role="alert" className="text-xs text-brand-error font-medium flex items-center gap-1 pt-0.5">
+      <AlertCircle aria-hidden="true" className="w-3.5 h-3.5 shrink-0 text-brand-error" />
       <span>{message}</span>
     </p>
   );
@@ -36,6 +36,8 @@ interface CheckoutFieldProps {
   type?: "text" | "tel";
   autoComplete: string;
   className?: string;
+  /** Fixed text before the input, for example the +223 country code. */
+  prefix?: string;
 }
 
 /** One-line text field of the checkout form. */
@@ -50,12 +52,18 @@ export function CheckoutField({
   type = "text",
   autoComplete,
   className = "",
+  prefix,
 }: CheckoutFieldProps) {
   const errorId = `${id}-error`;
   return (
     <div className="flex flex-col space-y-1.5">
       <FieldLabel htmlFor={id} label={label} hint={hint} />
       <div className="relative flex items-center">
+        {prefix && (
+          <span aria-hidden="true" className="absolute left-4 text-base text-brand-text font-medium pointer-events-none">
+            {prefix}
+          </span>
+        )}
         <input
           id={id}
           type={type}
@@ -65,9 +73,9 @@ export function CheckoutField({
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? errorId : undefined}
           placeholder={placeholder}
-          className={`w-full h-12 px-4 pr-10 rounded bg-brand-white text-brand-text text-sm shadow-xs border transition-all placeholder:text-brand-text/90 ${className} ${
+          className={`w-full h-12 ${prefix ? "pl-16" : "pl-4"} pr-10 rounded bg-brand-white text-brand-text text-base shadow-xs border transition-all placeholder:text-brand-text/90 ${className} ${
             error
-              ? "border-brand-terracotta focus:ring-1 focus:ring-brand-terracotta"
+              ? "border-brand-error focus:ring-1 focus:ring-brand-error"
               : "border-brand-surface focus:border-brand-primary"
           }`}
         />

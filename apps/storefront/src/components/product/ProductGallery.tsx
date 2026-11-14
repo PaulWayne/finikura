@@ -150,6 +150,13 @@ export function ProductGallery({ images, productTitle, wornCaptions = [] }: Prod
             ))}
           </div>
 
+          {/* Photo counter: tells the customer there is more to swipe */}
+          {displayImages.length > 1 && (
+            <span className="absolute top-3 left-3 z-20 px-2.5 py-1 rounded-full bg-brand-bg/90 text-xs font-medium text-brand-text shadow-xs">
+              {messages.product.galleryCounter(activeIndex + 1, displayImages.length)}
+            </span>
+          )}
+
           {/* Pagination Dots */}
           <div className="absolute bottom-3 left-0 right-0 flex items-center justify-center gap-1.5 z-20 pointer-events-none">
             {displayImages.map((_, idx) => (
@@ -157,8 +164,8 @@ export function ProductGallery({ images, productTitle, wornCaptions = [] }: Prod
                 key={idx}
                 className={`transition-all duration-300 rounded-full ${
                   activeIndex === idx
-                    ? "w-3 h-1.5 bg-brand-primary"
-                    : "w-1.5 h-1.5 bg-brand-text/30"
+                    ? "w-4 h-2 bg-brand-primary"
+                    : "w-2 h-2 bg-brand-bg/90 border border-brand-text/60"
                 }`}
               />
             ))}

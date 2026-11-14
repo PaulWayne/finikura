@@ -41,7 +41,7 @@ export function FilterChips({
   const basePath = `/categorie/${categoryHandle}`;
 
   return (
-    <div className="w-full flex flex-col items-center gap-2.5 my-6">
+    <div className="w-full flex flex-col items-center gap-2 my-2 md:my-6">
       {/* Age Filters Row */}
       <div className="w-full overflow-x-auto no-scrollbar py-1">
         <div className="flex items-center justify-start md:justify-center gap-2 min-w-max px-2 md:px-0">

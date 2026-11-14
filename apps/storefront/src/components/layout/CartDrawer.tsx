@@ -24,6 +24,7 @@ export function CartDrawer({ initialCart }: CartDrawerProps) {
   const [cart, setCart] = useState<Cart>(initialCart);
 
   const [loadingItemId, setLoadingItemId] = useState<string | null>(null);
+  const [itemError, setItemError] = useState<{ itemId: string; message: string } | null>(null);
 
   useEffect(() => {
     function handleOpen() {
@@ -60,9 +61,15 @@ export function CartDrawer({ initialCart }: CartDrawerProps) {
 
   const handleUpdateQty = async (itemId: string, newQty: number) => {
     setLoadingItemId(itemId);
+    setItemError(null);
     const res = await updateQuantityAction(itemId, newQty);
     setLoadingItemId(null);
-    if (res.success && res.cart) {
+    if (!res.success) {
+      setItemError({ itemId, message: res.error ?? messages.errors.updateCart });
+      if (res.cart) setCart(res.cart);
+      return;
+    }
+    if (res.cart) {
       setCart(res.cart);
       triggerCartUpdated(res.cart);
     }
@@ -70,6 +77,7 @@ export function CartDrawer({ initialCart }: CartDrawerProps) {
 
   const handleRemove = async (itemId: string) => {
     setLoadingItemId(itemId);
+    setItemError(null);
     const res = await removeItemAction(itemId);
     setLoadingItemId(null);
     if (res.success && res.cart) {
@@ -102,7 +110,7 @@ export function CartDrawer({ initialCart }: CartDrawerProps) {
         aria-label={messages.cart.title}
         className={`fixed z-50 bg-brand-bg shadow-2xl flex flex-col justify-between transition-transform duration-300 ease-in-out border-brand-surface 
           /* Mobile: bottom sheet */
-          bottom-0 left-0 right-0 max-h-[92vh] rounded-t-3xl border-t md:rounded-t-none md:border-t-0
+          bottom-0 left-0 right-0 max-h-[92dvh] rounded-t-3xl border-t md:rounded-t-none md:border-t-0
           /* Desktop: right slide-over */
           md:top-0 md:bottom-0 md:right-0 md:left-auto md:w-[420px] md:max-h-full md:border-l
           ${
@@ -164,6 +172,7 @@ export function CartDrawer({ initialCart }: CartDrawerProps) {
                 key={item.id}
                 item={item}
                 isLoading={loadingItemId === item.id}
+                error={itemError?.itemId === item.id ? itemError.message : null}
                 onQuantityChange={handleUpdateQty}
                 onRemove={handleRemove}
               />

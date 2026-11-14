@@ -14,9 +14,9 @@ export function CheckoutView({ cart }: { cart: Cart }) {
 
   return (
     <CheckoutProvider>
-      <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 md:px-8 py-6 md:py-10">
+      <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 md:px-8 pt-3 pb-6 md:py-10">
         {/* Breadcrumb & top indicator */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 gap-3 border-b border-brand-surface/50 mb-8">
+        <div className="hidden sm:flex flex-row items-center justify-between pb-6 gap-3 border-b border-brand-surface/50 mb-8">
           <nav aria-label="Fil d'Ariane Commande" className="flex items-center space-x-2 text-xs text-brand-text">
             <Link href="/" className="hover:underline underline-offset-4 transition-colors">
               {messages.checkout.breadcrumbPanier}
@@ -34,9 +34,9 @@ export function CheckoutView({ cart }: { cart: Cart }) {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* Left column: the form */}
-          <section className="lg:col-span-7 flex flex-col space-y-6">
+          <section className="lg:col-span-7 flex flex-col space-y-4 sm:space-y-6">
             <div className="space-y-1.5 text-left">
-              <span className="text-xs uppercase tracking-[0.2em] text-brand-text font-semibold block">
+              <span className="hidden sm:block text-xs uppercase tracking-[0.2em] text-brand-text font-semibold">
                 <span className="hidden sm:inline">{messages.checkout.stepEyebrowDesktop}</span>
                 <span className="sm:hidden">{messages.checkout.stepEyebrowMobile}</span>
               </span>
@@ -44,7 +44,7 @@ export function CheckoutView({ cart }: { cart: Cart }) {
                 <span className="hidden sm:inline">{messages.checkout.titleDesktop}</span>
                 <span className="sm:hidden">{messages.checkout.titleMobile}</span>
               </h1>
-              <p className="text-sm sm:text-base text-brand-text pt-1 leading-relaxed">
+              <p className="hidden sm:block text-base text-brand-text pt-1 leading-relaxed">
                 <span className="hidden sm:inline">{messages.checkout.subtitleDesktop}</span>
                 <span className="sm:hidden">{messages.checkout.subtitleMobile}</span>
               </p>
@@ -64,11 +64,11 @@ export function CheckoutView({ cart }: { cart: Cart }) {
               </div>
             </MobileSummaryAccordion>
 
-            <div className="bg-brand-surface p-4 rounded-xl flex items-start gap-3 shadow-xs">
+            <div className="bg-brand-surface px-4 py-3 sm:p-4 rounded-xl flex items-start gap-3 shadow-xs">
               <ShieldCheck className="w-5 h-5 text-brand-text mt-0.5 shrink-0" />
               <div className="space-y-0.5">
                 <h2 className="text-xs sm:text-sm font-medium text-brand-text">{messages.checkout.reassuranceTitle}</h2>
-                <p className="text-xs text-brand-text leading-relaxed">{messages.checkout.reassuranceDesc}</p>
+                <p className="hidden sm:block text-xs text-brand-text leading-relaxed">{messages.checkout.reassuranceDesc}</p>
               </div>
             </div>
 

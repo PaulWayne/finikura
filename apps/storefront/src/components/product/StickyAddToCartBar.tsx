@@ -2,6 +2,7 @@ import { ShoppingBag } from "lucide-react";
 import { messages } from "@/messages/fr";
 
 interface StickyAddToCartBarProps {
+  visible: boolean;
   label: string;
   isAddedSuccess: boolean;
   disabled: boolean;
@@ -9,9 +10,15 @@ interface StickyAddToCartBarProps {
 }
 
 /** Add-to-cart bar fixed at the bottom of the screen on mobile (< 768px). */
-export function StickyAddToCartBar({ label, isAddedSuccess, disabled, onAdd }: StickyAddToCartBarProps) {
+export function StickyAddToCartBar({ visible, label, isAddedSuccess, disabled, onAdd }: StickyAddToCartBarProps) {
   return (
-    <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-brand-bg/95 backdrop-blur-md px-4 pt-3 pb-safe border-t border-brand-surface shadow-[0_-4px_20px_rgba(94,82,69,0.08)]">
+    <div
+      aria-hidden={!visible}
+      inert={!visible}
+      className={`md:hidden fixed bottom-0 left-0 right-0 z-40 transition-transform duration-200 motion-reduce:transition-none ${
+        visible ? "translate-y-0" : "translate-y-full"
+      } bg-brand-bg/95 backdrop-blur-md px-4 pt-3 pb-safe border-t border-brand-surface shadow-[0_-4px_20px_rgba(94,82,69,0.08)]`}
+    >
       <div className="max-w-[420px] mx-auto flex flex-col gap-2">
         <button
           type="button"

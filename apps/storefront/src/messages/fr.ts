@@ -76,6 +76,7 @@ export const messages = {
     recommendationsTitle: "VOUS AIMEREZ AUSSI",
     discoverWardrobe: "DÉCOUVRIR TOUT LE VESTIAIRE",
     mainStudioView: "Vue studio principale",
+    galleryCounter: (current: number, total: number) => `${current} / ${total}`,
     understood: "Compris",
     askRelativeCta: "Demander à un proche",
     sizeQuestionCta: "Une question sur la taille ?",
@@ -128,6 +129,8 @@ export const messages = {
     checkoutButton: "Commander",
     continueShopping: "Continuer mes achats",
     removeAria: "Retirer l'article",
+    decreaseAria: "Retirer une pièce",
+    increaseAria: "Ajouter une pièce",
     closeAria: "Fermer le panier",
     categoryLabel: (isGirls: boolean) => (isGirls ? "FILLES 3-14 ANS" : "GARÇONS 3-14 ANS"),
     sizeSelected: "Taille sélectionnée :",
@@ -154,7 +157,7 @@ export const messages = {
     namePlaceholder: "Votre prénom et nom",
     phoneLabel: "Téléphone de contact",
     phoneHelp: "Pour la livraison & WhatsApp",
-    phonePlaceholder: "+223 .. .. .. ..",
+    phonePlaceholder: "76 12 34 56",
     neighborhoodLabel: "Quartier à Bamako",
     neighborhoodHelp: "Zone de livraison",
     neighborhoodPlaceholder: "Ex : Badalabougou, ACI 2000, Hippodrome",
@@ -215,7 +218,7 @@ export const messages = {
   },
   whatsapp: {
     floatingLabel: "Nous écrire sur WhatsApp",
-    orderIntro: (orderNumber: string) => `Bonjour FINI KURA, je confirme ma commande ${orderNumber} :`,
+    orderIntro: (orderNumber: string) => `Bonjour FINI KURA,\nje confirme ma commande ${orderNumber} :`,
     orderLine: (title: string, size: string, quantity: number, amount: string) =>
       `- ${title}, taille ${size}, x${quantity} : ${amount}`,
     orderTotal: (amount: string) => `Total : ${amount}`,
@@ -227,9 +230,10 @@ export const messages = {
       `Que penses-tu de cette tenue de Fini Kura ?\n${title} : ${price}\n${url}`,
     sizeQuestion: (product: string, size?: string | null, url?: string) =>
       [
-        `Bonjour FINI KURA, j'ai une question sur la taille de « ${product} ».`,
+        "Bonjour FINI KURA,",
+        `j'ai une question sur la taille de « ${product} ».`,
         `Taille envisagée : ${size ?? "pas encore choisie"}`,
-        "Âge de mon enfant : ",
+        "Âge et taille de mon enfant (à compléter) : ",
         url,
       ].filter((line) => line !== undefined).join("\n"),
   },
@@ -254,7 +258,7 @@ export const messages = {
   },
   validation: {
     nameRequired: "Veuillez indiquer votre nom",
-    phoneInvalid: "Le numéro doit comporter exactement 8 chiffres maliens",
+    phoneInvalid: "Saisissez les 8 chiffres de votre numéro, par exemple 76 12 34 56",
     neighborhoodRequired: "Veuillez indiquer votre quartier à Bamako",
     landmarksRequired: "Veuillez préciser un repère (ex: près de la pharmacie, rue 14, porte 12)",
   },

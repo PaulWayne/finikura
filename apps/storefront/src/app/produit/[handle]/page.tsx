@@ -75,7 +75,7 @@ async function ProductContent({ params }: ProductPageProps) {
     .slice(0, 3);
 
   return (
-    <div className="py-4 md:py-8 space-y-8" data-purpose="product-page">
+    <div className="pt-2 pb-4 md:py-8 space-y-6 md:space-y-8" data-purpose="product-page">
       {/* Breadcrumbs */}
       <nav
         aria-label="Fil d'Ariane"

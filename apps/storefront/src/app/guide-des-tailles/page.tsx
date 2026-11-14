@@ -17,7 +17,7 @@ export default async function GuideDesTaillesPage() {
   ]);
 
   return (
-    <div className="pt-20 md:pt-28 pb-16 max-w-[900px] mx-auto px-5 space-y-12">
+    <div className="pt-6 md:pt-28 pb-16 max-w-[900px] mx-auto px-1 md:px-5 space-y-10 md:space-y-12">
       <header className="text-center">
         <h1 className="font-serif text-3xl md:text-4xl text-brand-text mb-4">{t.breadcrumbTitle}</h1>
         <p className="text-base text-brand-text">{t.intro}</p>

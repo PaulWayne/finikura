@@ -39,6 +39,8 @@
     --brand-text: #5E5245;
     --brand-primary: #8A7058;
     --brand-terracotta: #CA7154;
+    /* Darker terracotta for error messages: AA contrast on bg and white. */
+    --brand-error: #9E4A30;
     --brand-blue: #97AFC4;
     --brand-whatsapp: #25D366;
     --brand-rose: #C8807C;
@@ -90,6 +92,7 @@
   --color-brand-text: var(--brand-text);
   --color-brand-primary: var(--brand-primary);
   --color-brand-terracotta: var(--brand-terracotta);
+  --color-brand-error: var(--brand-error);
   --color-brand-blue: var(--brand-blue);
   --color-brand-whatsapp: var(--brand-whatsapp);
   --color-brand-rose: var(--brand-rose);

@@ -7,6 +7,7 @@ import {
   mapMedusaLineItemToDomain,
   mapMedusaOrderToDomain,
   mapMedusaProductToDomain,
+  hasAgeInStock,
 } from "./mappers";
 import {
   MedusaStoreCart,
@@ -105,8 +106,8 @@ export const liveCommerceService: CommerceService = {
       products = products.filter((p) => p.tags?.some((t) => t.value === filters.occasion));
     }
     if (filters?.age) {
-      const age = filters.age.toLowerCase();
-      products = products.filter((p) => (p.variants ?? []).some((v) => v.title.toLowerCase().includes(age)));
+      const age = filters.age;
+      products = products.filter((p) => hasAgeInStock(p, age));
     }
     return products.map(mapMedusaProductToDomain);
   },
