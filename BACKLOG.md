@@ -70,14 +70,14 @@ Les éléments ne sont pas encore des issues GitHub. On les crée seulement apr�
 **Description.** Aujourd'hui, le lien de confirmation n'envoie que le numéro de commande. Le cahier des charges exige les articles, les tailles et le total. Il reste aussi 10 numéros fictifs ou écrits en dur dans le code (`22370000000`, `22376458912`). Le numéro doit venir des réglages globaux Strapi (`whatsapp_number`).
 
 **Critères d'acceptation**
-- [ ] Le message pré-rempli contient :
+- [x] Le message pré-rempli contient :
   - le numéro de commande (FK-…) ;
   - chaque article avec sa taille et sa quantité ;
   - le total au format `formatPrice` ;
   - le nom, le quartier et les repères.
-- [ ] Le numéro de destination est celui saisi dans Strapi. Une recherche de `wa.me/` et de `223` dans `apps/storefront/src`, hors `mocks`, ne trouve plus aucun numéro en dur.
-- [ ] Si le numéro est vide dans Strapi, le bouton ne s'affiche pas et la page ne plante pas.
-- [ ] Le lien s'ouvre sur un téléphone Android et un iPhone avec le message complet. Les accents et les sauts de ligne sont bien encodés.
+- [x] Le numéro de destination est celui saisi dans Strapi. Une recherche de `wa.me/` et de `223` dans `apps/storefront/src`, hors `mocks`, ne trouve plus aucun numéro en dur.
+- [x] Si le numéro est vide dans Strapi, le bouton ne s'affiche pas et la page ne plante pas.
+- [ ] Le lien s'ouvre sur un téléphone Android et un iPhone avec le message complet. Les accents et les sauts de ligne sont bien encodés. iPhone validé (recettes 1 et 2, 14/11/2026) ; Android reste à faire.
 
 **Taille** M · **Dépend de** — (numéro de test en place) · **Origine** état des lieux (bloquant), cahier des charges
 
@@ -98,10 +98,10 @@ Les éléments ne sont pas encore des issues GitHub. On les crée seulement apr�
 **Description.** Les pages Notre histoire, Livraison et échanges, Contact, Guide des tailles et Mentions légales sont encore écrites en dur dans les composants. Pourtant, les pages Strapi et les guides des tailles existent et sont servis par `contentService.getEditorialPage` et `getAllSizeGuides`. Il faut rendre ces pages à partir des blocs, et ajouter la page Mentions légales dans Strapi.
 
 **Critères d'acceptation**
-- [ ] Chaque page lit son contenu par `contentService`. Les composants ne contiennent plus de texte éditorial, seulement les petits textes de `fr.ts`.
-- [ ] Une modification publiée dans Strapi apparaît sur la page sans redéploiement (revalidation `content`).
-- [ ] Une page absente de Strapi renvoie 404 (voir FK-13).
-- [ ] Le mode mock affiche les mêmes pages à partir de `src/mocks/strapi`.
+- [x] Chaque page lit son contenu par `contentService`. Les composants ne contiennent plus de texte éditorial, seulement les petits textes de `fr.ts`.
+- [x] Une modification publiée dans Strapi apparaît sur la page sans redéploiement (revalidation `content`).
+- [ ] Une page absente de Strapi renvoie 404 (voir FK-13). Aujourd'hui : page « introuvable » de la charte avec noindex, mais statut 200 (Next 16, streaming déjà commencé).
+- [x] Le mode mock affiche les mêmes pages à partir de `src/mocks/strapi`.
 
 **Taille** L · **Dépend de** FK-15 pour le contenu final · **Origine** état des lieux (bloquant)
 
