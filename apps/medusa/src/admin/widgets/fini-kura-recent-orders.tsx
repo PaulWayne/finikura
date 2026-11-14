@@ -2,7 +2,7 @@ import { defineWidgetConfig } from "@medusajs/admin-sdk"
 import { Container, Heading, StatusBadge, Table, Text } from "@medusajs/ui"
 import { useQuery } from "@tanstack/react-query"
 import { useTranslation } from "react-i18next"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import type { FkStatus } from "../../lib/fk-status"
 import { FK_BADGE } from "../lib/fk-badge"
 import { sdk } from "../lib/sdk"
@@ -21,6 +21,7 @@ type RecentOrder = {
 // Above the order list: the 10 latest orders with name, phone and Fini Kura status.
 const FiniKuraRecentOrdersWidget = () => {
   const { t, i18n } = useTranslation()
+  const navigate = useNavigate()
   const dateFormat = new Intl.DateTimeFormat(i18n.language, { dateStyle: "medium", timeStyle: "short" })
   const formatXof = (n: number) => `${new Intl.NumberFormat(i18n.language).format(n)} FCFA`
 
@@ -58,7 +59,12 @@ const FiniKuraRecentOrdersWidget = () => {
           </Table.Header>
           <Table.Body>
             {data.orders.map((o) => (
-              <Table.Row key={o.id}>
+              // The whole row opens the order, like Medusa's own list.
+              <Table.Row
+                key={o.id}
+                className="cursor-pointer"
+                onClick={() => navigate(`/orders/${o.id}`)}
+              >
                 <Table.Cell>
                   <Link to={`/orders/${o.id}`} className="text-ui-fg-interactive hover:underline">
                     #{o.display_id}
@@ -70,6 +76,7 @@ const FiniKuraRecentOrdersWidget = () => {
                   {o.phone ? (
                     <Link
                       to={`/commandes-telephone?phone=${encodeURIComponent(o.phone)}`}
+                      onClick={(e) => e.stopPropagation()}
                       className="text-ui-fg-interactive hover:underline"
                     >
                       {o.phone}
