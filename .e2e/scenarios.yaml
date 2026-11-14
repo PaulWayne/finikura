@@ -345,6 +345,43 @@ scenarios:
         action: Videz le numéro WhatsApp des réglages globaux et publiez.
         expected: Les boutons WhatsApp disparaissent, aucune page ne plante. Remettez le numéro.
 
+  - id: campagne-accueil
+    title: La gérante met une campagne en avant sur l'accueil
+    feature: Contenu (Strapi)
+    priority: P1
+    refs: [FK-39]
+    devices: [ordinateur]
+    context: Une campagne cochée « feature_on_home » remplace la grande image de l'accueil pendant ses dates, si sa collection Medusa a des produits.
+    prerequisites:
+      - Être connecté à l'admin Strapi (http://localhost:1337/admin) et à l'admin Medusa (http://localhost:9000/app)
+    steps:
+      - id: active
+        action: Dans Strapi, ouvrez la campagne Tabaski, mettez une date de début à hier, gardez « feature_on_home » coché et publiez. Dans Medusa, ajoutez un produit à la collection tabaski-2027.
+        expected: Après rechargement, la grande image de l'accueil montre la campagne Tabaski, et son bouton mène à la page de la campagne avec le produit.
+      - id: collection-vide
+        action: Dans Medusa, retirez le produit de la collection tabaski-2027.
+        expected: L'accueil revient à la grande image habituelle, sans erreur.
+      - id: remise
+        action: Remettez les dates d'origine de la campagne (2027-05-01 au 2027-06-30) et publiez.
+        expected: L'accueil affiche la grande image habituelle.
+
+  - id: bandeau-categorie
+    title: La gérante change le bandeau d'une catégorie
+    feature: Contenu (Strapi)
+    priority: P1
+    refs: [FK-40]
+    devices: [ordinateur]
+    context: Le bandeau compact des pages Filles et Garçons vient du type « Category banner » de Strapi.
+    prerequisites:
+      - Être connecté à l'admin Strapi (http://localhost:1337/admin)
+    steps:
+      - id: texte
+        action: Dans « Category banner », modifiez la phrase du bandeau « filles » et publiez.
+        expected: Après rechargement, la page Filles affiche la nouvelle phrase. Une phrase de plus de 120 caractères est refusée par Strapi.
+      - id: retrait
+        action: Dépubliez le bandeau « garcons ».
+        expected: La page Garçons affiche l'ancien en-tête simple, sans erreur. Republiez le bandeau.
+
   - id: pages-introuvables
     title: Une adresse fausse mène à une page claire
     feature: Contenu (Strapi)
