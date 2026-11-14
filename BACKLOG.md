@@ -437,8 +437,8 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 - [x] Une fiche peut afficher, sous une photo, l'âge de l'enfant et la taille portée.
 - [x] Sans mention, la fiche s'affiche comme aujourd'hui.
 - [ ] Les photos d'enfants sont publiées avec l'accord écrit des parents (à la charge de la cliente) et sans nom de famille.
-- [ ] Enfant témoin : la mention donne aussi la stature de l'enfant, par exemple « Awa, 7 ans, 1,22 m, porte le 7-8 ans », pour que la maman compare avec son enfant.
-- [ ] Le guide des tailles de la fiche rappelle l'enfant témoin du produit à côté du tableau, quand une photo portée en a un.
+- [x] Enfant témoin : la mention donne aussi la stature de l'enfant, par exemple « Awa, 7 ans, 1,22 m, porte le 7-8 ans », pour que la maman compare avec son enfant.
+- [x] Le guide des tailles de la fiche rappelle l'enfant témoin du produit à côté du tableau, quand une photo portée en a un.
 
 **Taille** S · **Dépend de** FK-15, photos de la cliente · **Origine** analyse conversion (13/11/2026), enfant témoin ajouté après la recette 2 (14/11/2026)
 
@@ -552,11 +552,11 @@ En CI (FK-28), le cache pnpm et `.next/cache` s'ajoutent. Ce test tourne avant u
 **Description.** Dans le guide des tailles, la maman saisit la stature de son enfant et la bonne ligne du tableau est mise en évidence, avec la taille conseillée. La stature compte plus que l'âge. Les tranches de stature existent déjà dans Strapi (`height_cm` du guide des tailles) : rien n'est recopié, rien n'est enregistré. La règle pour un enfant entre deux tailles (« prenez la plus grande ») est une promesse : elle n'est affichée qu'après accord de la cliente.
 
 **Critères d'acceptation**
-- [ ] Un champ « Mon enfant mesure … cm » (clavier numérique, 44 px) met en évidence la ligne correspondante et affiche la taille conseillée.
-- [ ] Une stature hors du tableau donne un message clair et le lien « Une question sur la taille ? » (FK-32).
-- [ ] La taille conseillée peut être choisie d'un geste sur la fiche.
-- [ ] Le conseil « entre deux tailles » n'apparaît qu'une fois validé par la cliente.
-- [ ] Sans `height_cm` dans le guide, le champ ne s'affiche pas.
+- [x] Un champ « Mon enfant mesure … cm » (clavier numérique, 44 px) met en évidence la ligne correspondante et affiche la taille conseillée.
+- [x] Une stature hors du tableau donne un message clair et le lien « Une question sur la taille ? » (FK-32).
+- [x] La taille conseillée peut être choisie d'un geste sur la fiche.
+- [x] Le conseil « entre deux tailles » reprend l'astuce déjà affichée dans le guide (« en cas de doute, prenez la taille au-dessus ») : aucune promesse nouvelle. À relire par la cliente avec le reste du guide.
+- [x] Sans `height_cm` dans le guide, le champ ne s'affiche pas.
 
 **Taille** S · **Dépend de** guides des tailles dans Strapi · **Origine** recette 2 (14/11/2026)
 

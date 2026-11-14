@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   Ruler,
   X,
@@ -8,10 +8,11 @@ import {
   ArrowRight,
   MessageCircle,
 } from "lucide-react";
-import { SizeGuide } from "@/lib/content/types";
+import type { SizeGuide, SizeGuideRow } from "@/lib/content/types";
 import { whatsappLink } from "@/lib/whatsapp";
 import { messages } from "@/messages/fr";
 import { SizeTable } from "./SizeTable";
+import { HeightAdvisor } from "./HeightAdvisor";
 
 interface SizeGuideModalProps {
   isOpen: boolean;
@@ -21,6 +22,11 @@ interface SizeGuideModalProps {
   productTitle?: string;
   whatsappUrl?: string | null;
   productUrl?: string;
+  /** Selects the size suggested from the child's height (FK-36). */
+  onChooseSize?: (row: SizeGuideRow) => void;
+  isSizeAvailable?: (row: SizeGuideRow) => boolean;
+  /** Reference child of the worn photos (FK-33), e.g. « Awa, 7 ans, 1,22 m, porte le 7-8 ans ». */
+  modelReference?: string | null;
 }
 
 export function SizeGuideModal({
@@ -31,7 +37,11 @@ export function SizeGuideModal({
   productTitle,
   whatsappUrl,
   productUrl,
+  onChooseSize,
+  isSizeAvailable,
+  modelReference,
 }: SizeGuideModalProps) {
+  const [suggestedAge, setSuggestedAge] = useState<string | null>(null);
 
   useEffect(() => {
     if (isOpen) {
@@ -101,7 +111,22 @@ export function SizeGuideModal({
             </p>
           </div>
 
-          <SizeTable rows={rows} activeSizeTitle={activeSizeTitle} />
+          {modelReference && (
+            <p className="text-sm text-brand-text bg-brand-white rounded-xl border border-brand-surface px-3.5 py-2.5">
+              <span className="font-semibold">{messages.sizeAdvice.modelReference} : </span>
+              {modelReference}
+            </p>
+          )}
+
+          <HeightAdvisor
+            rows={rows}
+            onAdvice={(row) => setSuggestedAge(row?.age ?? null)}
+            onChoose={onChooseSize}
+            isAvailable={isSizeAvailable}
+            whatsappHref={targetWhatsappLink}
+          />
+
+          <SizeTable rows={rows} activeSizeTitle={activeSizeTitle} suggestedAge={suggestedAge} />
 
           {/* Advice / Tip Box with Terracotta accent */}
           <div className="bg-brand-surface rounded-xl p-3.5 sm:p-4 flex items-start gap-3 border border-brand-surface/60">

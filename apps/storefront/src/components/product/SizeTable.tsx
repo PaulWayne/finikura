@@ -2,7 +2,16 @@ import type { SizeGuideRow } from "@/lib/content/types";
 import { messages } from "@/messages/fr";
 
 /** Measurements table of the size guide; the row matching the selected size is highlighted. */
-export function SizeTable({ rows, activeSizeTitle }: { rows: SizeGuideRow[]; activeSizeTitle?: string }) {
+export function SizeTable({
+  rows,
+  activeSizeTitle,
+  suggestedAge,
+}: {
+  rows: SizeGuideRow[];
+  activeSizeTitle?: string;
+  /** Row suggested from the child's height (FK-36): highlighted instead of the selected size. */
+  suggestedAge?: string | null;
+}) {
   const t = messages.sizeGuidePage;
   return (
     <div className="overflow-hidden rounded-xl bg-brand-white border border-brand-surface/70 shadow-xs">
@@ -17,15 +26,17 @@ export function SizeTable({ rows, activeSizeTitle }: { rows: SizeGuideRow[]; act
         </thead>
         <tbody className="divide-y-0 text-xs sm:text-sm">
           {rows.map((row, index) => {
-            const isHighlighted =
-              activeSizeTitle &&
+            const isHighlighted = suggestedAge
+              ? row.age === suggestedAge
+              : activeSizeTitle &&
               (row.age.includes(activeSizeTitle) || activeSizeTitle.includes(row.age.replace(" ans", "")));
             return (
               <tr
                 key={row.age}
+                aria-current={isHighlighted ? "true" : undefined}
                 className={`transition-colors ${
                   isHighlighted
-                    ? "bg-brand-surface/50 font-semibold text-brand-text"
+                    ? "bg-brand-surface font-semibold text-brand-text outline outline-2 -outline-offset-2 outline-brand-primary"
                     : index % 2 === 0
                     ? "bg-brand-white"
                     : "bg-brand-bg/60"

@@ -81,6 +81,17 @@ export const messages = {
     askRelativeCta: "Demander à un proche",
     sizeQuestionCta: "Une question sur la taille ?",
   },
+  sizeAdvice: {
+    label: "Mon enfant mesure",
+    placeholder: "ex. 120",
+    match: (age: string) => `Taille conseillée : ${age}.`,
+    between: (age: string) => `Entre deux tailles : nous conseillons la taille au-dessus, ${age}.`,
+    choose: (age: string) => `Choisir le ${age}`,
+    soldOut: "Cette taille n'est plus disponible pour cette tenue.",
+    tooSmall: (age: string) => `C'est plus petit que notre première taille (${age}).`,
+    tooTall: (age: string) => `C'est plus grand que notre dernière taille (${age}).`,
+    modelReference: "Repère",
+  },
   sizeGuidePage: {
     closeAria: "Fermer le guide des tailles",
     metaTitle: "Guide des tailles | FINI KURA",

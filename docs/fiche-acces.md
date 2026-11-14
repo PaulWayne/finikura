@@ -37,7 +37,7 @@ Les statistiques ne contiennent ni nom ni numéro de téléphone : elles compten
 Si vous oubliez ce mot de passe, il n'y a pas de lien « Mot de passe oublié » : demandez à la personne qui s'occupe du site de le réinitialiser.
 
 ## Ajouter une légende sous une photo portée
-Sous une photo où un enfant porte le vêtement, vous pouvez écrire par exemple « Aïcha, 7 ans, porte le 7-8 ans ».
+Sous une photo où un enfant porte le vêtement, vous pouvez écrire par exemple « Aïcha, 7 ans, 1,22 m, porte le 7-8 ans ». Donnez sa taille en mètres : les mamans comparent avec leur enfant. La première légende du produit est aussi rappelée dans le guide des tailles de la fiche, comme enfant témoin. Uniquement le prénom, et avec l'accord écrit des parents.
 1. Dans l'admin Medusa, ouvrez le produit.
 2. Dans le bloc **Métadonnées**, cliquez sur **Modifier**.
 3. Ajoutez une ligne :

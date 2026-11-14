@@ -12,6 +12,8 @@ import { triggerCartUpdated, triggerOpenCart, triggerToast } from "@/lib/cart-ev
 import { SizeGuideModal } from "./SizeGuideModal";
 import { SizeSelector } from "./SizeSelector";
 import { StickyAddToCartBar } from "./StickyAddToCartBar";
+import { ageKey } from "@/lib/size-advice";
+import type { SizeGuideRow } from "@/lib/content/types";
 
 interface ProductBuySectionProps {
   product: Product;
@@ -27,6 +29,7 @@ export function ProductBuySection({ product, sizeGuide, whatsappUrl, productUrl 
   const [isAdding, setIsAdding] = useState(false);
   const [isAddedSuccess, setIsAddedSuccess] = useState(false);
   const [isSizeModalOpen, setIsSizeModalOpen] = useState(false);
+  const variantForRow = (row: SizeGuideRow) => product.variants.find((v) => ageKey(v.title) === ageKey(row.age));
   // The fixed bar only shows once the main button is off screen: never two buttons at once.
   const mainButtonRef = useRef<HTMLButtonElement>(null);
   const [isMainButtonVisible, setIsMainButtonVisible] = useState(true);
@@ -103,6 +106,13 @@ export function ProductBuySection({ product, sizeGuide, whatsappUrl, productUrl 
       </div>
 
       <SizeGuideModal
+        onChooseSize={(row) => {
+          const variant = variantForRow(row);
+          if (variant) setSelectedVariantId(variant.id);
+          setIsSizeModalOpen(false);
+        }}
+        isSizeAvailable={(row) => Boolean(variantForRow(row)?.inStock)}
+        modelReference={product.wornCaptions?.find((c) => Boolean(c)) ?? null}
         isOpen={isSizeModalOpen}
         onClose={() => setIsSizeModalOpen(false)}
         sizeGuide={sizeGuide}
