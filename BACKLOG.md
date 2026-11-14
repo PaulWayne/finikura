@@ -610,6 +610,21 @@ En CI (FK-28), le cache pnpm et `.next/cache` s'ajoutent. Ce test tourne avant u
 
 **Taille** S · **Dépend de** — · **Origine** analyse CRO (14/11/2026)
 
+### FK-41 · Campagnes portées par des catégories Medusa (une pièce dans plusieurs campagnes)
+**Description.** Aujourd'hui, une campagne affiche une collection Medusa, et un produit n'appartient qu'à une collection : le mettre dans la campagne le sort de « Nouveautés » (et de la section de l'accueil), sans toucher aux pages Filles et Garçons. Pour remettre au goût du jour des pièces existantes dans une ou plusieurs campagnes, on passerait aux catégories Medusa, qui se cumulent : une catégorie parente « Campagnes », une sous-catégorie par campagne, cochée dans la fiche produit. À faire dès qu'une pièce doit être à la fois dans une campagne et dans « Nouveautés ».
+
+Options écartées (14/11/2026) : modifier les collections de Medusa (cœur du produit, cassé à chaque mise à jour) ; étiquettes (texte libre, une faute de frappe fait disparaître un produit sans message) ; module « Campagnes » sur mesure (2 à 3 jours plus la maintenance, à garder pour des prix ou remises par campagne).
+
+**Critères d'acceptation**
+- [ ] La campagne Strapi indique une catégorie Medusa (`category_handle`) ; sans catégorie, elle garde sa collection (transition).
+- [ ] La page de campagne et le hero de l'accueil (FK-39) lisent les produits de cette catégorie.
+- [ ] Les catégories rangées sous « Campagnes » n'apparaissent ni dans le menu, ni comme catégorie d'un produit : une robe de Tabaski reste « Filles », avec son badge et ses filtres.
+- [ ] Une pièce peut être à la fois dans une campagne et dans « Nouveautés » (vérifié par un test e2e).
+- [ ] Une catégorie de campagne mal rangée (hors « Campagnes ») ne casse rien et n'est pas utilisée.
+- [ ] Seeds, fixtures et guide de la gérante à jour.
+
+**Taille** M (environ une journée) · **Dépend de** besoin de la cliente · **Origine** discussion campagnes (14/11/2026)
+
 ## En attente de la cliente
 
 Mis à jour le 12 novembre 2026, avec les réponses reçues.
