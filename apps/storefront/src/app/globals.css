@@ -140,3 +140,12 @@
   outline: 2px solid var(--brand-primary);
   outline-offset: 2px;
 }
+
+/* Horizontal chip rows: still scrollable by swipe, without the Android scrollbar line. */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
