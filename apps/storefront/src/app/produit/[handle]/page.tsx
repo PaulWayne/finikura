@@ -102,6 +102,7 @@ async function ProductContent({ params }: ProductPageProps) {
         {/* Left Column: Gallery */}
         <div className="lg:col-span-7">
           <ProductGallery
+            productHandle={product.handle}
             images={product.images}
             productTitle={product.title}
             wornCaptions={product.wornCaptions}

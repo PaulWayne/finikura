@@ -8,6 +8,8 @@ export const ANALYTICS_EVENTS = {
   addToCart: "ajout-panier",
   orderPlaced: "commande",
   whatsappClick: "clic-whatsapp",
+  // FK-37: data { action: "ajout" | "retrait" }, never the customer.
+  favorite: "coup-de-coeur",
 } as const;
 
 export function trackEvent(event: string, data?: Record<string, string>): void {

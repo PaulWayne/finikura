@@ -1,18 +1,21 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { messages } from "@/messages/fr";
 import { ZoomIn, Heart } from "lucide-react";
 import { triggerToast } from "@/lib/cart-events";
 import { IMAGE_FALLBACKS } from "@/lib/images";
+import { ANALYTICS_EVENTS, trackEvent } from "@/lib/analytics";
+import { FAVORITES_EVENT, loadFavorites, toggleFavorite } from "@/lib/favorites";
 
 interface ProductGalleryProps {
   images: string[];
   productTitle: string;
+  productHandle: string;
   wornCaptions?: (string | null)[];
 }
 
-export function ProductGallery({ images, productTitle, wornCaptions = [] }: ProductGalleryProps) {
+export function ProductGallery({ images, productTitle, productHandle, wornCaptions = [] }: ProductGalleryProps) {
   const displayImages =
     images && images.length > 0
       ? images
@@ -20,6 +23,13 @@ export function ProductGallery({ images, productTitle, wornCaptions = [] }: Prod
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [isWishlisted, setIsWishlisted] = useState(false);
+  // Read after mount: the saved list only exists on the phone.
+  useEffect(() => {
+    const sync = () => setIsWishlisted(loadFavorites().includes(productHandle));
+    sync();
+    window.addEventListener(FAVORITES_EVENT, sync);
+    return () => window.removeEventListener(FAVORITES_EVENT, sync);
+  }, [productHandle]);
   const activeCaption = wornCaptions[activeIndex] ?? null;
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -44,10 +54,14 @@ export function ProductGallery({ images, productTitle, wornCaptions = [] }: Prod
   };
 
   const toggleWishlist = () => {
-    setIsWishlisted(!isWishlisted);
-    triggerToast(
-      !isWishlisted ? "Ajouté à votre sélection" : "Retiré de votre sélection"
-    );
+    const added = toggleFavorite(productHandle);
+    if (added === null) {
+      triggerToast(messages.favorites.unavailable);
+      return;
+    }
+    setIsWishlisted(added);
+    trackEvent(ANALYTICS_EVENTS.favorite, { action: added ? "ajout" : "retrait" });
+    triggerToast(added ? messages.favorites.added : messages.favorites.removed);
   };
 
   return (
@@ -114,7 +128,8 @@ export function ProductGallery({ images, productTitle, wornCaptions = [] }: Prod
           {/* Favorite subtle button */}
           <button
             type="button"
-            aria-label="Enregistrer aux favoris"
+            aria-label={isWishlisted ? messages.favorites.removeAria : messages.favorites.addAria}
+            aria-pressed={isWishlisted}
             onClick={toggleWishlist}
             className="absolute top-3 right-3 z-20 w-11 h-11 rounded-full bg-brand-bg/90 backdrop-blur-xs flex items-center justify-center text-brand-text hover:text-brand-terracotta shadow-xs transition active:scale-90 cursor-pointer"
           >

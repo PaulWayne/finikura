@@ -1,4 +1,5 @@
 import React from "react";
+import { FavoritesLink } from "./FavoritesLink";
 import Link from "next/link";
 import { MobileMenuTrigger } from "./MobileMenuTrigger";
 import { messages } from "@/messages/fr";
@@ -66,7 +67,10 @@ export function Header({ cartSlot }: HeaderProps) {
             </Link>
           </nav>
 
-          {cartSlot}
+          <div className="flex items-center">
+            <FavoritesLink />
+            {cartSlot}
+          </div>
         </div>
       </div>
     </header>

@@ -34,6 +34,9 @@ export function MobileMenuLinks({ onNavigate }: { onNavigate: () => void }) {
 
       <div className="w-full h-px bg-brand-surface my-2" />
 
+      <Link href="/coups-de-coeur" onClick={onNavigate} className={`text-base ${SECONDARY}`}>
+        {messages.favorites.title}
+      </Link>
       <Link href="/guide-des-tailles" onClick={onNavigate} className={`text-base ${SECONDARY}`}>
         {h.navSizeGuide}
       </Link>

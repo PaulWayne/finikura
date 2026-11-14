@@ -564,12 +564,12 @@ En CI (FK-28), le cache pnpm et `.next/cache` s'ajoutent. Ce test tourne avant u
 **Description.** Le cœur de la galerie produit existe, mais il ne garde rien : il change d'apparence et affiche un message, puis tout disparaît au rechargement. On mémorise les coups de cœur dans le localStorage du téléphone, comme les coordonnées de la cliente, sans compte. Rien n'est stocké dans Medusa tant qu'il n'y a pas de comptes clients (FK-26).
 
 **Critères d'acceptation**
-- [ ] Le cœur reste rempli après un rechargement et sur les autres fiches du même produit.
-- [ ] Une page « Mes coups de cœur » liste les produits mémorisés, avec leur prix et leur stock lus dans Medusa ; un produit disparu de Medusa ne s'affiche pas.
-- [ ] Sans localStorage (navigation privée bloquée), le site fonctionne et le cœur ne promet rien.
-- [ ] Umami compte les ajouts en coup de cœur, sans identifiant de la cliente.
+- [x] Le cœur reste rempli après un rechargement et sur les autres fiches du même produit.
+- [x] Une page « Mes coups de cœur » liste les produits mémorisés, avec leur prix et leur stock lus dans Medusa ; un produit disparu de Medusa ne s'affiche pas.
+- [x] Sans localStorage (navigation privée bloquée), le site fonctionne et le cœur ne promet rien.
+- [x] Umami compte les ajouts en coup de cœur, sans identifiant de la cliente.
 
-**Taille** S · **Dépend de** accord de la cliente · **Origine** recette 2 (14/11/2026)
+**Taille** S · **Dépend de** — · **Origine** recette 2 (14/11/2026), demandé par Paul
 
 ## En attente de la cliente
 
