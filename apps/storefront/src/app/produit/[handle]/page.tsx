@@ -118,10 +118,6 @@ async function ProductContent({ params }: ProductPageProps) {
             <h1 className="font-serif text-2xl sm:text-3xl lg:text-[34px] font-normal leading-tight uppercase tracking-[0.08em] text-brand-text mb-2">
               {product.title}
             </h1>
-            <div className="flex items-baseline gap-3 mb-3 md:mb-4">
-              <p className="text-2xl font-semibold text-brand-text tracking-tight">{formatPrice(product.price)}</p>
-            </div>
-            <div className="w-full h-px bg-brand-surface mb-3 md:mb-5" />
             <ProductBuySection product={product} sizeGuide={sizeGuide} whatsappUrl={settings.whatsappUrl} productUrl={productUrl} />
             <ShareWithRelativeButton
               text={messages.whatsapp.shareProduct(product.title, formatPrice(product.price), productUrl)}

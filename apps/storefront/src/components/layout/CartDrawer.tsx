@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   CART_EVENTS,
   triggerCloseCart,
@@ -21,6 +21,8 @@ interface CartDrawerProps {
 
 export function CartDrawer({ initialCart }: CartDrawerProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const panelRef = useRef<HTMLElement>(null);
+  const openerRef = useRef<HTMLElement | null>(null);
   const [cart, setCart] = useState<Cart>(initialCart);
 
   const [loadingItemId, setLoadingItemId] = useState<string | null>(null);
@@ -28,6 +30,7 @@ export function CartDrawer({ initialCart }: CartDrawerProps) {
 
   useEffect(() => {
     function handleOpen() {
+      openerRef.current = document.activeElement as HTMLElement | null;
       setIsOpen(true);
       document.body.style.overflow = "hidden";
     }
@@ -53,6 +56,39 @@ export function CartDrawer({ initialCart }: CartDrawerProps) {
       document.body.style.overflow = "";
     };
   }, []);
+
+  // Keyboard: focus moves into the panel, Tab stays inside, Escape closes, focus returns to the opener.
+  useEffect(() => {
+    if (!isOpen) return;
+    const panel = panelRef.current;
+    panel?.focus();
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        setIsOpen(false);
+        triggerCloseCart();
+        return;
+      }
+      if (e.key !== "Tab" || !panel) return;
+      const items = panel.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      if (items.length === 0) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && (document.activeElement === first || document.activeElement === panel)) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      openerRef.current?.focus();
+    };
+  }, [isOpen]);
 
   const close = () => {
     setIsOpen(false);
@@ -107,8 +143,13 @@ export function CartDrawer({ initialCart }: CartDrawerProps) {
       */}
       <aside
         id="cart-drawer"
+        ref={panelRef}
+        role="dialog"
+        aria-modal="true"
+        tabIndex={-1}
+        inert={!isOpen}
         aria-label={messages.cart.title}
-        className={`fixed z-50 bg-brand-bg shadow-2xl flex flex-col justify-between transition-transform duration-300 ease-in-out border-brand-surface 
+        className={`fixed z-50 focus-visible:outline-none bg-brand-bg shadow-2xl flex flex-col justify-between transition-transform duration-300 ease-in-out border-brand-surface 
           /* Mobile: bottom sheet */
           bottom-0 left-0 right-0 max-h-[92dvh] rounded-t-3xl border-t md:rounded-t-none md:border-t-0
           /* Desktop: right slide-over */

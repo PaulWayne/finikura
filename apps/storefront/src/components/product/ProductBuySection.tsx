@@ -43,8 +43,10 @@ export function ProductBuySection({ product, sizeGuide, whatsappUrl, productUrl 
 
   const selectedVariant = product.variants.find((v) => v.id === selectedVariantId);
   const isSoldOut = selectedVariant ? !selectedVariant.inStock : false;
+  // Each age can have its own price in Medusa: show the selected one (the lowest before a choice).
+  const price = selectedVariant?.price ?? product.price;
   const ctaLabel = selectedVariantId
-    ? messages.product.addToCartWithPrice(formatPrice(product.price))
+    ? messages.product.addToCartWithPrice(formatPrice(price))
     : messages.product.chooseSizeCta;
 
   const handleAddToCart = async () => {
@@ -69,6 +71,10 @@ export function ProductBuySection({ product, sizeGuide, whatsappUrl, productUrl 
 
   return (
     <>
+      <div className="flex items-baseline gap-3 mb-3 md:mb-4">
+        <p className="text-2xl font-semibold text-brand-text tracking-tight" aria-live="polite">{formatPrice(price)}</p>
+      </div>
+      <div className="w-full h-px bg-brand-surface mb-3 md:mb-5" />
       <SizeSelector
         variants={product.variants}
         selectedVariant={selectedVariant}

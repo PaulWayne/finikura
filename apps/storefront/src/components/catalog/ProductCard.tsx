@@ -150,7 +150,7 @@ export function ProductCard({
         {/* Price and Add button */}
         <div className="mt-2.5 pt-2 border-t border-brand-surface/80 flex items-center justify-between">
           <span className="font-medium text-xs md:text-sm text-brand-text">
-            {formatPrice(product.price)}
+            {formatPrice(selectedVariant?.price ?? product.price)}
           </span>
 
           <div className="flex items-center space-x-1.5">
