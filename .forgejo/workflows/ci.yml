@@ -1,11 +1,14 @@
-# FK-28: checks on every push and pull request (Forgejo Actions).
-# Runner set up as in docs/ci-forgejo.md: label "docker", host network, Docker socket mounted,
-# one job at a time. The jobs below therefore run one after the other on the VPS.
+# FK-28: checks run by Forgejo Actions. Runner set up as in docs/ci-forgejo.md: label "docker",
+# dind network, one job at a time, CI capped at 1 CPU. To stay light:
+# - every push: lint, typecheck, unit tests (a few minutes);
+# - pull request to main, or push to main: the Medusa tests and the mock e2e too, in one job.
+# The pnpm store lives in the "fk-pnpm-store" volume, kept between runs.
 name: CI
 
 on:
   push:
   pull_request:
+    branches: [main]
 
 jobs:
   checks:
@@ -13,45 +16,37 @@ jobs:
     runs-on: docker
     container:
       image: node:22-bookworm
+      volumes:
+        - fk-pnpm-store:/pnpm-store
     steps:
       - uses: actions/checkout@v4
       - name: Dépendances
         run: |
           corepack enable
-          pnpm install --frozen-lockfile
+          pnpm install --frozen-lockfile --store-dir /pnpm-store
       - run: pnpm lint
       - run: pnpm typecheck
       - run: pnpm --filter medusa test:unit
 
-  medusa:
-    name: Tests Medusa (PostgreSQL jetable)
+  tests:
+    name: Tests Medusa et e2e mock
     needs: checks
+    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
     runs-on: docker
     container:
       image: node:22-bookworm
+      volumes:
+        - fk-pnpm-store:/pnpm-store
     steps:
       - uses: actions/checkout@v4
-      - name: Client Docker
-        run: apt-get update -qq && apt-get install -y -qq docker.io >/dev/null
-      - name: Dépendances
+      - name: Dépendances, client Docker, Chromium
         run: |
+          apt-get update -qq && apt-get install -y -qq docker.io >/dev/null
           corepack enable
-          pnpm install --frozen-lockfile
-      # The script publishes PostgreSQL on 127.0.0.1 of the host: the runner's host network
-      # makes it reachable from this job container.
-      - run: pnpm --filter medusa test:integration:ci
-
-  e2e:
-    name: Parcours e2e (mode mock)
-    needs: checks
-    runs-on: docker
-    container:
-      image: node:22-bookworm
-    steps:
-      - uses: actions/checkout@v4
-      - name: Dépendances
-        run: |
-          corepack enable
-          pnpm install --frozen-lockfile
+          pnpm install --frozen-lockfile --store-dir /pnpm-store
           pnpm --filter storefront exec playwright install-deps chromium
-      - run: pnpm --filter storefront test:e2e
+      # The script publishes PostgreSQL on 127.0.0.1: the job shares the dind network.
+      - name: Tests Medusa (PostgreSQL jetable)
+        run: pnpm --filter medusa test:integration:ci
+      - name: Parcours e2e (mode mock)
+        run: pnpm --filter storefront test:e2e

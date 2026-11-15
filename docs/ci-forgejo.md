@@ -1,40 +1,83 @@
 # Intégration continue sur Forgejo (FK-28)
 
-Le dépôt est sur https://git.kaliclean.fr/Paul/FiniKura. Forgejo Actions lance les vérifications sur le VPS de production, par un runner limité pour ne pas ralentir le site.
+Le dépôt est sur https://git.kaliclean.fr/Paul/FiniKura. Forgejo Actions lance les vérifications sur le VPS de production, par un runner déployé dans Dokploy et plafonné pour ne pas ralentir le site.
 
 ## Ce qui tourne, et quand
 
-| Workflow | Quand | Contenu |
+| Job | Quand | Durée indicative |
 |---|---|---|
-| `.forgejo/workflows/ci.yml` | À chaque push et chaque pull request | Lint et typecheck des trois applis, tests unitaires Medusa, puis tests Medusa sur un PostgreSQL jetable et parcours e2e du front en mode mock |
-| `.forgejo/workflows/e2e-live.yml` | Chaque nuit à 2 h, ou à la main (onglet Actions, « Run workflow ») avant une fusion dans `main` | Parcours e2e en mode live : front, Medusa et Strapi sur un PostgreSQL jetable, avec les seeds |
+| `CI / Lint, typecheck, tests unitaires` | À chaque push | 3 à 5 min |
+| `CI / Tests Medusa et e2e mock` | Pull request vers `main`, ou push dans `main` | environ 10 min |
+| `E2E live / Parcours e2e (mode live)` | Chaque nuit à 2 h, ou à la main (onglet Actions, « Run workflow ») avant une fusion dans `main` | plus long |
 
-Les tests démarrent leurs propres conteneurs (PostgreSQL). Il faut donc que le runner donne accès à Docker.
+Les dépendances pnpm restent dans le volume Docker `fk-pnpm-store` d'une exécution à l'autre : seule la première installation est longue.
 
-## Installer le runner sur le VPS
+## Le runner dans Dokploy
 
-1. Dans Forgejo, activer Actions pour le dépôt (Paramètres → Unités → Actions), puis créer un jeton d'enregistrement (Paramètres → Actions → Runners → Créer un runner).
-2. Installer le runner Forgejo (`forgejo-runner`) dans sa dernière version stable, en suivant la doc officielle : https://forgejo.org/docs/latest/admin/actions/runner-installation/
-3. L'enregistrer avec le label `docker:docker://node:22-bookworm`. Le jeton se saisit à ce moment-là : il ne va ni dans le dépôt ni dans un fichier commité.
-4. Dans le `config.yml` du runner, régler :
+Un service compose avec deux conteneurs :
+- `dind` : le Docker dans lequel tournent les jobs et le PostgreSQL de test. Il est plafonné à 1 CPU et 3 Go, ce qui borne toute la CI.
+- `runner` : `forgejo-runner`, qui écrit son `config.yml` à chaque démarrage.
 
 ```yaml
-runner:
-  capacity: 1            # un seul job à la fois
-container:
-  network: host          # les tests joignent leur PostgreSQL sur 127.0.0.1
-  docker_host: automount # le socket Docker est monté dans les jobs
-  options: --cpus 1 --memory 3g
+services:
+  dind:
+    image: docker:27-dind
+    restart: unless-stopped
+    privileged: true
+    command: ["dockerd", "-H", "tcp://0.0.0.0:2375", "--tls=false"]
+    volumes:
+      - dind-data:/var/lib/docker
+    cpus: 1
+    mem_limit: 3g
+
+  runner:
+    image: data.forgejo.org/forgejo/runner:13
+    restart: unless-stopped
+    depends_on: [dind]
+    user: "0:0"
+    working_dir: /data
+    environment:
+      DOCKER_HOST: tcp://dind:2375
+      INSTANCE: https://git.kaliclean.fr
+      TOKEN: ${RUNNER_TOKEN}
+    volumes:
+      - runner-data:/data
+    command:
+      - sh
+      - -c
+      - |
+        until wget -qO- http://dind:2375/_ping >/dev/null 2>&1; do echo "attente de dind..."; sleep 2; done
+        cat > /data/config.yml <<'EOF'
+        log:
+          level: info
+        runner:
+          file: .runner
+          capacity: 1
+          envs:
+            DOCKER_HOST: tcp://127.0.0.1:2375
+        container:
+          network: host
+          docker_host: "-"
+          valid_volumes:
+            - fk-pnpm-store
+        EOF
+        if [ ! -f .runner ]; then forgejo-runner register --no-interactive --instance "$$INSTANCE" --token "$$TOKEN" --name dokploy-runner --labels "docker:docker://node:20-bookworm,ubuntu-latest:docker://node:20-bookworm"; fi
+        exec forgejo-runner daemon --config /data/config.yml
+
+volumes:
+  dind-data:
+  runner-data:
 ```
 
-Vérifier ces clés dans la doc de la version installée du runner : elles ont changé entre versions.
-
-**Limite à connaître :** `--cpus 1 --memory 3g` limite le conteneur du job, pas le PostgreSQL de test qu'il démarre à côté. Ce dernier reste petit (base en mémoire, quelques Mo). On surveille la charge du VPS les premières semaines. Si les tests gênent le site, le runner passe sur une autre machine sans rien changer aux workflows.
+- `network: host` : les jobs partagent le réseau de `dind`. Ils y joignent son Docker (`127.0.0.1:2375`) et le PostgreSQL que publient les tests sur `127.0.0.1`.
+- `valid_volumes` : autorise les workflows à monter le volume `fk-pnpm-store`.
+- Le port 2375 de `dind` n'a pas de mot de passe : ne jamais le publier hors du compose.
+- `RUNNER_TOKEN` ne sert qu'au premier enregistrement. Il va dans les variables d'environnement de Dokploy, jamais dans le dépôt.
 
 ## Bloquer la fusion si la CI échoue
 
 Dans Forgejo : Paramètres du dépôt → Branches → Protection de `main` :
 - interdire le push direct ;
-- exiger que les vérifications de statut passent, en cochant les jobs `CI / Lint, typecheck, tests unitaires`, `CI / Tests Medusa (PostgreSQL jetable)` et `CI / Parcours e2e (mode mock)`.
+- exiger que les vérifications de statut passent, en cochant `CI / Lint, typecheck, tests unitaires` et `CI / Tests Medusa et e2e mock`.
 
-Ils n'apparaissent dans la liste qu'après une première exécution.
+Ils n'apparaissent dans la liste qu'après une première exécution, donc après une première pull request vers `main`.

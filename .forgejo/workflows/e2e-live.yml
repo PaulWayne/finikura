@@ -13,12 +13,14 @@ jobs:
     runs-on: docker
     container:
       image: node:22-bookworm
+      volumes:
+        - fk-pnpm-store:/pnpm-store
     steps:
       - uses: actions/checkout@v4
       - name: Client Docker et dépendances
         run: |
           apt-get update -qq && apt-get install -y -qq docker.io >/dev/null
           corepack enable
-          pnpm install --frozen-lockfile
+          pnpm install --frozen-lockfile --store-dir /pnpm-store
           pnpm --filter storefront exec playwright install-deps chromium
       - run: pnpm test:e2e:live
