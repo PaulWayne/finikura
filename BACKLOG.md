@@ -209,7 +209,7 @@ Chaque choix (hébergeur, registraire) demande ton accord, car il implique un co
 - **Hébergement :** sur le VPS Hostinger existant, géré avec Dokploy. D'autres sites tournent déjà sur ce serveur : les ports, les noms de conteneurs, les volumes et les bases ne doivent pas entrer en conflit avec eux, et il faut vérifier la mémoire disponible.
 - **Domaine et e-mail :** la cliente choisit entre `fini-kura.fr` et `finikura.fr`.
 
-**Décision (13/11/2026).** VPS Hostinger KVM 2 (2 vCPU, 8 Go, 100 Go NVMe), partagé avec Forgejo et le runner de CI (voir FK-28).
+**Décision (13/11/2026).** VPS Hostinger KVM 2 (2 vCPU, 8 Go, 100 Go NVMe). Forgejo et la CI n'y sont plus prévus (FK-28 abandonné le 15/11/2026, dépôt sur GitHub).
 
 **Critères d'acceptation**
 - [ ] Le site répond en HTTPS sur le domaine, et le HTTP redirige vers le HTTPS.
@@ -493,13 +493,12 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 - l'e2e live (FK-35) tourne la nuit ou avant une fusion dans `main`, jamais à chaque push.
 Le runner a accès à Docker, puisque les tests démarrent des conteneurs. On surveille la charge les premières semaines ; si besoin, le runner passe sur une autre machine sans rien changer au reste.
 
-**Abandonné (15/11/2026).** Essayé avec un runner Forgejo dans Dokploy : même plafonné à 1 CPU, chaque exécution saturait le disque du VPS (installations de dépendances, image de CI), qui porte aussi d'autres sites. On garde le dépôt sur Forgejo, et les tests se lancent en local avant chaque push : `pnpm lint`, `pnpm typecheck`, `pnpm --filter medusa test:unit`, `pnpm --filter medusa test:integration:ci`, `pnpm --filter storefront test:e2e`, et `pnpm test:e2e:live` avant une mise en production.
+**Abandonné (15/11/2026).** Essayé avec un runner Forgejo dans Dokploy : même plafonné à 1 CPU, chaque exécution saturait le disque du VPS (installations de dépendances, image de CI), qui porte aussi d'autres sites. Le dépôt revient sur GitHub (https://github.com/PaulWayne/finikura), pour en avoir une copie hors du VPS, et les tests se lancent en local avant chaque push : `pnpm lint`, `pnpm typecheck`, `pnpm --filter medusa test:unit`, `pnpm --filter medusa test:integration:ci`, `pnpm --filter storefront test:e2e`, et `pnpm test:e2e:live` avant une mise en production.
 
 **Critères d'acceptation**
 - [ ] Un push lance le lint, le typecheck et les deux suites de tests.
 - [ ] Un échec bloque la fusion dans `main`.
 
-**Avancement (branche `fk-28-ci`).** Dépôt sur Forgejo (https://git.kaliclean.fr/Paul/FiniKura). Workflows écrits : `.forgejo/workflows/ci.yml` (à chaque push) et `e2e-live.yml` (la nuit, ou à la main). Reste à installer le runner sur le VPS et à protéger `main`, voir `docs/ci-forgejo.md` ; les critères se valident à la première exécution.
 
 **Taille** M · **Dépend de** FK-22, FK-29 · **Origine** toi (13/11/2026)
 
