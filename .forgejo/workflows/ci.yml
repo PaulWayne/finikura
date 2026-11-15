@@ -1,0 +1,52 @@
+# FK-28: checks run by Forgejo Actions. Runner set up as in docs/ci-forgejo.md: label "docker",
+# dind network, one job at a time, CI capped at 1 CPU. To stay light:
+# - every push: lint, typecheck, unit tests (a few minutes);
+# - pull request to main, or push to main: the Medusa tests and the mock e2e too, in one job.
+# The pnpm store lives in the "fk-pnpm-store" volume, kept between runs.
+name: CI
+
+on:
+  push:
+  pull_request:
+    branches: [main]
+
+jobs:
+  checks:
+    name: Lint, typecheck, tests unitaires
+    runs-on: docker
+    container:
+      image: node:22-bookworm
+      volumes:
+        - fk-pnpm-store:/pnpm-store
+    steps:
+      - uses: actions/checkout@v4
+      - name: Dépendances
+        run: |
+          corepack enable
+          pnpm install --frozen-lockfile --store-dir /pnpm-store
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm --filter medusa test:unit
+
+  tests:
+    name: Tests Medusa et e2e mock
+    needs: checks
+    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
+    runs-on: docker
+    container:
+      image: node:22-bookworm
+      volumes:
+        - fk-pnpm-store:/pnpm-store
+    steps:
+      - uses: actions/checkout@v4
+      - name: Dépendances, client Docker, Chromium
+        run: |
+          apt-get update -qq && apt-get install -y -qq docker.io >/dev/null
+          corepack enable
+          pnpm install --frozen-lockfile --store-dir /pnpm-store
+          pnpm --filter storefront exec playwright install-deps chromium
+      # The script publishes PostgreSQL on 127.0.0.1: the job shares the dind network.
+      - name: Tests Medusa (PostgreSQL jetable)
+        run: pnpm --filter medusa test:integration:ci
+      - name: Parcours e2e (mode mock)
+        run: pnpm --filter storefront test:e2e

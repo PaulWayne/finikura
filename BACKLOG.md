@@ -497,6 +497,8 @@ Le runner a accès à Docker, puisque les tests démarrent des conteneurs. On su
 - [ ] Un push lance le lint, le typecheck et les deux suites de tests.
 - [ ] Un échec bloque la fusion dans `main`.
 
+**Avancement (branche `fk-28-ci`).** Dépôt sur Forgejo (https://git.kaliclean.fr/Paul/FiniKura). Workflows écrits : `.forgejo/workflows/ci.yml` (à chaque push) et `e2e-live.yml` (la nuit, ou à la main). Reste à installer le runner sur le VPS et à protéger `main`, voir `docs/ci-forgejo.md` ; les critères se valident à la première exécution.
+
 **Taille** M · **Dépend de** FK-22, FK-29 · **Origine** toi (13/11/2026)
 
 ### FK-29 · PostgreSQL en conteneur pour les tests Medusa
