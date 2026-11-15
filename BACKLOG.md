@@ -49,7 +49,7 @@ Les éléments ne sont pas encore des issues GitHub. On les crée seulement apr�
 | FK-25 | Paiement en ligne | P2 | L | — |
 | FK-26 | Comptes clients | P2 | L | — |
 | FK-27 | Coût et marge par article | P2 | M | Cliente : coût et marge |
-| FK-28 | CI sur Forgejo | P2 | M | FK-22, FK-29, FK-35 |
+| FK-28 | ~~CI sur Forgejo~~ abandonné (15/11/2026) | — | M | — |
 | FK-29 | PostgreSQL en conteneur pour les tests Medusa | P2 | S | FK-22 |
 | FK-30 | Statistiques : ajouts au panier, commandes, clics WhatsApp | P2 | S | FK-10 |
 | FK-31 | Bouton « Demander à un proche » (partage WhatsApp du produit) | P1 | S | — |
@@ -492,6 +492,8 @@ Il faut aussi ajouter `aria-invalid`, `aria-describedby` et `autocomplete` au fo
 - son conteneur est limité à 1 CPU et 3 Go de RAM ;
 - l'e2e live (FK-35) tourne la nuit ou avant une fusion dans `main`, jamais à chaque push.
 Le runner a accès à Docker, puisque les tests démarrent des conteneurs. On surveille la charge les premières semaines ; si besoin, le runner passe sur une autre machine sans rien changer au reste.
+
+**Abandonné (15/11/2026).** Essayé avec un runner Forgejo dans Dokploy : même plafonné à 1 CPU, chaque exécution saturait le disque du VPS (installations de dépendances, image de CI), qui porte aussi d'autres sites. On garde le dépôt sur Forgejo, et les tests se lancent en local avant chaque push : `pnpm lint`, `pnpm typecheck`, `pnpm --filter medusa test:unit`, `pnpm --filter medusa test:integration:ci`, `pnpm --filter storefront test:e2e`, et `pnpm test:e2e:live` avant une mise en production.
 
 **Critères d'acceptation**
 - [ ] Un push lance le lint, le typecheck et les deux suites de tests.
