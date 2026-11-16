@@ -12,6 +12,7 @@ import { CartDrawer } from "@/components/layout/CartDrawer";
 import { CartTrigger } from "@/components/layout/CartTrigger";
 import { Footer } from "@/components/layout/Footer";
 import { Analytics } from "@/components/layout/Analytics";
+import { ScrollToTopOnNavigate } from "@/components/layout/ScrollToTopOnNavigate";
 import { WhatsAppClickTracker } from "@/components/layout/WhatsAppClickTracker";
 import { messages } from "@/messages/fr";
 import { SITE_URL } from "@/lib/site";
@@ -75,6 +76,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <WhatsAppFloatingButton href={settings.whatsappUrl} />
           </Suspense>
         )}
+        {/* usePathname() must stream in under Suspense with Cache Components. */}
+        <Suspense fallback={null}>
+          <ScrollToTopOnNavigate />
+        </Suspense>
         <Suspense fallback={null}>
           <CartPanel />
         </Suspense>
