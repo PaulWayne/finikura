@@ -18,14 +18,20 @@ interface ProductGalleryProps {
   videos?: ProductVideo[];
 }
 
+type GalleryView = { kind: "photo"; src: string; caption: string | null } | { kind: "clip"; video: ProductVideo };
+
 export function ProductGallery({ images, productTitle, productHandle, wornCaptions = [], videos = [] }: ProductGalleryProps) {
   const displayImages =
     images && images.length > 0
       ? images
       : [IMAGE_FALLBACKS.product];
 
-  // Each clip counts as one more view, after the photos.
-  const viewCount = displayImages.length + videos.length;
+  // The first photo opens the gallery (it is the one of the catalogue card, and the lightest to
+  // show first). The first clip comes right after it, one swipe away; the other clips follow the photos.
+  const photoViews: GalleryView[] = displayImages.map((src, i) => ({ kind: "photo", src, caption: wornCaptions[i] ?? null }));
+  const clipViews: GalleryView[] = videos.map((video) => ({ kind: "clip", video }));
+  const views = [photoViews[0], ...clipViews.slice(0, 1), ...photoViews.slice(1), ...clipViews.slice(1)];
+  const viewCount = views.length;
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [isWishlisted, setIsWishlisted] = useState(false);
@@ -36,8 +42,8 @@ export function ProductGallery({ images, productTitle, productHandle, wornCaptio
     window.addEventListener(FAVORITES_EVENT, sync);
     return () => window.removeEventListener(FAVORITES_EVENT, sync);
   }, [productHandle]);
-  const activeVideo = activeIndex >= displayImages.length ? videos[activeIndex - displayImages.length] : undefined;
-  const activeCaption = activeVideo ? activeVideo.caption : wornCaptions[activeIndex] ?? null;
+  const activeView = views[activeIndex] ?? views[0];
+  const activeCaption = activeView.kind === "clip" ? activeView.video.caption : activeView.caption;
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const handleThumbnailClick = (idx: number) => {
@@ -81,22 +87,42 @@ export function ProductGallery({ images, productTitle, productHandle, wornCaptio
         className="hidden md:flex flex-col gap-3 shrink-0 w-20"
         id="thumb-container"
       >
-        {displayImages.map((src, idx) => {
+        {views.map((view, idx) => {
           const isActive = activeIndex === idx;
-          return (
+          const outline = isActive
+            ? "outline outline-2 outline-brand-primary outline-offset-2"
+            : "outline outline-1 outline-transparent hover:outline-brand-surface";
+          return view.kind === "clip" ? (
             <button
-              key={idx}
+              key={view.video.sources[0].src}
+              type="button"
+              aria-label={messages.product.videoThumbAria}
+              onClick={() => handleThumbnailClick(idx)}
+              className={`thumb-btn relative w-20 h-24 rounded-lg bg-brand-surface/40 overflow-hidden transition-all duration-200 shrink-0 cursor-pointer ${outline}`}
+            >
+              <SafeImage
+                src={view.video.poster}
+                alt=""
+                fallbackSrc={IMAGE_FALLBACKS.product}
+                sizes="80px"
+                className="w-full h-full object-cover"
+              />
+              <span className="absolute inset-0 flex items-center justify-center">
+                <span className="w-8 h-8 rounded-full bg-brand-bg flex items-center justify-center text-brand-text">
+                  <Play className="w-4 h-4 fill-brand-text" aria-hidden="true" />
+                </span>
+              </span>
+            </button>
+          ) : (
+            <button
+              key={`${view.src}-${idx}`}
               type="button"
               aria-label={`Afficher la vue ${idx + 1}`}
               onClick={() => handleThumbnailClick(idx)}
-              className={`thumb-btn relative w-20 h-24 rounded-lg bg-brand-surface/40 overflow-hidden transition-all duration-200 shrink-0 group cursor-pointer ${
-                isActive
-                  ? "outline outline-2 outline-brand-primary outline-offset-2"
-                  : "outline outline-1 outline-transparent hover:outline-brand-surface"
-              }`}
+              className={`thumb-btn relative w-20 h-24 rounded-lg bg-brand-surface/40 overflow-hidden transition-all duration-200 shrink-0 group cursor-pointer ${outline}`}
             >
               <SafeImage
-                src={src}
+                src={view.src}
                 alt={`${productTitle} vue miniature ${idx + 1}`}
                 fallbackSrc={IMAGE_FALLBACKS.product}
                 sizes="80px"
@@ -105,46 +131,17 @@ export function ProductGallery({ images, productTitle, productHandle, wornCaptio
             </button>
           );
         })}
-        {videos.map((video, idx) => {
-          const videoIndex = displayImages.length + idx;
-          return (
-          <button
-            key={video.sources[0].src}
-            type="button"
-            aria-label={messages.product.videoThumbAria(idx + 1)}
-            onClick={() => handleThumbnailClick(videoIndex)}
-            className={`thumb-btn relative w-20 h-24 rounded-lg bg-brand-surface/40 overflow-hidden transition-all duration-200 shrink-0 cursor-pointer ${
-              activeIndex === videoIndex
-                ? "outline outline-2 outline-brand-primary outline-offset-2"
-                : "outline outline-1 outline-transparent hover:outline-brand-surface"
-            }`}
-          >
-            <SafeImage
-              src={video.poster}
-              alt=""
-              fallbackSrc={IMAGE_FALLBACKS.product}
-              sizes="80px"
-              className="w-full h-full object-cover"
-            />
-            <span className="absolute inset-0 flex items-center justify-center">
-              <span className="w-8 h-8 rounded-full bg-brand-bg flex items-center justify-center text-brand-text">
-                <Play className="w-4 h-4 fill-brand-text" aria-hidden="true" />
-              </span>
-            </span>
-          </button>
-          );
-        })}
       </div>
 
       {/* Main image container: edge to edge on a phone, past the page gutter */}
       <div className="relative flex-1 w-[calc(100%+2rem)] -mx-4 md:mx-0 md:w-full bg-brand-surface/30 md:rounded-md overflow-hidden group">
         {/* Desktop single main display with smooth transition */}
         <div className="hidden md:block aspect-[4/5] w-full overflow-hidden relative bg-brand-surface/30">
-          {activeVideo ? (
-            <ProductVideoView key={activeVideo.sources[0].src} video={activeVideo} productTitle={productTitle} productHandle={productHandle} />
+          {activeView.kind === "clip" ? (
+            <ProductVideoView key={activeView.video.sources[0].src} video={activeView.video} productTitle={productTitle} productHandle={productHandle} />
           ) : (
           <SafeImage
-            src={displayImages[activeIndex] || displayImages[0]}
+            src={activeView.src}
             alt={`${productTitle} - Vue haute résolution`}
             fallbackSrc={IMAGE_FALLBACKS.product}
             sizes="(min-width: 1200px) 560px, 50vw"
@@ -154,7 +151,7 @@ export function ProductGallery({ images, productTitle, productHandle, wornCaptio
 
 
           {/* Loupe / Interaction Hint */}
-          <div hidden={Boolean(activeVideo)} className="absolute bottom-4 right-4 pointer-events-none flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-bg/90 backdrop-blur-xs text-brand-text shadow-xs transition-opacity group-hover:opacity-100">
+          <div hidden={activeView.kind === "clip"} className="absolute bottom-4 right-4 pointer-events-none flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-bg/90 backdrop-blur-xs text-brand-text shadow-xs transition-opacity group-hover:opacity-100">
             <ZoomIn className="w-4 h-4 text-brand-primary" />
             <span className="text-xs text-brand-text font-normal">
               {messages.product.mainStudioView}
@@ -188,24 +185,23 @@ export function ProductGallery({ images, productTitle, productHandle, wornCaptio
             onScroll={handleMobileScroll}
             className="flex w-full h-full overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar"
           >
-            {displayImages.map((src, idx) => (
+            {views.map((view, idx) => (
               <div
-                key={idx}
+                key={view.kind === "clip" ? view.video.sources[0].src : `${view.src}-${idx}`}
                 className="w-full h-full flex-shrink-0 snap-center relative aspect-[4/5] bg-brand-surface/40"
               >
-                <SafeImage
-                  src={src}
-                  alt={`${productTitle} - Vue ${idx + 1}`}
-                  fallbackSrc={IMAGE_FALLBACKS.product}
-                  sizes="(min-width: 768px) 1px, 100vw"
-                  preload={idx === 0}
-                  className="object-cover object-top"
-                />
-              </div>
-            ))}
-            {videos.map((video) => (
-              <div key={video.sources[0].src} className="w-full h-full flex-shrink-0 snap-center relative aspect-[4/5] bg-brand-surface/40">
-                <ProductVideoView video={video} productTitle={productTitle} productHandle={productHandle} />
+                {view.kind === "clip" ? (
+                  <ProductVideoView video={view.video} productTitle={productTitle} productHandle={productHandle} />
+                ) : (
+                  <SafeImage
+                    src={view.src}
+                    alt={`${productTitle} - Vue ${idx + 1}`}
+                    fallbackSrc={IMAGE_FALLBACKS.product}
+                    sizes="(min-width: 768px) 1px, 100vw"
+                    preload={idx === 0}
+                    className="object-cover object-top"
+                  />
+                )}
               </div>
             ))}
           </div>
