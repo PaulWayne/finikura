@@ -8,7 +8,7 @@ export function CheckoutEmpty() {
       <div className="w-16 h-16 rounded-full bg-brand-surface/40 flex items-center justify-center mx-auto mb-4 text-brand-primary">
         <ShoppingBag className="w-8 h-8" />
       </div>
-      <h2 className="font-serif text-2xl md:text-3xl uppercase text-brand-text mb-2 tracking-[0.05em]">
+      <h2 className="font-serif text-2xl md:text-3xl text-brand-text mb-2">
         {messages.checkout.emptyCartTitle}
       </h2>
       <p className="text-sm text-brand-text mb-6 max-w-md mx-auto">{messages.checkout.emptyCartDesc}</p>

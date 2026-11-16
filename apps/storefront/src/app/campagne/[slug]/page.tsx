@@ -65,7 +65,7 @@ async function CampaignContent({ params }: CampaignPageProps) {
           <p className="text-xs uppercase tracking-[0.15em] font-medium text-brand-text">
             {campaign.title}
           </p>
-          <h1 className="font-serif text-3xl md:text-[40px] uppercase font-normal text-brand-text tracking-[0.08em] leading-tight">
+          <h1 className="font-serif text-3xl md:text-[40px] font-normal text-brand-text leading-tight">
             {campaign.texts.headline}
           </h1>
           {campaign.texts.description && (
@@ -80,7 +80,7 @@ async function CampaignContent({ params }: CampaignPageProps) {
         <section aria-labelledby="campaign-products" className="space-y-6">
           <h2
             id="campaign-products"
-            className="font-serif text-2xl md:text-3xl uppercase text-center text-brand-text tracking-[0.08em]"
+            className="font-serif text-2xl md:text-3xl text-center text-brand-text"
           >
             {messages.campaign.productsTitle}
           </h2>

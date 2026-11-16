@@ -32,7 +32,7 @@ async function OrderConfirmationContent({
   if (!order) {
     return (
       <div className="bg-brand-bg pt-8 md:pt-24 pb-16 flex flex-col items-center px-2 text-center">
-        <h1 className="font-serif text-2xl text-brand-text uppercase mb-3">
+        <h1 className="font-serif text-2xl text-brand-text mb-3">
           {messages.confirmation.notFoundTitle}
         </h1>
         <p className="text-sm text-brand-text mb-6">

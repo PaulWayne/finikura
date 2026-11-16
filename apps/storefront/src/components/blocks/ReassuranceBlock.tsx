@@ -45,23 +45,23 @@ export function ReassuranceBlock({ block, items }: ReassuranceBlockProps) {
 
   return (
     <section
-      className="my-8 md:my-12 rounded-2xl bg-brand-surface/50 border border-brand-surface p-6 md:p-8 shadow-xs"
+      className="border-y border-brand-surface py-6 md:py-8"
       data-purpose="reassurance-block"
     >
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 divide-y md:divide-y-0 md:divide-x divide-brand-text/15">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8">
         {displayItems.map((item, idx) => (
           <div
             key={item.id || idx}
-            className={`flex items-start gap-4 ${idx > 0 ? "pt-5 md:pt-0 md:pl-8" : ""}`}
+            className="flex items-start gap-4"
           >
-            <div className="w-12 h-12 rounded-full bg-brand-bg border border-brand-surface flex items-center justify-center shrink-0 shadow-xs">
+            <div className="shrink-0 mt-0.5">
               {renderIcon(item.icon)}
             </div>
             <div>
-              <h3 className="font-serif text-base text-brand-text font-normal leading-snug">
+              <h3 className="font-serif text-lg text-brand-text leading-snug">
                 {item.title}
               </h3>
-              <p className="text-xs text-brand-text font-light mt-1 leading-relaxed">
+              <p className="text-sm text-brand-text mt-1 leading-relaxed">
                 {item.description}
               </p>
             </div>

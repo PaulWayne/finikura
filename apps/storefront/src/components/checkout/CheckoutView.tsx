@@ -40,7 +40,7 @@ export function CheckoutView({ cart }: { cart: Cart }) {
                 <span className="hidden sm:inline">{messages.checkout.stepEyebrowDesktop}</span>
                 <span className="sm:hidden">{messages.checkout.stepEyebrowMobile}</span>
               </span>
-              <h1 className="font-serif text-2xl sm:text-3xl lg:text-[34px] uppercase text-brand-text tracking-[0.06em] leading-tight">
+              <h1 className="font-serif text-2xl sm:text-3xl lg:text-[34px] text-brand-text leading-tight">
                 <span className="hidden sm:inline">{messages.checkout.titleDesktop}</span>
                 <span className="sm:hidden">{messages.checkout.titleMobile}</span>
               </h1>
@@ -98,7 +98,7 @@ export function CheckoutView({ cart }: { cart: Cart }) {
           <aside className="hidden lg:block lg:col-span-5 sticky top-28">
             <div className="bg-brand-surface rounded-xl p-6 shadow-sm space-y-5 border border-brand-surface">
               <div className="flex items-baseline justify-between border-b border-brand-surface pb-3">
-                <h2 className="font-serif text-lg uppercase text-brand-text tracking-[0.08em] font-normal">
+                <h2 className="font-serif text-lg text-brand-text font-normal">
                   {messages.checkout.summaryTitle}
                 </h2>
                 <span className="text-[11px] uppercase tracking-wider bg-brand-white/80 px-2.5 py-0.5 rounded text-brand-text font-semibold">

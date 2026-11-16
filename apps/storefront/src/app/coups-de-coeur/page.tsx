@@ -20,7 +20,7 @@ export default function FavoritesPage() {
   return (
     <div className="pt-3 pb-12 md:py-8 space-y-5 md:space-y-8">
       <div className="text-center max-w-2xl mx-auto space-y-2">
-        <h1 className="font-serif text-3xl md:text-[40px] uppercase font-normal text-brand-text tracking-[0.08em] leading-tight">
+        <h1 className="font-serif text-3xl md:text-[40px] font-normal text-brand-text leading-tight">
           {messages.favorites.title}
         </h1>
         <p className="text-sm md:text-base text-brand-text">{messages.favorites.intro}</p>

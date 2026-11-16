@@ -54,7 +54,7 @@ export function OrderConfirmation({ order, whatsappUrl }: OrderConfirmationProps
         <p className="text-xs uppercase tracking-[0.2em] text-brand-text mb-1 font-medium">
           {messages.confirmation.orderRefLabel}
         </p>
-        <h1 className="font-serif text-2xl sm:text-3xl text-brand-text font-normal tracking-[0.03em] mb-3">
+        <h1 className="font-serif text-2xl sm:text-3xl text-brand-text font-normal mb-3">
           {messages.confirmation.orderNumberPrefix} {order.orderNumber}
         </h1>
 

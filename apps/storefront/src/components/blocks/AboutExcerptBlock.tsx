@@ -12,12 +12,11 @@ export function AboutExcerptBlock({ block }: AboutExcerptBlockProps) {
 
   return (
     <section
-      className="my-10 md:my-16 rounded-2xl overflow-hidden bg-brand-surface/50 border border-brand-surface shadow-xs"
       data-purpose="about-excerpt-block"
     >
-      <div className="grid grid-cols-1 md:grid-cols-12 items-center">
+      <div className="grid grid-cols-1 md:grid-cols-12 md:gap-10 lg:gap-14 items-center">
         {/* Left: Atelier photo (7 cols desktop) */}
-        <div className="md:col-span-7 h-[280px] sm:h-[360px] md:h-[460px] relative overflow-hidden bg-brand-surface">
+        <div className="md:col-span-7 -mx-4 md:mx-0 h-[300px] sm:h-[360px] md:h-[480px] md:rounded-md relative overflow-hidden bg-brand-surface">
           <SafeImage
             src={aboutSrc}
             alt={block.imageAlt}
@@ -28,19 +27,19 @@ export function AboutExcerptBlock({ block }: AboutExcerptBlockProps) {
         </div>
 
         {/* Right: Content & CTA (5 cols desktop) */}
-        <div className="md:col-span-5 p-6 sm:p-8 md:p-12 flex flex-col justify-center items-start">
-          <span className="text-xs uppercase tracking-[0.2em] text-brand-text font-medium mb-3 block">
+        <div className="md:col-span-5 pt-6 md:pt-0 flex flex-col justify-center items-start">
+          <span className="text-sm text-brand-text mb-2 block">
             {block.eyebrow}
           </span>
-          <h2 className="font-serif text-2xl md:text-3xl uppercase font-normal text-brand-text leading-snug tracking-[0.08em] mb-5">
+          <h2 className="font-serif text-[26px] md:text-4xl text-brand-text leading-tight mb-4">
             {block.title}
           </h2>
-          <p className="text-sm md:text-base text-brand-text leading-relaxed font-light mb-8">
+          <p className="text-base text-brand-text leading-relaxed mb-6">
             {block.content}
           </p>
           <a
             href={block.ctaLink}
-            className="min-h-11 min-w-11 inline-flex items-center justify-center px-6 py-3 rounded-[4px] border border-brand-primary bg-transparent text-brand-text font-medium text-xs tracking-[0.15em] uppercase hover:bg-brand-primary hover:text-brand-white transition shadow-xs"
+            className="min-h-11 min-w-11 inline-flex items-center justify-center px-6 py-3 rounded-[4px] border border-brand-primary bg-transparent text-brand-text font-medium text-xs tracking-[0.15em] uppercase hover:bg-brand-primary hover:text-brand-white transition"
           >
             {block.ctaText}
           </a>

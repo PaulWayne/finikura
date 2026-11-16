@@ -17,20 +17,15 @@ export function ProductSectionBlock({
   }
 
   return (
-    <section className="py-6 md:py-10" data-purpose="product-section">
+    <section data-purpose="product-section">
       {/* Section Header */}
-      <div className="flex flex-col items-center justify-center text-center mb-8">
-        <span className="text-xs uppercase tracking-[0.2em] text-brand-text font-medium block mb-2">
-          {block.eyebrow}
-        </span>
-        <h2 className="font-serif text-2xl md:text-3xl uppercase font-normal text-brand-text tracking-[0.1em]">
-          {block.title}
-        </h2>
-        <div className="w-12 h-0.5 bg-brand-terracotta mt-3" />
+      <div className="mb-5 md:mb-8">
+        <h2 className="font-serif text-[26px] md:text-4xl text-brand-text leading-tight">{block.title}</h2>
+        {block.eyebrow && <p className="text-sm md:text-base text-brand-text mt-1">{block.eyebrow}</p>}
       </div>
 
       {/* Grid: 2 columns on mobile (390px), 4 columns on desktop (1440px) */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 md:gap-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-7 md:gap-x-6">
         {products.map((product) => (
           <ProductCard
             key={product.id}

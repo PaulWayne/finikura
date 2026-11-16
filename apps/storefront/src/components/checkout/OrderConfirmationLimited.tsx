@@ -18,7 +18,7 @@ export function OrderConfirmationLimited({ orderNumber }: { orderNumber: string 
           </span>
         </div>
         <p className="text-xs uppercase tracking-[0.2em] text-brand-text mb-1 font-medium">{t.orderRefLabel}</p>
-        <h1 className="font-serif text-2xl sm:text-3xl text-brand-text font-normal tracking-[0.03em] mb-4">
+        <h1 className="font-serif text-2xl sm:text-3xl text-brand-text font-normal mb-4">
           {t.orderNumberPrefix} {orderNumber}
         </h1>
         <p className="text-sm text-brand-text mb-6">{t.limitedNotice}</p>

@@ -8,10 +8,10 @@
     "blocks": [
       {
         "__component": "blocks.hero",
-        "eyebrow": "NOUVELLE COLLECTION",
-        "title": "CONÇUS EN EUROPE, PORTÉS À BAMAKO",
+        "eyebrow": "Nouvelle collection",
+        "title": "Conçus en Europe, portés à Bamako",
         "subtitle": "Des vêtements 100 % coton pour les enfants de 3 à 14 ans. Le matin de la fête, il ne reste plus qu'à l'enfiler.",
-        "cta_text": "DÉCOUVRIR LA COLLECTION",
+        "cta_text": "Découvrir la collection",
         "cta_link": "#nouveautes",
         "image_alt": "Deux enfants souriants habillés avec élégance à Bamako",
         "image": {
@@ -21,16 +21,16 @@
       },
       {
         "__component": "blocks.category-cards",
-        "eyebrow": "COLLECTIONS",
-        "title": "NOS UNIVERS",
-        "subtitle": "POUR LES ENFANTS DE 3 À 14 ANS",
+        "eyebrow": "Collections",
+        "title": "Filles et garçons",
+        "subtitle": "Pour les enfants de 3 à 14 ans",
         "cards": [
           {
             "category_handle": "filles",
-            "title": "FILLES",
-            "age_range": "3-14 ANS",
-            "tagline": "Élégance & Délicatesse",
-            "cta_text": "DÉCOUVRIR",
+            "title": "Filles",
+            "age_range": "3-14 ans",
+            "tagline": "Élégance et délicatesse",
+            "cta_text": "Découvrir",
             "image_alt": "Fille portant une création Fini Kura",
             "image": {
               "url": "/mock-media/robe-terracotta-brodee-2.jpg",
@@ -39,10 +39,10 @@
           },
           {
             "category_handle": "garcons",
-            "title": "GARÇONS",
-            "age_range": "3-14 ANS",
-            "tagline": "Allure & Confort",
-            "cta_text": "DÉCOUVRIR",
+            "title": "Garçons",
+            "age_range": "3-14 ans",
+            "tagline": "Allure et confort",
+            "cta_text": "Découvrir",
             "image_alt": "Garçon portant une création Fini Kura",
             "image": {
               "url": "/mock-media/garcons.jpg",
@@ -53,8 +53,8 @@
       },
       {
         "__component": "blocks.product-section",
-        "eyebrow": "CRÉATIONS RÉCENTES",
-        "title": "NOUVEAUTÉS",
+        "eyebrow": "Créations récentes",
+        "title": "Nouveautés",
         "collection_handle": "nouveautes"
       },
       {
@@ -62,10 +62,10 @@
       },
       {
         "__component": "blocks.about-excerpt",
-        "eyebrow": "HABITS NEUFS",
-        "title": "LONGTEMPS, IL FALLAIT ATTENDRE LE RETOUR DE TANTIE",
+        "eyebrow": "Habits neufs",
+        "title": "Longtemps, il fallait attendre le retour de tantie",
         "content": "Ces vêtements voyageaient dans les valises de la famille. Ils vous attendent désormais à Bamako. En bambara, « Fini Kura » veut dire habits neufs.",
-        "cta_text": "NOTRE HISTOIRE",
+        "cta_text": "Notre histoire",
         "cta_link": "/notre-histoire",
         "image_alt": "Vêtements Fini Kura",
         "image": {
