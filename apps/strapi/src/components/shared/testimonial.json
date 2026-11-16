@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_shared_testimonials",
+  "info": {
+    "displayName": "Témoignage",
+    "icon": "quote",
+    "description": "L'avis d'une vraie cliente, publié avec son accord. Prénom et quartier seulement, jamais de nom de famille ni de téléphone."
+  },
+  "options": {},
+  "attributes": {
+    "quote": {
+      "type": "text",
+      "required": true,
+      "maxLength": 280
+    },
+    "author": {
+      "type": "string",
+      "required": true,
+      "maxLength": 60
+    },
+    "occasion": {
+      "type": "string",
+      "maxLength": 60
+    },
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

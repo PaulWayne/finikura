@@ -62,6 +62,7 @@ const eq = (field: string, value: string) => `filters[${field}][$eq]=${encodeURI
 
 // Dynamic zones need one populate fragment per component (Strapi 5 "on" syntax).
 const block = (uid: string, populate = "*") => `populate[blocks][on][${uid}][populate]=${populate}`;
+const TESTIMONIALS_POPULATE = "populate[blocks][on][blocks.testimonials][populate][items][populate]=photo";
 const HOME_POPULATE = [
   "populate[seo]=true",
   block("blocks.hero"),
@@ -69,6 +70,7 @@ const HOME_POPULATE = [
   block("blocks.product-section"),
   block("blocks.reassurance"),
   block("blocks.about-excerpt"),
+  TESTIMONIALS_POPULATE,
 ];
 const PAGE_POPULATE = [
   "populate[seo]=true",
@@ -77,6 +79,7 @@ const PAGE_POPULATE = [
   block("blocks.values"),
   block("blocks.faq"),
   block("blocks.cta"),
+  TESTIMONIALS_POPULATE,
 ];
 
 export const liveContentService: ContentService = {

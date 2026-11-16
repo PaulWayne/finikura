@@ -10,6 +10,7 @@ import { AboutExcerptBlock } from "./AboutExcerptBlock";
 import { RichTextBlock } from "./RichTextBlock";
 import { ImageTextBlock } from "./ImageTextBlock";
 import { ValuesBlock } from "./ValuesBlock";
+import { TestimonialsBlock } from "./TestimonialsBlock";
 import { FaqBlock } from "./FaqBlock";
 import { CtaBlock } from "./CtaBlock";
 
@@ -62,6 +63,9 @@ export function BlockRenderer({
 
     case "values":
       return <ValuesBlock block={block} />;
+
+    case "testimonials":
+      return <TestimonialsBlock block={block} />;
 
     case "faq":
       return <FaqBlock block={block} />;

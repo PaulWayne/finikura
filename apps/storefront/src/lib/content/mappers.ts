@@ -132,6 +132,22 @@ export function mapStrapiBlockToDomain(raw: StrapiRawBlock): ContentBlock | null
         })),
       };
 
+    case "blocks.testimonials":
+      return {
+        type: "testimonials",
+        id,
+        title: str(raw.title),
+        // A testimonial without words or without its author is not shown.
+        items: ((raw.items as Array<Record<string, unknown>> | undefined) ?? [])
+          .map((i) => ({
+            quote: str(i.quote).trim(),
+            author: str(i.author).trim(),
+            occasion: optStr(i.occasion),
+            photoUrl: mediaUrl(i.photo as StrapiMedia | null | undefined),
+          }))
+          .filter((i) => i.quote && i.author),
+      };
+
     case "blocks.faq":
       return {
         type: "faq",

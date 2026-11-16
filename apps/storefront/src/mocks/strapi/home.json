@@ -58,6 +58,27 @@
         "collection_handle": "nouveautes"
       },
       {
+        "__component": "blocks.testimonials",
+        "title": "Elles en parlent",
+        "items": [
+          {
+            "quote": "Exemple d'avis. Remplacez ce texte par les mots d'une cliente, tels qu'elle les a écrits.",
+            "author": "Prénom, quartier",
+            "occasion": "L'occasion ou la tenue"
+          },
+          {
+            "quote": "Exemple d'avis. Deux ou trois phrases suffisent : ce qu'elle a aimé, avec ses propres mots.",
+            "author": "Prénom, quartier",
+            "occasion": "L'occasion ou la tenue"
+          },
+          {
+            "quote": "Exemple d'avis. Publiez-le seulement avec l'accord de la cliente.",
+            "author": "Prénom, quartier",
+            "occasion": "L'occasion ou la tenue"
+          }
+        ]
+      },
+      {
         "__component": "blocks.reassurance"
       },
       {

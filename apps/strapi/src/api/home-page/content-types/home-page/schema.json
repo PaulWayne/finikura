@@ -24,7 +24,8 @@
         "blocks.category-cards",
         "blocks.product-section",
         "blocks.reassurance",
-        "blocks.about-excerpt"
+        "blocks.about-excerpt",
+        "blocks.testimonials"
       ]
     }
   }

@@ -579,6 +579,7 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
         'blocks.product-section',
         'blocks.reassurance',
         'blocks.about-excerpt',
+        'blocks.testimonials',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -621,6 +622,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'blocks.about-excerpt',
         'blocks.reassurance',
         'blocks.product-section',
+        'blocks.testimonials',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;

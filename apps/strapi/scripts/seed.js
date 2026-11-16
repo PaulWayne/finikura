@@ -5,6 +5,8 @@
 // To bring content already in Strapi back to the fixtures, name it: --refresh=home,global,notre-histoire
 // (home page, global settings, or a page slug). This overwrites what was typed in the admin for these entries,
 // photos included: a photo chosen in the admin is replaced by the one of the fixtures.
+// To add to the home page the blocks of the fixtures it does not have yet, and leave the others
+// exactly as they are in the admin: --add-home-blocks
 // Images referenced in the fixtures (/mock-media/… files, or URLs) are imported into the media library,
 // which stores them in Garage when S3_ENDPOINT is set.
 
@@ -63,8 +65,15 @@ async function importImage(url, alt) {
 
 // --- Block mapping: fixture (Strapi 5 response shape) -> component data --------
 async function mapBlock(b) {
-  const { id: _id, image, cards, ...rest } = b;
+  const { id: _id, image, cards, items, ...rest } = b;
   const out = { ...rest };
+  // Items with a photo (testimonials); the other lists of items are plain text.
+  if (items) {
+    out.items = [];
+    for (const { id: _itemId, photo, ...item } of items) {
+      out.items.push(photo === undefined ? item : { ...item, photo: await importImage(photo?.url, photo?.alternativeText) });
+    }
+  }
   if ("image" in b) out.image = await importImage(image?.url, image?.alternativeText);
   if (cards) {
     out.cards = [];
@@ -91,6 +100,51 @@ async function upsertSingle(uid, data, refreshKey) {
   console.log(`${uid} : créé`);
 }
 
+/**
+ * Adds the fixture blocks whose kind the home page does not have, each after the block that
+ * precedes it in the fixtures. The blocks already there are sent back unchanged, with their photos.
+ */
+async function addMissingHomeBlocks(fixtureBlocks) {
+  const uid = "api::home-page.home-page";
+  const doc = await strapi.documents(uid).findFirst({ populate: { blocks: { populate: "*" } } });
+  // Photos nested in a list (category cards, testimonials) need their own populate.
+  const nested = await strapi.documents(uid).findFirst({
+    populate: {
+      blocks: {
+        on: {
+          "blocks.category-cards": { populate: { cards: { populate: "image" } } },
+          "blocks.testimonials": { populate: { items: { populate: "photo" } } },
+        },
+      },
+    },
+  });
+  const nestedById = new Map((nested.blocks ?? []).map((b) => [`${b.__component}:${b.id}`, b]));
+  const mediaId = (media) => media?.id ?? null;
+  const current = (doc.blocks ?? []).map((b) => {
+    const { id: _id, image, cards: _cards, items, ...rest } = b;
+    const out = { ...rest };
+    if ("image" in b) out.image = mediaId(image);
+    const deep = nestedById.get(`${b.__component}:${b.id}`);
+    if (deep?.cards) out.cards = deep.cards.map(({ id: _i, image: cardImage, ...card }) => ({ ...card, image: mediaId(cardImage) }));
+    if (deep?.items) out.items = deep.items.map(({ id: _i, photo, ...item }) => ({ ...item, photo: mediaId(photo) }));
+    else if (items) out.items = items.map(({ id: _i, ...item }) => item);
+    return out;
+  });
+
+  const added = [];
+  for (const [index, fixture] of fixtureBlocks.entries()) {
+    if (current.some((b) => b.__component === fixture.__component)) continue;
+    const previous = fixtureBlocks[index - 1]?.__component;
+    const after = current.findIndex((b) => b.__component === previous);
+    current.splice(after === -1 ? current.length : after + 1, 0, await mapBlock(fixture));
+    added.push(fixture.__component);
+  }
+  if (added.length === 0) return console.log(`${uid} : aucun bloc à ajouter`);
+  await strapi.documents(uid).update({ documentId: doc.documentId, data: { blocks: current }, status: "published" });
+  refresh.add("home");
+  console.log(`${uid} : blocs ajoutés (${added.join(", ")})`);
+}
+
 async function createIfMissing(uid, filters, data) {
   const existing = await strapi.documents(uid).findFirst({ filters });
   if (existing) return console.log(`${uid} ${JSON.stringify(filters)} : déjà présent`);
@@ -107,7 +161,9 @@ await upsertSingle("api::global-setting.global-setting", strip(read("global-sett
 // Images are only imported when the entry is written: a plain run uploads nothing twice.
 const home = read("home.json").data;
 const homeExists = await strapi.documents("api::home-page.home-page").findFirst();
-if (!homeExists || refresh.has("home")) {
+if (homeExists && process.argv.includes("--add-home-blocks")) {
+  await addMissingHomeBlocks(home.blocks);
+} else if (!homeExists || refresh.has("home")) {
   await upsertSingle("api::home-page.home-page", { seo: home.seo, blocks: await mapBlocks(home.blocks) }, "home");
 } else {
   console.log("api::home-page.home-page : déjà présent");

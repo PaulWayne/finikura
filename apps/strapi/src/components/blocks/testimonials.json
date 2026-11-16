@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_blocks_testimonials",
+  "info": {
+    "displayName": "Témoignages",
+    "icon": "quote",
+    "description": "Deux ou trois avis de clientes. Sans avis, le bloc ne s'affiche pas."
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.testimonial",
+      "max": 3
+    }
+  }
+}

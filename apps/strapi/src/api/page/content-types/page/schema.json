@@ -37,7 +37,8 @@
         "blocks.cta",
         "blocks.about-excerpt",
         "blocks.reassurance",
-        "blocks.product-section"
+        "blocks.product-section",
+        "blocks.testimonials"
       ]
     }
   }

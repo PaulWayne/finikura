@@ -111,6 +111,14 @@ export interface ValuesBlockData {
   items: { title: string; description: string }[];
 }
 
+/** Words of real customers, published with their agreement (FK-34). */
+export interface TestimonialsBlockData {
+  type: "testimonials";
+  id: string | number;
+  title: string;
+  items: { quote: string; author: string; occasion?: string; photoUrl: string }[];
+}
+
 export interface FaqBlockData {
   type: "faq";
   id: string | number;
@@ -136,6 +144,7 @@ export type ContentBlock =
   | RichTextBlockData
   | ImageTextBlockData
   | ValuesBlockData
+  | TestimonialsBlockData
   | FaqBlockData
   | CtaBlockData;
 

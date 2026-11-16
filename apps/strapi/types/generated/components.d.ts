@@ -125,6 +125,25 @@ export interface BlocksRichText extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksTestimonials extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_testimonials';
+  info: {
+    description: "Deux ou trois avis de clientes. Sans avis, le bloc ne s'affiche pas.";
+    displayName: 'T\u00E9moignages';
+    icon: 'quote';
+  };
+  attributes: {
+    items: Schema.Attribute.Component<'shared.testimonial', true> &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 3;
+        },
+        number
+      >;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface BlocksValues extends Struct.ComponentSchema {
   collectionName: 'components_blocks_values';
   info: {
@@ -238,6 +257,32 @@ export interface SharedSocialLink extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedTestimonial extends Struct.ComponentSchema {
+  collectionName: 'components_shared_testimonials';
+  info: {
+    description: "L'avis d'une vraie cliente, publi\u00E9 avec son accord. Pr\u00E9nom et quartier seulement, jamais de nom de famille ni de t\u00E9l\u00E9phone.";
+    displayName: 'T\u00E9moignage';
+    icon: 'quote';
+  };
+  attributes: {
+    author: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 60;
+      }>;
+    occasion: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 60;
+      }>;
+    photo: Schema.Attribute.Media<'images'>;
+    quote: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 280;
+      }>;
+  };
+}
+
 export interface SharedTip extends Struct.ComponentSchema {
   collectionName: 'components_shared_tip';
   info: {
@@ -273,6 +318,7 @@ declare module '@strapi/strapi' {
       'blocks.product-section': BlocksProductSection;
       'blocks.reassurance': BlocksReassurance;
       'blocks.rich-text': BlocksRichText;
+      'blocks.testimonials': BlocksTestimonials;
       'blocks.values': BlocksValues;
       'shared.category-card': SharedCategoryCard;
       'shared.faq-item': SharedFaqItem;
@@ -281,6 +327,7 @@ declare module '@strapi/strapi' {
       'shared.seo': SharedSeo;
       'shared.size-row': SharedSizeRow;
       'shared.social-link': SharedSocialLink;
+      'shared.testimonial': SharedTestimonial;
       'shared.tip': SharedTip;
       'shared.value-item': SharedValueItem;
     }
