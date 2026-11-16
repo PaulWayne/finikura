@@ -102,7 +102,7 @@ export const messages = {
     mainStudioView: "Vue studio principale",
     galleryCounter: (current: number, total: number) => `${current} / ${total}`,
     videoPlay: "Voir la tenue en mouvement",
-    videoThumbAria: "Afficher la vidéo",
+    videoThumbAria: (rank: number) => `Afficher la vidéo ${rank}`,
     videoAria: (title: string) => `Vidéo de ${title}`,
     understood: "Compris",
     askRelativeCta: "Demander à un proche",

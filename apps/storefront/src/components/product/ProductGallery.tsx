@@ -14,19 +14,18 @@ interface ProductGalleryProps {
   productTitle: string;
   productHandle: string;
   wornCaptions?: (string | null)[];
-  /** Short clip shown as the last view (FK-38). */
-  video?: ProductVideo;
+  /** Short clips shown after the photos (FK-38). */
+  videos?: ProductVideo[];
 }
 
-export function ProductGallery({ images, productTitle, productHandle, wornCaptions = [], video }: ProductGalleryProps) {
+export function ProductGallery({ images, productTitle, productHandle, wornCaptions = [], videos = [] }: ProductGalleryProps) {
   const displayImages =
     images && images.length > 0
       ? images
       : [IMAGE_FALLBACKS.product];
 
-  // The clip counts as one more view, after the photos.
-  const videoIndex = video ? displayImages.length : -1;
-  const viewCount = displayImages.length + (video ? 1 : 0);
+  // Each clip counts as one more view, after the photos.
+  const viewCount = displayImages.length + videos.length;
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [isWishlisted, setIsWishlisted] = useState(false);
@@ -37,7 +36,8 @@ export function ProductGallery({ images, productTitle, productHandle, wornCaptio
     window.addEventListener(FAVORITES_EVENT, sync);
     return () => window.removeEventListener(FAVORITES_EVENT, sync);
   }, [productHandle]);
-  const activeCaption = wornCaptions[activeIndex] ?? null;
+  const activeVideo = activeIndex >= displayImages.length ? videos[activeIndex - displayImages.length] : undefined;
+  const activeCaption = activeVideo ? activeVideo.caption : wornCaptions[activeIndex] ?? null;
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const handleThumbnailClick = (idx: number) => {
@@ -105,10 +105,13 @@ export function ProductGallery({ images, productTitle, productHandle, wornCaptio
             </button>
           );
         })}
-        {video && (
+        {videos.map((video, idx) => {
+          const videoIndex = displayImages.length + idx;
+          return (
           <button
+            key={video.sources[0].src}
             type="button"
-            aria-label={messages.product.videoThumbAria}
+            aria-label={messages.product.videoThumbAria(idx + 1)}
             onClick={() => handleThumbnailClick(videoIndex)}
             className={`thumb-btn relative w-20 h-24 rounded-lg bg-brand-surface/40 overflow-hidden transition-all duration-200 shrink-0 cursor-pointer ${
               activeIndex === videoIndex
@@ -129,15 +132,16 @@ export function ProductGallery({ images, productTitle, productHandle, wornCaptio
               </span>
             </span>
           </button>
-        )}
+          );
+        })}
       </div>
 
       {/* Main image container: edge to edge on a phone, past the page gutter */}
       <div className="relative flex-1 w-[calc(100%+2rem)] -mx-4 md:mx-0 md:w-full bg-brand-surface/30 md:rounded-md overflow-hidden group">
         {/* Desktop single main display with smooth transition */}
         <div className="hidden md:block aspect-[4/5] w-full overflow-hidden relative bg-brand-surface/30">
-          {video && activeIndex === videoIndex ? (
-            <ProductVideoView video={video} productTitle={productTitle} productHandle={productHandle} />
+          {activeVideo ? (
+            <ProductVideoView key={activeVideo.sources[0].src} video={activeVideo} productTitle={productTitle} productHandle={productHandle} />
           ) : (
           <SafeImage
             src={displayImages[activeIndex] || displayImages[0]}
@@ -150,7 +154,7 @@ export function ProductGallery({ images, productTitle, productHandle, wornCaptio
 
 
           {/* Loupe / Interaction Hint */}
-          <div hidden={activeIndex === videoIndex} className="absolute bottom-4 right-4 pointer-events-none flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-bg/90 backdrop-blur-xs text-brand-text shadow-xs transition-opacity group-hover:opacity-100">
+          <div hidden={Boolean(activeVideo)} className="absolute bottom-4 right-4 pointer-events-none flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-bg/90 backdrop-blur-xs text-brand-text shadow-xs transition-opacity group-hover:opacity-100">
             <ZoomIn className="w-4 h-4 text-brand-primary" />
             <span className="text-xs text-brand-text font-normal">
               {messages.product.mainStudioView}
@@ -199,11 +203,11 @@ export function ProductGallery({ images, productTitle, productHandle, wornCaptio
                 />
               </div>
             ))}
-            {video && (
-              <div className="w-full h-full flex-shrink-0 snap-center relative aspect-[4/5] bg-brand-surface/40">
+            {videos.map((video) => (
+              <div key={video.sources[0].src} className="w-full h-full flex-shrink-0 snap-center relative aspect-[4/5] bg-brand-surface/40">
                 <ProductVideoView video={video} productTitle={productTitle} productHandle={productHandle} />
               </div>
-            )}
+            ))}
           </div>
 
           {/* Photo counter: tells the customer there is more to swipe */}

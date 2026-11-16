@@ -60,6 +60,32 @@
       "more": "Voir plus",
       "reserved_one": "{{count}} pièce est réservée par une commande pas encore partie : elle compte encore dans le stock.",
       "reserved_other": "{{count}} pièces sont réservées par des commandes pas encore parties : elles comptent encore dans le stock."
+    },
+    "productVideos": {
+      "title": "Vidéos",
+      "intro": "Déposez la vidéo de votre téléphone : elle est raccourcie à 10 secondes, sans le son, et allégée pour le site.",
+      "add": "Ajouter une vidéo",
+      "sending": "Envoi en cours…",
+      "empty": "Aucune vidéo pour cette tenue.",
+      "processing": "En préparation",
+      "ready": "En ligne",
+      "failed": "Échec",
+      "failedHelp": "Cette vidéo n'a pas pu être préparée. Retirez-la, puis essayez avec une autre.",
+      "captionLabel": "Légende",
+      "captionPlaceholder": "Aïcha, 7 ans, porte le 7-8 ans",
+      "saveCaption": "Enregistrer",
+      "captionSaved": "Légende enregistrée",
+      "moveUp": "Monter",
+      "moveDown": "Descendre",
+      "remove": "Retirer",
+      "removeConfirm": "Retirer cette vidéo de la fiche ?",
+      "removed": "Vidéo retirée",
+      "sent": "Vidéo reçue. Elle sera en ligne dans un instant.",
+      "notVideo": "Ce fichier n'est pas une vidéo.",
+      "tooBig": "Cette vidéo dépasse {{max}} Mo. Raccourcissez-la sur votre téléphone, puis réessayez.",
+      "limit": "Cette tenue a déjà {{max}} vidéos. Retirez-en une pour en ajouter.",
+      "error": "L'opération n'a pas abouti. Réessayez.",
+      "preview": "Aperçu de la vidéo"
     }
   }
 }

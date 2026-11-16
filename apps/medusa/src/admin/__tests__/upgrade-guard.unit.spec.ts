@@ -19,7 +19,7 @@ const widgets = readdirSync(WIDGETS_DIR)
 describe("admin widgets survive a Medusa upgrade", () => {
   it("finds the Fini Kura widgets", () => {
     expect(widgets.map((w) => w.file)).toEqual(
-      expect.arrayContaining(["fini-kura-status.tsx", "fini-kura-recent-orders.tsx", "fini-kura-stock-history.tsx"])
+      expect.arrayContaining(["fini-kura-status.tsx", "fini-kura-recent-orders.tsx", "fini-kura-stock-history.tsx", "fini-kura-product-videos.tsx"])
     )
   })
 

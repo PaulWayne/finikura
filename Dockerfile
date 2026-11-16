@@ -21,6 +21,8 @@ COPY . .
 # --- Medusa: build server + admin, run from .medusa/server --------------------
 FROM source AS medusa
 ENV NODE_ENV=production
+# ffmpeg prepares the product clips sent from the admin (FK-38).
+RUN apt-get update && apt-get install -y --no-install-recommends ffmpeg && rm -rf /var/lib/apt/lists/*
 RUN pnpm --filter medusa build
 WORKDIR /app/apps/medusa/.medusa/server
 COPY infra/docker/medusa-start.sh /usr/local/bin/medusa-start

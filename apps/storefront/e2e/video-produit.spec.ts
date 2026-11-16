@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 
-// FK-38, mock mode: the fixture « robe-terracotta-brodee » has a clip in its metadata.
+// FK-38, mock mode: the fixture « robe-terracotta-brodee » has one clip ready and one still in
+// preparation in its metadata; only the ready one is shown.
 test("la vidéo est une vue de plus de la galerie et ne se charge qu'au toucher", async ({ page }) => {
   const videoRequests: string[] = [];
   page.on("request", (request) => {
@@ -26,6 +27,7 @@ test("la vidéo est une vue de plus de la galerie et ne se charge qu'au toucher"
   expect(sources[0]).toContain("av01");
   expect(sources[1]).toBe("video/mp4");
   expect(await video.evaluate((v: HTMLVideoElement) => v.muted && v.loop)).toBe(true);
+  await expect(page.getByText("Vidéo d'exemple").first()).toBeVisible();
   await expect.poll(() => videoRequests.length).toBeGreaterThan(0);
   await expect.poll(() => video.evaluate((v: HTMLVideoElement) => v.currentTime)).toBeGreaterThan(0);
 });

@@ -15,6 +15,8 @@ export interface ProductVideo {
   sources: { src: string; type: string }[];
   /** Still image shown before the customer asks for the video. */
   poster: string;
+  /** « Aïcha, 7 ans, porte le 7-8 ans », written in the Medusa admin. */
+  caption: string | null;
 }
 
 export interface Product {
@@ -28,8 +30,8 @@ export interface Product {
   images: string[];
   /** Per image, same order: « Aïcha, 7 ans, porte le 7-8 ans » or null (FK-33). */
   wornCaptions: (string | null)[];
-  /** Short silent clip shown as one more view of the gallery (FK-38), when Medusa has one. */
-  video?: ProductVideo;
+  /** Short silent clips shown as more views of the gallery, after the photos (FK-38). */
+  videos: ProductVideo[];
   thumbnail: string;
   price: number; // Integer XOF
   categoryHandle: CategoryHandle;

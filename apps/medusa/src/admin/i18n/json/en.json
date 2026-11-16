@@ -60,6 +60,32 @@
       "more": "Show more",
       "reserved_one": "{{count}} piece is reserved by an order not shipped yet: it still counts in the stock.",
       "reserved_other": "{{count}} pieces are reserved by orders not shipped yet: they still count in the stock."
+    },
+    "productVideos": {
+      "title": "Videos",
+      "intro": "Drop the video from your phone: it is cut to 10 seconds, muted, and made light for the site.",
+      "add": "Add a video",
+      "sending": "Sending…",
+      "empty": "No video for this outfit.",
+      "processing": "In preparation",
+      "ready": "Online",
+      "failed": "Failed",
+      "failedHelp": "This video could not be prepared. Remove it, then try another one.",
+      "captionLabel": "Caption",
+      "captionPlaceholder": "Aïcha, 7, wears the 7-8",
+      "saveCaption": "Save",
+      "captionSaved": "Caption saved",
+      "moveUp": "Move up",
+      "moveDown": "Move down",
+      "remove": "Remove",
+      "removeConfirm": "Remove this video from the page?",
+      "removed": "Video removed",
+      "sent": "Video received. It will be online in a moment.",
+      "notVideo": "This file is not a video.",
+      "tooBig": "This video is over {{max}} MB. Shorten it on your phone, then try again.",
+      "limit": "This outfit already has {{max}} videos. Remove one to add another.",
+      "error": "That did not work. Try again.",
+      "preview": "Video preview"
     }
   }
 }

@@ -15,6 +15,15 @@ export const FkStatusSchema = z.object({
 })
 export type FkStatusBody = z.infer<typeof FkStatusSchema>
 
+// FK-38: clips of a product.
+export const AddProductVideoSchema = z.object({ file_id: z.string().min(1) })
+export type AddProductVideoBody = z.infer<typeof AddProductVideoSchema>
+export const UpdateProductVideoSchema = z.object({
+  caption: z.string().max(120).optional(),
+  move: z.enum(["up", "down"]).optional(),
+})
+export type UpdateProductVideoBody = z.infer<typeof UpdateProductVideoSchema>
+
 type StockBody = { updates?: { inventory_item_id?: string }[]; update?: { inventory_item_id?: string }[]; create?: unknown[] }
 
 /**
@@ -48,6 +57,16 @@ export default defineMiddlewares({
     { matcher: "/admin/inventory-items/:id/location-levels/:location_id", method: "POST", middlewares: [noteManualStockChange] },
     { matcher: "/admin/inventory-items/:id/location-levels/batch", method: "POST", middlewares: [noteManualStockChange] },
     { matcher: "/admin/inventory-items/location-levels/batch", method: "POST", middlewares: [noteManualStockChange] },
+    {
+      matcher: "/admin/fini-kura/products/:id/videos",
+      method: "POST",
+      middlewares: [validateAndTransformBody(AddProductVideoSchema)],
+    },
+    {
+      matcher: "/admin/fini-kura/products/:id/videos/:videoId",
+      method: "POST",
+      middlewares: [validateAndTransformBody(UpdateProductVideoSchema)],
+    },
     {
       matcher: "/admin/orders/:id/fini-kura-status",
       method: "POST",
