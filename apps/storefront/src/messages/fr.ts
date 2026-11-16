@@ -6,6 +6,8 @@ export const messages = {
   home: {
     campaignHeroCta: "Découvrir la collection",
     occasionsNavAria: "Tenues par occasion",
+    testimonialsChoose: "Choisir un avis",
+    testimonialSeeOutfit: (title: string) => `Voir la tenue : ${title}`,
   },
   common: {
     loading: "Chargement…",

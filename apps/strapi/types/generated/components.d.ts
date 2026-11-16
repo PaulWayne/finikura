@@ -260,7 +260,7 @@ export interface SharedSocialLink extends Struct.ComponentSchema {
 export interface SharedTestimonial extends Struct.ComponentSchema {
   collectionName: 'components_shared_testimonials';
   info: {
-    description: "L'avis d'une vraie cliente, publi\u00E9 avec son accord. Pr\u00E9nom et quartier seulement, jamais de nom de famille ni de t\u00E9l\u00E9phone.";
+    description: "L'avis d'une vraie cliente, publi\u00E9 avec son accord. Pr\u00E9nom et quartier seulement, jamais de nom de famille ni de t\u00E9l\u00E9phone. product_handle : le handle Medusa de la tenue port\u00E9e, pour le lien et la photo par d\u00E9faut.";
     displayName: 'T\u00E9moignage';
     icon: 'quote';
   };
@@ -275,6 +275,10 @@ export interface SharedTestimonial extends Struct.ComponentSchema {
         maxLength: 60;
       }>;
     photo: Schema.Attribute.Media<'images'>;
+    product_handle: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 120;
+      }>;
     quote: Schema.Attribute.Text &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{

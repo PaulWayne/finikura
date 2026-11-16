@@ -149,7 +149,8 @@
   }
 }
 
-/* The one entrance of the site: the words of the home hero rise once (never the photo, it is the LCP). */
+/* The entrance of the site: the words of the home hero rise once (never the photo, it is the LCP).
+   Also used when the customer changes the testimonial shown, so the new words are seen to arrive. */
 @keyframes fk-rise {
   from {
     opacity: 0;

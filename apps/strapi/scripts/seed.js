@@ -7,6 +7,7 @@
 // photos included: a photo chosen in the admin is replaced by the one of the fixtures.
 // To add to the home page the blocks of the fixtures it does not have yet, and leave the others
 // exactly as they are in the admin: --add-home-blocks
+// To also rewrite one kind of block from the fixtures: --add-home-blocks --replace=blocks.testimonials
 // Images referenced in the fixtures (/mock-media/… files, or URLs) are imported into the media library,
 // which stores them in Garage when S3_ENDPOINT is set.
 
@@ -131,6 +132,11 @@ async function addMissingHomeBlocks(fixtureBlocks) {
     return out;
   });
 
+  const replaced = (process.argv.find((arg) => arg.startsWith("--replace=")) ?? "").replace("--replace=", "").split(",").filter(Boolean);
+  for (let i = current.length - 1; i >= 0; i--) {
+    if (replaced.includes(current[i].__component)) current.splice(i, 1);
+  }
+
   const added = [];
   for (const [index, fixture] of fixtureBlocks.entries()) {
     if (current.some((b) => b.__component === fixture.__component)) continue;
@@ -142,7 +148,7 @@ async function addMissingHomeBlocks(fixtureBlocks) {
   if (added.length === 0) return console.log(`${uid} : aucun bloc à ajouter`);
   await strapi.documents(uid).update({ documentId: doc.documentId, data: { blocks: current }, status: "published" });
   refresh.add("home");
-  console.log(`${uid} : blocs ajoutés (${added.join(", ")})`);
+  console.log(`${uid} : blocs écrits depuis les fixtures (${added.join(", ")})`);
 }
 
 async function createIfMissing(uid, filters, data) {

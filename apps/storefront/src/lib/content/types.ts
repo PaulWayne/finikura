@@ -116,7 +116,8 @@ export interface TestimonialsBlockData {
   type: "testimonials";
   id: string | number;
   title: string;
-  items: { quote: string; author: string; occasion?: string; photoUrl: string }[];
+  /** productHandle: the outfit worn, in Medusa; it gives the link and the photo when none was sent. */
+  items: { quote: string; author: string; occasion?: string; photoUrl: string; productHandle?: string }[];
 }
 
 export interface FaqBlockData {

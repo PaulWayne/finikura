@@ -3,7 +3,7 @@
   "info": {
     "displayName": "Témoignage",
     "icon": "quote",
-    "description": "L'avis d'une vraie cliente, publié avec son accord. Prénom et quartier seulement, jamais de nom de famille ni de téléphone."
+    "description": "L'avis d'une vraie cliente, publié avec son accord. Prénom et quartier seulement, jamais de nom de famille ni de téléphone. product_handle : le handle Medusa de la tenue portée, pour le lien et la photo par défaut."
   },
   "options": {},
   "attributes": {
@@ -24,7 +24,13 @@
     "photo": {
       "type": "media",
       "multiple": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "product_handle": {
+      "type": "string",
+      "maxLength": 120
     }
   }
 }

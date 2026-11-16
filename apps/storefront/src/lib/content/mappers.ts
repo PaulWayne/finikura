@@ -144,6 +144,7 @@ export function mapStrapiBlockToDomain(raw: StrapiRawBlock): ContentBlock | null
             author: str(i.author).trim(),
             occasion: optStr(i.occasion),
             photoUrl: mediaUrl(i.photo as StrapiMedia | null | undefined),
+            productHandle: optStr(i.product_handle),
           }))
           .filter((i) => i.quote && i.author),
       };
