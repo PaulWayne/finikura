@@ -12,6 +12,7 @@ import {
   Category,
   Collection,
   Product,
+  ProductVideo,
   ProductVariant,
   Cart,
   Order,
@@ -51,6 +52,24 @@ export function hasAgeInStock(raw: MedusaStoreProduct, age: string): boolean {
   );
 }
 
+/**
+ * Product metadata « video_av1 », « video_mp4 » and « video_poster » (FK-38), typed in the Medusa admin.
+ * AV1 is about 40 % lighter than H.264 at the same quality; H.264 plays everywhere, so it is the
+ * fallback. Without a poster the product photo is used. No video without at least one file.
+ */
+function mapVideo(metadata: Record<string, unknown> | null | undefined, fallbackPoster: string): ProductVideo | undefined {
+  const text = (key: string) => {
+    const value = metadata?.[key];
+    return typeof value === "string" && value.trim() ? value.trim() : "";
+  };
+  const sources = [
+    { src: text("video_av1"), type: 'video/mp4; codecs="av01.0.04M.08"' },
+    { src: text("video_mp4"), type: "video/mp4" },
+  ].filter((source) => source.src);
+  if (sources.length === 0) return undefined;
+  return { sources, poster: text("video_poster") || fallbackPoster };
+}
+
 /** First age of a size title (« 13-14 ans » → 13); titles without a number go last. */
 const ageStart = (title: string) => {
   const match = title.match(/\d+/);
@@ -88,6 +107,7 @@ export function mapMedusaProductToDomain(raw: MedusaStoreProduct): Product {
     careInstructions: raw.metadata?.care_instructions ?? "",
     images,
     wornCaptions,
+    video: mapVideo(raw.metadata, raw.thumbnail || images[0] || ""),
     thumbnail: raw.thumbnail || images[0] || "",
     price: minPrice,
     categoryHandle: toCategoryHandle(raw.categories?.[0]?.handle),

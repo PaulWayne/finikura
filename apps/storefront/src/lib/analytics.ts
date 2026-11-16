@@ -12,6 +12,8 @@ export const ANALYTICS_EVENTS = {
   favorite: "coup-de-coeur",
   // FK-39: sent by Umami from data-umami-event attributes, data { hero: name }.
   heroClick: "clic-hero",
+  // FK-38: a customer started the clip of a product, data { produit: handle }.
+  videoPlay: "lecture-video",
 } as const;
 
 export function trackEvent(event: string, data?: Record<string, string>): void {

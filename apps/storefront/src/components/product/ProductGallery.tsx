@@ -2,7 +2,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { messages } from "@/messages/fr";
-import { ZoomIn, Heart } from "lucide-react";
+import { ZoomIn, Heart, Play } from "lucide-react";
+import type { ProductVideo } from "@/lib/commerce/types";
 import { triggerToast } from "@/lib/cart-events";
 import { IMAGE_FALLBACKS } from "@/lib/images";
 import { ANALYTICS_EVENTS, trackEvent } from "@/lib/analytics";
@@ -13,13 +14,19 @@ interface ProductGalleryProps {
   productTitle: string;
   productHandle: string;
   wornCaptions?: (string | null)[];
+  /** Short clip shown as the last view (FK-38). */
+  video?: ProductVideo;
 }
 
-export function ProductGallery({ images, productTitle, productHandle, wornCaptions = [] }: ProductGalleryProps) {
+export function ProductGallery({ images, productTitle, productHandle, wornCaptions = [], video }: ProductGalleryProps) {
   const displayImages =
     images && images.length > 0
       ? images
       : [IMAGE_FALLBACKS.product];
+
+  // The clip counts as one more view, after the photos.
+  const videoIndex = video ? displayImages.length : -1;
+  const viewCount = displayImages.length + (video ? 1 : 0);
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [isWishlisted, setIsWishlisted] = useState(false);
@@ -98,12 +105,40 @@ export function ProductGallery({ images, productTitle, productHandle, wornCaptio
             </button>
           );
         })}
+        {video && (
+          <button
+            type="button"
+            aria-label={messages.product.videoThumbAria}
+            onClick={() => handleThumbnailClick(videoIndex)}
+            className={`thumb-btn relative w-20 h-24 rounded-lg bg-brand-surface/40 overflow-hidden transition-all duration-200 shrink-0 cursor-pointer ${
+              activeIndex === videoIndex
+                ? "outline outline-2 outline-brand-primary outline-offset-2"
+                : "outline outline-1 outline-transparent hover:outline-brand-surface"
+            }`}
+          >
+            <SafeImage
+              src={video.poster}
+              alt=""
+              fallbackSrc={IMAGE_FALLBACKS.product}
+              sizes="80px"
+              className="w-full h-full object-cover"
+            />
+            <span className="absolute inset-0 flex items-center justify-center">
+              <span className="w-8 h-8 rounded-full bg-brand-bg flex items-center justify-center text-brand-text">
+                <Play className="w-4 h-4 fill-brand-text" aria-hidden="true" />
+              </span>
+            </span>
+          </button>
+        )}
       </div>
 
       {/* Main image container: edge to edge on a phone, past the page gutter */}
       <div className="relative flex-1 w-[calc(100%+2rem)] -mx-4 md:mx-0 md:w-full bg-brand-surface/30 md:rounded-md overflow-hidden group">
         {/* Desktop single main display with smooth transition */}
         <div className="hidden md:block aspect-[4/5] w-full overflow-hidden relative bg-brand-surface/30">
+          {video && activeIndex === videoIndex ? (
+            <ProductVideoView video={video} productTitle={productTitle} productHandle={productHandle} />
+          ) : (
           <SafeImage
             src={displayImages[activeIndex] || displayImages[0]}
             alt={`${productTitle} - Vue haute résolution`}
@@ -111,10 +146,11 @@ export function ProductGallery({ images, productTitle, productHandle, wornCaptio
             sizes="(min-width: 1200px) 560px, 50vw"
             className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
           />
+          )}
 
 
           {/* Loupe / Interaction Hint */}
-          <div className="absolute bottom-4 right-4 pointer-events-none flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-bg/90 backdrop-blur-xs text-brand-text shadow-xs transition-opacity group-hover:opacity-100">
+          <div hidden={activeIndex === videoIndex} className="absolute bottom-4 right-4 pointer-events-none flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-bg/90 backdrop-blur-xs text-brand-text shadow-xs transition-opacity group-hover:opacity-100">
             <ZoomIn className="w-4 h-4 text-brand-primary" />
             <span className="text-xs text-brand-text font-normal">
               {messages.product.mainStudioView}
@@ -163,18 +199,23 @@ export function ProductGallery({ images, productTitle, productHandle, wornCaptio
                 />
               </div>
             ))}
+            {video && (
+              <div className="w-full h-full flex-shrink-0 snap-center relative aspect-[4/5] bg-brand-surface/40">
+                <ProductVideoView video={video} productTitle={productTitle} productHandle={productHandle} />
+              </div>
+            )}
           </div>
 
           {/* Photo counter: tells the customer there is more to swipe */}
-          {displayImages.length > 1 && (
+          {viewCount > 1 && (
             <span className="absolute top-3 left-3 z-20 px-2.5 py-1 rounded-full bg-brand-bg/90 text-xs font-medium text-brand-text shadow-xs">
-              {messages.product.galleryCounter(activeIndex + 1, displayImages.length)}
+              {messages.product.galleryCounter(activeIndex + 1, viewCount)}
             </span>
           )}
 
           {/* Pagination Dots */}
           <div className="absolute bottom-3 left-0 right-0 flex items-center justify-center gap-1.5 z-20 pointer-events-none">
-            {displayImages.map((_, idx) => (
+            {Array.from({ length: viewCount }, (_, idx) => (
               <span
                 key={idx}
                 className={`transition-all duration-300 rounded-full ${
@@ -193,5 +234,59 @@ export function ProductGallery({ images, productTitle, productHandle, wornCaptio
         )}
       </div>
     </section>
+  );
+}
+
+/**
+ * The clip of a product (FK-38). Only the still image is loaded with the page: the video file
+ * is fetched when the customer asks for it, then plays muted and in a loop. Never on its own.
+ */
+function ProductVideoView({ video, productTitle, productHandle }: { video: ProductVideo; productTitle: string; productHandle: string }) {
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  if (isPlaying) {
+    return (
+      <video
+        aria-label={messages.product.videoAria(productTitle)}
+        poster={video.poster}
+        autoPlay
+        muted
+        loop
+        playsInline
+        controls
+        controlsList="nodownload noplaybackrate"
+        disablePictureInPicture
+        className="absolute inset-0 w-full h-full object-cover bg-brand-surface"
+      >
+        {video.sources.map((source) => (
+          <source key={source.src} src={source.src} type={source.type} />
+        ))}
+      </video>
+    );
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        trackEvent(ANALYTICS_EVENTS.videoPlay, { produit: productHandle });
+        setIsPlaying(true);
+      }}
+      className="absolute inset-0 w-full h-full cursor-pointer group/video"
+    >
+      <SafeImage
+        src={video.poster}
+        alt=""
+        fallbackSrc={IMAGE_FALLBACKS.product}
+        sizes="(min-width: 1200px) 560px, (min-width: 768px) 50vw, 100vw"
+        className="w-full h-full object-cover object-top"
+      />
+      <span className="absolute inset-x-0 bottom-10 flex justify-center">
+        <span className="inline-flex items-center gap-2 min-h-11 px-5 rounded-full bg-brand-bg text-brand-text text-sm font-medium shadow-sm">
+          <Play className="w-4 h-4 fill-brand-text" aria-hidden="true" />
+          {messages.product.videoPlay}
+        </span>
+      </span>
+    </button>
   );
 }

@@ -118,7 +118,11 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {}
+      "metadata": {
+        "video_av1": "/mock-media/video-exemple-av1.mp4",
+        "video_mp4": "/mock-media/video-exemple-h264.mp4",
+        "video_poster": "/mock-media/video-exemple-affiche.jpg"
+      }
     },
     {
       "id": "prod_filles_02",

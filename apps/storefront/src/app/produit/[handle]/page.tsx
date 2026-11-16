@@ -106,6 +106,7 @@ async function ProductContent({ params }: ProductPageProps) {
             images={product.images}
             productTitle={product.title}
             wornCaptions={product.wornCaptions}
+            video={product.video}
           />
         </div>
 

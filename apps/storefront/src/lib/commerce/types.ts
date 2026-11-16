@@ -10,6 +10,13 @@ export interface ProductVariant {
   inStock: boolean;
 }
 
+/** Lightest source first: the phone plays the first format it can decode. */
+export interface ProductVideo {
+  sources: { src: string; type: string }[];
+  /** Still image shown before the customer asks for the video. */
+  poster: string;
+}
+
 export interface Product {
   id: string;
   handle: string;
@@ -21,6 +28,8 @@ export interface Product {
   images: string[];
   /** Per image, same order: « Aïcha, 7 ans, porte le 7-8 ans » or null (FK-33). */
   wornCaptions: (string | null)[];
+  /** Short silent clip shown as one more view of the gallery (FK-38), when Medusa has one. */
+  video?: ProductVideo;
   thumbnail: string;
   price: number; // Integer XOF
   categoryHandle: CategoryHandle;

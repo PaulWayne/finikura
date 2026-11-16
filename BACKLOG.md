@@ -593,6 +593,8 @@ En CI (FK-28), le cache pnpm et `.next/cache` s'ajoutent. Ce test tourne avant u
 
 **Taille** M · **Dépend de** FK-33, FK-15, photos et vidéos de la cliente · **Origine** recette 2 (14/11/2026), vidéos courtes fusionnées après l'analyse CRO du 14/11/2026
 
+**Partie vidéo développée (branche `refonte-experience`, 16/11/2026).** La galerie affiche la vidéo comme dernière vue. Elle se renseigne dans l'admin Medusa, par trois métadonnées du produit : `video_av1`, `video_mp4`, `video_poster`. Le format léger est l'AV1 (celui de Netflix), avec le H.264 en repli pour les téléphones qui ne le lisent pas. Mesuré sur une vidéo d'essai de 5 s (1,7 Mo au départ) : 223 Ko en AV1 et 382 Ko en H.264, pour une qualité perçue voisine (VMAF 89 et 87). `bash apps/storefront/scripts/encode-product-video.sh <vidéo>` produit les trois fichiers. Restent à faire : les photos face, dos et profil, les vraies vidéos de la cliente et l'accord écrit des parents.
+
 ### FK-39 · Accueil : un temps fort = une campagne mise en avant
 **Description.** Pendant ses dates, une campagne Strapi cochée « mettre en avant sur l'accueil » remplace la grande image de l'accueil : sa bannière, son accroche et un bouton vers sa page. Le reste du temps, l'accueil garde sa seule « Grande image ». D'abord fait avec plusieurs blocs « Grande image » datés, puis remplacé (14/11/2026) : plusieurs blocs identiques dans l'accueil risquaient de tromper la gérante. Un seul hero à la fois, jamais de carrousel (analyse CRO du 14/11/2026).
 
