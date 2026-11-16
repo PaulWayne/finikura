@@ -17,13 +17,13 @@ const defaultItems: ReassuranceItem[] = [
   {
     id: "reass_2",
     title: "Confirmation sur WhatsApp",
-    description: "Assistance personnalisée et validation rapide.",
+    description: "Vous confirmez votre commande par un simple message.",
     icon: "chat",
   },
   {
     id: "reass_3",
     title: "Guide des tailles",
-    description: "Mensurations fidèles adaptées de 3 à 14 ans.",
+    description: "Les mesures par âge, pour choisir la bonne taille.",
     icon: "straighten",
   },
 ];

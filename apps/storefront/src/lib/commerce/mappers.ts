@@ -51,8 +51,15 @@ export function hasAgeInStock(raw: MedusaStoreProduct, age: string): boolean {
   );
 }
 
+/** First age of a size title (« 13-14 ans » → 13); titles without a number go last. */
+const ageStart = (title: string) => {
+  const match = title.match(/\d+/);
+  return match ? Number(match[0]) : Number.MAX_SAFE_INTEGER;
+};
+
 export function mapMedusaProductToDomain(raw: MedusaStoreProduct): Product {
-  const variants = (raw.variants ?? []).map(mapMedusaVariantToDomain);
+  // Sizes read from the youngest to the oldest (« 3-4 ans » before « 13-14 ans »), whatever the order in Medusa.
+  const variants = (raw.variants ?? []).map(mapMedusaVariantToDomain).sort((a, b) => ageStart(a.title) - ageStart(b.title));
   const minPrice = variants.length > 0 ? Math.min(...variants.map((v) => v.price)) : 0;
 
   const occasionTag = raw.tags?.find((t) =>

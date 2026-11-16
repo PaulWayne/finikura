@@ -43,16 +43,7 @@ export function ProductRecommendations({
 
       {/* 3 Coordinated pieces */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {displayProducts.map((p, idx) => {
-          const badgeText =
-            idx === 0 ? "NOUVEAUTÉ" : idx === 1 ? "BEST-SELLER" : "MIXTE";
-          const badgeColor =
-            idx === 0
-              ? "text-brand-text"
-              : idx === 1
-              ? "text-brand-text"
-              : "text-brand-text";
-
+        {displayProducts.map((p) => {
           return (
             <article
               key={p.id}
@@ -68,11 +59,6 @@ export function ProductRecommendations({
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </Link>
-                <span
-                  className={`absolute top-3 left-3 px-2.5 py-1 rounded bg-brand-bg/90 font-medium text-[10px] tracking-[0.15em] uppercase backdrop-blur-xs ${badgeColor}`}
-                >
-                  {badgeText}
-                </span>
               </div>
 
               <div className="p-4 flex flex-col flex-1 justify-between">

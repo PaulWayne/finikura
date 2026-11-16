@@ -3,14 +3,14 @@
     "documentId": "home",
     "seo": {
       "title": "Fini Kura — Habits pour enfants à Bamako",
-      "description": "Grandir avec style, rayonner avec élégance. Vêtements pour filles et garçons de 3 à 14 ans, à Bamako. Paiement à la réception."
+      "description": "Conçus en Europe, portés à Bamako. Vêtements 100 % coton pour filles et garçons de 3 à 14 ans. Paiement à la réception."
     },
     "blocks": [
       {
         "__component": "blocks.hero",
         "eyebrow": "NOUVELLE COLLECTION",
-        "title": "GRANDIR AVEC STYLE, RAYONNER AVEC ÉLÉGANCE",
-        "subtitle": "Des vêtements de qualité pour les enfants de 3 à 14 ans, pour l'école, les fêtes et les cérémonies, à des prix raisonnables.",
+        "title": "CONÇUS EN EUROPE, PORTÉS À BAMAKO",
+        "subtitle": "Des vêtements 100 % coton pour les enfants de 3 à 14 ans. Le matin de la fête, il ne reste plus qu'à l'enfiler.",
         "cta_text": "DÉCOUVRIR LA COLLECTION",
         "cta_link": "#nouveautes",
         "image_alt": "Deux enfants souriants habillés avec élégance à Bamako",
@@ -63,8 +63,8 @@
       {
         "__component": "blocks.about-excerpt",
         "eyebrow": "HABITS NEUFS",
-        "title": "À PROPOS DE FINI KURA",
-        "content": "En bambara, « Fini Kura » veut dire habits neufs. Fini Kura habille les filles et les garçons de 3 à 14 ans, pour l'école, les fêtes et les cérémonies, avec des vêtements de qualité, élégants et à des prix raisonnables.",
+        "title": "LONGTEMPS, IL FALLAIT ATTENDRE LE RETOUR DE TANTIE",
+        "content": "Ces vêtements voyageaient dans les valises de la famille. Ils vous attendent désormais à Bamako. En bambara, « Fini Kura » veut dire habits neufs.",
         "cta_text": "NOTRE HISTOIRE",
         "cta_link": "/notre-histoire",
         "image_alt": "Vêtements Fini Kura",

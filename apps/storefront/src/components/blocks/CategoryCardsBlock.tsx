@@ -60,7 +60,7 @@ export function CategoryCardsBlock({ block }: CategoryCardsBlockProps) {
                   </span>
                 </div>
                 <span
-                  className="min-h-11 min-w-11 inline-flex items-center justify-center px-6 py-2.5 mt-4 rounded-[4px] border border-brand-primary bg-brand-bg text-brand-text group-hover:bg-brand-primary group-hover:text-brand-white font-medium text-xs tracking-[0.15em] uppercase transition shadow-xs"
+                  className="min-h-11 min-w-11 hidden md:inline-flex items-center justify-center px-6 py-2.5 mt-4 rounded-[4px] border border-brand-primary bg-brand-bg text-brand-text group-hover:bg-brand-primary group-hover:text-brand-white font-medium text-xs tracking-[0.15em] uppercase transition shadow-xs"
                 >
                   {card.ctaText}
                 </span>
