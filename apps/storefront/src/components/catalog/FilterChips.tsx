@@ -56,10 +56,10 @@ export function FilterChips({
                 key={opt.label}
                 href={targetUrl}
                 scroll={false}
-                className={`min-h-11 min-w-11 inline-flex items-center justify-center px-4 py-1.5 rounded-full text-xs font-normal tracking-wide transition border shadow-xs select-none ${
+                className={`min-h-11 min-w-11 inline-flex items-center justify-center px-4 py-1.5 rounded-full text-sm font-normal transition border select-none ${
                   isActive
                     ? "bg-brand-primary text-brand-white border-brand-primary"
-                    : "bg-brand-bg text-brand-text border-brand-surface hover:border-brand-primary/50 hover:bg-brand-surface/30"
+                    : "bg-brand-bg text-brand-text border-brand-text/30 hover:border-brand-primary"
                 }`}
               >
                 {opt.label}
@@ -88,10 +88,10 @@ export function FilterChips({
                 key={opt.label}
                 href={targetUrl}
                 scroll={false}
-                className={`min-h-11 min-w-11 inline-flex items-center justify-center px-4 py-1.5 rounded-full text-xs font-normal tracking-wide transition border shadow-xs select-none ${
+                className={`min-h-11 min-w-11 inline-flex items-center justify-center px-4 py-1.5 rounded-full text-sm font-normal transition border select-none ${
                   isActive
                     ? "bg-brand-primary text-brand-white border-brand-primary"
-                    : "bg-brand-bg text-brand-text border-brand-surface hover:border-brand-primary/50 hover:bg-brand-surface/30"
+                    : "bg-brand-bg text-brand-text border-brand-text/30 hover:border-brand-primary"
                 }`}
               >
                 {opt.label}

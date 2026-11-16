@@ -92,9 +92,9 @@ async function CategoryContent({
 
       {/* Category header: compact Strapi banner (FK-40), products stay above the fold on mobile */}
       {banner ? (
-        <div className="flex items-center gap-3.5 md:gap-6 rounded-2xl bg-brand-surface/40 border border-brand-surface p-2.5 md:p-4 max-h-[120px] md:max-h-none overflow-hidden">
+        <div className="flex items-center gap-3.5 md:gap-6">
           {banner.imageUrl && (
-            <div className="relative w-20 h-20 md:w-28 md:h-28 shrink-0 rounded-xl overflow-hidden bg-brand-surface">
+            <div className="relative w-20 h-24 md:w-28 md:h-36 shrink-0 rounded-md overflow-hidden bg-brand-surface">
               <SafeImage
                 src={banner.imageUrl}
                 alt={banner.imageAlt}
@@ -106,7 +106,7 @@ async function CategoryContent({
             </div>
           )}
           <div className="min-w-0 space-y-1">
-            <h1 className="font-serif text-2xl md:text-[40px] uppercase font-normal text-brand-text tracking-[0.06em] leading-tight">
+            <h1 className="font-serif text-[28px] md:text-5xl normal-case font-normal text-brand-text tracking-normal leading-tight">
               {category.name}
             </h1>
             <p className="text-sm md:text-base text-brand-text leading-snug">{banner.text}</p>
@@ -114,7 +114,7 @@ async function CategoryContent({
         </div>
       ) : (
       <div className="text-center max-w-2xl mx-auto space-y-3">
-        <h1 className="font-serif text-3xl md:text-[40px] uppercase font-normal text-brand-text tracking-[0.08em] leading-tight">
+        <h1 className="font-serif text-[28px] md:text-5xl normal-case font-normal text-brand-text tracking-normal leading-tight">
           {category.name}
         </h1>
         <p className="text-sm md:text-base text-brand-text font-light leading-relaxed">
