@@ -39,7 +39,7 @@ export async function orderFromProductPage(page: Page, handle: string, title: st
 
   // Confirmation page with the order number and the WhatsApp button.
   await expect(page).toHaveURL(/\/commande\/confirmation\//, { timeout: 15_000 });
-  await expect(page.getByText(/Commande n°/)).toBeVisible();
+  await expect(page.getByRole("heading", { name: /Commande n°/ })).toBeVisible();
   await expect(page.getByRole("link", { name: /Confirmer sur WhatsApp/i })).toHaveAttribute("href", /wa\.me/);
   return size;
 }
