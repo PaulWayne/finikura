@@ -1,13 +1,14 @@
 "use client";
 import Link from "next/link";
-import { Plus, X } from "lucide-react";
-import React, { useState } from "react";
+import { Heart, Plus, X } from "lucide-react";
+import React, { useEffect, useState } from "react";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { Product } from "@/lib/commerce/types";
 import { formatPrice } from "@/lib/format";
 import { addToCartAction } from "@/app/actions/cart";
 import { ANALYTICS_EVENTS, trackEvent } from "@/lib/analytics";
 import { triggerCartUpdated, triggerOpenCart, triggerToast } from "@/lib/cart-events";
+import { FAVORITES_EVENT, loadFavorites, toggleFavorite } from "@/lib/favorites";
 import { IMAGE_FALLBACKS } from "@/lib/images";
 import { messages } from "@/messages/fr";
 
@@ -29,6 +30,24 @@ export function ProductCard({ product, showCategoryBadge = false, preferredAge }
   const [addingId, setAddingId] = useState<string | null>(null);
   const [showSizePicker, setShowSizePicker] = useState(false);
   const isSoldOut = product.variants.every((v) => !v.inStock);
+  // Medusa says what is new: the outfit belongs to the « nouveautes » collection.
+  const isNew = product.collections.includes(NEW_COLLECTION_HANDLE);
+  const [isFavorite, setIsFavorite] = useState(false);
+  // Read after mount: the saved list only exists on the phone.
+  useEffect(() => {
+    const sync = () => setIsFavorite(loadFavorites().includes(product.handle));
+    sync();
+    window.addEventListener(FAVORITES_EVENT, sync);
+    return () => window.removeEventListener(FAVORITES_EVENT, sync);
+  }, [product.handle]);
+
+  const toggleHeart = () => {
+    const added = toggleFavorite(product.handle);
+    if (added === null) return triggerToast(messages.favorites.unavailable);
+    setIsFavorite(added);
+    trackEvent(ANALYTICS_EVENTS.favorite, { action: added ? "ajout" : "retrait" });
+    triggerToast(added ? messages.favorites.added : messages.favorites.removed);
+  };
   const text = messages.catalog.card;
   // Each age can have its own price in Medusa: without a chosen age, the lowest one is announced as such.
   const hasSeveralPrices = new Set(product.variants.map((v) => v.price)).size > 1;
@@ -85,6 +104,27 @@ export function ProductCard({ product, showCategoryBadge = false, preferredAge }
           />
           {badgeLabel}
         </span>
+
+        <button
+          type="button"
+          aria-label={isFavorite ? text.removeFavoriteAria(product.title) : text.addFavoriteAria(product.title)}
+          aria-pressed={isFavorite}
+          onClick={toggleHeart}
+          className="absolute top-0 right-0 w-11 h-11 flex items-center justify-center cursor-pointer active:scale-90 transition"
+        >
+          <span className="w-8 h-8 rounded-full bg-brand-bg flex items-center justify-center">
+            <Heart
+              aria-hidden="true"
+              className={`w-4 h-4 ${isFavorite ? "fill-brand-terracotta text-brand-terracotta" : "text-brand-text"}`}
+            />
+          </span>
+        </button>
+
+        {isNew && (
+          <span className="absolute bottom-2 left-2 px-2 py-0.5 bg-brand-text text-brand-white text-[11px] md:text-xs rounded-sm select-none">
+            {text.newBadge}
+          </span>
+        )}
 
         {!isSoldOut && (
           <button
@@ -162,6 +202,9 @@ export function ProductCard({ product, showCategoryBadge = false, preferredAge }
     </article>
   );
 }
+
+// Handle of the Medusa collection shown as « Nouveautés » on the home page.
+const NEW_COLLECTION_HANDLE = "nouveautes";
 
 /** « 13-14 ans » → « 13-14 »: three sizes fit on a row of a phone card, the label above says « ans ». */
 const ageLabel = (title: string) => title.replace(/\s*ans?\s*$/i, "");
