@@ -2,43 +2,44 @@
 
 @layer base {
   :root {
-    --background: #FDF7F2;
-    --foreground: #5E5245;
+    --background: #FBF7F0;
+    --foreground: #33382F;
 
-    --card: #EADCCC;
-    --card-foreground: #5E5245;
+    --card: #E9E2D0;
+    --card-foreground: #33382F;
 
-    --popover: #FDF7F2;
-    --popover-foreground: #5E5245;
+    --popover: #FBF7F0;
+    --popover-foreground: #33382F;
 
-    --primary: #8A7058;
+    --primary: #4C6B52;
     --primary-foreground: #FFFFFF;
 
-    --secondary: #EADCCC;
-    --secondary-foreground: #5E5245;
+    --secondary: #E9E2D0;
+    --secondary-foreground: #33382F;
 
-    --muted: #EADCCC;
-    --muted-foreground: #5E5245;
+    --muted: #E9E2D0;
+    --muted-foreground: #33382F;
 
-    --accent: #EADCCC;
-    --accent-foreground: #5E5245;
+    --accent: #E9E2D0;
+    --accent-foreground: #33382F;
 
-    --destructive: #CA7154;
+    --destructive: #C4603F;
     --destructive-foreground: #FFFFFF;
 
-    --border: #EADCCC;
-    --input: #EADCCC;
-    --ring: #8A7058;
+    --border: #E9E2D0;
+    --input: #E9E2D0;
+    --ring: #4C6B52;
 
     --radius: 0.25rem;
 
-    /* Brand Tokens (from mockups and brand board) */
-    --brand-bg: #FDF7F2;
-    --brand-surface: #EADCCC;
+    /* Brand tokens. « Sauge profonde » palette (16/11/2026): deep sage for the actions, terracotta as the accent,
+       darker text. The brand board values were #8A7058 (primary), #5E5245 (text), #EADCCC (surface), #FDF7F2 (bg). */
+    --brand-bg: #FBF7F0;
+    --brand-surface: #E9E2D0;
     --brand-announcement: #9EA593;
-    --brand-text: #5E5245;
-    --brand-primary: #8A7058;
-    --brand-terracotta: #CA7154;
+    --brand-text: #33382F;
+    --brand-primary: #4C6B52;
+    --brand-terracotta: #C4603F;
     /* Darker terracotta for error messages: AA contrast on bg and white. */
     --brand-error: #9E4A30;
     --brand-blue: #97AFC4;
@@ -133,7 +134,7 @@
   transform: translate(-50%, -50%);
 }
 
-/* Visible keyboard focus everywhere (FK-11): taupe on cream is 4.35:1, above the 3:1 required for non-text. */
+/* Visible keyboard focus everywhere (FK-11): deep sage on cream is 5.6:1, above the 3:1 required for non-text. */
 :focus-visible {
   outline: 2px solid var(--brand-primary);
   outline-offset: 2px;
