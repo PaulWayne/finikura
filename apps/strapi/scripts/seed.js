@@ -2,6 +2,9 @@
 // Usage: pnpm --filter strapi seed (CommonJS: the ESM build of @strapi/core fails on lodash imports)
 // Idempotent: single types are only created when empty, collection entries
 // are skipped when their slug / category handle already exists.
+// To bring content already in Strapi back to the fixtures, name it: --refresh=home,global,notre-histoire
+// (home page, global settings, or a page slug). This overwrites what was typed in the admin for these entries,
+// photos included: a photo chosen in the admin is replaced by the one of the fixtures.
 // Images referenced in the fixtures (/mock-media/… files, or URLs) are imported into the media library,
 // which stores them in Garage when S3_ENDPOINT is set.
 
@@ -73,8 +76,16 @@ async function mapBlock(b) {
 }
 const mapBlocks = async (blocks = []) => Promise.all(blocks.map(mapBlock));
 
-async function upsertSingle(uid, data) {
+const refresh = new Set(
+  (process.argv.find((arg) => arg.startsWith("--refresh=")) ?? "").replace("--refresh=", "").split(",").filter(Boolean),
+);
+
+async function upsertSingle(uid, data, refreshKey) {
   const existing = await strapi.documents(uid).findFirst();
+  if (existing && refresh.has(refreshKey)) {
+    await strapi.documents(uid).update({ documentId: existing.documentId, data, status: "published" });
+    return console.log(`${uid} : mis à jour depuis les fixtures`);
+  }
   if (existing) return console.log(`${uid} : déjà présent`);
   await strapi.documents(uid).create({ data, status: "published" });
   console.log(`${uid} : créé`);
@@ -90,14 +101,32 @@ async function createIfMissing(uid, filters, data) {
 const strip = ({ documentId: _d, id: _i, ...rest }) => rest;
 
 // --- Global settings -----------------------------------------------------------
-await upsertSingle("api::global-setting.global-setting", strip(read("global-settings.json").data));
+await upsertSingle("api::global-setting.global-setting", strip(read("global-settings.json").data), "global");
 
 // --- Home ----------------------------------------------------------------------
+// Images are only imported when the entry is written: a plain run uploads nothing twice.
 const home = read("home.json").data;
-await upsertSingle("api::home-page.home-page", { seo: home.seo, blocks: await mapBlocks(home.blocks) });
+const homeExists = await strapi.documents("api::home-page.home-page").findFirst();
+if (!homeExists || refresh.has("home")) {
+  await upsertSingle("api::home-page.home-page", { seo: home.seo, blocks: await mapBlocks(home.blocks) }, "home");
+} else {
+  console.log("api::home-page.home-page : déjà présent");
+}
 
 // --- Pages ---------------------------------------------------------------------
 for (const page of read("editorial-pages.json").data) {
+  if (refresh.has(page.slug)) {
+    const existing = await strapi.documents("api::page.page").findFirst({ filters: { slug: page.slug } });
+    if (existing) {
+      await strapi.documents("api::page.page").update({
+        documentId: existing.documentId,
+        data: { ...strip(page), blocks: await mapBlocks(page.blocks) },
+        status: "published",
+      });
+      console.log(`api::page.page ${page.slug} : mis à jour depuis les fixtures`);
+      continue;
+    }
+  }
   await createIfMissing("api::page.page", { slug: page.slug }, {
     ...strip(page),
     blocks: await mapBlocks(page.blocks),
@@ -124,6 +153,9 @@ for (const c of read("campaigns.json").data) {
     banner: await importImage(c.banner?.url, c.banner?.alternativeText),
   });
 }
+
+// A refresh publishes entries: leave time for the storefront revalidation request to go out.
+if (refresh.size > 0) await new Promise((resolve) => setTimeout(resolve, 2000));
 
 await strapi.destroy();
 }
