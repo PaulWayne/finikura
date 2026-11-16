@@ -11,9 +11,9 @@
       "blocks": [
         {
           "__component": "blocks.image-text",
-          "eyebrow": "NOTRE HISTOIRE",
+          "eyebrow": "Notre histoire",
           "title": "Tout a commencé par des demandes de proches",
-          "text": "Je vis en Europe. Pendant des années, des parents et des proches restés au Mali m'ont demandé la même chose : acheter des vêtements pour leurs enfants et les leur envoyer.\n\nCes demandes sont devenues de plus en plus fréquentes, et elles disaient toutes la même chose. Au Mali, les vêtements d'enfants de grande qualité existent, mais ils coûtent souvent trop cher pour la plupart des familles.\n\nPlutôt que de répondre à chaque demande une par une, j'ai créé une marque pour toutes ces familles : FINI KURA.",
+          "text": "Je vis en Europe. Pendant des années, des parents et des proches restés au Mali m'ont demandé la même chose : acheter des vêtements pour leurs enfants et les leur envoyer.\n\nCes demandes sont devenues de plus en plus fréquentes. Les vêtements voyageaient dans les valises de la famille, et il fallait attendre le prochain retour pour habiller les enfants.\n\nPlutôt que de répondre à chaque demande une par une, j'ai créé une marque pour toutes ces familles : FINI KURA. Ces vêtements vous attendent désormais à Bamako.",
           "image_alt": "Vêtements d'enfants FINI KURA",
           "image": {
             "url": "/mock-media/tout-a-commence-par-des-demandes-de-proches.jpg",
@@ -31,21 +31,21 @@
           "items": [
             {
               "title": "La qualité",
-              "description": "Des vêtements choisis avec soin, pour que vous habilliez vos enfants en toute confiance."
+              "description": "Des vêtements 100 % coton, conçus en Europe, avec la qualité des grandes marques européennes."
             },
             {
               "title": "L'élégance",
               "description": "Des tenues modernes pour le quotidien et pour les grands jours."
             },
             {
-              "title": "L'accessibilité",
-              "description": "Des prix raisonnables, pensés pour les familles maliennes."
+              "title": "Les petites séries",
+              "description": "Peu de pièces par modèle : peu d'enfants porteront la même tenue."
             }
           ]
         },
         {
           "__component": "blocks.cta",
-          "title": "Grandir avec style, rayonner avec élégance",
+          "title": "Conçus en Europe, portés à Bamako",
           "subtitle": "Découvrez notre collection pour filles et garçons de 3 à 14 ans.",
           "cta_text": "Voir la collection",
           "cta_link": "/categorie/filles"
