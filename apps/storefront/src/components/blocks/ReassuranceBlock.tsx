@@ -1,6 +1,6 @@
 import React from "react";
 import { ReassuranceBlockData, ReassuranceItem } from "@/lib/content/types";
-import { CreditCard, MessageCircle, Ruler } from "lucide-react";
+import { CreditCard, MessageCircle, Ruler, Shirt, Sparkles } from "lucide-react";
 
 interface ReassuranceBlockProps {
   block?: ReassuranceBlockData;
@@ -10,21 +10,21 @@ interface ReassuranceBlockProps {
 const defaultItems: ReassuranceItem[] = [
   {
     id: "reass_1",
-    title: "Paiement à la réception",
-    description: "Réglez directement en mains propres à Bamako.",
-    icon: "payments",
+    title: "100 % coton",
+    description: "Un coton qui respire avec eux, de la cour de récré au soir de fête.",
+    icon: "cotton",
   },
   {
     id: "reass_2",
-    title: "Confirmation sur WhatsApp",
-    description: "Vous confirmez votre commande par un simple message.",
-    icon: "chat",
+    title: "Petites séries",
+    description: "Peu de pièces par modèle : peu d'enfants porteront la même tenue.",
+    icon: "series",
   },
   {
     id: "reass_3",
-    title: "Guide des tailles",
-    description: "Les mesures par âge, pour choisir la bonne taille.",
-    icon: "straighten",
+    title: "Paiement à la réception",
+    description: "Vous payez quand vous recevez votre commande, à Bamako.",
+    icon: "payments",
   },
 ];
 
@@ -34,6 +34,10 @@ function renderIcon(iconName: string) {
       return <CreditCard className="w-6 h-6 stroke-[1.5] text-brand-text" />;
     case "chat":
       return <MessageCircle className="w-6 h-6 stroke-[1.5] text-brand-text" />;
+    case "cotton":
+      return <Shirt className="w-6 h-6 stroke-[1.5] text-brand-text" />;
+    case "series":
+      return <Sparkles className="w-6 h-6 stroke-[1.5] text-brand-text" />;
     case "straighten":
     default:
       return <Ruler className="w-6 h-6 stroke-[1.5] text-brand-text" />;

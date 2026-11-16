@@ -31,6 +31,8 @@ const toCategoryHandle = (v: unknown): "filles" | "garcons" => (v === "garcons" 
 export function mediaUrl(media: StrapiMedia | null | undefined): string {
   if (!media?.url) return "";
   if (/^https?:\/\//.test(media.url)) return media.url;
+  // Fixture photos live in the storefront itself (public/mock-media): never behind the Strapi address.
+  if (media.url.startsWith("/mock-media/")) return media.url;
   const base = (process.env.STRAPI_PUBLIC_URL ?? process.env.STRAPI_URL ?? "").replace(/\/$/, "");
   return `${base}${media.url}`;
 }

@@ -17,15 +17,15 @@ interface CartItemRowProps {
 /** One line of the cart drawer, with the quantity picker and the remove button. */
 export function CartItemRow({ item, isLoading, error, onQuantityChange, onRemove }: CartItemRowProps) {
   return (
-    <div className="bg-brand-surface/30 rounded-2xl p-3.5 sm:p-4 border border-brand-surface flex space-x-3.5 sm:space-x-4 transition hover:bg-brand-surface/40">
+    <div className="flex space-x-3.5 sm:space-x-4 pb-4 border-b border-brand-surface last:border-b-0">
       {/* Photo on plain beige background */}
-      <div className="w-20 sm:w-24 h-24 sm:h-28 bg-brand-surface rounded-xl overflow-hidden shrink-0 relative border border-brand-surface">
+      <div className="w-20 sm:w-24 h-[100px] sm:h-[120px] bg-brand-surface rounded-md overflow-hidden shrink-0 relative">
         <SafeImage
           src={item.thumbnail || IMAGE_FALLBACKS.product}
           alt={item.productTitle}
           fallbackSrc={IMAGE_FALLBACKS.product}
           sizes="96px"
-          className="object-cover"
+          className="object-cover object-top"
         />
       </div>
 
@@ -36,7 +36,7 @@ export function CartItemRow({ item, isLoading, error, onQuantityChange, onRemove
               <span className="text-[10px] uppercase tracking-wider font-medium block text-brand-text">
                 {messages.cart.categoryLabel(item.categoryHandle === "filles")}
               </span>
-              <h4 className="font-serif text-sm sm:text-base font-semibold text-brand-text leading-snug mt-0.5 truncate">
+              <h4 className="font-serif text-base text-brand-text leading-snug mt-0.5 line-clamp-2">
                 {item.productTitle}
               </h4>
             </div>
@@ -61,7 +61,7 @@ export function CartItemRow({ item, isLoading, error, onQuantityChange, onRemove
         </div>
 
         {/* Quantity and price */}
-        <div className="flex items-center justify-between mt-3 pt-2.5 border-t border-brand-surface">
+        <div className="flex items-center justify-between mt-2">
           <div className="flex items-center border border-brand-primary/40 rounded-lg bg-brand-white/70">
             <button
               type="button"
@@ -85,7 +85,7 @@ export function CartItemRow({ item, isLoading, error, onQuantityChange, onRemove
               +
             </button>
           </div>
-          <span className="font-serif text-sm sm:text-base font-semibold text-brand-text">
+          <span className="text-base font-medium text-brand-text whitespace-nowrap">
             {formatPrice(item.price * item.quantity)}
           </span>
         </div>

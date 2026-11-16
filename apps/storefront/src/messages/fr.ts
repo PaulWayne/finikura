@@ -5,6 +5,7 @@
 export const messages = {
   home: {
     campaignHeroCta: "Découvrir la collection",
+    occasionLinkAria: (category: string, occasion: string) => `${category} : ${occasion}`,
   },
   common: {
     loading: "Chargement…",
