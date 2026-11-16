@@ -100,8 +100,8 @@ export function ProductGallery({ images, productTitle, productHandle, wornCaptio
         })}
       </div>
 
-      {/* Main image container */}
-      <div className="relative flex-1 w-full bg-brand-surface/30 rounded-xl md:rounded-2xl overflow-hidden group border border-brand-surface">
+      {/* Main image container: edge to edge on a phone, past the page gutter */}
+      <div className="relative flex-1 w-[calc(100%+2rem)] -mx-4 md:mx-0 md:w-full bg-brand-surface/30 md:rounded-md overflow-hidden group">
         {/* Desktop single main display with smooth transition */}
         <div className="hidden md:block aspect-[4/5] w-full overflow-hidden relative bg-brand-surface/30">
           <SafeImage
@@ -123,7 +123,7 @@ export function ProductGallery({ images, productTitle, productHandle, wornCaptio
         </div>
 
         {/* Mobile Horizontal Swipeable Carousel (390px) */}
-        <div className="block md:hidden relative w-full aspect-[5/4] overflow-hidden select-none">
+        <div className="block md:hidden relative w-full aspect-[4/5] overflow-hidden select-none">
 
           {/* Favorite subtle button */}
           <button
@@ -151,7 +151,7 @@ export function ProductGallery({ images, productTitle, productHandle, wornCaptio
             {displayImages.map((src, idx) => (
               <div
                 key={idx}
-                className="w-full h-full flex-shrink-0 snap-center relative aspect-[5/4] bg-brand-surface/40"
+                className="w-full h-full flex-shrink-0 snap-center relative aspect-[4/5] bg-brand-surface/40"
               >
                 <SafeImage
                   src={src}
@@ -159,7 +159,7 @@ export function ProductGallery({ images, productTitle, productHandle, wornCaptio
                   fallbackSrc={IMAGE_FALLBACKS.product}
                   sizes="(min-width: 768px) 1px, 100vw"
                   preload={idx === 0}
-                  className="object-cover object-[center_20%]"
+                  className="object-cover object-top"
                 />
               </div>
             ))}
@@ -187,7 +187,7 @@ export function ProductGallery({ images, productTitle, productHandle, wornCaptio
           </div>
         </div>
         {activeCaption && (
-          <p className="px-3 py-2 text-xs text-brand-text bg-brand-bg border-t border-brand-surface">
+          <p className="px-4 md:px-3 py-2 text-xs text-brand-text bg-brand-bg border-t border-brand-surface">
             {activeCaption}
           </p>
         )}
