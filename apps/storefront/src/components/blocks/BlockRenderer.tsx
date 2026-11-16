@@ -1,6 +1,7 @@
 import React from "react";
 import { ContentBlock, ReassuranceItem } from "@/lib/content/types";
 import { Product } from "@/lib/commerce/types";
+import type { OccasionShortcut } from "@/lib/occasion-shortcuts";
 import { HeroBlock } from "./HeroBlock";
 import { CategoryCardsBlock } from "./CategoryCardsBlock";
 import { ProductSectionBlock } from "./ProductSectionBlock";
@@ -15,6 +16,7 @@ import { CtaBlock } from "./CtaBlock";
 interface BlockRendererProps {
   block: ContentBlock;
   collectionProductsMap?: Record<string, Product[]>;
+  occasionShortcuts?: OccasionShortcut[];
   reassuranceItems?: ReassuranceItem[];
   whatsappUrl?: string | null;
 }
@@ -22,6 +24,7 @@ interface BlockRendererProps {
 export function BlockRenderer({
   block,
   collectionProductsMap = {},
+  occasionShortcuts,
   reassuranceItems,
   whatsappUrl,
 }: BlockRendererProps) {
@@ -30,7 +33,7 @@ export function BlockRenderer({
       return <HeroBlock block={block} />;
 
     case "categoryCards":
-      return <CategoryCardsBlock block={block} />;
+      return <CategoryCardsBlock block={block} occasionShortcuts={occasionShortcuts} />;
 
     case "productSection": {
       const products = collectionProductsMap[block.collectionHandle] || [];
