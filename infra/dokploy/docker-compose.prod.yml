@@ -70,12 +70,31 @@ services:
       S3_ACCESS_KEY_ID: ${S3_ACCESS_KEY_ID}
       S3_SECRET_ACCESS_KEY: ${S3_SECRET_ACCESS_KEY}
       MEDIA_PUBLIC_URL: https://media.${DOMAIN}
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:9000/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      # First start: migrations run before Medusa listens.
+      start_period: 300s
     labels:
       - traefik.enable=true
       - traefik.docker.network=dokploy-network
-      - traefik.http.routers.finikura-medusa.rule=Host(`api.${DOMAIN}`)
+      # The site talks to Medusa over the internal network: the public domain only serves the admin.
+      # /store (the shop API) and /auth/customer (customer accounts, unused) are left out (audit S3).
+      - traefik.http.routers.finikura-medusa.rule=Host(`api.${DOMAIN}`) && !PathPrefix(`/store`) && !PathPrefix(`/auth/customer`) && !PathPrefix(`/auth/user`)
       - traefik.http.routers.finikura-medusa.entrypoints=websecure
       - traefik.http.routers.finikura-medusa.tls.certresolver=letsencrypt
+      - traefik.http.routers.finikura-medusa.middlewares=finikura-secure
+      # Admin sign-in: at most 10 tries a minute per address (audit S2).
+      - traefik.http.routers.finikura-medusa-auth.rule=Host(`api.${DOMAIN}`) && PathPrefix(`/auth/user`)
+      - traefik.http.routers.finikura-medusa-auth.entrypoints=websecure
+      - traefik.http.routers.finikura-medusa-auth.tls.certresolver=letsencrypt
+      - traefik.http.routers.finikura-medusa-auth.middlewares=finikura-secure,finikura-auth-limit
+      - traefik.http.routers.finikura-medusa-auth.service=finikura-medusa
+      - traefik.http.middlewares.finikura-auth-limit.ratelimit.average=10
+      - traefik.http.middlewares.finikura-auth-limit.ratelimit.period=1m
+      - traefik.http.middlewares.finikura-auth-limit.ratelimit.burst=5
       - traefik.http.routers.finikura-medusa-http.rule=Host(`api.${DOMAIN}`)
       - traefik.http.routers.finikura-medusa-http.entrypoints=web
       - traefik.http.routers.finikura-medusa-http.middlewares=finikura-https
@@ -121,12 +140,19 @@ services:
       MEDIA_PUBLIC_URL: https://media.${DOMAIN}
     volumes:
       - finikura-strapi-uploads:/app/apps/strapi/public/uploads
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:1337/_health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 120s
     labels:
       - traefik.enable=true
       - traefik.docker.network=dokploy-network
       - traefik.http.routers.finikura-strapi.rule=Host(`cms.${DOMAIN}`)
       - traefik.http.routers.finikura-strapi.entrypoints=websecure
       - traefik.http.routers.finikura-strapi.tls.certresolver=letsencrypt
+      - traefik.http.routers.finikura-strapi.middlewares=finikura-secure
       - traefik.http.routers.finikura-strapi-http.rule=Host(`cms.${DOMAIN}`)
       - traefik.http.routers.finikura-strapi-http.entrypoints=web
       - traefik.http.routers.finikura-strapi-http.middlewares=finikura-https
@@ -137,7 +163,9 @@ services:
     build: { context: ../.., target: storefront }
     container_name: finikura-storefront
     restart: unless-stopped
-    depends_on: [medusa, strapi]
+    depends_on:
+      medusa: { condition: service_healthy }
+      strapi: { condition: service_healthy }
     environment:
       COMMERCE_SOURCE: live
       CONTENT_SOURCE: live
@@ -153,17 +181,38 @@ services:
       UMAMI_WEBSITE_ID: ${UMAMI_WEBSITE_ID:-}
       SITE_URL: https://${DOMAIN}
       MEDIA_PUBLIC_URL: https://media.${DOMAIN}
+      # Orders allowed in a row (audit B2); empty = the defaults of docs/deploiement.md.
+      ORDER_LIMIT_PHONE_15MIN: ${ORDER_LIMIT_PHONE_15MIN:-}
+      ORDER_LIMIT_PHONE_DAY: ${ORDER_LIMIT_PHONE_DAY:-}
+      ORDER_LIMIT_IP_15MIN: ${ORDER_LIMIT_IP_15MIN:-}
+      ORDER_LIMIT_IP_DAY: ${ORDER_LIMIT_IP_DAY:-}
+      # 1 = rebuild the site at the next restart of its container (otherwise only a redeploy does).
+      FORCE_REBUILD: ${FORCE_REBUILD:-}
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3100/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      # The first start builds the site (1 to 3 minutes).
+      start_period: 300s
     labels:
       - traefik.enable=true
       - traefik.docker.network=dokploy-network
       - traefik.http.routers.finikura-front.rule=Host(`${DOMAIN}`)
       - traefik.http.routers.finikura-front.entrypoints=websecure
       - traefik.http.routers.finikura-front.tls.certresolver=letsencrypt
+      - traefik.http.routers.finikura-front.middlewares=finikura-secure
       - traefik.http.routers.finikura-front-http.rule=Host(`${DOMAIN}`)
       - traefik.http.routers.finikura-front-http.entrypoints=web
       - traefik.http.routers.finikura-front-http.middlewares=finikura-https
       - traefik.http.middlewares.finikura-https.redirectscheme.scheme=https
       - traefik.http.middlewares.finikura-https.redirectscheme.permanent=true
+      # Shared by every HTTPS router of the stack (audit S1): HSTS for one year on the domain and its
+      # subdomains, no MIME sniffing, and no X-Powered-By (Medusa announces Express).
+      - traefik.http.middlewares.finikura-secure.headers.stsSeconds=31536000
+      - traefik.http.middlewares.finikura-secure.headers.stsIncludeSubdomains=true
+      - traefik.http.middlewares.finikura-secure.headers.contentTypeNosniff=true
+      - traefik.http.middlewares.finikura-secure.headers.customResponseHeaders.X-Powered-By=
       - traefik.http.services.finikura-front.loadbalancer.server.port=3100
     networks: [internal, dokploy-network]
 
@@ -185,6 +234,7 @@ services:
       - traefik.http.routers.finikura-media.rule=Host(`media.${DOMAIN}`)
       - traefik.http.routers.finikura-media.entrypoints=websecure
       - traefik.http.routers.finikura-media.tls.certresolver=letsencrypt
+      - traefik.http.routers.finikura-media.middlewares=finikura-secure
       - traefik.http.routers.finikura-media-http.rule=Host(`media.${DOMAIN}`)
       - traefik.http.routers.finikura-media-http.entrypoints=web
       - traefik.http.routers.finikura-media-http.middlewares=finikura-https
@@ -213,6 +263,7 @@ services:
       - traefik.http.routers.finikura-umami.rule=Host(`stats.${DOMAIN}`)
       - traefik.http.routers.finikura-umami.entrypoints=websecure
       - traefik.http.routers.finikura-umami.tls.certresolver=letsencrypt
+      - traefik.http.routers.finikura-umami.middlewares=finikura-secure
       - traefik.http.routers.finikura-umami-http.rule=Host(`stats.${DOMAIN}`)
       - traefik.http.routers.finikura-umami-http.entrypoints=web
       - traefik.http.routers.finikura-umami-http.middlewares=finikura-https

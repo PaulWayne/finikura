@@ -33,8 +33,8 @@ Comptez environ 2 Go : Medusa 500 à 700 Mo, Strapi 400 à 600 Mo, Next 300 à 5
 4. **Deploy**. Medusa applique ses migrations au démarrage.
 5. **Données de départ** (une seule fois), dans le terminal du conteneur, depuis Dokploy :
    - **Stockage des médias, en premier** (sinon les photos du seed resteraient dans les conteneurs) : sur le VPS, `sh infra/garage/init.sh finikura-garage media.DOMAIN`. Le script crée le bucket `media`, le sert sur `https://media.DOMAIN` et affiche une clé : copiez son **Key ID** et son **Secret key** dans `S3_ACCESS_KEY_ID` et `S3_SECRET_ACCESS_KEY`, puis redéployez. Le secret n'est affiché qu'à ce moment-là.
-   - Medusa : `cd /app/apps/medusa && pnpm seed`. Le seed affiche la clé publique du canal « Site Fini Kura » : copiez-la dans `MEDUSA_PUBLISHABLE_KEY`, puis redéployez.
-   - Strapi : `cd /app/apps/strapi && pnpm seed`.
+   - Medusa : `cd /app/apps/medusa && pnpm seed structure-only`. Ce mode crée la région, le canal, le lieu de stock, la livraison, les catégories et les étiquettes d'occasion, sans aucun produit ni photo de démonstration : le vrai catalogue se saisit ensuite dans l'admin. Le seed affiche la clé publique du canal « Site Fini Kura » : copiez-la dans `MEDUSA_PUBLISHABLE_KEY`, puis redéployez. (Sans `structure-only`, le seed charge le catalogue de démonstration : à réserver à la répétition générale.)
+   - Strapi : `cd /app/apps/strapi && SEED_WHATSAPP_NUMBER=223XXXXXXXX pnpm seed --sans-demo`, avec le numéro WhatsApp de la boutique. Ce mode écrit ce numéro à la place du numéro de test et laisse de côté les témoignages et les campagnes de démonstration. Les textes et les photos de l'accueil et des pages restent à relire dans l'admin.
    - Comptes de l'admin (FK-08). Personne ne choisit le mot de passe à la place de la gérante ou de sa sœur :
      1. Medusa, premier accès : `cd /app/apps/medusa/.medusa/server && ../../node_modules/.bin/medusa user -e <email de la gérante> --invite`. La commande affiche un jeton : envoyez-lui le lien `https://api.DOMAIN/app/invite?token=<jeton>`, valable 24 heures. Elle y choisit son mot de passe.
      2. Medusa, sa sœur : la gérante l'invite depuis **Paramètres › Utilisateurs › Inviter**. L'e-mail d'invitation part par la boîte Hostinger.
@@ -47,12 +47,23 @@ Comptez environ 2 Go : Medusa 500 à 700 Mo, Strapi 400 à 600 Mo, Next 300 à 5
      4. Entonnoir (FK-30) : dans le site « Fini Kura », ouvrez **Funnels** et créez « Visite → panier → commande », avec trois étapes : une page `/` (ou un visiteur), l'événement `ajout-panier`, puis l'événement `commande`. Les clics WhatsApp se lisent dans **Events**, sous `clic-whatsapp` : la propriété `type` vaut `contact` ou `partage`, et `page` indique le type de page (`produit`, `commande`…). Les coups de cœur (FK-37) se lisent sous `coup-de-coeur`, avec la propriété `action` : `ajout` ou `retrait`.
 6. **Vérifications** :
    - `https://DOMAIN` s'affiche, et `http://DOMAIN` redirige vers le HTTPS ;
+   - `docker ps` montre `finikura-medusa`, `finikura-strapi` et `finikura-storefront` en `(healthy)` ;
+   - les réponses des cinq domaines portent `Strict-Transport-Security`, et celles du site `Content-Security-Policy` (`curl -sI https://DOMAIN`) ; aucune ne porte `X-Powered-By` ;
+   - `https://api.DOMAIN/store/products` et `https://api.DOMAIN/auth/customer/emailpass/register` répondent 404 (l'API boutique ne passe que par le réseau interne), et `https://api.DOMAIN/app` affiche l'admin ;
+   - `https://cms.DOMAIN/api/auth/local/register` répond « Register action is currently disabled » ;
+   - `https://DOMAIN/robots.txt` et `https://DOMAIN/sitemap.xml` répondent, et le sitemap liste les fiches produit ;
    - les journaux de Medusa affichent « Connection to Redis … established », et jamais « fake redis » ni « in-memory » ;
    - une modification publiée dans Strapi apparaît sur le site (revalidation) ;
    - une commande test passe, avec le bouton WhatsApp, et chaque compte de l'admin Medusa reçoit l'e-mail de commande ;
    - « Mot de passe oublié » envoie bien un e-mail, dans l'admin Medusa et dans l'admin Strapi ;
    - les photos des produits et de l'accueil viennent de `https://media.DOMAIN`, et une photo ajoutée dans l'admin Medusa ou Strapi y apparaît aussi ;
    - une visite du site apparaît dans Umami en moins d'une minute, et le site ne crée aucun cookie de statistiques.
+
+## Limite de commandes
+Un même numéro de téléphone peut passer 3 commandes en 15 minutes et 10 en 24 heures, une même adresse IP 10 et 40 (plusieurs téléphones d'un même réseau mobile partagent souvent une adresse). Au-delà, la cliente voit un message qui l'invite à réessayer plus tard ou à écrire sur WhatsApp. Les valeurs se changent dans l'onglet Environment, sans toucher au code : `ORDER_LIMIT_PHONE_15MIN`, `ORDER_LIMIT_PHONE_DAY`, `ORDER_LIMIT_IP_15MIN`, `ORDER_LIMIT_IP_DAY`. Les compteurs repartent de zéro au redémarrage du site.
+
+## Redémarrage du site
+Un redémarrage du conteneur du site (panne, `docker restart`) reprend la construction existante : le site revient en quelques secondes. Un redéploiement crée un nouveau conteneur et reconstruit le site (1 à 3 minutes). Pour forcer une reconstruction sans redéployer, mettez `FORCE_REBUILD=1` dans l'onglet Environment.
 
 ## Revalidation du cache
 Medusa (via un subscriber) et Strapi (via l'eventHub) appellent `http://storefront:3100/api/revalidate` par le réseau interne, avec `REVALIDATE_SECRET`. Ce secret doit être le même pour les trois services, ce que garantit la variable unique dans Dokploy.
