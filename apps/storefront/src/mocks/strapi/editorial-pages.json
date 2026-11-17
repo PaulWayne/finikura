@@ -126,12 +126,12 @@
         {
           "__component": "blocks.rich-text",
           "title": "Éditeur du site",
-          "body": "FINI KURA\n\nÀ compléter : nom de la responsable, statut, adresse et contact."
+          "body": "Le site Fini Kura est édité par Oumar Coulibaly, également directeur de la publication.\n\nPour toute question, écrivez-nous sur WhatsApp, depuis le bouton présent sur chaque page du site."
         },
         {
           "__component": "blocks.rich-text",
           "title": "Hébergement",
-          "body": "À compléter lors de la mise en production."
+          "body": "Le site est hébergé sur un serveur privé virtuel (VPS) de Hostinger Global S.à r.l., société de droit luxembourgeois, 6 Avenue Pasteur, L-2310 Luxembourg, Grand-Duché de Luxembourg. Contact : [compliance@hostinger.com](mailto:compliance@hostinger.com)."
         },
         {
           "__component": "blocks.rich-text",
@@ -146,7 +146,7 @@
         {
           "__component": "blocks.rich-text",
           "title": "Cookies",
-          "body": "Le site utilise un seul cookie, nécessaire au fonctionnement de votre panier. Il est supprimé à la fin de votre commande, ou au bout de 30 jours."
+          "body": "Le site dépose deux cookies, tous deux nécessaires à son fonctionnement. Il n'utilise aucun cookie de publicité ni de mesure d'audience.\n\n- **Panier** : garde les articles de votre panier. Il est supprimé quand la commande est passée, ou au bout de 30 jours.\n- **Commandes** : permet de revoir le détail de vos commandes sur ce téléphone. Il est gardé 30 jours.\n\nVotre navigateur garde aussi, sur votre téléphone, vos coordonnées de livraison, pour ne pas avoir à les retaper à la commande suivante, et vos coups de cœur. Ces informations ne nous sont envoyées que lorsque vous passez commande. Vous pouvez les effacer en supprimant les données du site dans les réglages de votre navigateur.\n\nLes statistiques de visite sont mesurées sans cookie et sans enregistrer qui vous êtes."
         }
       ]
     }
