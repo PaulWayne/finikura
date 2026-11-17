@@ -36,6 +36,11 @@ import {
  *
  * Run: pnpm --filter medusa seed
  * Idempotent for setup entities: anything that already exists is reused.
+ *
+ * Production (audit B3): pnpm --filter medusa seed structure-only
+ * creates only what the shop needs to sell (region, channel, stock location, delivery, key,
+ * categories without photos, occasion tags): no demo collection, product or photo.
+ * The real catalogue is then entered in the admin.
  */
 
 type FixtureVariant = {
@@ -73,6 +78,7 @@ const OCCASION_TAGS = ["tous-les-jours", "fete", "ceremonie"]
 const AGE_OPTION = "Âge"
 
 export default async function seed({ container, args }: ExecArgs) {
+  const structureOnly = (args ?? []).includes("structure-only")
   // Uploads a /mock-media/… fixture image to the File module (Garage in dev and production) once,
   // and returns its public URL. Other URLs (real photos already in storage) are kept as they are.
   const uploaded = new Map<string, string>()
@@ -96,6 +102,11 @@ export default async function seed({ container, args }: ExecArgs) {
     })
     uploaded.set(url, result[0].url)
     return result[0].url
+  }
+  const withoutImage = (metadata?: Record<string, unknown>) => {
+    if (!metadata) return metadata
+    const { image: _image, ...rest } = metadata
+    return rest
   }
   const categoryMetadata = async (metadata?: Record<string, unknown>) =>
     metadata && typeof metadata.image === "string"
@@ -262,7 +273,8 @@ export default async function seed({ container, args }: ExecArgs) {
           name: c.name,
           handle: c.handle,
           description: c.description,
-          metadata: await categoryMetadata(c.metadata),
+          // Structure only: no demo photo, the real one is chosen in the admin.
+          metadata: structureOnly ? withoutImage(c.metadata) : await categoryMetadata(c.metadata),
           is_active: true,
         }))),
       },
@@ -271,6 +283,25 @@ export default async function seed({ container, args }: ExecArgs) {
   const categories = await productModule.listProductCategories({
     handle: fixtureCategories.map((c) => c.handle),
   })
+
+  // Occasion tags of the catalogue filters: needed with or without the demo products.
+  async function ensureOccasionTags() {
+    const existingTags = await productModule.listProductTags({ value: OCCASION_TAGS })
+    const missingTags = OCCASION_TAGS.filter((v) => !existingTags.some((t) => t.value === v))
+    if (missingTags.length) {
+      await createProductTagsWorkflow(container).run({
+        input: { product_tags: missingTags.map((value) => ({ value })) },
+      })
+    }
+    return productModule.listProductTags({ value: OCCASION_TAGS })
+  }
+
+  if (structureOnly) {
+    await ensureOccasionTags()
+    logger.info("Structure seule : ni collection, ni produit de démonstration.")
+    logger.info(`Clé publiable du site : ${apiKey.token}`)
+    return
+  }
 
   const { collections: fixtureCollections } = readFixture<{
     collections: { title: string; handle: string }[]
@@ -290,14 +321,7 @@ export default async function seed({ container, args }: ExecArgs) {
     handle: fixtureCollections.map((c) => c.handle),
   })
 
-  const existingTags = await productModule.listProductTags({ value: OCCASION_TAGS })
-  const missingTags = OCCASION_TAGS.filter((v) => !existingTags.some((t) => t.value === v))
-  if (missingTags.length) {
-    await createProductTagsWorkflow(container).run({
-      input: { product_tags: missingTags.map((value) => ({ value })) },
-    })
-  }
-  const tags = await productModule.listProductTags({ value: OCCASION_TAGS })
+  const tags = await ensureOccasionTags()
 
   // --- Products -------------------------------------------------------------
   const { products: fixtureProducts } = readFixture<{ products: FixtureProduct[] }>("products.json")
