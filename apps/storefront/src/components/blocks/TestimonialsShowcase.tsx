@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import React, { useState } from "react";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { IMAGE_FALLBACKS } from "@/lib/images";
@@ -15,80 +15,106 @@ export interface ShownTestimonial {
 }
 
 /**
- * One customer at a time, large: her photo, and her words set across its edge. The first names
- * are the buttons that change the testimonial; nothing moves on its own. No stars: there is no
- * rating behind these words.
+ * A fan of portraits: the customer in front is large, her neighbours stand back on each side,
+ * turned a little. Her words are read below. The arrows, or a touch on a neighbour, bring another
+ * one forward; nothing moves on its own. No stars: there is no rating behind these words.
  */
 export function TestimonialsShowcase({ title, items }: { title: string; items: ShownTestimonial[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
-  // The words only move when the customer changes the testimonial, never when the page loads.
-  const [hasChanged, setHasChanged] = useState(false);
+  const count = items.length;
   const active = items[activeIndex] ?? items[0];
-  const firstName = (author: string) => author.split(",")[0].trim();
+  const go = (step: number) => setActiveIndex((index) => (index + step + count) % count);
+  // Place of a card around the one in front: -1 on its left, 0 in front, 1 on its right.
+  const placeOf = (index: number) => {
+    const half = Math.floor(count / 2);
+    return ((index - activeIndex + count + half) % count) - half;
+  };
 
   return (
-    <section className="md:grid md:grid-cols-12 md:items-center" data-purpose="testimonials-block">
-      <div className="relative -mx-4 md:mx-0 md:col-span-6 aspect-[4/5] md:aspect-auto md:h-[580px] md:rounded-md overflow-hidden bg-brand-surface">
-        {active.photoUrl && (
-          <SafeImage
-            key={active.photoUrl}
-            src={active.photoUrl}
-            alt=""
-            fallbackSrc={IMAGE_FALLBACKS.product}
-            sizes="(min-width: 768px) 50vw, 100vw"
-            className="w-full h-full object-cover object-top"
-          />
-        )}
-      </div>
+    <section className="-mx-4 md:mx-0 overflow-hidden text-center" data-purpose="testimonials-block">
+      <h2 className="font-serif text-[26px] md:text-4xl text-brand-text leading-tight px-4 mb-5 md:mb-8">{title}</h2>
 
-      {/* The words overlap the photo: from below on a phone, from the side on a wide screen. */}
-      <div className="relative -mt-16 md:mt-0 md:col-span-6 md:-ml-16">
-        <div className="bg-brand-text text-brand-bg rounded-md px-5 py-6 md:px-10 md:py-10">
-          <h2 className="text-sm text-brand-bg mb-3 md:mb-5">{title}</h2>
-          <figure key={activeIndex} aria-live="polite" className={hasChanged ? "fk-rise" : undefined}>
-            <blockquote className="font-serif text-[26px] leading-[1.2] md:text-[40px] md:leading-[1.15]">
-              {/* Non-breaking spaces: a guillemet never ends up alone on a line. */}
-              {`«\u00a0${active.quote}\u00a0»`}
-            </blockquote>
-            <figcaption className="mt-5 md:mt-7 text-base leading-snug">
-              <span className="font-medium block">{active.author}</span>
-              {active.occasion}
-            </figcaption>
-            {active.product && (
-              <Link
-                href={`/produit/${active.product.handle}`}
-                className="mt-4 min-h-11 inline-flex items-center gap-2 text-sm text-brand-bg underline underline-offset-4"
-              >
-                {messages.home.testimonialSeeOutfit(active.product.title)}
-                <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
-              </Link>
-            )}
-          </figure>
-        </div>
-
-        {items.length > 1 && (
-          <div role="group" aria-label={messages.home.testimonialsChoose} className="flex flex-wrap gap-2 mt-4 md:pl-16">
-            {items.map((item, index) => (
+      <ul className="relative mx-auto h-[272px] md:h-[420px] [perspective:1200px]">
+        {items.map((item, index) => {
+          const place = placeOf(index);
+          const isFront = place === 0;
+          return (
+            <li
+              key={`${item.author}-${index}`}
+              // Shifted by a share of its own width, so the neighbours show on any screen.
+              style={{
+                transform: `translateX(calc(-50% + ${place * 74}%)) scale(${isFront ? 1 : 0.8}) rotateY(${place * -14}deg)`,
+                zIndex: isFront ? 2 : 1,
+              }}
+              className="absolute top-0 left-1/2 w-[204px] md:w-[315px] h-full transition-transform duration-500 ease-out motion-reduce:transition-none"
+            >
               <button
-                key={`${item.author}-${index}`}
                 type="button"
-                aria-pressed={index === activeIndex}
-                onClick={() => {
-                  setActiveIndex(index);
-                  setHasChanged(true);
-                }}
-                className={`min-h-11 px-5 rounded-full border text-sm cursor-pointer transition-colors ${
-                  index === activeIndex
-                    ? "bg-brand-primary border-brand-primary text-brand-white"
-                    : "border-brand-text/40 text-brand-text hover:border-brand-primary"
+                // The neighbours are buttons that bring themselves forward; the front one has nothing to do.
+                tabIndex={isFront ? -1 : 0}
+                aria-hidden={isFront}
+                aria-label={messages.home.testimonialShow(item.author)}
+                onClick={() => setActiveIndex(index)}
+                className={`relative block w-full h-full rounded-2xl overflow-hidden bg-brand-surface text-left ${
+                  isFront ? "cursor-default shadow-lg" : "cursor-pointer"
                 }`}
               >
-                {firstName(item.author)}
+                {item.photoUrl && (
+                  <SafeImage
+                    src={item.photoUrl}
+                    alt=""
+                    fallbackSrc={IMAGE_FALLBACKS.product}
+                    sizes="(min-width: 768px) 315px, 204px"
+                    className="w-full h-full object-cover object-top"
+                  />
+                )}
+                <span className="absolute inset-x-2 bottom-2 rounded-xl bg-brand-bg px-3 py-2">
+                  <span className="block text-sm font-medium text-brand-text leading-tight">{item.author}</span>
+                  {item.occasion && <span className="block text-xs text-brand-text leading-tight mt-0.5">{item.occasion}</span>}
+                </span>
               </button>
-            ))}
-          </div>
+            </li>
+          );
+        })}
+      </ul>
+
+      {count > 1 && (
+        <div className="flex items-center justify-center gap-3 mt-4">
+          <button
+            type="button"
+            aria-label={messages.home.testimonialPrevious}
+            onClick={() => go(-1)}
+            className="w-11 h-11 rounded-full border border-brand-text/40 text-brand-text flex items-center justify-center cursor-pointer hover:border-brand-primary transition-colors"
+          >
+            <ArrowLeft className="w-5 h-5" aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            aria-label={messages.home.testimonialNext}
+            onClick={() => go(1)}
+            className="w-14 h-11 rounded-full bg-brand-primary text-brand-white flex items-center justify-center cursor-pointer hover:bg-brand-text transition-colors"
+          >
+            <ArrowRight className="w-5 h-5" aria-hidden="true" />
+          </button>
+        </div>
+      )}
+
+      <figure aria-live="polite" className="px-4 mt-4 md:mt-6">
+        <blockquote className="font-serif text-xl md:text-3xl leading-snug text-brand-text max-w-[32ch] mx-auto">
+          {/* Non-breaking spaces: a guillemet never ends up alone on a line. */}
+          {`« ${active.quote} »`}
+        </blockquote>
+        <figcaption className="sr-only">{active.author}</figcaption>
+        {active.product && (
+          <Link
+            href={`/produit/${active.product.handle}`}
+            className="mt-2 min-h-11 inline-flex items-center gap-2 text-sm text-brand-text underline underline-offset-4"
+          >
+            {messages.home.testimonialSeeOutfit(active.product.title)}
+            <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
+          </Link>
         )}
-      </div>
+      </figure>
     </section>
   );
 }

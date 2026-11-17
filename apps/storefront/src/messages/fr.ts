@@ -6,7 +6,9 @@ export const messages = {
   home: {
     campaignHeroCta: "Découvrir la collection",
     occasionsNavAria: "Tenues par occasion",
-    testimonialsChoose: "Choisir un avis",
+    testimonialPrevious: "Avis précédent",
+    testimonialNext: "Avis suivant",
+    testimonialShow: (author: string) => `Afficher l'avis de ${author}`,
     testimonialSeeOutfit: (title: string) => `Voir la tenue : ${title}`,
   },
   common: {
