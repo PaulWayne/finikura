@@ -1,4 +1,5 @@
 import "server-only";
+import { CustomerError } from "./errors";
 import { messages } from "@/messages/fr";
 import { isNotFound, isStockError, medusa } from "./client";
 import {
@@ -58,14 +59,23 @@ function regionId(): Promise<string> {
   return regionIdPromise;
 }
 
+const PRODUCT_PAGE = 100;
+
+/** Every matching product: Medusa answers by pages of at most PRODUCT_PAGE. */
 async function listProducts(query: Record<string, unknown>): Promise<MedusaStoreProduct[]> {
-  const { products } = await medusa().store.product.list({
-    ...query,
-    region_id: await regionId(),
-    fields: PRODUCT_FIELDS,
-    limit: 100,
-  });
-  return products as unknown as MedusaStoreProduct[];
+  const region_id = await regionId();
+  const all: MedusaStoreProduct[] = [];
+  for (let offset = 0; ; offset += PRODUCT_PAGE) {
+    const { products, count } = await medusa().store.product.list({
+      ...query,
+      region_id,
+      fields: PRODUCT_FIELDS,
+      limit: PRODUCT_PAGE,
+      offset,
+    });
+    all.push(...(products as unknown as MedusaStoreProduct[]));
+    if (products.length < PRODUCT_PAGE || all.length >= count) return all;
+  }
 }
 
 async function findCategory(handle: string): Promise<MedusaStoreCategory | null> {
@@ -164,7 +174,7 @@ export const liveCommerceService: CommerceService = {
     try {
       await sdk.store.cart.createLineItem(id, { variant_id: variantId, quantity }, { fields: "id" });
     } catch (err) {
-      if (isStockError(err)) throw new Error(messages.errors.notEnoughStock);
+      if (isStockError(err)) throw new CustomerError(messages.errors.notEnoughStock);
       throw err;
     }
 
@@ -190,7 +200,7 @@ export const liveCommerceService: CommerceService = {
     }
 
     const added = (raw.items ?? []).find((i) => i.variant_id === variantId);
-    if (!added) throw new Error(messages.errors.addToCart);
+    if (!added) throw new CustomerError(messages.errors.addToCart);
     return { cart: mapMedusaCartToDomain(raw), addedItem: mapMedusaLineItemToDomain(added) };
   },
 
@@ -199,7 +209,7 @@ export const liveCommerceService: CommerceService = {
     try {
       await medusa().store.cart.updateLineItem(cartId, itemId, { quantity }, { fields: "id" });
     } catch (err) {
-      if (isStockError(err)) throw new Error(messages.errors.notEnoughStock);
+      if (isStockError(err)) throw new CustomerError(messages.errors.notEnoughStock);
       throw err;
     }
     return mapMedusaCartToDomain(await retrieveCart(cartId));
@@ -217,7 +227,7 @@ export const liveCommerceService: CommerceService = {
   ): Promise<Order> {
     const sdk = medusa();
     const current = await retrieveCart(cartId);
-    if (!current.items?.length) throw new Error(messages.errors.emptyCart);
+    if (!current.items?.length) throw new CustomerError(messages.errors.emptyCart);
 
     // No e-mail: the customer is identified by name and phone only.
     const { cart } = await sdk.store.cart.update(
@@ -248,15 +258,15 @@ export const liveCommerceService: CommerceService = {
     } catch (err) {
       if (isStockError(err)) {
         const title = current.items?.[0]?.product_title ?? current.items?.[0]?.title ?? "";
-        throw new Error(current.items.length === 1 ? messages.errors.outOfStock(title) : messages.errors.orderNotEnoughStock);
+        throw new CustomerError(current.items.length === 1 ? messages.errors.outOfStock(title) : messages.errors.orderNotEnoughStock);
       }
       throw err;
     }
     if (result.type !== "order") {
-      throw new Error(/stock|inventory/i.test(result.error?.message ?? "") ? messages.errors.orderNotEnoughStock : messages.errors.placeOrder);
+      throw new CustomerError(/stock|inventory/i.test(result.error?.message ?? "") ? messages.errors.orderNotEnoughStock : messages.errors.placeOrder);
     }
     const order = await liveCommerceService.getOrderById(result.order.id);
-    if (!order) throw new Error(messages.errors.placeOrder);
+    if (!order) throw new CustomerError(messages.errors.placeOrder);
     return order;
   },
 

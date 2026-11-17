@@ -73,7 +73,9 @@ export function CheckoutForm({ cart, children }: CheckoutFormProps) {
         setServerError(res.error || messages.errors.placeOrder);
       }
     } catch (err: unknown) {
-      setServerError(err instanceof Error ? err.message : messages.errors.placeOrder);
+      // The action could not be reached (network): never show the browser's technical message.
+      console.error(err);
+      setServerError(messages.errors.placeOrder);
     } finally {
       submittingRef.current = false;
       setIsSubmitting(false);

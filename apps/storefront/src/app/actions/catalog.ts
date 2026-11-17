@@ -1,7 +1,7 @@
 "use server";
 import { commerceService } from "@/lib/commerce";
 import type { CategoryHandle, Product } from "@/lib/commerce/types";
-import { CATALOG_PAGE_SIZE } from "@/lib/catalog-filters";
+import { ageOptions, CATALOG_PAGE_SIZE, knownFilter, OCCASION_VALUES } from "@/lib/catalog-filters";
 
 export interface MoreProductsInput {
   categoryHandle: CategoryHandle;
@@ -17,10 +17,11 @@ export interface MoreProductsInput {
 export async function loadMoreProductsAction(input: MoreProductsInput): Promise<Product[]> {
   if (input.categoryHandle !== "filles" && input.categoryHandle !== "garcons") return [];
   const offset = Math.max(0, Math.floor(input.offset) || 0);
-  const products = await commerceService.getProducts({
-    categoryHandle: input.categoryHandle,
-    age: input.age || undefined,
-    occasion: input.occasion || undefined,
-  });
+  // Same rule as the page (audit S5): only the filters it offers reach the cached read.
+  const all = await commerceService.getProducts({ categoryHandle: input.categoryHandle });
+  const age = knownFilter(input.age, ageOptions(all));
+  const occasion = knownFilter(input.occasion, OCCASION_VALUES);
+  const products =
+    age || occasion ? await commerceService.getProducts({ categoryHandle: input.categoryHandle, age, occasion }) : all;
   return products.slice(offset, offset + CATALOG_PAGE_SIZE);
 }

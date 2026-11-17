@@ -1,4 +1,5 @@
 import "server-only";
+import { CustomerError } from "./errors";
 import productsFixture from "@/mocks/medusa/products.json";
 import categoriesFixture from "@/mocks/medusa/categories.json";
 import {
@@ -148,11 +149,11 @@ export const mockCommerceService: CommerceService = {
     }
 
     if (!targetProduct || !targetVariant) {
-      throw new Error("Produit ou taille introuvable.");
+      throw new CustomerError("Produit ou taille introuvable.");
     }
 
     if (stockOf(targetVariant) < quantity) {
-      throw new Error("Cette taille est actuellement épuisée.");
+      throw new CustomerError("Cette taille est actuellement épuisée.");
     }
 
     const actualCartId = cartId || `cart_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
@@ -177,7 +178,7 @@ export const mockCommerceService: CommerceService = {
 
     if (existingItem) {
       if (stockOf(targetVariant) < existingItem.quantity + quantity) {
-        throw new Error("Quantité maximale disponible atteinte pour cette taille.");
+        throw new CustomerError("Quantité maximale disponible atteinte pour cette taille.");
       }
       existingItem.quantity += quantity;
       addedOrUpdatedItem = existingItem;
@@ -215,13 +216,13 @@ export const mockCommerceService: CommerceService = {
     await simulateDelay();
     const cart = inMemoryCarts.get(cartId);
     if (!cart) {
-      throw new Error("Panier non trouvé.");
+      throw new CustomerError("Panier non trouvé.");
     }
 
     cart.items ??= [];
     const itemIndex = cart.items.findIndex((i) => i.id === itemId);
     if (itemIndex === -1) {
-      throw new Error("Article non trouvé dans le panier.");
+      throw new CustomerError("Article non trouvé dans le panier.");
     }
 
     if (quantity <= 0) {
@@ -238,7 +239,7 @@ export const mockCommerceService: CommerceService = {
     await simulateDelay();
     const cart = inMemoryCarts.get(cartId);
     if (!cart) {
-      throw new Error("Panier non trouvé.");
+      throw new CustomerError("Panier non trouvé.");
     }
 
     cart.items = (cart.items ?? []).filter((i) => i.id !== itemId);
@@ -254,7 +255,7 @@ export const mockCommerceService: CommerceService = {
     await simulateDelay();
     const cart = inMemoryCarts.get(cartId);
     if (!cart || !cart.items?.length) {
-      throw new Error("Votre panier est vide.");
+      throw new CustomerError("Votre panier est vide.");
     }
 
     // Check stock for every item before finalizing order
@@ -269,7 +270,7 @@ export const mockCommerceService: CommerceService = {
       }
 
       if (!foundVariant || stockOf(foundVariant) < item.quantity) {
-        throw new Error(`Stock insuffisant pour l'article ${item.title}.`);
+        throw new CustomerError(`Stock insuffisant pour l'article ${item.title}.`);
       }
     }
 

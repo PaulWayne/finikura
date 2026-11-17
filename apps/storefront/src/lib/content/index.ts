@@ -26,6 +26,12 @@ async function getFeaturedCampaigns() {
   cacheTag(CACHE_TAGS.content);
   return source.getFeaturedCampaigns();
 }
+async function getCampaigns() {
+  "use cache";
+  cacheLife("hours");
+  cacheTag(CACHE_TAGS.content);
+  return source.getCampaigns();
+}
 async function getCategoryBanner(categoryHandle: string) {
   "use cache";
   cacheLife("hours");
@@ -63,6 +69,7 @@ export const contentService: ContentService = {
   getSizeGuide,
   getCategoryBanner,
   getFeaturedCampaigns,
+  getCampaigns,
   getAllSizeGuides,
   getCampaign,
   getEditorialPage,

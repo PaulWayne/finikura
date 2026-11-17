@@ -32,3 +32,19 @@ export function ageOptions(products: Product[]): string[] {
   }
   return [...labels].sort((a, b) => firstNumber(a) - firstNumber(b) || a.localeCompare(b, "fr"));
 }
+
+/** Occasion tags of the catalogue (Medusa tags), in the order of the filter chips. */
+export const OCCASION_VALUES = ["tous-les-jours", "fete", "ceremonie"] as const;
+
+/**
+ * Keeps a filter only when it is one the page offers (audit S5). Every value reaches a cached
+ * read, so an invented one would add a cache entry: it is dropped and the page shows everything.
+ */
+export function knownFilter(value: string | undefined, allowed: readonly string[]): string | undefined {
+  return value && allowed.includes(value) ? value : undefined;
+}
+
+/** Shape of a Medusa handle (product, category, collection): letters, digits, dashes, underscores. */
+export function isHandle(value: string): boolean {
+  return /^[A-Za-z0-9_-]{1,100}$/.test(value);
+}

@@ -1,5 +1,5 @@
 "use server";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { updateTag } from "next/cache";
 import { commerceService } from "@/lib/commerce";
 import { CACHE_TAGS } from "@/lib/cache-tags";
@@ -7,6 +7,8 @@ import type { Cart, CartItem, Order } from "@/lib/commerce/types";
 import { checkoutSchema } from "@/lib/validation/checkout";
 import { messages } from "@/messages/fr";
 import { rememberOrder } from "@/lib/order-access";
+import { CustomerError } from "@/lib/commerce/errors";
+import { clientAddress, isOrderLimitReached, recordOrder } from "@/lib/order-rate-limit";
 
 const CART_COOKIE = "fk_cart_id";
 
@@ -29,8 +31,11 @@ async function writeCartId(cartId: string | null): Promise<void> {
   });
 }
 
+/** The customer sees only messages written for her; anything else goes to the server logs (audit S4). */
 function errorMessage(err: unknown, fallback: string): string {
-  return err instanceof Error ? err.message : fallback;
+  if (err instanceof CustomerError) return err.message;
+  console.error("[cart action]", err);
+  return fallback;
 }
 
 export async function getCartAction(): Promise<Cart> {
@@ -61,7 +66,7 @@ export async function updateQuantityAction(
 ): Promise<{ success: boolean; cart: Cart; error?: string }> {
   const cartId = await readCartId();
   try {
-    if (!cartId) throw new Error(messages.errors.cartNotFound);
+    if (!cartId) throw new CustomerError(messages.errors.cartNotFound);
     return { success: true, cart: await commerceService.updateCartItemQuantity(cartId, itemId, quantity) };
   } catch (err) {
     return {
@@ -77,7 +82,7 @@ export async function removeItemAction(
 ): Promise<{ success: boolean; cart: Cart; error?: string }> {
   const cartId = await readCartId();
   try {
-    if (!cartId) throw new Error(messages.errors.cartNotFound);
+    if (!cartId) throw new CustomerError(messages.errors.cartNotFound);
     return { success: true, cart: await commerceService.removeItemFromCart(cartId, itemId) };
   } catch (err) {
     return {
@@ -100,12 +105,18 @@ export async function placeOrderAction(
   if (!cartId) return { success: false, error: messages.errors.emptyCart };
 
   const { fullName, phone, neighborhood, deliveryLandmarks } = validation.data;
+  const ip = clientAddress(await headers());
+  if (isOrderLimitReached(phone, ip)) {
+    console.warn("[order limit] refused", { phone: phone.slice(-4), ip });
+    return { success: false, error: messages.errors.tooManyOrders };
+  }
   try {
     const order = await commerceService.placeOrder(
       cartId,
       { fullName, phone },
       { neighborhood, deliveryLandmarks }
     );
+    recordOrder(phone, ip);
     await writeCartId(null);
     await rememberOrder(order.id);
     updateTag(CACHE_TAGS.catalog); // stock changed

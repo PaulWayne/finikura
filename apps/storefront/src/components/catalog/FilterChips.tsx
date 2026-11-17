@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { messages } from "@/messages/fr";
+import { OCCASION_VALUES } from "@/lib/catalog-filters";
 
 interface FilterChipsProps {
   categoryHandle: string;
@@ -10,11 +11,15 @@ interface FilterChipsProps {
   selectedOccasion?: string;
 }
 
+const OCCASION_LABELS: Record<(typeof OCCASION_VALUES)[number], string> = {
+  "tous-les-jours": messages.catalog.occasions.everyday,
+  fete: messages.catalog.occasions.party,
+  ceremonie: messages.catalog.occasions.ceremony,
+};
+
 const OCCASION_OPTIONS = [
   { label: messages.catalog.filterAllOccasions, value: "" },
-  { label: messages.catalog.occasions.everyday, value: "tous-les-jours" },
-  { label: messages.catalog.occasions.party, value: "fete" },
-  { label: messages.catalog.occasions.ceremony, value: "ceremonie" },
+  ...OCCASION_VALUES.map((value) => ({ label: OCCASION_LABELS[value], value })),
 ];
 
 function buildQuery(basePath: string, age?: string, occasion?: string): string {

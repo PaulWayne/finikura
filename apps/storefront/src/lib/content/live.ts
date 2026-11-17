@@ -76,6 +76,10 @@ export const liveContentService: ContentService = {
     return campaign ? mapStrapiCampaignToDomain(campaign) : null;
   },
 
+  async getCampaigns(): Promise<Campaign[]> {
+    return (await content()).campaigns.map(mapStrapiCampaignToDomain);
+  },
+
   async getFeaturedCampaigns(): Promise<Campaign[]> {
     return (await content()).campaigns.filter((c) => c.feature_on_home === true).map(mapStrapiCampaignToDomain);
   },

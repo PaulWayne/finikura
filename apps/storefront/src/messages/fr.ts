@@ -301,6 +301,14 @@ export const messages = {
     seeGirls: "Voir les filles",
     seeBoys: "Voir les garçons",
   },
+  errorPage: {
+    title: "La page ne s'est pas affichée",
+    description:
+      "Un souci technique de notre côté. Réessayez dans un instant ; si cela continue, écrivez-nous sur WhatsApp.",
+    retry: "Réessayer",
+    backHome: "Retour à l'accueil",
+    documentTitle: "Fini Kura — Habits pour enfants à Bamako",
+  },
   errors: {
     addToCart: "Impossible d'ajouter cet article au panier.",
     updateCart: "Impossible de modifier le panier.",
@@ -310,6 +318,8 @@ export const messages = {
     orderNotEnoughStock: "Une pièce de votre panier vient d'être vendue dans cette taille. Ouvrez le panier pour modifier la quantité ou choisir une autre taille.",
     invalidOrder: "Vérifiez vos coordonnées.",
     placeOrder: "Impossible d'enregistrer la commande. Veuillez réessayer.",
+    tooManyOrders:
+      "Plusieurs commandes viennent d'être passées avec ce numéro. Réessayez un peu plus tard, ou écrivez-nous sur WhatsApp.",
     outOfStock: (title: string) =>
       `Désolé, « ${title} » vient d'être vendu dans cette taille. Retirez-le du panier pour continuer.`,
   },

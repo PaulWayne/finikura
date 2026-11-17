@@ -219,6 +219,8 @@ export interface ContentService {
   getCategoryBanner(categoryHandle: string): Promise<CategoryBanner | null>;
   getAllSizeGuides(): Promise<SizeGuide[]>;
   getCampaign(slug: string): Promise<Campaign | null>;
+  /** Every published campaign, whatever its dates (the sitemap keeps the open ones). */
+  getCampaigns(): Promise<Campaign[]>;
   /** Campaigns marked « mettre en avant sur l'accueil », whatever their dates. */
   getFeaturedCampaigns(): Promise<Campaign[]>;
   getEditorialPage(slug: string): Promise<EditorialPage | null>;

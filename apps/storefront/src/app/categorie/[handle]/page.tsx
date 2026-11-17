@@ -10,7 +10,7 @@ import { ReassuranceBlock } from "@/components/blocks/ReassuranceBlock";
 import { CategoryHandle } from "@/lib/commerce/types";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { IMAGE_FALLBACKS } from "@/lib/images";
-import { ageOptions, CATALOG_PAGE_SIZE, shownCount } from "@/lib/catalog-filters";
+import { ageOptions, CATALOG_PAGE_SIZE, knownFilter, OCCASION_VALUES, shownCount } from "@/lib/catalog-filters";
 import { ProductGrid } from "@/components/catalog/ProductGrid";
 
 interface CategoryPageProps {
@@ -53,22 +53,21 @@ async function CategoryContent({
   const resolvedSearchParams = (await Promise.resolve(searchParams)) || {};
 
   const handle = resolvedParams.handle as CategoryHandle;
-  const age = resolvedSearchParams.age;
-  const occasion = resolvedSearchParams.occasion;
   const voir = resolvedSearchParams.voir;
 
-  const [category, allProducts, products, settings, banner] = await Promise.all([
+  const [category, allProducts, settings, banner] = await Promise.all([
     commerceService.getCategoryByHandle(handle),
     // Unfiltered list (cached): the age filters stay the same whatever is selected.
     commerceService.getProducts({ categoryHandle: handle }),
-    commerceService.getProducts({
-      categoryHandle: handle,
-      age: age || undefined,
-      occasion: occasion || undefined,
-    }),
     contentService.getGlobalSettings(),
     contentService.getCategoryBanner(handle),
   ]);
+
+  // Only the filters the page offers: an invented value shows the whole category (audit S5).
+  const age = knownFilter(resolvedSearchParams.age, ageOptions(allProducts));
+  const occasion = knownFilter(resolvedSearchParams.occasion, OCCASION_VALUES);
+  const products =
+    age || occasion ? await commerceService.getProducts({ categoryHandle: handle, age, occasion }) : allProducts;
 
   // Unknown handle: the not-found page of the charter, with noindex.
   // Streaming has started, so the status stays 200 (Next 16 Cache Components);
