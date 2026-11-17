@@ -166,3 +166,26 @@
     animation: fk-rise 0.7s ease-out both;
   }
 }
+
+/* Home page sections rise into place as they enter the screen. Pure CSS, tied to the scroll:
+   a browser that cannot do it, or a customer who asked for less motion, simply sees the page. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .fk-reveal {
+      animation: fk-reveal linear both;
+      animation-timeline: view();
+      /* A fixed distance, not a share of the section: a tall section is fully shown as soon as a short one. */
+      animation-range: entry 0px entry 220px;
+    }
+  }
+}
+@keyframes fk-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

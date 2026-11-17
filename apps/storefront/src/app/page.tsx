@@ -37,14 +37,16 @@ export default async function HomePage() {
 
   return (
     <div className="space-y-10 md:space-y-16 pt-2 pb-4 md:py-8">
-      {blocks.map((block) => (
-        <BlockRenderer
-          key={`${block.type}-${block.id}`}
-          block={block}
-          collectionProductsMap={collectionProductsMap}
-          occasionShortcuts={occasionShortcuts}
-          reassuranceItems={settings.reassuranceItems}
-        />
+      {blocks.map((block, index) => (
+        // The first block is on screen when the page opens: it never waits for a scroll.
+        <div key={`${block.type}-${block.id}`} className={index === 0 ? undefined : "fk-reveal"}>
+          <BlockRenderer
+            block={block}
+            collectionProductsMap={collectionProductsMap}
+            occasionShortcuts={occasionShortcuts}
+            reassuranceItems={settings.reassuranceItems}
+          />
+        </div>
       ))}
     </div>
   );
