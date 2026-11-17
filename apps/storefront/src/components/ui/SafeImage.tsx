@@ -21,6 +21,8 @@ export function SafeImage({ src, fallbackSrc, alt = "", ...props }: SafeImagePro
     <Image
       {...props}
       fill
+      // A preloaded image is the main one of its page: it goes ahead of the rest.
+      fetchPriority={props.fetchPriority ?? (props.preload ? "high" : undefined)}
       src={failedSrc === src ? fallbackSrc : src}
       alt={alt}
       onError={() => setFailedSrc(src)}

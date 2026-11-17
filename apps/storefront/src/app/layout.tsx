@@ -21,7 +21,7 @@ import "./globals.css";
 const playfair = Playfair_Display({
   subsets: ["latin"],
   weight: ["400"],
-  style: ["normal", "italic"],
+  style: ["normal"],
   variable: "--font-playfair",
   display: "swap",
 });

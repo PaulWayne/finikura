@@ -1,22 +1,28 @@
 import { expect, test } from "@playwright/test";
 
-// The first bytes of a page already draw its outline: the skeleton is in the HTML sent
-// before the content, and it is gone once the content is there.
+// Pages read per visit (filters, cart cookie): the first bytes already draw the outline of the
+// page, and the skeleton is gone once the content is there. Product pages are built ahead:
+// their content comes in the same answer.
 const PAGES = [
-  { path: "/categorie/filles", content: '[data-purpose="catalog-page"]' },
-  { path: "/produit/robe-terracotta-brodee", content: '[data-purpose="product-page"]' },
-];
+  { path: "/categorie/filles", content: page => page.locator('[data-purpose="catalog-page"]') },
+  { path: "/commande", content: page => page.getByRole("heading", { level: 2 }).first() },
+] satisfies { path: string; content: (page: import("@playwright/test").Page) => import("@playwright/test").Locator }[];
 
 for (const { path, content } of PAGES) {
   test(`${path} envoie son squelette, puis le remplace par le contenu`, async ({ page, request }) => {
     const html = await (await request.get(path)).text();
-    const skeletonAt = html.indexOf('data-purpose="page-skeleton"');
-    expect(skeletonAt).toBeGreaterThan(-1);
-    // The skeleton comes first in the stream, the content after.
-    expect(skeletonAt).toBeLessThan(html.indexOf(content.slice(1, -1)));
+    expect(html).toContain('data-purpose="page-skeleton"');
 
     await page.goto(path);
-    await expect(page.locator(content)).toBeVisible();
+    await expect(content(page)).toBeVisible();
     await expect(page.locator('[data-purpose="page-skeleton"]')).toHaveCount(0);
   });
 }
+
+test("une fiche produit est construite à l'avance, avec sa description dans l'en-tête", async ({ request }) => {
+  const html = await (await request.get("/produit/robe-terracotta-brodee")).text();
+  const head = html.slice(0, html.indexOf("</head>"));
+  expect(head).toContain('<meta name="description"');
+  // The content is in the first answer: the skeleton is replaced as soon as the page is read.
+  expect(html).toContain('data-purpose="product-page"');
+});

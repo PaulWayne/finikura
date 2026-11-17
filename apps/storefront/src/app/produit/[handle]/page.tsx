@@ -17,6 +17,12 @@ interface ProductPageProps {
   params: Promise<{ handle: string }> | { handle: string };
 }
 
+// Built ahead with their title and description in the head; an outfit added later is
+// rendered at its first visit, then kept.
+export async function generateStaticParams() {
+  return (await commerceService.getProducts()).map((product) => ({ handle: product.handle }));
+}
+
 export async function generateMetadata({ params }: ProductPageProps) {
   const resolvedParams = await Promise.resolve(params);
   const product = await commerceService.getProductByHandle(resolvedParams.handle);

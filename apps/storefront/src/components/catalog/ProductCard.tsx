@@ -17,6 +17,8 @@ interface ProductCardProps {
   showCategoryBadge?: boolean;
   /** Age chosen in the catalogue filter (« 9-10 ans »): the button adds that size at once when in stock. */
   preferredAge?: string;
+  /** First row of a grid, on screen when the page opens: the photo is loaded at once. */
+  eager?: boolean;
 }
 
 /**
@@ -24,7 +26,7 @@ interface ProductCardProps {
  * price. One button on the photo: it adds the size of the age filter, or opens the sizes so
  * that a size is never added by default.
  */
-export function ProductCard({ product, showCategoryBadge = false, preferredAge }: ProductCardProps) {
+export function ProductCard({ product, showCategoryBadge = false, preferredAge, eager = false }: ProductCardProps) {
   const preferredVariant = preferredAge
     ? product.variants.find((v) => v.inStock && v.title === preferredAge)
     : undefined;
@@ -97,6 +99,8 @@ export function ProductCard({ product, showCategoryBadge = false, preferredAge }
             alt=""
             fallbackSrc={IMAGE_FALLBACKS.product}
             sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
+            loading={eager ? "eager" : undefined}
+            fetchPriority={eager ? "high" : undefined}
             className="w-full h-full object-cover object-top transition duration-500 group-hover:scale-[1.03]"
           />
         </Link>

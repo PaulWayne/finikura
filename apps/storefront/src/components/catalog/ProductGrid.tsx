@@ -81,10 +81,11 @@ export function ProductGrid({ categoryHandle, age, occasion, initialProducts, to
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-3 gap-y-7 md:gap-x-6 md:gap-y-10">
-        {products.map((product) => (
+        {products.map((product, index) => (
           <ProductCard
             key={`${product.id}-${age ?? ""}`}
             product={product}
+            eager={index < 2}
             showCategoryBadge={false}
             preferredAge={age}
           />

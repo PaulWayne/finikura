@@ -18,6 +18,12 @@ interface CategoryPageProps {
   searchParams?: Promise<{ age?: string; occasion?: string; voir?: string }> | { age?: string; occasion?: string; voir?: string };
 }
 
+// Built ahead with their title and description in the head; a category added later is
+// rendered at its first visit, then kept.
+export async function generateStaticParams() {
+  return (await commerceService.getCategories()).map((category) => ({ handle: category.handle }));
+}
+
 export async function generateMetadata({ params }: CategoryPageProps) {
   const resolvedParams = await Promise.resolve(params);
   const category = await commerceService.getCategoryByHandle(resolvedParams.handle);
@@ -133,9 +139,9 @@ async function CategoryContent({
 
       {/* Product Count Indicator */}
       <div className="text-center pb-2">
-        <span className="text-[11px] md:text-xs font-medium uppercase tracking-[0.2em] text-brand-text">
+        <h2 className="font-sans text-[11px] md:text-xs font-medium uppercase tracking-[0.2em] text-brand-text">
           {messages.catalog.creationsCount(products.length)}
-        </span>
+        </h2>
       </div>
 
       {/* Product Grid */}
