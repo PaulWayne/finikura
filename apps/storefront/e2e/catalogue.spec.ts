@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-// FK-43, mock mode with CATALOG_PAGE_SIZE=4 (playwright.config.ts): 10 products in Filles.
+// FK-43, mock mode with CATALOG_PAGE_SIZE=4 (playwright.config.ts): 11 products in Filles.
 const cards = (page: import("@playwright/test").Page) =>
   page.locator('[data-purpose="catalog-page"] .grid a[href^="/produit/"]:has(img)');
 
@@ -10,17 +10,17 @@ test("les produits suivants se chargent en descendant, et le retour garde la lis
 
   // Each batch arrives before the end of the list is reached: the next ones follow.
   await page.mouse.wheel(0, 4000);
-  await expect(cards(page)).toHaveCount(10);
-  await expect(page).toHaveURL(/voir=10/);
+  await expect(cards(page)).toHaveCount(11);
+  await expect(page).toHaveURL(/voir=11/);
   await expect(page.getByRole("link", { name: "Voir plus de vêtements" })).toHaveCount(0);
 
   const hrefs = await cards(page).evaluateAll((links) => links.map((a) => a.getAttribute("href")));
-  expect(new Set(hrefs).size).toBe(10);
+  expect(new Set(hrefs).size).toBe(11);
 
   await cards(page).last().click();
   await expect(page).toHaveURL(/\/produit\//);
   await page.goBack();
-  await expect(cards(page)).toHaveCount(10);
+  await expect(cards(page)).toHaveCount(11);
 });
 
 test("le bouton de secours charge la suite, et un filtre repart du début", async ({ page }) => {

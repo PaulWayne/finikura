@@ -1059,6 +1059,122 @@
       "metadata": {}
     },
     {
+      "id": "prod_filles_11",
+      "title": "Ensemble Blouse Crème & Jupe en Jean",
+      "handle": "ensemble-blouse-creme-jupe-jean",
+      "subtitle": "Col volanté",
+      "description": "Blouse crème à col volanté et jupe plissée en jean clair, pour l'école comme pour les sorties.",
+      "material": null,
+      "thumbnail": "/mock-media/ensemble-blouse-creme-jupe-jean.jpg",
+      "images": [
+        {
+          "id": "img_f11_1",
+          "url": "/mock-media/ensemble-blouse-creme-jupe-jean.jpg"
+        },
+        {
+          "id": "img_f11_2",
+          "url": "/mock-media/ensemble-blouse-creme-jupe-jean-2.jpg"
+        },
+        {
+          "id": "img_f11_3",
+          "url": "/mock-media/ensemble-blouse-creme-jupe-jean-3.jpg"
+        }
+      ],
+      "categories": [
+        {
+          "id": "pcat_filles",
+          "name": "Filles 3-14 ans",
+          "handle": "filles"
+        }
+      ],
+      "tags": [
+        {
+          "id": "tag_tous_les_jours",
+          "value": "tous-les-jours"
+        }
+      ],
+      "variants": [
+        {
+          "id": "var_f11_34",
+          "title": "3-4 ans",
+          "sku": "EBCJ-34",
+          "inventory_quantity": 4,
+          "calculated_price": {
+            "calculated_amount": 12000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f11_56",
+          "title": "5-6 ans",
+          "sku": "EBCJ-56",
+          "inventory_quantity": 4,
+          "calculated_price": {
+            "calculated_amount": 12000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f11_78",
+          "title": "7-8 ans",
+          "sku": "EBCJ-78",
+          "inventory_quantity": 4,
+          "calculated_price": {
+            "calculated_amount": 12000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f11_910",
+          "title": "9-10 ans",
+          "sku": "EBCJ-910",
+          "inventory_quantity": 4,
+          "calculated_price": {
+            "calculated_amount": 12000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f11_1112",
+          "title": "11-12 ans",
+          "sku": "EBCJ-1112",
+          "inventory_quantity": 4,
+          "calculated_price": {
+            "calculated_amount": 12000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "id": "var_f11_1314",
+          "title": "13-14 ans",
+          "sku": "EBCJ-1314",
+          "inventory_quantity": 4,
+          "calculated_price": {
+            "calculated_amount": 12000,
+            "currency_code": "xof"
+          },
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "metadata": {},
+      "collection": {
+        "id": "col_nouveautes",
+        "title": "Nouveautés",
+        "handle": "nouveautes"
+      }
+    },
+    {
       "id": "prod_garcons_01",
       "title": "Ensemble Sauge",
       "handle": "ensemble-sauge-et-lin",
