@@ -33,14 +33,32 @@ function notifyStorefront(strapi: Core.Strapi) {
     .catch((err: Error) => strapi.log.warn(`Revalidation du site impossible : ${err.message}`));
 }
 
+/**
+ * The site has no customer accounts: /api/auth/local/register stays closed (audit S3).
+ * Strapi opens it by default; the setting is put back at each start if it was changed in the admin.
+ * The back office accounts (admin users) are not concerned.
+ */
+async function closePublicSignUp(strapi: Core.Strapi) {
+  const pluginStore = strapi.store({ type: 'plugin', name: 'users-permissions' });
+  const advanced = ((await pluginStore.get({ key: 'advanced' })) ?? {}) as Record<string, unknown>;
+  if (advanced.allow_register !== false) {
+    await pluginStore.set({ key: 'advanced', value: { ...advanced, allow_register: false } });
+  }
+}
+
 export default {
   register() {},
 
-  /** Grants the public role read access to displayed content (idempotent) and wires revalidation. */
+  /**
+   * Grants the public role read access to displayed content (idempotent), closes public sign-up
+   * and wires revalidation.
+   */
   async bootstrap({ strapi }: { strapi: Core.Strapi }) {
     strapi.eventHub.subscribe(async (event: string) => {
       if (REVALIDATE_EVENTS.has(event)) notifyStorefront(strapi);
     });
+
+    await closePublicSignUp(strapi);
 
     const publicRole = await strapi.db
       .query('plugin::users-permissions.role')

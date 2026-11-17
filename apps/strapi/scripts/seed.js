@@ -8,6 +8,9 @@
 // To add to the home page the blocks of the fixtures it does not have yet, and leave the others
 // exactly as they are in the admin: --add-home-blocks
 // To also rewrite one kind of block from the fixtures: --add-home-blocks --replace=blocks.testimonials
+// Production (audit B3): SEED_WHATSAPP_NUMBER=223XXXXXXXX pnpm --filter strapi seed --sans-demo
+// writes the shop's WhatsApp number instead of the test one, and leaves out what is made up for the
+// demo: the testimonials blocks (no review is invented) and the campaigns (demo collections).
 // Images referenced in the fixtures (/mock-media/… files, or URLs) are imported into the media library,
 // which stores them in Garage when S3_ENDPOINT is set.
 
@@ -21,6 +24,14 @@ async function main() {
 const FIXTURES = path.resolve(process.cwd(), "../storefront/src/mocks/strapi");
 const MOCK_PUBLIC = path.resolve(process.cwd(), "../storefront/public");
 const read = (file) => JSON.parse(fs.readFileSync(path.join(FIXTURES, file), "utf-8"));
+
+const noDemo = process.argv.includes("--sans-demo");
+const shopWhatsApp = (process.env.SEED_WHATSAPP_NUMBER ?? "").replace(/\D/g, "");
+if (noDemo && !/^223\d{8}$/.test(shopWhatsApp)) {
+  throw new Error("--sans-demo : indiquez le numéro WhatsApp de la boutique, SEED_WHATSAPP_NUMBER=223 suivi de 8 chiffres.");
+}
+/** Demo mode keeps every block; --sans-demo drops the made-up testimonials. */
+const keepBlocks = (blocks = []) => (noDemo ? blocks.filter((b) => b.__component !== "blocks.testimonials") : blocks);
 
 const app = await createStrapi(await compileStrapi()).load();
 app.log.level = "error";
@@ -161,11 +172,14 @@ async function createIfMissing(uid, filters, data) {
 const strip = ({ documentId: _d, id: _i, ...rest }) => rest;
 
 // --- Global settings -----------------------------------------------------------
-await upsertSingle("api::global-setting.global-setting", strip(read("global-settings.json").data), "global");
+const globalSettings = strip(read("global-settings.json").data);
+if (noDemo) globalSettings.whatsapp_number = shopWhatsApp;
+await upsertSingle("api::global-setting.global-setting", globalSettings, "global");
 
 // --- Home ----------------------------------------------------------------------
 // Images are only imported when the entry is written: a plain run uploads nothing twice.
-const home = read("home.json").data;
+const homeFixture = read("home.json").data;
+const home = { ...homeFixture, blocks: keepBlocks(homeFixture.blocks) };
 const homeExists = await strapi.documents("api::home-page.home-page").findFirst();
 if (homeExists && process.argv.includes("--add-home-blocks")) {
   await addMissingHomeBlocks(home.blocks);
@@ -176,7 +190,8 @@ if (homeExists && process.argv.includes("--add-home-blocks")) {
 }
 
 // --- Pages ---------------------------------------------------------------------
-for (const page of read("editorial-pages.json").data) {
+for (const pageFixture of read("editorial-pages.json").data) {
+  const page = { ...pageFixture, blocks: keepBlocks(pageFixture.blocks) };
   if (refresh.has(page.slug)) {
     const existing = await strapi.documents("api::page.page").findFirst({ filters: { slug: page.slug } });
     if (existing) {
@@ -224,7 +239,7 @@ for (const b of read("category-banners.json").data) {
 }
 
 // --- Campaigns -----------------------------------------------------------------
-for (const c of read("campaigns.json").data) {
+for (const c of noDemo ? [] : read("campaigns.json").data) {
   await createIfMissing("api::campaign.campaign", { slug: c.slug }, {
     ...strip(c),
     banner: await importImage(c.banner?.url, c.banner?.alternativeText),
