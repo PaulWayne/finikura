@@ -13,8 +13,8 @@ interface CategoryCardsBlockProps {
 }
 
 /**
- * Two large photos set edge to edge open the girls and boys categories; a row of round
- * shortcuts below opens them already filtered by occasion.
+ * One soft card per category, photo beside the words, opens the girls and boys categories;
+ * a row of round shortcuts below opens them already filtered by occasion.
  */
 export function CategoryCardsBlock({ block, occasionShortcuts = [] }: CategoryCardsBlockProps) {
   const titles = new Map(block.cards.map((card) => [card.categoryHandle, card.title]));
@@ -26,26 +26,35 @@ export function CategoryCardsBlock({ block, occasionShortcuts = [] }: CategoryCa
         {block.subtitle && <p className="text-sm md:text-base text-brand-text mt-1">{block.subtitle}</p>}
       </div>
 
-      {/* Phone: the two photos touch and run past the page gutter. */}
-      <div className="grid grid-cols-2 gap-1 -mx-4 md:mx-0">
+      {/* One soft card per category: the photo on one side, the words and the link on the other. */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
         {block.cards.map((card) => {
           const fallback = card.categoryHandle === "garcons" ? IMAGE_FALLBACKS.garcons : IMAGE_FALLBACKS.filles;
           return (
-            <Link key={card.categoryHandle} href={`/categorie/${card.categoryHandle}`} className="group block">
-              <div className="relative w-full aspect-[3/4] md:aspect-auto md:h-[560px] overflow-hidden bg-brand-surface">
+            <Link
+              key={card.categoryHandle}
+              href={`/categorie/${card.categoryHandle}`}
+              className="group flex items-stretch gap-4 md:gap-6 rounded-2xl md:rounded-3xl bg-brand-white border border-brand-surface p-2.5 md:p-4 shadow-[0_1px_3px_rgba(94,82,69,0.06)]"
+            >
+              <div className="relative w-[42%] shrink-0 aspect-[4/5] rounded-xl md:rounded-2xl overflow-hidden bg-brand-surface">
                 <SafeImage
                   src={card.imageUrl || fallback}
                   alt={card.imageAlt}
                   fallbackSrc={fallback}
-                  sizes="50vw"
+                  sizes="(min-width: 768px) 240px, 42vw"
                   className="w-full h-full object-cover object-top transition duration-700 group-hover:scale-[1.03]"
                 />
               </div>
-              <div className="px-4 md:px-0 pt-3">
-                <h3 className="font-serif text-2xl md:text-3xl text-brand-text group-hover:underline underline-offset-4">
-                  {card.title}
+              <div className="flex flex-col justify-center min-w-0 py-1 md:py-3 pr-1">
+                <p className="text-[11px] md:text-xs uppercase tracking-[0.18em] text-brand-primary font-medium">
+                  {card.title} · {card.ageRange}
+                </p>
+                <h3 className="font-serif text-[22px] md:text-[32px] leading-[1.15] text-brand-text mt-2 md:mt-3">
+                  {card.tagline || card.title}
                 </h3>
-                <p className="text-sm text-brand-text">{card.ageRange}</p>
+                <span className="mt-3 md:mt-6 min-h-11 inline-flex items-center text-sm md:text-base text-brand-text underline underline-offset-4 group-hover:decoration-2">
+                  {card.ctaText}
+                </span>
               </div>
             </Link>
           );

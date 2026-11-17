@@ -20,8 +20,9 @@ interface ProductCardProps {
 }
 
 /**
- * The photo leads: no frame around the card. One button on the photo: it adds the size of
- * the age filter, or opens the sizes so that a size is never added by default.
+ * A soft rounded card: the photo on top with its labels, then a small line, the name and the
+ * price. One button on the photo: it adds the size of the age filter, or opens the sizes so
+ * that a size is never added by default.
  */
 export function ProductCard({ product, showCategoryBadge = false, preferredAge }: ProductCardProps) {
   const preferredVariant = preferredAge
@@ -85,8 +86,11 @@ export function ProductCard({ product, showCategoryBadge = false, preferredAge }
   const href = `/produit/${product.handle}`;
 
   return (
-    <article className="group flex flex-col" data-purpose="product-card">
-      <div className="relative w-full aspect-[4/5] rounded-md overflow-hidden bg-brand-surface">
+    <article
+      className="group flex flex-col rounded-2xl md:rounded-3xl bg-brand-white border border-brand-surface overflow-hidden shadow-[0_1px_3px_rgba(94,82,69,0.06)]"
+      data-purpose="product-card"
+    >
+      <div className="relative w-full aspect-[4/5] overflow-hidden bg-brand-surface">
         <Link href={href} className="relative block w-full h-full" tabIndex={-1} aria-hidden="true">
           <SafeImage
             src={product.thumbnail || IMAGE_FALLBACKS.product}
@@ -97,12 +101,17 @@ export function ProductCard({ product, showCategoryBadge = false, preferredAge }
           />
         </Link>
 
-        <span className="absolute top-2 left-2 inline-flex items-center gap-1.5 px-2 py-0.5 bg-brand-bg text-brand-text text-[11px] md:text-xs rounded-sm select-none">
-          <span
-            aria-hidden="true"
-            className={`w-1.5 h-1.5 rounded-full ${isTerracotta ? "bg-brand-terracotta" : "bg-brand-blue"}`}
-          />
-          {badgeLabel}
+        <span className="absolute top-2 left-2 md:top-3 md:left-3 flex flex-col items-start gap-1 select-none">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-brand-white text-brand-text text-[11px] md:text-xs rounded-full">
+            <span
+              aria-hidden="true"
+              className={`w-1.5 h-1.5 rounded-full ${isTerracotta ? "bg-brand-terracotta" : "bg-brand-blue"}`}
+            />
+            {badgeLabel}
+          </span>
+          {isNew && (
+            <span className="px-2.5 py-0.5 bg-brand-surface text-brand-text text-[11px] md:text-xs rounded-full">{text.newBadge}</span>
+          )}
         </span>
 
         <button
@@ -110,21 +119,15 @@ export function ProductCard({ product, showCategoryBadge = false, preferredAge }
           aria-label={isFavorite ? text.removeFavoriteAria(product.title) : text.addFavoriteAria(product.title)}
           aria-pressed={isFavorite}
           onClick={toggleHeart}
-          className="absolute top-0 right-0 w-11 h-11 flex items-center justify-center cursor-pointer active:scale-90 transition"
+          className="absolute top-0 right-0 md:top-1 md:right-1 w-11 h-11 flex items-center justify-center cursor-pointer active:scale-90 transition"
         >
-          <span className="w-8 h-8 rounded-full bg-brand-bg flex items-center justify-center">
+          <span className="w-8 h-8 rounded-full bg-brand-white flex items-center justify-center">
             <Heart
               aria-hidden="true"
               className={`w-4 h-4 ${isFavorite ? "fill-brand-terracotta text-brand-terracotta" : "text-brand-text"}`}
             />
           </span>
         </button>
-
-        {isNew && (
-          <span className="absolute bottom-2 left-2 px-2 py-0.5 bg-brand-text text-brand-white text-[11px] md:text-xs rounded-sm select-none">
-            {text.newBadge}
-          </span>
-        )}
 
         {!isSoldOut && (
           <button
@@ -141,7 +144,7 @@ export function ProductCard({ product, showCategoryBadge = false, preferredAge }
             onClick={() =>
               preferredVariant ? add(preferredVariant.id, preferredVariant.title) : setShowSizePicker((open) => !open)
             }
-            className="absolute bottom-2 right-2 w-11 h-11 rounded-full bg-brand-bg text-brand-text flex items-center justify-center shadow-sm hover:bg-brand-primary hover:text-brand-white transition-colors disabled:opacity-60 cursor-pointer"
+            className="absolute bottom-2 right-2 md:bottom-3 md:right-3 w-11 h-11 rounded-full bg-brand-white text-brand-text flex items-center justify-center shadow-sm hover:bg-brand-primary hover:text-brand-white transition-colors disabled:opacity-60 cursor-pointer"
           >
             {addingId && preferredVariant ? (
               <span className="w-4 h-4 border-2 border-brand-primary border-t-transparent rounded-full animate-spin" />
@@ -155,7 +158,7 @@ export function ProductCard({ product, showCategoryBadge = false, preferredAge }
       </div>
 
       {showSizePicker && (
-        <div className="mt-2">
+        <div className="px-2.5 md:px-4 pt-2.5">
           <p className="text-xs text-brand-text mb-1.5">{text.chooseSize}</p>
           <div className="grid grid-cols-3 gap-1">
             {product.variants.map((variant) => (
@@ -182,13 +185,15 @@ export function ProductCard({ product, showCategoryBadge = false, preferredAge }
         </div>
       )}
 
-      <Link href={href} className="block pt-2.5">
-        <h3 className="font-serif normal-case tracking-normal text-[15px] md:text-lg text-brand-text leading-snug line-clamp-2 group-hover:underline underline-offset-4">
+      <Link href={href} className="block px-2.5 pt-2.5 pb-3 md:px-4 md:pt-3.5 md:pb-4">
+        {product.subtitle && (
+          <p className="text-[10px] md:text-[11px] uppercase tracking-[0.14em] text-brand-primary font-medium line-clamp-1">
+            {product.subtitle}
+          </p>
+        )}
+        <h3 className="font-serif normal-case tracking-normal text-[15px] md:text-xl text-brand-text leading-snug line-clamp-2 mt-0.5 group-hover:underline underline-offset-4">
           {product.title}
         </h3>
-        {product.subtitle && (
-          <p className="text-xs md:text-sm text-brand-text mt-0.5 line-clamp-1">{product.subtitle}</p>
-        )}
         <p className="text-sm md:text-base font-medium text-brand-text mt-1 whitespace-nowrap">
           {isSoldOut
             ? messages.product.soldOut
