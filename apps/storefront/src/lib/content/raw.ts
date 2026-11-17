@@ -98,6 +98,17 @@ export interface StrapiPage {
   blocks?: StrapiRawBlock[] | null;
 }
 
+/** Answer of GET /api/storefront-content: every displayed document, each in its REST shape. */
+export interface StrapiStorefrontContent {
+  global_setting: StrapiGlobalSettings | null;
+  home_page: StrapiHomePage | null;
+  campaigns: StrapiCampaign[];
+  category_banners: StrapiCategoryBanner[];
+  size_guides: StrapiSizeGuide[];
+  pages: StrapiPage[];
+}
+
+// Shapes of the single REST routes, kept by the fixtures (src/mocks/strapi).
 export interface StrapiSingleResponse<T> {
   data: T | null;
   meta: Record<string, unknown>;

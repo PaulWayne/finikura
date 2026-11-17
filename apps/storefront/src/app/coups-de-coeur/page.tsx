@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
-import { PageFallback } from "@/components/layout/PageFallback";
+import { ProductGridSkeleton } from "@/components/layout/PageSkeletons";
 import { FavoritesList } from "@/components/favorites/FavoritesList";
 import { commerceService } from "@/lib/commerce";
 import { messages } from "@/messages/fr";
@@ -25,7 +25,7 @@ export default function FavoritesPage() {
         </h1>
         <p className="text-sm md:text-base text-brand-text">{messages.favorites.intro}</p>
       </div>
-      <Suspense fallback={<PageFallback />}>
+      <Suspense fallback={<ProductGridSkeleton />}>
         <FavoritesContent />
       </Suspense>
     </div>

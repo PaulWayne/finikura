@@ -1,14 +1,7 @@
 import "server-only";
-import {
-  StrapiCampaign,
-  StrapiGlobalSettings,
-  StrapiHomePage,
-  StrapiListResponse,
-  StrapiPage,
-  StrapiSingleResponse,
-  StrapiSizeGuide,
-  StrapiCategoryBanner,
-} from "./raw";
+import { cacheLife, cacheTag } from "next/cache";
+import { CACHE_TAGS } from "@/lib/cache-tags";
+import type { StrapiStorefrontContent } from "./raw";
 import {
   mapStrapiCampaignToDomain,
   mapStrapiEditorialPageToDomain,
@@ -27,111 +20,68 @@ import {
   CategoryBanner,
 } from "./types";
 
-// Strapi 5 REST API (published documents only, which is the REST default).
-// Caching is handled by the "use cache" wrappers in ./index.ts.
+// One read for the whole site: Strapi assembles every displayed document in a single answer
+// (apps/strapi/src/api/storefront), with its own populate rules. The site sends no query.
+// A publication in Strapi revalidates the "content" tag, and the next page reads it again once.
 
-class StrapiError extends Error {
-  constructor(public status: number, path: string) {
-    super(`Strapi ${status} sur ${path}`);
-  }
-}
-
-async function strapi<T>(path: string, params: string[] = []): Promise<T> {
+async function fetchContent(): Promise<StrapiStorefrontContent> {
   const base = process.env.STRAPI_URL;
   if (!base) throw new Error("STRAPI_URL est requis en mode live.");
-  const url = `${base.replace(/\/$/, "")}/api/${path}${params.length ? `?${params.join("&")}` : ""}`;
   const token = process.env.STRAPI_TOKEN;
-  const res = await fetch(url, {
+  const res = await fetch(`${base.replace(/\/$/, "")}/api/storefront-content`, {
     headers: token ? { Authorization: `Bearer ${token}` } : undefined,
   });
-  if (!res.ok) throw new StrapiError(res.status, path);
-  return (await res.json()) as T;
+  if (!res.ok) throw new Error(`Strapi ${res.status} sur storefront-content`);
+  return ((await res.json()) as { data: StrapiStorefrontContent }).data;
 }
 
-/** Strapi answers 404 for an empty single type. */
-async function single<T>(path: string, params: string[]): Promise<T | null> {
-  try {
-    return (await strapi<StrapiSingleResponse<T>>(path, params)).data;
-  } catch (err) {
-    if (err instanceof StrapiError && err.status === 404) return null;
-    throw err;
-  }
+// Pages rendered together on a cold cache share the request already on its way.
+let pending: Promise<StrapiStorefrontContent> | null = null;
+
+async function content(): Promise<StrapiStorefrontContent> {
+  "use cache";
+  cacheLife("hours");
+  cacheTag(CACHE_TAGS.content);
+  pending ??= fetchContent().finally(() => {
+    pending = null;
+  });
+  return pending;
 }
-
-const eq = (field: string, value: string) => `filters[${field}][$eq]=${encodeURIComponent(value)}`;
-
-// Dynamic zones need one populate fragment per component (Strapi 5 "on" syntax).
-const block = (uid: string, populate = "*") => `populate[blocks][on][${uid}][populate]=${populate}`;
-const TESTIMONIALS_POPULATE = "populate[blocks][on][blocks.testimonials][populate][items][populate]=photo";
-const HOME_POPULATE = [
-  "populate[seo]=true",
-  block("blocks.hero"),
-  "populate[blocks][on][blocks.category-cards][populate][cards][populate]=image",
-  block("blocks.product-section"),
-  block("blocks.reassurance"),
-  block("blocks.about-excerpt"),
-  TESTIMONIALS_POPULATE,
-];
-const PAGE_POPULATE = [
-  "populate[seo]=true",
-  block("blocks.rich-text"),
-  block("blocks.image-text"),
-  block("blocks.values"),
-  block("blocks.faq"),
-  block("blocks.cta"),
-  TESTIMONIALS_POPULATE,
-];
 
 export const liveContentService: ContentService = {
   async getGlobalSettings(): Promise<GlobalSettings> {
-    return mapStrapiGlobalSettingsToDomain(
-      await single<StrapiGlobalSettings>("global-setting", ["populate=*"])
-    );
+    return mapStrapiGlobalSettingsToDomain((await content()).global_setting);
   },
 
   async getHomePage(): Promise<HomePageData> {
-    return mapStrapiHomePageToDomain(await single<StrapiHomePage>("home-page", HOME_POPULATE));
+    return mapStrapiHomePageToDomain((await content()).home_page);
   },
 
   async getCategoryBanner(categoryHandle: string): Promise<CategoryBanner | null> {
-    const { data } = await strapi<StrapiListResponse<StrapiCategoryBanner>>("category-banners", [
-      eq("category_handle", categoryHandle),
-      "populate=image",
-    ]);
-    return data[0] ? mapStrapiCategoryBannerToDomain(data[0]) : null;
+    const banner = (await content()).category_banners.find((b) => b.category_handle === categoryHandle);
+    return banner ? mapStrapiCategoryBannerToDomain(banner) : null;
   },
 
   async getSizeGuide(categoryHandle: string): Promise<SizeGuide | null> {
-    const { data } = await strapi<StrapiListResponse<StrapiSizeGuide>>("size-guides", [
-      eq("category_handle", categoryHandle),
-      "populate=*",
-    ]);
-    return data[0] ? mapStrapiSizeGuideToDomain(data[0]) : null;
+    const guide = (await content()).size_guides.find((g) => g.category_handle === categoryHandle);
+    return guide ? mapStrapiSizeGuideToDomain(guide) : null;
   },
 
   async getAllSizeGuides(): Promise<SizeGuide[]> {
-    const { data } = await strapi<StrapiListResponse<StrapiSizeGuide>>("size-guides", ["populate=*"]);
-    return data.map(mapStrapiSizeGuideToDomain);
+    return (await content()).size_guides.map(mapStrapiSizeGuideToDomain);
   },
 
   async getCampaign(slug: string): Promise<Campaign | null> {
-    const { data } = await strapi<StrapiListResponse<StrapiCampaign>>("campaigns", [
-      eq("slug", slug),
-      "populate=*",
-    ]);
-    return data[0] ? mapStrapiCampaignToDomain(data[0]) : null;
+    const campaign = (await content()).campaigns.find((c) => c.slug === slug);
+    return campaign ? mapStrapiCampaignToDomain(campaign) : null;
   },
 
   async getFeaturedCampaigns(): Promise<Campaign[]> {
-    const { data } = await strapi<StrapiListResponse<StrapiCampaign>>("campaigns", [
-      "filters[feature_on_home][$eq]=true",
-      "populate=*",
-    ]);
-    return data.map(mapStrapiCampaignToDomain);
+    return (await content()).campaigns.filter((c) => c.feature_on_home === true).map(mapStrapiCampaignToDomain);
   },
 
   async getEditorialPage(slug: string): Promise<EditorialPage | null> {
-    const { data } = await strapi<StrapiListResponse<StrapiPage>>("pages", [eq("slug", slug), ...PAGE_POPULATE]);
-    return data[0] ? mapStrapiEditorialPageToDomain(data[0]) : null;
+    const page = (await content()).pages.find((p) => p.slug === slug);
+    return page ? mapStrapiEditorialPageToDomain(page) : null;
   },
 };

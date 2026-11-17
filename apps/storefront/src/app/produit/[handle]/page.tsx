@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PageFallback } from "@/components/layout/PageFallback";
+import { ProductSkeleton } from "@/components/layout/PageSkeletons";
 import { commerceService } from "@/lib/commerce";
 import { contentService } from "@/lib/content";
 import { messages } from "@/messages/fr";
@@ -139,7 +139,7 @@ async function ProductContent({ params }: ProductPageProps) {
 
 export default function ProductPage(props: ProductPageProps) {
   return (
-    <Suspense fallback={<PageFallback />}>
+    <Suspense fallback={<ProductSkeleton />}>
       <ProductContent {...props} />
     </Suspense>
   );

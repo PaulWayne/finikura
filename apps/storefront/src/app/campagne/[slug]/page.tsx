@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { connection } from "next/server";
-import { PageFallback } from "@/components/layout/PageFallback";
+import { CampaignSkeleton } from "@/components/layout/PageSkeletons";
 import { ProductCard } from "@/components/catalog/ProductCard";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { IMAGE_FALLBACKS } from "@/lib/images";
@@ -97,7 +97,7 @@ async function CampaignContent({ params }: CampaignPageProps) {
 
 export default function CampaignPage(props: CampaignPageProps) {
   return (
-    <Suspense fallback={<PageFallback />}>
+    <Suspense fallback={<CampaignSkeleton />}>
       <CampaignContent {...props} />
     </Suspense>
   );

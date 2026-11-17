@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 import { commerceService } from "@/lib/commerce";
 import { CheckoutEmpty } from "@/components/checkout/CheckoutEmpty";
 import { CheckoutView } from "@/components/checkout/CheckoutView";
-import { PageFallback } from "@/components/layout/PageFallback";
+import { CheckoutSkeleton } from "@/components/layout/PageSkeletons";
 
 export const metadata = {
   title: "Finaliser votre commande | Fini Kura Bamako",
@@ -19,7 +19,7 @@ async function CheckoutContent() {
 export default function CommandePage() {
   return (
     <div className="pt-0 md:pt-10 pb-16">
-      <Suspense fallback={<PageFallback />}>
+      <Suspense fallback={<CheckoutSkeleton />}>
         <CheckoutContent />
       </Suspense>
     </div>

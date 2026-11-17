@@ -8,6 +8,8 @@ const PUBLIC_READ: Record<string, Array<'find' | 'findOne'>> = {
   'api::campaign.campaign': ['find', 'findOne'],
   'api::size-guide.size-guide': ['find', 'findOne'],
   'api::category-banner.category-banner': ['find', 'findOne'],
+  // The single read of the storefront (src/api/storefront).
+  'api::storefront.storefront': ['find'],
 };
 
 /** Content changes the storefront must see (all types use draft & publish). */

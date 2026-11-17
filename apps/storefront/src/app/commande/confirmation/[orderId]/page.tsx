@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import Link from "next/link";
-import { PageFallback } from "@/components/layout/PageFallback";
+import { ConfirmationSkeleton } from "@/components/layout/PageSkeletons";
 import { commerceService } from "@/lib/commerce";
 import { contentService } from "@/lib/content";
 import { messages } from "@/messages/fr";
@@ -64,7 +64,7 @@ async function OrderConfirmationContent({
 
 export default function OrderConfirmationPage(props: OrderConfirmationPageProps) {
   return (
-    <Suspense fallback={<PageFallback />}>
+    <Suspense fallback={<ConfirmationSkeleton />}>
       <OrderConfirmationContent {...props} />
     </Suspense>
   );
