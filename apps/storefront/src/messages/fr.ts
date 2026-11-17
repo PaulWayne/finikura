@@ -132,7 +132,7 @@ export const messages = {
     whatsAppHelp: "Une question sur une taille ? Écrivez-nous sur WhatsApp.",
     breadcrumbTitle: "Guide des tailles",
     eyebrow: "GUIDE DES TAILLES • 3 À 14 ANS",
-    title: "GUIDE DES TAILLES",
+    title: "Guide des tailles",
     intro:
       "Nos tailles correspondent à l'âge de l'enfant. Pour être sûr, mesurez sa taille.",
     unitNote: "Toutes les dimensions sont exprimées en centimètres (cm)",
@@ -188,8 +188,8 @@ export const messages = {
     topDeliveryBadge: "Paiement à la réception • Bamako",
     stepEyebrowDesktop: "Étape unique",
     stepEyebrowMobile: "Étape finale",
-    titleDesktop: "FINALISER VOTRE COMMANDE",
-    titleMobile: "FINALISER MA COMMANDE",
+    titleDesktop: "Finaliser votre commande",
+    titleMobile: "Finaliser ma commande",
     orderRefusedTitle: "Commande non envoyée",
     subtitleDesktop: "Aucun compte requis. Vous payez à la réception de votre commande.",
     subtitleMobile: "Simple, rapide et sans création de compte requise.",
@@ -208,11 +208,11 @@ export const messages = {
     landmarksRequiredBadge: "Obligatoire",
     landmarksPlaceholder:
       "Ex : Près de la pharmacie du fleuve, villa beige portail vert",
-    summaryTitle: "RÉCAPITULATIF DE VOTRE COMMANDE",
+    summaryTitle: "Récapitulatif de votre commande",
     itemsBadge: (count: number) =>
       `${count} ${count > 1 ? "articles" : "article"}`,
     seeItemsAccordion: (count: number, total: string) =>
-      `Voir les ${count} articles (${total})`,
+      count > 1 ? `Voir les ${count} articles (${total})` : `Voir l'article (${total})`,
     subtotalArticles: "Sous-total articles",
     subtotalArticlesMobile: "Sous-total des articles",
     totalArticles: "Total des articles",

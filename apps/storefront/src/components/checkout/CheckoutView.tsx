@@ -14,7 +14,7 @@ export function CheckoutView({ cart }: { cart: Cart }) {
 
   return (
     <CheckoutProvider>
-      <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 md:px-8 pt-3 pb-36 lg:py-10">
+      <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 md:px-8 pt-3 pb-12 lg:py-10">
         {/* Breadcrumb & top indicator */}
         <div className="hidden sm:flex flex-row items-center justify-between pb-6 gap-3 border-b border-brand-surface/50 mb-8">
           <nav aria-label="Fil d'Ariane Commande" className="flex items-center space-x-2 text-xs text-brand-text">
@@ -67,7 +67,7 @@ export function CheckoutView({ cart }: { cart: Cart }) {
             <div className="bg-brand-surface px-4 py-3 sm:p-4 rounded-xl flex items-start gap-3 shadow-xs">
               <ShieldCheck className="w-5 h-5 text-brand-text mt-0.5 shrink-0" />
               <div className="space-y-0.5">
-                <h2 className="text-xs sm:text-sm font-medium text-brand-text">{messages.checkout.reassuranceTitle}</h2>
+                <h2 className="font-sans text-sm font-medium text-brand-text">{messages.checkout.reassuranceTitle}</h2>
                 <p className="hidden sm:block text-xs text-brand-text leading-relaxed">{messages.checkout.reassuranceDesc}</p>
               </div>
             </div>
