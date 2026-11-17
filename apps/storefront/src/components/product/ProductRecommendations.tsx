@@ -16,7 +16,7 @@ export function ProductRecommendations({ products, categoryHandle }: ProductReco
   return (
     <section aria-label={messages.product.recommendationsTitle} className="pt-8 md:pt-12 border-t border-brand-surface">
       <div className="flex flex-wrap items-end justify-between gap-x-3 mb-4 md:mb-8">
-        <h2 className="font-serif normal-case tracking-normal text-2xl md:text-3xl text-brand-text">
+        <h2 className="font-serif text-xl md:text-3xl text-brand-text">
           {messages.product.recommendationsTitle}
         </h2>
         <Link

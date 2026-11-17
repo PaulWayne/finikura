@@ -32,7 +32,7 @@ export function TestimonialsShowcase({ title, items }: { title: string; items: S
 
   return (
     <section className="-mx-4 md:mx-0 overflow-hidden text-center" data-purpose="testimonials-block">
-      <h2 className="font-serif text-[26px] md:text-4xl text-brand-text leading-tight px-4 mb-5 md:mb-8">{title}</h2>
+      <h2 className="font-serif text-[22px] md:text-3xl text-brand-text leading-snug px-4 mb-5 md:mb-8">{title}</h2>
 
       <ul className="relative mx-auto h-[272px] md:h-[420px] [perspective:1200px]">
         {items.map((item, index) => {
@@ -55,7 +55,7 @@ export function TestimonialsShowcase({ title, items }: { title: string; items: S
                 aria-hidden={isFront}
                 aria-label={messages.home.testimonialShow(item.author)}
                 onClick={() => setActiveIndex(index)}
-                className={`relative block w-full h-full rounded-2xl overflow-hidden bg-brand-surface text-left ${
+                className={`relative block w-full h-full rounded-xl overflow-hidden bg-brand-surface text-left ${
                   isFront ? "cursor-default shadow-lg" : "cursor-pointer"
                 }`}
               >
@@ -68,7 +68,7 @@ export function TestimonialsShowcase({ title, items }: { title: string; items: S
                     className="w-full h-full object-cover object-top"
                   />
                 )}
-                <span className="absolute inset-x-2 bottom-2 rounded-xl bg-brand-bg px-3 py-2">
+                <span className="absolute inset-x-2 bottom-2 rounded-lg bg-brand-bg px-3 py-2">
                   <span className="block text-sm font-medium text-brand-text leading-tight">{item.author}</span>
                   {item.occasion && <span className="block text-xs text-brand-text leading-tight mt-0.5">{item.occasion}</span>}
                 </span>

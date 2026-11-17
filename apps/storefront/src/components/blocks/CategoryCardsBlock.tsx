@@ -22,7 +22,7 @@ export function CategoryCardsBlock({ block, occasionShortcuts = [] }: CategoryCa
   return (
     <section>
       <div className="mb-5 md:mb-8">
-        <h2 className="font-serif text-[26px] md:text-4xl text-brand-text leading-tight">{block.title}</h2>
+        <h2 className="font-serif text-[22px] md:text-3xl text-brand-text leading-snug">{block.title}</h2>
         {block.subtitle && <p className="text-sm md:text-base text-brand-text mt-1">{block.subtitle}</p>}
       </div>
 
@@ -34,9 +34,9 @@ export function CategoryCardsBlock({ block, occasionShortcuts = [] }: CategoryCa
             <Link
               key={card.categoryHandle}
               href={`/categorie/${card.categoryHandle}`}
-              className="group flex items-stretch gap-4 md:gap-6 rounded-2xl md:rounded-3xl bg-brand-white border border-brand-surface p-2.5 md:p-4 shadow-[0_1px_3px_rgba(94,82,69,0.06)]"
+              className="group flex items-stretch gap-4 md:gap-6 rounded-xl md:rounded-2xl bg-brand-white border border-brand-surface p-2.5 md:p-4 shadow-[0_1px_3px_rgba(94,82,69,0.06)]"
             >
-              <div className="relative w-[42%] shrink-0 aspect-[4/5] rounded-xl md:rounded-2xl overflow-hidden bg-brand-surface">
+              <div className="relative w-[42%] shrink-0 aspect-[4/5] rounded-lg md:rounded-xl overflow-hidden bg-brand-surface">
                 <SafeImage
                   src={card.imageUrl || fallback}
                   alt={card.imageAlt}

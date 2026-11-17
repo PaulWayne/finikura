@@ -20,7 +20,7 @@ export function ProductSectionBlock({
     <section data-purpose="product-section">
       {/* Section Header */}
       <div className="mb-5 md:mb-8">
-        <h2 className="font-serif text-[26px] md:text-4xl text-brand-text leading-tight">{block.title}</h2>
+        <h2 className="font-serif text-[22px] md:text-3xl text-brand-text leading-snug">{block.title}</h2>
         {block.eyebrow && <p className="text-sm md:text-base text-brand-text mt-1">{block.eyebrow}</p>}
       </div>
 

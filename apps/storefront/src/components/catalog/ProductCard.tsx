@@ -87,7 +87,7 @@ export function ProductCard({ product, showCategoryBadge = false, preferredAge }
 
   return (
     <article
-      className="group flex flex-col rounded-2xl md:rounded-3xl bg-brand-white border border-brand-surface overflow-hidden shadow-[0_1px_3px_rgba(94,82,69,0.06)]"
+      className="group flex flex-col rounded-xl md:rounded-2xl bg-brand-white border border-brand-surface overflow-hidden shadow-[0_1px_3px_rgba(94,82,69,0.06)]"
       data-purpose="product-card"
     >
       <div className="relative w-full aspect-[4/5] overflow-hidden bg-brand-surface">

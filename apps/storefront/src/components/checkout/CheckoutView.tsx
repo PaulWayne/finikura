@@ -67,7 +67,7 @@ export function CheckoutView({ cart }: { cart: Cart }) {
             <div className="bg-brand-surface px-4 py-3 sm:p-4 rounded-xl flex items-start gap-3 shadow-xs">
               <ShieldCheck className="w-5 h-5 text-brand-text mt-0.5 shrink-0" />
               <div className="space-y-0.5">
-                <h2 className="font-sans text-sm font-medium text-brand-text">{messages.checkout.reassuranceTitle}</h2>
+                <h2 className="font-sans normal-case tracking-normal text-sm font-medium text-brand-text">{messages.checkout.reassuranceTitle}</h2>
                 <p className="hidden sm:block text-xs text-brand-text leading-relaxed">{messages.checkout.reassuranceDesc}</p>
               </div>
             </div>

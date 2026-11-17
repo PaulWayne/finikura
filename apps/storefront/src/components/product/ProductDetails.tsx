@@ -21,7 +21,7 @@ export function ProductDetails({ product }: { product: Product }) {
       </div>
 
       <div className="mb-6">
-        <h2 className="font-serif normal-case tracking-normal text-xl text-brand-text mb-2">
+        <h2 className="font-serif text-base text-brand-text mb-2">
           {messages.product.spiritTitle}
         </h2>
         <p className="text-base text-brand-text leading-relaxed">{product.description}</p>

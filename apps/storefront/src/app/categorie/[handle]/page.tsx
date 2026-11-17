@@ -106,7 +106,7 @@ async function CategoryContent({
             </div>
           )}
           <div className="min-w-0 space-y-1">
-            <h1 className="font-serif text-[28px] md:text-5xl normal-case font-normal text-brand-text tracking-normal leading-tight">
+            <h1 className="font-serif text-2xl md:text-4xl font-normal text-brand-text leading-tight">
               {category.name}
             </h1>
             <p className="text-sm md:text-base text-brand-text leading-snug">{banner.text}</p>
@@ -114,7 +114,7 @@ async function CategoryContent({
         </div>
       ) : (
       <div className="text-center max-w-2xl mx-auto space-y-3">
-        <h1 className="font-serif text-[28px] md:text-5xl normal-case font-normal text-brand-text tracking-normal leading-tight">
+        <h1 className="font-serif text-2xl md:text-4xl font-normal text-brand-text leading-tight">
           {category.name}
         </h1>
         <p className="text-sm md:text-base text-brand-text font-light leading-relaxed">

@@ -31,7 +31,7 @@ export function AboutExcerptBlock({ block }: AboutExcerptBlockProps) {
           <span className="text-sm text-brand-text mb-2 block">
             {block.eyebrow}
           </span>
-          <h2 className="font-serif text-[26px] md:text-4xl text-brand-text leading-tight mb-4">
+          <h2 className="font-serif text-[22px] md:text-3xl text-brand-text leading-snug mb-4">
             {block.title}
           </h2>
           <p className="text-base text-brand-text leading-relaxed mb-6">

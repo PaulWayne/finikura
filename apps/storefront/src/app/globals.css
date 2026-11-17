@@ -62,6 +62,14 @@
     font-family: var(--font-playfair), Georgia, serif;
     font-weight: 400;
   }
+
+  /* Page and section titles in spaced capitals, as on the brand board. Names of outfits keep their
+     normal case, they read better small: the h3 of a card, and the h1 of a product page. */
+  h1, h2 {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-wrap: balance;
+  }
 }
 
 @theme {

@@ -62,7 +62,7 @@ export function OrderConfirmation({ order, whatsappUrl }: OrderConfirmationProps
 
         {/* Warm Note Card */}
         <div className="w-full bg-brand-surface rounded-xl p-4 sm:p-6 mb-4 sm:mb-6 text-center border border-brand-surface/40">
-          <h2 className="font-serif text-xl sm:text-2xl text-brand-text mb-2 font-normal">
+          <h2 className="font-serif normal-case tracking-normal text-xl sm:text-2xl text-brand-text mb-2 font-normal">
             {messages.confirmation.thankYouName(firstName)}
           </h2>
           <p className="text-xs sm:text-sm text-brand-text leading-relaxed max-w-lg mx-auto">

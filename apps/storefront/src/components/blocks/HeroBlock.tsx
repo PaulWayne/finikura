@@ -27,7 +27,7 @@ export function HeroBlock({ block }: HeroBlockProps) {
 
       <div className="fk-rise pt-6 md:pt-0 md:col-span-5 flex flex-col items-start">
         {block.eyebrow && <p className="text-sm text-brand-text mb-2 md:mb-3">{block.eyebrow}</p>}
-        <h1 className="font-serif text-[34px] leading-[1.1] md:text-5xl lg:text-[56px] text-brand-text mb-4 md:mb-6">
+        <h1 className="font-serif text-[26px] leading-[1.2] md:text-4xl lg:text-[44px] lg:leading-[1.15] text-brand-text mb-4 md:mb-6">
           {block.title}
         </h1>
         <p className="text-base md:text-lg text-brand-text leading-relaxed mb-6 md:mb-8 max-w-[34ch]">
