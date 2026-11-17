@@ -9,13 +9,13 @@ test("la vidéo est une vue de plus de la galerie et ne se charge qu'au toucher"
   });
 
   await page.goto("/produit/robe-terracotta-brodee");
-  // Four photos and the clip; the first view stays a photo.
-  await expect(page.getByText("1 / 5")).toBeVisible();
+  // Three photos and the clip; the first view stays a photo.
+  await expect(page.getByText("1 / 4")).toBeVisible();
 
   const play = page.getByRole("button", { name: "Voir la tenue en mouvement" }).first();
   await play.scrollIntoViewIfNeeded();
   // The clip is the second view: one swipe from the first photo.
-  await expect(page.getByText("2 / 5")).toBeVisible();
+  await expect(page.getByText("2 / 4")).toBeVisible();
   // Nothing of the video has been downloaded yet.
   await expect(page.locator("video")).toHaveCount(0);
   expect(videoRequests).toHaveLength(0);

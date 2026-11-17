@@ -14,10 +14,6 @@
           "url": "/mock-media/robe-terracotta-brodee.jpg"
         },
         {
-          "id": "img_f01_2",
-          "url": "/mock-media/robe-terracotta-brodee-2.jpg"
-        },
-        {
           "id": "img_f01_3",
           "url": "/mock-media/robe-terracotta-brodee-3.jpg"
         },
@@ -124,16 +120,16 @@
     },
     {
       "id": "prod_filles_02",
-      "title": "Robe Poudrée",
+      "title": "Robe Fleurie Bleu Gris",
       "handle": "robe-poudree-en-lin",
-      "subtitle": "Coupe ample",
-      "description": "Robe ample couleur poudre, légère à porter au quotidien.",
+      "subtitle": "Petites fleurs roses",
+      "description": "Robe à manches ballon semée de petites fleurs roses, légère à porter au quotidien.",
       "material": null,
-      "thumbnail": "/mock-media/robe-terracotta-brodee-2.jpg",
+      "thumbnail": "/mock-media/robe-fleurie-bleu-gris.jpg",
       "images": [
         {
           "id": "img_f02_1",
-          "url": "/mock-media/robe-terracotta-brodee-2.jpg"
+          "url": "/mock-media/robe-fleurie-bleu-gris.jpg"
         }
       ],
       "categories": [
@@ -747,16 +743,20 @@
     },
     {
       "id": "prod_filles_08",
-      "title": "Robe Bicolore Terracotta & Rose",
+      "title": "Robe Rouge à Rayures",
       "handle": "robe-bicolore-terracotta-et-rose",
-      "subtitle": "Deux tons",
-      "description": "Robe bicolore terracotta et rose poudré, à coupe moderne.",
+      "subtitle": "Volant rayé",
+      "description": "Robe rouge sans manches, à la taille et au volant rayés de blanc, pour les jours de fête.",
       "material": null,
-      "thumbnail": "/mock-media/robe-terracotta-brodee-2.jpg",
+      "thumbnail": "/mock-media/robe-rouge-a-rayures.jpg",
       "images": [
         {
           "id": "img_f08_1",
-          "url": "/mock-media/robe-terracotta-brodee-2.jpg"
+          "url": "/mock-media/robe-rouge-a-rayures.jpg"
+        },
+        {
+          "id": "img_f08_2",
+          "url": "/mock-media/robe-rouge-a-rayures-dos.jpg"
         }
       ],
       "categories": [
@@ -953,16 +953,20 @@
     },
     {
       "id": "prod_filles_10",
-      "title": "Ensemble Rose",
+      "title": "Robe Marine Col Claudine",
       "handle": "ensemble-rose-et-lin",
-      "subtitle": "Deux pièces coordonnées",
-      "description": "Blouse et jupe assorties, pour les fêtes de famille et les sorties du dimanche.",
+      "subtitle": "Nœud et rayures",
+      "description": "Robe bleu marine à col Claudine blanc, avec un nœud à la taille et une bande rayée, pour les fêtes de famille.",
       "material": null,
-      "thumbnail": "/mock-media/robe-terracotta-brodee-2.jpg",
+      "thumbnail": "/mock-media/robe-marine-col-claudine.jpg",
       "images": [
         {
           "id": "img_f10_1",
-          "url": "/mock-media/robe-terracotta-brodee-2.jpg"
+          "url": "/mock-media/robe-marine-col-claudine.jpg"
+        },
+        {
+          "id": "img_f10_2",
+          "url": "/mock-media/robe-marine-col-claudine-dos.jpg"
         }
       ],
       "categories": [

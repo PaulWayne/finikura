@@ -202,6 +202,21 @@ for (const guide of read("size-guides.json").data) {
 
 // --- Category banners (FK-40) ---------------------------------------------------
 for (const b of read("category-banners.json").data) {
+  // --refresh=banner-filles rewrites that banner from the fixtures, photo included.
+  if (refresh.has(`banner-${b.category_handle}`)) {
+    const existing = await strapi
+      .documents("api::category-banner.category-banner")
+      .findFirst({ filters: { category_handle: b.category_handle } });
+    if (existing) {
+      await strapi.documents("api::category-banner.category-banner").update({
+        documentId: existing.documentId,
+        data: { ...strip(b), image: await importImage(b.image?.url, b.image?.alternativeText) },
+        status: "published",
+      });
+      console.log(`api::category-banner.category-banner ${b.category_handle} : mis à jour depuis les fixtures`);
+      continue;
+    }
+  }
   await createIfMissing("api::category-banner.category-banner", { category_handle: b.category_handle }, {
     ...strip(b),
     image: await importImage(b.image?.url, b.image?.alternativeText),

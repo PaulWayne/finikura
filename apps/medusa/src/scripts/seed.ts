@@ -72,7 +72,7 @@ const readFixture = <T>(file: string): T =>
 const OCCASION_TAGS = ["tous-les-jours", "fete", "ceremonie"]
 const AGE_OPTION = "Âge"
 
-export default async function seed({ container }: ExecArgs) {
+export default async function seed({ container, args }: ExecArgs) {
   // Uploads a /mock-media/… fixture image to the File module (Garage in dev and production) once,
   // and returns its public URL. Other URLs (real photos already in storage) are kept as they are.
   const uploaded = new Map<string, string>()
@@ -393,13 +393,44 @@ export default async function seed({ container }: ExecArgs) {
     })
     moved++
   }
+  // On request, products are brought back to the fixtures: name, description and photos. Prices,
+  // sizes and stock are not touched. Run: pnpm --filter medusa seed refresh-products=handle-1,handle-2
+  const refreshArg = (args ?? []).find((arg) => arg.startsWith("refresh-products="))
+  const refreshHandles = refreshArg ? refreshArg.replace("refresh-products=", "").split(",").filter(Boolean) : []
+  let refreshed = 0
+  for (const product of placed.filter((p) => refreshHandles.includes(p.handle))) {
+    const fixture = fixtureByHandle.get(product.handle)
+    if (!fixture) continue
+    await updateProductsWorkflow(container).run({
+      input: {
+        selector: { id: product.id },
+        update: {
+          title: fixture.title,
+          subtitle: fixture.subtitle ?? null,
+          description: fixture.description ?? null,
+          thumbnail: await toStorage(fixture.thumbnail),
+          images: await Promise.all((fixture.images ?? []).map(async (img) => ({ url: (await toStorage(img.url))! }))),
+        },
+      },
+    })
+    refreshed++
+  }
+  if (refreshArg) {
+    logger.info(`Produits remis aux valeurs des fixtures : ${refreshed}`)
+    // Leave time for the product events to leave this short-lived process: the site is told to
+    // refresh its catalogue by a subscriber.
+    await new Promise((resolve) => setTimeout(resolve, 3000))
+  }
+
   const placedCategories = await productModule.listProductCategories(
     { handle: fixtureCategories.map((c) => c.handle) },
     { select: ["id", "handle", "metadata"] }
   )
   for (const category of placedCategories) {
     const fixture = fixtureCategories.find((c) => c.handle === category.handle)
-    if (!fixture || !isPlaceholder(category.metadata?.image as string | undefined)) continue
+    // Same request for a category photo: refresh-categories=filles
+    const asked = (args ?? []).some((arg) => arg.startsWith("refresh-categories=") && arg.replace("refresh-categories=", "").split(",").includes(category.handle))
+    if (!fixture || (!asked && !isPlaceholder(category.metadata?.image as string | undefined))) continue
     await updateProductCategoriesWorkflow(container).run({
       input: { selector: { id: category.id }, update: { metadata: await categoryMetadata(fixture.metadata) } },
     })

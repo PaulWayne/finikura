@@ -5,7 +5,7 @@
 
 export const IMAGE_FALLBACKS = {
   hero: "/mock-media/tunique-ceremonie-ecru.jpg",
-  filles: "/mock-media/robe-terracotta-brodee-2.jpg",
+  filles: "/mock-media/robe-fleurie-bleu-gris.jpg",
   garcons: "/mock-media/garcons.jpg",
   about: "/mock-media/tout-a-commence-par-des-demandes-de-proches.jpg",
   product: "/mock-media/robe-terracotta-brodee.jpg",
