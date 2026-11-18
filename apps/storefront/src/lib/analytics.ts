@@ -14,6 +14,8 @@ export const ANALYTICS_EVENTS = {
   heroClick: "clic-hero",
   // FK-38: a customer started the clip of a product, data { produit: handle }.
   videoPlay: "lecture-video",
+  // An outfit page was opened, data { produit: handle }: which outfits are looked at but not bought.
+  productView: "vue-produit",
 } as const;
 
 export function trackEvent(event: string, data?: Record<string, string>): void {

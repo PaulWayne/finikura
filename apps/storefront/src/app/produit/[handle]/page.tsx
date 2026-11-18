@@ -14,6 +14,7 @@ import { absoluteUrl } from "@/lib/site";
 import { ProductRecommendations } from "@/components/product/ProductRecommendations";
 import { BRAND_NAME, pageTitle } from "@/lib/seo";
 import { breadcrumbJsonLd, productJsonLd } from "@/lib/structured-data";
+import { ProductViewTracker } from "@/components/product/ProductViewTracker";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 interface ProductPageProps {
@@ -87,6 +88,7 @@ async function ProductContent({ params }: ProductPageProps) {
 
   return (
     <div className="pt-2 pb-4 md:py-8 space-y-3 md:space-y-8" data-purpose="product-page">
+      <ProductViewTracker handle={product.handle} />
       <JsonLd data={productJsonLd(product)} />
       <JsonLd
         data={breadcrumbJsonLd([
