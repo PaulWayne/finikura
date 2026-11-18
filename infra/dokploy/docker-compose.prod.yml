@@ -190,11 +190,10 @@ services:
       FORCE_REBUILD: ${FORCE_REBUILD:-}
       # IndexNow: Bing (ChatGPT, Copilot) told when pages change; empty = off.
       INDEXNOW_KEY: ${INDEXNOW_KEY:-}
-      # Preview before the opening: the site asks for this password and is not indexed; empty = open.
-      PREVIEW_PASSWORD: ${PREVIEW_PASSWORD:-}
+      # Preview before the opening: 1 = hidden from search engines and AI crawlers; empty = indexable.
+      NOINDEX: ${NOINDEX:-}
     healthcheck:
-      # While the site is closed, the check sends the preview password like a visitor would.
-      test: ["CMD", "node", "-e", "const p=process.env.PREVIEW_PASSWORD;fetch('http://127.0.0.1:3100/',p?{headers:{authorization:'Basic '+Buffer.from('sante:'+p).toString('base64')}}:{}).then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3100/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
       interval: 30s
       timeout: 10s
       retries: 3

@@ -1,17 +1,16 @@
 # Avant l'ouverture au public
 
-Le site est d'abord déployé sur le VPS avec les données du local, pour le montrer à la cliente. Il reste fermé au public. Cette liste suit ce qu'il faut changer avant de l'ouvrir : on coche au fur et à mesure, et on n'ouvre que lorsque la première partie est entièrement cochée.
+Le site est d'abord déployé sur le VPS avec les données du local, pour le montrer à la cliente. Il n'a pas de mot de passe, mais il reste caché des moteurs de recherche et des IA. Cette liste suit ce qu'il faut changer avant de l'ouvrir : on coche au fur et à mesure, et on n'ouvre que lorsque la première partie est entièrement cochée.
 
 Dernière mise à jour : 18 novembre 2026.
 
-## Pendant l'aperçu : le site reste fermé
+## Pendant l'aperçu : le site reste caché des moteurs
 
-- [x] Le site sait se fermer : tant que `PREVIEW_PASSWORD` est renseigné, chaque page demande ce mot de passe, `robots.txt` interdit tout, les pages portent `noindex` et IndexNow reste éteint.
-- [ ] Au déploiement : choisir le mot de passe, le mettre dans `PREVIEW_PASSWORD` sur le VPS, et le donner à la cliente (n'importe quel nom d'utilisateur convient).
-- [ ] Après le déploiement : vérifier depuis un navigateur privé que le domaine demande bien le mot de passe.
-- [ ] Laisser `INDEXNOW_KEY` vide.
+- [x] Le site sait se cacher : avec `NOINDEX=1`, `robots.txt` interdit tout aux moteurs de recherche et aux robots des IA, chaque page porte `noindex`, `sitemap.xml` et `llms.txt` répondent 404 et IndexNow reste éteint. Les personnes qui ont l'adresse voient le site normalement, sans mot de passe.
+- [ ] Au déploiement : mettre `NOINDEX=1` dans les variables du VPS.
+- [ ] Après le déploiement : ouvrir `https://DOMAINE/robots.txt` et vérifier qu'il répond « Disallow: / ».
+- [ ] Ne partager l'adresse qu'avec la cliente : un lien publié ailleurs peut faire apparaître l'adresse dans Google, sans son contenu.
 - [ ] Ne pas créer la fiche Google Business Profile ni la propriété Search Console avant l'ouverture.
-- [ ] Les sous-domaines `media.`, `cms.` et `api.` ne passent pas par ce mot de passe. Les photos restent lisibles par qui connaît leur adresse, et les admins Medusa et Strapi gardent leur propre connexion.
 
 ## À corriger avant d'ouvrir
 
@@ -47,7 +46,7 @@ Dernière mise à jour : 18 novembre 2026.
 
 ## Le jour de l'ouverture
 
-- [ ] Vider `PREVIEW_PASSWORD` et redéployer : le site s'ouvre et l'indexation reprend.
+- [ ] Vider `NOINDEX` et redéployer : l'indexation reprend, `sitemap.xml` et `llms.txt` reviennent.
 - [ ] Créer la propriété Search Console et y déposer `sitemap.xml`.
 - [ ] Créer la fiche Google Business Profile en zone desservie (Bamako), sans adresse.
 - [ ] Renseigner `INDEXNOW_KEY`.

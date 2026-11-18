@@ -106,14 +106,16 @@ Les CORS, les URL publiques et les certificats découlent tous de `DOMAIN`.
 - **Médias Strapi déjà en ligne avant Garage** : `cd /app/apps/strapi && pnpm media:migrate`. Chaque fichier garde son identifiant, donc l'accueil, les campagnes et les pages ne changent pas. Une fois les images vérifiées sur le site, le volume `finikura-strapi-uploads` peut être vidé.
 - **Restauration** : arrêtez Garage, videz son volume, décompressez `garage.tar.gz` dedans, puis copiez `meta/snapshots/<date la plus récente>/db.sqlite` en `meta/db.sqlite`, avant de redémarrer.
 
-## Aperçu fermé avant l'ouverture
+## Aperçu caché des moteurs avant l'ouverture
 
-Pour montrer le site à la cliente sans l'ouvrir au public, renseignez `PREVIEW_PASSWORD` dans les variables de Dokploy, puis redéployez.
+Pour montrer le site à la cliente sans qu'il soit référencé, mettez `NOINDEX=1` dans les variables de Dokploy, puis redéployez.
 
-- Chaque page demande alors ce mot de passe, avec n'importe quel nom d'utilisateur.
-- `robots.txt` répond « Disallow: / », les pages portent l'en-tête `X-Robots-Tag: noindex`, et IndexNow reste éteint même si `INDEXNOW_KEY` est renseigné.
-- Restent ouverts : `/robots.txt`, `/api/revalidate` (protégé par son propre secret, appelé par Medusa et Strapi) et les fichiers de construction sous `/_next/static`.
-- Les sous-domaines `media.`, `cms.` et `api.` ne sont pas concernés.
-- Les aperçus de lien sur WhatsApp ne s'affichent pas tant que le site est fermé.
+- Le site reste visible, sans mot de passe, pour qui a son adresse.
+- `robots.txt` répond « Disallow: / » pour tous les robots, moteurs de recherche et IA.
+- Chaque page porte l'en-tête `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`.
+- `/sitemap.xml` et `/llms.txt` répondent 404, et IndexNow reste éteint même si `INDEXNOW_KEY` est renseigné.
+- Les aperçus de lien sur WhatsApp continuent de s'afficher.
 
-Le jour de l'ouverture, videz `PREVIEW_PASSWORD` et redéployez. La liste de ce qui reste à faire avant ce jour est dans [`avant-ouverture.md`](avant-ouverture.md).
+Ces réglages s'adressent aux robots qui respectent les règles, ce qui est le cas de Google, de Bing et des principaux robots d'IA. Ils ne protègent pas le site d'une personne qui a l'adresse.
+
+Le jour de l'ouverture, videz `NOINDEX` et redéployez. La liste de ce qui reste à faire avant ce jour est dans [`avant-ouverture.md`](avant-ouverture.md).

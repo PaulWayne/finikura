@@ -24,8 +24,8 @@ export function indexNowKey(): string | null {
 }
 
 function isEnabled(): boolean {
-  // Never while the site is closed for its preview (src/proxy.ts).
-  return indexNowKey() !== null && SITE_URL.startsWith("https://") && !process.env.PREVIEW_PASSWORD?.trim();
+  // Never while the site is hidden from search engines for its preview (src/proxy.ts).
+  return indexNowKey() !== null && SITE_URL.startsWith("https://") && process.env.NOINDEX !== "1";
 }
 
 let timer: ReturnType<typeof setTimeout> | null = null;
