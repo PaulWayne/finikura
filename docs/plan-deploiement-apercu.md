@@ -22,24 +22,36 @@ Règles pendant tout le déploiement :
 
 ## Étape 0 : ce qu'il me faut avant de commencer
 
-- [ ] Le nom de domaine.
-- [ ] Une connexion SSH au VPS ouverte par vous.
-- [ ] Savoir si le VPS héberge déjà autre chose (d'autres sites, un Docker, un Traefik ou un Nginx).
+- [x] Le nom de domaine.
+- [x] Une connexion SSH au VPS ouverte par vous.
+- [x] Savoir si le VPS héberge déjà autre chose (d'autres sites, un Docker, un Traefik ou un Nginx).
 
 ## Étape 1 : état des lieux du VPS (lecture seule)
 
-- [ ] Système, mémoire et disque : `free -h`, `df -h`. Il faut environ 2 Go de mémoire libre, et de la marge pour la construction du front.
-- [ ] Docker présent ou non, conteneurs en cours, réseaux et volumes existants.
-- [ ] Ports 80, 443 et 3000 : libres ou déjà pris. Dokploy installe son propre Traefik sur 80 et 443.
-- [ ] Pare-feu (ufw ou celui de l'hébergeur) et ports ouverts.
-- [ ] Restes de l'ancienne installation (Forgejo, CI) à ne pas réveiller.
+- [x] Système, mémoire et disque : `free -h`, `df -h`. Il faut environ 2 Go de mémoire libre, et de la marge pour la construction du front.
+- [x] Docker présent ou non, conteneurs en cours, réseaux et volumes existants.
+- [x] Ports 80, 443 et 3000 : libres ou déjà pris. Dokploy installe son propre Traefik sur 80 et 443.
+- [x] Pare-feu (ufw ou celui de l'hébergeur) et ports ouverts.
+- [x] Restes de l'ancienne installation (Forgejo, CI) à ne pas réveiller.
 
 **On s'arrête ici si** les ports 80 ou 443 sont pris par un autre site : il faut décider avec vous avant d'installer.
 
+Constaté le 18 novembre 2026 : domaine `fini-kura.fr`, serveur `2.25.12.161`, Ubuntu 26.04, 2 cœurs, 7,7 Go de mémoire, 96 Go de disque. Serveur neuf, sans Docker ni autre site.
+
+### Préparation du serveur (faite)
+
+- [x] Système mis à jour et redémarré.
+- [x] 2 Go de swap, utilisé seulement en dernier recours (`vm.swappiness=10`).
+- [x] Pare-feu `ufw` : ports 22, 80, 443 ouverts, et 3000 le temps de configurer Dokploy.
+- [x] SSH par clé uniquement : la connexion par mot de passe est refusée.
+- [x] Journaux Docker limités à 3 fichiers de 10 Mo par conteneur, journaux système à 200 Mo.
+- [x] Cache de construction Docker plafonné à 4 Go.
+- [x] Nettoyage chaque nuit à 3 h 30 (`/usr/local/bin/finikura-docker-clean.sh`) : conteneurs arrêtés, images inutilisées depuis 24 heures, cache de construction de plus de 3 jours, réseaux vides. Les volumes de données ne sont jamais touchés.
+
 ## Étape 2 : Dokploy
 
-- [ ] Lire le script d'installation officiel avant de le lancer.
-- [ ] Installer Dokploy.
+- [x] Lire le script d'installation officiel avant de le lancer.
+- [x] Installer Dokploy. Version 0.31.4, avec Docker 29.10.
 - [ ] Vous créez le compte administrateur sur l'écran d'accueil de Dokploy.
 - [ ] Donner un domaine au panneau (par exemple `dokploy.DOMAINE`) avec HTTPS, puis fermer le port 3000 au public.
 - [ ] Vérification : le panneau répond en HTTPS, et `docker ps` montre Dokploy et Traefik en marche.
