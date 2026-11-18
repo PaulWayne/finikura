@@ -120,11 +120,19 @@ const fileModules = process.env.S3_ENDPOINT
       ]
     : []
 
+// Internal Docker network: PostgreSQL has no TLS. In production Medusa asks for SSL on every
+// connection unless told otherwise, and the shared connection does not read ssl_mode from the URL:
+// without this the migrations wait for a connection that never opens.
+const databaseDriverOptions = /[?&](ssl_mode=(disable|false)|sslmode=disable)/i.test(process.env.DATABASE_URL ?? '')
+  ? { connection: { ssl: false } }
+  : undefined
+
 module.exports = defineConfig({
   // The live e2e (FK-35) runs without the admin build, to start faster.
   admin: { disable: process.env.MEDUSA_ADMIN_DISABLED === 'true' },
   projectConfig: {
     databaseUrl: process.env.DATABASE_URL,
+    ...(databaseDriverOptions ? { databaseDriverOptions } : {}),
     redisUrl: REDIS_URL,
     http: {
       storeCors: process.env.STORE_CORS!,
