@@ -13,7 +13,7 @@
           "__component": "blocks.image-text",
           "eyebrow": "Notre histoire",
           "title": "Tout a commencé par des demandes de proches",
-          "text": "Je vis en Europe. Pendant des années, des parents et des proches restés au Mali m'ont demandé la même chose : acheter des vêtements pour leurs enfants et les leur envoyer.\n\nCes demandes sont devenues de plus en plus fréquentes. Les vêtements voyageaient dans les valises de la famille, et il fallait attendre le prochain retour pour habiller les enfants.\n\nPlutôt que de répondre à chaque demande une par une, j'ai créé une marque pour toutes ces familles : Fini Kura. Ces vêtements vous attendent désormais à Bamako.",
+          "text": "Je vis en Europe. Pendant des années, des parents et des proches restés au Mali m'ont demandé la même chose : acheter des vêtements pour leurs enfants et les leur envoyer.\n\nCes demandes sont devenues de plus en plus fréquentes. Les vêtements voyageaient dans les valises de la famille, et il fallait attendre le prochain retour pour habiller les enfants.\n\nPlutôt que de répondre à chaque demande une par une, j'ai créé une marque pour toutes ces familles : Fini Kura. Ces vêtements vous attendent désormais à Bamako.\n\nMariam, fondatrice de Fini Kura",
           "image_alt": "Vêtements d'enfants Fini Kura",
           "image": {
             "url": "/mock-media/tout-a-commence-par-des-demandes-de-proches.jpg",
@@ -51,7 +51,7 @@
           "cta_link": "/categorie/filles"
         }
       ],
-      "updatedAt": "2026-11-18T09:00:00.000Z"
+      "updatedAt": "2026-11-18T20:00:00.000Z"
     },
     {
       "documentId": "page-livraison-et-echanges",
