@@ -399,7 +399,7 @@ export default async function seed({ container, args }: ExecArgs) {
   const fixtureByHandle = new Map(fixtureProducts.map((p) => [p.handle, p]))
   const placed = await productModule.listProducts(
     { handle: fixtureProducts.map((p) => p.handle) },
-    { select: ["id", "handle", "thumbnail"], relations: ["images"] }
+    { select: ["id", "handle", "thumbnail", "metadata"], relations: ["images"] }
   )
   let moved = 0
   for (const product of placed) {
@@ -417,7 +417,7 @@ export default async function seed({ container, args }: ExecArgs) {
     })
     moved++
   }
-  // On request, products are brought back to the fixtures: name, description and photos. Prices,
+  // On request, products are brought back to the fixtures: name, description, care instructions and photos. Prices,
   // sizes and stock are not touched. Run: pnpm --filter medusa seed refresh-products=handle-1,handle-2
   const refreshArg = (args ?? []).find((arg) => arg.startsWith("refresh-products="))
   const refreshHandles = refreshArg ? refreshArg.replace("refresh-products=", "").split(",").filter(Boolean) : []
@@ -432,6 +432,8 @@ export default async function seed({ container, args }: ExecArgs) {
           title: fixture.title,
           subtitle: fixture.subtitle ?? null,
           description: fixture.description ?? null,
+          // Care instructions come back too; the other metadata (videos) stay as they are.
+          metadata: { ...(product.metadata ?? {}), ...(fixture.metadata?.care_instructions ? { care_instructions: fixture.metadata.care_instructions } : {}) },
           thumbnail: await toStorage(fixture.thumbnail),
           images: await Promise.all((fixture.images ?? []).map(async (img) => ({ url: (await toStorage(img.url))! }))),
         },

@@ -5,7 +5,7 @@
       "title": "Robe Terracotta Brodée",
       "handle": "robe-terracotta-brodee",
       "subtitle": "Parements brodés",
-      "description": "Robe terracotta aux parements brodés, pour les fêtes comme pour les beaux jours.",
+      "description": "Une robe terracotta pour les cérémonies, les fêtes de famille et les beaux jours. Ses parements brodés suffisent à l'habiller, sans autre accessoire. La coupe laisse de l'aisance pour danser et jouer.",
       "material": null,
       "thumbnail": "/mock-media/robe-terracotta-brodee.jpg",
       "images": [
@@ -115,7 +115,8 @@
         }
       ],
       "metadata": {
-        "fk_videos": "[{\"id\": \"vid_exemple\", \"status\": \"ready\", \"created_at\": \"2026-11-16T12:00:00.000Z\", \"caption\": \"Vidéo d'exemple\", \"av1_url\": \"/mock-media/video-exemple-av1.mp4\", \"mp4_url\": \"/mock-media/video-exemple-h264.mp4\", \"poster_url\": \"/mock-media/video-exemple-affiche.jpg\"}, {\"id\": \"vid_en_preparation\", \"status\": \"processing\", \"created_at\": \"2026-11-16T12:05:00.000Z\"}]"
+        "fk_videos": "[{\"id\": \"vid_exemple\", \"status\": \"ready\", \"created_at\": \"2026-11-16T12:00:00.000Z\", \"caption\": \"Vidéo d'exemple\", \"av1_url\": \"/mock-media/video-exemple-av1.mp4\", \"mp4_url\": \"/mock-media/video-exemple-h264.mp4\", \"poster_url\": \"/mock-media/video-exemple-affiche.jpg\"}, {\"id\": \"vid_en_preparation\", \"status\": \"processing\", \"created_at\": \"2026-11-16T12:05:00.000Z\"}]",
+        "care_instructions": "Lavage en machine à 30 °C, sur l'envers, avec des couleurs proches. Séchage à l'air libre. Repassage à fer doux."
       }
     },
     {
@@ -123,7 +124,7 @@
       "title": "Robe Fleurie Bleu Gris",
       "handle": "robe-poudree-en-lin",
       "subtitle": "Petites fleurs roses",
-      "description": "Robe à manches ballon semée de petites fleurs roses, légère à porter au quotidien.",
+      "description": "Une robe pour l'école, les visites et les dimanches en famille. Manches ballon et semis de petites fleurs roses sur fond bleu gris. Légère, elle se porte toute la journée.",
       "material": null,
       "thumbnail": "/mock-media/robe-fleurie-bleu-gris.jpg",
       "images": [
@@ -224,14 +225,16 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {}
+      "metadata": {
+        "care_instructions": "Lavage en machine à 30 °C, sur l'envers, avec des couleurs proches. Séchage à l'air libre. Repassage à fer doux."
+      }
     },
     {
       "id": "prod_filles_03",
       "title": "Robe Écru Broderie Fine",
       "handle": "robe-ecru-broderie-fine",
       "subtitle": "Manches ballon",
-      "description": "Robe écru brodée ton sur ton au col et aux manches ballon, pour les baptêmes et les cérémonies.",
+      "description": "Une robe écru pour les baptêmes, les mariages et les cérémonies. Le col et les manches ballon sont brodés ton sur ton, pour un effet discret et soigné. Elle s'accorde avec toutes les couleurs de chaussures.",
       "material": null,
       "thumbnail": "/mock-media/robe-terracotta-brodee-4.jpg",
       "images": [
@@ -327,14 +330,16 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {}
+      "metadata": {
+        "care_instructions": "Lavage en machine à 30 °C, sur l'envers, avec des couleurs proches. Séchage à l'air libre. Repassage à fer doux."
+      }
     },
     {
       "id": "prod_filles_04",
       "title": "Robe Étagée Sauge",
       "handle": "robe-etagee-sauge-et-lin",
       "subtitle": "Volants étagés",
-      "description": "Robe à volants étagés, sauge et écru. Une robe qui suit chaque mouvement.",
+      "description": "Une robe de fête sauge et écru, pour les anniversaires et les sorties habillées. Ses volants étagés suivent chaque mouvement. Elle tourne bien quand l'enfant danse.",
       "material": null,
       "thumbnail": "/mock-media/robe-etagee-sauge-et-lin.jpg",
       "images": [
@@ -430,14 +435,16 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {}
+      "metadata": {
+        "care_instructions": "Lavage en machine à 30 °C, sur l'envers, avec des couleurs proches. Séchage à l'air libre. Repassage à fer doux."
+      }
     },
     {
       "id": "prod_filles_05",
       "title": "Robe Manches Ballon Terracotta",
       "handle": "robe-manches-ballon-terracotta",
       "subtitle": "Coupe princesse",
-      "description": "Robe terracotta à coupe princesse, manches ballon et boutonnage dans le dos.",
+      "description": "Une robe terracotta pour les fêtes et les grandes réunions de famille. Coupe princesse, manches ballon et boutonnage dans le dos. Le haut est ajusté, la jupe s'évase.",
       "material": null,
       "thumbnail": "/mock-media/robe-terracotta-brodee.jpg",
       "images": [
@@ -533,14 +540,16 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {}
+      "metadata": {
+        "care_instructions": "Lavage en machine à 30 °C, sur l'envers, avec des couleurs proches. Séchage à l'air libre. Repassage à fer doux."
+      }
     },
     {
       "id": "prod_filles_06",
       "title": "Robe Sans Manches Terracotta",
       "handle": "robe-sans-manches-terracotta",
       "subtitle": "Pour tous les jours",
-      "description": "Robe droite sans manches, simple à enfiler pour l'école et les jeux.",
+      "description": "Une robe de tous les jours, pour l'école et les jeux. Coupe droite, sans manches, simple à enfiler seule. Elle se porte aussi sur un tee-shirt.",
       "material": null,
       "thumbnail": "/mock-media/robe-terracotta-brodee.jpg",
       "images": [
@@ -636,14 +645,16 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {}
+      "metadata": {
+        "care_instructions": "Lavage en machine à 30 °C, sur l'envers, avec des couleurs proches. Séchage à l'air libre. Repassage à fer doux."
+      }
     },
     {
       "id": "prod_filles_07",
       "title": "Robe Plastron Brodée",
       "handle": "robe-plastron-brodee-lin",
       "subtitle": "Plastron brodé",
-      "description": "Robe écru au plastron brodé, une pièce pour les grandes occasions.",
+      "description": "Une robe écru pour les grandes occasions : baptêmes, mariages, fêtes religieuses. Le plastron brodé habille tout le devant. Le reste de la coupe reste simple, pour que la broderie se voie.",
       "material": null,
       "thumbnail": "/mock-media/robe-terracotta-brodee-4.jpg",
       "images": [
@@ -739,14 +750,16 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {}
+      "metadata": {
+        "care_instructions": "Lavage en machine à 30 °C, sur l'envers, avec des couleurs proches. Séchage à l'air libre. Repassage à fer doux."
+      }
     },
     {
       "id": "prod_filles_08",
       "title": "Robe Rouge à Rayures",
       "handle": "robe-bicolore-terracotta-et-rose",
       "subtitle": "Volant rayé",
-      "description": "Robe rouge sans manches, à la taille et au volant rayés de blanc, pour les jours de fête.",
+      "description": "Une robe rouge pour les jours de fête. Sans manches, avec la taille et le volant rayés de blanc. Elle se remarque sans rien ajouter.",
       "material": null,
       "thumbnail": "/mock-media/robe-rouge-a-rayures.jpg",
       "images": [
@@ -846,14 +859,16 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {}
+      "metadata": {
+        "care_instructions": "Lavage en machine à 30 °C, sur l'envers, avec des couleurs proches. Séchage à l'air libre. Repassage à fer doux."
+      }
     },
     {
       "id": "prod_filles_09",
       "title": "Robe Tablier Terracotta",
       "handle": "robe-tablier-terracotta",
       "subtitle": "Surpiqûres dorées",
-      "description": "Robe chasuble terracotta à surpiqûres dorées, à porter seule ou sur un haut léger.",
+      "description": "Une robe chasuble terracotta pour l'école et les sorties. Ses surpiqûres dorées lui donnent du relief. Elle se porte seule ou sur un haut léger.",
       "material": null,
       "thumbnail": "/mock-media/robe-terracotta-brodee.jpg",
       "images": [
@@ -949,14 +964,16 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {}
+      "metadata": {
+        "care_instructions": "Lavage en machine à 30 °C, sur l'envers, avec des couleurs proches. Séchage à l'air libre. Repassage à fer doux."
+      }
     },
     {
       "id": "prod_filles_10",
       "title": "Robe Marine Col Claudine",
       "handle": "ensemble-rose-et-lin",
       "subtitle": "Nœud et rayures",
-      "description": "Robe bleu marine à col Claudine blanc, avec un nœud à la taille et une bande rayée, pour les fêtes de famille.",
+      "description": "Une robe bleu marine pour les fêtes de famille. Col Claudine blanc, nœud à la taille et bande rayée. Son allure sage convient aussi aux cérémonies.",
       "material": null,
       "thumbnail": "/mock-media/robe-marine-col-claudine.jpg",
       "images": [
@@ -1056,14 +1073,16 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {}
+      "metadata": {
+        "care_instructions": "Lavage en machine à 30 °C, sur l'envers, avec des couleurs proches. Séchage à l'air libre. Repassage à fer doux."
+      }
     },
     {
       "id": "prod_filles_11",
       "title": "Ensemble Blouse Crème & Jupe en Jean",
       "handle": "ensemble-blouse-creme-jupe-jean",
       "subtitle": "Col volanté",
-      "description": "Blouse crème à col volanté et jupe plissée en jean clair, pour l'école comme pour les sorties.",
+      "description": "Un ensemble pour l'école comme pour les sorties. Blouse crème à col volanté et jupe plissée en jean clair. Les deux pièces se portent aussi séparément.",
       "material": null,
       "thumbnail": "/mock-media/ensemble-blouse-creme-jupe-jean.jpg",
       "images": [
@@ -1167,7 +1186,9 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {},
+      "metadata": {
+        "care_instructions": "Lavage en machine à 30 °C, sur l'envers, avec des couleurs proches. Séchage à l'air libre. Repassage à fer doux."
+      },
       "collection": {
         "id": "col_nouveautes",
         "title": "Nouveautés",
@@ -1179,7 +1200,7 @@
       "title": "Ensemble Sauge",
       "handle": "ensemble-sauge-et-lin",
       "subtitle": "Chemise mandarin & pantalon",
-      "description": "Chemise à col officier et pantalon assorti à taille élastique, couleur sauge.",
+      "description": "Un ensemble sauge pour tous les jours. Chemise à col officier et pantalon assorti, à taille élastique. Il s'enfile vite le matin et laisse l'enfant courir.",
       "material": null,
       "thumbnail": "/mock-media/ensemble-sauge-et-lin.jpg",
       "images": [
@@ -1280,14 +1301,16 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {}
+      "metadata": {
+        "care_instructions": "Lavage en machine à 30 °C, sur l'envers, avec des couleurs proches. Séchage à l'air libre. Repassage à fer doux."
+      }
     },
     {
       "id": "prod_garcons_02",
       "title": "Chemise Mandarin Sauge",
       "handle": "chemise-mandarin-sauge",
       "subtitle": "Col officier",
-      "description": "Chemise sauge à col officier, pour l'école comme pour les fêtes.",
+      "description": "Une chemise sauge pour l'école comme pour les fêtes. Son col officier se porte fermé pour une tenue habillée, ouvert pour tous les jours. Elle va avec un pantalon clair ou un jean.",
       "material": null,
       "thumbnail": "/mock-media/chemise-mandarin-sauge.jpg",
       "images": [
@@ -1388,14 +1411,16 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {}
+      "metadata": {
+        "care_instructions": "Lavage en machine à 30 °C, sur l'envers, avec des couleurs proches. Séchage à l'air libre. Repassage à fer doux."
+      }
     },
     {
       "id": "prod_garcons_03",
       "title": "Ensemble Terracotta",
       "handle": "ensemble-terracotta-et-lin",
       "subtitle": "Chemise & pantalon",
-      "description": "Chemise droite et pantalon souple terracotta, pour les beaux jours et les occasions.",
+      "description": "Un ensemble terracotta pour les fêtes et les beaux jours. Chemise droite et pantalon souple, assortis. Les deux pièces se portent ensemble ou séparément.",
       "material": null,
       "thumbnail": "/mock-media/ensemble-terracotta-et-lin.jpg",
       "images": [
@@ -1491,14 +1516,16 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {}
+      "metadata": {
+        "care_instructions": "Lavage en machine à 30 °C, sur l'envers, avec des couleurs proches. Séchage à l'air libre. Repassage à fer doux."
+      }
     },
     {
       "id": "prod_garcons_04",
       "title": "Tunique Cérémonie Écru",
       "handle": "tunique-ceremonie-ecru",
       "subtitle": "Col brodé",
-      "description": "Tunique écru à col mao brodé et fentes sur les côtés, pour les baptêmes, mariages et fêtes religieuses.",
+      "description": "Une tunique écru pour les baptêmes, les mariages et les fêtes religieuses. Col mao brodé et fentes sur les côtés. Elle se porte sur un pantalon clair.",
       "material": null,
       "thumbnail": "/mock-media/tunique-ceremonie-ecru.jpg",
       "images": [
@@ -1594,14 +1621,16 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {}
+      "metadata": {
+        "care_instructions": "Lavage en machine à 30 °C, sur l'envers, avec des couleurs proches. Séchage à l'air libre. Repassage à fer doux."
+      }
     },
     {
       "id": "prod_garcons_05",
       "title": "Chemise Ciel",
       "handle": "chemise-ciel-et-lin",
       "subtitle": "Coupe droite bicolore",
-      "description": "Chemise bleu ciel à col et empiècements écrus.",
+      "description": "Une chemise bleu ciel pour l'école et les sorties. Coupe droite, col et empiècements écrus. Elle se porte rentrée ou par-dessus le pantalon.",
       "material": null,
       "thumbnail": "/mock-media/chemise-ciel-et-lin.jpg",
       "images": [
@@ -1697,14 +1726,16 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {}
+      "metadata": {
+        "care_instructions": "Lavage en machine à 30 °C, sur l'envers, avec des couleurs proches. Séchage à l'air libre. Repassage à fer doux."
+      }
     },
     {
       "id": "prod_garcons_06",
       "title": "Ensemble Cérémonie Terracotta",
       "handle": "ensemble-ceremonie-terracotta",
       "subtitle": "Tunique & pantalon",
-      "description": "Tunique longue et pantalon fuselé terracotta, pour les fêtes et les cérémonies.",
+      "description": "Un ensemble terracotta pour les fêtes et les cérémonies. Tunique longue et pantalon fuselé, assortis. Une tenue complète, prête le matin de la fête.",
       "material": null,
       "thumbnail": "/mock-media/ensemble-ceremonie-terracotta.jpg",
       "images": [
@@ -1800,14 +1831,16 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {}
+      "metadata": {
+        "care_instructions": "Lavage en machine à 30 °C, sur l'envers, avec des couleurs proches. Séchage à l'air libre. Repassage à fer doux."
+      }
     },
     {
       "id": "prod_garcons_07",
       "title": "Ensemble Naturel & Sauge",
       "handle": "ensemble-lin-naturel-et-sauge",
       "subtitle": "Taille élastique",
-      "description": "Deux pièces couleur naturelle avec une touche de sauge, à taille élastique.",
+      "description": "Un ensemble de tous les jours, couleur naturelle avec une touche de sauge. Deux pièces à taille élastique, faciles à enfiler seul. Il convient à l'école comme aux visites.",
       "material": null,
       "thumbnail": "/mock-media/ensemble-sauge-et-lin.jpg",
       "images": [
@@ -1903,14 +1936,16 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {}
+      "metadata": {
+        "care_instructions": "Lavage en machine à 30 °C, sur l'envers, avec des couleurs proches. Séchage à l'air libre. Repassage à fer doux."
+      }
     },
     {
       "id": "prod_garcons_08",
       "title": "Tunique Beige Brodée",
       "handle": "tunique-lin-beige-brode",
       "subtitle": "Encolure brodée",
-      "description": "Tunique beige aux lignes simples, brodée autour de l'encolure.",
+      "description": "Une tunique beige pour les cérémonies et les fêtes religieuses. Lignes simples, broderie autour de l'encolure. Elle se porte sur un pantalon clair.",
       "material": null,
       "thumbnail": "/mock-media/tunique-lin-beige-brode.jpg",
       "images": [
@@ -2006,7 +2041,9 @@
           "allow_backorder": false
         }
       ],
-      "metadata": {}
+      "metadata": {
+        "care_instructions": "Lavage en machine à 30 °C, sur l'envers, avec des couleurs proches. Séchage à l'air libre. Repassage à fer doux."
+      }
     }
   ]
 }
