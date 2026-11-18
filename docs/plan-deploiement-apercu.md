@@ -38,6 +38,12 @@ Règles pendant tout le déploiement :
 
 Constaté le 18 novembre 2026 : domaine `fini-kura.fr`, serveur `2.25.12.161`, Ubuntu 26.04, 2 cœurs, 7,7 Go de mémoire, 96 Go de disque. Serveur neuf, sans Docker ni autre site.
 
+### Images Docker (fait)
+
+- [x] Chaque application ne copie que son dossier : un changement du front ne reconstruit plus Medusa ni Strapi. Mesuré en local : 3 secondes au lieu de 7 minutes pour Medusa.
+- [x] Les trois images partagent leurs premières couches (système et dépendances, 1,8 Go), stockées une seule fois sur le serveur.
+- [x] Tests, notes et captures exclus de la construction (`.dockerignore`).
+
 ### Préparation du serveur (faite)
 
 - [x] Système mis à jour et redémarré.

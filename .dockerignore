@@ -11,3 +11,11 @@
 apps/strapi/public/uploads
 docs
 .git
+.e2e
+apps/storefront/e2e
+apps/medusa/integration-tests
+**/*.log
+**/.DS_Store
+.claude
+BACKLOG.md
+CLAUDE.md
