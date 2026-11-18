@@ -209,6 +209,17 @@ services:
       - traefik.http.routers.finikura-front-http.rule=Host(`${DOMAIN}`)
       - traefik.http.routers.finikura-front-http.entrypoints=web
       - traefik.http.routers.finikura-front-http.middlewares=finikura-https
+      # www.DOMAIN goes to DOMAIN, in one hop, with its own certificate.
+      - traefik.http.routers.finikura-www.rule=Host(`www.${DOMAIN}`)
+      - traefik.http.routers.finikura-www.entrypoints=websecure
+      - traefik.http.routers.finikura-www.tls.certresolver=letsencrypt
+      - traefik.http.routers.finikura-www.middlewares=finikura-www
+      - traefik.http.routers.finikura-www-http.rule=Host(`www.${DOMAIN}`)
+      - traefik.http.routers.finikura-www-http.entrypoints=web
+      - traefik.http.routers.finikura-www-http.middlewares=finikura-www
+      - traefik.http.middlewares.finikura-www.redirectregex.regex=^https?://www\.(.+)
+      - traefik.http.middlewares.finikura-www.redirectregex.replacement=https://$${1}
+      - traefik.http.middlewares.finikura-www.redirectregex.permanent=true
       - traefik.http.middlewares.finikura-https.redirectscheme.scheme=https
       - traefik.http.middlewares.finikura-https.redirectscheme.permanent=true
       # Shared by every HTTPS router of the stack (audit S1): HSTS for one year on the domain and its
