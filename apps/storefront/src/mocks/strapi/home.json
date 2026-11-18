@@ -2,15 +2,15 @@
   "data": {
     "documentId": "home",
     "seo": {
-      "title": "Vêtements pour enfants de 3 à 14 ans à Bamako | Fini Kura",
-      "description": "Conçus en Europe, portés à Bamako. Vêtements 100 % coton pour filles et garçons de 3 à 14 ans. Paiement à la réception."
+      "title": "Boutique en ligne de vêtements enfants, livrés à Bamako | Fini Kura",
+      "description": "Boutique en ligne de vêtements 100 % coton pour enfants de 3 à 14 ans, conçus en Europe. Livraison à domicile à Bamako, paiement à la réception."
     },
     "blocks": [
       {
         "__component": "blocks.hero",
-        "eyebrow": "Habits pour enfants de 3 à 14 ans",
+        "eyebrow": "Boutique en ligne · 3 à 14 ans",
         "title": "Conçus en Europe, portés à Bamako",
-        "subtitle": "Des vêtements 100 % coton pour les enfants de 3 à 14 ans. Le matin de la fête, il ne reste plus qu'à l'enfiler.",
+        "subtitle": "Des vêtements 100 % coton pour les enfants de 3 à 14 ans, commandés en ligne et livrés chez vous. Le matin de la fête, il ne reste plus qu'à l'enfiler.",
         "cta_text": "Découvrir la collection",
         "cta_link": "#nouveautes",
         "image_alt": "Deux enfants souriants habillés avec élégance à Bamako",
@@ -55,7 +55,7 @@
         "__component": "blocks.about-excerpt",
         "eyebrow": "Habits neufs",
         "title": "Longtemps, il fallait attendre le retour de tantie",
-        "content": "Ces vêtements voyageaient dans les valises de la famille. Ils vous attendent désormais à Bamako. En bambara, « Fini Kura » veut dire habits neufs.",
+        "content": "Ces vêtements voyageaient dans les valises de la famille. Ils se commandent désormais ici, en ligne, et arrivent chez vous à Bamako. En bambara, « Fini Kura » veut dire habits neufs.",
         "cta_text": "Notre histoire",
         "cta_link": "/notre-histoire",
         "image_alt": "Vêtements Fini Kura",
@@ -112,8 +112,12 @@
         "title": "Vos questions",
         "items": [
           {
+            "question": "Avez-vous un magasin à Bamako ?",
+            "answer": "Non. Fini Kura est une boutique en ligne : vous choisissez sur le site, vous confirmez sur WhatsApp et nous livrons chez vous, à Bamako. Il n'y a pas de magasin où passer."
+          },
+          {
             "question": "Où livrez-vous ?",
-            "answer": "Nous livrons à Bamako. À la commande, vous indiquez votre quartier et un repère pour que le livreur trouve votre maison."
+            "answer": "Nous livrons à domicile, à Bamako. À la commande, vous indiquez votre quartier et un repère pour que le livreur trouve votre maison."
           },
           {
             "question": "Combien coûte la livraison ?",

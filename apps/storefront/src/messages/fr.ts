@@ -15,9 +15,9 @@ export const messages = {
     loading: "Chargement…",
   },
   meta: {
-    defaultTitle: "Vêtements pour enfants à Bamako | Fini Kura",
+    defaultTitle: "Boutique en ligne de vêtements pour enfants | Fini Kura",
     defaultDescription:
-      "Vêtements pour filles et garçons de 3 à 14 ans à Bamako. Commande en ligne, paiement à la réception.",
+      "Boutique en ligne de vêtements pour filles et garçons de 3 à 14 ans. Commande sur le site, livraison à domicile à Bamako, paiement à la réception.",
     confirmationTitle: "Confirmation de commande | Fini Kura",
     confirmationDescription: "Votre commande Fini Kura est enregistrée.",
     productNotFoundTitle: "Produit introuvable | Fini Kura",
@@ -25,8 +25,8 @@ export const messages = {
     notFoundTitle: "Page introuvable | Fini Kura",
     /** Category page titles, by Medusa handle (audit marketing, référencement). */
     categoryTitles: {
-      filles: "Vêtements fille de 3 à 14 ans à Bamako",
-      garcons: "Vêtements garçon de 3 à 14 ans à Bamako",
+      filles: "Vêtements fille 3-14 ans en ligne, livrés à Bamako",
+      garcons: "Vêtements garçon 3-14 ans en ligne, livrés à Bamako",
     },
   },
   structuredData: {
@@ -38,11 +38,12 @@ export const messages = {
   /** /llms.txt: the shop described for AI assistants, in plain text (audit marketing, moteurs IA). */
   llms: {
     facts: [
+      "Boutique en ligne uniquement, sans magasin physique : on commande sur le site et la commande est livrée à domicile, à Bamako.",
       "Vêtements pour filles et garçons de 3 à 14 ans, pour l'école, les fêtes, les baptêmes, les mariages et la Tabaski.",
       "Conçus en Europe, en 100 % coton, avec la qualité des grandes marques européennes.",
       "Collections produites en petites séries : peu de pièces par taille.",
       "Commande en ligne sans compte ni e-mail : nom, téléphone, quartier et repère, puis confirmation sur WhatsApp.",
-      "Livraison à Bamako, à la charge de la cliente ; le montant est confirmé sur WhatsApp avant la livraison.",
+      "Livraison à domicile à Bamako, à la charge de la cliente ; le montant est confirmé sur WhatsApp avant la livraison.",
       "Paiement à la réception.",
       "Prix en francs CFA (XOF).",
     ],
@@ -61,7 +62,7 @@ export const messages = {
   },
   header: {
     brandSubtitle: "HABITS POUR ENFANTS",
-    announcement: "PAIEMENT À LA RÉCEPTION À BAMAKO",
+    announcement: "COMMANDE EN LIGNE, LIVRÉE CHEZ VOUS À BAMAKO",
     openMenuAria: "Ouvrir le menu",
     closeMenuAria: "Fermer le menu",
     cartAria: "Panier d'achats",
@@ -107,7 +108,7 @@ export const messages = {
     },
   },
   product: {
-    collectionEyebrow: (isGirls: boolean) => (isGirls ? "Collection Filles · Bamako" : "Collection Garçons · Bamako"),
+    collectionEyebrow: (isGirls: boolean) => (isGirls ? "Collection Filles" : "Collection Garçons"),
     buySectionAria: (title: string) => `Acheter ${title}`,
     sizeGroupAria: "Sélection de la taille",
     sizeSoldOutTitle: (size: string) => `Taille ${size} actuellement épuisée`,
@@ -132,11 +133,11 @@ export const messages = {
     factSmallBatch: "Collection en petite série",
     materialAccordion: "Matière",
     miniBadgePayment: "Paiement à la réception",
-    miniBadgeDelivery: "Livraison à Bamako",
+    miniBadgeDelivery: "Livrée chez vous à Bamako",
     careAccordion: "Conseils d'entretien",
     reassurancePayments: "Paiement à la réception",
     reassurancePaymentsDesc: "Vous payez quand vous recevez votre commande.",
-    reassuranceDelivery: "Livraison à Bamako",
+    reassuranceDelivery: "Livraison à domicile à Bamako",
     reassuranceDeliveryDesc: "Livraison à votre charge, montant confirmé sur WhatsApp",
     recommendationsTitle: "Vous aimerez aussi",
     discoverWardrobe: "Voir toutes les tenues",
@@ -344,7 +345,7 @@ export const messages = {
       "Un souci technique de notre côté. Réessayez dans un instant ; si cela continue, écrivez-nous sur WhatsApp.",
     retry: "Réessayer",
     backHome: "Retour à l'accueil",
-    documentTitle: "Fini Kura — Habits pour enfants à Bamako",
+    documentTitle: "Fini Kura — Boutique en ligne de vêtements pour enfants",
   },
   errors: {
     addToCart: "Impossible d'ajouter cet article au panier.",

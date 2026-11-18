@@ -15,7 +15,7 @@ function jsonLd(html: string): Record<string, unknown>[] {
 test("une catégorie filtrée garde une seule adresse canonique, sans les filtres", async ({ request }) => {
   const html = await (await request.get("/categorie/filles?occasion=ceremonie&voir=16")).text();
   expect(head(html)).toMatch(/<link rel="canonical" href="[^"]*\/categorie\/filles"/);
-  expect(head(html)).toContain("<title>Vêtements fille de 3 à 14 ans à Bamako | Fini Kura</title>");
+  expect(head(html)).toContain("<title>Vêtements fille 3-14 ans en ligne, livrés à Bamako | Fini Kura</title>");
   expect(head(html)).toContain('property="og:image"');
   expect(html).toContain('data-purpose="category-presentation"');
 });
@@ -49,12 +49,20 @@ test("l'accueil et les catégories répondent aux questions des parents, lisible
   }
 });
 
+test("l'accueil dit clairement que la boutique est en ligne, sans magasin", async ({ request }) => {
+  const html = await (await request.get("/")).text();
+  expect(head(html)).toMatch(/<title>Boutique en ligne [^<]+<\/title>/);
+  const faq = jsonLd(html).find((d) => d["@type"] === "FAQPage") as { mainEntity: { name: string }[] } | undefined;
+  expect(faq?.mainEntity.some((q) => q.name.includes("magasin"))).toBe(true);
+});
+
 test("/llms.txt résume la boutique, ses tenues et ses réponses, en texte", async ({ request }) => {
   const res = await request.get("/llms.txt");
   expect(res.headers()["content-type"]).toContain("text/markdown");
   const text = await res.text();
   expect(text.startsWith("# Fini Kura")).toBe(true);
   expect(text).toContain("Paiement à la réception.");
+  expect(text).toContain("sans magasin physique");
   expect(text).toMatch(/\[Robe Terracotta Brodée\]\([^)]+\/produit\/robe-terracotta-brodee\) : [^\n]*FCFA/);
   expect(text).toContain("### Comment payer ma commande ?");
   // Without its key, IndexNow is off and its file does not exist.
