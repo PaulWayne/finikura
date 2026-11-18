@@ -50,7 +50,8 @@
           "cta_text": "Voir la collection",
           "cta_link": "/categorie/filles"
         }
-      ]
+      ],
+      "updatedAt": "2026-11-18T09:00:00.000Z"
     },
     {
       "documentId": "page-livraison-et-echanges",
@@ -89,7 +90,8 @@
             }
           ]
         }
-      ]
+      ],
+      "updatedAt": "2026-11-18T09:00:00.000Z"
     },
     {
       "documentId": "page-contact",
@@ -112,7 +114,8 @@
           "cta_text": "Écrire sur WhatsApp",
           "cta_link": "whatsapp"
         }
-      ]
+      ],
+      "updatedAt": "2026-11-18T09:00:00.000Z"
     },
     {
       "documentId": "page-mentions-legales",
@@ -148,7 +151,8 @@
           "title": "Cookies",
           "body": "Le site dépose deux cookies, tous deux nécessaires à son fonctionnement. Il n'utilise aucun cookie de publicité ni de mesure d'audience.\n\n- **Panier** : garde les articles de votre panier. Il est supprimé quand la commande est passée, ou au bout de 30 jours.\n- **Commandes** : permet de revoir le détail de vos commandes sur ce téléphone. Il est gardé 30 jours.\n\nVotre navigateur garde aussi, sur votre téléphone, vos coordonnées de livraison, pour ne pas avoir à les retaper à la commande suivante, et vos coups de cœur. Ces informations ne nous sont envoyées que lorsque vous passez commande. Vous pouvez les effacer en supprimant les données du site dans les réglages de votre navigateur.\n\nLes statistiques de visite sont mesurées sans cookie et sans enregistrer qui vous êtes."
         }
-      ]
+      ],
+      "updatedAt": "2026-11-18T09:00:00.000Z"
     }
   ],
   "meta": {}

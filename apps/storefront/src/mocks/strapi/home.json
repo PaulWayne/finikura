@@ -108,6 +108,44 @@
         ]
       },
       {
+        "__component": "blocks.faq",
+        "title": "Vos questions",
+        "items": [
+          {
+            "question": "Où livrez-vous ?",
+            "answer": "Nous livrons à Bamako. À la commande, vous indiquez votre quartier et un repère pour que le livreur trouve votre maison."
+          },
+          {
+            "question": "Combien coûte la livraison ?",
+            "answer": "Elle est à votre charge et dépend de votre quartier. Nous vous confirmons le montant sur WhatsApp avant la livraison."
+          },
+          {
+            "question": "Comment payer ma commande ?",
+            "answer": "À la réception : vous payez au moment où l'on vous remet votre commande. Rien n'est à payer en ligne."
+          },
+          {
+            "question": "Faut-il créer un compte pour commander ?",
+            "answer": "Non. Votre nom, votre numéro de téléphone, votre quartier et un repère suffisent. Vous confirmez ensuite la commande sur WhatsApp, avec un message déjà rempli."
+          },
+          {
+            "question": "Pour quels âges sont vos vêtements ?",
+            "answer": "Pour les filles et les garçons de 3 à 14 ans : pour l'école, les fêtes, les baptêmes, les mariages et la Tabaski."
+          },
+          {
+            "question": "Comment choisir la bonne taille ?",
+            "answer": "Chaque tenue est vendue par âge. Le guide des tailles donne les mesures de chaque âge, et vous pouvez nous écrire sur WhatsApp pour un conseil."
+          },
+          {
+            "question": "Quelle est la qualité de vos vêtements ?",
+            "answer": "Nos vêtements sont conçus en Europe, en 100 % coton, avec la qualité des grandes marques européennes. Un coton qui respire, adapté à la chaleur de Bamako."
+          },
+          {
+            "question": "Pourquoi certaines tailles sont-elles épuisées ?",
+            "answer": "Nos collections sont produites en petites séries : il y a peu de pièces par taille, et peu d'enfants porteront la même tenue."
+          }
+        ]
+      },
+      {
         "__component": "blocks.reassurance"
       }
     ]

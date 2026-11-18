@@ -51,7 +51,7 @@ Comptez environ 2 Go : Medusa 500 à 700 Mo, Strapi 400 à 600 Mo, Next 300 à 5
    - les réponses des cinq domaines portent `Strict-Transport-Security`, et celles du site `Content-Security-Policy` (`curl -sI https://DOMAIN`) ; aucune ne porte `X-Powered-By` ;
    - `https://api.DOMAIN/store/products` et `https://api.DOMAIN/auth/customer/emailpass/register` répondent 404 (l'API boutique ne passe que par le réseau interne), et `https://api.DOMAIN/app` affiche l'admin ;
    - `https://cms.DOMAIN/api/auth/local/register` répond « Register action is currently disabled » ;
-   - `https://DOMAIN/robots.txt` et `https://DOMAIN/sitemap.xml` répondent, et le sitemap liste les fiches produit ;
+   - `https://DOMAIN/robots.txt`, `https://DOMAIN/sitemap.xml` et `https://DOMAIN/llms.txt` répondent, et le sitemap comme `llms.txt` listent les fiches produit ;
    - les journaux de Medusa affichent « Connection to Redis … established », et jamais « fake redis » ni « in-memory » ;
    - une modification publiée dans Strapi apparaît sur le site (revalidation) ;
    - une commande test passe, avec le bouton WhatsApp, et chaque compte de l'admin Medusa reçoit l'e-mail de commande ;
@@ -67,6 +67,14 @@ Un redémarrage du conteneur du site (panne, `docker restart`) reprend la constr
 
 ## Revalidation du cache
 Medusa (via un subscriber) et Strapi (via l'eventHub) appellent `http://storefront:3100/api/revalidate` par le réseau interne, avec `REVALIDATE_SECRET`. Ce secret doit être le même pour les trois services, ce que garantit la variable unique dans Dokploy.
+
+## Moteurs de recherche et assistants IA
+Le site se décrit lui-même : données structurées sur chaque page (boutique, tenues, prix et stock par taille, fil d'Ariane, questions fréquentes), `sitemap.xml`, et `/llms.txt`, un résumé en texte pour les assistants IA, généré depuis Medusa et Strapi. Trois réglages restent à faire au lancement :
+1. **IndexNow** : générez une clé (`openssl rand -hex 16`), collez-la dans `INDEXNOW_KEY` puis redéployez. Chaque publication dans Strapi et chaque modification dans Medusa signale alors les pages du site à Bing, et à travers lui à ChatGPT et Copilot, en une à dix minutes. Vérification : `https://DOMAIN/indexnow-key.txt` affiche la clé, et les journaux du site affichent « [indexnow] … pages signalées » après une publication.
+2. **Google Search Console** : ajoutez la propriété `DOMAIN` (vérification par enregistrement DNS), puis déclarez `https://DOMAIN/sitemap.xml` dans **Sitemaps**.
+3. **Bing Webmaster Tools** : connectez-vous avec un compte Microsoft et choisissez **Importer depuis Google Search Console** : le site et son sitemap sont repris.
+
+Pour contrôler les données structurées d'une page : https://search.google.com/test/rich-results.
 
 ## Sauvegardes
 - Le script [`infra/backup/backup.sh`](../infra/backup/backup.sh) fait un `pg_dump` des bases `medusa`, `strapi` et `umami`, une archive du stockage Garage (photos et médias), plus une archive des médias Strapi.

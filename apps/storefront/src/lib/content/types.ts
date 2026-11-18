@@ -193,6 +193,8 @@ export interface CategoryBanner {
   text: string;
   /** Presentation text under the grid, paragraphs separated by a blank line; empty when none. */
   seoText: string;
+  /** Questions and answers under the grid; empty when none. */
+  faq: { question: string; answer: string }[];
   imageUrl: string;
   imageAlt: string;
 }
@@ -207,6 +209,8 @@ export interface SizeGuide {
 export interface EditorialPage {
   slug: string;
   title: string;
+  /** Last save in Strapi (ISO 8601), shown as « Mis à jour le … »; null when unknown. */
+  updatedAt: string | null;
   seo: {
     title: string;
     description: string;

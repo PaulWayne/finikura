@@ -69,9 +69,15 @@ export function productJsonLd(product: Product): JsonLdObject {
   };
 }
 
-/** The questions and answers of an editorial page, when it has a FAQ block. */
-export function faqJsonLd(blocks: ContentBlock[]): JsonLdObject | null {
-  const items = blocks.flatMap((block) => (block.type === "faq" ? block.items : []));
+type FaqItem = { question: string; answer: string };
+
+/** The questions of the FAQ blocks of a page (home page, editorial pages). */
+export function faqItemsOf(blocks: ContentBlock[]): FaqItem[] {
+  return blocks.flatMap((block) => (block.type === "faq" ? block.items : []));
+}
+
+/** The questions and answers shown on a page, as they are shown; null when there are none. */
+export function faqJsonLd(items: FaqItem[]): JsonLdObject | null {
   const answered = items.filter((item) => item.question.trim() && item.answer.trim());
   if (answered.length === 0) return null;
   return {

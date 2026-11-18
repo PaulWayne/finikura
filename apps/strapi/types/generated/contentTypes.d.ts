@@ -489,7 +489,7 @@ export interface ApiCategoryBannerCategoryBanner
   extends Struct.CollectionTypeSchema {
   collectionName: 'category_banners';
   info: {
-    description: 'Une phrase et une petite photo en haut des pages Filles et Gar\u00E7ons (FK-40), et un texte de pr\u00E9sentation sous la grille des tenues.';
+    description: 'Une phrase et une petite photo en haut des pages Filles et Gar\u00E7ons (FK-40), puis, sous la grille des tenues, un texte de pr\u00E9sentation et des questions fr\u00E9quentes.';
     displayName: 'Bandeaux des cat\u00E9gories';
     pluralName: 'category-banners';
     singularName: 'category-banner';
@@ -504,6 +504,7 @@ export interface ApiCategoryBannerCategoryBanner
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    faq: Schema.Attribute.Component<'shared.faq-item', true>;
     image: Schema.Attribute.Media<'images'>;
     image_alt: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -584,6 +585,7 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
         'blocks.reassurance',
         'blocks.about-excerpt',
         'blocks.testimonials',
+        'blocks.faq',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;

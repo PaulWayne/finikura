@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { contentService } from "@/lib/content";
 import { EditorialPageView } from "@/components/editorial/EditorialPageView";
 import { pageTitle } from "@/lib/seo";
-import { faqJsonLd } from "@/lib/structured-data";
+import { faqItemsOf, faqJsonLd } from "@/lib/structured-data";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 // Shared by the editorial routes: content comes from Strapi, 404 when absent.
@@ -26,7 +26,7 @@ export async function EditorialRoute({ slug }: { slug: string }) {
   if (!page) notFound();
   return (
     <>
-      <JsonLd data={faqJsonLd(page.blocks)} />
+      <JsonLd data={faqJsonLd(faqItemsOf(page.blocks))} />
       <EditorialPageView page={page} whatsappUrl={settings.whatsappUrl} />
     </>
   );

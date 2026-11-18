@@ -25,7 +25,8 @@
         "blocks.product-section",
         "blocks.reassurance",
         "blocks.about-excerpt",
-        "blocks.testimonials"
+        "blocks.testimonials",
+        "blocks.faq"
       ]
     }
   }

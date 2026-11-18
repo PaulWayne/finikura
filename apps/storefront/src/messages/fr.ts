@@ -32,6 +32,33 @@ export const messages = {
   structuredData: {
     paymentAccepted: "Paiement à la réception",
   },
+  editorial: {
+    updatedOn: (date: string) => `Mis à jour le ${date}`,
+  },
+  /** /llms.txt: the shop described for AI assistants, in plain text (audit marketing, moteurs IA). */
+  llms: {
+    facts: [
+      "Vêtements pour filles et garçons de 3 à 14 ans, pour l'école, les fêtes, les baptêmes, les mariages et la Tabaski.",
+      "Conçus en Europe, en 100 % coton, avec la qualité des grandes marques européennes.",
+      "Collections produites en petites séries : peu de pièces par taille.",
+      "Commande en ligne sans compte ni e-mail : nom, téléphone, quartier et repère, puis confirmation sur WhatsApp.",
+      "Livraison à Bamako, à la charge de la cliente ; le montant est confirmé sur WhatsApp avant la livraison.",
+      "Paiement à la réception.",
+      "Prix en francs CFA (XOF).",
+    ],
+    factsTitle: "L'essentiel",
+    categoriesTitle: "Catégories",
+    productsTitle: "Tenues",
+    faqTitle: "Questions fréquentes",
+    pagesTitle: "Pages utiles",
+    campaignsTitle: "Collections du moment",
+    contactTitle: "Contact",
+    whatsapp: (url: string) => `WhatsApp : ${url}`,
+    price: (price: string, several: boolean) => (several ? `à partir de ${price}` : price),
+    ages: (ages: string) => `âges disponibles : ${ages}`,
+    soldOut: "épuisée pour le moment",
+    occasion: (label: string) => `occasion : ${label}`,
+  },
   header: {
     brandSubtitle: "HABITS POUR ENFANTS",
     announcement: "PAIEMENT À LA RÉCEPTION À BAMAKO",
@@ -55,6 +82,7 @@ export const messages = {
     categoryAgeLabel: (isGirls: boolean) => (isGirls ? "Fille · 3 à 14 ans" : "Garçon · 3 à 14 ans"),
     homeBreadcrumb: "Accueil",
     presentationAria: (categoryName: string) => `Présentation : ${categoryName}`,
+    faqTitle: "Questions fréquentes",
     filterAllAges: "Tous les âges",
     filterAllOccasions: "Toutes occasions",
     occasions: { everyday: "Tous les jours", party: "Fête", ceremony: "Cérémonie" },

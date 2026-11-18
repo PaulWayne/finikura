@@ -39,3 +39,29 @@ test("l'accueil présente la boutique, et la page livraison ses questions", asyn
   expect(jsonLd(delivery).some((d) => d["@type"] === "FAQPage")).toBe(true);
   expect(head(delivery)).toMatch(/<title>[^<]+ \| Fini Kura<\/title>/);
 });
+
+test("l'accueil et les catégories répondent aux questions des parents, lisibles par les moteurs", async ({ request }) => {
+  for (const path of ["/", "/categorie/garcons"]) {
+    const html = await (await request.get(path)).text();
+    const faq = jsonLd(html).find((d) => d["@type"] === "FAQPage") as { mainEntity: unknown[] } | undefined;
+    expect(faq?.mainEntity.length, path).toBeGreaterThan(0);
+    expect(html, path).toContain('data-purpose="faq-block"');
+  }
+});
+
+test("/llms.txt résume la boutique, ses tenues et ses réponses, en texte", async ({ request }) => {
+  const res = await request.get("/llms.txt");
+  expect(res.headers()["content-type"]).toContain("text/markdown");
+  const text = await res.text();
+  expect(text.startsWith("# Fini Kura")).toBe(true);
+  expect(text).toContain("Paiement à la réception.");
+  expect(text).toMatch(/\[Robe Terracotta Brodée\]\([^)]+\/produit\/robe-terracotta-brodee\) : [^\n]*FCFA/);
+  expect(text).toContain("### Comment payer ma commande ?");
+  // Without its key, IndexNow is off and its file does not exist.
+  expect((await request.get("/indexnow-key.txt")).status()).toBe(404);
+});
+
+test("une page d'information affiche sa date de mise à jour", async ({ request }) => {
+  const html = await (await request.get("/livraison-et-echanges")).text();
+  expect(html).toContain("Mis à jour le 18 novembre 2026");
+});

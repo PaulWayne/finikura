@@ -188,6 +188,8 @@ services:
       ORDER_LIMIT_IP_DAY: ${ORDER_LIMIT_IP_DAY:-}
       # 1 = rebuild the site at the next restart of its container (otherwise only a redeploy does).
       FORCE_REBUILD: ${FORCE_REBUILD:-}
+      # IndexNow: Bing (ChatGPT, Copilot) told when pages change; empty = off.
+      INDEXNOW_KEY: ${INDEXNOW_KEY:-}
     healthcheck:
       test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3100/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
       interval: 30s

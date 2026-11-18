@@ -61,6 +61,8 @@ export interface StrapiCategoryBanner {
   image_alt?: string | null;
   /** Presentation text shown under the grid (occasions, sizes, cotton), for parents and for Google. */
   seo_text?: string | null;
+  /** Questions shown under the presentation text, with their FAQPage description. */
+  faq?: { question: string; answer: string }[] | null;
 }
 
 export interface StrapiSizeGuide {
@@ -98,6 +100,8 @@ export interface StrapiPage {
   title: string;
   seo?: StrapiSeo | null;
   blocks?: StrapiRawBlock[] | null;
+  /** Set by Strapi at each save, ISO 8601. */
+  updatedAt?: string | null;
 }
 
 /** Answer of GET /api/storefront-content: every displayed document, each in its REST shape. */

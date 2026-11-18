@@ -10,7 +10,21 @@
         "url": "/mock-media/robe-fleurie-bleu-gris.jpg",
         "alternativeText": "Robe terracotta brodée portée par une petite fille"
       },
-      "seo_text": "Fini Kura habille les filles de 3 à 14 ans à Bamako. Nos robes et nos ensembles sont conçus en Europe, en 100 % coton : un tissu qui respire avec elles sous le soleil, de la cour de récré au soir de fête.\n\nPour l'école et les jours ordinaires, des coupes simples qui vont avec tout. Pour les fêtes, les baptêmes, les mariages et la Tabaski, des robes brodées aux finitions soignées.\n\nNos collections sont produites en petites séries : peu de pièces par taille, et peu d'enfants porteront la même. Choisissez l'âge de votre fille, le guide des tailles vous aide à trouver la bonne. Vous commandez en quelques gestes et vous payez à la réception, à Bamako."
+      "seo_text": "Fini Kura habille les filles de 3 à 14 ans à Bamako. Nos robes et nos ensembles sont conçus en Europe, en 100 % coton : un tissu qui respire avec elles sous le soleil, de la cour de récré au soir de fête.\n\nPour l'école et les jours ordinaires, des coupes simples qui vont avec tout. Pour les fêtes, les baptêmes, les mariages et la Tabaski, des robes brodées aux finitions soignées.\n\nNos collections sont produites en petites séries : peu de pièces par taille, et peu d'enfants porteront la même. Choisissez l'âge de votre fille, le guide des tailles vous aide à trouver la bonne. Vous commandez en quelques gestes et vous payez à la réception, à Bamako.",
+      "faq": [
+        {
+          "question": "Quelles robes choisir pour un baptême ou un mariage ?",
+          "answer": "Choisissez « Cérémonie » dans les occasions : vous verrez les robes brodées et les tenues habillées, de 3 à 14 ans."
+        },
+        {
+          "question": "Les vêtements conviennent-ils à la chaleur de Bamako ?",
+          "answer": "Ils sont en 100 % coton, un tissu qui respire. Votre fille reste à l'aise de la cour de récré au soir de fête."
+        },
+        {
+          "question": "Comment voir les tenues disponibles à l'âge de ma fille ?",
+          "answer": "Touchez son âge dans les filtres : seules les tenues encore disponibles à cet âge s'affichent."
+        }
+      ]
     },
     {
       "id": 2,
@@ -22,7 +36,21 @@
         "url": "/mock-media/garcons.jpg",
         "alternativeText": "Garçon en chemise et pantalon de lin"
       },
-      "seo_text": "Fini Kura habille les garçons de 3 à 14 ans à Bamako. Nos chemises, nos pantalons et nos ensembles sont conçus en Europe, en 100 % coton : un tissu qui respire avec eux sous le soleil, de la cour de récré au soir de fête.\n\nPour l'école et les jours ordinaires, des coupes simples qui vont avec tout. Pour les fêtes, les baptêmes, les mariages et la Tabaski, des tenues habillées aux finitions soignées.\n\nNos collections sont produites en petites séries : peu de pièces par taille, et peu d'enfants porteront la même. Choisissez l'âge de votre fils, le guide des tailles vous aide à trouver la bonne. Vous commandez en quelques gestes et vous payez à la réception, à Bamako."
+      "seo_text": "Fini Kura habille les garçons de 3 à 14 ans à Bamako. Nos chemises, nos pantalons et nos ensembles sont conçus en Europe, en 100 % coton : un tissu qui respire avec eux sous le soleil, de la cour de récré au soir de fête.\n\nPour l'école et les jours ordinaires, des coupes simples qui vont avec tout. Pour les fêtes, les baptêmes, les mariages et la Tabaski, des tenues habillées aux finitions soignées.\n\nNos collections sont produites en petites séries : peu de pièces par taille, et peu d'enfants porteront la même. Choisissez l'âge de votre fils, le guide des tailles vous aide à trouver la bonne. Vous commandez en quelques gestes et vous payez à la réception, à Bamako.",
+      "faq": [
+        {
+          "question": "Quelles tenues choisir pour un baptême ou un mariage ?",
+          "answer": "Choisissez « Cérémonie » dans les occasions : vous verrez les tuniques et les ensembles habillés, de 3 à 14 ans."
+        },
+        {
+          "question": "Les vêtements conviennent-ils à la chaleur de Bamako ?",
+          "answer": "Ils sont en 100 % coton, un tissu qui respire. Votre fils reste à l'aise de la cour de récré au soir de fête."
+        },
+        {
+          "question": "Comment voir les tenues disponibles à l'âge de mon fils ?",
+          "answer": "Touchez son âge dans les filtres : seules les tenues encore disponibles à cet âge s'affichent."
+        }
+      ]
     }
   ],
   "meta": {

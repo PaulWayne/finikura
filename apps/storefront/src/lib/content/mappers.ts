@@ -220,6 +220,9 @@ export function mapStrapiCategoryBannerToDomain(raw: StrapiCategoryBanner): Cate
     categoryHandle: raw.category_handle,
     text: raw.text,
     seoText: str(raw.seo_text),
+    faq: (raw.faq ?? [])
+      .map((item) => ({ question: str(item?.question).trim(), answer: str(item?.answer).trim() }))
+      .filter((item) => item.question && item.answer),
     imageUrl: mediaUrl(raw.image),
     imageAlt: imageAlt(raw),
   };
@@ -268,6 +271,7 @@ export function mapStrapiEditorialPageToDomain(raw: StrapiPage): EditorialPage {
   return {
     slug: raw.slug,
     title: raw.title,
+    updatedAt: optStr(raw.updatedAt) ?? null,
     seo: {
       title: raw.seo?.title || raw.title,
       description: raw.seo?.description ?? "",

@@ -13,6 +13,7 @@ const HOME_BLOCKS = {
     'blocks.reassurance': { populate: '*' },
     'blocks.about-excerpt': { populate: '*' },
     'blocks.testimonials': TESTIMONIALS,
+    'blocks.faq': { populate: '*' },
   },
 };
 const PAGE_BLOCKS = {
@@ -41,7 +42,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => {
         read(ctx, 'api::global-setting.global-setting', '*', true),
         read(ctx, 'api::home-page.home-page', { seo: true, blocks: HOME_BLOCKS }, true),
         read(ctx, 'api::campaign.campaign', '*'),
-        read(ctx, 'api::category-banner.category-banner', { image: true }),
+        read(ctx, 'api::category-banner.category-banner', { image: true, faq: true }),
         read(ctx, 'api::size-guide.size-guide', '*'),
         read(ctx, 'api::page.page', { seo: true, blocks: PAGE_BLOCKS }),
       ]);

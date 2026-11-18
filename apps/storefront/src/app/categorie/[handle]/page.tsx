@@ -13,7 +13,8 @@ import { IMAGE_FALLBACKS } from "@/lib/images";
 import { ageOptions, CATALOG_PAGE_SIZE, knownFilter, OCCASION_VALUES, shownCount } from "@/lib/catalog-filters";
 import { ProductGrid } from "@/components/catalog/ProductGrid";
 import { BRAND_NAME, categoryTitle } from "@/lib/seo";
-import { breadcrumbJsonLd } from "@/lib/structured-data";
+import { breadcrumbJsonLd, faqJsonLd } from "@/lib/structured-data";
+import { FaqBlock } from "@/components/blocks/FaqBlock";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 interface CategoryPageProps {
@@ -200,6 +201,16 @@ async function CategoryContent({
               <p key={i}>{paragraph}</p>
             ))}
         </section>
+      )}
+
+      {/* Questions of parents about this category, from Strapi, with their FAQPage description. */}
+      {banner && banner.faq.length > 0 && (
+        <div className="pt-6 md:pt-10">
+          <JsonLd data={faqJsonLd(banner.faq)} />
+          <FaqBlock
+            block={{ type: "faq", id: `faq-${handle}`, title: messages.catalog.faqTitle, items: banner.faq }}
+          />
+        </div>
       )}
 
       {/* Reassurance Strip */}

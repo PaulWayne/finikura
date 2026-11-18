@@ -2,6 +2,7 @@ import { timingSafeEqual } from "node:crypto";
 import type { NextRequest } from "next/server";
 import { revalidateTag } from "next/cache";
 import { CACHE_TAGS } from "@/lib/cache-tags";
+import { scheduleIndexNow } from "@/lib/indexnow";
 
 // Called by the Strapi webhook and the Medusa subscriber when content or
 // catalogue data changes. Both send the shared secret in x-revalidate-secret.
@@ -32,5 +33,7 @@ export async function POST(request: NextRequest) {
   }
   // Stale-while-revalidate: visitors never wait; Medusa still checks stock at checkout.
   revalidateTag(tag, "max");
+  // Pages changed: Bing (ChatGPT, Copilot) is told within minutes, in production only.
+  scheduleIndexNow();
   return Response.json({ revalidated: true, tag });
 }

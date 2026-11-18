@@ -8,9 +8,12 @@ test("les produits suivants se chargent en descendant, et le retour garde la lis
   await page.goto("/categorie/filles");
   await expect(cards(page)).toHaveCount(4);
 
-  // Each batch arrives before the end of the list is reached: the next ones follow.
-  await page.mouse.wheel(0, 4000);
-  await expect(cards(page)).toHaveCount(11);
+  // Each batch arrives while scrolling down, before the end of the list is reached. The text and
+  // the questions under the grid make the page longer: scroll in steps, like a customer.
+  await expect(async () => {
+    await page.mouse.wheel(0, 1500);
+    await expect(cards(page)).toHaveCount(11, { timeout: 500 });
+  }).toPass({ timeout: 10_000 });
   await expect(page).toHaveURL(/voir=11/);
   await expect(page.getByRole("link", { name: "Voir plus de vêtements" })).toHaveCount(0);
 

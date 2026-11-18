@@ -5,7 +5,7 @@
     "singularName": "category-banner",
     "pluralName": "category-banners",
     "displayName": "Bandeaux des catégories",
-    "description": "Une phrase et une petite photo en haut des pages Filles et Garçons (FK-40), et un texte de présentation sous la grille des tenues."
+    "description": "Une phrase et une petite photo en haut des pages Filles et Garçons (FK-40), puis, sous la grille des tenues, un texte de présentation et des questions fréquentes."
   },
   "options": {
     "draftAndPublish": true
@@ -37,6 +37,11 @@
       "type": "text",
       "required": false,
       "maxLength": 1500
+    },
+    "faq": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.faq-item"
     }
   }
 }
