@@ -105,3 +105,15 @@ Les CORS, les URL publiques et les certificats découlent tous de `DOMAIN`.
 - Garage a remplacé MinIO, dont l'édition communautaire n'est plus maintenue depuis 2025.
 - **Médias Strapi déjà en ligne avant Garage** : `cd /app/apps/strapi && pnpm media:migrate`. Chaque fichier garde son identifiant, donc l'accueil, les campagnes et les pages ne changent pas. Une fois les images vérifiées sur le site, le volume `finikura-strapi-uploads` peut être vidé.
 - **Restauration** : arrêtez Garage, videz son volume, décompressez `garage.tar.gz` dedans, puis copiez `meta/snapshots/<date la plus récente>/db.sqlite` en `meta/db.sqlite`, avant de redémarrer.
+
+## Aperçu fermé avant l'ouverture
+
+Pour montrer le site à la cliente sans l'ouvrir au public, renseignez `PREVIEW_PASSWORD` dans les variables de Dokploy, puis redéployez.
+
+- Chaque page demande alors ce mot de passe, avec n'importe quel nom d'utilisateur.
+- `robots.txt` répond « Disallow: / », les pages portent l'en-tête `X-Robots-Tag: noindex`, et IndexNow reste éteint même si `INDEXNOW_KEY` est renseigné.
+- Restent ouverts : `/robots.txt`, `/api/revalidate` (protégé par son propre secret, appelé par Medusa et Strapi) et les fichiers de construction sous `/_next/static`.
+- Les sous-domaines `media.`, `cms.` et `api.` ne sont pas concernés.
+- Les aperçus de lien sur WhatsApp ne s'affichent pas tant que le site est fermé.
+
+Le jour de l'ouverture, videz `PREVIEW_PASSWORD` et redéployez. La liste de ce qui reste à faire avant ce jour est dans [`avant-ouverture.md`](avant-ouverture.md).

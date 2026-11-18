@@ -6,10 +6,12 @@ Dernière mise à jour : 18 novembre 2026.
 
 ## Pendant l'aperçu : le site reste fermé
 
-- [ ] Protéger le site par un mot de passe, ou une autre barrière, tant qu'il n'est pas ouvert. Aujourd'hui rien ne le ferme : `robots.txt` autorise l'indexation et le sitemap est public.
-- [ ] Empêcher l'indexation par Google pendant l'aperçu (en-tête `noindex` ou `robots.txt` fermé), et le rouvrir le jour de l'ouverture.
-- [ ] Laisser `INDEXNOW_KEY` vide : sans clé, rien n'est signalé à Bing.
+- [x] Le site sait se fermer : tant que `PREVIEW_PASSWORD` est renseigné, chaque page demande ce mot de passe, `robots.txt` interdit tout, les pages portent `noindex` et IndexNow reste éteint.
+- [ ] Au déploiement : choisir le mot de passe, le mettre dans `PREVIEW_PASSWORD` sur le VPS, et le donner à la cliente (n'importe quel nom d'utilisateur convient).
+- [ ] Après le déploiement : vérifier depuis un navigateur privé que le domaine demande bien le mot de passe.
+- [ ] Laisser `INDEXNOW_KEY` vide.
 - [ ] Ne pas créer la fiche Google Business Profile ni la propriété Search Console avant l'ouverture.
+- [ ] Les sous-domaines `media.`, `cms.` et `api.` ne passent pas par ce mot de passe. Les photos restent lisibles par qui connaît leur adresse, et les admins Medusa et Strapi gardent leur propre connexion.
 
 ## À corriger avant d'ouvrir
 
@@ -45,7 +47,7 @@ Dernière mise à jour : 18 novembre 2026.
 
 ## Le jour de l'ouverture
 
-- [ ] Retirer la protection par mot de passe et rouvrir l'indexation.
+- [ ] Vider `PREVIEW_PASSWORD` et redéployer : le site s'ouvre et l'indexation reprend.
 - [ ] Créer la propriété Search Console et y déposer `sitemap.xml`.
 - [ ] Créer la fiche Google Business Profile en zone desservie (Bamako), sans adresse.
 - [ ] Renseigner `INDEXNOW_KEY`.
