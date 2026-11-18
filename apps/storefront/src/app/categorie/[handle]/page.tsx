@@ -12,6 +12,9 @@ import { SafeImage } from "@/components/ui/SafeImage";
 import { IMAGE_FALLBACKS } from "@/lib/images";
 import { ageOptions, CATALOG_PAGE_SIZE, knownFilter, OCCASION_VALUES, shownCount } from "@/lib/catalog-filters";
 import { ProductGrid } from "@/components/catalog/ProductGrid";
+import { BRAND_NAME, categoryTitle } from "@/lib/seo";
+import { breadcrumbJsonLd } from "@/lib/structured-data";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 interface CategoryPageProps {
   params: Promise<{ handle: string }> | { handle: string };
@@ -26,7 +29,10 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: CategoryPageProps) {
   const resolvedParams = await Promise.resolve(params);
-  const category = await commerceService.getCategoryByHandle(resolvedParams.handle);
+  const [category, banner] = await Promise.all([
+    commerceService.getCategoryByHandle(resolvedParams.handle),
+    contentService.getCategoryBanner(resolvedParams.handle),
+  ]);
 
   if (!category) {
     return {
@@ -35,12 +41,22 @@ export async function generateMetadata({ params }: CategoryPageProps) {
     };
   }
 
+  const title = categoryTitle(category.handle, category.name);
+  const path = `/categorie/${category.handle}`;
   return {
-    title: `${category.name} | Fini Kura`,
+    title: { absolute: title },
     description: category.description,
+    // Filters (?age=, ?occasion=, ?voir=) show the same page: one address for Google.
+    alternates: { canonical: path },
     openGraph: {
-      title: `${category.name} — Fini Kura Bamako`,
+      title,
       description: category.description,
+      url: path,
+      type: "website",
+      siteName: BRAND_NAME,
+      locale: "fr_ML",
+      // The banner photo, so a category shared on WhatsApp shows a picture.
+      images: banner?.imageUrl ? [{ url: banner.imageUrl, alt: banner.imageAlt }] : [],
     },
   };
 }
@@ -83,6 +99,7 @@ async function CategoryContent({
 
   return (
     <div className="pt-3 pb-4 md:py-8 space-y-4 md:space-y-8" data-purpose="catalog-page">
+      <JsonLd data={breadcrumbJsonLd([{ name: category.name, path: `/categorie/${handle}` }])} />
       {/* Breadcrumb */}
       <nav
         aria-label="Fil d'Ariane"
@@ -166,6 +183,23 @@ async function CategoryContent({
           total={products.length}
           moreHref={`/categorie/${handle}?${moreParams.toString()}`}
         />
+      )}
+
+      {/* Presentation text from Strapi: occasions, sizes, cotton. Read by parents who scroll, and by Google. */}
+      {banner?.seoText && (
+        <section
+          aria-label={messages.catalog.presentationAria(category.name)}
+          className="max-w-2xl mx-auto pt-6 md:pt-10 space-y-3 text-sm md:text-base text-brand-text leading-relaxed"
+          data-purpose="category-presentation"
+        >
+          {banner.seoText
+            .split(/\n\s*\n/)
+            .map((paragraph) => paragraph.trim())
+            .filter(Boolean)
+            .map((paragraph, i) => (
+              <p key={i}>{paragraph}</p>
+            ))}
+        </section>
       )}
 
       {/* Reassurance Strip */}

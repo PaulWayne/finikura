@@ -6,7 +6,7 @@ import { CheckoutView } from "@/components/checkout/CheckoutView";
 import { CheckoutSkeleton } from "@/components/layout/PageSkeletons";
 
 export const metadata = {
-  title: "Finaliser votre commande | Fini Kura Bamako",
+  title: "Finaliser votre commande | Fini Kura",
   description: "Finalisez votre commande Fini Kura en quelques instants. Paiement à la réception à Bamako.",
 };
 

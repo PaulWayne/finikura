@@ -489,7 +489,7 @@ export interface ApiCategoryBannerCategoryBanner
   extends Struct.CollectionTypeSchema {
   collectionName: 'category_banners';
   info: {
-    description: 'Une phrase et une petite photo en haut des pages Filles et Gar\u00E7ons (FK-40).';
+    description: 'Une phrase et une petite photo en haut des pages Filles et Gar\u00E7ons (FK-40), et un texte de pr\u00E9sentation sous la grille des tenues.';
     displayName: 'Bandeaux des cat\u00E9gories';
     pluralName: 'category-banners';
     singularName: 'category-banner';
@@ -513,6 +513,10 @@ export interface ApiCategoryBannerCategoryBanner
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    seo_text: Schema.Attribute.Text &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 1500;
+      }>;
     text: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{

@@ -5,12 +5,17 @@ import { BlockRenderer } from "@/components/blocks/BlockRenderer";
 import { Product } from "@/lib/commerce/types";
 import { getHomeBlocks } from "@/lib/home-blocks";
 import { getOccasionShortcuts } from "@/lib/occasion-shortcuts";
+import { pageTitle } from "@/lib/seo";
+import { storeJsonLd } from "@/lib/structured-data";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export async function generateMetadata() {
   const homeData = await contentService.getHomePage();
   return {
-    title: homeData.seo.title,
+    // An absolute title: the home page is the only one whose name is the brand itself.
+    title: { absolute: pageTitle(homeData.seo.title) },
     description: homeData.seo.description,
+    alternates: { canonical: "/" },
   };
 }
 
@@ -37,6 +42,7 @@ export default async function HomePage() {
 
   return (
     <div className="space-y-10 md:space-y-16 pt-2 pb-4 md:py-8">
+      <JsonLd data={storeJsonLd(settings.socialLinks)} />
       {blocks.map((block, index) => (
         // The first block is on screen when the page opens: it never waits for a scroll.
         <div key={`${block.type}-${block.id}`} className={index === 0 ? undefined : "fk-reveal"}>

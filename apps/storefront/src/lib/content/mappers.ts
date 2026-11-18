@@ -219,6 +219,7 @@ export function mapStrapiCategoryBannerToDomain(raw: StrapiCategoryBanner): Cate
   return {
     categoryHandle: raw.category_handle,
     text: raw.text,
+    seoText: str(raw.seo_text),
     imageUrl: mediaUrl(raw.image),
     imageAlt: imageAlt(raw),
   };

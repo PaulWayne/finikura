@@ -10,6 +10,7 @@ import { commerceService } from "@/lib/commerce";
 import { contentService } from "@/lib/content";
 import { isCampaignActive, todayInBamako } from "@/lib/content/campaign";
 import { messages } from "@/messages/fr";
+import { pageTitle } from "@/lib/seo";
 
 interface CampaignPageProps {
   params: Promise<{ slug: string }>;
@@ -22,9 +23,10 @@ export async function generateMetadata({ params }: CampaignPageProps) {
     return { title: messages.meta.defaultTitle, description: messages.meta.defaultDescription };
   }
   return {
-    title: `${campaign.seo.title} | Fini Kura`,
+    title: { absolute: pageTitle(campaign.seo.title) },
     description: campaign.seo.description,
-    openGraph: { title: campaign.seo.title, description: campaign.seo.description },
+    alternates: { canonical: `/campagne/${campaign.slug}` },
+    openGraph: { title: pageTitle(campaign.seo.title), description: campaign.seo.description },
   };
 }
 

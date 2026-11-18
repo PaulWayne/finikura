@@ -8,6 +8,7 @@ const t = messages.sizeGuidePage;
 export const metadata: Metadata = {
   title: t.metaTitle,
   description: t.metaDescription,
+  alternates: { canonical: "/guide-des-tailles" },
 };
 
 export default async function GuideDesTaillesPage() {

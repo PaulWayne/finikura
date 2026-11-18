@@ -191,6 +191,8 @@ export interface SizeGuideRow {
 export interface CategoryBanner {
   categoryHandle: string;
   text: string;
+  /** Presentation text under the grid, paragraphs separated by a blank line; empty when none. */
+  seoText: string;
   imageUrl: string;
   imageAlt: string;
 }

@@ -59,6 +59,8 @@ export interface StrapiCategoryBanner {
   text: string;
   image?: StrapiMedia | null;
   image_alt?: string | null;
+  /** Presentation text shown under the grid (occasions, sizes, cotton), for parents and for Google. */
+  seo_text?: string | null;
 }
 
 export interface StrapiSizeGuide {

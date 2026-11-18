@@ -2,13 +2,13 @@
   "data": {
     "documentId": "home",
     "seo": {
-      "title": "Fini Kura — Habits pour enfants à Bamako",
+      "title": "Vêtements pour enfants de 3 à 14 ans à Bamako | Fini Kura",
       "description": "Conçus en Europe, portés à Bamako. Vêtements 100 % coton pour filles et garçons de 3 à 14 ans. Paiement à la réception."
     },
     "blocks": [
       {
         "__component": "blocks.hero",
-        "eyebrow": "Nouvelle collection",
+        "eyebrow": "Habits pour enfants de 3 à 14 ans",
         "title": "Conçus en Europe, portés à Bamako",
         "subtitle": "Des vêtements 100 % coton pour les enfants de 3 à 14 ans. Le matin de la fête, il ne reste plus qu'à l'enfiler.",
         "cta_text": "Découvrir la collection",
@@ -29,7 +29,7 @@
             "category_handle": "filles",
             "title": "Filles",
             "age_range": "3-14 ans",
-            "tagline": "Élégance et délicatesse",
+            "tagline": "Des robes qu'on remarque, du quotidien aux baptêmes",
             "cta_text": "Découvrir",
             "image_alt": "Fille portant une création Fini Kura",
             "image": {
@@ -41,7 +41,7 @@
             "category_handle": "garcons",
             "title": "Garçons",
             "age_range": "3-14 ans",
-            "tagline": "Allure et confort",
+            "tagline": "Bien habillés, à l'aise toute la journée",
             "cta_text": "Découvrir",
             "image_alt": "Garçon portant une création Fini Kura",
             "image": {
@@ -52,10 +52,36 @@
         ]
       },
       {
+        "__component": "blocks.about-excerpt",
+        "eyebrow": "Habits neufs",
+        "title": "Longtemps, il fallait attendre le retour de tantie",
+        "content": "Ces vêtements voyageaient dans les valises de la famille. Ils vous attendent désormais à Bamako. En bambara, « Fini Kura » veut dire habits neufs.",
+        "cta_text": "Notre histoire",
+        "cta_link": "/notre-histoire",
+        "image_alt": "Vêtements Fini Kura",
+        "image": {
+          "url": "/mock-media/tout-a-commence-par-des-demandes-de-proches.jpg",
+          "alternativeText": "Vêtements Fini Kura"
+        }
+      },
+      {
         "__component": "blocks.product-section",
         "eyebrow": "Créations récentes",
         "title": "Nouveautés",
         "collection_handle": "nouveautes"
+      },
+      {
+        "__component": "blocks.about-excerpt",
+        "eyebrow": "Baptêmes, mariages et fêtes",
+        "title": "Le jour du baptême, tout le monde vous demandera où vous les avez trouvés",
+        "content": "Nos collections sont produites en petites séries. Peu de pièces par taille : peu d'enfants porteront la même.",
+        "cta_text": "Voir les tenues de cérémonie",
+        "cta_link": "/categorie/filles?occasion=ceremonie",
+        "image_alt": "Robe écru brodée pour un baptême",
+        "image": {
+          "url": "/mock-media/robe-terracotta-brodee-4.jpg",
+          "alternativeText": "Robe écru brodée pour un baptême"
+        }
       },
       {
         "__component": "blocks.testimonials",
@@ -83,19 +109,6 @@
       },
       {
         "__component": "blocks.reassurance"
-      },
-      {
-        "__component": "blocks.about-excerpt",
-        "eyebrow": "Habits neufs",
-        "title": "Longtemps, il fallait attendre le retour de tantie",
-        "content": "Ces vêtements voyageaient dans les valises de la famille. Ils vous attendent désormais à Bamako. En bambara, « Fini Kura » veut dire habits neufs.",
-        "cta_text": "Notre histoire",
-        "cta_link": "/notre-histoire",
-        "image_alt": "Vêtements Fini Kura",
-        "image": {
-          "url": "/mock-media/tout-a-commence-par-des-demandes-de-proches.jpg",
-          "alternativeText": "Vêtements Fini Kura"
-        }
       }
     ]
   },

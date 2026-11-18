@@ -5,25 +5,25 @@
       "slug": "notre-histoire",
       "title": "Notre histoire",
       "seo": {
-        "title": "Notre histoire | FINI KURA",
-        "description": "FINI KURA est née des demandes de parents maliens qui cherchaient de beaux vêtements de qualité pour leurs enfants. Prêt-à-porter pour filles et garçons de 3 à 14 ans."
+        "title": "Notre histoire | Fini Kura",
+        "description": "Fini Kura est née des demandes de parents maliens qui cherchaient de beaux vêtements de qualité pour leurs enfants. Prêt-à-porter pour filles et garçons de 3 à 14 ans."
       },
       "blocks": [
         {
           "__component": "blocks.image-text",
           "eyebrow": "Notre histoire",
           "title": "Tout a commencé par des demandes de proches",
-          "text": "Je vis en Europe. Pendant des années, des parents et des proches restés au Mali m'ont demandé la même chose : acheter des vêtements pour leurs enfants et les leur envoyer.\n\nCes demandes sont devenues de plus en plus fréquentes. Les vêtements voyageaient dans les valises de la famille, et il fallait attendre le prochain retour pour habiller les enfants.\n\nPlutôt que de répondre à chaque demande une par une, j'ai créé une marque pour toutes ces familles : FINI KURA. Ces vêtements vous attendent désormais à Bamako.",
-          "image_alt": "Vêtements d'enfants FINI KURA",
+          "text": "Je vis en Europe. Pendant des années, des parents et des proches restés au Mali m'ont demandé la même chose : acheter des vêtements pour leurs enfants et les leur envoyer.\n\nCes demandes sont devenues de plus en plus fréquentes. Les vêtements voyageaient dans les valises de la famille, et il fallait attendre le prochain retour pour habiller les enfants.\n\nPlutôt que de répondre à chaque demande une par une, j'ai créé une marque pour toutes ces familles : Fini Kura. Ces vêtements vous attendent désormais à Bamako.",
+          "image_alt": "Vêtements d'enfants Fini Kura",
           "image": {
             "url": "/mock-media/tout-a-commence-par-des-demandes-de-proches.jpg",
-            "alternativeText": "Vêtements d'enfants FINI KURA"
+            "alternativeText": "Vêtements d'enfants Fini Kura"
           }
         },
         {
           "__component": "blocks.rich-text",
           "title": "Habits neufs",
-          "body": "En bambara, « fini kura » veut dire « habits neufs ». C'est ce que nous voulons offrir à chaque enfant : la joie de porter un vêtement neuf, beau et bien fait, à l'école comme aux fêtes religieuses, aux baptêmes et aux anniversaires.\n\nNotre première collection habille les filles et les garçons de 3 à 14 ans, avec des robes, des ensembles, des pantalons et des chemises. Nous commençons à Bamako. Nous voulons ensuite faire connaître FINI KURA dans tout le Mali, puis en Afrique, et un jour au-delà."
+          "body": "En bambara, « fini kura » veut dire « habits neufs ». C'est ce que nous voulons offrir à chaque enfant : la joie de porter un vêtement neuf, beau et bien fait, à l'école comme aux fêtes religieuses, aux baptêmes et aux anniversaires.\n\nNotre première collection habille les filles et les garçons de 3 à 14 ans, avec des robes, des ensembles, des pantalons et des chemises. Nous commençons à Bamako. Nous voulons ensuite faire connaître Fini Kura dans tout le Mali, puis en Afrique, et un jour au-delà."
         },
         {
           "__component": "blocks.values",
@@ -57,7 +57,7 @@
       "slug": "livraison-et-echanges",
       "title": "Livraison et échanges",
       "seo": {
-        "title": "Livraison et échanges | FINI KURA",
+        "title": "Livraison et échanges | Fini Kura",
         "description": "Livraison à domicile à Bamako, paiement à la réception, frais de livraison confirmés sur WhatsApp."
       },
       "blocks": [
@@ -96,7 +96,7 @@
       "slug": "contact",
       "title": "Contact",
       "seo": {
-        "title": "Contact | FINI KURA",
+        "title": "Contact | Fini Kura",
         "description": "Une question sur une commande, une taille ou une livraison à Bamako ? Écrivez-nous sur WhatsApp."
       },
       "blocks": [
@@ -119,7 +119,7 @@
       "slug": "mentions-legales",
       "title": "Mentions légales",
       "seo": {
-        "title": "Mentions légales | FINI KURA",
+        "title": "Mentions légales | Fini Kura",
         "description": "Éditeur du site, hébergement, données personnelles et cookies."
       },
       "blocks": [

@@ -15,7 +15,7 @@ export const messages = {
     loading: "Chargement…",
   },
   meta: {
-    defaultTitle: "Fini Kura — Habits pour enfants à Bamako",
+    defaultTitle: "Vêtements pour enfants à Bamako | Fini Kura",
     defaultDescription:
       "Vêtements pour filles et garçons de 3 à 14 ans à Bamako. Commande en ligne, paiement à la réception.",
     confirmationTitle: "Confirmation de commande | Fini Kura",
@@ -23,6 +23,14 @@ export const messages = {
     productNotFoundTitle: "Produit introuvable | Fini Kura",
     categoryNotFoundTitle: "Catégorie introuvable | Fini Kura",
     notFoundTitle: "Page introuvable | Fini Kura",
+    /** Category page titles, by Medusa handle (audit marketing, référencement). */
+    categoryTitles: {
+      filles: "Vêtements fille de 3 à 14 ans à Bamako",
+      garcons: "Vêtements garçon de 3 à 14 ans à Bamako",
+    },
+  },
+  structuredData: {
+    paymentAccepted: "Paiement à la réception",
   },
   header: {
     brandSubtitle: "HABITS POUR ENFANTS",
@@ -41,11 +49,12 @@ export const messages = {
     mobileNavBoys: "Garçons (3 - 14 ans)",
     mobileNewBadge: "Nouveau",
     navDelivery: "Livraison et échanges",
-    navLegal: "Mentions Légales & CGV",
+    navLegal: "Mentions légales",
   },
   catalog: {
     categoryAgeLabel: (isGirls: boolean) => (isGirls ? "Fille · 3 à 14 ans" : "Garçon · 3 à 14 ans"),
     homeBreadcrumb: "Accueil",
+    presentationAria: (categoryName: string) => `Présentation : ${categoryName}`,
     filterAllAges: "Tous les âges",
     filterAllOccasions: "Toutes occasions",
     occasions: { everyday: "Tous les jours", party: "Fête", ceremony: "Cérémonie" },
@@ -125,7 +134,7 @@ export const messages = {
   },
   sizeGuidePage: {
     closeAria: "Fermer le guide des tailles",
-    metaTitle: "Guide des tailles | FINI KURA",
+    metaTitle: "Guide des tailles | Fini Kura",
     metaDescription: "Mesures de nos vêtements pour filles et garçons de 3 à 14 ans, et conseils pour bien mesurer votre enfant.",
     colHips: "Tour de hanches",
     guideFor: (category: string) => (category === "garcons" ? "Garçons" : "Filles"),

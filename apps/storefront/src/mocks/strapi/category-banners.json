@@ -9,7 +9,8 @@
       "image": {
         "url": "/mock-media/robe-fleurie-bleu-gris.jpg",
         "alternativeText": "Robe terracotta brodée portée par une petite fille"
-      }
+      },
+      "seo_text": "Fini Kura habille les filles de 3 à 14 ans à Bamako. Nos robes et nos ensembles sont conçus en Europe, en 100 % coton : un tissu qui respire avec elles sous le soleil, de la cour de récré au soir de fête.\n\nPour l'école et les jours ordinaires, des coupes simples qui vont avec tout. Pour les fêtes, les baptêmes, les mariages et la Tabaski, des robes brodées aux finitions soignées.\n\nNos collections sont produites en petites séries : peu de pièces par taille, et peu d'enfants porteront la même. Choisissez l'âge de votre fille, le guide des tailles vous aide à trouver la bonne. Vous commandez en quelques gestes et vous payez à la réception, à Bamako."
     },
     {
       "id": 2,
@@ -20,8 +21,16 @@
       "image": {
         "url": "/mock-media/garcons.jpg",
         "alternativeText": "Garçon en chemise et pantalon de lin"
-      }
+      },
+      "seo_text": "Fini Kura habille les garçons de 3 à 14 ans à Bamako. Nos chemises, nos pantalons et nos ensembles sont conçus en Europe, en 100 % coton : un tissu qui respire avec eux sous le soleil, de la cour de récré au soir de fête.\n\nPour l'école et les jours ordinaires, des coupes simples qui vont avec tout. Pour les fêtes, les baptêmes, les mariages et la Tabaski, des tenues habillées aux finitions soignées.\n\nNos collections sont produites en petites séries : peu de pièces par taille, et peu d'enfants porteront la même. Choisissez l'âge de votre fils, le guide des tailles vous aide à trouver la bonne. Vous commandez en quelques gestes et vous payez à la réception, à Bamako."
     }
   ],
-  "meta": { "pagination": { "page": 1, "pageSize": 25, "pageCount": 1, "total": 2 } }
+  "meta": {
+    "pagination": {
+      "page": 1,
+      "pageSize": 25,
+      "pageCount": 1,
+      "total": 2
+    }
+  }
 }

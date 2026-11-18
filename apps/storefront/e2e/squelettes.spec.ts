@@ -5,7 +5,7 @@ import { expect, test } from "@playwright/test";
 // their content comes in the same answer.
 const PAGES = [
   { path: "/categorie/filles", content: page => page.locator('[data-purpose="catalog-page"]') },
-  { path: "/commande", content: page => page.getByRole("heading", { level: 2 }).first() },
+  { path: "/commande", content: page => page.getByRole("heading", { level: 1 }).first() },
 ] satisfies { path: string; content: (page: import("@playwright/test").Page) => import("@playwright/test").Locator }[];
 
 for (const { path, content } of PAGES) {

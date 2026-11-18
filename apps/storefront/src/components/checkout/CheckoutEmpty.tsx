@@ -8,9 +8,10 @@ export function CheckoutEmpty() {
       <div className="w-16 h-16 rounded-full bg-brand-surface/40 flex items-center justify-center mx-auto mb-4 text-brand-primary">
         <ShoppingBag className="w-8 h-8" />
       </div>
-      <h2 className="font-serif text-2xl md:text-3xl text-brand-text mb-2">
+      {/* The page title when the cart is empty: the order form, and its own h1, are not shown. */}
+      <h1 className="font-serif text-2xl md:text-3xl text-brand-text mb-2">
         {messages.checkout.emptyCartTitle}
-      </h2>
+      </h1>
       <p className="text-sm text-brand-text mb-6 max-w-md mx-auto">{messages.checkout.emptyCartDesc}</p>
       <Link
         href="/categorie/filles"

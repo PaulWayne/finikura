@@ -12,6 +12,9 @@ import { ProductDetails } from "@/components/product/ProductDetails";
 import { ShareWithRelativeButton } from "@/components/product/ShareWithRelativeButton";
 import { absoluteUrl } from "@/lib/site";
 import { ProductRecommendations } from "@/components/product/ProductRecommendations";
+import { BRAND_NAME, pageTitle } from "@/lib/seo";
+import { breadcrumbJsonLd, productJsonLd } from "@/lib/structured-data";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 interface ProductPageProps {
   params: Promise<{ handle: string }> | { handle: string };
@@ -34,15 +37,17 @@ export async function generateMetadata({ params }: ProductPageProps) {
     };
   }
 
+  const path = `/produit/${product.handle}`;
   return {
-    title: `${product.title} | Fini Kura Bamako`,
+    title: { absolute: pageTitle(product.title) },
     description: product.description,
+    alternates: { canonical: path },
     openGraph: {
-      title: `${product.title} — Fini Kura`,
+      title: pageTitle(product.title),
       description: `${formatPrice(product.price)} · ${product.description}`,
-      url: `/produit/${product.handle}`,
+      url: path,
       type: "website",
-      siteName: "Fini Kura",
+      siteName: BRAND_NAME,
       locale: "fr_ML",
       images: product.thumbnail ? [product.thumbnail] : [],
     },
@@ -82,6 +87,13 @@ async function ProductContent({ params }: ProductPageProps) {
 
   return (
     <div className="pt-2 pb-4 md:py-8 space-y-3 md:space-y-8" data-purpose="product-page">
+      <JsonLd data={productJsonLd(product)} />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: categoryName, path: categoryPath },
+          { name: product.title, path: `/produit/${product.handle}` },
+        ])}
+      />
       {/* Breadcrumbs */}
       <nav
         aria-label="Fil d'Ariane"
