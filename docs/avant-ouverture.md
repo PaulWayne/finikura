@@ -42,6 +42,7 @@ Dernière mise à jour : 18 novembre 2026.
 
 - [ ] Vérifier que les comptes Facebook et TikTok du pied de page existent et appartiennent à la boutique, et y publier quelques vidéos.
 - [ ] Dire si un compte Instagram est prévu, et l'ajouter au pied de page.
+- [ ] Brancher la boîte d'envoi (`SMTP_HOST`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM`) : pendant l'aperçu, `SMTP_HOST` est vide et les e-mails ne partent pas (alertes de commande, invitations, mot de passe oublié).
 - [ ] Brancher Umami (`UMAMI_SCRIPT_URL`, `UMAMI_WEBSITE_ID`) et créer l'entonnoir décrit dans `docs/deploiement.md`.
 
 ## Le jour de l'ouverture
