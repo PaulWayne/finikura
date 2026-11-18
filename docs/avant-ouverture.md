@@ -2,7 +2,7 @@
 
 Le site est d'abord déployé sur le VPS avec les données du local, pour le montrer à la cliente. Il n'a pas de mot de passe, mais il reste caché des moteurs de recherche et des IA. Cette liste suit ce qu'il faut changer avant de l'ouvrir : on coche au fur et à mesure, et on n'ouvre que lorsque la première partie est entièrement cochée.
 
-Dernière mise à jour : 18 novembre 2026.
+Dernière mise à jour : 19 novembre 2026. Le site est en ligne en aperçu sur https://fini-kura.fr.
 
 ## Pendant l'aperçu : le site reste caché des moteurs
 
@@ -37,6 +37,12 @@ Dernière mise à jour : 18 novembre 2026.
 - [ ] Conseils d'entretien : le texte actuel est un conseil général pour le coton (30 °C, sur l'envers, séchage à l'air, fer doux). Le comparer aux étiquettes des vêtements.
 - [ ] Descriptions des 19 tenues : relire la coupe et les détails de chaque fiche face au vêtement réel.
 - [ ] Relire dans l'admin Strapi les textes de l'accueil, des catégories et des pages.
+
+### Technique
+
+- [ ] Les règles de sécurité de Traefik (`finikura-secure`, `finikura-https`) sont portées par le conteneur du front : pendant qu'il se reconstruit, les admins Medusa et Strapi et les photos répondent 404. Les déplacer pour qu'elles ne dépendent plus du front.
+- [ ] Sauvegardes de nuit, avec une destination hors du serveur.
+- [ ] Le fichier `.env` que Dokploy écrit sur le VPS est lisible par tous les comptes du serveur. Sans gravité tant que `root` est le seul compte.
 
 ### Comptes et mesure
 

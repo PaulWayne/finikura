@@ -78,33 +78,23 @@ Décidé le 18 novembre 2026 : un seul Dokploy. Celui qui tourne déjà sur l'au
 - [ ] Vous collez ce fichier dans l'onglet Environment, et vous y ajoutez les identifiants SMTP.
 - [ ] Restent vides pour l'instant : `MEDUSA_PUBLISHABLE_KEY`, `S3_ACCESS_KEY_ID`, `S3_SECRET_ACCESS_KEY`, `UMAMI_WEBSITE_ID`.
 
-## Étape 5 : premier déploiement, les bases d'abord
+## Étapes 5 à 7 : déploiement, stockage et contenu (faites le 19 novembre 2026)
 
-Le compose démarre les services dans l'ordre : PostgreSQL et Redis, puis Garage, Medusa, Strapi et Umami, et enfin le front.
+- [x] Projet Compose créé dans le Dokploy existant, sur le serveur « Fini Kura », branche `main`.
+- [x] PostgreSQL, Redis, Garage, Strapi et Umami démarrés et sains au premier déploiement.
+- [x] Garage initialisé : bucket `media`, clé « finikura », rangée dans `/root/finikura.env` sans être affichée.
+- [x] Medusa démarré après trois corrections (voir ci-dessous), 149 tables.
+- [x] Seed Medusa complet : 19 tenues, 114 tailles, 25 photos dans Garage. Clé publique du canal reportée dans Dokploy.
+- [x] Seed Strapi complet : réglages, accueil, pages, guides des tailles, bandeaux, campagne de démonstration.
+- [x] Front construit avec les vraies données, tous les conteneurs sains.
 
-- [ ] Lancer le déploiement.
-- [ ] Vérification : `finikura-postgres` et `finikura-redis` sont sains, les trois bases `medusa`, `strapi` et `umami` existent.
-- [ ] Vérification : Medusa a appliqué ses migrations et parle au vrai Redis, Strapi répond sur `/_health`.
-- [ ] À ce stade le front n'est pas encore utilisable : il lui manque la clé de Medusa. C'est attendu.
+Ce qui a bloqué Medusa, dans l'ordre, et ce qu'il faut retenir pour un prochain déploiement à neuf :
 
-## Étape 6 : stockage des photos (Garage)
+1. **SSL vers la base.** En production, Medusa exige le SSL et sa connexion partagée ne lit pas `ssl_mode=disable` dans l'adresse. Corrigé dans `apps/medusa/medusa-config.ts` (`databaseDriverOptions`).
+2. **E-mail.** Avec `SMTP_HOST` rempli mais sans identifiants, Medusa refuse de démarrer. Pour un aperçu sans boîte d'envoi, laisser `SMTP_HOST` vide.
+3. **Clé du stockage.** Medusa a besoin de `S3_ACCESS_KEY_ID` et `S3_SECRET_ACCESS_KEY` dès son démarrage : Garage s'initialise donc avant que Medusa puisse tourner, pas après.
 
-À faire avant les seeds, sinon les photos resteraient dans les conteneurs.
-
-- [ ] `sh infra/garage/init.sh finikura-garage media.DOMAINE` : crée le bucket `media` et sa clé.
-- [ ] La clé et son secret vont dans `S3_ACCESS_KEY_ID` et `S3_SECRET_ACCESS_KEY`, puis redéploiement.
-- [ ] Vérification : `https://media.DOMAINE` répond en HTTPS.
-
-## Étape 7 : le contenu du local
-
-Les seeds lisent les fixtures du dépôt, qui sont à jour avec le local : les 19 tenues, leurs descriptions, l'accueil, les pages, les catégories.
-
-- [ ] Medusa : `pnpm seed` complet, avec le catalogue. Il affiche la clé publique du canal : elle va dans `MEDUSA_PUBLISHABLE_KEY`.
-- [ ] Strapi : `pnpm seed` complet, avec les avis d'exemple et la campagne de démonstration, puisqu'on veut montrer le site tel qu'il est en local.
-- [ ] Redéployer : le front se construit avec les vraies données (1 à 3 minutes).
-- [ ] Vérification : l'accueil, une catégorie, une fiche et Notre histoire s'affichent, et leurs photos viennent de `media.DOMAINE`.
-
-Ce qui ne vient pas du local : les commandes de test et les vidéos ajoutées à la main dans l'admin local. Si un texte n'a été changé que dans l'admin Strapi local, sans passer par les fixtures, il faudra le ressaisir.
+L'ordre réel est donc : déployer (Medusa échoue), initialiser Garage, reporter sa clé, redéployer, lancer les seeds, reporter la clé publique de Medusa, redéployer.
 
 ## Étape 8 : comptes et statistiques
 
@@ -114,13 +104,18 @@ Ce qui ne vient pas du local : les commandes de test et les vidéos ajoutées à
 
 ## Étape 9 : vérifications finales
 
-- [ ] Les trois conteneurs `finikura-medusa`, `finikura-strapi` et `finikura-storefront` sont sains.
-- [ ] `http://DOMAINE` redirige vers le HTTPS, et les cinq domaines ont leur certificat.
-- [ ] `https://DOMAINE/robots.txt` répond « Disallow: / », les pages portent `X-Robots-Tag: noindex`, `sitemap.xml` et `llms.txt` répondent 404.
-- [ ] `https://api.DOMAINE/store/products` répond 404, et `https://api.DOMAINE/app` affiche l'admin.
+- [x] Tous les conteneurs `finikura-*` sont sains.
+- [x] `http://fini-kura.fr`, `http://www.` et `https://www.` redirigent vers `https://fini-kura.fr`, et les domaines ont leur certificat Let's Encrypt.
+- [x] `robots.txt` répond « Disallow: / », les pages portent `X-Robots-Tag: noindex`, `sitemap.xml` et `llms.txt` répondent 404.
+- [x] `https://api.fini-kura.fr/store/products` et l'inscription client répondent 404 ; `https://api.fini-kura.fr/app` affiche l'admin.
+- [x] `https://cms.fini-kura.fr/api/auth/local/register` répond « Register action is currently disabled ».
+- [x] L'accueil, les catégories, une fiche et Notre histoire s'affichent ; leurs photos viennent de `media.fini-kura.fr`, aucune image cassée.
+- [x] Les réponses portent `Strict-Transport-Security` et `Content-Security-Policy`, sans `X-Powered-By`.
+- [x] Medusa parle au vrai Redis.
 - [ ] Une modification publiée dans Strapi apparaît sur le site.
 - [ ] Une commande de test passe jusqu'au message WhatsApp, puis elle est annulée.
-- [ ] Mémoire restante sur le VPS après la mise en route.
+
+Mesuré après la mise en route : 1,6 Go de mémoire utilisés sur 7,7 ; 16 Go de disque sur 96.
 
 ## Étape 10 : sauvegardes
 
