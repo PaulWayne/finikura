@@ -14,7 +14,7 @@ Règles pendant tout le déploiement :
 |---|---|
 | Ouvrir la connexion SSH au VPS | Vous |
 | Créer les enregistrements DNS chez le registraire | Vous |
-| Créer le compte administrateur de Dokploy et autoriser GitHub | Vous |
+| Ajouter le serveur dans le Dokploy existant et autoriser GitHub | Vous |
 | Coller le fichier des variables dans Dokploy | Vous |
 | Saisir les identifiants de la boîte e-mail (SMTP) | Vous |
 | Créer les comptes d'admin Medusa, Strapi et Umami | Vous |
@@ -56,22 +56,25 @@ Constaté le 18 novembre 2026 : domaine `fini-kura.fr`, serveur `2.25.12.161`, U
 
 ## Étape 2 : Dokploy
 
-- [x] Lire le script d'installation officiel avant de le lancer.
-- [x] Installer Dokploy. Version 0.31.4, avec Docker 29.10.
-- [ ] Vous créez le compte administrateur sur l'écran d'accueil de Dokploy.
-- [ ] Donner un domaine au panneau (par exemple `dokploy.DOMAINE`) avec HTTPS, puis fermer le port 3000 au public.
-- [ ] Vérification : le panneau répond en HTTPS, et `docker ps` montre Dokploy et Traefik en marche.
+Décidé le 18 novembre 2026 : un seul Dokploy. Celui qui tourne déjà sur l'autre VPS pilote ce serveur comme « serveur distant ». Le Dokploy installé ici pour essai a été retiré entièrement (services, Traefik, volumes, réseau, `/etc/dokploy`) ; Docker et les réglages du serveur sont conservés.
+
+- [x] Retirer le Dokploy de ce VPS.
+- [ ] Dans le Dokploy existant : ajouter ce serveur (adresse `2.25.12.161`, port 22, utilisateur `root`) avec une clé SSH créée dans le panneau.
+- [ ] Poser la clé publique de ce panneau sur le VPS.
+- [ ] Lancer « Setup Server » depuis le panneau : il installe Traefik et le réseau `dokploy-network` sur ce VPS.
+- [ ] Vérification : sur le VPS, `dokploy-traefik` tourne sur les ports 80 et 443, et le réseau `dokploy-network` existe.
+- [ ] Vérification : l'adresse e-mail Let's Encrypt du Traefik de ce VPS n'est pas l'adresse factice `test@localhost.com`.
 
 ## Étape 3 : DNS
 
-- [ ] Cinq enregistrements A vers l'adresse du VPS : `DOMAINE`, `api.`, `cms.`, `media.`, `stats.` (et celui du panneau).
-- [ ] Vérification : chaque nom répond avec l'adresse du VPS (`dig`), avant de demander les certificats.
+- [x] Six enregistrements A vers l'adresse du VPS : `DOMAINE`, `www.`, `api.`, `cms.`, `media.`, `stats.`.
+- [x] Vérification : chaque nom répond avec l'adresse du VPS (`dig`), avant de demander les certificats.
 
 ## Étape 4 : projet et variables
 
 - [ ] Dans Dokploy : projet « Fini Kura », service Compose, dépôt GitHub `PaulWayne/finikura`, branche `main`, fichier `infra/dokploy/docker-compose.prod.yml`. Vous autorisez l'accès au dépôt.
-- [ ] Sur le VPS, un script génère tous les secrets (`openssl rand -hex 32`) dans un fichier de variables lisible par vous seul. Rien n'est affiché à l'écran.
-- [ ] Valeurs fixées : `DOMAIN`, `POSTGRES_USER=finikura`, `NOINDEX=1`, `INDEXNOW_KEY` vide.
+- [x] Sur le VPS, un script génère tous les secrets (`openssl rand -hex 32`) dans un fichier de variables lisible par vous seul. Rien n'est affiché à l'écran.
+- [x] Valeurs fixées : `DOMAIN`, `POSTGRES_USER=finikura`, `NOINDEX=1`, `INDEXNOW_KEY` vide.
 - [ ] Vous collez ce fichier dans l'onglet Environment, et vous y ajoutez les identifiants SMTP.
 - [ ] Restent vides pour l'instant : `MEDUSA_PUBLISHABLE_KEY`, `S3_ACCESS_KEY_ID`, `S3_SECRET_ACCESS_KEY`, `UMAMI_WEBSITE_ID`.
 
