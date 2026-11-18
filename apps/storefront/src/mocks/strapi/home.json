@@ -120,6 +120,10 @@
             "answer": "Nous livrons à domicile, à Bamako. À la commande, vous indiquez votre quartier et un repère pour que le livreur trouve votre maison."
           },
           {
+            "question": "En combien de temps suis-je livrée ?",
+            "answer": "Sous 48 heures après la confirmation de votre commande sur WhatsApp."
+          },
+          {
             "question": "Combien coûte la livraison ?",
             "answer": "Elle est à votre charge et dépend de votre quartier. Nous vous confirmons le montant sur WhatsApp avant la livraison."
           },

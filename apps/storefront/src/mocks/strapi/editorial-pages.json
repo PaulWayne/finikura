@@ -59,13 +59,13 @@
       "title": "Livraison et échanges",
       "seo": {
         "title": "Livraison et échanges | Fini Kura",
-        "description": "Livraison à domicile à Bamako, paiement à la réception, échange sous 72 heures si la taille ne va pas."
+        "description": "Livraison à domicile à Bamako sous 48 heures, paiement à la réception, échange sous 72 heures si la taille ne va pas."
       },
       "blocks": [
         {
           "__component": "blocks.rich-text",
           "title": "Livraison à Bamako",
-          "body": "Nous livrons votre commande à domicile, dans les quartiers de Bamako.\n\n- **Frais de livraison** : à votre charge. Le montant dépend de votre quartier, nous vous le confirmons sur WhatsApp avant la livraison.\n- **Paiement** : vous payez à la réception de votre commande.\n- **Confirmation** : après votre commande sur le site, confirmez-la sur WhatsApp. Nous convenons ensemble de l'adresse exacte et du moment de la livraison."
+          "body": "Nous livrons votre commande à domicile, dans les quartiers de Bamako.\n\n- **Délai** : sous 48 heures après la confirmation de votre commande sur WhatsApp.\n- **Frais de livraison** : à votre charge. Le montant dépend de votre quartier, nous vous le confirmons sur WhatsApp avant la livraison.\n- **Paiement** : vous payez à la réception de votre commande.\n- **Confirmation** : après votre commande sur le site, confirmez-la sur WhatsApp. Nous convenons ensemble de l'adresse exacte et du moment de la livraison."
         },
         {
           "__component": "blocks.rich-text",
@@ -79,6 +79,10 @@
             {
               "question": "Comment payer ma commande ?",
               "answer": "À la réception, au moment où le coursier vous remet votre commande."
+            },
+            {
+              "question": "En combien de temps suis-je livrée ?",
+              "answer": "Sous 48 heures après la confirmation de votre commande sur WhatsApp, à votre domicile à Bamako."
             },
             {
               "question": "Combien coûte la livraison ?",
@@ -99,7 +103,7 @@
           ]
         }
       ],
-      "updatedAt": "2026-11-18T14:00:00.000Z"
+      "updatedAt": "2026-11-18T15:00:00.000Z"
     },
     {
       "documentId": "page-contact",
