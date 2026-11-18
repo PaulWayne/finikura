@@ -72,4 +72,5 @@ test("/llms.txt résume la boutique, ses tenues et ses réponses, en texte", asy
 test("une page d'information affiche sa date de mise à jour", async ({ request }) => {
   const html = await (await request.get("/livraison-et-echanges")).text();
   expect(html).toContain("Mis à jour le 18 novembre 2026");
+  expect(html).toContain("72 heures");
 });

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Bike, ChevronDown, CreditCard, ShieldCheck, Sparkles } from "lucide-react";
+import { Bike, ChevronDown, CreditCard, RefreshCw, ShieldCheck, Sparkles } from "lucide-react";
 import type { Product } from "@/lib/commerce/types";
 import { messages } from "@/messages/fr";
 
@@ -17,6 +17,11 @@ export function ProductDetails({ product }: { product: Product }) {
           icon={<Bike className="w-5 h-5" />}
           title={messages.product.reassuranceDelivery}
           text={messages.product.reassuranceDeliveryDesc}
+        />
+        <Reassurance
+          icon={<RefreshCw className="w-5 h-5" />}
+          title={messages.product.reassuranceExchange}
+          text={messages.product.reassuranceExchangeDesc}
         />
       </div>
 

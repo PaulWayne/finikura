@@ -140,6 +140,10 @@
             "answer": "Chaque tenue est vendue par âge. Le guide des tailles donne les mesures de chaque âge, et vous pouvez nous écrire sur WhatsApp pour un conseil."
           },
           {
+            "question": "Et si la taille ne va pas ?",
+            "answer": "Vous pouvez l'échanger dans les 72 heures qui suivent la livraison, si le vêtement n'a pas été porté et garde son étiquette. Le livreur repasse chez vous, ce trajet est à votre charge. Il n'y a pas de remboursement après paiement."
+          },
+          {
             "question": "Quelle est la qualité de vos vêtements ?",
             "answer": "Nos vêtements sont conçus en Europe, en 100 % coton, avec la qualité des grandes marques européennes. Un coton qui respire, adapté à la chaleur de Bamako."
           },

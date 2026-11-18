@@ -59,7 +59,7 @@
       "title": "Livraison et échanges",
       "seo": {
         "title": "Livraison et échanges | Fini Kura",
-        "description": "Livraison à domicile à Bamako, paiement à la réception, frais de livraison confirmés sur WhatsApp."
+        "description": "Livraison à domicile à Bamako, paiement à la réception, échange sous 72 heures si la taille ne va pas."
       },
       "blocks": [
         {
@@ -70,7 +70,7 @@
         {
           "__component": "blocks.rich-text",
           "title": "Échanges",
-          "body": "Les conditions d'échange seront bientôt précisées sur cette page. Pour toute question sur une taille, écrivez-nous sur WhatsApp avant de commander."
+          "body": "Une taille ne va pas ? Vous pouvez échanger le vêtement.\n\n- **Délai** : prévenez-nous sur WhatsApp dans les 72 heures qui suivent la livraison.\n- **État du vêtement** : non porté, avec son étiquette.\n- **Comment** : le livreur repasse chez vous pour l'échange. Ce trajet est à votre charge.\n- **Taille épuisée** : si la taille voulue n'est plus disponible, vous choisissez une autre tenue.\n- **Remboursement** : une fois la commande payée, nous ne remboursons pas, nous proposons un échange."
         },
         {
           "__component": "blocks.faq",
@@ -87,11 +87,19 @@
             {
               "question": "Comment confirmer ma commande ?",
               "answer": "Sur la page de confirmation, touchez « Confirmer sur WhatsApp ». Votre message est déjà rempli avec le détail de votre commande."
+            },
+            {
+              "question": "Puis-je échanger un vêtement si la taille ne va pas ?",
+              "answer": "Oui, dans les 72 heures qui suivent la livraison, si le vêtement n'a pas été porté et garde son étiquette. Prévenez-nous sur WhatsApp : le livreur repasse chez vous, et ce trajet est à votre charge."
+            },
+            {
+              "question": "Puis-je être remboursée ?",
+              "answer": "Non, une fois la commande payée, nous proposons un échange et non un remboursement. Si la taille voulue n'est plus disponible, vous choisissez une autre tenue."
             }
           ]
         }
       ],
-      "updatedAt": "2026-11-18T09:00:00.000Z"
+      "updatedAt": "2026-11-18T14:00:00.000Z"
     },
     {
       "documentId": "page-contact",
