@@ -38,6 +38,9 @@ export interface HeroBlockData {
   subtitle: string;
   ctaText: string;
   ctaLink: string;
+  /** Optional second button, beside the first (« Habiller mon garçon »). Empty: one button. */
+  secondaryCtaText: string;
+  secondaryCtaLink: string;
   imageUrl: string;
   imageAlt: string;
 }

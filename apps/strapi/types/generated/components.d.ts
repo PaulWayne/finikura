@@ -69,6 +69,8 @@ export interface BlocksHero extends Struct.ComponentSchema {
     eyebrow: Schema.Attribute.String;
     image: Schema.Attribute.Media<'images'>;
     image_alt: Schema.Attribute.String;
+    secondary_cta_link: Schema.Attribute.String;
+    secondary_cta_text: Schema.Attribute.String;
     subtitle: Schema.Attribute.Text;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };

@@ -9,10 +9,12 @@
       {
         "__component": "blocks.hero",
         "eyebrow": "Boutique en ligne · 3 à 14 ans",
-        "title": "Conçus en Europe, portés à Bamako",
-        "subtitle": "Des vêtements 100 % coton pour les enfants de 3 à 14 ans, commandés en ligne et livrés chez vous. Le matin de la fête, il ne reste plus qu'à l'enfiler.",
-        "cta_text": "Découvrir la collection",
-        "cta_link": "#nouveautes",
+        "title": "Cette année, tantie voyage léger.",
+        "subtitle": "Ce qu'elle rapportait de Paris pour les enfants, choisissez-le en ligne. Livré chez vous à Bamako sous 48 heures.",
+        "cta_text": "Habiller ma fille",
+        "cta_link": "/categorie/filles",
+        "secondary_cta_text": "Habiller mon garçon",
+        "secondary_cta_link": "/categorie/garcons",
         "image_alt": "Deux enfants souriants habillés avec élégance à Bamako",
         "image": {
           "url": "/mock-media/tunique-ceremonie-ecru.jpg",

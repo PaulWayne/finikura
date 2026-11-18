@@ -21,6 +21,8 @@ function campaignHero(campaign: Awaited<ReturnType<typeof contentService.getFeat
     subtitle: campaign.texts.description,
     ctaText: campaign.heroCtaText || messages.home.campaignHeroCta,
     ctaLink: `/campagne/${campaign.slug}`,
+    secondaryCtaText: "",
+    secondaryCtaLink: "",
     imageUrl: campaign.visuals.bannerUrl,
     imageAlt: campaign.visuals.bannerAlt,
   };
