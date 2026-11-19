@@ -77,12 +77,14 @@ Le site se décrit lui-même : données structurées sur chaque page (boutique, 
 Pour contrôler les données structurées d'une page : https://search.google.com/test/rich-results.
 
 ## Sauvegardes
-- Le script [`infra/backup/backup.sh`](../infra/backup/backup.sh) fait un `pg_dump` des bases `medusa`, `strapi` et `umami`, une archive du stockage Garage (photos et médias), plus une archive des médias Strapi.
-- Il garde 14 jours de sauvegardes en local, et copie hors du serveur avec rclone si `RCLONE_REMOTE` est défini.
-- **À décider :** la destination hors du serveur (par exemple Backblaze B2 ou Cloudflare R2). Sans elle, le critère de FK-09 n'est pas rempli.
-- Pour l'installer sur le VPS, chaque nuit à 3 h :
+- Le script [`infra/backup/backup.sh`](../infra/backup/backup.sh) fait un `pg_dump` des bases `medusa`, `strapi` et `umami` et une archive du stockage Garage (photos et médias). Il n'archive les médias locaux de Strapi que s'il en reste.
+- Il retrouve les volumes à partir des conteneurs : Dokploy les nomme d'après son propre projet (`fini-kura-apps-xxxx_finikura-garage`). Si le volume de Garage est introuvable, il s'arrête en erreur au lieu de sauter les photos.
+- Il garde les 7 dernières copies (`KEEP`) et supprime les plus anciennes. Une copie pèse environ 2,5 Mo avec le catalogue de démonstration ; seules les photos feront grossir ce chiffre, car chaque nuit les recopie toutes.
+- Il copie hors du serveur avec rclone si `RCLONE_REMOTE` est défini. Destination prévue : l'autre VPS (voir FK-09 dans `BACKLOG.md`).
+- **État au 19 novembre 2026 :** le script est installé sur le VPS dans `/usr/local/bin/finikura-backup.sh` et testé (sauvegarde, restauration de Medusa dans une base jetable, conservation sur 7), mais **il n'est pas planifié** : le site ne contient que des données de démonstration. Une mise à jour du script dans le dépôt doit être recopiée à cet endroit.
+- Pour le planifier, chaque nuit à 3 h :
   ```
-  0 3 * * * RCLONE_REMOTE=<remote:dossier> /chemin/vers/finikura/infra/backup/backup.sh >> /var/log/finikura-backup.log 2>&1
+  echo '0 3 * * * root /usr/local/bin/finikura-backup.sh >> /var/log/finikura-backup.log 2>&1' > /etc/cron.d/finikura-backup
   ```
 
 ### Restauration

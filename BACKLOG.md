@@ -211,6 +211,13 @@ Chaque choix (hébergeur, registraire) demande ton accord, car il implique un co
 
 **Décision (13/11/2026).** VPS Hostinger KVM 2 (2 vCPU, 8 Go, 100 Go NVMe). Forgejo et la CI n'y sont plus prévus (FK-28 abandonné le 15/11/2026, dépôt sur GitHub).
 
+**État (19/11/2026).** Le site est en ligne en aperçu sur `https://fini-kura.fr` (VPS `2.25.12.161`, piloté par le Dokploy de l'autre VPS). Voir `docs/plan-deploiement-apercu.md`.
+
+**Sauvegardes : prêtes, pas encore lancées (décision du 19/11/2026).** Tant que le site ne contient que des données de démonstration, aucune sauvegarde ne tourne. À faire au moment où les vraies données arrivent :
+- [ ] Planifier `/usr/local/bin/finikura-backup.sh` chaque nuit sur le VPS (le script est installé et testé, 7 copies conservées, environ 2,5 Mo par nuit aujourd'hui).
+- [ ] Copie hors du serveur, vers l'autre VPS : configurer `rclone` et `RCLONE_REMOTE`. Sans elle, une panne du VPS emporte aussi les sauvegardes.
+- [ ] Refaire une restauration d'essai avec les vraies données.
+
 **Critères d'acceptation**
 - [ ] Le site répond en HTTPS sur le domaine, et le HTTP redirige vers le HTTPS.
 - [ ] Les URL de production sont dans les variables d'environnement : `MEDUSA_BACKEND_URL`, `STRAPI_URL`, `STOREFRONT_REVALIDATE_URL`, CORS. Aucun secret n'est dans le dépôt.

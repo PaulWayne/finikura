@@ -40,8 +40,8 @@ Dernière mise à jour : 19 novembre 2026. Le site est en ligne en aperçu sur h
 
 ### Technique
 
-- [ ] Les règles de sécurité de Traefik (`finikura-secure`, `finikura-https`) sont portées par le conteneur du front : pendant qu'il se reconstruit, les admins Medusa et Strapi et les photos répondent 404. Les déplacer pour qu'elles ne dépendent plus du front.
-- [ ] Sauvegardes de nuit, avec une destination hors du serveur.
+- [x] Les règles de sécurité de Traefik ne dépendent plus du conteneur du front (corrigé dans le compose, à vérifier au prochain déploiement).
+- [ ] Planifier les sauvegardes de nuit dès que les vraies données arrivent (script installé et testé, non planifié), puis la copie vers l'autre VPS. Détail dans `docs/deploiement.md` et FK-09.
 - [ ] Le fichier `.env` que Dokploy écrit sur le VPS est lisible par tous les comptes du serveur. Sans gravité tant que `root` est le seul compte.
 
 ### Comptes et mesure
