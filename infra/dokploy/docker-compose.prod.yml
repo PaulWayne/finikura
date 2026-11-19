@@ -98,6 +98,13 @@ services:
       - traefik.http.routers.finikura-medusa-http.rule=Host(`api.${DOMAIN}`)
       - traefik.http.routers.finikura-medusa-http.entrypoints=web
       - traefik.http.routers.finikura-medusa-http.middlewares=finikura-https
+      # Same definitions on every routed service: no router depends on another container being up.
+      - traefik.http.middlewares.finikura-https.redirectscheme.scheme=https
+      - traefik.http.middlewares.finikura-https.redirectscheme.permanent=true
+      - traefik.http.middlewares.finikura-secure.headers.stsSeconds=31536000
+      - traefik.http.middlewares.finikura-secure.headers.stsIncludeSubdomains=true
+      - traefik.http.middlewares.finikura-secure.headers.contentTypeNosniff=true
+      - traefik.http.middlewares.finikura-secure.headers.customResponseHeaders.X-Powered-By=
       - traefik.http.services.finikura-medusa.loadbalancer.server.port=9000
     networks: [internal, dokploy-network]
 
@@ -156,6 +163,13 @@ services:
       - traefik.http.routers.finikura-strapi-http.rule=Host(`cms.${DOMAIN}`)
       - traefik.http.routers.finikura-strapi-http.entrypoints=web
       - traefik.http.routers.finikura-strapi-http.middlewares=finikura-https
+      # Same definitions on every routed service: no router depends on another container being up.
+      - traefik.http.middlewares.finikura-https.redirectscheme.scheme=https
+      - traefik.http.middlewares.finikura-https.redirectscheme.permanent=true
+      - traefik.http.middlewares.finikura-secure.headers.stsSeconds=31536000
+      - traefik.http.middlewares.finikura-secure.headers.stsIncludeSubdomains=true
+      - traefik.http.middlewares.finikura-secure.headers.contentTypeNosniff=true
+      - traefik.http.middlewares.finikura-secure.headers.customResponseHeaders.X-Powered-By=
       - traefik.http.services.finikura-strapi.loadbalancer.server.port=1337
     networks: [internal, dokploy-network]
 
@@ -222,7 +236,8 @@ services:
       - traefik.http.middlewares.finikura-www.redirectregex.permanent=true
       - traefik.http.middlewares.finikura-https.redirectscheme.scheme=https
       - traefik.http.middlewares.finikura-https.redirectscheme.permanent=true
-      # Shared by every HTTPS router of the stack (audit S1): HSTS for one year on the domain and its
+      # Repeated on every routed service, so that the admins and the photos keep answering while this
+      # container rebuilds. Audit S1: HSTS for one year on the domain and its
       # subdomains, no MIME sniffing, and no X-Powered-By (Medusa announces Express).
       - traefik.http.middlewares.finikura-secure.headers.stsSeconds=31536000
       - traefik.http.middlewares.finikura-secure.headers.stsIncludeSubdomains=true
@@ -253,6 +268,13 @@ services:
       - traefik.http.routers.finikura-media-http.rule=Host(`media.${DOMAIN}`)
       - traefik.http.routers.finikura-media-http.entrypoints=web
       - traefik.http.routers.finikura-media-http.middlewares=finikura-https
+      # Same definitions on every routed service: no router depends on another container being up.
+      - traefik.http.middlewares.finikura-https.redirectscheme.scheme=https
+      - traefik.http.middlewares.finikura-https.redirectscheme.permanent=true
+      - traefik.http.middlewares.finikura-secure.headers.stsSeconds=31536000
+      - traefik.http.middlewares.finikura-secure.headers.stsIncludeSubdomains=true
+      - traefik.http.middlewares.finikura-secure.headers.contentTypeNosniff=true
+      - traefik.http.middlewares.finikura-secure.headers.customResponseHeaders.X-Powered-By=
       - traefik.http.services.finikura-media.loadbalancer.server.port=3902
     networks: [internal, dokploy-network]
 
@@ -282,6 +304,13 @@ services:
       - traefik.http.routers.finikura-umami-http.rule=Host(`stats.${DOMAIN}`)
       - traefik.http.routers.finikura-umami-http.entrypoints=web
       - traefik.http.routers.finikura-umami-http.middlewares=finikura-https
+      # Same definitions on every routed service: no router depends on another container being up.
+      - traefik.http.middlewares.finikura-https.redirectscheme.scheme=https
+      - traefik.http.middlewares.finikura-https.redirectscheme.permanent=true
+      - traefik.http.middlewares.finikura-secure.headers.stsSeconds=31536000
+      - traefik.http.middlewares.finikura-secure.headers.stsIncludeSubdomains=true
+      - traefik.http.middlewares.finikura-secure.headers.contentTypeNosniff=true
+      - traefik.http.middlewares.finikura-secure.headers.customResponseHeaders.X-Powered-By=
       - traefik.http.services.finikura-umami.loadbalancer.server.port=3000
     networks: [internal, dokploy-network]
 
