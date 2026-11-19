@@ -48,7 +48,8 @@ Dernière mise à jour : 19 novembre 2026. Le site est en ligne en aperçu sur h
 
 - [ ] Vérifier que les comptes Facebook et TikTok du pied de page existent et appartiennent à la boutique, et y publier quelques vidéos.
 - [ ] Dire si un compte Instagram est prévu, et l'ajouter au pied de page.
-- [ ] Brancher la boîte d'envoi (`SMTP_HOST`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM`) : pendant l'aperçu, `SMTP_HOST` est vide et les e-mails ne partent pas (alertes de commande, invitations, mot de passe oublié).
+- [x] Boîte d'envoi branchée : `contact@fini-kura.fr` chez Hostinger, expéditeur « Fini Kura ».
+- [ ] Vérifier qu'une alerte de commande arrive bien en moins d'une minute, et que « Mot de passe oublié » envoie un e-mail (Medusa et Strapi).
 - [ ] Brancher Umami (`UMAMI_SCRIPT_URL`, `UMAMI_WEBSITE_ID`) et créer l'entonnoir décrit dans `docs/deploiement.md`.
 
 ## Le jour de l'ouverture
