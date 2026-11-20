@@ -88,7 +88,19 @@ Mesures prises depuis le VPS lui-même (2 processeurs, 8 Go), site en production
 
 Une nouvelle visiteuse charge une page et une vingtaine de fichiers statiques : le serveur en accueille donc 6 à 8 par seconde, soit environ 400 par minute. Au-delà, les pages ralentissent (file d'attente) au lieu d'échouer : aucune erreur jusqu'à 200 connexions simultanées. Les commandes n'ont pas été testées en charge sur le site en ligne (15 commandes simultanées passées en local).
 
-Pour monter plus haut, dans l'ordre : Cloudflare (il sert les fichiers statiques et les images à la place du serveur), puis un VPS à 4 processeurs.
+Même test refait le soir même, une fois Cloudflare actif avec la règle de cache sur `/_next/image` :
+
+| Ce qui est servi | Avant | Derrière Cloudflare | Processeur du site |
+|---|---|---|---|
+| Fichiers statiques | environ 180 par seconde | 1 660 par seconde | 0 % |
+| Images redimensionnées | servies par le site | 1 760 par seconde | proche de 0 % |
+| Pages | 30 à 38 par seconde | 37 à 42 par seconde | à fond (un seul cœur) |
+
+Les fichiers et les images ne touchent plus le serveur : il ne lui reste que les pages. Une nouvelle visiteuse lui coûte donc une page et quelques préchargements, au lieu d'une page et d'une trentaine de fichiers. Les pages tiennent leur débit même quand fichiers et images sont demandés en même temps.
+
+Deux remarques pour la suite :
+- Cloudflare refuse d'office l'outil de test ApacheBench (403) : ces mesures sont faites avec curl, qui s'annonce comme tel.
+- Le site est un seul processus Node : il n'utilise qu'un des deux processeurs. Pour monter plus haut sur les pages, faire tourner deux instances du site derrière Traefik rapporterait plus qu'un VPS plus gros.
 
 ## Cloudflare devant le site (actif depuis le 20 novembre 2026)
 
