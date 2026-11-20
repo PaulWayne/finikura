@@ -9,11 +9,7 @@ export function CartDrawerFooter({ cart, onClose }: { cart: Cart; onClose: () =>
   return (
     <div className="p-5 sm:p-6 bg-brand-bg border-t border-brand-surface space-y-4">
       <div className="space-y-2">
-        <div className="flex justify-between items-center text-xs text-brand-text">
-          <span>{messages.cart.subtotal}</span>
-          <span className="font-medium">{formatPrice(cart.subtotal)}</span>
-        </div>
-        <div className="flex justify-between items-center pt-2.5 border-t border-brand-surface">
+        <div className="flex justify-between items-center">
           <span className="font-serif text-base sm:text-lg font-semibold text-brand-text">
             {messages.cart.totalEstimated}
           </span>

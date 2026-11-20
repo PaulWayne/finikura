@@ -105,6 +105,8 @@ export function mapStrapiBlockToDomain(raw: StrapiRawBlock): ContentBlock | null
         content: str(raw.content),
         ctaText: str(raw.cta_text),
         ctaLink: str(raw.cta_link),
+        secondaryCtaText: str(raw.secondary_cta_text),
+        secondaryCtaLink: str(raw.secondary_cta_link),
         imageUrl: mediaUrl(raw.image),
         imageAlt: imageAlt(raw),
       };

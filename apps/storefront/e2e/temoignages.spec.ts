@@ -1,25 +1,18 @@
 import { expect, test } from "@playwright/test";
 
-// FK-34, mock mode: the home page fixture has three testimonials, each naming an outfit.
-test("les flèches des témoignages changent l'avis, la citation et le lien vers la tenue", async ({ page }) => {
+// FK-34, mock mode: the home page fixture has three testimonials, two of them naming an outfit.
+test("les témoignages se lisent tous d'un coup, chacun avec son lien vers la tenue", async ({ page }) => {
   await page.goto("/");
   const section = page.locator('[data-purpose="testimonials-block"]');
   await section.scrollIntoViewIfNeeded();
 
-  const quote = section.locator("blockquote");
-  const outfit = section.locator("figure a");
-  const firstQuote = await quote.textContent();
-  await expect(outfit).toHaveAttribute("href", "/produit/robe-terracotta-brodee");
+  // Flat cards: the three quotes are on the page at once, nothing to click to read them.
+  await expect(section.locator("blockquote")).toHaveCount(3);
+  await expect(section.getByRole("button")).toHaveCount(0);
 
-  await section.getByRole("button", { name: "Avis suivant" }).click();
-  await expect(quote).not.toHaveText(firstQuote ?? "");
-  await expect(outfit).toHaveAttribute("href", "/produit/ensemble-sauge-et-lin");
-
-  // The arrow back returns to the first one; nothing moved on its own meanwhile.
-  await section.getByRole("button", { name: "Avis précédent" }).click();
-  await expect(quote).toHaveText(firstQuote ?? "");
-
-  // A neighbour brought forward by a touch.
-  await section.getByRole("button", { name: /Afficher l'avis de Cliente 3/ }).click();
-  await expect(outfit).toHaveAttribute("href", "/produit/robe-poudree-en-lin");
+  // Two of the three name an outfit still sold: each has its own link.
+  const outfits = section.locator("figure a");
+  await expect(outfits).toHaveCount(2);
+  await expect(outfits.nth(0)).toHaveAttribute("href", "/produit/ensemble-rose-et-lin");
+  await expect(outfits.nth(1)).toHaveAttribute("href", "/produit/ensemble-blouse-creme-jupe-jean");
 });

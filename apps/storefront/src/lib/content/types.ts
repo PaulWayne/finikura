@@ -93,6 +93,9 @@ export interface AboutExcerptBlockData {
   content: string;
   ctaText: string;
   ctaLink: string;
+  /** Optional second button, e.g. the boys' ceremony outfits next to the girls'. */
+  secondaryCtaText: string;
+  secondaryCtaLink: string;
   imageUrl: string;
   imageAlt: string;
 }

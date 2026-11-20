@@ -5,6 +5,7 @@ import { MobileMenuTrigger } from "./MobileMenuTrigger";
 import { messages } from "@/messages/fr";
 import { Logo } from "@/components/layout/Logo";
 import { DEPARTMENTS } from "@/lib/main-nav";
+import { HomeLogoLink } from "./HomeLogoLink";
 
 interface HeaderProps {
   /** Cart button, rendered by the layout inside a Suspense boundary. */
@@ -24,15 +25,14 @@ export function Header({ cartSlot }: HeaderProps) {
         </div>
 
         {/* Centered Editorial Logo (quarantined dustyRose and navyLogo per brand board) */}
-        <Link
-          href="/"
-          className="min-h-11 min-w-11 flex flex-col items-center justify-center hover:opacity-95 transition-opacity"
+        <HomeLogoLink
+          className="min-h-12 px-3 -mx-3 flex flex-col items-center justify-center hover:opacity-95 transition-opacity"
         >
           <Logo className="h-8 md:h-10" />
           <span className="text-[8px] md:text-[10px] tracking-[0.28em] -mr-[0.28em] text-brand-text uppercase font-medium mt-1">
             {messages.header.brandSubtitle}
           </span>
-        </Link>
+        </HomeLogoLink>
 
         {/* Desktop Right Navigation Links & Cart Trigger */}
         <div className="flex items-center justify-self-end space-x-4 md:space-x-7">
@@ -64,6 +64,7 @@ export function Header({ cartSlot }: HeaderProps) {
           <Link
             key={item.href}
             href={item.href}
+            aria-label={messages.header.departmentAria(item.label, item.ages)}
             className="group min-h-11 min-w-11 flex flex-col items-center justify-center text-brand-text"
           >
             <span className="text-xs font-medium tracking-[0.15em] uppercase group-hover:underline underline-offset-4">

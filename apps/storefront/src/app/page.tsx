@@ -48,8 +48,7 @@ export default async function HomePage() {
       <JsonLd data={storeJsonLd(settings.socialLinks, settings)} />
       <JsonLd data={faqJsonLd(faqItemsOf(blocks))} />
       {blocks.map((block, index) => (
-        // The first block is on screen when the page opens: it never waits for a scroll.
-        <div key={`${block.type}-${block.id}`} className={index === 0 ? undefined : "fk-reveal"}>
+        <div key={`${block.type}-${block.id}`}>
           <BlockRenderer
             block={block}
             collectionProductsMap={collectionProductsMap}

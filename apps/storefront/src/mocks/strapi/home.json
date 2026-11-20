@@ -31,8 +31,8 @@
             "category_handle": "filles",
             "title": "Filles",
             "age_range": "3-14 ans",
-            "tagline": "Des robes qu'on remarque, du quotidien aux baptêmes",
-            "cta_text": "Découvrir",
+            "tagline": "Des robes qu'on remarque",
+            "cta_text": "Voir les filles",
             "image_alt": "Une fille en robe crème à smocks",
             "image": {
               "url": "/mock-media/fille-robe-creme.jpg",
@@ -44,7 +44,7 @@
             "title": "Garçons",
             "age_range": "3-14 ans",
             "tagline": "Bien habillés, à l'aise toute la journée",
-            "cta_text": "Découvrir",
+            "cta_text": "Voir les garçons",
             "image_alt": "Un garçon en chemise blanche",
             "image": {
               "url": "/mock-media/garcon-chemise-blanche.jpg",
@@ -54,31 +54,36 @@
         ]
       },
       {
-        "__component": "blocks.about-excerpt",
-        "eyebrow": "Habits neufs",
-        "title": "Les tenues des grandes marques européennes, sans attendre la prochaine valise",
-        "content": "Robes à smocks, chemises en lin, cols Claudine : des pièces conçues en Europe, en 100 % coton. Vous les choisissez en ligne, nous les livrons chez vous à Bamako.",
-        "cta_text": "Notre histoire",
-        "cta_link": "/notre-histoire",
-        "image_alt": "Une fille souriante en haut à volant bordeaux et jupe en jean dans un jardin",
-        "image": {
-          "url": "/mock-media/fille-jardin.jpg",
-          "alternativeText": "Une fille souriante en haut à volant bordeaux et jupe en jean dans un jardin"
-        }
-      },
-      {
         "__component": "blocks.product-section",
         "eyebrow": "Créations récentes",
         "title": "Nouveautés",
         "collection_handle": "nouveautes"
       },
       {
+        "__component": "blocks.reassurance"
+      },
+      {
+        "__component": "blocks.about-excerpt",
+        "eyebrow": "Notre histoire",
+        "title": "Tout a commencé dans une valise.",
+        "content": "Robes à smocks, chemises en lin, cols Claudine : des pièces conçues en Europe, en 100 % coton. Vous les choisissez en ligne, nous les livrons chez vous à Bamako.",
+        "cta_text": "Lire notre histoire",
+        "cta_link": "/notre-histoire",
+        "image_alt": "Une valise ouverte remplie de vêtements d'enfants pliés, une robe fleurie posée dessus, et un petit paquet « Pour Papy »",
+        "image": {
+          "url": "/mock-media/valise-vetements-enfants.jpg",
+          "alternativeText": "Une valise ouverte remplie de vêtements d'enfants pliés, une robe fleurie posée dessus, et un petit paquet « Pour Papy »"
+        }
+      },
+      {
         "__component": "blocks.about-excerpt",
         "eyebrow": "Baptêmes, mariages et fêtes",
         "title": "Le jour du baptême, tout le monde vous demandera où vous les avez trouvés",
         "content": "Robes brodées, chemises blanches, ensembles habillés : de quoi les habiller pour les baptêmes, les mariages et la Tabaski.",
-        "cta_text": "Voir les tenues de cérémonie",
+        "cta_text": "Cérémonie filles",
         "cta_link": "/categorie/filles?occasion=ceremonie",
+        "secondary_cta_text": "Cérémonie garçons",
+        "secondary_cta_link": "/categorie/garcons?occasion=ceremonie",
         "image_alt": "Une fille en robe de lin sauge et crème et un garçon en chemise blanche, habillés pour une fête",
         "image": {
           "url": "/mock-media/enfants-tenues-fete.jpg",
@@ -126,7 +131,7 @@
         "items": [
           {
             "question": "Avez-vous un magasin à Bamako ?",
-            "answer": "Non. Fini Kura est une boutique en ligne : vous choisissez sur le site, vous confirmez sur WhatsApp et nous livrons chez vous, à Bamako. Il n'y a pas de magasin où passer."
+            "answer": "Fini Kura est une boutique 100 % en ligne : vous choisissez sur le site, vous confirmez sur WhatsApp et nous livrons chez vous, à Bamako."
           },
           {
             "question": "Où livrez-vous ?",
@@ -142,11 +147,11 @@
           },
           {
             "question": "Comment payer ma commande ?",
-            "answer": "À la réception : vous payez au moment où l'on vous remet votre commande. Rien n'est à payer en ligne."
+            "answer": "À la réception : vous payez au moment où l'on vous remet votre commande."
           },
           {
             "question": "Faut-il créer un compte pour commander ?",
-            "answer": "Non. Votre nom, votre numéro de téléphone, votre quartier et un repère suffisent. Vous confirmez ensuite la commande sur WhatsApp, avec un message déjà rempli."
+            "answer": "Votre nom, votre numéro de téléphone, votre quartier et un repère suffisent. Vous confirmez ensuite la commande sur WhatsApp, avec un message déjà rempli."
           },
           {
             "question": "Pour quels âges sont vos vêtements ?",
@@ -158,7 +163,7 @@
           },
           {
             "question": "Et si la taille ne va pas ?",
-            "answer": "Vous pouvez l'échanger dans les 72 heures qui suivent la livraison, si le vêtement n'a pas été porté et garde son étiquette. Le livreur repasse chez vous, ce trajet est à votre charge. Il n'y a pas de remboursement après paiement."
+            "answer": "Vous pouvez l'échanger dans les 72 heures qui suivent la livraison, si le vêtement est resté neuf et garde son étiquette. Le livreur repasse chez vous, ce trajet est à votre charge. Après paiement, nous proposons uniquement un échange."
           },
           {
             "question": "Quelle est la qualité de vos vêtements ?",
@@ -169,9 +174,6 @@
             "answer": "Nos collections arrivent en petites séries. Quand une taille est épuisée, elle est barrée sur la fiche de la tenue."
           }
         ]
-      },
-      {
-        "__component": "blocks.reassurance"
       }
     ]
   },

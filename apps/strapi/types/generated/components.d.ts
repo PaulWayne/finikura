@@ -13,6 +13,8 @@ export interface BlocksAboutExcerpt extends Struct.ComponentSchema {
     eyebrow: Schema.Attribute.String;
     image: Schema.Attribute.Media<'images'>;
     image_alt: Schema.Attribute.String;
+    secondary_cta_link: Schema.Attribute.String;
+    secondary_cta_text: Schema.Attribute.String;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }

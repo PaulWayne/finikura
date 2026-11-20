@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { brandBackground } from "@/lib/brand-icon";
 import { Suspense, cache } from "react";
 import { Playfair_Display, Poppins } from "next/font/google";
 import { cookies } from "next/headers";
@@ -32,6 +33,12 @@ const poppins = Poppins({
   display: "swap",
 });
 
+/** Colour of the browser bar on a phone: the linen ground of the site, read from the charter token. */
+export async function generateViewport(): Promise<Viewport> {
+  "use cache";
+  return { themeColor: await brandBackground() };
+}
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: messages.meta.defaultTitle,
@@ -59,6 +66,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="fr" className={`${playfair.variable} ${poppins.variable}`} suppressHydrationWarning>
       <body className="min-h-screen bg-brand-bg text-brand-text font-sans antialiased flex flex-col">
+        <a
+          href="#contenu"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:min-h-11 focus:inline-flex focus:items-center focus:px-5 focus:rounded-[4px] focus:bg-brand-primary focus:text-brand-white focus:text-sm"
+        >
+          {messages.header.skipToContent}
+        </a>
         <AnnouncementBar text={settings.announcementBar} />
         <Header
           cartSlot={
@@ -67,7 +80,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             </Suspense>
           }
         />
-        <main className="flex-1 w-full max-w-[1200px] mx-auto px-4 md:px-6">{children}</main>
+        <main id="contenu" className="flex-1 w-full max-w-[1200px] mx-auto px-4 md:px-6">{children}</main>
         <Footer footerLinks={settings.footerLinks} socialLinks={settings.socialLinks} />
         <MobileMenu whatsappUrl={settings.whatsappUrl} />
         {settings.showWhatsAppButton && (

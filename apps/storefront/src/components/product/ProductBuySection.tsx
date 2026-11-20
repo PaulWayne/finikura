@@ -24,8 +24,11 @@ interface ProductBuySectionProps {
 
 /** Interactive part of the product column: size choice, add to cart, size guide and mobile bar. */
 export function ProductBuySection({ product, sizeGuide, whatsappUrl, productUrl }: ProductBuySectionProps) {
-  const initialVariant = product.variants.find((v) => v.inStock) || product.variants[0];
-  const [selectedVariantId, setSelectedVariantId] = useState<string | null>(initialVariant?.id ?? null);
+  // No size is chosen for the customer: a wrong size ordered in a hurry ends in an exchange.
+  // An outfit sold in one size only has nothing to choose.
+  const onlyVariant = product.variants.length === 1 ? product.variants[0] : undefined;
+  const [selectedVariantId, setSelectedVariantId] = useState<string | null>(onlyVariant?.id ?? null);
+  const sizesRef = useRef<HTMLDivElement>(null);
   const [isAdding, setIsAdding] = useState(false);
   const [isAddedSuccess, setIsAddedSuccess] = useState(false);
   const [isSizeModalOpen, setIsSizeModalOpen] = useState(false);
@@ -50,7 +53,12 @@ export function ProductBuySection({ product, sizeGuide, whatsappUrl, productUrl 
     : messages.product.chooseSizeCta;
 
   const handleAddToCart = async () => {
-    if (!selectedVariantId) return triggerToast(messages.product.selectSizeFirst);
+    if (!selectedVariantId) {
+      // « Choisir une taille » brings the sizes back on screen and puts the keyboard on them.
+      sizesRef.current?.scrollIntoView({ block: "center", behavior: "smooth" });
+      sizesRef.current?.querySelector<HTMLElement>('[role="radio"]:not([aria-disabled="true"])')?.focus({ preventScroll: true });
+      return triggerToast(messages.product.selectSizeFirst);
+    }
     if (isSoldOut) return triggerToast(messages.product.sizeSoldOutToast);
 
     setIsAdding(true);
@@ -75,6 +83,7 @@ export function ProductBuySection({ product, sizeGuide, whatsappUrl, productUrl 
         <p className="text-2xl font-semibold text-brand-text tracking-tight" aria-live="polite">{formatPrice(price)}</p>
       </div>
       <div className="w-full h-px bg-brand-surface mb-3 md:mb-5" />
+      <div ref={sizesRef}>
       <SizeSelector
         variants={product.variants}
         selectedVariant={selectedVariant}
@@ -84,6 +93,7 @@ export function ProductBuySection({ product, sizeGuide, whatsappUrl, productUrl 
         productTitle={product.title}
         productUrl={productUrl}
       />
+      </div>
 
       <div className="mb-6 flex flex-col gap-2">
         <button

@@ -26,6 +26,14 @@
       "type": "string",
       "required": false
     },
+    "secondary_cta_text": {
+      "type": "string",
+      "required": false
+    },
+    "secondary_cta_link": {
+      "type": "string",
+      "required": false
+    },
     "image": {
       "type": "media",
       "multiple": false,

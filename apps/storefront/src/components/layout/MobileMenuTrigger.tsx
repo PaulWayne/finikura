@@ -8,6 +8,8 @@ export function MobileMenuTrigger() {
     <button
       type="button"
       aria-label={messages.header.openMenuAria}
+      aria-haspopup="dialog"
+      aria-controls="mobile-drawer"
       onClick={triggerOpenMenu}
       className="p-2 -ml-2 text-brand-text hover:underline underline-offset-4 transition-colors md:hidden min-h-11 min-w-11 flex items-center justify-center"
     >

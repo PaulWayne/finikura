@@ -112,10 +112,6 @@ export function CheckoutView({ cart }: { cart: Cart }) {
               </div>
 
               <div className="space-y-2 pt-2 border-t border-brand-surface">
-                <div className="flex items-baseline justify-between text-xs text-brand-text">
-                  <span>{messages.checkout.subtotalArticles}</span>
-                  <span className="font-medium text-brand-text">{formatPrice(cart.subtotal)}</span>
-                </div>
                 <div className="flex items-baseline justify-between pt-1">
                   <div>
                     <span className="text-sm font-semibold text-brand-text block">{messages.checkout.totalArticles}</span>

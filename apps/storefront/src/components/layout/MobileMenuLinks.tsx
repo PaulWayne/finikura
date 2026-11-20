@@ -19,7 +19,7 @@ export function MobileMenuLinks({ onNavigate }: { onNavigate: () => void }) {
   return (
     <nav className="mt-6 flex flex-col space-y-4">
       {DEPARTMENTS.map((item) => (
-        <Link key={item.href} href={item.href} onClick={onNavigate} className={CATEGORY}>
+        <Link key={item.href} href={item.href} onClick={onNavigate} aria-label={h.departmentAria(item.label, item.ages)} className={CATEGORY}>
           <span>
             {item.label}
             <span className="font-sans text-sm font-light ml-2">{item.ages}</span>

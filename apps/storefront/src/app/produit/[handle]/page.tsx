@@ -101,13 +101,13 @@ async function ProductContent({ params }: ProductPageProps) {
         aria-label="Fil d'Ariane"
         className="flex items-center space-x-2 text-xs text-brand-text truncate"
       >
-        <Link href="/" className="hover:underline underline-offset-4 transition-colors shrink-0">
+        <Link href="/" className="min-h-11 inline-flex items-center hover:underline underline-offset-4 transition-colors shrink-0">
           {messages.catalog.homeBreadcrumb}
         </Link>
         <span className="shrink-0">/</span>
         <a
           href={categoryPath}
-          className="hover:underline underline-offset-4 transition-colors shrink-0"
+          className="min-h-11 inline-flex items-center hover:underline underline-offset-4 transition-colors shrink-0"
         >
           {categoryName}
         </a>

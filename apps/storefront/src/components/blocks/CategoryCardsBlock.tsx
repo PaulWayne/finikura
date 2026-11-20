@@ -13,8 +13,8 @@ interface CategoryCardsBlockProps {
 }
 
 /**
- * One soft card per category, photo beside the words, opens the girls and boys categories;
- * a row of round shortcuts below opens them already filtered by occasion.
+ * The main door to the catalogue: one tall photo panel per category, the words and the button
+ * on the photo. A row of round shortcuts below opens the categories already filtered by occasion.
  */
 export function CategoryCardsBlock({ block, occasionShortcuts = [] }: CategoryCardsBlockProps) {
   const titles = new Map(block.cards.map((card) => [card.categoryHandle, card.title]));
@@ -26,36 +26,38 @@ export function CategoryCardsBlock({ block, occasionShortcuts = [] }: CategoryCa
         {block.subtitle && <p className="text-sm md:text-base text-brand-text mt-1">{block.subtitle}</p>}
       </div>
 
-      {/* One soft card per category: the photo on one side, the words and the link on the other. */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5">
         {block.cards.map((card) => {
           const fallback = card.categoryHandle === "garcons" ? IMAGE_FALLBACKS.garcons : IMAGE_FALLBACKS.filles;
           return (
             <Link
               key={card.categoryHandle}
               href={`/categorie/${card.categoryHandle}`}
-              className="group flex items-stretch gap-4 md:gap-6 rounded-xl md:rounded-2xl bg-brand-white border border-brand-surface p-2.5 md:p-4 shadow-[0_1px_3px_rgba(63,55,47,0.06)]"
+              className="fk-zoom group relative block aspect-[4/5] md:aspect-[5/6] rounded-md overflow-hidden bg-brand-surface text-brand-white"
             >
-              <div className="relative w-[42%] shrink-0 aspect-[4/5] rounded-lg md:rounded-xl overflow-hidden bg-brand-surface">
-                <SafeImage
-                  src={card.imageUrl || fallback}
-                  alt={card.imageAlt}
-                  fallbackSrc={fallback}
-                  sizes="(min-width: 768px) 240px, 42vw"
-                  className="w-full h-full object-cover object-top transition duration-700 group-hover:scale-[1.03]"
-                />
-              </div>
-              <div className="flex flex-col justify-center min-w-0 py-1 md:py-3 pr-1">
-                <p className="text-[11px] md:text-xs uppercase tracking-[0.18em] text-brand-primary font-medium">
+              <SafeImage
+                src={card.imageUrl || fallback}
+                alt={card.imageAlt}
+                fallbackSrc={fallback}
+                sizes="(min-width: 1200px) 590px, (min-width: 768px) 50vw, 100vw"
+                className="absolute inset-0 w-full h-full object-cover object-[center_18%]"
+              />
+              {/* Warm brown veil under the words, never black. */}
+              <span
+                aria-hidden="true"
+                className="absolute inset-0 bg-[linear-gradient(0deg,color-mix(in_srgb,var(--brand-text)_86%,transparent)_0%,color-mix(in_srgb,var(--brand-text)_55%,transparent)_28%,transparent_52%)]"
+              />
+              <span className="absolute inset-x-5 bottom-5 md:inset-x-8 md:bottom-8 flex flex-col items-start">
+                <span className="text-[11px] md:text-xs uppercase tracking-[0.18em] font-medium">
                   {card.title} · {card.ageRange}
-                </p>
-                <h3 className="font-serif text-[22px] md:text-[32px] leading-[1.15] text-brand-text mt-2 md:mt-3">
+                </span>
+                <span className="font-serif text-[26px] md:text-4xl leading-[1.12] mt-1.5 md:mt-2 text-balance">
                   {card.tagline || card.title}
-                </h3>
-                <span className="mt-3 md:mt-6 min-h-11 inline-flex items-center text-sm md:text-base text-brand-text underline underline-offset-4 group-hover:decoration-2">
+                </span>
+                <span className="mt-4 md:mt-5 min-h-12 inline-flex items-center justify-center px-7 rounded-[4px] bg-brand-white text-brand-text group-hover:bg-brand-bg font-medium text-xs tracking-[0.15em] uppercase transition group-active:scale-[0.98]">
                   {card.ctaText}
                 </span>
-              </div>
+              </span>
             </Link>
           );
         })}
@@ -75,7 +77,8 @@ export function CategoryCardsBlock({ block, occasionShortcuts = [] }: CategoryCa
                       src={shortcut.imageUrl}
                       alt=""
                       fallbackSrc={IMAGE_FALLBACKS.product}
-                      sizes="96px"
+                      // Twice the circle: sharp on a phone screen.
+                      sizes="192px"
                       className="w-full h-full object-cover object-top"
                     />
                   </span>

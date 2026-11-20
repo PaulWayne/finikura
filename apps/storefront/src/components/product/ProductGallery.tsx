@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { messages } from "@/messages/fr";
-import { ZoomIn, Heart, Play } from "lucide-react";
+import { Heart, Play } from "lucide-react";
 import type { ProductVideo } from "@/lib/commerce/types";
 import { triggerToast } from "@/lib/cart-events";
 import { IMAGE_FALLBACKS } from "@/lib/images";
@@ -80,11 +80,11 @@ export function ProductGallery({ images, productTitle, productHandle, wornCaptio
   return (
     <section
       aria-label="Galerie photos du produit"
-      className="flex flex-col-reverse md:flex-row gap-3 md:gap-4 items-start w-full"
+      className="flex flex-col-reverse gap-3 items-start w-full"
     >
-      {/* Vignettes verticales (Desktop Left Rail) */}
+      {/* Thumbnails in a row under the photo (desktop): the photo keeps the whole column. */}
       <div
-        className="hidden md:flex flex-col gap-3 shrink-0 w-20"
+        className="hidden md:flex flex-wrap gap-3 p-0.5"
         id="thumb-container"
       >
         {views.map((view, idx) => {
@@ -134,7 +134,7 @@ export function ProductGallery({ images, productTitle, productHandle, wornCaptio
       </div>
 
       {/* Main image container: edge to edge on a phone, past the page gutter */}
-      <div className="relative flex-1 w-[calc(100%+2rem)] -mx-4 md:mx-0 md:w-full bg-brand-surface/30 md:rounded-md overflow-hidden group">
+      <div className="relative w-[calc(100%+2rem)] -mx-4 md:mx-0 md:w-full bg-brand-surface/30 md:rounded-md overflow-hidden group">
         {/* Desktop single main display with smooth transition */}
         <div className="hidden md:block aspect-[4/5] w-full overflow-hidden relative bg-brand-surface/30">
           {activeView.kind === "clip" ? (
@@ -144,23 +144,14 @@ export function ProductGallery({ images, productTitle, productHandle, wornCaptio
             src={activeView.src}
             alt={`${productTitle} - Vue haute résolution`}
             fallbackSrc={IMAGE_FALLBACKS.product}
-            sizes="(min-width: 1200px) 560px, 50vw"
+            sizes="(min-width: 1200px) 680px, (min-width: 1024px) 58vw, 100vw"
             className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
           />
           )}
-
-
-          {/* Loupe / Interaction Hint */}
-          <div hidden={activeView.kind === "clip"} className="absolute bottom-4 right-4 pointer-events-none flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-bg/90 backdrop-blur-xs text-brand-text shadow-xs transition-opacity group-hover:opacity-100">
-            <ZoomIn className="w-4 h-4 text-brand-primary" />
-            <span className="text-xs text-brand-text font-normal">
-              {messages.product.mainStudioView}
-            </span>
-          </div>
         </div>
 
         {/* Mobile Horizontal Swipeable Carousel (390px) */}
-        <div className="block md:hidden relative w-full aspect-[4/5] overflow-hidden select-none">
+        <div className="block md:hidden relative w-full aspect-[9/10] max-h-[52svh] overflow-hidden select-none">
 
           {/* Favorite subtle button */}
           <button
@@ -188,7 +179,7 @@ export function ProductGallery({ images, productTitle, productHandle, wornCaptio
             {views.map((view, idx) => (
               <div
                 key={view.kind === "clip" ? view.video.sources[0].src : `${view.src}-${idx}`}
-                className="w-full h-full flex-shrink-0 snap-center relative aspect-[4/5] bg-brand-surface/40"
+                className="w-full h-full flex-shrink-0 snap-center relative bg-brand-surface/40"
               >
                 {view.kind === "clip" ? (
                   <ProductVideoView video={view.video} productTitle={productTitle} productHandle={productHandle} />
@@ -227,8 +218,10 @@ export function ProductGallery({ images, productTitle, productHandle, wornCaptio
             ))}
           </div>
         </div>
+        {/* The caption sits on the photo, under the counter: it takes no room in the page, so the
+            product name below never moves when the customer changes photo or clip. */}
         {activeCaption && (
-          <p className="px-4 md:px-3 py-2 text-xs text-brand-text bg-brand-bg border-t border-brand-surface">
+          <p className="absolute z-20 top-12 left-3 md:top-4 md:left-4 max-w-[80%] px-2.5 py-1 rounded-full bg-brand-bg/90 text-xs text-brand-text shadow-xs pointer-events-none">
             {activeCaption}
           </p>
         )}

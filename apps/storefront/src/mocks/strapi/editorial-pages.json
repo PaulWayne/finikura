@@ -70,7 +70,7 @@
         {
           "__component": "blocks.rich-text",
           "title": "Échanges",
-          "body": "Une taille ne va pas ? Vous pouvez échanger le vêtement.\n\n- **Délai** : prévenez-nous sur WhatsApp dans les 72 heures qui suivent la livraison.\n- **État du vêtement** : non porté, avec son étiquette.\n- **Comment** : le livreur repasse chez vous pour l'échange. Ce trajet est à votre charge.\n- **Taille épuisée** : si la taille voulue n'est plus disponible, vous choisissez une autre tenue.\n- **Remboursement** : une fois la commande payée, nous ne remboursons pas, nous proposons un échange."
+          "body": "Une taille ne va pas ? Vous pouvez échanger le vêtement.\n\n- **Délai** : prévenez-nous sur WhatsApp dans les 72 heures qui suivent la livraison.\n- **État du vêtement** : non porté, avec son étiquette.\n- **Comment** : le livreur repasse chez vous pour l'échange. Ce trajet est à votre charge.\n- **Taille épuisée** : vous choisissez une autre tenue.\n- **Après paiement** : nous proposons uniquement un échange."
         },
         {
           "__component": "blocks.faq",
@@ -94,11 +94,11 @@
             },
             {
               "question": "Puis-je échanger un vêtement si la taille ne va pas ?",
-              "answer": "Oui, dans les 72 heures qui suivent la livraison, si le vêtement n'a pas été porté et garde son étiquette. Prévenez-nous sur WhatsApp : le livreur repasse chez vous, et ce trajet est à votre charge."
+              "answer": "Oui, dans les 72 heures qui suivent la livraison, si le vêtement est resté neuf et garde son étiquette. Prévenez-nous sur WhatsApp : le livreur repasse chez vous, et ce trajet est à votre charge."
             },
             {
               "question": "Puis-je être remboursée ?",
-              "answer": "Non, une fois la commande payée, nous proposons un échange et non un remboursement. Si la taille voulue n'est plus disponible, vous choisissez une autre tenue."
+              "answer": "Une fois la commande payée, nous proposons uniquement un échange. Si la taille voulue est épuisée, vous choisissez une autre tenue."
             }
           ]
         }

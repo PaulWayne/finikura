@@ -184,29 +184,6 @@
   }
 }
 
-/* Home page sections rise into place as they enter the screen. Pure CSS, tied to the scroll:
-   a browser that cannot do it, or a customer who asked for less motion, simply sees the page. */
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .fk-reveal {
-      animation: fk-reveal linear both;
-      animation-timeline: view();
-      /* A fixed distance, not a share of the section: a tall section is fully shown as soon as a short one. */
-      animation-range: entry 0px entry 220px;
-    }
-  }
-}
-@keyframes fk-reveal {
-  from {
-    opacity: 0;
-    transform: translateY(28px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
 /* A photo in a linked frame grows a little under the pointer. */
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .fk-zoom img {
@@ -232,5 +209,12 @@
   }
   .fk-rise-late {
     animation: fk-rise 0.8s ease-out 0.35s both;
+  }
+}
+
+/* Product page on a phone: room under the footer for the fixed add-to-cart bar, so its last line is never hidden. */
+@media (max-width: 767px) {
+  body:has([data-purpose="product-page"]) footer {
+    padding-bottom: 7.5rem;
   }
 }
