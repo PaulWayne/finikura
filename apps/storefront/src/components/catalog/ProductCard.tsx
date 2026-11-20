@@ -89,10 +89,10 @@ export function ProductCard({ product, showCategoryBadge = false, preferredAge, 
 
   return (
     <article
-      className="group flex flex-col rounded-xl md:rounded-2xl bg-brand-white border border-brand-surface overflow-hidden shadow-[0_1px_3px_rgba(94,82,69,0.06)]"
+      className="group flex flex-col transition duration-300 md:hover:-translate-y-0.5 md:hover:shadow-[0_8px_24px_rgba(63,55,47,0.10)] rounded-xl md:rounded-2xl bg-brand-white border border-brand-surface overflow-hidden shadow-[0_1px_3px_rgba(63,55,47,0.06)]"
       data-purpose="product-card"
     >
-      <div className="relative w-full aspect-[4/5] overflow-hidden bg-brand-surface">
+      <div className="fk-zoom relative w-full aspect-[4/5] overflow-hidden bg-brand-surface">
         <Link href={href} className="relative block w-full h-full" tabIndex={-1} aria-hidden="true">
           <SafeImage
             src={product.thumbnail || IMAGE_FALLBACKS.product}
@@ -109,7 +109,7 @@ export function ProductCard({ product, showCategoryBadge = false, preferredAge, 
           <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-brand-white text-brand-text text-[11px] md:text-xs rounded-full">
             <span
               aria-hidden="true"
-              className={`w-1.5 h-1.5 rounded-full ${isTerracotta ? "bg-brand-terracotta" : "bg-brand-blue"}`}
+              className={`w-1.5 h-1.5 rounded-full ${isTerracotta ? "bg-brand-text" : "bg-brand-primary"}`}
             />
             {badgeLabel}
           </span>
@@ -128,7 +128,7 @@ export function ProductCard({ product, showCategoryBadge = false, preferredAge, 
           <span className="w-8 h-8 rounded-full bg-brand-white flex items-center justify-center">
             <Heart
               aria-hidden="true"
-              className={`w-4 h-4 ${isFavorite ? "fill-brand-terracotta text-brand-terracotta" : "text-brand-text"}`}
+              className={`w-4 h-4 ${isFavorite ? "fill-brand-text text-brand-text" : "text-brand-text"}`}
             />
           </span>
         </button>

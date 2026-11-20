@@ -83,12 +83,12 @@ export function SizeSelector({ variants, selectedVariant, onSelect, onOpenSizeGu
       <div className="mt-2.5">
         {selectedVariant && selectedVariant.inStock && selectedVariant.inventoryQuantity <= 2 ? (
           <p className="text-xs text-brand-text font-medium flex items-center gap-1.5 animate-pulse">
-            <Flame className="w-4 h-4 text-brand-terracotta" />
+            <Flame className="w-4 h-4 text-brand-text" />
             <span>{messages.product.lowStockFeedback(selectedVariant.inventoryQuantity, selectedVariant.title)}</span>
           </p>
         ) : (
           <p className="text-xs text-brand-text flex items-center gap-1.5 font-light">
-            <CheckCircle2 className="w-3.5 h-3.5 text-brand-announcement" />
+            <CheckCircle2 className="w-3.5 h-3.5 text-brand-primary" />
             <span>{messages.product.sizeAdviceNote}</span>
           </p>
         )}

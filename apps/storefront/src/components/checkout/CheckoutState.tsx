@@ -68,7 +68,7 @@ export function MobileCheckoutBar({ totalLabel }: { totalLabel: string }) {
 
   return (
     <div
-      className={`lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-brand-bg/95 backdrop-blur-md border-t border-brand-surface px-4 pt-3 pb-safe shadow-[0_-4px_20px_rgba(94,82,69,0.08)] transition-transform duration-200 motion-reduce:transition-none ${
+      className={`lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-brand-bg/95 backdrop-blur-md border-t border-brand-surface px-4 pt-3 pb-safe shadow-[0_-4px_20px_rgba(63,55,47,0.08)] transition-transform duration-200 motion-reduce:transition-none ${
         isKeyboardOpen ? "translate-y-full" : "translate-y-0"
       }`}
     >

@@ -21,7 +21,7 @@ export function FavoritesLink() {
       aria-label={messages.favorites.linkAria(count)}
       className="relative min-h-11 min-w-11 flex items-center justify-center text-brand-text"
     >
-      <Heart className={`w-6 h-6 stroke-[1.5] ${count > 0 ? "fill-brand-terracotta" : ""}`} />
+      <Heart className={`w-6 h-6 stroke-[1.5] ${count > 0 ? "fill-brand-text" : ""}`} />
       {count > 0 && (
         <span className="absolute top-1 right-0.5 min-w-4 h-4 px-1 rounded-full bg-brand-primary text-brand-white text-[10px] font-semibold flex items-center justify-center">
           {count}

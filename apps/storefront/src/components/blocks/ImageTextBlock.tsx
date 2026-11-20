@@ -25,7 +25,7 @@ export function ImageTextBlock({ block }: { block: ImageTextBlockData }) {
               {block.eyebrow}
             </span>
           )}
-          <h2 className="font-serif text-[22px] md:text-3xl text-brand-text leading-snug mb-6">{block.title}</h2>
+          <h2 className="font-serif text-[30px] md:text-5xl text-brand-text leading-tight mb-6">{block.title}</h2>
           <div className="space-y-4 text-base leading-relaxed text-brand-text">
             {paragraphs.map((p, i) => (
               <p key={i}>{p}</p>

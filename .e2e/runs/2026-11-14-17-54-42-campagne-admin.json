@@ -1,0 +1,465 @@
+{
+  "id": "2026-11-14-17-54-42-campagne-admin",
+  "name": "Campagne admin",
+  "createdAt": "2026-11-14T17:54:42.423Z",
+  "context": {
+    "device": "ordinateur",
+    "mode": "live local (Medusa et Strapi)",
+    "tester": "Paul",
+    "scope": "all",
+    "branch": "recette-1-corrections",
+    "commit": "362b42c",
+    "dirty": true
+  },
+  "scenarioIds": [
+    "stock-admin-site",
+    "prix-affichage",
+    "alerte-commande",
+    "statut-livraison",
+    "refus-porte",
+    "historique-telephone",
+    "legende-photo",
+    "contenu-strapi",
+    "campagne-accueil",
+    "bandeau-categorie",
+    "garde-fous",
+    "accessibilite",
+    "performance",
+    "statistiques",
+    "stock-remise"
+  ],
+  "passes": [
+    {
+      "number": 1,
+      "createdAt": "2026-11-14T17:54:42.423Z",
+      "replay": null,
+      "branch": "recette-1-corrections",
+      "commit": "362b42c",
+      "dirty": true,
+      "keys": null,
+      "results": {
+        "stock-admin-site/mettre-zero": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T17:56:56.382Z"
+        },
+        "stock-admin-site/verifier-site": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T17:57:53.032Z"
+        },
+        "stock-admin-site/remettre": {
+          "status": "ok",
+          "severity": null,
+          "observation": "ça demande une actualisation de la page cas meme, une solution ?",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T17:59:14.173Z"
+        },
+        "prix-affichage/comparer": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:00:29.288Z"
+        },
+        "prix-affichage/modifier": {
+          "status": "ko",
+          "severity": "blocking",
+          "observation": "En changeant le prix d'une variante, il change en actualisant la page, check ça dejà, quand on navigue entre les ages sur le shop, le prix ne bouge pas,",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:03:42.290Z"
+        },
+        "alerte-commande/email": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:05:27.633Z"
+        },
+        "alerte-commande/liste": {
+          "status": "ko",
+          "severity": "blocking",
+          "observation": "Non je n'ai pas le nom ni le telephone de la cliente",
+          "evidence": "",
+          "captures": [
+            "p1-alerte-commande-liste-mwgpwqe7hzcs.png"
+          ],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:07:01.279Z"
+        },
+        "statut-livraison/nouvelle": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:07:58.289Z"
+        },
+        "statut-livraison/confirmer": {
+          "status": "ko",
+          "severity": "blocking",
+          "observation": "Le statut n'a pas changé",
+          "evidence": "",
+          "captures": [
+            "p1-statut-livraison-confirmer-mwgq0plj266v.png"
+          ],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:10:06.871Z"
+        },
+        "statut-livraison/livraison": {
+          "status": "ko",
+          "severity": "blocking",
+          "observation": "Je ne peux pas",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:10:23.452Z"
+        },
+        "statut-livraison/livree": {
+          "status": "ko",
+          "severity": "blocking",
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:10:30.346Z"
+        },
+        "refus-porte/refuser": {
+          "status": "ko",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:10:41.362Z"
+        },
+        "refus-porte/stock": {
+          "status": "ko",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:10:46.765Z"
+        },
+        "historique-telephone/historique": {
+          "status": "ko",
+          "severity": null,
+          "observation": "Pas d'historique sur la fiche commande",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:13:25.770Z"
+        },
+        "legende-photo/ajouter": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:14:37.264Z"
+        },
+        "legende-photo/site": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:15:15.631Z"
+        },
+        "contenu-strapi/accueil": {
+          "status": "ok",
+          "severity": null,
+          "observation": "ça s'affiche apres actualisation de la page",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:17:24.527Z"
+        },
+        "contenu-strapi/page": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:18:42.247Z"
+        },
+        "contenu-strapi/whatsapp-vide": {
+          "status": "ko",
+          "severity": null,
+          "observation": "On ne peut pas vider, le champs est required strapi",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:20:01.345Z"
+        },
+        "campagne-accueil/active": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:20:41.764Z"
+        },
+        "campagne-accueil/collection-vide": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:21:53.880Z"
+        },
+        "campagne-accueil/remise": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:23:09.646Z"
+        },
+        "bandeau-categorie/texte": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:24:03.583Z"
+        },
+        "bandeau-categorie/retrait": {
+          "status": "untested",
+          "severity": null,
+          "observation": "Apres recharge du store",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:24:12.074Z"
+        },
+        "garde-fous/livraison": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:24:20.080Z"
+        },
+        "garde-fous/email": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:24:26.963Z"
+        },
+        "garde-fous/couleurs": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:24:30.013Z"
+        },
+        "accessibilite/clavier": {
+          "status": "ok",
+          "severity": null,
+          "observation": "La seule reproche est l'accès au panier dans le sidebar, le focus a du mal à switcher sur le sidebar",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:27:53.476Z"
+        },
+        "accessibilite/zoom": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:27:51.676Z"
+        },
+        "performance/poids": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [
+            "p1-performance-poids-mwgqr9fq53xg.png"
+          ],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:30:45.638Z"
+        },
+        "performance/reseau-lent": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:31:39.412Z"
+        },
+        "statistiques/cookies": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [
+            "p1-statistiques-cookies-mwgqu92yzt3j.png"
+          ],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:33:05.146Z"
+        },
+        "stock-remise/remise": {
+          "status": "ko",
+          "severity": "blocking",
+          "observation": "oumarcoulibaly@MacBook-Air-de-Oumar finikura % pnpm --filter medusa stock:reset\n\n$ medusa exec ./src/scripts/reset-stock.ts\n/Users/oumarcoulibaly/Documents/development/focus/finikura/node_modules/.pnpm/ts-node@10.9.2_@swc+core@1.16.22_@swc+helpers@0.5.23__@types+node@20.19.43_typescript@5.9.3/node_modules/ts-node/dist/index.js:851\n            return old(m, filename);\n                   ^\nError [ERR_REQUIRE_ESM]: require() of ES Module /Users/oumarcoulibaly/Documents/development/focus/finikura/node_modules/.pnpm/execa@10.2.1/node_modules/execa/index.js from /Users/oumarcoulibaly/Documents/development/focus/finikura/node_modules/.pnpm/@medusajs+cli@2.22.6_@types+node@20.19.43_debug@4.4.3_supports-color@7.2.0__supports-color@7.2.0/node_modules/@medusajs/cli/dist/commands/new.js not supported.\nInstead change the require of index.js in /Users/oumarcoulibaly/Documents/development/focus/finikura/node_modules/.pnpm/@medusajs+cli@2.22.6_@types+node@20.19.43_debug@4.4.3_supports-color@7.2.0__supports-color@7.2.0/node_modules/@medusajs/cli/dist/commands/new.js to a dynamic import() which is available in all CommonJS modules.\n    at require.extensions.<computed> [as .js] (/Users/oumarcoulibaly/Documents/development/focus/finikura/node_modules/.pnpm/ts-node@10.9.2_@swc+core@1.16.22_@swc+helpers@0.5.23__@types+node@20.19.43_typescript@5.9.3/node_modules/ts-node/dist/index.js:851:20)\n    at Object.<anonymous> (/Users/oumarcoulibaly/Documents/development/focus/finikura/node_modules/.pnpm/@medusajs+cli@2.22.6_@types+node@20.19.43_debug@4.4.3_supports-color@7.2.0__supports-color@7.2.0/node_modules/@medusajs/cli/dist/commands/new.js:11:17)\n    at require.extensions.<computed> [as .js] (/Users/oumarcoulibaly/Documents/development/focus/finikura/node_modules/.pnpm/ts-node@10.9.2_@swc+core@1.16.22_@swc+helpers@0.5.23__@types+node@20.19.43_typescript@5.9.3/node_modules/ts-node/dist/index.js:851:20) {\n  code: 'ERR_REQUIRE_ESM'\n}\n[ELIFECYCLE] Command failed with exit code 1.\nError: ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL\n\n  × \"pnpm recursive run\" failed in /Users/oumarcoulibaly/Documents/\n  │ development/focus/finikura/apps/medusa",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:33:54.717Z"
+        }
+      }
+    },
+    {
+      "number": 2,
+      "createdAt": "2026-11-14T18:47:22.720Z",
+      "replay": "problems",
+      "branch": "recette-1-corrections",
+      "commit": "2375d0e",
+      "dirty": true,
+      "keys": [
+        "prix-affichage/modifier",
+        "alerte-commande/liste",
+        "statut-livraison/confirmer",
+        "statut-livraison/livraison",
+        "statut-livraison/livree",
+        "refus-porte/refuser",
+        "refus-porte/stock",
+        "historique-telephone/historique",
+        "contenu-strapi/whatsapp-vide",
+        "stock-remise/remise"
+      ],
+      "results": {
+        "prix-affichage/modifier": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T18:48:02.210Z"
+        },
+        "alerte-commande/liste": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T19:08:43.821Z"
+        },
+        "statut-livraison/confirmer": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T19:08:56.878Z"
+        },
+        "statut-livraison/livraison": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T19:11:54.750Z"
+        },
+        "statut-livraison/livree": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T19:13:26.615Z"
+        },
+        "refus-porte/refuser": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T19:16:23.650Z"
+        },
+        "refus-porte/stock": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T19:16:28.642Z"
+        },
+        "historique-telephone/historique": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T19:16:59.400Z"
+        },
+        "contenu-strapi/whatsapp-vide": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T19:17:05.974Z"
+        },
+        "stock-remise/remise": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T19:17:17.713Z"
+        }
+      }
+    }
+  ],
+  "position": {
+    "scenarioId": "prix-affichage",
+    "stepId": "modifier"
+  }
+}

@@ -84,12 +84,11 @@ export function CheckoutView({ cart }: { cart: Cart }) {
                 />
                 <Notice
                   icon={<Banknote className="w-4 h-4" />}
-                  className="bg-brand-announcement/40"
-                  iconClassName="bg-brand-announcement/20 text-brand-text"
+                  className="bg-brand-sage-soft"
+                  iconClassName="bg-brand-bg/70 text-brand-text"
                   title={messages.checkout.paymentOnDeliveryTitle}
                   text={messages.checkout.paymentOnDeliveryDesc}
                 />
-                <p className="text-center text-[11px] text-brand-text">{messages.checkout.submitFootnoteMobile}</p>
               </div>
             </CheckoutForm>
           </section>

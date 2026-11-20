@@ -20,6 +20,8 @@ interface BlockRendererProps {
   occasionShortcuts?: OccasionShortcut[];
   reassuranceItems?: ReassuranceItem[];
   whatsappUrl?: string | null;
+  /** Pale sage ground for this block, where the block supports it. */
+  sageBand?: boolean;
 }
 
 export function BlockRenderer({
@@ -28,6 +30,7 @@ export function BlockRenderer({
   occasionShortcuts,
   reassuranceItems,
   whatsappUrl,
+  sageBand = false,
 }: BlockRendererProps) {
   switch (block.type) {
     case "hero":
@@ -53,7 +56,7 @@ export function BlockRenderer({
       );
 
     case "aboutExcerpt":
-      return <AboutExcerptBlock block={block} />;
+      return <AboutExcerptBlock block={block} tone={sageBand ? "sage" : "surface"} />;
 
     case "richText":
       return <RichTextBlock block={block} />;

@@ -150,10 +150,13 @@ async function addMissingHomeBlocks(fixtureBlocks) {
 
   const added = [];
   for (const [index, fixture] of fixtureBlocks.entries()) {
-    if (current.some((b) => b.__component === fixture.__component)) continue;
+    // A replaced kind is written back whole: every fixture block of that kind, not only the first.
+    if (!replaced.includes(fixture.__component) && current.some((b) => b.__component === fixture.__component)) continue;
     const previous = fixtureBlocks[index - 1]?.__component;
-    const after = current.findIndex((b) => b.__component === previous);
-    current.splice(after === -1 ? current.length : after + 1, 0, await mapBlock(fixture));
+    // The first fixture block (the hero) goes first, not at the end.
+    const after = previous ? current.findLastIndex((b) => b.__component === previous) : -1;
+    const at = !previous ? 0 : after === -1 ? current.length : after + 1;
+    current.splice(at, 0, await mapBlock(fixture));
     added.push(fixture.__component);
   }
   if (added.length === 0) return console.log(`${uid} : aucun bloc à ajouter`);
@@ -212,6 +215,21 @@ for (const pageFixture of read("editorial-pages.json").data) {
 
 // --- Size guides ---------------------------------------------------------------
 for (const guide of read("size-guides.json").data) {
+  // --refresh=guide-filles rewrites that size guide from the fixtures.
+  if (refresh.has(`guide-${guide.category_handle}`)) {
+    const existing = await strapi
+      .documents("api::size-guide.size-guide")
+      .findFirst({ filters: { category_handle: guide.category_handle } });
+    if (existing) {
+      await strapi.documents("api::size-guide.size-guide").update({
+        documentId: existing.documentId,
+        data: strip(guide),
+        status: "published",
+      });
+      console.log(`api::size-guide.size-guide ${guide.category_handle} : mis à jour depuis les fixtures`);
+      continue;
+    }
+  }
   await createIfMissing("api::size-guide.size-guide", { category_handle: guide.category_handle }, strip(guide));
 }
 

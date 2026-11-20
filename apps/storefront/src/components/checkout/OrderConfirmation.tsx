@@ -33,9 +33,9 @@ export function OrderConfirmation({ order, whatsappUrl }: OrderConfirmationProps
   return (
     <div className="w-full max-w-[680px] mx-auto px-0 sm:px-4 pt-2 pb-6 sm:py-10">
       {/* Centered Main Card */}
-      <div className="w-full bg-brand-white rounded-2xl shadow-[0_8px_30px_rgba(94,82,69,0.06)] border border-brand-surface/60 px-4 py-5 sm:p-10 relative overflow-hidden flex flex-col items-center text-center">
+      <div className="w-full bg-brand-white rounded-2xl shadow-[0_8px_30px_rgba(63,55,47,0.06)] border border-brand-surface/60 px-4 py-5 sm:p-10 relative overflow-hidden flex flex-col items-center text-center">
         {/* Status Badge with Gentle Pulse */}
-        <div className="inline-flex items-center gap-2 bg-brand-announcement/20 text-brand-text px-4 py-1.5 rounded-full mb-4 sm:mb-6">
+        <div className="inline-flex items-center gap-2 bg-brand-sage-soft text-brand-text px-4 py-1.5 rounded-full mb-4 sm:mb-6">
           <span className="w-2 h-2 rounded-full bg-brand-text animate-pulse"></span>
           <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-text">
             {messages.confirmation.badgeStatus}
@@ -44,7 +44,7 @@ export function OrderConfirmation({ order, whatsappUrl }: OrderConfirmationProps
 
         {/* Delicate Artisan Icon */}
         <div className="relative w-14 h-14 sm:w-20 sm:h-20 mb-3 sm:mb-5 flex items-center justify-center">
-          <div className="absolute inset-0 bg-brand-announcement/60 rounded-full"></div>
+          <div className="absolute inset-0 bg-brand-sage-soft rounded-full"></div>
           <div className="relative flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-brand-white shadow-xs">
             <CheckCircle2 className="w-7 h-7 sm:w-9 sm:h-9 text-brand-text" strokeWidth={1.75} />
           </div>
@@ -110,7 +110,7 @@ export function OrderConfirmation({ order, whatsappUrl }: OrderConfirmationProps
           </div>
 
           <div className="flex items-start gap-2.5 text-xs sm:text-sm">
-            <MapPin className="w-4 h-4 text-brand-terracotta shrink-0 mt-0.5" />
+            <MapPin className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
             <div className="flex flex-col">
               <span className="font-medium text-brand-text">
                 {messages.confirmation.destinationLabel} {order.shippingAddress.neighborhood}

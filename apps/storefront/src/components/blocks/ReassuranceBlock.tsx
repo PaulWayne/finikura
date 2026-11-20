@@ -11,13 +11,13 @@ const defaultItems: ReassuranceItem[] = [
   {
     id: "reass_1",
     title: "100 % coton",
-    description: "Un coton qui respire avec eux, de la cour de récré au soir de fête.",
+    description: "Un coton doux qui respire, pour l'école comme pour les fêtes.",
     icon: "cotton",
   },
   {
     id: "reass_2",
     title: "Petites séries",
-    description: "Peu de pièces par modèle : peu d'enfants porteront la même tenue.",
+    description: "Des collections en petites séries, avec peu de pièces par taille.",
     icon: "series",
   },
   {

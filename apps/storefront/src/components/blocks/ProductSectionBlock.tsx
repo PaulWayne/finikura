@@ -20,18 +20,16 @@ export function ProductSectionBlock({
     <section data-purpose="product-section">
       {/* Section Header */}
       <div className="mb-5 md:mb-8">
-        <h2 className="font-serif text-[22px] md:text-3xl text-brand-text leading-snug">{block.title}</h2>
+        <h2 className="font-serif text-[30px] md:text-5xl text-brand-text leading-tight">{block.title}</h2>
         {block.eyebrow && <p className="text-sm md:text-base text-brand-text mt-1">{block.eyebrow}</p>}
       </div>
 
-      {/* Grid: 2 columns on mobile (390px), 4 columns on desktop (1440px) */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-7 md:gap-x-6">
+      {/* A swipeable rail on a phone (the next card peeks), 4 columns on desktop. */}
+      <div className="-mx-4 px-4 md:mx-0 md:px-0 flex lg:grid lg:grid-cols-4 gap-3 md:gap-6 overflow-x-auto snap-x snap-mandatory scroll-px-4 no-scrollbar">
         {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            showCategoryBadge={true}
-          />
+          <div key={product.id} className="snap-start shrink-0 w-[72%] sm:w-[44%] lg:w-auto">
+            <ProductCard product={product} showCategoryBadge={true} />
+          </div>
         ))}
       </div>
     </section>

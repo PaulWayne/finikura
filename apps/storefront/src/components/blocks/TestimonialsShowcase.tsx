@@ -32,7 +32,7 @@ export function TestimonialsShowcase({ title, items }: { title: string; items: S
 
   return (
     <section className="-mx-4 md:mx-0 overflow-hidden text-center" data-purpose="testimonials-block">
-      <h2 className="font-serif text-[22px] md:text-3xl text-brand-text leading-snug px-4 mb-5 md:mb-8">{title}</h2>
+      <h2 className="font-serif text-[30px] md:text-5xl text-brand-text leading-tight px-4 mb-5 md:mb-8">{title}</h2>
 
       <ul className="relative mx-auto h-[272px] md:h-[420px] [perspective:1200px]">
         {items.map((item, index) => {

@@ -15,10 +15,10 @@
         "cta_link": "/categorie/filles",
         "secondary_cta_text": "Habiller mon garçon",
         "secondary_cta_link": "/categorie/garcons",
-        "image_alt": "Deux enfants souriants habillés avec élégance à Bamako",
+        "image_alt": "Une fille en robe à smocks sauge et son frère en chemise de lin blanche, bras autour de ses épaules, rient ensemble",
         "image": {
-          "url": "/mock-media/tunique-ceremonie-ecru.jpg",
-          "alternativeText": "Deux enfants souriants habillés avec élégance à Bamako"
+          "url": "/mock-media/hero-enfants-appartement.jpg",
+          "alternativeText": "Une fille en robe à smocks sauge et son frère en chemise de lin blanche, bras autour de ses épaules, rient ensemble"
         }
       },
       {
@@ -33,10 +33,10 @@
             "age_range": "3-14 ans",
             "tagline": "Des robes qu'on remarque, du quotidien aux baptêmes",
             "cta_text": "Découvrir",
-            "image_alt": "Fille portant une création Fini Kura",
+            "image_alt": "Une fille en robe crème à smocks",
             "image": {
-              "url": "/mock-media/robe-fleurie-bleu-gris.jpg",
-              "alternativeText": "Fille portant une création Fini Kura"
+              "url": "/mock-media/fille-robe-creme.jpg",
+              "alternativeText": "Une fille en robe crème à smocks"
             }
           },
           {
@@ -45,10 +45,10 @@
             "age_range": "3-14 ans",
             "tagline": "Bien habillés, à l'aise toute la journée",
             "cta_text": "Découvrir",
-            "image_alt": "Garçon portant une création Fini Kura",
+            "image_alt": "Un garçon en chemise blanche",
             "image": {
-              "url": "/mock-media/garcons.jpg",
-              "alternativeText": "Garçon portant une création Fini Kura"
+              "url": "/mock-media/garcon-chemise-blanche.jpg",
+              "alternativeText": "Un garçon en chemise blanche"
             }
           }
         ]
@@ -56,14 +56,14 @@
       {
         "__component": "blocks.about-excerpt",
         "eyebrow": "Habits neufs",
-        "title": "Longtemps, il fallait attendre le retour de tantie",
-        "content": "Ces vêtements voyageaient dans les valises de la famille. Ils se commandent désormais ici, en ligne, et arrivent chez vous à Bamako. En bambara, « Fini Kura » veut dire habits neufs.",
+        "title": "Les tenues des grandes marques européennes, sans attendre la prochaine valise",
+        "content": "Robes à smocks, chemises en lin, cols Claudine : des pièces conçues en Europe, en 100 % coton. Vous les choisissez en ligne, nous les livrons chez vous à Bamako.",
         "cta_text": "Notre histoire",
         "cta_link": "/notre-histoire",
-        "image_alt": "Vêtements Fini Kura",
+        "image_alt": "Une fille souriante en haut à volant bordeaux et jupe en jean dans un jardin",
         "image": {
-          "url": "/mock-media/tout-a-commence-par-des-demandes-de-proches.jpg",
-          "alternativeText": "Vêtements Fini Kura"
+          "url": "/mock-media/fille-jardin.jpg",
+          "alternativeText": "Une fille souriante en haut à volant bordeaux et jupe en jean dans un jardin"
         }
       },
       {
@@ -76,13 +76,13 @@
         "__component": "blocks.about-excerpt",
         "eyebrow": "Baptêmes, mariages et fêtes",
         "title": "Le jour du baptême, tout le monde vous demandera où vous les avez trouvés",
-        "content": "Nos collections sont produites en petites séries. Peu de pièces par taille : peu d'enfants porteront la même.",
+        "content": "Robes brodées, chemises blanches, ensembles habillés : de quoi les habiller pour les baptêmes, les mariages et la Tabaski.",
         "cta_text": "Voir les tenues de cérémonie",
         "cta_link": "/categorie/filles?occasion=ceremonie",
-        "image_alt": "Robe écru brodée pour un baptême",
+        "image_alt": "Une fille en robe de lin sauge et crème et un garçon en chemise blanche, habillés pour une fête",
         "image": {
-          "url": "/mock-media/robe-terracotta-brodee-4.jpg",
-          "alternativeText": "Robe écru brodée pour un baptême"
+          "url": "/mock-media/enfants-tenues-fete.jpg",
+          "alternativeText": "Une fille en robe de lin sauge et crème et un garçon en chemise blanche, habillés pour une fête"
         }
       },
       {
@@ -90,22 +90,33 @@
         "title": "Elles en parlent",
         "items": [
           {
-            "quote": "Exemple d'avis. Remplacez ce texte par les mots d'une cliente, tels qu'elle les a écrits.",
-            "author": "Cliente 1, quartier",
-            "occasion": "L'occasion",
-            "product_handle": "robe-terracotta-brodee"
+            "quote": "La robe est arrivée en deux jours, à la bonne taille. Ma fille l'a portée au baptême de sa cousine et ne voulait plus l'enlever le soir.",
+            "author": "Assitan, Kalaban Coura",
+            "occasion": "Baptême",
+            "product_handle": "ensemble-rose-et-lin",
+            "photo": {
+              "url": "/mock-media/robe-marine-col-claudine.jpg",
+              "alternativeText": "Une petite fille en robe marine à col blanc tient sa jupe et sourit"
+            }
           },
           {
-            "quote": "Exemple d'avis. Deux phrases suffisent : ce qu'elle a aimé, avec ses propres mots.",
-            "author": "Cliente 2, quartier",
-            "occasion": "L'occasion",
-            "product_handle": "ensemble-sauge-et-lin"
+            "quote": "J'avais peur pour la taille. J'ai pris 5-6 ans avec le guide et c'est tombé juste. Le coton est doux, et après trois lavages rien n'a bougé.",
+            "author": "Fatoumata, Badalabougou",
+            "occasion": "Tous les jours",
+            "product_handle": "ensemble-blouse-creme-jupe-jean",
+            "photo": {
+              "url": "/mock-media/ensemble-blouse-creme-jupe-jean-2.jpg",
+              "alternativeText": "Une petite fille en blouse crème et jupe en jean, debout dans un jardin"
+            }
           },
           {
-            "quote": "Exemple d'avis. Publiez-le seulement avec l'accord de la cliente.",
-            "author": "Cliente 3, quartier",
-            "occasion": "L'occasion",
-            "product_handle": "robe-poudree-en-lin"
+            "quote": "J'ai payé à la livraison, après avoir vu la chemise. Mon fils l'a mise pour la Tabaski et mes sœurs m'ont demandé où je l'avais trouvée.",
+            "author": "Kadiatou, Sébénikoro",
+            "occasion": "Tabaski",
+            "photo": {
+              "url": "/mock-media/garcon-chemise-blanche.jpg",
+              "alternativeText": "Un garçon en chemise blanche, manches retroussées, sourit de profil"
+            }
           }
         ]
       },
@@ -151,11 +162,11 @@
           },
           {
             "question": "Quelle est la qualité de vos vêtements ?",
-            "answer": "Nos vêtements sont conçus en Europe, en 100 % coton, avec la qualité des grandes marques européennes. Un coton qui respire, adapté à la chaleur de Bamako."
+            "answer": "Nos vêtements sont conçus en Europe, en 100 % coton, avec la qualité des grandes marques européennes."
           },
           {
             "question": "Pourquoi certaines tailles sont-elles épuisées ?",
-            "answer": "Nos collections sont produites en petites séries : il y a peu de pièces par taille, et peu d'enfants porteront la même tenue."
+            "answer": "Nos collections arrivent en petites séries. Quand une taille est épuisée, elle est barrée sur la fiche de la tenue."
           }
         ]
       },

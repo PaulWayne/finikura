@@ -19,6 +19,286 @@
       "evidence": "",
       "source": "manual",
       "updatedAt": "2026-11-13T22:53:16.858Z"
+    },
+    "decouverte-catalogue/menu-filles": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-13T22:54:36.011Z"
+    },
+    "decouverte-catalogue/filtre-age": {
+      "status": "ko",
+      "severity": "blocking",
+      "observation": "Le filtre ne marche pas",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-13T22:55:54.620Z"
+    },
+    "decouverte-catalogue/fiche": {
+      "status": "ok",
+      "severity": null,
+      "observation": "- Pas de de galerie, une seule image par fiche produit\n- Lors du scroll les deux boutons ajouter au panier s'affichent 1 apres l'autre",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:13:45.567Z"
+    },
+    "choix-taille/taille-epuisee": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-13T22:58:38.018Z"
+    },
+    "choix-taille/stock-faible": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-13T22:58:39.584Z"
+    },
+    "choix-taille/guide": {
+      "status": "ok",
+      "severity": null,
+      "observation": "Le guide des tailles dominent toute la page sur mobile, pour les novices fermer le popup peut  troubler un peu, trouve une solution responsive",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-13T23:01:29.270Z"
+    },
+    "choix-taille/question-taille": {
+      "status": "ok",
+      "severity": null,
+      "observation": "c'est bien, j'ai deux remarques:\n1 humaniser un peu le shop, On dira Ina de FiniKura, c'est un exemple\n2 Le message est presque bon mais le prospect saura t'il qu'il faut saisir l'age de sa fille ou/garcons ?",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:14:15.616Z"
+    },
+    "panier/ajout": {
+      "status": "ok",
+      "severity": null,
+      "observation": "J'ai remarqué que l'ouverture du panier est un peu lent",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-13T23:08:39.726Z"
+    },
+    "panier/deuxieme": {
+      "status": "ok",
+      "severity": null,
+      "observation": "Oui le compteur passe à deux mais le panier s'aggrandit , le titre Panier nombre sont cachés, il faut que ça soit responsive.. ",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:14:49.316Z"
+    },
+    "panier/quantite": {
+      "status": "ok",
+      "severity": null,
+      "observation": "Les boutons - et + sont un peu difficile d'acces, sinon c'est OK",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:15:20.780Z"
+    },
+    "panier/rechargement": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-13T23:13:21.601Z"
+    },
+    "panier/limite-stock": {
+      "status": "ok",
+      "severity": null,
+      "observation": "L'ajout est impossible, le clic sur le bouton ne fait rien mais pas de message explicite",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:15:39.976Z"
+    },
+    "commande/erreurs": {
+      "status": "ko",
+      "severity": "blocking",
+      "observation": "Plusieurs choses :\nEn arrivant sur la page le fil, le titre, le message simple sans compte , prennent beaucoup de place, le client doit scroller pour acceder au formulaire, ça peut etre un frein \nEn cliquant sur valider la commande, les messages s'affichent, un zoom se prend toute la page\nJe preconise de mettre les message d'erreur en rouge afin que ça alerte\n",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-13T23:22:45.136Z"
+    },
+    "commande/telephone-invalide": {
+      "status": "ko",
+      "severity": null,
+      "observation": "Le champs numero de tel montre un placeholder avec l'indicatif mais exige un numero à 8 chiffres",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-13T23:22:47.244Z"
+    },
+    "commande/clavier": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-13T23:22:51.632Z"
+    },
+    "commande/valider": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:16:09.753Z"
+    },
+    "commande/memorise": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-13T23:29:27.802Z"
+    },
+    "commande/confirmation-autre-appareil": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-13T23:30:50.200Z"
+    },
+    "whatsapp-confirmation/ouvrir": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-13T23:32:38.585Z"
+    },
+    "whatsapp-confirmation/contenu": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-13T23:33:16.467Z"
+    },
+    "whatsapp-confirmation/encodage": {
+      "status": "ok",
+      "severity": null,
+      "observation": "Mettre Bonjour Fini Kura sur la premiere ligne, je confirme descend sur la deuxieme ligne",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:20:31.451Z"
+    },
+    "partage-proche/bouton": {
+      "status": "ok",
+      "severity": null,
+      "observation": "C'est tres bien, si on peut afficher une image du produit, ça donnerait plus d'effet",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:20:40.162Z"
+    },
+    "partage-proche/lien": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-13T23:37:32.264Z"
+    },
+    "bouton-flottant/present": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-13T23:38:10.452Z"
+    },
+    "bouton-flottant/ouvre": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-13T23:40:40.599Z"
+    },
+    "derniere-piece/premiere": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-13T23:44:59.618Z"
+    },
+    "derniere-piece/deux-paniers": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-13T23:45:02.549Z"
+    },
+    "derniere-piece/seconde": {
+      "status": "change",
+      "severity": null,
+      "observation": "Le message est bien visible mais je trouve qu'il n'est pas toujours impactant",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:25:05.313Z"
+    },
+    "pages-introuvables/produit-inconnu": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-13T23:47:21.764Z"
+    },
+    "pages-introuvables/campagne-inconnue": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-13T23:47:37.598Z"
+    },
+    "pages-editoriales/parcourir": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-13T23:49:29.071Z"
+    },
+    "pages-editoriales/promesses": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-13T23:49:56.317Z"
+    },
+    "garde-fous/livraison": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-13T23:50:10.630Z"
+    },
+    "garde-fous/email": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-13T23:50:14.480Z"
+    },
+    "garde-fous/couleurs": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-13T23:50:19.830Z"
     }
   }
 }

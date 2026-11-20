@@ -2,43 +2,50 @@
 
 @layer base {
   :root {
-    --background: #FDF7F2;
-    --foreground: #5E5245;
+    --background: #FBF8F3;
+    --foreground: #3F372F;
 
-    --card: #EADCCC;
-    --card-foreground: #5E5245;
+    --card: #F1EBE2;
+    --card-foreground: #3F372F;
 
-    --popover: #FDF7F2;
-    --popover-foreground: #5E5245;
+    --popover: #FBF8F3;
+    --popover-foreground: #3F372F;
 
-    --primary: #8A7058;
+    --primary: #4E6A55;
     --primary-foreground: #FFFFFF;
 
-    --secondary: #EADCCC;
-    --secondary-foreground: #5E5245;
+    --secondary: #F1EBE2;
+    --secondary-foreground: #3F372F;
 
-    --muted: #EADCCC;
-    --muted-foreground: #5E5245;
+    --muted: #F1EBE2;
+    --muted-foreground: #6E6357;
 
-    --accent: #EADCCC;
-    --accent-foreground: #5E5245;
+    --accent: #F1EBE2;
+    --accent-foreground: #3F372F;
 
-    --destructive: #CA7154;
+    --destructive: #9E4A30;
     --destructive-foreground: #FFFFFF;
 
-    --border: #EADCCC;
-    --input: #EADCCC;
-    --ring: #8A7058;
+    --border: #E6DED2;
+    --input: #E6DED2;
+    --ring: #4E6A55;
 
     --radius: 0.25rem;
 
-    /* Brand Tokens (from mockups and brand board) */
-    --brand-bg: #FDF7F2;
-    --brand-surface: #EADCCC;
+    /* Brand tokens, « lin et sauge » palette (20 novembre 2026), drawn from the brand board:
+       linen grounds, deep warm brown for text (never black), deep sage for every action and
+       nothing else, pale sage for one brand band. Terracotta left the interface. */
+    --brand-bg: #FBF8F3;
+    --brand-surface: #F1EBE2;
     /* Sage, deeper than the brand board value 9EA593 so the green shows. Under text, only as a light tint. */
-    --brand-announcement: #7A9A7B;
-    --brand-text: #5E5245;
-    --brand-primary: #8A7058;
+    --brand-text: #3F372F;
+    /* Secondary text: 5.5:1 on bg. */
+    --brand-muted: #6E6357;
+    /* Deep sage: buttons, selected states, links. White on it 6.0:1, on bg 5.6:1. */
+    --brand-primary: #4E6A55;
+    /* Pale sage: one brand band per page. Text on it 9.1:1. */
+    --brand-sage-soft: #DDE6DA;
+    /* Kept for the brand board only: no longer used in the interface. */
     --brand-terracotta: #CA7154;
     /* Darker terracotta for error messages: AA contrast on bg and white. */
     --brand-error: #9E4A30;
@@ -63,12 +70,13 @@
     font-weight: 400;
   }
 
-  /* Page and section titles in spaced capitals, as on the brand board. Names of outfits keep their
-     normal case, they read better small: the h3 of a card, and the h1 of a product page. */
+  /* Editorial titles: Playfair in its own case, tight, balanced. A word in <em> turns italic. */
   h1, h2 {
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: -0.01em;
     text-wrap: balance;
+  }
+  h1 em, h2 em {
+    font-style: italic;
   }
 }
 
@@ -95,8 +103,9 @@
 
   --color-brand-bg: var(--brand-bg);
   --color-brand-surface: var(--brand-surface);
-  --color-brand-announcement: var(--brand-announcement);
   --color-brand-text: var(--brand-text);
+  --color-brand-muted: var(--brand-muted);
+  --color-brand-sage-soft: var(--brand-sage-soft);
   --color-brand-primary: var(--brand-primary);
   --color-brand-terracotta: var(--brand-terracotta);
   --color-brand-error: var(--brand-error);
@@ -142,7 +151,7 @@
   transform: translate(-50%, -50%);
 }
 
-/* Visible keyboard focus everywhere (FK-11): taupe on cream is 4.35:1, above the 3:1 required for non-text. */
+/* Visible keyboard focus everywhere (FK-11): deep sage on linen is 5.6:1, above the 3:1 required for non-text. */
 :focus-visible {
   outline: 2px solid var(--brand-primary);
   outline-offset: 2px;
@@ -195,5 +204,33 @@
   to {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* A photo in a linked frame grows a little under the pointer. */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .fk-zoom img {
+    transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .fk-zoom:hover img {
+    transform: scale(1.03);
+  }
+}
+
+/* The hero photo settles once on load: a slow zoom out, the words rise after it. */
+@keyframes fk-settle {
+  from {
+    transform: scale(1.06);
+  }
+  to {
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .fk-settle {
+    animation: fk-settle 1.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .fk-rise-late {
+    animation: fk-rise 0.8s ease-out 0.35s both;
   }
 }

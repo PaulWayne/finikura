@@ -8,9 +8,12 @@ import { TestimonialsShowcase, type ShownTestimonial } from "./TestimonialsShowc
  * then gives the link and, when the customer sent no photo, the photo of the outfit. Medusa
  * decides what exists: a testimonial about an outfit no longer sold is not shown.
  */
+// The sample quotes shipped in Strapi start with this: they guide the shop, never reach a customer.
+const SAMPLE_QUOTE_PREFIX = "Exemple d'avis";
+
 export async function TestimonialsBlock({ block }: { block: TestimonialsBlockData }) {
   const resolved = await Promise.all(
-    block.items.map(async (item): Promise<ShownTestimonial | null> => {
+    block.items.filter((item) => !item.quote.trim().startsWith(SAMPLE_QUOTE_PREFIX)).map(async (item): Promise<ShownTestimonial | null> => {
       if (!item.productHandle) return { ...item, product: null };
       const product = await commerceService.getProductByHandle(item.productHandle);
       if (!product) return null;

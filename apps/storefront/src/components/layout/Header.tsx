@@ -4,6 +4,7 @@ import Link from "next/link";
 import { MobileMenuTrigger } from "./MobileMenuTrigger";
 import { messages } from "@/messages/fr";
 import { Logo } from "@/components/layout/Logo";
+import { DEPARTMENTS } from "@/lib/main-nav";
 
 interface HeaderProps {
   /** Cart button, rendered by the layout inside a Suspense boundary. */
@@ -19,30 +20,6 @@ export function Header({ cartSlot }: HeaderProps) {
         {/* Mobile menu hamburger button */}
         <MobileMenuTrigger />
 
-        {/* Desktop Left Navigation Links */}
-        <nav
-          aria-label="Navigation principale gauche"
-          className="hidden md:flex items-center space-x-7 text-xs font-medium tracking-[0.15em] uppercase"
-        >
-          <Link
-            href="/categorie/filles"
-            className="min-h-11 min-w-11 inline-flex items-center justify-center text-brand-text hover:underline underline-offset-4 transition-colors"
-          >
-            {messages.header.navGirls}
-          </Link>
-          <Link
-            href="/categorie/garcons"
-            className="min-h-11 min-w-11 inline-flex items-center justify-center text-brand-text hover:underline underline-offset-4 transition-colors"
-          >
-            {messages.header.navBoys}
-          </Link>
-          <Link
-            href="/#nouveautes"
-            className="min-h-11 min-w-11 inline-flex items-center justify-center text-brand-text hover:underline underline-offset-4 transition-colors"
-          >
-            {messages.header.navNew}
-          </Link>
-        </nav>
 
         </div>
 
@@ -77,6 +54,31 @@ export function Header({ cartSlot }: HeaderProps) {
           </div>
         </div>
       </div>
+
+      {/* Desktop departments: gender on top, age band under it */}
+      <nav
+        aria-label={messages.header.navCategoriesAria}
+        className="hidden md:flex items-start justify-center gap-10 lg:gap-14 border-t border-brand-surface py-2"
+      >
+        {DEPARTMENTS.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className="group min-h-11 min-w-11 flex flex-col items-center justify-center text-brand-text"
+          >
+            <span className="text-xs font-medium tracking-[0.15em] uppercase group-hover:underline underline-offset-4">
+              {item.label}
+            </span>
+            <span className="text-xs font-light mt-0.5">{item.ages}</span>
+          </Link>
+        ))}
+        <Link
+          href="/#nouveautes"
+          className="min-h-11 min-w-11 flex flex-col items-center justify-start pt-[7px] text-xs font-medium tracking-[0.15em] uppercase text-brand-text hover:underline underline-offset-4"
+        >
+          {messages.header.navNew}
+        </Link>
+      </nav>
     </header>
   );
 }

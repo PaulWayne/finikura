@@ -10,7 +10,7 @@ import { ReassuranceBlock } from "@/components/blocks/ReassuranceBlock";
 import { CategoryHandle } from "@/lib/commerce/types";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { IMAGE_FALLBACKS } from "@/lib/images";
-import { ageOptions, CATALOG_PAGE_SIZE, knownFilter, OCCASION_VALUES, shownCount } from "@/lib/catalog-filters";
+import { ageBand, ageFilterValues, ageOptions, CATALOG_PAGE_SIZE, knownFilter, OCCASION_VALUES, shownCount } from "@/lib/catalog-filters";
 import { ProductGrid } from "@/components/catalog/ProductGrid";
 import { BRAND_NAME, categoryTitle } from "@/lib/seo";
 import { breadcrumbJsonLd, faqJsonLd } from "@/lib/structured-data";
@@ -81,7 +81,7 @@ async function CategoryContent({
   ]);
 
   // Only the filters the page offers: an invented value shows the whole category (audit S5).
-  const age = knownFilter(resolvedSearchParams.age, ageOptions(allProducts));
+  const age = knownFilter(resolvedSearchParams.age, ageFilterValues(allProducts));
   const occasion = knownFilter(resolvedSearchParams.occasion, OCCASION_VALUES);
   const products =
     age || occasion ? await commerceService.getProducts({ categoryHandle: handle, age, occasion }) : allProducts;
@@ -90,6 +90,10 @@ async function CategoryContent({
   // Streaming has started, so the status stays 200 (Next 16 Cache Components);
   // a real 404 would need a proxy check, see FK-13 in BACKLOG.md.
   if (!category) notFound();
+
+  // A band of the main menu (« Petite fille, 3-6 ans ») names the page; the address for Google stays the category.
+  const band = ageBand(age);
+  const title = band ? messages.catalog.bandTitle(handle === "filles", band.value) : category.name;
 
   // FK-43: the first products only; the grid loads the next ones while scrolling.
   const shown = shownCount(voir, products.length);
@@ -130,7 +134,7 @@ async function CategoryContent({
           )}
           <div className="min-w-0 space-y-1">
             <h1 className="font-serif text-2xl md:text-4xl font-normal text-brand-text leading-tight">
-              {category.name}
+              {title}
             </h1>
             <p className="text-sm md:text-base text-brand-text leading-snug">{banner.text}</p>
           </div>
@@ -138,7 +142,7 @@ async function CategoryContent({
       ) : (
       <div className="text-center max-w-2xl mx-auto space-y-3">
         <h1 className="font-serif text-2xl md:text-4xl font-normal text-brand-text leading-tight">
-          {category.name}
+          {title}
         </h1>
         <p className="text-sm md:text-base text-brand-text font-light leading-relaxed">
           {category.description}

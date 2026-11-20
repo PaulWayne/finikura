@@ -1,0 +1,224 @@
+{
+  "id": "2026-11-14-00-44-53-campagne2",
+  "name": "Campagne2",
+  "createdAt": "2026-11-14T00:44:53.226Z",
+  "context": {
+    "device": "iphone",
+    "mode": "live local (Medusa et Strapi)",
+    "tester": "Paul",
+    "scope": "P0",
+    "branch": "recette-1-corrections",
+    "commit": "325a7ed",
+    "dirty": true
+  },
+  "results": {
+    "decouverte-catalogue/accueil": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:45:00.464Z"
+    },
+    "decouverte-catalogue/menu-filles": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:45:03.774Z"
+    },
+    "decouverte-catalogue/filtre-age": {
+      "status": "change",
+      "severity": null,
+      "observation": "Une petite demande si possible, quand on choisit une tranche d'age, est ce que cette tranche peut etre selectionnée sur les cards produits ?",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:46:59.705Z"
+    },
+    "decouverte-catalogue/fiche": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:47:34.879Z"
+    },
+    "choix-taille/guide": {
+      "status": "change",
+      "severity": null,
+      "observation": "la taille du tableau n'est pas fixe, souvent ça couvre toute la page, souvent c'est bien placée",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:49:15.314Z"
+    },
+    "choix-taille/question-taille": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:49:23.542Z"
+    },
+    "panier/ajout": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:49:34.641Z"
+    },
+    "panier/deuxieme": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:49:38.925Z"
+    },
+    "panier/quantite": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:49:59.112Z"
+    },
+    "panier/rechargement": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:50:04.893Z"
+    },
+    "panier/limite-stock": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:50:11.608Z"
+    },
+    "commande/erreurs": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:50:39.024Z"
+    },
+    "commande/telephone-invalide": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:51:46.708Z"
+    },
+    "commande/clavier": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:51:51.695Z"
+    },
+    "commande/valider": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:51:57.225Z"
+    },
+    "commande/memorise": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:52:07.042Z"
+    },
+    "commande/confirmation-autre-appareil": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:52:10.374Z"
+    },
+    "whatsapp-confirmation/ouvrir": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:52:39.876Z"
+    },
+    "whatsapp-confirmation/contenu": {
+      "status": "change",
+      "severity": null,
+      "observation": "c'est le bas du message qu'on voit en premier sur whats'app",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:53:24.877Z"
+    },
+    "whatsapp-confirmation/encodage": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:53:27.156Z"
+    },
+    "derniere-piece/deux-paniers": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:53:32.790Z"
+    },
+    "derniere-piece/premiere": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:53:34.058Z"
+    },
+    "derniere-piece/seconde": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:53:37.248Z"
+    },
+    "garde-fous/livraison": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:53:42.825Z"
+    },
+    "garde-fous/email": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:53:43.974Z"
+    },
+    "garde-fous/couleurs": {
+      "status": "ok",
+      "severity": null,
+      "observation": "",
+      "evidence": "",
+      "source": "manual",
+      "updatedAt": "2026-11-14T00:53:45.023Z"
+    }
+  }
+}

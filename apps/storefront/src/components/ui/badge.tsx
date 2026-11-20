@@ -16,7 +16,7 @@ function Badge({
         "inline-flex items-center rounded-sm px-2.5 py-0.5 text-[10px] font-medium tracking-[0.15em] uppercase shadow-xs select-none transition-colors",
         {
           // Accent colours fail AA as text backgrounds: light fill, brown text, coloured edge.
-          "bg-brand-terracotta/15 text-brand-text border-l-2 border-brand-terracotta": variant === "terracotta",
+          "bg-brand-sage-soft text-brand-text border-l-2 border-brand-primary": variant === "terracotta",
           "bg-brand-blue/20 text-brand-text border-l-2 border-brand-blue": variant === "blue",
           "bg-brand-primary text-brand-white": variant === "taupe",
           "bg-brand-surface text-brand-text": variant === "cream",

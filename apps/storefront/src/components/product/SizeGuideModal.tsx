@@ -130,7 +130,7 @@ export function SizeGuideModal({
 
           {/* Advice / Tip Box with Terracotta accent */}
           <div className="bg-brand-surface rounded-xl p-3.5 sm:p-4 flex items-start gap-3 border border-brand-surface/60">
-            <div className="w-8 h-8 rounded-full bg-brand-terracotta text-brand-white flex items-center justify-center shrink-0 mt-0.5">
+            <div className="w-8 h-8 rounded-full bg-brand-primary text-brand-white flex items-center justify-center shrink-0 mt-0.5">
               <Lightbulb className="w-4 h-4" />
             </div>
             <div className="flex flex-col min-w-0">

@@ -31,7 +31,7 @@ export function ProductDetails({ product }: { product: Product }) {
         </h2>
         <p className="text-base text-brand-text leading-relaxed">{product.description}</p>
         {/* Facts validated by the client for the whole collection; the cotton line gives way to the Medusa material. */}
-        <ul className="mt-3 space-y-1 text-sm text-brand-text list-disc pl-5 marker:text-brand-terracotta">
+        <ul className="mt-3 space-y-1 text-sm text-brand-text list-disc pl-5 marker:text-brand-primary">
           {!product.material && <li>{messages.product.factCotton}</li>}
           <li>{messages.product.factDesigned}</li>
           <li>{messages.product.factSmallBatch}</li>

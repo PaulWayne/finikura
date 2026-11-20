@@ -169,7 +169,7 @@ export function CartDrawer({ initialCart }: CartDrawerProps) {
         {/* Drawer Header */}
         <div className="px-5 sm:px-6 py-4 sm:py-5 border-b border-brand-surface flex items-center justify-between bg-brand-bg">
           <div className="flex items-center space-x-2.5">
-            <span className="w-2 h-2 rounded-full bg-brand-announcement" />
+            <span className="w-2 h-2 rounded-full bg-brand-primary" />
             <h2 className="font-serif text-xl font-semibold text-brand-text tracking-tight">
               {messages.cart.title}
             </h2>
@@ -224,7 +224,7 @@ export function CartDrawer({ initialCart }: CartDrawerProps) {
           {cart.items.length > 0 && (
             <div className="space-y-3 pt-2">
               <div className="flex items-start space-x-3 text-xs text-brand-text bg-brand-surface/40 p-3 rounded-xl border border-brand-surface">
-                <Bike className="w-4 h-4 text-brand-announcement shrink-0 mt-0.5" />
+                <Bike className="w-4 h-4 text-brand-text shrink-0 mt-0.5" />
                 <div>
                   <span className="font-medium">
                     {messages.cart.deliveryAssurance}

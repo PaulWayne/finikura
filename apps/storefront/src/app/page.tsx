@@ -40,6 +40,9 @@ export default async function HomePage() {
   const cardHandles = blocks.flatMap((b) => (b.type === "categoryCards" ? b.cards.map((card) => card.categoryHandle) : []));
   const occasionShortcuts = cardHandles.length > 0 ? await getOccasionShortcuts([...new Set(cardHandles)]) : [];
 
+  // One brand band per page: the last story band (baptêmes and fêtes) turns pale sage.
+  const lastExcerptIndex = blocks.map((b) => b.type).lastIndexOf("aboutExcerpt");
+
   return (
     <div className="space-y-10 md:space-y-16 pt-2 pb-4 md:py-8">
       <JsonLd data={storeJsonLd(settings.socialLinks)} />
@@ -52,6 +55,7 @@ export default async function HomePage() {
             collectionProductsMap={collectionProductsMap}
             occasionShortcuts={occasionShortcuts}
             reassuranceItems={settings.reassuranceItems}
+            sageBand={index === lastExcerptIndex}
           />
         </div>
       ))}

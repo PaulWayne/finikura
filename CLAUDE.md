@@ -54,7 +54,8 @@ Lancement : 1er décembre 2026. Cahier des charges : https://claude.ai/artifact/
 - Vérifier Medusa et Strapi dans la doc de la version installée, pas de mémoire.
 
 ## À ne pas faire
-- Afficher un tarif de livraison, ou promettre ce que la cliente n'a pas validé : délais, règle d'échange, matières, moyens de paiement.
+- Afficher un tarif de livraison, ou promettre ce que la cliente n'a pas validé : délais, règle d'échange, moyens de paiement.
+- Écrire « made in Europe » ou « vêtements européens » : les vêtements sont fabriqués en Asie. Validé par la cliente (15 novembre 2026) : « conçus en Europe », « 100 % coton ». Ne pas citer de marques concurrentes (Du Pareil au même, Petit Bateau…) : écrire « la qualité des grandes marques européennes ».
 - Ajouter une fonctionnalité absente du cahier des charges : on la met dans BACKLOG.md.
 - Mettre un secret dans le code. Les variables vont dans `.env.example`.
 - Pousser, ou créer des issues GitHub, sans accord.

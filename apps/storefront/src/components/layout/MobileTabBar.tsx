@@ -24,7 +24,7 @@ export function MobileTabBar({
   return (
     <nav
       aria-label="Navigation mobile principale"
-      className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-brand-bg/95 backdrop-blur-md border-t border-brand-surface shadow-[0_-2px_12px_rgba(94,82,69,0.06)] pb-safe"
+      className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-brand-bg/95 backdrop-blur-md border-t border-brand-surface shadow-[0_-2px_12px_rgba(63,55,47,0.06)] pb-safe"
     >
       <div className="flex justify-around items-center h-16 px-2">
         {/* Accueil */}

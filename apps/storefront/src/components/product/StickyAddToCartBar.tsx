@@ -17,7 +17,7 @@ export function StickyAddToCartBar({ visible, label, isAddedSuccess, disabled, o
       inert={!visible}
       className={`md:hidden fixed bottom-0 left-0 right-0 z-40 transition-transform duration-200 motion-reduce:transition-none ${
         visible ? "translate-y-0" : "translate-y-full"
-      } bg-brand-bg/95 backdrop-blur-md px-4 pt-3 pb-safe border-t border-brand-surface shadow-[0_-4px_20px_rgba(94,82,69,0.08)]`}
+      } bg-brand-bg/95 backdrop-blur-md px-4 pt-3 pb-safe border-t border-brand-surface shadow-[0_-4px_20px_rgba(63,55,47,0.08)]`}
     >
       <div className="max-w-[420px] mx-auto flex flex-col gap-2">
         <button

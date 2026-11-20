@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { messages } from "@/messages/fr";
-import { OCCASION_VALUES } from "@/lib/catalog-filters";
+import { ageBand, inAgeBand, OCCASION_VALUES } from "@/lib/catalog-filters";
 
 interface FilterChipsProps {
   categoryHandle: string;
@@ -37,6 +37,8 @@ export function FilterChips({
   selectedOccasion = "",
 }: FilterChipsProps) {
   const basePath = `/categorie/${categoryHandle}`;
+  // A band chosen in the main menu tints its sizes: one more tap narrows to a single size.
+  const band = ageBand(selectedAge);
   const ageOptions = [
     { label: messages.catalog.filterAllAges, value: "" },
     ...ages.map((age) => ({ label: age, value: age })),
@@ -50,6 +52,7 @@ export function FilterChips({
           {ageOptions.map((opt) => {
             const isActive =
               opt.value === "" ? !selectedAge : selectedAge === opt.value;
+            const isInBand = Boolean(band && opt.value && inAgeBand(opt.value, band));
             const targetUrl = buildQuery(
               basePath,
               opt.value || undefined,
@@ -64,7 +67,9 @@ export function FilterChips({
                 className={`min-h-11 min-w-11 inline-flex items-center justify-center px-4 py-1.5 rounded-full text-sm font-normal transition border select-none ${
                   isActive
                     ? "bg-brand-primary text-brand-white border-brand-primary"
-                    : "bg-brand-bg text-brand-text border-brand-text/30 hover:border-brand-primary"
+                    : isInBand
+                      ? "bg-brand-surface text-brand-text border-brand-primary"
+                      : "bg-brand-bg text-brand-text border-brand-text/30 hover:border-brand-primary"
                 }`}
               >
                 {opt.label}

@@ -1,3 +1,4 @@
+import { ageBand, inAgeBand } from "@/lib/catalog-filters";
 import "server-only";
 import {
   MedusaStoreCategory,
@@ -47,8 +48,11 @@ export function mapMedusaVariantToDomain(raw: MedusaStoreVariant): ProductVarian
  */
 export function hasAgeInStock(raw: MedusaStoreProduct, age: string): boolean {
   const wanted = age.trim().toLowerCase();
+  const band = ageBand(wanted);
   return (raw.variants ?? []).some(
-    (v) => v.title.trim().toLowerCase() === wanted && mapMedusaVariantToDomain(v).inStock,
+    (v) =>
+      (band ? inAgeBand(v.title, band) : v.title.trim().toLowerCase() === wanted) &&
+      mapMedusaVariantToDomain(v).inStock,
   );
 }
 

@@ -13,7 +13,7 @@ export function CtaBlock({ block, whatsappUrl }: { block: CtaBlockData; whatsapp
 
   return (
     <section className="max-w-[720px] mx-auto px-5 text-center" data-purpose="cta-block">
-      <h2 className="font-serif text-2xl md:text-3xl text-brand-text mb-3">{block.title}</h2>
+      <h2 className="font-serif text-[30px] md:text-5xl leading-tight text-brand-text mb-3">{block.title}</h2>
       {block.subtitle && <p className="text-base text-brand-text mb-6">{block.subtitle}</p>}
       {href && block.ctaText &&
         (isWhatsapp || /^https?:/.test(href) ? (

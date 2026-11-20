@@ -1,0 +1,447 @@
+{
+  "id": "2026-11-14-16-36-50-campagne-android1",
+  "name": "Campagne Android1",
+  "createdAt": "2026-11-14T16:36:50.665Z",
+  "context": {
+    "device": "android",
+    "mode": "live local (Medusa et Strapi)",
+    "tester": "Paul",
+    "scope": "all",
+    "branch": "recette-1-corrections",
+    "commit": "b6cc38e",
+    "dirty": true
+  },
+  "scenarioIds": [
+    "decouverte-catalogue",
+    "choix-taille",
+    "panier",
+    "commande",
+    "whatsapp-confirmation",
+    "partage-proche",
+    "bouton-flottant",
+    "derniere-piece",
+    "pages-introuvables",
+    "pages-editoriales",
+    "garde-fous"
+  ],
+  "passes": [
+    {
+      "number": 1,
+      "createdAt": "2026-11-14T16:36:50.665Z",
+      "replay": null,
+      "branch": "recette-1-corrections",
+      "commit": "b6cc38e",
+      "dirty": true,
+      "keys": null,
+      "results": {
+        "decouverte-catalogue/accueil": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T16:39:13.849Z"
+        },
+        "decouverte-catalogue/menu-filles": {
+          "status": "change",
+          "severity": null,
+          "observation": "Les filtres Tous les ages ; Toutes occasions sont soulignés,  à supprimer",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T16:40:45.959Z"
+        },
+        "decouverte-catalogue/filtre-age": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T16:41:31.047Z"
+        },
+        "decouverte-catalogue/filtre-carte": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T16:42:12.810Z"
+        },
+        "decouverte-catalogue/fiche": {
+          "status": "change",
+          "severity": null,
+          "observation": "Le prix d'affiche mais on est obligé de scroller pour voir les tailles, à voir comment faire si possible",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T16:44:08.827Z"
+        },
+        "decouverte-catalogue/coup-de-coeur": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T16:44:38.158Z"
+        },
+        "choix-taille/taille-epuisee": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T16:45:00.892Z"
+        },
+        "choix-taille/stock-faible": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T16:45:19.691Z"
+        },
+        "choix-taille/guide": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T16:45:32.145Z"
+        },
+        "choix-taille/calculateur": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T16:46:54.675Z"
+        },
+        "choix-taille/question-taille": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T16:47:26.645Z"
+        },
+        "panier/ajout": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T16:48:24.593Z"
+        },
+        "panier/deuxieme": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T16:48:51.080Z"
+        },
+        "panier/quantite": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T16:50:01.026Z"
+        },
+        "panier/rechargement": {
+          "status": "ko",
+          "severity": null,
+          "observation": "Je crois que j'ai perdu le panier sur android, à checker",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T16:51:26.515Z"
+        },
+        "panier/limite-stock": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T16:51:46.315Z"
+        },
+        "commande/erreurs": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T16:52:21.926Z"
+        },
+        "commande/telephone-invalide": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T16:53:52.496Z"
+        },
+        "commande/clavier": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T16:54:01.372Z"
+        },
+        "commande/barre-fixe": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T16:54:46.438Z"
+        },
+        "commande/valider": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T16:55:45.144Z"
+        },
+        "commande/memorise": {
+          "status": "change",
+          "severity": null,
+          "observation": "Souvent en arrivant sur la page confirmation de commande, on est scrollé par defaut vers le bas de page...\nQuand le panier est vide, on clique sur le bouton Decouvrir la collection ça ne fait rien, à minima on arrive sur l'accueil sinon sur une campagne ouverte",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T16:58:28.794Z"
+        },
+        "commande/confirmation-autre-appareil": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T17:00:13.322Z"
+        },
+        "whatsapp-confirmation/ouvrir": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T17:00:45.627Z"
+        },
+        "whatsapp-confirmation/contenu": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T17:00:54.720Z"
+        },
+        "whatsapp-confirmation/encodage": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T17:00:59.554Z"
+        },
+        "partage-proche/bouton": {
+          "status": "ok",
+          "severity": null,
+          "observation": "Est ce que mettre le prix sur ce lien est une bonne idée ?",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T17:02:36.969Z"
+        },
+        "bouton-flottant/present": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T17:03:20.812Z"
+        },
+        "bouton-flottant/ouvre": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T17:03:24.625Z"
+        },
+        "derniere-piece/deux-paniers": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T17:04:07.653Z"
+        },
+        "derniere-piece/premiere": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T17:04:52.236Z"
+        },
+        "derniere-piece/seconde": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T17:05:42.154Z"
+        },
+        "pages-introuvables/produit-inconnu": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T17:06:16.364Z"
+        },
+        "pages-introuvables/campagne-inconnue": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T17:06:17.486Z"
+        },
+        "pages-editoriales/parcourir": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T17:07:18.308Z"
+        },
+        "pages-editoriales/promesses": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T17:07:28.686Z"
+        },
+        "garde-fous/livraison": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T17:07:35.638Z"
+        },
+        "garde-fous/email": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T17:07:37.903Z"
+        },
+        "garde-fous/couleurs": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T17:07:41.485Z"
+        }
+      }
+    },
+    {
+      "number": 2,
+      "createdAt": "2026-11-14T17:34:13.937Z",
+      "replay": "problems",
+      "branch": "recette-1-corrections",
+      "commit": "8cad845",
+      "dirty": true,
+      "keys": [
+        "decouverte-catalogue/menu-filles",
+        "decouverte-catalogue/fiche",
+        "panier/rechargement",
+        "commande/memorise"
+      ],
+      "results": {
+        "decouverte-catalogue/menu-filles": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T17:34:21.859Z"
+        },
+        "decouverte-catalogue/fiche": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T17:34:27.497Z"
+        },
+        "panier/rechargement": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T17:34:37.698Z"
+        },
+        "commande/memorise": {
+          "status": "ok",
+          "severity": null,
+          "observation": "",
+          "evidence": "",
+          "captures": [],
+          "source": "manual",
+          "updatedAt": "2026-11-14T17:34:56.331Z"
+        }
+      }
+    }
+  ],
+  "position": {
+    "scenarioId": "commande",
+    "stepId": null
+  }
+}

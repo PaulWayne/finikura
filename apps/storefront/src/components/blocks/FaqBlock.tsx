@@ -6,7 +6,7 @@ export function FaqBlock({ block }: { block: FaqBlockData }) {
   if (block.items.length === 0) return null;
   return (
     <section className="max-w-[720px] mx-auto px-5" data-purpose="faq-block">
-      {block.title && <h2 className="font-serif text-2xl md:text-3xl text-brand-text mb-6">{block.title}</h2>}
+      {block.title && <h2 className="font-serif text-[30px] md:text-5xl leading-tight text-brand-text mb-6">{block.title}</h2>}
       <div className="divide-y divide-brand-text/15 border-y border-brand-text/15">
         {block.items.map((item) => (
           <details key={item.question} className="group py-4">

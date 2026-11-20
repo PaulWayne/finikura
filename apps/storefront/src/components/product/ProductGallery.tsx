@@ -168,12 +168,12 @@ export function ProductGallery({ images, productTitle, productHandle, wornCaptio
             aria-label={isWishlisted ? messages.favorites.removeAria : messages.favorites.addAria}
             aria-pressed={isWishlisted}
             onClick={toggleWishlist}
-            className="absolute top-3 right-3 z-20 w-11 h-11 rounded-full bg-brand-bg/90 backdrop-blur-xs flex items-center justify-center text-brand-text hover:text-brand-terracotta shadow-xs transition active:scale-90 cursor-pointer"
+            className="absolute top-3 right-3 z-20 w-11 h-11 rounded-full bg-brand-bg/90 backdrop-blur-xs flex items-center justify-center text-brand-text hover:text-brand-primary shadow-xs transition active:scale-90 cursor-pointer"
           >
             <Heart
               className={`w-4 h-4 transition ${
                 isWishlisted
-                  ? "fill-brand-terracotta text-brand-text"
+                  ? "fill-brand-text text-brand-text"
                   : "text-brand-text"
               }`}
             />

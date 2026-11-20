@@ -11,7 +11,7 @@ export function OrderConfirmationLimited({ orderNumber }: { orderNumber: string 
   return (
     <div className="w-full max-w-[560px] mx-auto px-4 py-6 sm:py-10">
       <div className="w-full bg-brand-white rounded-2xl border border-brand-surface/60 p-6 sm:p-10 flex flex-col items-center text-center">
-        <div className="inline-flex items-center gap-2 bg-brand-announcement/20 px-4 py-1.5 rounded-full mb-6">
+        <div className="inline-flex items-center gap-2 bg-brand-sage-soft px-4 py-1.5 rounded-full mb-6">
           <CheckCircle2 aria-hidden className="w-4 h-4 text-brand-text" />
           <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-text">
             {t.badgeStatus}

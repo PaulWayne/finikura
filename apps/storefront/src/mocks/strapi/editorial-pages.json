@@ -14,16 +14,16 @@
           "eyebrow": "Notre histoire",
           "title": "Tout a commencé par des demandes de proches",
           "text": "Je vis en Europe. Pendant des années, des parents et des proches restés au Mali m'ont demandé la même chose : acheter des vêtements pour leurs enfants et les leur envoyer.\n\nCes demandes sont devenues de plus en plus fréquentes. Les vêtements voyageaient dans les valises de la famille, et il fallait attendre le prochain retour pour habiller les enfants.\n\nPlutôt que de répondre à chaque demande une par une, j'ai créé une marque pour toutes ces familles : Fini Kura. Ces vêtements vous attendent désormais à Bamako.\n\nMariam, fondatrice de Fini Kura",
-          "image_alt": "Vêtements d'enfants Fini Kura",
+          "image_alt": "Robes et chemises d'enfants Fini Kura",
           "image": {
             "url": "/mock-media/tout-a-commence-par-des-demandes-de-proches.jpg",
-            "alternativeText": "Vêtements d'enfants Fini Kura"
+            "alternativeText": "Robes et chemises d'enfants Fini Kura"
           }
         },
         {
           "__component": "blocks.rich-text",
           "title": "Habits neufs",
-          "body": "En bambara, « fini kura » veut dire « habits neufs ». C'est ce que nous voulons offrir à chaque enfant : la joie de porter un vêtement neuf, beau et bien fait, à l'école comme aux fêtes religieuses, aux baptêmes et aux anniversaires.\n\nNotre première collection habille les filles et les garçons de 3 à 14 ans, avec des robes, des ensembles, des pantalons et des chemises. Nous commençons à Bamako. Nous voulons ensuite faire connaître Fini Kura dans tout le Mali, puis en Afrique, et un jour au-delà."
+          "body": "Notre envie : offrir à chaque enfant la joie de porter un vêtement neuf, beau et bien fait, à l'école comme aux fêtes religieuses, aux baptêmes et aux anniversaires.\n\nNotre première collection habille les filles et les garçons de 3 à 14 ans, avec des robes, des ensembles, des pantalons et des chemises. Nous commençons à Bamako."
         },
         {
           "__component": "blocks.values",
@@ -39,7 +39,7 @@
             },
             {
               "title": "Les petites séries",
-              "description": "Peu de pièces par modèle : peu d'enfants porteront la même tenue."
+              "description": "Des collections en petites séries, choisies pièce par pièce."
             }
           ]
         },

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { messages } from "@/messages/fr";
+import { DEPARTMENTS } from "@/lib/main-nav";
 
 const CATEGORY = "font-serif text-lg font-medium text-brand-text hover:underline underline-offset-4 transition min-h-11 flex items-center justify-between";
 const SECONDARY = "font-normal text-brand-text hover:underline underline-offset-4 transition min-h-11 flex items-center";
@@ -17,17 +18,18 @@ export function MobileMenuLinks({ onNavigate }: { onNavigate: () => void }) {
   const h = messages.header;
   return (
     <nav className="mt-6 flex flex-col space-y-4">
-      <Link href="/categorie/filles" onClick={onNavigate} className={CATEGORY}>
-        <span>{h.mobileNavGirls}</span>
-        <Chevron />
-      </Link>
-      <Link href="/categorie/garcons" onClick={onNavigate} className={CATEGORY}>
-        <span>{h.mobileNavBoys}</span>
-        <Chevron />
-      </Link>
+      {DEPARTMENTS.map((item) => (
+        <Link key={item.href} href={item.href} onClick={onNavigate} className={CATEGORY}>
+          <span>
+            {item.label}
+            <span className="font-sans text-sm font-light ml-2">{item.ages}</span>
+          </span>
+          <Chevron />
+        </Link>
+      ))}
       <Link href="/#nouveautes" onClick={onNavigate} className={CATEGORY}>
         <span>{h.navNew}</span>
-        <span className="text-[10px] font-sans px-2.5 py-0.5 rounded-full bg-brand-terracotta/15 text-brand-text font-medium tracking-wider uppercase">
+        <span className="text-[10px] font-sans px-2.5 py-0.5 rounded-full bg-brand-sage-soft text-brand-text font-medium tracking-wider uppercase">
           {h.mobileNewBadge}
         </span>
       </Link>

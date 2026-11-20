@@ -7,7 +7,7 @@ export function ValuesBlock({ block }: { block: ValuesBlockData }) {
     <section className="bg-brand-surface py-12 md:py-16" data-purpose="values-block">
       <div className="max-w-[1100px] mx-auto px-5">
         {block.title && (
-          <h2 className="font-serif text-2xl md:text-3xl text-brand-text text-center mb-10">{block.title}</h2>
+          <h2 className="font-serif text-[30px] md:text-5xl leading-tight text-brand-text text-center mb-10">{block.title}</h2>
         )}
         <ul className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {block.items.map((item) => (

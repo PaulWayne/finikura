@@ -1,0 +1,35 @@
+{
+  "id": "2026-11-14-17-33-37-rejeu-des-problemes",
+  "name": "Rejeu des problèmes",
+  "createdAt": "2026-11-14T17:33:37.437Z",
+  "context": {
+    "device": "android",
+    "mode": "live local (Medusa et Strapi)",
+    "tester": "Paul",
+    "scope": "all",
+    "branch": "recette-1-corrections",
+    "commit": "8cad845",
+    "dirty": true
+  },
+  "scenarioIds": [
+    "decouverte-catalogue",
+    "panier",
+    "commande"
+  ],
+  "passes": [
+    {
+      "number": 1,
+      "createdAt": "2026-11-14T17:33:37.437Z",
+      "replay": null,
+      "branch": "recette-1-corrections",
+      "commit": "8cad845",
+      "dirty": true,
+      "keys": null,
+      "results": {}
+    }
+  ],
+  "position": {
+    "scenarioId": "decouverte-catalogue",
+    "stepId": "accueil"
+  }
+}

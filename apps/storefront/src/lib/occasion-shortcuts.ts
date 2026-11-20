@@ -18,19 +18,23 @@ const OCCASIONS = [
 ];
 
 /**
- * One shortcut per category and occasion that has outfits, pictured by its first outfit:
- * Medusa decides what exists, an empty occasion gives no shortcut.
+ * One shortcut per category and occasion that has outfits, pictured by one of its outfits:
+ * Medusa decides what exists, an empty occasion gives no shortcut. An outfit tagged for several
+ * occasions pictures only the first one, so two circles never show the same photo when another fits.
  */
 export async function getOccasionShortcuts(categoryHandles: CategoryHandle[]): Promise<OccasionShortcut[]> {
   const pairs = categoryHandles.flatMap((categoryHandle) => OCCASIONS.map((occasion) => ({ categoryHandle, occasion })));
-  const found = await Promise.all(
-    pairs.map(async ({ categoryHandle, occasion }): Promise<OccasionShortcut | null> => {
-      const products = await commerceService.getProducts({ categoryHandle, occasion: occasion.value });
-      const pictured = products.find((p) => p.thumbnail);
-      return pictured
-        ? { categoryHandle, occasion: occasion.value, occasionLabel: occasion.label, imageUrl: pictured.thumbnail }
-        : null;
-    }),
+  const lists = await Promise.all(
+    pairs.map(({ categoryHandle, occasion }) => commerceService.getProducts({ categoryHandle, occasion: occasion.value })),
   );
-  return found.filter((shortcut): shortcut is OccasionShortcut => shortcut !== null);
+  const used = new Set<string>();
+  const shortcuts: OccasionShortcut[] = [];
+  pairs.forEach(({ categoryHandle, occasion }, i) => {
+    const pictured = lists[i].filter((p) => p.thumbnail);
+    const pick = pictured.find((p) => !used.has(p.thumbnail)) ?? pictured[0];
+    if (!pick) return;
+    used.add(pick.thumbnail);
+    shortcuts.push({ categoryHandle, occasion: occasion.value, occasionLabel: occasion.label, imageUrl: pick.thumbnail });
+  });
+  return shortcuts;
 }
