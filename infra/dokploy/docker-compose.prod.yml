@@ -232,15 +232,15 @@ services:
       - traefik.http.routers.finikura-front.rule=Host(`${DOMAIN}`)
       - traefik.http.routers.finikura-front.entrypoints=websecure
       - traefik.http.routers.finikura-front.tls.certresolver=letsencrypt
-      - traefik.http.routers.finikura-front.middlewares=finikura-secure,finikura-front-inflight,finikura-front-limit
+      - traefik.http.routers.finikura-front.middlewares=finikura-secure,finikura-front-limit
       # Requests per address (audit S6). A page is about 40 requests, and in Mali hundreds of phones
       # of one mobile network share an address: during a TikTok live, a crowd arrives at once behind
       # a few addresses. The limits are a safety valve against one runaway script, set far above
-      # that crowd: 400 requests a second on average, 3000 in a burst, 400 at the same time.
+      # that crowd: 400 requests a second on average, 3000 in a burst. No cap on requests in flight:
+      # measured on 20 November 2026, 40 phones behind one address already hold 500 at the same time.
       - traefik.http.middlewares.finikura-front-limit.ratelimit.average=${FRONT_LIMIT_PER_SECOND:-400}
       - traefik.http.middlewares.finikura-front-limit.ratelimit.period=1s
       - traefik.http.middlewares.finikura-front-limit.ratelimit.burst=${FRONT_LIMIT_BURST:-3000}
-      - traefik.http.middlewares.finikura-front-inflight.inflightreq.amount=${FRONT_LIMIT_IN_FLIGHT:-400}
       # What changes something (cart, order: every POST) is counted apart: 600 a minute per address,
       # 300 in a burst. Room for a live's crowd behind one address, not for a script filling
       # Medusa with carts all day.

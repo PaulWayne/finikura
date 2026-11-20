@@ -72,11 +72,23 @@ Traefik limite ce qu'une même adresse peut envoyer au site. Les valeurs sont tr
 | Ce qui est limité | Valeur par défaut | Variable |
 |---|---|---|
 | Requêtes sur le site | 400 par seconde, 3 000 en rafale | `FRONT_LIMIT_PER_SECOND`, `FRONT_LIMIT_BURST` |
-| Requêtes en même temps | 400 | `FRONT_LIMIT_IN_FLIGHT` |
 | Ce qui modifie quelque chose (panier, commande) | 600 par minute, 300 en rafale | `FRONT_LIMIT_POST_PER_MINUTE`, `FRONT_LIMIT_POST_BURST` |
 | Connexion à l'admin Medusa et à l'admin Strapi | 10 par minute, 5 en rafale | fixe |
 
 Au-delà, Traefik répond 429 et la limite se lève toute seule. Avant un gros live, ces valeurs se relèvent dans l'onglet Environment, sans toucher au code. Ces limites n'arrêtent pas une attaque massive venue de milliers d'adresses : c'est le rôle de Cloudflare, ci-dessous.
+
+### Capacité mesurée (20 novembre 2026)
+
+Mesures prises depuis le VPS lui-même (2 processeurs, 8 Go), site en production :
+
+| Ce qui est servi | Débit | Remarque |
+|---|---|---|
+| Pages (accueil, rayon, fiche) | 30 à 38 par seconde | le processeur du site est alors à fond |
+| Fichiers statiques (CSS, JS) | environ 180 par seconde | servis et compressés par le site lui-même |
+
+Une nouvelle visiteuse charge une page et une vingtaine de fichiers statiques : le serveur en accueille donc 6 à 8 par seconde, soit environ 400 par minute. Au-delà, les pages ralentissent (file d'attente) au lieu d'échouer : aucune erreur jusqu'à 200 connexions simultanées. Les commandes n'ont pas été testées en charge sur le site en ligne (15 commandes simultanées passées en local).
+
+Pour monter plus haut, dans l'ordre : Cloudflare (il sert les fichiers statiques et les images à la place du serveur), puis un VPS à 4 processeurs.
 
 ## Cloudflare devant le site (à faire, non branché)
 
