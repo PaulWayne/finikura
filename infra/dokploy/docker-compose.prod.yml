@@ -95,7 +95,7 @@ services:
       - traefik.http.middlewares.finikura-auth-limit.ratelimit.average=10
       - traefik.http.middlewares.finikura-auth-limit.ratelimit.period=1m
       - traefik.http.middlewares.finikura-auth-limit.ratelimit.burst=5
-      - traefik.http.middlewares.finikura-auth-limit.ratelimit.sourcecriterion.ipstrategy.depth=${CLOUDFLARE_HOPS:-0}
+      - traefik.http.middlewares.finikura-auth-limit.ratelimit.sourcecriterion.ipstrategy.depth=${CLOUDFLARE_HOPS:-1}
       - traefik.http.routers.finikura-medusa-http.rule=Host(`api.${DOMAIN}`)
       - traefik.http.routers.finikura-medusa-http.entrypoints=web
       - traefik.http.routers.finikura-medusa-http.middlewares=finikura-https
@@ -171,7 +171,7 @@ services:
       - traefik.http.middlewares.finikura-auth-limit.ratelimit.average=10
       - traefik.http.middlewares.finikura-auth-limit.ratelimit.period=1m
       - traefik.http.middlewares.finikura-auth-limit.ratelimit.burst=5
-      - traefik.http.middlewares.finikura-auth-limit.ratelimit.sourcecriterion.ipstrategy.depth=${CLOUDFLARE_HOPS:-0}
+      - traefik.http.middlewares.finikura-auth-limit.ratelimit.sourcecriterion.ipstrategy.depth=${CLOUDFLARE_HOPS:-1}
       - traefik.http.routers.finikura-strapi-http.rule=Host(`cms.${DOMAIN}`)
       - traefik.http.routers.finikura-strapi-http.entrypoints=web
       - traefik.http.routers.finikura-strapi-http.middlewares=finikura-https
@@ -215,9 +215,10 @@ services:
       ORDER_LIMIT_IP_DAY: ${ORDER_LIMIT_IP_DAY:-}
       # These counts are kept in Redis: they survive a restart or a redeploy of the site (audit S7).
       ORDER_LIMIT_REDIS_URL: redis://redis:6379
-      # Cloudflare in front of Traefik: 1 = the customer's address is read one step before
-      # Cloudflare's, here and in the request limits below. 0 = no proxy in front (direct access).
-      ORDER_LIMIT_PROXY_HOPS: ${CLOUDFLARE_HOPS:-0}
+      # Cloudflare is in front of Traefik since 20 November 2026: the customer's address is read one
+      # step before Cloudflare's, here and in the request limits below. Traefik trusts Cloudflare's
+      # ranges (/etc/dokploy/traefik/traefik.yml). CLOUDFLARE_HOPS=0 only if Cloudflare is removed.
+      ORDER_LIMIT_PROXY_HOPS: ${CLOUDFLARE_HOPS:-1}
       # 1 = rebuild the site at the next restart of its container (otherwise only a redeploy does).
       FORCE_REBUILD: ${FORCE_REBUILD:-}
       # IndexNow: Bing (ChatGPT, Copilot) told when pages change; empty = off.
@@ -246,7 +247,7 @@ services:
       - traefik.http.middlewares.finikura-front-limit.ratelimit.average=${FRONT_LIMIT_PER_SECOND:-400}
       - traefik.http.middlewares.finikura-front-limit.ratelimit.period=1s
       - traefik.http.middlewares.finikura-front-limit.ratelimit.burst=${FRONT_LIMIT_BURST:-3000}
-      - traefik.http.middlewares.finikura-front-limit.ratelimit.sourcecriterion.ipstrategy.depth=${CLOUDFLARE_HOPS:-0}
+      - traefik.http.middlewares.finikura-front-limit.ratelimit.sourcecriterion.ipstrategy.depth=${CLOUDFLARE_HOPS:-1}
       # What changes something (cart, order: every POST) is counted apart: 600 a minute per address,
       # 300 in a burst. Room for a live's crowd behind one address, not for a script filling
       # Medusa with carts all day.
@@ -258,7 +259,7 @@ services:
       - traefik.http.middlewares.finikura-front-post-limit.ratelimit.average=${FRONT_LIMIT_POST_PER_MINUTE:-600}
       - traefik.http.middlewares.finikura-front-post-limit.ratelimit.period=1m
       - traefik.http.middlewares.finikura-front-post-limit.ratelimit.burst=${FRONT_LIMIT_POST_BURST:-300}
-      - traefik.http.middlewares.finikura-front-post-limit.ratelimit.sourcecriterion.ipstrategy.depth=${CLOUDFLARE_HOPS:-0}
+      - traefik.http.middlewares.finikura-front-post-limit.ratelimit.sourcecriterion.ipstrategy.depth=${CLOUDFLARE_HOPS:-1}
       - traefik.http.routers.finikura-front-http.rule=Host(`${DOMAIN}`)
       - traefik.http.routers.finikura-front-http.entrypoints=web
       - traefik.http.routers.finikura-front-http.middlewares=finikura-https

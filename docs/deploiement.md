@@ -90,7 +90,9 @@ Une nouvelle visiteuse charge une page et une vingtaine de fichiers statiques : 
 
 Pour monter plus haut, dans l'ordre : Cloudflare (il sert les fichiers statiques et les images à la place du serveur), puis un VPS à 4 processeurs.
 
-## Cloudflare devant le site (à faire, non branché)
+## Cloudflare devant le site (actif depuis le 20 novembre 2026)
+
+État : domaine actif sur Cloudflare, six noms en proxy, messagerie en direct. Fait sur le VPS : plages de Cloudflare déclarées dans Traefik (sauvegarde `traefik.yml.avant-cloudflare`). Reste à faire : déployer `CLOUDFLARE_HOPS` à 1, ajouter la règle de cache pour `/_next/image`, puis fermer l'accès direct (ufw). La procédure d'origine est gardée ci-dessous.
 
 Le DNS du domaine est chez Hostinger. Passer par Cloudflare (offre gratuite) met son réseau entre les visiteurs et le VPS : il absorbe les attaques par saturation et cache l'adresse du serveur.
 
@@ -102,7 +104,7 @@ Le DNS du domaine est chez Hostinger. Passer par Cloudflare (offre gratuite) met
 4. Chez Hostinger, remplacer les serveurs de noms par les deux que Cloudflare indique. La bascule prend de quelques minutes à 24 heures, sans coupure.
 5. Sur le VPS, une fois la bascule faite :
    - dans `/etc/dokploy/traefik/traefik.yml`, déclarer les plages d'adresses de Cloudflare (https://www.cloudflare.com/ips/) dans `entryPoints.web.forwardedHeaders.trustedIPs` et `entryPoints.websecure.forwardedHeaders.trustedIPs`, puis redémarrer Traefik. Traefik garde alors l'adresse du visiteur que Cloudflare lui transmet ;
-   - mettre `CLOUDFLARE_HOPS=1` (onglet Environment, puis redéployer). Les limites de requêtes et la limite de commandes lisent alors l'adresse du visiteur, une position avant celle de Cloudflare. Sans ces deux réglages, tous les visiteurs seraient comptés ensemble, comme une seule adresse. Vérifié en local le 20 novembre 2026 : le compte se fait bien par visiteur, même s'il falsifie ses en-têtes ;
+   - `CLOUDFLARE_HOPS` vaut 1 par défaut dans le fichier de production (0 seulement si Cloudflare est retiré). Les limites de requêtes et la limite de commandes lisent alors l'adresse du visiteur, une position avant celle de Cloudflare. Sans ces deux réglages, tous les visiteurs seraient comptés ensemble, comme une seule adresse. Vérifié en local le 20 novembre 2026 : le compte se fait bien par visiteur, même s'il falsifie ses en-têtes ;
    - si tout est en proxy, n'autoriser les ports 80 et 443 que depuis les plages de Cloudflare (`ufw`), pour que personne ne contourne Cloudflare en visant le VPS directement. Un accès direct serait de toute façon compté dans un seul lot par les limites.
 6. Dans Cloudflare : activer « Bot Fight Mode ». En cas d'attaque, « Under Attack Mode » ajoute une vérification avant chaque visite.
 7. Vérifier : le site, les deux admins, l'envoi d'une photo, une commande de test, l'e-mail d'alerte.
