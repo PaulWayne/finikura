@@ -96,11 +96,13 @@ Ce qui a bloqué Medusa, dans l'ordre, et ce qu'il faut retenir pour un prochain
 
 L'ordre réel est donc : déployer (Medusa échoue), initialiser Garage, reporter sa clé, redéployer, lancer les seeds, reporter la clé publique de Medusa, redéployer.
 
-## Étape 8 : comptes et statistiques
+## Étape 8 : comptes et statistiques (faite le 20 novembre 2026)
 
-- [ ] Medusa : invitation envoyée à votre adresse, vous choisissez le mot de passe.
-- [ ] Strapi : vous créez le compte Super Admin sur `https://cms.DOMAINE/admin`.
-- [ ] Umami : vous changez tout de suite le mot de passe par défaut, puis on crée le site « Fini Kura » et son identifiant va dans `UMAMI_WEBSITE_ID`.
+- [x] Strapi : compte Super Admin créé.
+- [x] Medusa : compte admin créé par invitation e-mail (`pnpm invite:admin`).
+- [x] Umami : mot de passe par défaut changé, site « Fini Kura » créé, identifiant dans `UMAMI_WEBSITE_ID`, visites enregistrées.
+- [x] Umami : entonnoir « Visite, panier, commande » créé (page `/`, `ajout-panier`, `commande`).
+- [x] Boîte d'envoi : `contact@fini-kura.fr`, expéditeur « Fini Kura ».
 
 ## Étape 9 : vérifications finales
 
@@ -112,8 +114,8 @@ L'ordre réel est donc : déployer (Medusa échoue), initialiser Garage, reporte
 - [x] L'accueil, les catégories, une fiche et Notre histoire s'affichent ; leurs photos viennent de `media.fini-kura.fr`, aucune image cassée.
 - [x] Les réponses portent `Strict-Transport-Security` et `Content-Security-Policy`, sans `X-Powered-By`.
 - [x] Medusa parle au vrai Redis.
-- [ ] Une modification publiée dans Strapi apparaît sur le site.
-- [ ] Une commande de test passe jusqu'au message WhatsApp, puis elle est annulée.
+- [x] Une modification publiée dans Strapi apparaît sur le site, sans redéploiement.
+- [x] Commande de test FK-1 passée, alerte e-mail reçue en une seconde, stock réservé puis libéré à l'annulation dans l'admin. Message WhatsApp non envoyé.
 
 Mesuré après la mise en route : 1,6 Go de mémoire utilisés sur 7,7 ; 16 Go de disque sur 96.
 
