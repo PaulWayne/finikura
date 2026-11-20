@@ -144,15 +144,25 @@ export async function recordOrder(phone: string, ip: string | null, now = Date.n
 }
 
 /**
- * The customer's address as seen by Traefik, the proxy in front of the site. Traefik sets
- * X-Real-Ip itself; in X-Forwarded-For only the last entry is added by Traefik, the first ones
- * can be written by anyone, so they are never used.
+ * The customer's address. Traefik, the proxy in front of the site, writes X-Real-Ip and the last
+ * entry of X-Forwarded-For itself: both are the address that reached Traefik. The entries before
+ * it can be written by anyone, so they are never used on their own.
+ *
+ * Behind Cloudflare (ORDER_LIMIT_PROXY_HOPS=1), the address that reaches Traefik is Cloudflare's.
+ * Traefik trusts Cloudflare's ranges and keeps what Cloudflare added: X-Forwarded-For then reads
+ * « ..., customer, Cloudflare ». The customer is one entry before the last: without this, every
+ * customer of a live would be counted as one address.
  */
 export function clientAddress(headers: Headers): string | null {
+  const hops = Number(process.env.ORDER_LIMIT_PROXY_HOPS);
+  const forwarded = headers.get("x-forwarded-for")?.split(",").map((s) => s.trim()).filter(Boolean) ?? [];
+  if (Number.isInteger(hops) && hops > 0) {
+    // Fewer entries than expected: the request did not come through the proxy, the last entry is its sender.
+    return forwarded[forwarded.length - 1 - hops] ?? forwarded[forwarded.length - 1] ?? null;
+  }
   const real = headers.get("x-real-ip")?.trim();
   if (real) return real;
-  const forwarded = headers.get("x-forwarded-for")?.split(",").map((s) => s.trim()).filter(Boolean);
-  return forwarded?.length ? forwarded[forwarded.length - 1] : null;
+  return forwarded.length ? forwarded[forwarded.length - 1] : null;
 }
 
 /** Tests only. */

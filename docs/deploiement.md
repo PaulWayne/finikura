@@ -101,9 +101,9 @@ Le DNS du domaine est chez Hostinger. Passer par Cloudflare (offre gratuite) met
 3. SSL/TLS : mode **Full (strict)**. Les certificats Let's Encrypt de Traefik continuent de se renouveler (défi HTTP, que Cloudflare laisse passer).
 4. Chez Hostinger, remplacer les serveurs de noms par les deux que Cloudflare indique. La bascule prend de quelques minutes à 24 heures, sans coupure.
 5. Sur le VPS, une fois la bascule faite :
-   - dans `/etc/dokploy/traefik/traefik.yml`, déclarer les plages d'adresses de Cloudflare dans `entryPoints.web.forwardedHeaders.trustedIPs` et `entryPoints.websecure.forwardedHeaders.trustedIPs`, puis redémarrer Traefik. Sans cela, Traefik voit l'adresse de Cloudflare à la place de celle du visiteur, et les limites ci-dessus, comme la limite de commandes, compteraient tous les visiteurs ensemble ;
-   - passer le critère des limites sur l'adresse transmise : `ratelimit.sourcecriterion.ipstrategy.depth=1` sur `finikura-front-limit`, `finikura-front-post-limit` et `finikura-auth-limit` ;
-   - si tout est en proxy, n'autoriser les ports 80 et 443 que depuis les plages de Cloudflare (`ufw`), pour que personne ne contourne Cloudflare en visant le VPS directement.
+   - dans `/etc/dokploy/traefik/traefik.yml`, déclarer les plages d'adresses de Cloudflare (https://www.cloudflare.com/ips/) dans `entryPoints.web.forwardedHeaders.trustedIPs` et `entryPoints.websecure.forwardedHeaders.trustedIPs`, puis redémarrer Traefik. Traefik garde alors l'adresse du visiteur que Cloudflare lui transmet ;
+   - mettre `CLOUDFLARE_HOPS=1` (onglet Environment, puis redéployer). Les limites de requêtes et la limite de commandes lisent alors l'adresse du visiteur, une position avant celle de Cloudflare. Sans ces deux réglages, tous les visiteurs seraient comptés ensemble, comme une seule adresse. Vérifié en local le 20 novembre 2026 : le compte se fait bien par visiteur, même s'il falsifie ses en-têtes ;
+   - si tout est en proxy, n'autoriser les ports 80 et 443 que depuis les plages de Cloudflare (`ufw`), pour que personne ne contourne Cloudflare en visant le VPS directement. Un accès direct serait de toute façon compté dans un seul lot par les limites.
 6. Dans Cloudflare : activer « Bot Fight Mode ». En cas d'attaque, « Under Attack Mode » ajoute une vérification avant chaque visite.
 7. Vérifier : le site, les deux admins, l'envoi d'une photo, une commande de test, l'e-mail d'alerte.
 
