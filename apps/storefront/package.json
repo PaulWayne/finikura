@@ -14,6 +14,7 @@
     "@hookform/resolvers": "^7.0.5",
     "@medusajs/js-sdk": "2.22.6",
     "clsx": "^2.1.1",
+    "ioredis": "^6.0.0",
     "lucide-react": "^1.72.0",
     "next": "16.4.6",
     "react": "19.3.0",

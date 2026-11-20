@@ -35,6 +35,8 @@ interface CheckoutFieldProps {
   error?: string;
   type?: "text" | "tel";
   autoComplete: string;
+  /** Longest text the field accepts: the browser stops the typing there. */
+  maxLength: number;
   className?: string;
   /** Fixed text before the input, for example the +223 country code. */
   prefix?: string;
@@ -51,6 +53,7 @@ export function CheckoutField({
   error,
   type = "text",
   autoComplete,
+  maxLength,
   className = "",
   prefix,
 }: CheckoutFieldProps) {
@@ -70,6 +73,7 @@ export function CheckoutField({
           inputMode={type === "tel" ? "tel" : undefined}
           {...registration}
           autoComplete={autoComplete}
+          maxLength={maxLength}
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? errorId : undefined}
           placeholder={placeholder}

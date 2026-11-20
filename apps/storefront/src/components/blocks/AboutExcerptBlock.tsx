@@ -42,7 +42,8 @@ export function AboutExcerptBlock({ block, tone = "surface" }: AboutExcerptBlock
           )}
           <h2 className="font-serif italic text-[32px] leading-[1.1] md:text-5xl md:leading-[1.06] xl:text-[56px] text-balance mb-5">{block.title}</h2>
           <p className="text-base md:text-lg leading-relaxed max-w-[44ch] mb-7">{block.content}</p>
-          <div className="flex flex-wrap gap-2.5 sm:gap-3">
+          {/* One column per button, all of the same width: stacked on a phone, side by side from a tablet up. */}
+          <div className="grid gap-2.5 sm:gap-3 sm:grid-flow-col sm:auto-cols-fr sm:w-max">
             {[
               { text: block.ctaText, link: block.ctaLink },
               { text: block.secondaryCtaText, link: block.secondaryCtaLink },
@@ -52,7 +53,7 @@ export function AboutExcerptBlock({ block, tone = "surface" }: AboutExcerptBlock
                 <a
                   key={cta.link}
                   href={cta.link}
-                  className="min-h-12 flex-1 min-w-max sm:flex-none inline-flex items-center justify-center px-7 py-3.5 rounded-[4px] bg-brand-primary text-brand-white hover:bg-brand-text font-medium text-xs tracking-[0.15em] uppercase whitespace-nowrap active:scale-[0.98] transition"
+                  className="min-h-12 inline-flex items-center justify-center px-7 py-3.5 rounded-[4px] bg-brand-primary text-brand-white hover:bg-brand-text font-medium text-xs tracking-[0.15em] uppercase whitespace-nowrap active:scale-[0.98] transition"
                 >
                   {cta.text}
                 </a>

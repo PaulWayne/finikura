@@ -14,7 +14,7 @@ export function HeroBlock({ block }: HeroBlockProps) {
   const heroSrc = block.imageUrl || IMAGE_FALLBACKS.hero;
   const secondary = Boolean(block.secondaryCtaText && block.secondaryCtaLink);
   const buttonBase =
-    "min-h-12 flex-1 min-w-max sm:flex-none inline-flex items-center justify-center px-5 sm:px-7 py-3.5 rounded-[4px] font-medium text-xs tracking-[0.1em] sm:tracking-[0.15em] uppercase whitespace-nowrap transition duration-200 active:scale-[0.98]";
+    "min-h-12 inline-flex items-center justify-center px-5 sm:px-7 py-3.5 rounded-[4px] font-medium text-xs tracking-[0.1em] sm:tracking-[0.15em] uppercase whitespace-nowrap transition duration-200 active:scale-[0.98]";
 
   return (
     <section className="relative w-screen ml-[calc(50%-50vw)] -mt-2 md:-mt-8 h-[clamp(540px,72svh,600px)] md:h-[clamp(480px,62vh,600px)] overflow-hidden bg-brand-surface">
@@ -47,8 +47,9 @@ export function HeroBlock({ block }: HeroBlockProps) {
           <p className="text-[15px] xl:text-base leading-snug xl:leading-relaxed mb-5 xl:mb-8 max-w-[38ch] text-brand-white/95">
             {block.subtitle}
           </p>
-          {/* Side by side when both labels fit, one under the other when they do not: a label is never cut. */}
-          <div className="flex flex-wrap xl:flex-nowrap xl:w-max gap-2.5 sm:gap-3">
+          {/* One column per button, all of the same width: stacked on a phone, side by side from a tablet
+              up. A label is never cut. */}
+          <div className="grid gap-2.5 sm:gap-3 sm:grid-flow-col sm:auto-cols-fr sm:w-max">
             <a
               href={block.ctaLink}
               // Umami reads these attributes itself (FK-39): which hero, and which of its buttons.

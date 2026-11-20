@@ -371,6 +371,8 @@ export const messages = {
     phoneInvalid: "Saisissez les 8 chiffres de votre numéro, par exemple 76 12 34 56",
     phoneNotMalian: "Ce numéro ne ressemble pas à un numéro malien : vérifiez le premier chiffre",
     neighborhoodRequired: "Indiquez votre quartier à Bamako",
+    tooLong: "Ce texte est trop long : raccourcissez-le.",
+    plainTextOnly: "Utilisez seulement des lettres, des chiffres et la ponctuation courante.",
     landmarksRequired: "Indiquez un repère, par exemple : près de la pharmacie, portail vert",
   },
   footer: {

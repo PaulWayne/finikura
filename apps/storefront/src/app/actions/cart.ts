@@ -42,12 +42,20 @@ export async function getCartAction(): Promise<Cart> {
   return commerceService.getCart(await readCartId());
 }
 
+// A server action can be called with anything, not only what the buttons send: ids must look like
+// Medusa ids and a quantity is a small whole number.
+const MAX_QUANTITY = 20;
+const isId = (value: unknown): value is string => typeof value === "string" && /^[A-Za-z0-9_-]{1,64}$/.test(value);
+const isQuantity = (value: unknown, min: number): value is number =>
+  typeof value === "number" && Number.isInteger(value) && value >= min && value <= MAX_QUANTITY;
+
 export async function addToCartAction(
   variantId: string,
   quantity = 1
 ): Promise<{ success: boolean; cart: Cart; addedItem?: CartItem; error?: string }> {
   const cartId = await readCartId();
   try {
+    if (!isId(variantId) || !isQuantity(quantity, 1)) throw new CustomerError(messages.errors.addToCart);
     const result = await commerceService.addItemToCart(cartId, variantId, quantity);
     if (result.cart.id !== cartId) await writeCartId(result.cart.id);
     return { success: true, cart: result.cart, addedItem: result.addedItem };
@@ -67,6 +75,7 @@ export async function updateQuantityAction(
   const cartId = await readCartId();
   try {
     if (!cartId) throw new CustomerError(messages.errors.cartNotFound);
+    if (!isId(itemId) || !isQuantity(quantity, 0)) throw new CustomerError(messages.errors.updateCart);
     return { success: true, cart: await commerceService.updateCartItemQuantity(cartId, itemId, quantity) };
   } catch (err) {
     return {
@@ -83,6 +92,7 @@ export async function removeItemAction(
   const cartId = await readCartId();
   try {
     if (!cartId) throw new CustomerError(messages.errors.cartNotFound);
+    if (!isId(itemId)) throw new CustomerError(messages.errors.updateCart);
     return { success: true, cart: await commerceService.removeItemFromCart(cartId, itemId) };
   } catch (err) {
     return {
@@ -106,7 +116,7 @@ export async function placeOrderAction(
 
   const { fullName, phone, neighborhood, deliveryLandmarks } = validation.data;
   const ip = clientAddress(await headers());
-  if (isOrderLimitReached(phone, ip)) {
+  if (await isOrderLimitReached(phone, ip)) {
     console.warn("[order limit] refused", { phone: phone.slice(-4), ip });
     return { success: false, error: messages.errors.tooManyOrders };
   }
@@ -116,7 +126,7 @@ export async function placeOrderAction(
       { fullName, phone },
       { neighborhood, deliveryLandmarks }
     );
-    recordOrder(phone, ip);
+    await recordOrder(phone, ip);
     await writeCartId(null);
     await rememberOrder(order.id);
     updateTag(CACHE_TAGS.catalog); // stock changed

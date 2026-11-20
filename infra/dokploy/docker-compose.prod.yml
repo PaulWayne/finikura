@@ -160,6 +160,16 @@ services:
       - traefik.http.routers.finikura-strapi.entrypoints=websecure
       - traefik.http.routers.finikura-strapi.tls.certresolver=letsencrypt
       - traefik.http.routers.finikura-strapi.middlewares=finikura-secure
+      # Admin sign-in and password reset: at most 10 tries a minute per address (audit S2), on top
+      # of Strapi's own limit.
+      - traefik.http.routers.finikura-strapi-auth.rule=Host(`cms.${DOMAIN}`) && Method(`POST`) && (PathPrefix(`/admin/login`) || PathPrefix(`/admin/forgot-password`) || PathPrefix(`/admin/reset-password`) || PathPrefix(`/admin/register`))
+      - traefik.http.routers.finikura-strapi-auth.entrypoints=websecure
+      - traefik.http.routers.finikura-strapi-auth.tls.certresolver=letsencrypt
+      - traefik.http.routers.finikura-strapi-auth.middlewares=finikura-secure,finikura-auth-limit
+      - traefik.http.routers.finikura-strapi-auth.service=finikura-strapi
+      - traefik.http.middlewares.finikura-auth-limit.ratelimit.average=10
+      - traefik.http.middlewares.finikura-auth-limit.ratelimit.period=1m
+      - traefik.http.middlewares.finikura-auth-limit.ratelimit.burst=5
       - traefik.http.routers.finikura-strapi-http.rule=Host(`cms.${DOMAIN}`)
       - traefik.http.routers.finikura-strapi-http.entrypoints=web
       - traefik.http.routers.finikura-strapi-http.middlewares=finikura-https
@@ -180,6 +190,7 @@ services:
     depends_on:
       medusa: { condition: service_healthy }
       strapi: { condition: service_healthy }
+      redis: { condition: service_healthy }
     environment:
       COMMERCE_SOURCE: live
       CONTENT_SOURCE: live
@@ -200,6 +211,8 @@ services:
       ORDER_LIMIT_PHONE_DAY: ${ORDER_LIMIT_PHONE_DAY:-}
       ORDER_LIMIT_IP_15MIN: ${ORDER_LIMIT_IP_15MIN:-}
       ORDER_LIMIT_IP_DAY: ${ORDER_LIMIT_IP_DAY:-}
+      # These counts are kept in Redis: they survive a restart or a redeploy of the site (audit S7).
+      ORDER_LIMIT_REDIS_URL: redis://redis:6379
       # 1 = rebuild the site at the next restart of its container (otherwise only a redeploy does).
       FORCE_REBUILD: ${FORCE_REBUILD:-}
       # IndexNow: Bing (ChatGPT, Copilot) told when pages change; empty = off.
@@ -219,7 +232,26 @@ services:
       - traefik.http.routers.finikura-front.rule=Host(`${DOMAIN}`)
       - traefik.http.routers.finikura-front.entrypoints=websecure
       - traefik.http.routers.finikura-front.tls.certresolver=letsencrypt
-      - traefik.http.routers.finikura-front.middlewares=finikura-secure
+      - traefik.http.routers.finikura-front.middlewares=finikura-secure,finikura-front-inflight,finikura-front-limit
+      # Requests per address (audit S6). A page is about 40 requests, and in Mali hundreds of phones
+      # of one mobile network share an address: during a TikTok live, a crowd arrives at once behind
+      # a few addresses. The limits are a safety valve against one runaway script, set far above
+      # that crowd: 400 requests a second on average, 3000 in a burst, 400 at the same time.
+      - traefik.http.middlewares.finikura-front-limit.ratelimit.average=${FRONT_LIMIT_PER_SECOND:-400}
+      - traefik.http.middlewares.finikura-front-limit.ratelimit.period=1s
+      - traefik.http.middlewares.finikura-front-limit.ratelimit.burst=${FRONT_LIMIT_BURST:-3000}
+      - traefik.http.middlewares.finikura-front-inflight.inflightreq.amount=${FRONT_LIMIT_IN_FLIGHT:-400}
+      # What changes something (cart, order: every POST) is counted apart: 600 a minute per address,
+      # 300 in a burst. Room for a live's crowd behind one address, not for a script filling
+      # Medusa with carts all day.
+      - traefik.http.routers.finikura-front-post.rule=Host(`${DOMAIN}`) && Method(`POST`)
+      - traefik.http.routers.finikura-front-post.entrypoints=websecure
+      - traefik.http.routers.finikura-front-post.tls.certresolver=letsencrypt
+      - traefik.http.routers.finikura-front-post.middlewares=finikura-secure,finikura-front-post-limit
+      - traefik.http.routers.finikura-front-post.service=finikura-front
+      - traefik.http.middlewares.finikura-front-post-limit.ratelimit.average=${FRONT_LIMIT_POST_PER_MINUTE:-600}
+      - traefik.http.middlewares.finikura-front-post-limit.ratelimit.period=1m
+      - traefik.http.middlewares.finikura-front-post-limit.ratelimit.burst=${FRONT_LIMIT_POST_BURST:-300}
       - traefik.http.routers.finikura-front-http.rule=Host(`${DOMAIN}`)
       - traefik.http.routers.finikura-front-http.entrypoints=web
       - traefik.http.routers.finikura-front-http.middlewares=finikura-https

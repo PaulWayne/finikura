@@ -25,7 +25,9 @@ export default defineConfig({
     // Mock mode: no Medusa or Strapi needed. Port 3300 leaves the dev server (3100) alone.
     command: `pnpm exec next build && pnpm exec next start -p ${PORT}`,
     url: `http://localhost:${PORT}`,
-    env: { COMMERCE_SOURCE: "mock", CONTENT_SOURCE: "mock", CATALOG_PAGE_SIZE: "4", ORDER_LIMIT_PHONE_15MIN: "1" },
+    // ORDER_LIMIT_REDIS_URL empty: the order counts stay in the memory of this server, so a run never
+    // inherits the counts of the previous one (nor those of the local dev site).
+    env: { COMMERCE_SOURCE: "mock", CONTENT_SOURCE: "mock", CATALOG_PAGE_SIZE: "4", ORDER_LIMIT_PHONE_15MIN: "1", ORDER_LIMIT_REDIS_URL: "" },
     reuseExistingServer: false,
     timeout: 180_000,
   },

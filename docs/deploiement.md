@@ -60,10 +60,40 @@ Comptez environ 2 Go : Medusa 500 à 700 Mo, Strapi 400 à 600 Mo, Next 300 à 5
    - une visite du site apparaît dans Umami en moins d'une minute, et le site ne crée aucun cookie de statistiques.
 
 ## Limite de commandes
-Un même numéro de téléphone peut passer 3 commandes en 15 minutes et 10 en 24 heures, une même adresse IP 10 et 40 (plusieurs téléphones d'un même réseau mobile partagent souvent une adresse). Au-delà, la cliente voit un message qui l'invite à réessayer plus tard ou à écrire sur WhatsApp. Les valeurs se changent dans l'onglet Environment, sans toucher au code : `ORDER_LIMIT_PHONE_15MIN`, `ORDER_LIMIT_PHONE_DAY`, `ORDER_LIMIT_IP_15MIN`, `ORDER_LIMIT_IP_DAY`. Les compteurs repartent de zéro au redémarrage du site.
+Un même numéro de téléphone peut passer 3 commandes en 15 minutes et 10 en 24 heures, une même adresse IP 60 et 400. La limite par adresse est large exprès : au Mali, des centaines de téléphones d'un même réseau mobile partagent une adresse, et un live TikTok en amène beaucoup en même temps. Au-delà, la cliente voit un message qui l'invite à réessayer plus tard ou à écrire sur WhatsApp. Les valeurs se changent dans l'onglet Environment, sans toucher au code : `ORDER_LIMIT_PHONE_15MIN`, `ORDER_LIMIT_PHONE_DAY`, `ORDER_LIMIT_IP_15MIN`, `ORDER_LIMIT_IP_DAY`. Les compteurs sont gardés dans Redis (`ORDER_LIMIT_REDIS_URL`) : ils survivent à un redémarrage ou à un redéploiement du site. Si Redis ne répond pas, le site compte en mémoire et aucune commande n'est refusée pour cette raison.
 
 ## Redémarrage du site
 Un redémarrage du conteneur du site (panne, `docker restart`) reprend la construction existante : le site revient en quelques secondes. Un redéploiement crée un nouveau conteneur et reconstruit le site (1 à 3 minutes). Pour forcer une reconstruction sans redéployer, mettez `FORCE_REBUILD=1` dans l'onglet Environment.
+
+## Limites de requêtes (audit S6)
+
+Traefik limite ce qu'une même adresse peut envoyer au site. Les valeurs sont très larges, parce qu'au Mali des centaines de téléphones d'un même réseau mobile partagent une adresse, et qu'un live TikTok amène une foule en quelques secondes derrière peu d'adresses. Ce sont des soupapes contre un script emballé, pas un filtre : elles ne doivent jamais gêner une vente en live.
+
+| Ce qui est limité | Valeur par défaut | Variable |
+|---|---|---|
+| Requêtes sur le site | 400 par seconde, 3 000 en rafale | `FRONT_LIMIT_PER_SECOND`, `FRONT_LIMIT_BURST` |
+| Requêtes en même temps | 400 | `FRONT_LIMIT_IN_FLIGHT` |
+| Ce qui modifie quelque chose (panier, commande) | 600 par minute, 300 en rafale | `FRONT_LIMIT_POST_PER_MINUTE`, `FRONT_LIMIT_POST_BURST` |
+| Connexion à l'admin Medusa et à l'admin Strapi | 10 par minute, 5 en rafale | fixe |
+
+Au-delà, Traefik répond 429 et la limite se lève toute seule. Avant un gros live, ces valeurs se relèvent dans l'onglet Environment, sans toucher au code. Ces limites n'arrêtent pas une attaque massive venue de milliers d'adresses : c'est le rôle de Cloudflare, ci-dessous.
+
+## Cloudflare devant le site (à faire, non branché)
+
+Le DNS du domaine est chez Hostinger. Passer par Cloudflare (offre gratuite) met son réseau entre les visiteurs et le VPS : il absorbe les attaques par saturation et cache l'adresse du serveur.
+
+1. Créer un compte Cloudflare, ajouter `fini-kura.fr`. Cloudflare recopie les enregistrements DNS : vérifier qu'il a bien `@`, `www`, `api`, `cms`, `stats`, `media`, et les enregistrements de la messagerie Hostinger (MX, SPF, DKIM), qui restent en « DNS only ».
+2. Passer en proxy (nuage orange) : `@`, `www`, `media`, `stats`. Pour `api` et `cms` (les admins), deux choix :
+   - proxy aussi : le serveur est entièrement caché, mais un envoi de fichier est limité à 100 Mo (vidéos produit) ;
+   - « DNS only » : pas de limite d'envoi, mais l'adresse du VPS reste visible par ces deux noms.
+3. SSL/TLS : mode **Full (strict)**. Les certificats Let's Encrypt de Traefik continuent de se renouveler (défi HTTP, que Cloudflare laisse passer).
+4. Chez Hostinger, remplacer les serveurs de noms par les deux que Cloudflare indique. La bascule prend de quelques minutes à 24 heures, sans coupure.
+5. Sur le VPS, une fois la bascule faite :
+   - dans `/etc/dokploy/traefik/traefik.yml`, déclarer les plages d'adresses de Cloudflare dans `entryPoints.web.forwardedHeaders.trustedIPs` et `entryPoints.websecure.forwardedHeaders.trustedIPs`, puis redémarrer Traefik. Sans cela, Traefik voit l'adresse de Cloudflare à la place de celle du visiteur, et les limites ci-dessus, comme la limite de commandes, compteraient tous les visiteurs ensemble ;
+   - passer le critère des limites sur l'adresse transmise : `ratelimit.sourcecriterion.ipstrategy.depth=1` sur `finikura-front-limit`, `finikura-front-post-limit` et `finikura-auth-limit` ;
+   - si tout est en proxy, n'autoriser les ports 80 et 443 que depuis les plages de Cloudflare (`ufw`), pour que personne ne contourne Cloudflare en visant le VPS directement.
+6. Dans Cloudflare : activer « Bot Fight Mode ». En cas d'attaque, « Under Attack Mode » ajoute une vérification avant chaque visite.
+7. Vérifier : le site, les deux admins, l'envoi d'une photo, une commande de test, l'e-mail d'alerte.
 
 ## Revalidation du cache
 Medusa (via un subscriber) et Strapi (via l'eventHub) appellent `http://storefront:3100/api/revalidate` par le réseau interne, avec `REVALIDATE_SECRET`. Ce secret doit être le même pour les trois services, ce que garantit la variable unique dans Dokploy.

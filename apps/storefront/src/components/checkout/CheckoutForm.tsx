@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertCircle, MapPin, Phone, User } from "lucide-react";
 import type { Cart } from "@/lib/commerce/types";
-import { checkoutSchema, CheckoutFormData } from "@/lib/validation/checkout";
+import { CHECKOUT_LIMITS, checkoutSchema, CheckoutFormData } from "@/lib/validation/checkout";
 import { placeOrderAction } from "@/app/actions/cart";
 import { formatPhoneInput } from "@/lib/phone";
 import { messages } from "@/messages/fr";
@@ -117,6 +117,7 @@ export function CheckoutForm({ cart, children }: CheckoutFormProps) {
         registration={register("fullName")}
         error={errors.fullName?.message}
         autoComplete="name"
+        maxLength={CHECKOUT_LIMITS.fullName}
       />
       <CheckoutField
         id="phone"
@@ -132,6 +133,7 @@ export function CheckoutForm({ cart, children }: CheckoutFormProps) {
         })}
         error={errors.phone?.message}
         autoComplete="tel-national"
+        maxLength={CHECKOUT_LIMITS.phone}
         prefix="+223"
         className="tracking-wide"
       />
@@ -144,6 +146,7 @@ export function CheckoutForm({ cart, children }: CheckoutFormProps) {
         registration={register("neighborhood")}
         error={errors.neighborhood?.message}
         autoComplete="address-line1"
+        maxLength={CHECKOUT_LIMITS.neighborhood}
       />
 
       {/* Delivery landmarks: required, with a terracotta alert */}
@@ -159,6 +162,7 @@ export function CheckoutForm({ cart, children }: CheckoutFormProps) {
             rows={2}
             {...register("deliveryLandmarks")}
             autoComplete="address-line2"
+            maxLength={CHECKOUT_LIMITS.deliveryLandmarks}
             aria-invalid={landmarksError ? true : undefined}
             aria-describedby={landmarksError ? "deliveryLandmarks-error" : undefined}
             placeholder={messages.checkout.landmarksPlaceholder}

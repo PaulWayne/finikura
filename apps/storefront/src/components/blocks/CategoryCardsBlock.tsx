@@ -54,7 +54,7 @@ export function CategoryCardsBlock({ block, occasionShortcuts = [] }: CategoryCa
                 <span className="font-serif text-[26px] md:text-4xl leading-[1.12] mt-1.5 md:mt-2 text-balance">
                   {card.tagline || card.title}
                 </span>
-                <span className="mt-4 md:mt-5 min-h-12 inline-flex items-center justify-center px-7 rounded-[4px] bg-brand-white text-brand-text group-hover:bg-brand-bg font-medium text-xs tracking-[0.15em] uppercase transition group-active:scale-[0.98]">
+                <span className="mt-4 md:mt-5 min-h-12 min-w-[13.5rem] inline-flex items-center justify-center px-7 rounded-[4px] bg-brand-white text-brand-text group-hover:bg-brand-bg font-medium text-xs tracking-[0.15em] uppercase transition group-active:scale-[0.98]">
                   {card.ctaText}
                 </span>
               </span>
