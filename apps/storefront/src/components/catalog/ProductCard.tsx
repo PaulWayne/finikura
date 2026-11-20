@@ -89,7 +89,7 @@ export function ProductCard({ product, showCategoryBadge = false, preferredAge, 
 
   return (
     <article
-      className="group flex flex-col transition duration-300 md:hover:-translate-y-0.5 md:hover:shadow-[0_8px_24px_rgba(63,55,47,0.10)] rounded-xl md:rounded-2xl bg-brand-white border border-brand-surface overflow-hidden shadow-[0_1px_3px_rgba(63,55,47,0.06)]"
+      className="group h-full flex flex-col transition duration-300 md:hover:-translate-y-0.5 md:hover:shadow-[0_8px_24px_rgba(63,55,47,0.10)] rounded-xl md:rounded-2xl bg-brand-white border border-brand-surface overflow-hidden shadow-[0_1px_3px_rgba(63,55,47,0.06)]"
       data-purpose="product-card"
     >
       <div className="fk-zoom relative w-full aspect-[4/5] overflow-hidden bg-brand-surface">
@@ -189,16 +189,14 @@ export function ProductCard({ product, showCategoryBadge = false, preferredAge, 
         </div>
       )}
 
-      <Link href={href} className="block px-2.5 pt-2.5 pb-3 md:px-4 md:pt-3.5 md:pb-4">
-        {product.subtitle && (
-          <p className="text-[10px] md:text-[11px] uppercase tracking-[0.14em] text-brand-primary font-medium line-clamp-1">
-            {product.subtitle}
-          </p>
-        )}
-        <h3 className="font-serif normal-case tracking-normal text-[15px] md:text-xl text-brand-text leading-snug line-clamp-2 mt-0.5 group-hover:underline underline-offset-4">
+      <Link href={href} className="flex flex-1 flex-col px-2.5 pt-2.5 pb-3 md:px-4 md:pt-3.5 md:pb-4">
+        <p className="text-[10px] md:text-[11px] uppercase tracking-[0.14em] text-brand-primary font-medium line-clamp-1">
+          {product.subtitle || "\u00a0"}
+        </p>
+        <h3 className="font-serif normal-case tracking-normal text-[15px] md:text-xl text-brand-text leading-snug line-clamp-2 min-h-[2lh] mt-0.5 group-hover:underline underline-offset-4">
           {product.title}
         </h3>
-        <p className="text-sm md:text-base font-medium text-brand-text mt-1 whitespace-nowrap">
+        <p className="text-sm md:text-base font-medium text-brand-text mt-auto pt-1 whitespace-nowrap">
           {isSoldOut
             ? messages.product.soldOut
             : preferredVariant
