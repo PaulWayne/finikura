@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { contentService } from "@/lib/content";
 import { messages } from "@/messages/fr";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/structured-data";
 import { SizeGuideWithAdvisor } from "@/components/size-guide/SizeGuideWithAdvisor";
 
 const t = messages.sizeGuidePage;
@@ -19,6 +21,7 @@ export default async function GuideDesTaillesPage() {
 
   return (
     <div className="pt-6 md:pt-28 pb-16 max-w-[900px] mx-auto px-1 md:px-5 space-y-10 md:space-y-12">
+      <JsonLd data={breadcrumbJsonLd([{ name: t.breadcrumbTitle, path: "/guide-des-tailles" }])} />
       <header className="text-center">
         <h1 className="font-serif text-3xl md:text-4xl text-brand-text mb-4">{t.breadcrumbTitle}</h1>
         <p className="text-base text-brand-text">{t.intro}</p>

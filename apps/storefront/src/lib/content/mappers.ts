@@ -181,6 +181,9 @@ export function mapStrapiBlockToDomain(raw: StrapiRawBlock): ContentBlock | null
 const mapBlocks = (blocks: StrapiRawBlock[] | null | undefined): ContentBlock[] =>
   (blocks ?? []).map(mapStrapiBlockToDomain).filter((b): b is ContentBlock => b !== null);
 
+const positiveDays = (value: number | null | undefined): number | null =>
+  typeof value === "number" && Number.isInteger(value) && value > 0 ? value : null;
+
 export function mapStrapiGlobalSettingsToDomain(raw: StrapiGlobalSettings | null): GlobalSettings {
   const number = (raw?.whatsapp_number ?? "").replace(/\D/g, "");
   return {
@@ -189,6 +192,10 @@ export function mapStrapiGlobalSettingsToDomain(raw: StrapiGlobalSettings | null
     whatsappUrl: number ? `https://wa.me/${number}` : "",
     // Enabled unless explicitly unticked in Strapi (null on entries created before the field).
     showWhatsAppButton: raw?.whatsapp_floating_button !== false && !!number,
+    founderName: raw?.founder_name?.trim() ?? "",
+    founderRole: raw?.founder_role?.trim() ?? "",
+    exchangeDays: positiveDays(raw?.exchange_days),
+    deliveryMaxDays: positiveDays(raw?.delivery_max_days),
     // The WhatsApp link always uses whatsapp_number, never a second copy of it.
     socialLinks: (raw?.social_links ?? [])
       .map((s) => ({

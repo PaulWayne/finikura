@@ -12,18 +12,18 @@
         {
           "__component": "blocks.image-text",
           "eyebrow": "Notre histoire",
-          "title": "Tout a commencé par des demandes de proches",
-          "text": "Je vis en Europe. Pendant des années, des parents et des proches restés au Mali m'ont demandé la même chose : acheter des vêtements pour leurs enfants et les leur envoyer.\n\nCes demandes sont devenues de plus en plus fréquentes. Les vêtements voyageaient dans les valises de la famille, et il fallait attendre le prochain retour pour habiller les enfants.\n\nPlutôt que de répondre à chaque demande une par une, j'ai créé une marque pour toutes ces familles : Fini Kura. Ces vêtements vous attendent désormais à Bamako.\n\nMariam, fondatrice de Fini Kura",
-          "image_alt": "Robes et chemises d'enfants Fini Kura",
+          "title": "Tout a commencé dans une valise",
+          "text": "Je vis en Europe. Pendant des années, des parents et des proches restés au Mali m'ont demandé la même chose : des vêtements pour leurs enfants.\n\nJe choisissais les tenues, et elles partaient dans la valise de celui qui rentrait au pays. À Bamako, les enfants attendaient ce retour. Il fallait patienter jusqu'au prochain voyage, même quand la fête approchait.\n\nLes demandes sont devenues trop nombreuses pour une valise. Alors j'ai créé Fini Kura, pour toutes ces familles. Les vêtements sont maintenant à Bamako, et plus personne n'attend le retour de quelqu'un pour habiller son enfant.\n\nMariam, fondatrice de Fini Kura",
+          "image_alt": "Une valise ouverte remplie de vêtements d'enfants pliés, une robe fleurie posée dessus, et un petit paquet « Pour Papy »",
           "image": {
-            "url": "/mock-media/tout-a-commence-par-des-demandes-de-proches.jpg",
-            "alternativeText": "Robes et chemises d'enfants Fini Kura"
+            "url": "/mock-media/valise-vetements-enfants.jpg",
+            "alternativeText": "Une valise ouverte remplie de vêtements d'enfants pliés, une robe fleurie posée dessus, et un petit paquet « Pour Papy »"
           }
         },
         {
           "__component": "blocks.rich-text",
           "title": "Habits neufs",
-          "body": "Notre envie : offrir à chaque enfant la joie de porter un vêtement neuf, beau et bien fait, à l'école comme aux fêtes religieuses, aux baptêmes et aux anniversaires.\n\nNotre première collection habille les filles et les garçons de 3 à 14 ans, avec des robes, des ensembles, des pantalons et des chemises. Nous commençons à Bamako."
+          "body": "Fini kura, c'est la veille de fête : la tenue posée près du lit, et l'enfant qui demande encore une fois s'il peut l'essayer.\n\nC'est cette joie que nous voulons offrir, à l'école comme à la Tabaski, aux baptêmes et aux anniversaires. Notre première collection habille les filles et les garçons de 3 à 14 ans, avec des robes, des ensembles, des pantalons et des chemises. Nous commençons à Bamako."
         },
         {
           "__component": "blocks.values",
@@ -31,27 +31,27 @@
           "items": [
             {
               "title": "La qualité",
-              "description": "Des vêtements 100 % coton, conçus en Europe, avec la qualité des grandes marques européennes."
+              "description": "Du 100 % coton, doux sur la peau, conçu en Europe avec la qualité des grandes marques européennes."
             },
             {
               "title": "L'élégance",
-              "description": "Des tenues modernes pour le quotidien et pour les grands jours."
+              "description": "Des tenues modernes, pour que votre enfant se sente beau le lundi à l'école comme le jour de la fête."
             },
             {
               "title": "Les petites séries",
-              "description": "Des collections en petites séries, choisies pièce par pièce."
+              "description": "Peu de pièces par taille, choisies une à une. Votre enfant ne croisera pas sa tenue à chaque coin de rue."
             }
           ]
         },
         {
           "__component": "blocks.cta",
           "title": "Conçus en Europe, portés à Bamako",
-          "subtitle": "Découvrez notre collection pour filles et garçons de 3 à 14 ans.",
+          "subtitle": "La valise est déjà arrivée. Découvrez la collection pour filles et garçons de 3 à 14 ans.",
           "cta_text": "Voir la collection",
           "cta_link": "/categorie/filles"
         }
       ],
-      "updatedAt": "2026-11-18T20:00:00.000Z"
+      "updatedAt": "2026-11-20T12:00:00.000Z"
     },
     {
       "documentId": "page-livraison-et-echanges",

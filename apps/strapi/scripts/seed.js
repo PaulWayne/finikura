@@ -165,6 +165,23 @@ async function addMissingHomeBlocks(fixtureBlocks) {
   console.log(`${uid} : blocs écrits depuis les fixtures (${added.join(", ")})`);
 }
 
+/**
+ * Fields added to the global settings after the entry was created: the fixture value is written
+ * only where the entry has none. Whatever was typed in the admin is left alone.
+ */
+async function fillEmptyGlobalFields(fixture) {
+  const uid = "api::global-setting.global-setting";
+  const keys = ["founder_name", "founder_role", "exchange_days", "delivery_max_days"];
+  const doc = await strapi.documents(uid).findFirst({ status: "published" });
+  if (!doc) return;
+  const missing = keys.filter((key) => (doc[key] === null || doc[key] === undefined || doc[key] === "") && fixture[key] != null);
+  if (missing.length === 0) return;
+  const data = Object.fromEntries(missing.map((key) => [key, fixture[key]]));
+  await strapi.documents(uid).update({ documentId: doc.documentId, data, status: "published" });
+  refresh.add("global");
+  console.log(`${uid} : champs complétés depuis les fixtures (${missing.join(", ")})`);
+}
+
 async function createIfMissing(uid, filters, data) {
   const existing = await strapi.documents(uid).findFirst({ filters });
   if (existing) return console.log(`${uid} ${JSON.stringify(filters)} : déjà présent`);
@@ -178,6 +195,7 @@ const strip = ({ documentId: _d, id: _i, ...rest }) => rest;
 const globalSettings = strip(read("global-settings.json").data);
 if (noDemo) globalSettings.whatsapp_number = shopWhatsApp;
 await upsertSingle("api::global-setting.global-setting", globalSettings, "global");
+await fillEmptyGlobalFields(globalSettings);
 
 // --- Home ----------------------------------------------------------------------
 // Images are only imported when the entry is written: a plain run uploads nothing twice.

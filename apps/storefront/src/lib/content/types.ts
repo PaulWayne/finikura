@@ -23,6 +23,13 @@ export interface GlobalSettings {
   whatsappUrl: string;
   /** Floating WhatsApp button: enabled in Strapi and a number is set. */
   showWhatsAppButton: boolean;
+  /** Who founded the shop, for the structured data of Notre histoire; empty when not set. */
+  founderName: string;
+  founderRole: string;
+  /** Days to ask for an exchange after delivery; null when not set. */
+  exchangeDays: number | null;
+  /** Longest delivery time in days after the WhatsApp confirmation; null when not set. */
+  deliveryMaxDays: number | null;
   socialLinks: SocialLink[];
   footerLinks: FooterLink[];
   reassuranceItems: ReassuranceItem[];

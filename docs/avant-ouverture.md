@@ -47,6 +47,7 @@ Dernière mise à jour : 20 novembre 2026.
 ### Technique
 
 - [ ] Planifier les sauvegardes de nuit dès que les vraies données arrivent (script installé et testé, non planifié), puis la copie vers l'autre VPS. Détail dans `docs/deploiement.md` et FK-09.
+- [ ] Après le prochain déploiement, remplir dans l'admin Strapi (Réglages globaux) les quatre nouveaux champs : `founder_name`, `founder_role`, `exchange_days` (3), `delivery_max_days` (2). Ils servent aux données structurées lues par Google et les IA. Vides, ces données sont simplement absentes.
 - [ ] Tester « Mot de passe oublié » dans l'admin Medusa et dans l'admin Strapi : un e-mail doit arriver.
 - [ ] Inviter Mariam dans Medusa (`pnpm invite:admin`), dans Strapi (rôle Editor) et dans Umami (lecture seule).
 - [ ] Vérifier que les comptes Facebook et TikTok du pied de page existent et appartiennent à la boutique, et y publier quelques vidéos.

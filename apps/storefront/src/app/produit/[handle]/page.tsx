@@ -89,7 +89,7 @@ async function ProductContent({ params }: ProductPageProps) {
   return (
     <div className="pt-2 pb-4 md:py-8 space-y-3 md:space-y-8" data-purpose="product-page">
       <ProductViewTracker handle={product.handle} />
-      <JsonLd data={productJsonLd(product)} />
+      <JsonLd data={productJsonLd(product, settings)} />
       <JsonLd
         data={breadcrumbJsonLd([
           { name: categoryName, path: categoryPath },

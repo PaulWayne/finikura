@@ -38,6 +38,20 @@
       "type": "component",
       "repeatable": true,
       "component": "shared.reassurance-item"
+    },
+    "founder_name": {
+      "type": "string"
+    },
+    "founder_role": {
+      "type": "string"
+    },
+    "exchange_days": {
+      "type": "integer",
+      "min": 1
+    },
+    "delivery_max_days": {
+      "type": "integer",
+      "min": 1
     }
   }
 }

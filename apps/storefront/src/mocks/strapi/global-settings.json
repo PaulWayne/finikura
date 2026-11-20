@@ -4,6 +4,10 @@
     "announcement_bar": "COMMANDE EN LIGNE, LIVRÉE CHEZ VOUS À BAMAKO",
     "whatsapp_number": "33618315352",
     "whatsapp_floating_button": true,
+    "founder_name": "Mariam",
+    "founder_role": "Fondatrice de Fini Kura",
+    "exchange_days": 3,
+    "delivery_max_days": 2,
     "social_links": [
       {
         "platform": "whatsapp",

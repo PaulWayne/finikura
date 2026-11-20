@@ -45,7 +45,7 @@ export default async function HomePage() {
 
   return (
     <div className="space-y-10 md:space-y-16 pt-2 pb-4 md:py-8">
-      <JsonLd data={storeJsonLd(settings.socialLinks)} />
+      <JsonLd data={storeJsonLd(settings.socialLinks, settings)} />
       <JsonLd data={faqJsonLd(faqItemsOf(blocks))} />
       {blocks.map((block, index) => (
         // The first block is on screen when the page opens: it never waits for a scroll.

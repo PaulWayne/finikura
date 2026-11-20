@@ -35,6 +35,10 @@ export interface StrapiGlobalSettings {
   announcement_bar?: string | null;
   whatsapp_number?: string | null; // digits only, e.g. 22376000000
   whatsapp_floating_button?: boolean | null;
+  founder_name?: string | null;
+  founder_role?: string | null;
+  exchange_days?: number | null;
+  delivery_max_days?: number | null;
   social_links?: StrapiSocialLink[] | null;
   footer_links?: StrapiLink[] | null;
   reassurance_items?: StrapiReassuranceItem[] | null;
