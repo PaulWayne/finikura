@@ -70,11 +70,15 @@ export function CheckoutForm({ cart, children }: CheckoutFormProps) {
         triggerCartToast(messages.checkout.orderPlacedToast(res.order.orderNumber));
         router.push(`/commande/confirmation/${res.order.id}`);
       } else {
+        trackEvent(ANALYTICS_EVENTS.orderRefused, {
+          motif: res.error === messages.errors.tooManyOrders ? "limite" : "autre",
+        });
         setServerError(res.error || messages.errors.placeOrder);
       }
     } catch (err: unknown) {
       // The action could not be reached (network): never show the browser's technical message.
       console.error(err);
+      trackEvent(ANALYTICS_EVENTS.orderRefused, { motif: "reseau" });
       setServerError(messages.errors.placeOrder);
     } finally {
       submittingRef.current = false;
@@ -88,7 +92,11 @@ export function CheckoutForm({ cart, children }: CheckoutFormProps) {
     <form
       id={CHECKOUT_FORM_ID}
       method="post"
-      onSubmit={(e) => handleSubmit(onSubmit)(e)}
+      onSubmit={(e) =>
+        handleSubmit(onSubmit, (invalid) =>
+          trackEvent(ANALYTICS_EVENTS.formError, { champs: Object.keys(invalid).join(",") })
+        )(e)
+      }
       className="space-y-4 pt-1"
       noValidate
     >

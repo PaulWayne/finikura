@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Banknote, MessageCircle, ShieldCheck, Truck } from "lucide-react";
+import { Banknote, MessageCircle, RefreshCw, ShieldCheck, Truck } from "lucide-react";
 import type { Cart } from "@/lib/commerce/types";
 import { formatPrice } from "@/lib/format";
 import { messages } from "@/messages/fr";
@@ -89,6 +89,13 @@ export function CheckoutView({ cart }: { cart: Cart }) {
                   title={messages.checkout.paymentOnDeliveryTitle}
                   text={messages.checkout.paymentOnDeliveryDesc}
                 />
+                <Notice
+                  icon={<RefreshCw className="w-4 h-4" />}
+                  className="bg-brand-surface shadow-xs"
+                  iconClassName="bg-brand-surface text-brand-primary"
+                  title={messages.product.reassuranceExchange}
+                  text={messages.product.reassuranceExchangeDesc}
+                />
               </div>
             </CheckoutForm>
           </section>
@@ -133,6 +140,14 @@ export function CheckoutView({ cart }: { cart: Cart }) {
                 <div className="flex items-center gap-2">
                   <Banknote className="w-4 h-4 text-brand-text" />
                   <span className="text-xs font-medium text-brand-text">{messages.checkout.paymentOnDeliveryTitle}</span>
+                </div>
+              </div>
+
+              <div className="bg-brand-bg p-3 rounded-lg flex items-start gap-2 px-3.5 border border-brand-surface/60">
+                <RefreshCw className="w-4 h-4 text-brand-text shrink-0 mt-0.5" />
+                <div className="space-y-0.5">
+                  <p className="text-xs font-medium text-brand-text">{messages.product.reassuranceExchange}</p>
+                  <p className="text-[11px] text-brand-text leading-snug">{messages.product.reassuranceExchangeDesc}</p>
                 </div>
               </div>
 

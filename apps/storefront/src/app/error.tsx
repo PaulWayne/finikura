@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
+import { ANALYTICS_EVENTS, pageKind, trackEvent } from "@/lib/analytics";
 import { messages } from "@/messages/fr";
 
 /**
@@ -12,6 +13,7 @@ export default function ErrorPage({ error, retry }: { error: unknown; retry: () 
   const t = messages.errorPage;
   useEffect(() => {
     console.error(error);
+    trackEvent(ANALYTICS_EVENTS.pageError, { page: pageKind(window.location.pathname) });
   }, [error]);
 
   return (

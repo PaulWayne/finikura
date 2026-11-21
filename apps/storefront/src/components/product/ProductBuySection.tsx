@@ -88,7 +88,10 @@ export function ProductBuySection({ product, sizeGuide, whatsappUrl, productUrl 
         variants={product.variants}
         selectedVariant={selectedVariant}
         onSelect={setSelectedVariantId}
-        onOpenSizeGuide={() => setIsSizeModalOpen(true)}
+        onOpenSizeGuide={() => {
+          trackEvent(ANALYTICS_EVENTS.sizeGuideOpen, { produit: product.handle });
+          setIsSizeModalOpen(true);
+        }}
         whatsappUrl={whatsappUrl}
         productTitle={product.title}
         productUrl={productUrl}
